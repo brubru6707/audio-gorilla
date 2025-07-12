@@ -12,6 +12,7 @@ def list_apps() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all apps with their details.
     """
+    return [{"id": "app1", "name": "Sample App", "status": "active"}]
 
 def get_app(app_id: str) -> Dict[str, Any]:
     """
@@ -22,6 +23,7 @@ def get_app(app_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the requested app.
     """
+    return {"id": app_id, "name": "Sample App", "status": "active"}
 
 def create_app(app_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -32,6 +34,7 @@ def create_app(app_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created app.
     """
+    return {"id": "new_app", **app_data}
 
 def update_app(app_id: str, app_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -43,6 +46,7 @@ def update_app(app_id: str, app_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Updated details of the app.
     """
+    return {"id": app_id, **app_data}
 
 def delete_app(app_id: str) -> None:
     """
@@ -51,6 +55,7 @@ def delete_app(app_id: str) -> None:
     Args:
         app_id (str): ID of the app to delete.
     """
+    return None
 
 def get_app_settings(app_id: str) -> Dict[str, Any]:
     """
@@ -61,6 +66,7 @@ def get_app_settings(app_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Current settings of the app.
     """
+    return {"id": app_id, "settings": {"theme": "dark", "notifications": True}}
 
 def update_app_settings(app_id: str, settings: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -72,6 +78,7 @@ def update_app_settings(app_id: str, settings: Dict[str, Any]) -> Dict[str, Any]
     Returns:
         Dict[str, Any]: Updated settings of the app.
     """
+    return {"id": app_id, "settings": settings}
 
 def get_app_oauth(app_id: str) -> Dict[str, Any]:
     """
@@ -82,6 +89,7 @@ def get_app_oauth(app_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: OAuth settings of the app.
     """
+    return {"id": app_id, "oauth": {"client_id": "client123", "scopes": ["read", "write"]}}
 
 def update_app_oauth(app_id: str, oauth_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -93,6 +101,7 @@ def update_app_oauth(app_id: str, oauth_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Updated OAuth settings.
     """
+    return {"id": app_id, "oauth": oauth_data}
 
 def get_app_oauth_metadata() -> Dict[str, Any]:
     """
@@ -101,6 +110,7 @@ def get_app_oauth_metadata() -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: OAuth metadata for all apps.
     """
+    return {"version": "1.0", "endpoints": {"auth": "/oauth/auth", "token": "/oauth/token"}}
 
 # ================
 # Devices
@@ -121,6 +131,7 @@ def list_devices(
     Returns:
         List[Dict[str, Any]]: List of devices matching the filters.
     """
+    return [{"id": "device1", "name": "Smart Light", "location": location_id or "home"}]
 
 def get_device(device_id: str) -> Dict[str, Any]:
     """
@@ -131,6 +142,7 @@ def get_device(device_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the requested device.
     """
+    return {"id": device_id, "name": "Smart Device", "status": "online"}
 
 def get_device_status(device_id: str) -> Dict[str, Any]:
     """
@@ -141,6 +153,7 @@ def get_device_status(device_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Current status of the device.
     """
+    return {"id": device_id, "status": "online", "lastUpdated": datetime.now().isoformat()}
 
 def execute_device_command(
     device_id: str,
@@ -155,6 +168,7 @@ def execute_device_command(
     Returns:
         Dict[str, Any]: Result of the command execution.
     """
+    return {"deviceId": device_id, "status": "success", "commandsExecuted": len(commands)}
 
 def get_device_health(device_id: str) -> Dict[str, Any]:
     """
@@ -165,6 +179,7 @@ def get_device_health(device_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Health status of the device.
     """
+    return {"id": device_id, "health": "good", "battery": 85}
 
 def get_device_events(
     device_id: str,
@@ -183,6 +198,7 @@ def get_device_events(
     Returns:
         List[Dict[str, Any]]: List of device events.
     """
+    return [{"deviceId": device_id, "event": "motion", "time": datetime.now().isoformat()}]
 
 def create_device(device_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -193,6 +209,7 @@ def create_device(device_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created device.
     """
+    return {"id": "new_device", **device_data}
 
 def delete_device(device_id: str) -> None:
     """
@@ -201,6 +218,7 @@ def delete_device(device_id: str) -> None:
     Args:
         device_id (str): ID of the device to delete.
     """
+    return None
 
 def get_device_component_status(
     device_id: str,
@@ -215,6 +233,7 @@ def get_device_component_status(
     Returns:
         Dict[str, Any]: Status of the component.
     """
+    return {"deviceId": device_id, "componentId": component_id, "status": "active"}
 
 # ================
 # Installed Apps
@@ -227,6 +246,7 @@ def list_installed_apps() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all installed apps.
     """
+    return [{"id": "installed1", "appId": "app1", "status": "active"}]
 
 def get_installed_app(installed_app_id: str) -> Dict[str, Any]:
     """
@@ -237,6 +257,7 @@ def get_installed_app(installed_app_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the installed app.
     """
+    return {"id": installed_app_id, "appId": "app1", "status": "active"}
 
 def delete_installed_app(installed_app_id: str) -> None:
     """
@@ -245,6 +266,7 @@ def delete_installed_app(installed_app_id: str) -> None:
     Args:
         installed_app_id (str): ID of the installed app to delete.
     """
+    return None
 
 def get_installed_app_config(installed_app_id: str) -> Dict[str, Any]:
     """
@@ -255,6 +277,7 @@ def get_installed_app_config(installed_app_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Configuration of the installed app.
     """
+    return {"id": installed_app_id, "config": {"setting1": "value1"}}
 
 def update_installed_app_config(
     installed_app_id: str,
@@ -269,6 +292,7 @@ def update_installed_app_config(
     Returns:
         Dict[str, Any]: Updated configuration.
     """
+    return {"id": installed_app_id, "config": config}
 
 # ================
 # Locations
@@ -281,6 +305,7 @@ def list_locations() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all locations.
     """
+    return [{"id": "loc1", "name": "Home"}]
 
 def get_location(location_id: str) -> Dict[str, Any]:
     """
@@ -291,6 +316,7 @@ def get_location(location_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the location.
     """
+    return {"id": location_id, "name": "Home", "timezone": "UTC"}
 
 def create_location(location_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -301,6 +327,7 @@ def create_location(location_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created location.
     """
+    return {"id": "new_loc", **location_data}
 
 def update_location(
     location_id: str,
@@ -315,6 +342,7 @@ def update_location(
     Returns:
         Dict[str, Any]: Updated details of the location.
     """
+    return {"id": location_id, **location_data}
 
 def delete_location(location_id: str) -> None:
     """
@@ -323,6 +351,7 @@ def delete_location(location_id: str) -> None:
     Args:
         location_id (str): ID of the location to delete.
     """
+    return None
 
 def get_location_modes(location_id: str) -> List[Dict[str, Any]]:
     """
@@ -333,6 +362,7 @@ def get_location_modes(location_id: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of modes for the location.
     """
+    return [{"id": "mode1", "name": "Home"}, {"id": "mode2", "name": "Away"}]
 
 def set_location_mode(location_id: str, mode_id: str) -> Dict[str, Any]:
     """
@@ -344,6 +374,7 @@ def set_location_mode(location_id: str, mode_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Updated mode information.
     """
+    return {"locationId": location_id, "currentMode": mode_id}
 
 # ================
 # Rooms
@@ -358,6 +389,7 @@ def list_rooms(location_id: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of rooms in the location.
     """
+    return [{"id": "room1", "name": "Living Room", "locationId": location_id}]
 
 def get_room(location_id: str, room_id: str) -> Dict[str, Any]:
     """
@@ -369,6 +401,7 @@ def get_room(location_id: str, room_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the room.
     """
+    return {"id": room_id, "name": "Living Room", "locationId": location_id}
 
 def create_room(location_id: str, room_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -380,6 +413,7 @@ def create_room(location_id: str, room_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created room.
     """
+    return {"id": "new_room", "locationId": location_id, **room_data}
 
 def update_room(
     location_id: str,
@@ -396,6 +430,7 @@ def update_room(
     Returns:
         Dict[str, Any]: Updated details of the room.
     """
+    return {"id": room_id, "locationId": location_id, **room_data}
 
 def delete_room(location_id: str, room_id: str) -> None:
     """
@@ -405,6 +440,7 @@ def delete_room(location_id: str, room_id: str) -> None:
         location_id (str): ID of the location.
         room_id (str): ID of the room to delete.
     """
+    return None
 
 # ================
 # Scenes
@@ -419,6 +455,7 @@ def list_scenes(location_id: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of scenes in the location.
     """
+    return [{"id": "scene1", "name": "Movie Night", "locationId": location_id}]
 
 def execute_scene(location_id: str, scene_id: str) -> Dict[str, Any]:
     """
@@ -430,6 +467,7 @@ def execute_scene(location_id: str, scene_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Result of the scene execution.
     """
+    return {"locationId": location_id, "sceneId": scene_id, "status": "executed"}
 
 def get_scene(location_id: str, scene_id: str) -> Dict[str, Any]:
     """
@@ -441,6 +479,7 @@ def get_scene(location_id: str, scene_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the scene.
     """
+    return {"id": scene_id, "name": "Movie Night", "locationId": location_id}
 
 # ================
 # Subscriptions
@@ -453,6 +492,7 @@ def list_subscriptions() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all subscriptions.
     """
+    return [{"id": "sub1", "type": "device", "status": "active"}]
 
 def get_subscription(subscription_id: str) -> Dict[str, Any]:
     """
@@ -463,6 +503,7 @@ def get_subscription(subscription_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the subscription.
     """
+    return {"id": subscription_id, "type": "device", "status": "active"}
 
 def create_subscription(subscription_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -473,6 +514,7 @@ def create_subscription(subscription_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created subscription.
     """
+    return {"id": "new_sub", **subscription_data}
 
 def delete_subscription(subscription_id: str) -> None:
     """
@@ -481,6 +523,7 @@ def delete_subscription(subscription_id: str) -> None:
     Args:
         subscription_id (str): ID of the subscription to delete.
     """
+    return None
 
 # ================
 # Schedules
@@ -493,6 +536,7 @@ def list_schedules() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all schedules.
     """
+    return [{"id": "sched1", "name": "Morning Routine", "cron": "0 7 * * *"}]
 
 def get_schedule(schedule_id: str) -> Dict[str, Any]:
     """
@@ -503,6 +547,7 @@ def get_schedule(schedule_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the schedule.
     """
+    return {"id": schedule_id, "name": "Morning Routine", "cron": "0 7 * * *"}
 
 def create_schedule(schedule_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -513,6 +558,7 @@ def create_schedule(schedule_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created schedule.
     """
+    return {"id": "new_sched", **schedule_data}
 
 def delete_schedule(schedule_id: str) -> None:
     """
@@ -521,6 +567,7 @@ def delete_schedule(schedule_id: str) -> None:
     Args:
         schedule_id (str): ID of the schedule to delete.
     """
+    return None
 
 # ================
 # History
@@ -543,6 +590,7 @@ def get_device_history(
     Returns:
         List[Dict[str, Any]]: List of history entries for the device.
     """
+    return [{"deviceId": device_id, "event": "on", "time": datetime.now().isoformat()}]
 
 # ================
 # Capabilities
@@ -555,6 +603,7 @@ def list_capabilities() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all capabilities.
     """
+    return [{"id": "switch", "version": 1}, {"id": "temperature", "version": 2}]
 
 def get_capability(
     capability_id: str,
@@ -569,6 +618,7 @@ def get_capability(
     Returns:
         Dict[str, Any]: Details of the capability.
     """
+    return {"id": capability_id, "version": version or 1, "attributes": ["switch"]}
 
 # ================
 # Device Profiles
@@ -581,6 +631,7 @@ def list_device_profiles() -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of all device profiles.
     """
+    return [{"id": "profile1", "name": "Smart Light"}]
 
 def get_device_profile(profile_id: str) -> Dict[str, Any]:
     """
@@ -591,6 +642,7 @@ def get_device_profile(profile_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the profile.
     """
+    return {"id": profile_id, "name": "Smart Light", "components": ["main"]}
 
 def create_device_profile(profile_data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -601,6 +653,7 @@ def create_device_profile(profile_data: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Details of the created profile.
     """
+    return {"id": "new_profile", **profile_data}
 
 def delete_device_profile(profile_id: str) -> None:
     """
@@ -609,6 +662,7 @@ def delete_device_profile(profile_id: str) -> None:
     Args:
         profile_id (str): ID of the profile to delete.
     """
+    return None
 
 # ================
 # Utilities
@@ -623,6 +677,7 @@ def get_schema(schema_type: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Schema definition.
     """
+    return {"type": schema_type, "properties": {"id": {"type": "string"}}}
 
 def get_public_key(key_id: str) -> Dict[str, Any]:
     """
@@ -633,3 +688,4 @@ def get_public_key(key_id: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Public key details.
     """
+    return {"id": key_id, "key": "-----BEGIN PUBLIC KEY-----...", "algorithm": "RSA"}
