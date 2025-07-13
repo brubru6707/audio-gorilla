@@ -20,7 +20,7 @@ class GoogleCalendar:
         self.password: str
         self.authorized: bool
         self.calendars: Dict[str, Dict[str, str]]  # calendar_id -> calendar_data
-        self.events: Dict[str, Dict[str, Dict[str, Union[str, dict]]]  # calendar_id -> event_id -> event_data
+        self.events: Dict[str, Dict[str, Dict[str, Union[str, dict]]]]  # calendar_id -> event_id -> event_data
         self.settings: Dict[str, Union[str, bool]]
         self._api_description = "This tool belongs to the GoogleCalendarAPI, which provides core functionality for managing calendars and events in Google Calendar."
         
@@ -35,22 +35,6 @@ class GoogleCalendar:
         self.calendars = scenario.get("calendars", DEFAULT_STATE_COPY["calendars"])
         self.events = scenario.get("events", DEFAULT_STATE_COPY["events"])
         self.settings = scenario.get("settings", DEFAULT_STATE_COPY["settings"])
-
-    def authenticate_google_calendar(self, username: str, password: str) -> Dict[str, bool]:
-        """
-        Authenticate a user with username and password for Google Calendar.
-
-        Args:
-            username (str): Username of the user.
-            password (str): Password of the user.
-
-        Returns:
-            authentication_status (bool): True if authenticated, False otherwise.
-        """
-        if username == self.username and password == self.password:
-            self.authorized = True
-            return {"authentication_status": True}
-        return {"authentication_status": False}
 
     def create_calendar(self, summary: str, time_zone: str = "") -> Dict[str, bool]:
         """
@@ -259,35 +243,3 @@ class GoogleCalendar:
                 }
                 
         return {"retrieval_status": True, "free_busy_data": free_busy_data}
-
-    def get_setting(self, setting_name: str) -> Dict[str, Union[bool, dict]]:
-        """
-        Get a specific setting by name.
-
-        Args:
-            setting_name (str): Name of the setting to retrieve.
-
-        Returns:
-            retrieval_status (bool): True if retrieved successfully, False otherwise.
-            setting_data (dict): Setting details if successful.
-        """
-        if not self.authorized:
-            return {"retrieval_status": False, "setting_data": {}}
-            
-        if setting_name not in self.settings:
-            return {"retrieval_status": False, "setting_data": {}}
-            
-        return {"retrieval_status": True, "setting_data": {setting_name: self.settings[setting_name]}}
-
-    def list_settings(self) -> Dict[str, Union[bool, list]]:
-        """
-        List all available settings.
-
-        Returns:
-            retrieval_status (bool): True if retrieved successfully, False otherwise.
-            settings (list): List of settings if successful.
-        """
-        if not self.authorized:
-            return {"retrieval_status": False, "settings": []}
-            
-        return {"retrieval_status": True, "settings": list(self.settings.keys())}
