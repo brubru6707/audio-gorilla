@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Union, Any
 import json
 
+# Api Reference Docs
+# https://www.npmjs.com/package/@mediocre/walmart-marketplace
 
 class WalmartMarketplaceAPI:
     def __init__(self, client_id: str = None, client_secret: str = None, seller_id: str = None):
