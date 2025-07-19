@@ -873,3 +873,4 @@ class VenmoApis:
                 notif["read"] = read_status
         
         return {"mark_status": True}
+    
