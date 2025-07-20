@@ -1,16 +1,17 @@
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Union
+from datetime import datetime
 from copy import deepcopy
 
 DEFAULT_STATE = {
-    "username": "spotify_user@example.com", # Changed to an email for consistency with login/signup
-    "password": "spotify123",
-    "authenticated": True, # Assume user is already logged in as per your requirement
+    "username": "spotify_user@example.com", 
+    # "password": "spotify123", # Removed as authentication is no longer handled
+    # "authenticated": True, # Removed as authentication is no longer handled
     "users": {
         "spotify_user@example.com": {
             "first_name": "Spotify",
             "last_name": "User",
             "email": "spotify_user@example.com",
-            "password": "spotify123",
+            # "password": "spotify123", # Removed as authentication is no longer handled
             "verified": True,
             "liked_songs": [101, 103],
             "liked_albums": [201],
@@ -65,8 +66,6 @@ DEFAULT_STATE = {
 class SpotifyApis:
     def __init__(self):
         self.username: str
-        self.password: str
-        self.authenticated: bool
         self.users: Dict[str, Dict[str, Any]]
         self.songs: Dict[int, Dict[str, Any]]
         self.albums: Dict[int, Dict[str, Any]]
@@ -77,16 +76,17 @@ class SpotifyApis:
         self.current_song: Optional[Dict[str, Any]]
         self.song_queue: List[Dict[str, Any]]
         self.volume: int
-        self.premium_subscriptions: Dict[str, Dict[str, Any]] # Changed type hint to str for email key
+        self.premium_subscriptions: Dict[str, Dict[str, Any]] 
         self.id_counters: Dict[str, int]
+        self.is_playing: bool = False 
         self._load_default_state()
 
     def _load_default_state(self) -> None:
         """Load the default state into the SpotifyAPI instance."""
         default_state_copy = deepcopy(DEFAULT_STATE)
         self.username = default_state_copy["username"]
-        self.password = default_state_copy["password"]
-        self.authenticated = default_state_copy["authenticated"]
+        # self.password = default_state_copy["password"] # Removed
+        # self.authenticated = default_state_copy["authenticated"] # Removed
         self.users = default_state_copy["users"]
         self.songs = default_state_copy["songs"]
         self.albums = default_state_copy["albums"]
@@ -99,142 +99,19 @@ class SpotifyApis:
         self.volume = default_state_copy["volume"]
         self.premium_subscriptions = default_state_copy["premium_subscriptions"]
         self.id_counters = default_state_copy["id_counters"]
+        self.is_playing = False # Ensure initial state is not playing
 
     # --- Account Management ---
-    def signup(self, first_name: str, last_name: str, email: str, password: str) -> Dict[str, bool]:
-        """
-        Sign up a new user with first name, last name, email and password.
-        Args:
-            first_name (str): First name of the user.
-            last_name (str): Last name of the user.
-            email (str): Email of the user.
-            password (str): Password of the user.
-        Returns:
-            Dict[str, bool]: {"signup_status": True} if signup successful, {"signup_status": False} otherwise.
-        """
-        if email in self.users:
-            return {"signup_status": False, "message": "Email already exists."}
-
-        # In a real system, you'd add more robust password handling (hashing)
-        self.users[email] = {
-            "first_name": first_name,
-            "last_name": last_name,
-            "email": email,
-            "password": password,
-            "verified": False,
-            "liked_songs": [],
-            "liked_albums": [],
-            "liked_playlists": [],
-            "following_artists": [],
-            "library_songs": [],
-            "library_albums": [],
-            "downloaded_songs": [],
-            "premium": False
-        }
-        return {"signup_status": True, "message": "Signup successful."}
-
-    def login(self, email: str, password: str) -> Dict[str, bool]:
-        """
-        Log in a user with email and password.
-        Args:
-            email (str): Email of the user.
-            password (str): Password of the user.
-        Returns:
-            Dict[str, bool]: {"login_status": True} if login successful, {"login_status": False} otherwise.
-        """
-        if email in self.users and self.users[email]["password"] == password:
-            self.authenticated = True
-            self.username = email
-            return {"login_status": True, "message": "Login successful."}
-        return {"login_status": False, "message": "Invalid email or password."}
-
-    def logout(self) -> Dict[str, bool]:
-        """
-        Log out the current user.
-        Returns:
-            Dict[str, bool]: {"logout_status": True} if logout successful, {"logout_status": False} otherwise.
-        """
-        if not self.authenticated:
-            return {"logout_status": False, "message": "No user is currently logged in."}
-
-        self.authenticated = False
-        self.username = ""  # Clear the username on logout
-        return {"logout_status": True, "message": "Logout successful."}
-
-    def send_verification_code(self, email: str) -> Dict[str, bool]:
-        """
-        Send a verification code to the user's email.
-        Args:
-            email (str): Email of the user.
-        Returns:
-            Dict[str, bool]: {"send_status": True} if code sent successfully, {"send_status": False} otherwise.
-        """
-        if email not in self.users:
-            return {"send_status": False, "message": "User with this email does not exist."}
-
-        # In a real implementation, a verification code would be generated and sent
-        return {"send_status": True, "message": f"Verification code sent to {email}."}
-
-    def verify_account(self, email: str, verification_code: str) -> Dict[str, bool]:
-        """
-        Verify user account with a verification code.
-        Args:
-            email (str): Email of the user.
-            verification_code (str): Verification code sent to user's email.
-        Returns:
-            Dict[str, bool]: {"verification_status": True} if verification successful, {"verification_status": False} otherwise.
-        """
-        if email not in self.users:
-            return {"verification_status": False, "message": "User with this email does not exist."}
-
-        # Dummy verification: always assume code is "123456" for testing
-        if verification_code == "123456":
-            self.users[email]["verified"] = True
-            return {"verification_status": True, "message": "Account verified successfully."}
-        return {"verification_status": False, "message": "Invalid verification code."}
-
-    def send_password_reset_code(self, email: str) -> Dict[str, bool]:
-        """
-        Send a password reset code to the user's email.
-        Args:
-            email (str): Email of the user.
-        Returns:
-            Dict[str, bool]: {"send_status": True} if code sent successfully, {"send_status": False} otherwise.
-        """
-        if email not in self.users:
-            return {"send_status": False, "message": "User with this email does not exist."}
-
-        # In a real implementation, a password reset code would be generated and sent
-        return {"send_status": True, "message": f"Password reset code sent to {email}."}
-
-    def reset_password(self, email: str, password_reset_code: str, new_password: str) -> Dict[str, bool]:
-        """
-        Reset user password with a reset code.
-        Args:
-            email (str): Email of the user.
-            password_reset_code (str): Password reset code sent to user's email.
-            new_password (str): New password to set.
-        Returns:
-            Dict[str, bool]: {"reset_status": True} if password reset successful, {"reset_status": False} otherwise.
-        """
-        if email not in self.users:
-            return {"reset_status": False, "message": "User with this email does not exist."}
-
-        # Dummy verification: always assume code is "654321" for testing
-        if password_reset_code == "654321":
-            self.users[email]["password"] = new_password
-            return {"reset_status": True, "message": "Password reset successfully."}
-        return {"reset_status": False, "message": "Invalid password reset code."}
+    # Removed signup, login, logout, send_verification_code, verify_account, 
+    # send_password_reset_code, reset_password as authentication is no longer handled.
 
     def show_profile(self) -> Dict[str, Any]:
         """
         Show the current user's profile information.
         Returns:
-            Dict[str, Any]: Dictionary containing user profile information, or empty if not authenticated.
+            Dict[str, Any]: Dictionary containing user profile information.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"profile": {}, "message": "Not authenticated."}
-
+        # No authentication check needed, user is assumed logged in
         user = self.users[self.username]
         return {
             "profile": {
@@ -254,11 +131,9 @@ class SpotifyApis:
             first_name (str): New first name.
             last_name (str): New last name.
         Returns:
-            Dict[str, bool]: {"update_status": True} if update successful, {"update_status": False} otherwise.
+            Dict[str, bool]: {"update_status": True} if update successful.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"update_status": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         self.users[self.username]["first_name"] = first_name
         self.users[self.username]["last_name"] = last_name
         return {"update_status": True, "message": "Account name updated successfully."}
@@ -269,13 +144,12 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"delete_status": True} if deletion successful, {"delete_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"delete_status": False, "message": "Not authenticated."}
-
-        del self.users[self.username]
-        self.authenticated = False
-        self.username = ""  # Clear the username on account deletion
-        return {"delete_status": True, "message": "Account deleted successfully."}
+        # In a real system, you might set a placeholder user or re-initialize.
+        # For this context, we'll revert to the default assumed user.
+        if self.username in self.users:
+            del self.users[self.username]
+        self._load_default_state() # Revert to default user
+        return {"delete_status": True, "message": "Account deleted successfully. Default user re-established."}
 
     # --- Music Browse & Discovery ---
     def show_genres(self) -> Dict[str, List[str]]:
@@ -321,9 +195,7 @@ class SpotifyApis:
         Returns:
             Dict[str, Any]: {"privates": {...}} Dictionary containing private song information.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"privates": {}, "message": "Not authenticated."}
-
+        # No authentication check needed
         if song_id not in self.songs:
             return {"privates": {}, "message": f"Song with ID {song_id} not found."}
 
@@ -345,8 +217,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"like_status": True} if like successful, {"like_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"like_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if song_id not in self.songs:
             return {"like_status": False, "message": f"Song with ID {song_id} not found."}
 
@@ -363,8 +234,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"unlike_status": True} if unlike successful, {"unlike_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"unlike_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if song_id not in self.songs:
             return {"unlike_status": False, "message": f"Song with ID {song_id} not found."}
 
@@ -379,9 +249,7 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"songs": [...]} List of liked song dictionaries.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"songs": [], "message": "Not authenticated."}
-
+        # No authentication check needed
         liked_songs = []
         for song_id in self.users[self.username]["liked_songs"]:
             if song_id in self.songs:
@@ -422,9 +290,7 @@ class SpotifyApis:
         Returns:
             Dict[str, Any]: {"privates": {...}} Dictionary containing private album information.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"privates": {}, "message": "Not authenticated."}
-
+        # No authentication check needed
         if album_id not in self.albums:
             return {"privates": {}, "message": f"Album with ID {album_id} not found."}
 
@@ -445,8 +311,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"like_status": True} if like successful, {"like_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"like_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if album_id not in self.albums:
             return {"like_status": False, "message": f"Album with ID {album_id} not found."}
 
@@ -463,8 +328,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"unlike_status": True} if unlike successful, {"unlike_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"unlike_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if album_id not in self.albums:
             return {"unlike_status": False, "message": f"Album with ID {album_id} not found."}
 
@@ -479,9 +343,7 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"albums": [...]} List of liked album dictionaries.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"albums": [], "message": "Not authenticated."}
-
+        # No authentication check needed
         liked_albums = []
         for album_id in self.users[self.username]["liked_albums"]:
             if album_id in self.albums:
@@ -494,9 +356,7 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"playlists": [...]} List of playlist dictionaries.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"playlists": [], "message": "Not authenticated."}
-
+        # No authentication check needed
         user_playlists = []
         for playlist_id, playlist in self.playlists.items():
             if playlist["owner"] == self.username:
@@ -537,9 +397,7 @@ class SpotifyApis:
         Returns:
             Dict[str, Any]: {"privates": {...}} Dictionary containing private playlist information.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"privates": {}, "message": "Not authenticated."}
-
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"privates": {}, "message": f"Playlist with ID {playlist_id} not found."}
 
@@ -559,11 +417,9 @@ class SpotifyApis:
             title (str): Title of the playlist.
             is_public (bool): Whether the playlist is public.
         Returns:
-            Dict[str, Any]: {"playlist": {...}} Dictionary containing new playlist information, or empty if not authenticated.
+            Dict[str, Any]: {"playlist": {...}} Dictionary containing new playlist information.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"playlist": {}, "message": "Not authenticated."}
-
+        # No authentication check needed
         playlist_id = self.id_counters["playlist"]
         self.id_counters["playlist"] += 1
 
@@ -587,8 +443,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"update_status": True} if update successful, {"update_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"update_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"update_status": False, "message": f"Playlist with ID {playlist_id} not found."}
         if self.playlists[playlist_id]["owner"] != self.username:
@@ -606,8 +461,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"update_status": True} if rename successful, {"update_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"update_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"update_status": False, "message": f"Playlist with ID {playlist_id} not found."}
         if self.playlists[playlist_id]["owner"] != self.username:
@@ -624,8 +478,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"delete_status": True} if deletion successful, {"delete_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"delete_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"delete_status": False, "message": f"Playlist with ID {playlist_id} not found."}
         if self.playlists[playlist_id]["owner"] != self.username:
@@ -642,8 +495,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"like_status": True} if like successful, {"like_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"like_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"like_status": False, "message": f"Playlist with ID {playlist_id} not found."}
 
@@ -660,8 +512,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"unlike_status": True} if unlike successful, {"unlike_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"unlike_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"unlike_status": False, "message": f"Playlist with ID {playlist_id} not found."}
 
@@ -676,210 +527,12 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"playlists": [...]} List of liked playlist dictionaries.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"playlists": [], "message": "Not authenticated."}
-
+        # No authentication check needed
         liked_playlists = []
         for playlist_id in self.users[self.username]["liked_playlists"]:
             if playlist_id in self.playlists:
                 liked_playlists.append(self.playlists[playlist_id])
         return {"playlists": liked_playlists, "message": "Liked playlists retrieved."}
-
-    def search_artists(self, query: str) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Search for artists by name.
-        Args:
-            query (str): Search query.
-        Returns:
-            Dict[str, List[Dict[str, Any]]]: {"artists": [...]} List of artist dictionaries matching the query.
-        """
-        matching_artists = []
-        for artist in self.artists.values():
-            if query.lower() in artist["name"].lower():
-                matching_artists.append(artist)
-        return {"artists": matching_artists, "message": f"Artists matching '{query}' retrieved."}
-
-    def show_artist(self, artist_id: int) -> Dict[str, Any]:
-        """
-        Show details of a specific artist.
-        Args:
-            artist_id (int): ID of the artist.
-        Returns:
-            Dict[str, Any]: {"artist": {...}} Dictionary containing artist details, or empty if not found.
-        """
-        if artist_id not in self.artists:
-            return {"artist": {}, "message": f"Artist with ID {artist_id} not found."}
-        return {"artist": self.artists[artist_id], "message": f"Details for artist ID {artist_id} retrieved."}
-
-    def show_artist_following(self, artist_id: int) -> Dict[str, bool]:
-        """
-        Check if the current user is following an artist.
-        Args:
-            artist_id (int): ID of the artist.
-        Returns:
-            Dict[str, bool]: {"following_status": True} if following, {"following_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"following_status": False, "message": "Not authenticated."}
-        if artist_id not in self.artists:
-            return {"following_status": False, "message": f"Artist with ID {artist_id} not found."}
-
-        return {"following_status": artist_id in self.users[self.username]["following_artists"],
-                "message": f"Following status for artist ID {artist_id} retrieved."}
-
-    def show_following_artists(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show artists the current user is following.
-        Returns:
-            Dict[str, List[Dict[str, Any]]]: {"artists": [...]} List of followed artist dictionaries.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"artists": [], "message": "Not authenticated."}
-
-        following_artists = []
-        for artist_id in self.users[self.username]["following_artists"]:
-            if artist_id in self.artists:
-                following_artists.append(self.artists[artist_id])
-        return {"artists": following_artists, "message": "Following artists retrieved."}
-
-    def follow_artist(self, artist_id: int) -> Dict[str, bool]:
-        """
-        Follow an artist.
-        Args:
-            artist_id (int): ID of the artist to follow.
-        Returns:
-            Dict[str, bool]: {"follow_status": True} if follow successful, {"follow_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"follow_status": False, "message": "Not authenticated."}
-        if artist_id not in self.artists:
-            return {"follow_status": False, "message": f"Artist with ID {artist_id} not found."}
-
-        if artist_id not in self.users[self.username]["following_artists"]:
-            self.users[self.username]["following_artists"].append(artist_id)
-            return {"follow_status": True, "message": f"Artist ID {artist_id} followed."}
-        return {"follow_status": False, "message": f"Artist ID {artist_id} is already followed."}
-
-    def unfollow_artist(self, artist_id: int) -> Dict[str, bool]:
-        """
-        Unfollow an artist.
-        Args:
-            artist_id (int): ID of the artist to unfollow.
-        Returns:
-            Dict[str, bool]: {"unfollow_status": True} if unfollow successful, {"unfollow_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"unfollow_status": False, "message": "Not authenticated."}
-        if artist_id not in self.artists:
-            return {"unfollow_status": False, "message": f"Artist with ID {artist_id} not found."}
-
-        if artist_id in self.users[self.username]["following_artists"]:
-            self.users[self.username]["following_artists"].remove(artist_id)
-            return {"unfollow_status": True, "message": f"Artist ID {artist_id} unfollowed."}
-        return {"unfollow_status": False, "message": f"Artist ID {artist_id} is not followed."}
-
-    # --- Library Management ---
-    def show_song_library(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show the current user's song library.
-        Returns:
-            Dict[str, List[Dict[str, Any]]]: {"songs": [...]} List of song dictionaries in library.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"songs": [], "message": "Not authenticated."}
-
-        library_songs = []
-        for song_id in self.users[self.username]["library_songs"]:
-            if song_id in self.songs:
-                library_songs.append(self.songs[song_id])
-        return {"songs": library_songs, "message": "Song library retrieved."}
-
-    def add_song_to_library(self, song_id: int) -> Dict[str, bool]:
-        """
-        Add a song to the current user's library.
-        Args:
-            song_id (int): ID of the song to add.
-        Returns:
-            Dict[str, bool]: {"add_status": True} if add successful, {"add_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"add_status": False, "message": "Not authenticated."}
-        if song_id not in self.songs:
-            return {"add_status": False, "message": f"Song with ID {song_id} not found."}
-
-        if song_id not in self.users[self.username]["library_songs"]:
-            self.users[self.username]["library_songs"].append(song_id)
-            return {"add_status": True, "message": f"Song ID {song_id} added to library."}
-        return {"add_status": False, "message": f"Song ID {song_id} is already in library."}
-
-    def remove_song_from_library(self, song_id: int) -> Dict[str, bool]:
-        """
-        Remove a song from the current user's library.
-        Args:
-            song_id (int): ID of the song to remove.
-        Returns:
-            Dict[str, bool]: {"remove_status": True} if remove successful, {"remove_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"remove_status": False, "message": "Not authenticated."}
-        if song_id not in self.songs:
-            return {"remove_status": False, "message": f"Song with ID {song_id} not found."}
-
-        if song_id in self.users[self.username]["library_songs"]:
-            self.users[self.username]["library_songs"].remove(song_id)
-            return {"remove_status": True, "message": f"Song ID {song_id} removed from library."}
-        return {"remove_status": False, "message": f"Song ID {song_id} is not in library."}
-
-    def show_album_library(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show the current user's album library.
-        Returns:
-            Dict[str, List[Dict[str, Any]]]: {"albums": [...]} List of album dictionaries in library.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"albums": [], "message": "Not authenticated."}
-
-        library_albums = []
-        for album_id in self.users[self.username]["library_albums"]:
-            if album_id in self.albums:
-                library_albums.append(self.albums[album_id])
-        return {"albums": library_albums, "message": "Album library retrieved."}
-
-    def add_album_to_library(self, album_id: int) -> Dict[str, bool]:
-        """
-        Add an album to the current user's library.
-        Args:
-            album_id (int): ID of the album to add.
-        Returns:
-            Dict[str, bool]: {"add_status": True} if add successful, {"add_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"add_status": False, "message": "Not authenticated."}
-        if album_id not in self.albums:
-            return {"add_status": False, "message": f"Album with ID {album_id} not found."}
-
-        if album_id not in self.users[self.username]["library_albums"]:
-            self.users[self.username]["library_albums"].append(album_id)
-            return {"add_status": True, "message": f"Album ID {album_id} added to library."}
-        return {"add_status": False, "message": f"Album ID {album_id} is already in library."}
-
-    def remove_album_from_library(self, album_id: int) -> Dict[str, bool]:
-        """
-        Remove an album from the current user's library.
-        Args:
-            album_id (int): ID of the album to remove.
-        Returns:
-            Dict[str, bool]: {"remove_status": True} if remove successful, {"remove_status": False} otherwise.
-        """
-        if not self.authenticated or self.username not in self.users:
-            return {"remove_status": False, "message": "Not authenticated."}
-        if album_id not in self.albums:
-            return {"remove_status": False, "message": f"Album with ID {album_id} not found."}
-
-        if album_id in self.users[self.username]["library_albums"]:
-            self.users[self.username]["library_albums"].remove(album_id)
-            return {"remove_status": True, "message": f"Album ID {album_id} removed from library."}
-        return {"remove_status": False, "message": f"Album ID {album_id} is not in library."}
 
     def add_song_to_playlist(self, playlist_id: int, song_id: int) -> Dict[str, bool]:
         """
@@ -890,8 +543,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"add_status": True} if add successful, {"add_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"add_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"add_status": False, "message": f"Playlist with ID {playlist_id} not found."}
         if song_id not in self.songs:
@@ -913,8 +565,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"remove_status": True} if remove successful, {"remove_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"remove_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if playlist_id not in self.playlists:
             return {"remove_status": False, "message": f"Playlist with ID {playlist_id} not found."}
         if song_id not in self.songs:
@@ -933,9 +584,7 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"songs": [...]} List of downloaded song dictionaries.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"songs": [], "message": "Not authenticated."}
-
+        # No authentication check needed
         downloaded_songs = []
         for song_id in self.users[self.username]["downloaded_songs"]:
             if song_id in self.songs:
@@ -950,8 +599,9 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"download_status": True} if download successful, {"download_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"download_status": False, "message": "Not authenticated."}
+        # No authentication check needed, but premium check remains
+        if not self.users[self.username]["premium"]:
+            return {"download_status": False, "message": "Premium subscription required to download songs."}
         if song_id not in self.songs:
             return {"download_status": False, "message": f"Song with ID {song_id} not found."}
 
@@ -968,8 +618,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"remove_status": True} if remove successful, {"remove_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"remove_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if song_id not in self.songs:
             return {"remove_status": False, "message": f"Song with ID {song_id} not found."}
 
@@ -979,51 +628,55 @@ class SpotifyApis:
         return {"remove_status": False, "message": f"Song ID {song_id} is not downloaded."}
 
     # --- Playback Control ---
-    def play_song(self, song_id: int) -> Dict[str, bool]:
+    def play_song(self, song_id: int) -> Dict[str, Any]:
         """
         Start playing a song.
         Args:
             song_id (int): ID of the song to play.
         Returns:
-            Dict[str, bool]: {"play_status": True} if song starts playing, {"play_status": False} otherwise.
+            Dict[str, Any]: {"playback_status": "playing", "song": {...}} if successful, {"playback_status": "error"} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"play_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if song_id not in self.songs:
-            return {"play_status": False, "message": f"Song with ID {song_id} not found."}
-
+            return {"playback_status": "error", "message": f"Song with ID {song_id} not found."}
+        
         self.current_song = self.songs[song_id]
-        self.song_queue = [] # Clear queue when new song is played directly
-        return {"play_status": True, "message": f"Now playing: {self.current_song['title']} by {self.current_song['artist']}."}
+        self.is_playing = True
+        return {"playback_status": "playing", "song": self.current_song, "message": f"Now playing: {self.current_song['title']}."}
 
-    def pause_song(self) -> Dict[str, bool]:
+    def pause_song(self) -> Dict[str, str]:
         """
         Pause the currently playing song.
         Returns:
-            Dict[str, bool]: {"pause_status": True} if paused, {"pause_status": False} otherwise.
+            Dict[str, str]: {"playback_status": "paused"} if successful, {"playback_status": "error"} otherwise.
         """
-        if not self.authenticated or not self.current_song:
-            return {"pause_status": False, "message": "No song is currently playing."}
+        # No authentication check needed
+        if self.current_song and self.is_playing:
+            self.is_playing = False
+            return {"playback_status": "paused", "message": f"Song paused: {self.current_song['title']}."}
+        return {"playback_status": "error", "message": "No song is currently playing to pause."}
 
-        # In a real system, this would interact with an audio player
-        self.current_song = None # Simulating pause by clearing current song for simplicity
-        return {"pause_status": True, "message": "Song paused."}
-
-    def resume_song(self) -> Dict[str, bool]:
+    def resume_song(self) -> Dict[str, str]:
         """
-        Resume the last paused song or the current song if available.
+        Resume the currently paused song.
         Returns:
-            Dict[str, bool]: {"resume_status": True} if resumed, {"resume_status": False} otherwise.
+            Dict[str, str]: {"playback_status": "playing"} if successful, {"playback_status": "error"} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"resume_status": False, "message": "Not authenticated."}
-        if not self.current_song and self.song_queue:
-            # If nothing is currently playing but there's a queue, play the next in queue
-            self.current_song = self.song_queue.pop(0)
-            return {"resume_status": True, "message": f"Resuming playback with: {self.current_song['title']}."}
-        elif self.current_song:
-            return {"resume_status": True, "message": f"Resuming playback of: {self.current_song['title']}."}
-        return {"resume_status": False, "message": "No song to resume."}
+        # No authentication check needed
+        if self.current_song and not self.is_playing:
+            self.is_playing = True
+            return {"playback_status": "playing", "message": f"Song resumed: {self.current_song['title']}."}
+        # Only resume from queue if no song is currently paused
+        elif not self.current_song and self.song_queue: 
+            next_song_id = self.song_queue.pop(0)
+            self.current_song = self.songs.get(next_song_id)
+            if self.current_song:
+                self.is_playing = True
+                return {"playback_status": "playing", "message": f"Resuming playback with: {self.current_song['title']}."}
+            else:
+                return {"playback_status": "error", "message": "Next song in queue not found for resume."}
+        
+        return {"playback_status": "error", "message": "No song to resume."}
 
     def skip_song(self) -> Dict[str, bool]:
         """
@@ -1031,11 +684,17 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"skip_status": True} if skipped, {"skip_status": False} otherwise.
         """
-        if not self.authenticated or not self.song_queue:
+        # No authentication check needed
+        if not self.song_queue:
             return {"skip_status": False, "message": "No more songs in the queue to skip to."}
 
-        self.current_song = self.song_queue.pop(0)
-        return {"skip_status": True, "message": f"Skipped to next song: {self.current_song['title']}."}
+        self.current_song = self.songs.get(self.song_queue.pop(0)) # Get song object from ID
+        if self.current_song:
+            self.is_playing = True # Ensure it continues playing after skip
+            return {"skip_status": True, "message": f"Skipped to next song: {self.current_song['title']}."}
+        else:
+            return {"skip_status": False, "message": "Next song in queue not found."}
+
 
     def previous_song(self) -> Dict[str, bool]:
         """
@@ -1043,11 +702,13 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"previous_status": True} if successful, {"previous_status": False} otherwise.
         """
-        if not self.authenticated or not self.current_song:
+        # No authentication check needed
+        if not self.current_song:
             return {"previous_status": False, "message": "No song currently playing or previous song available."}
 
         # In a real player, you'd manage a history stack. For dummy, just "stop"
         self.current_song = None
+        self.is_playing = False # Stop playing
         return {"previous_status": True, "message": "Went back to previous song (simulated stop)."}
 
     def set_volume(self, volume_level: int) -> Dict[str, bool]:
@@ -1058,9 +719,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"set_status": True} if set, {"set_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"set_status": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         if 0 <= volume_level <= 100:
             self.volume = volume_level
             return {"set_status": True, "message": f"Volume set to {volume_level}."}
@@ -1072,9 +731,7 @@ class SpotifyApis:
         Returns:
             Dict[str, int]: {"volume": current_volume_level}
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"volume": -1, "message": "Not authenticated."} # -1 indicates error
-
+        # No authentication check needed
         return {"volume": self.volume, "message": f"Current volume is {self.volume}."}
 
     def show_current_song(self) -> Dict[str, Any]:
@@ -1083,9 +740,8 @@ class SpotifyApis:
         Returns:
             Dict[str, Any]: {"current_song": {...}} Dictionary containing song details, or empty if nothing is playing.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"current_song": {}, "message": "Not authenticated."}
-        if not self.current_song:
+        # No authentication check needed
+        if not self.current_song or not self.is_playing: # Check is_playing as well
             return {"current_song": {}, "message": "No song is currently playing."}
 
         return {"current_song": self.current_song, "message": "Current song details retrieved."}
@@ -1098,12 +754,11 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"add_status": True} if added, {"add_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"add_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if song_id not in self.songs:
             return {"add_status": False, "message": f"Song with ID {song_id} not found."}
 
-        self.song_queue.append(self.songs[song_id])
+        self.song_queue.append(song_id) # Store ID, not full song object
         return {"add_status": True, "message": f"Song '{self.songs[song_id]['title']}' added to queue."}
 
     def show_song_queue(self) -> Dict[str, List[Dict[str, Any]]]:
@@ -1112,20 +767,17 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"queue": [...]} List of song dictionaries in the queue.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"queue": [], "message": "Not authenticated."}
-
-        return {"queue": self.song_queue, "message": "Playback queue retrieved."}
+        # No authentication check needed
+        queue_songs_details = [self.songs[song_id] for song_id in self.song_queue if song_id in self.songs]
+        return {"queue": queue_songs_details, "message": "Playback queue retrieved."}
 
     def clear_song_queue(self) -> Dict[str, bool]:
         """
         Clear the current playback queue.
         Returns:
-            Dict[str, bool]: {"clear_status": True} if cleared, {"clear_status": False} otherwise.
+            Dict[str, bool]: {"clear_status": True}
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"clear_status": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         self.song_queue = []
         return {"clear_status": True, "message": "Playback queue cleared."}
 
@@ -1136,8 +788,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"upgrade_status": True} if successful, {"upgrade_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"upgrade_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if self.users[self.username]["premium"]:
             return {"upgrade_status": False, "message": "User is already premium."}
 
@@ -1152,8 +803,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"cancel_status": True} if successful, {"cancel_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"cancel_status": False, "message": "Not authenticated."}
+        # No authentication check needed
         if not self.users[self.username]["premium"]:
             return {"cancel_status": False, "message": "User is not a premium subscriber."}
 
@@ -1168,9 +818,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"is_premium": True} if premium, {"is_premium": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"is_premium": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         return {"is_premium": self.users[self.username]["premium"], "message": "Premium status retrieved."}
 
     def add_payment_method(self, card_type: str, last_four_digits: str) -> Dict[str, bool]:
@@ -1184,9 +832,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"add_status": True} if successful, {"add_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"add_status": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         payment_card_id = self.id_counters["payment_card"]
         self.id_counters["payment_card"] += 1
 
@@ -1208,9 +854,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"remove_status": True} if successful, {"remove_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"remove_status": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         if payment_method_id not in self.payment_cards:
             return {"remove_status": False, "message": f"Payment method with ID {payment_method_id} not found."}
 
@@ -1226,9 +870,7 @@ class SpotifyApis:
         Returns:
             Dict[str, List[Dict[str, Any]]]: {"payment_methods": [...]} List of payment method dictionaries.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"payment_methods": [], "message": "Not authenticated."}
-
+        # No authentication check needed
         user_payment_methods = []
         for card_id, card_info in self.payment_cards.items():
             if card_info["user_email"] == self.username:
@@ -1248,9 +890,7 @@ class SpotifyApis:
         Returns:
             Dict[str, bool]: {"set_default_status": True} if successful, {"set_default_status": False} otherwise.
         """
-        if not self.authenticated or self.username not in self.users:
-            return {"set_default_status": False, "message": "Not authenticated."}
-
+        # No authentication check needed
         if payment_method_id not in self.payment_cards:
             return {"set_default_status": False, "message": f"Payment method with ID {payment_method_id} not found."}
 
@@ -1265,4 +905,3 @@ class SpotifyApis:
 
         self.payment_cards[payment_method_id]["is_default"] = True
         return {"set_default_status": True, "message": f"Payment method ID {payment_method_id} set as default."}
-

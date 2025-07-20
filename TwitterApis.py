@@ -13,7 +13,7 @@ DEFAULT_STATE = {
 }
 
 
-class TwitterAPI:
+class TwitterApis:
     def __init__(self):
         self.username: str
         self.password: str

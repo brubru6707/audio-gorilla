@@ -1,4 +1,4 @@
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any, Optional
 from datetime import datetime
 from copy import deepcopy
 
@@ -30,7 +30,7 @@ DEFAULT_STATE = {
     },
 }
 
-class SmartThingsAPI:
+class SmartThingsApis:
     def __init__(self):
         self.devices: Dict[str, Dict[str, Any]]
         self.locations: Dict[str, Dict[str, Any]]
@@ -61,7 +61,6 @@ class SmartThingsAPI:
     def list_devices(
         self,
         location_id: Optional[str] = None,
-        capability: Optional[str] = None,
         device_id: Optional[List[str]] = None
     ) -> List[Dict[str, Any]]:
         """
@@ -453,29 +452,3 @@ class SmartThingsAPI:
             if cap["id"] == capability_id and (version is None or cap.get("version") == version):
                 return cap
         return {"error": f"Capability {capability_id} (version {version}) not found"}
-
-    # ================
-    # History
-    # ================
-
-    def get_device_history(
-        self,
-        device_id: str,
-        limit: Optional[int] = None,
-        since: Optional[datetime] = None,
-        until: Optional[datetime] = None
-    ) -> List[Dict[str, Any]]:
-        """
-        Get history for a device.
-
-        Args:
-            device_id (str): ID of the device.
-            limit (Optional[int]): Maximum number of history entries to return.
-            since (Optional[datetime]): Start time for history.
-            until (Optional[datetime]): End time for history.
-        Returns:
-            List[Dict[str, Any]]: List of history entries for the device.
-        """
-        if device_id not in self.devices:
-            return [{"error": f"Device with ID {device_id} not found"}]
-        return [{"deviceId": device_id, "event": "on", "time": datetime.now().isoformat()}]

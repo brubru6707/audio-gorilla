@@ -1,30 +1,134 @@
-from typing import Dict, List, Any
+from typing import Dict, Any
 from copy import deepcopy
 
 DEFAULT_STATE = {
-    "vehicles": {},
-    "vehicle_counter": 0,
+    "vehicles": {
+        "my_tesla_model_3": {
+            "horn": False,
+            "media": {
+                "playing": False,
+                "volume": 50,
+                "current_track": 0,
+                "favorites": ["Song A", "Song B", "Song C"]
+            },
+            "trunk": {
+                "front": "closed",
+                "rear": "closed"
+            },
+            "charge": {
+                "port_open": False,
+                "charging": False,
+                "limit": 80
+            },
+            "climate": {
+                "on": False,
+                "bioweapon_mode": False,
+                "climate_keeper_mode": "off",
+                "cop_temp": 30,
+                "driver_temp": 21,
+                "passenger_temp": 21,
+                "steering_wheel_heater": False,
+                "seat_heaters": {"driver_front": 0, "passenger_front": 0}
+            },
+            "doors": {
+                "locked": True
+            },
+            "sentry_mode": False,
+            "valet_mode": False,
+            "sunroof": "closed",
+            "windows": "closed",
+            "software_update": {
+                "scheduled": False,
+                "offset_sec": 0
+            },
+            "awake": True
+        },
+        "my_tesla_model_s": {
+            "horn": False,
+            "media": {
+                "playing": True,
+                "volume": 75,
+                "current_track": 1,
+                "favorites": ["Podcast X", "Podcast Y"]
+            },
+            "trunk": {
+                "front": "closed",
+                "rear": "open"
+            },
+            "charge": {
+                "port_open": True,
+                "charging": True,
+                "limit": 90
+            },
+            "climate": {
+                "on": True,
+                "bioweapon_mode": False,
+                "climate_keeper_mode": "dog_mode",
+                "cop_temp": 35,
+                "driver_temp": 22,
+                "passenger_temp": 22,
+                "steering_wheel_heater": True,
+                "seat_heaters": {"driver_front": 2, "passenger_front": 1}
+            },
+            "doors": {
+                "locked": False
+            },
+            "sentry_mode": True,
+            "valet_mode": False,
+            "sunroof": "vent",
+            "windows": "open",
+            "software_update": {
+                "scheduled": True,
+                "offset_sec": 3600
+            },
+            "awake": True
+        }
+    },
+    "vehicle_counter": 2, # Number of vehicles currently in the dummy state
 }
 
 class TeslaFleetApis:
     def __init__(self):
-        self.vehicles: Dict[str, Dict[str, Any]]
-        self.vehicle_counter: int
+        """
+        Initializes the TeslaFleetApis instance and loads the default scenario.
+        """
+        self.vehicles: Dict[str, Dict[str, Any]] = {}
+        self.vehicle_counter: int = 0
         self._api_description = "This tool belongs to the TeslaFleetAPI, which provides core functionality for controlling Tesla vehicles remotely."
-        
+        self._load_scenario(DEFAULT_STATE)
+
     def _load_scenario(self, scenario: dict) -> None:
         """
         Load a scenario into the TeslaFleetApis instance.
+        This method initializes the instance variables with data from the provided scenario dictionary,
+        falling back to DEFAULT_STATE values if a key is not present in the scenario.
+
         Args:
-            scenario (dict): A dictionary containing vehicle data.
+            scenario (dict): A dictionary containing vehicle data to load into the API.
         """
+        # Create a deep copy of the default state to ensure tests or scenarios
+        # don't modify the original DEFAULT_STATE object.
         DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+
+        # Populate instance variables using data from the scenario or default values
         self.vehicles = scenario.get("vehicles", DEFAULT_STATE_COPY["vehicles"])
         self.vehicle_counter = scenario.get("vehicle_counter", DEFAULT_STATE_COPY["vehicle_counter"])
-    
+
     def _get_vehicle(self, vehicle_tag: str) -> Dict[str, Any]:
-        """Helper method to get vehicle or create if not exists"""
+        """
+        Helper method to get vehicle data by its tag. If the vehicle does not exist,
+        it creates a new dummy vehicle with default settings and adds it to the
+        `self.vehicles` dictionary. This simulates a new vehicle being registered.
+
+        Args:
+            vehicle_tag (str): The unique identifier (tag) of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing the vehicle's data.
+        """
         if vehicle_tag not in self.vehicles:
+            # If vehicle doesn't exist, create a new one with default properties
+            self.vehicle_counter += 1
             self.vehicles[vehicle_tag] = {
                 "horn": False,
                 "media": {
@@ -75,67 +179,78 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        vehicle["horn"] = True
+        vehicle["horn"] = True # Simulate horn being honked
         return {"success": True}
 
     def media_next_fav(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Skip to the next favorite media item in the specified vehicle.
+        Skip to the next favorite media item in the specified vehicle's media playlist.
+        If there are no favorites, no action is taken.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         if vehicle["media"]["favorites"]:
-            current_index = vehicle["media"]["current_track"] % len(vehicle["media"]["favorites"])
+            current_index = vehicle["media"]["current_track"]
+            # Cycle to the next favorite, wrapping around if at the end
             vehicle["media"]["current_track"] = (current_index + 1) % len(vehicle["media"]["favorites"])
         return {"success": True}
 
     def media_prev_fav(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Skip to the previous favorite media item in the specified vehicle.
+        Skip to the previous favorite media item in the specified vehicle's media playlist.
+        If there are no favorites, no action is taken.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         if vehicle["media"]["favorites"]:
-            current_index = vehicle["media"]["current_track"] % len(vehicle["media"]["favorites"])
-            vehicle["media"]["current_track"] = (current_index - 1) % len(vehicle["media"]["favorites"])
+            current_index = vehicle["media"]["current_track"]
+            # Cycle to the previous favorite, wrapping around if at the beginning
+            vehicle["media"]["current_track"] = (current_index - 1 + len(vehicle["media"]["favorites"])) % len(vehicle["media"]["favorites"])
         return {"success": True}
 
     def media_prev_track(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Skip to the previous track in the specified vehicle.
+        Skip to the previous track in the specified vehicle's media playback.
+        This is a simplified simulation and does not manage a full track list,
+        only decrements a 'current_track' counter.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        vehicle["media"]["current_track"] -= 1
+        vehicle["media"]["current_track"] -= 1 # Simulate moving to previous track
         return {"success": True}
 
     def media_toggle_playback(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Toggle media playback in the specified vehicle.
+        Toggle media playback (play/pause) in the specified vehicle.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["media"]["playing"] = not vehicle["media"]["playing"]
@@ -143,13 +258,15 @@ class TeslaFleetApis:
 
     def media_volume_down(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Decrease the media volume in the specified vehicle.
+        Decrease the media volume in the specified vehicle by a fixed amount (e.g., 5 units).
+        The volume will not go below 0.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["media"]["volume"] = max(0, vehicle["media"]["volume"] - 5)
@@ -157,36 +274,42 @@ class TeslaFleetApis:
 
     def remote_boombox(self, vehicle_tag: str, sound_id: int) -> Dict[str, bool]:
         """
-        Activate the remote boombox feature with the specified sound.
+        Activate the remote boombox feature with the specified sound ID.
+        In this dummy implementation, it only acknowledges the command.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            sound_id (int): The ID of the sound to play.
+            sound_id (int): The ID of the sound to play (e.g., 1 for a specific sound).
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would play the sound with the given ID
+        # In a real implementation, this would trigger playing a specific sound
+        print(f"Vehicle {vehicle_tag}: Playing boombox sound ID {sound_id}")
         return {"success": True}
 
     def actuate_trunk(self, vehicle_tag: str, which_trunk: str) -> Dict[str, bool]:
         """
-        Open or close the specified trunk.
+        Open or close the specified trunk (front or rear) of the vehicle.
+        If the trunk is closed, it opens; if open, it closes.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
             which_trunk (str): The trunk to actuate ("front" or "rear").
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True if trunk type is valid),
+                             False otherwise.
         """
         vehicle = self._get_vehicle(vehicle_tag)
         if which_trunk in ["front", "rear"]:
             current_state = vehicle["trunk"][which_trunk]
             vehicle["trunk"][which_trunk] = "open" if current_state == "closed" else "closed"
             return {"success": True}
-        return {"success": False}
+        return {"success": False} # Invalid trunk type
 
     def charge_port_door_close(self, vehicle_tag: str) -> Dict[str, bool]:
         """
@@ -196,7 +319,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["port_open"] = False
@@ -210,7 +334,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["port_open"] = True
@@ -218,13 +343,14 @@ class TeslaFleetApis:
 
     def charge_max_range(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Set the charge limit to max range for the specified vehicle.
+        Set the charge limit to the maximum range (100%) for the specified vehicle.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["limit"] = 100
@@ -232,13 +358,14 @@ class TeslaFleetApis:
 
     def charge_standard(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Set the charge limit to standard for the specified vehicle.
+        Set the charge limit to a standard level (80%) for the specified vehicle.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["limit"] = 80
@@ -252,7 +379,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["charging"] = True
@@ -266,7 +394,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["charging"] = False
@@ -275,13 +404,15 @@ class TeslaFleetApis:
     def set_charge_limit(self, vehicle_tag: str, percent: int) -> Dict[str, bool]:
         """
         Set the charge limit to a specific percentage for the specified vehicle.
+        The percentage will be clamped between 0 and 100.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            percent (int): The charge limit percentage to set.
+            percent (int): The charge limit percentage to set (0-100).
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["charge"]["limit"] = max(0, min(100, percent))
@@ -295,7 +426,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["on"] = True
@@ -309,23 +441,24 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["on"] = False
         return {"success": True}
 
-    def set_bioweapon_mode(self, vehicle_tag: str, on: bool, manual_override: bool) -> Dict[str, bool]:
+    def set_bioweapon_mode(self, vehicle_tag: str, on: bool) -> Dict[str, bool]:
         """
         Enable or disable bioweapon defense mode in the specified vehicle.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): True to enable, False to disable.
-            manual_override (bool): True to override manual settings, False otherwise.
+            on (bool): True to enable, False to disable bioweapon mode.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["bioweapon_mode"] = on
@@ -334,13 +467,15 @@ class TeslaFleetApis:
     def set_climate_keeper_mode(self, vehicle_tag: str, climate_keeper_mode: str) -> Dict[str, bool]:
         """
         Set the climate keeper mode in the specified vehicle.
+        (e.g., "off", "dog_mode", "camp_mode").
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
             climate_keeper_mode (str): The climate keeper mode to set.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["climate_keeper_mode"] = climate_keeper_mode
@@ -348,14 +483,15 @@ class TeslaFleetApis:
 
     def set_cop_temp(self, vehicle_tag: str, cop_temp: float) -> Dict[str, bool]:
         """
-        Set the cabin overheat protection temperature in the specified vehicle.
+        Set the cabin overheat protection (COP) temperature in the specified vehicle.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            cop_temp (float): The temperature to set for cabin overheat protection.
+            cop_temp (float): The temperature to set for cabin overheat protection (e.g., in Celsius or Fahrenheit).
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["cop_temp"] = cop_temp
@@ -367,30 +503,15 @@ class TeslaFleetApis:
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            heater (str): The seat heater to adjust.
-            level (int): The heat level to set (0-3).
+            heater (str): The specific seat heater to adjust (e.g., "driver_front", "passenger_front", "rear_left").
+            level (int): The heat level to set (typically 0-3, where 0 is off).
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        vehicle["climate"]["seat_heaters"][heater] = max(0, min(3, level))
-        return {"success": True}
-
-    def set_preconditioning_max(self, vehicle_tag: str, on: bool, manual_override: bool) -> Dict[str, bool]:
-        """
-        Enable or disable maximum preconditioning in the specified vehicle.
-
-        Args:
-            vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): True to enable, False to disable.
-            manual_override (bool): True to override manual settings, False otherwise.
-
-        Returns:
-            success (bool): True if the command was successful, False otherwise.
-        """
-        vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would handle the preconditioning logic
+        vehicle["climate"]["seat_heaters"][heater] = max(0, min(3, level)) # Clamp level between 0 and 3
         return {"success": True}
 
     def set_steering_wheel_heater(self, vehicle_tag: str, on: bool) -> Dict[str, bool]:
@@ -399,10 +520,11 @@ class TeslaFleetApis:
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): True to enable, False to disable.
+            on (bool): True to enable, False to disable the steering wheel heater.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["steering_wheel_heater"] = on
@@ -410,7 +532,7 @@ class TeslaFleetApis:
 
     def set_temps(self, vehicle_tag: str, driver_temp: float, passenger_temp: float) -> Dict[str, bool]:
         """
-        Set the driver and passenger temperatures in the specified vehicle.
+        Set the driver and passenger temperatures in the specified vehicle's climate control.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
@@ -418,7 +540,8 @@ class TeslaFleetApis:
             passenger_temp (float): The temperature to set for the passenger side.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["climate"]["driver_temp"] = driver_temp
@@ -433,7 +556,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["doors"]["locked"] = True
@@ -447,7 +571,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["doors"]["locked"] = False
@@ -455,30 +580,36 @@ class TeslaFleetApis:
 
     def remote_start_drive(self, vehicle_tag: str) -> Dict[str, bool]:
         """
-        Remotely start the specified vehicle.
+        Remotely start the specified vehicle, allowing it to be driven without a key.
+        In this dummy implementation, it only acknowledges the command.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would start the vehicle
+        # In a real implementation, this would initiate remote driving capability
+        print(f"Vehicle {vehicle_tag}: Remote start drive initiated.")
         return {"success": True}
 
     def reset_valet_pin(self, vehicle_tag: str) -> Dict[str, bool]:
         """
         Reset the valet pin for the specified vehicle.
+        In this dummy implementation, it only acknowledges the command.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would reset the valet pin
+        # In a real implementation, this would reset the valet PIN
+        print(f"Vehicle {vehicle_tag}: Valet PIN reset.")
         return {"success": True}
 
     def set_sentry_mode(self, vehicle_tag: str, on: bool) -> Dict[str, bool]:
@@ -487,10 +618,11 @@ class TeslaFleetApis:
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): True to enable, False to disable.
+            on (bool): True to enable, False to disable sentry mode.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["sentry_mode"] = on
@@ -499,29 +631,38 @@ class TeslaFleetApis:
     def set_valet_mode(self, vehicle_tag: str, on: bool, password: str) -> Dict[str, bool]:
         """
         Enable or disable valet mode in the specified vehicle.
+        A password is required to enable valet mode.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): True to enable, False to disable.
-            password (str): The password to set for valet mode.
+            on (bool): True to enable, False to disable valet mode.
+            password (str): The password required to activate/deactivate valet mode.
+                            (In this dummy, the password itself is not validated, only its presence).
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
+        # In a real implementation, the password would be validated
+        if on and not password:
+            print(f"Vehicle {vehicle_tag}: Valet mode cannot be enabled without a password.")
+            return {"success": False}
         vehicle["valet_mode"] = on
         return {"success": True}
 
     def adjust_volume(self, vehicle_tag: str, volume: int) -> Dict[str, bool]:
         """
         Adjust the media volume to a specific level in the specified vehicle.
+        The volume will be clamped between 0 and 100.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            volume (int): The volume level to set.
+            volume (int): The desired volume level to set (0-100).
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["media"]["volume"] = max(0, min(100, volume))
@@ -530,36 +671,42 @@ class TeslaFleetApis:
     def navigation_request(self, vehicle_tag: str, text: str, locale: str, timestamp_ms: int) -> Dict[str, bool]:
         """
         Send a navigation request to the specified vehicle.
+        In this dummy implementation, it only acknowledges the command.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            text (str): The navigation destination text.
-            locale (str): The locale for the navigation request.
-            timestamp_ms (int): The timestamp in milliseconds.
+            text (str): The navigation destination text (e.g., "123 Main St, Anytown").
+            locale (str): The locale for the navigation request (e.g., "en-US").
+            timestamp_ms (int): The timestamp in milliseconds when the request was made.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would set the navigation destination
+        # In a real implementation, this would send the navigation request to the vehicle
+        print(f"Vehicle {vehicle_tag}: Navigation request for '{text}' ({locale}) at {timestamp_ms}ms.")
         return {"success": True}
 
     def share(self, vehicle_tag: str, type: str, value: str, locale: str, timestamp_ms: int) -> Dict[str, bool]:
         """
         Share content with the specified vehicle.
+        In this dummy implementation, it only acknowledges the command.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            type (str): The type of content to share.
-            value (str): The content value to share.
-            locale (str): The locale for the shared content.
-            timestamp_ms (int): The timestamp in milliseconds.
+            type (str): The type of content to share (e.g., "url", "text").
+            value (str): The actual content value to share (e.g., "https://tesla.com", "Hello from home!").
+            locale (str): The locale for the shared content (e.g., "en-US").
+            timestamp_ms (int): The timestamp in milliseconds when the content was shared.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would handle the shared content
+        # In a real implementation, this would push content to the vehicle's infotainment system
+        print(f"Vehicle {vehicle_tag}: Shared content (Type: {type}, Value: {value}) at {timestamp_ms}ms.")
         return {"success": True}
 
     def sun_roof_control(self, vehicle_tag: str, state: str) -> Dict[str, bool]:
@@ -568,10 +715,11 @@ class TeslaFleetApis:
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            state (str): The desired state of the sunroof.
+            state (str): The desired state of the sunroof (e.g., "open", "close", "vent", "comfort").
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["sunroof"] = state
@@ -579,19 +727,22 @@ class TeslaFleetApis:
 
     def trigger_homelink(self, vehicle_tag: str, lat: float, lon: float, token: str) -> Dict[str, bool]:
         """
-        Trigger Homelink for the specified vehicle.
+        Trigger Homelink for the specified vehicle at a given GPS location.
+        In this dummy implementation, it only acknowledges the command.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            lat (float): The latitude coordinate.
-            lon (float): The longitude coordinate.
-            token (str): The Homelink token.
+            lat (float): The latitude coordinate of the vehicle's current location.
+            lon (float): The longitude coordinate of the vehicle's current location.
+            token (str): The Homelink token associated with the garage door opener.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
-        # In a real implementation, we would trigger Homelink
+        # In a real implementation, this would send the Homelink command
+        print(f"Vehicle {vehicle_tag}: Triggered Homelink at ({lat}, {lon}) with token {token}.")
         return {"success": True}
 
     def wake_up(self, vehicle_tag: str) -> Dict[str, bool]:
@@ -602,7 +753,8 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["awake"] = True
@@ -610,47 +762,20 @@ class TeslaFleetApis:
 
     def window_control(self, vehicle_tag: str, command: str, lat: float, lon: float) -> Dict[str, bool]:
         """
-        Control the windows of the specified vehicle.
+        Control the windows of the specified vehicle (e.g., "vent", "close").
+        The latitude and longitude might be used to confirm a safe location for window operations.
 
         Args:
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (str): The window control command.
-            lat (float): The latitude coordinate.
-            lon (float): The longitude coordinate.
+            command (str): The window control command (e.g., "vent", "close").
+            lat (float): The latitude coordinate of the vehicle.
+            lon (float): The longitude coordinate of the vehicle.
 
         Returns:
-            success (bool): True if the command was successful, False otherwise.
+            Dict[str, bool]: A dictionary with a "success" key indicating
+                             if the command was successful (True).
         """
         vehicle = self._get_vehicle(vehicle_tag)
         vehicle["windows"] = command
-        return {"success": True}
-
-    def cancel_software_update(self, vehicle_tag: str) -> Dict[str, bool]:
-        """
-        Cancel a pending software update for the specified vehicle.
-
-        Args:
-            vehicle_tag (str): The unique identifier of the vehicle.
-
-        Returns:
-            success (bool): True if the command was successful, False otherwise.
-        """
-        vehicle = self._get_vehicle(vehicle_tag)
-        vehicle["software_update"]["scheduled"] = False
-        return {"success": True}
-
-    def schedule_software_update(self, vehicle_tag: str, offset_sec: int) -> Dict[str, bool]:
-        """
-        Schedule a software update for the specified vehicle.
-
-        Args:
-            vehicle_tag (str): The unique identifier of the vehicle.
-            offset_sec (int): The delay in seconds before installing the update.
-
-        Returns:
-            success (bool): True if the command was successful, False otherwise.
-        """
-        vehicle = self._get_vehicle(vehicle_tag)
-        vehicle["software_update"]["scheduled"] = True
-        vehicle["software_update"]["offset_sec"] = offset_sec
+        print(f"Vehicle {vehicle_tag}: Window command '{command}' issued at ({lat}, {lon}).")
         return {"success": True}
