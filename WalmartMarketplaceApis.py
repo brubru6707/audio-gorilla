@@ -104,6 +104,19 @@ class WalmartMarketplaceAPI:
         self.orders.update(sample_orders)
         self.promotions.update(sample_promotions)
 
+        # Sample returns
+        sample_returns = {
+            "RETURN001": {
+                "return_id": "RETURN001",
+                "order_id": "PO001",
+                "items": [{"sku": "SKU001", "quantity": 1}],
+                "status": "Pending",
+                "created_date": "2024-01-17T00:00:00Z"
+            }
+        }
+
+        self.returns.update(sample_returns)
+
     def get_items(self, limit: int = 50, offset: int = 0) -> Dict[str, Union[List[Dict[str, Any]], Dict[str, int]]]:
         """
         Retrieve a paginated list of all items for the seller.

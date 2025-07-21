@@ -30,7 +30,7 @@ class SlackAPI:
         self.pins: Dict[str, List[str]] = {}
         self.dnd: Dict[str, Dict[str, Any]] = {}
         self.emoji: Dict[str, str] = {}
-        self.team_info: Dict[str, Any] = {"id": "T123", "name": "Mock Team"}
+        self._team_info: Dict[str, Any] = {"id": "T123", "name": "Mock Team"}
         self.scheduled_messages: Dict[str, Dict[str, Any]] = {}
         # Initialize with sample data
         self._initialize_sample_data()
@@ -55,7 +55,7 @@ class SlackAPI:
         self.pins = {"C001": [], "C002": []}
         self.dnd = {"U001": {"dnd_enabled": False}, "U002": {"dnd_enabled": False}}
         self.emoji = {":smile:": "https://emoji.url/smile.png", ":thumbsup:": "https://emoji.url/thumbsup.png"}
-        self.team_info = {"id": "T123", "name": "Mock Team", "domain": "mockteam"}
+        self._team_info = {"id": "T123", "name": "Mock Team", "domain": "mockteam"}
         self.scheduled_messages = {}
 
     # ------------------------------------------------------------------
@@ -1047,7 +1047,7 @@ class SlackAPI:
         
         return {"ok": False, "error": "message_not_found"}
 
-    def reactions_list(self, *, user: Optional[str] = None, count: int = 100, page: int = 1) -> Dict[str, Any]:
+    def reactions_list(self, *, user: Optional[str] = None, count: int = 100, page: int = 1, full: bool = False) -> Dict[str, Any]:
         """
         List reactions made by a user.
 
@@ -1055,6 +1055,7 @@ class SlackAPI:
             user: Filter by user ID (default caller).
             count: Results per page.
             page: Page number.
+            full: If True, include full reaction details.
 
         Returns:
             Dict[str, Any]: ``{"ok": bool, "items": list}``
@@ -1264,7 +1265,7 @@ class SlackAPI:
         """
         return {
             "ok": True,
-            "team": self.team_info
+            "team": self._team_info
         }
 
     # ------------------------------------------------------------------

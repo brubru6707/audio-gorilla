@@ -1,3 +1,16 @@
+class HomeClient:
+    """Minimal placeholder for Matter Home Client used in tests."""
+    pass
+
+class Device:
+    """Minimal placeholder for a Smart Home device."""
+    pass
+
+class IntentSender:
+    """Minimal placeholder representing an intent sender/action result."""
+    pass
+
+
 class CommissionerAPI:
     def __init__(self):
         pass
