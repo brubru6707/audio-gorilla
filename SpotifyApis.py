@@ -4,8 +4,6 @@ from copy import deepcopy
 
 DEFAULT_STATE = {
     "username": "spotify_user@example.com", 
-    # "password": "spotify123", # Removed as authentication is no longer handled
-    # "authenticated": True, # Removed as authentication is no longer handled
     "users": {
         "spotify_user@example.com": {
             "first_name": "Spotify",

@@ -84,7 +84,7 @@ DEFAULT_STATE = {
             "awake": True
         }
     },
-    "vehicle_counter": 2, # Number of vehicles currently in the dummy state
+    "vehicle_counter": 2, 
 }
 
 class TeslaFleetApis:
