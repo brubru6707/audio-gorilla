@@ -10,36 +10,6 @@ DEFAULT_STATE: Dict[str, Any] = {
             "last_name": "Smith",
             "email": "user1@example.com",
             "friends": ["user2@example.com"],
-            "payment_cards": {
-                "1": {"card_name": "My Debit Card", "owner_name": "Alice Smith", "card_number": 1234, "expiry_year": 2028, "expiry_month": 12, "cvv_number": 123}
-            },
-            "addresses": {
-                "1": {"name": "Home Address", "street_address": "123 Main St", "city": "Anytown", "state": "FL", "country": "USA", "zip_code": 12345}
-            },
-            "cart": {},
-            "wish_list": {
-                "product_2": {"product_id": 2, "name": "Wireless Mouse"}
-            },
-            "orders": {
-                "101": {
-                    "order_id": 101,
-                    "order_date": (datetime.datetime.now() - datetime.timedelta(days=5)).strftime("%Y-%m-%d"),
-                    "total_amount": 75.00,
-                    "status": "delivered",
-                    "products": {
-                        "1": {"product_id": 1, "name": "Laptop", "quantity": 1, "price": 75.00}
-                    }
-                },
-            },
-            "prime_subscriptions": {
-                "1": {
-                    "subscription_id": 1,
-                    "plan": "monthly",
-                    "start_date": (datetime.datetime.now() - datetime.timedelta(days=30)).strftime("%Y-%m-%d"),
-                    "end_date": (datetime.datetime.now() + datetime.timedelta(days=30)).strftime("%Y-%m-%d"),
-                    "status": "active"
-                }
-            },
             "gmail_data": {
                 "profile": {
                     "emailAddress": "user1@example.com",
@@ -649,7 +619,6 @@ class GmailApis:
             Optional[Dict[str, Any]]: A dictionary containing a list of messages and result estimate,
                                       or None if the user data is not found.
         """
-        print("TEST 1")
         messages_data = self._get_user_messages_data(user_id)
         if messages_data is None:
             return None
@@ -671,8 +640,6 @@ class GmailApis:
 
         if max_results:
             filtered_messages = filtered_messages[:max_results]
-        print("TEST 2")
-        print(filtered_messages, q, messages_data)
         return {"messages": copy.deepcopy(filtered_messages), "resultSizeEstimate": len(filtered_messages)}
 
     def send_message(self, message_body: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
@@ -729,21 +696,6 @@ class GmailApis:
         self._get_user_history_data(user_id)[history_id]["messages"].append({"messageAdded": {"message": sent_message}})
 
         return copy.deepcopy(sent_message)
-
-    def get_attachment(self, message_id: str, attachment_id: str, user_id: str = 'me') -> Dict[str, Union[str, int]]:
-        """
-        Simulates getting an attachment. Returns dummy data.
-
-        Args:
-            message_id (str): The ID of the message containing the attachment.
-            attachment_id (str): The ID of the attachment to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Dict[str, Union[str, int]]: A dictionary containing dummy attachment data (base64url encoded) and size.
-        """
-        dummy_data = base64.urlsafe_b64encode(b"This is dummy attachment data.").decode('utf-8')
-        return {"data": dummy_data, "size": len(dummy_data)}
 
     def get_auto_forwarding(self, user_id: str = 'me') -> Optional[Dict[str, Any]]:
         """

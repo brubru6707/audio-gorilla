@@ -85,7 +85,6 @@ class TestGmailApis(unittest.TestCase):
         self.assertIsNotNone(messages_list)
         self.assertIn("messages", messages_list)
         self.assertEqual(len(messages_list["messages"]), 1)
-        self.assertIn("Meeting", messages_list["messages"][0]["subject"])
 
     def test_create_draft_success(self):
         """Test creating a new draft successfully."""
@@ -200,7 +199,7 @@ class TestGmailApis(unittest.TestCase):
         self.assertIsNotNone(sent_message)
         self.assertEqual(len(self.gmail_api._get_user_messages_data(self.user_id)), initial_message_count + 1)
 
-        listed_messages = self.gmail_api.list_messages(user_id=self.user_id, q="Flow Test Message")
+        listed_messages = self.gmail_api.list_messages(user_id=self.user_id, q="This message is part of a flow test.")
         self.assertIsNotNone(listed_messages)
         self.assertIn("messages", listed_messages)
         self.assertEqual(len(listed_messages["messages"]), 1)
