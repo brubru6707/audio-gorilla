@@ -74,87 +74,50 @@ Each function is tested with:
 
 ## Running Tests
 
-### Run All Tests
+Each test file is completely self-contained and can be executed directly with Python’s built-in `unittest` runner. There is no longer a separate `run_tests.py` runner script.
+
+### Run All Tests in the Suite
+
 ```bash
-python unit_tests/run_tests.py
+# Discover and run everything in the unit_tests directory
+python -m unittest discover unit_tests
 ```
 
-### Run Specific Test File
+### Run a Specific API’s Test File
+
 ```bash
-# Run only Slack API tests
-python unit_tests/run_tests.py test_slack_api
+# Slack API tests
+python -m unittest unit_tests.test_slack_api
 
-# Run only Netflix API tests
-python unit_tests/run_tests.py test_netflix_api
+# Netflix API tests
+python -m unittest unit_tests.test_netflix_api
 
-# Run only Walmart Marketplace API tests
-python unit_tests/run_tests.py test_walmart_marketplace_api
+# Walmart Marketplace API tests
+python -m unittest unit_tests.test_walmart_marketplace_api
 
-# Run only Smart Home API tests
-python unit_tests/run_tests.py test_smart_home_api
+# Smart Home API tests
+python -m unittest unit_tests.test_smart_home_api
 ```
 
-### Run Specific Test Method
+### Run a Single Test Method
+
 ```bash
-# Run a specific test method (example)
 python -m unittest unit_tests.test_slack_api.TestSlackAPI.test_chat_postMessage_basic
-
-# Run all tests in a specific section
-python -m unittest unit_tests.test_slack_api.TestSlackAPI -k "test_chat_"
 ```
 
-### Run Tests with Verbose Output
+### Filtering Tests
+
+Use unittest’s `-k` pattern matching or other CLI flags to filter and control output. For example:
+
 ```bash
-python unit_tests/run_tests.py -v
+# Run only tests whose names start with "test_chat_"
+python -m unittest unit_tests.test_slack_api.TestSlackAPI -k test_chat_
+
+# Verbose output
+python -m unittest -v unit_tests.test_slack_api
 ```
 
 ## Test Organization
 
 Each test file follows this structure:
 1. **Setup** - Initialize API instances in `setUp()`
-2. **Individual Function Tests** - Test each function independently
-3. **Parameter Variations** - Test different parameter combinations
-4. **Error Conditions** - Test invalid inputs and error states
-5. **Edge Cases** - Test boundary values and extreme conditions
-6. **Integration Tests** - Test multiple functions working together
-7. **Concurrent Operations** - Test operations on multiple components
-
-## Benefits
-
-- **Comprehensive Coverage**: Every single function in each API is tested individually
-- **Isolated Testing**: Each test focuses on one function, making debugging easier
-- **Parameter Testing**: All function parameters are tested with various values
-- **Error Handling**: Invalid inputs and error conditions are thoroughly tested
-- **Edge Case Coverage**: Boundary values and extreme conditions are tested
-- **Easy Maintenance**: Clear organization makes it easy to add new tests or modify existing ones
-- **Independent Execution**: Tests can be run individually or in groups
-
-## Adding New Tests
-
-To add new tests:
-1. Identify the function to test
-2. Add a new test method following the naming convention: `test_[function_name]_[test_type]`
-3. Include docstring explaining what the test does
-4. Test basic functionality, parameters, edge cases, and error conditions
-5. Add to the appropriate section in the test file
-
-## Example Test Structure
-
-```python
-def test_function_name_basic(self):
-    """Test basic function_name functionality"""
-    resp = self.api.function_name(param1, param2)
-    self.assertTrue(resp["ok"])
-    self.assertEqual(resp["expected_field"], expected_value)
-
-def test_function_name_with_optional_param(self):
-    """Test function_name with optional parameter"""
-    resp = self.api.function_name(param1, param2, optional_param="value")
-    self.assertTrue(resp["ok"])
-
-def test_function_name_error_condition(self):
-    """Test function_name with error condition"""
-    resp = self.api.function_name(invalid_param)
-    self.assertFalse(resp["ok"])
-    self.assertEqual(resp["error"], "expected_error")
-``` 
