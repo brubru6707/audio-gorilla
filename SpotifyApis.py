@@ -3,13 +3,12 @@ from datetime import datetime
 from copy import deepcopy
 
 DEFAULT_STATE = {
-    "username": "spotify_user@example.com", 
+    "username": "spotify_user@example.com",
     "users": {
         "spotify_user@example.com": {
             "first_name": "Spotify",
             "last_name": "User",
             "email": "spotify_user@example.com",
-            # "password": "spotify123", # Removed as authentication is no longer handled
             "verified": True,
             "liked_songs": [101, 103],
             "liked_albums": [201],
@@ -18,6 +17,34 @@ DEFAULT_STATE = {
             "library_songs": [101, 102, 103],
             "library_albums": [201],
             "downloaded_songs": [101],
+            "premium": True
+        },
+        "john.doe@example.com": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john.doe@example.com",
+            "verified": True,
+            "liked_songs": [102, 104],
+            "liked_albums": [202],
+            "liked_playlists": [],
+            "following_artists": [402, 403],
+            "library_songs": [102, 104, 105],
+            "library_albums": [202],
+            "downloaded_songs": [],
+            "premium": False
+        },
+        "jane.smith@example.com": {
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "email": "jane.smith@example.com",
+            "verified": False,
+            "liked_songs": [],
+            "liked_albums": [],
+            "liked_playlists": [302],
+            "following_artists": [401],
+            "library_songs": [103],
+            "library_albums": [203],
+            "downloaded_songs": [103],
             "premium": True
         }
     },
@@ -42,20 +69,20 @@ DEFAULT_STATE = {
         402: {"id": 402, "name": "Queen", "genre": "Rock", "followers": 20000000},
         403: {"id": 403, "name": "The Weeknd", "genre": "R&B", "followers": 18000000}
     },
-    "reviews": {}, # No dummy reviews needed for initial dummy backend
-    "payment_cards": {}, # No dummy payment cards needed for audio context
+    "reviews": {},
+    "payment_cards": {},
     "current_song": None,
     "song_queue": [],
-    "volume": 75, # Default volume set higher
+    "volume": 75,
     "premium_subscriptions": {
-        # Dummy premium subscription for the user
-        "spotify_user@example.com": {"plan": "Premium Individual", "start_date": "2023-01-01", "end_date": "2024-01-01"}
+        "spotify_user@example.com": {"plan": "Premium Individual", "start_date": "2023-01-01", "end_date": "2024-01-01"},
+        "jane.smith@example.com": {"plan": "Premium Family", "start_date": "2024-03-01", "end_date": "2025-03-01"}
     },
     "id_counters": {
-        "song": 106, # Next available ID for new songs
-        "album": 204, # Next available ID for new albums
-        "playlist": 303, # Next available ID for new playlists
-        "artist": 404, # Next available ID for new artists
+        "song": 106,
+        "album": 204,
+        "playlist": 303,
+        "artist": 404,
         "review": 0,
         "payment_card": 0,
     }
@@ -98,10 +125,6 @@ class SpotifyApis:
         self.premium_subscriptions = default_state_copy["premium_subscriptions"]
         self.id_counters = default_state_copy["id_counters"]
         self.is_playing = False # Ensure initial state is not playing
-
-    # --- Account Management ---
-    # Removed signup, login, logout, send_verification_code, verify_account, 
-    # send_password_reset_code, reset_password as authentication is no longer handled.
 
     def show_profile(self) -> Dict[str, Any]:
         """

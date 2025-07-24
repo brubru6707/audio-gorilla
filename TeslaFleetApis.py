@@ -4,6 +4,7 @@ from copy import deepcopy
 DEFAULT_STATE = {
     "vehicles": {
         "my_tesla_model_3": {
+            "vehicle_tag": "5YJ3E1EA2PF330316",
             "horn": False,
             "media": {
                 "playing": False,
@@ -42,8 +43,9 @@ DEFAULT_STATE = {
                 "offset_sec": 0
             },
             "awake": True
-        },
+           },
         "my_tesla_model_s": {
+            "vehicle_tag": "5YJ3E1EH4PF000316",
             "horn": False,
             "media": {
                 "playing": True,

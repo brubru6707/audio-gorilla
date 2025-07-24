@@ -98,7 +98,7 @@ class SimpleNoteApis:
         """
         results = []
 
-        for note_id, note in self.notes.items():
+        for _, note in self.notes.items():
             # Filter by user
             if user and note.get("user") != user:
                 continue

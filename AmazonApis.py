@@ -9,6 +9,8 @@ class User:
     def __init__(self, email: str):
         self.email = email
 
+from datetime import datetime, timedelta
+
 DEFAULT_STATE = {
     "users": {
         "user1@example.com": {
@@ -46,6 +48,125 @@ DEFAULT_STATE = {
                 }
             }
         },
+        "user2@example.com": {
+            "first_name": "Bob",
+            "last_name": "Johnson",
+            "email": "user2@example.com",
+            "balance": 250.00,
+            "friends": ["user1@example.com"],
+            "payment_cards": {
+                2: {"card_name": "Bob's Credit Card", "owner_name": "Bob Johnson", "card_number": 5678, "expiry_year": 2029, "expiry_month": 10, "cvv_number": 456}
+            },
+            "addresses": {
+                2: {"name": "Work Address", "street_address": "456 Business Ave", "city": "Big City", "state": "NY", "country": "USA", "zip_code": 67890}
+            },
+            "cart": {},
+            "wish_list": {
+                3: {"product_id": 3, "name": "T-Shirt", "price": 20.00}
+            },
+            "orders": {
+                102: {
+                    "order_id": 102,
+                    "order_date": (datetime.now() - timedelta(days=10)).strftime("%Y-%m-%d"),
+                    "total_amount": 25.00,
+                    "status": "shipped",
+                    "products": {
+                        2: {"product_id": 2, "name": "Wireless Mouse", "quantity": 1, "price": 25.00}
+                    }
+                }
+            },
+            "prime_subscriptions": {}
+        },
+        "user3@example.com": {
+            "first_name": "Charlie",
+            "last_name": "Brown",
+            "email": "user3@example.com",
+            "balance": 50.00,
+            "friends": [],
+            "payment_cards": {
+                3: {"card_name": "Charlie's Card", "owner_name": "Charlie Brown", "card_number": 9876, "expiry_year": 2027, "expiry_month": 6, "cvv_number": 789}
+            },
+            "addresses": {
+                3: {"name": "Apartment", "street_address": "789 Pine Ln", "city": "Smallville", "state": "CA", "country": "USA", "zip_code": 90210}
+            },
+            "cart": {
+                1: {"product_id": 1, "name": "Laptop", "quantity": 1, "price": 75.00}
+            },
+            "wish_list": {},
+            "orders": {},
+            "prime_subscriptions": {
+                2: {
+                    "subscription_id": 2,
+                    "plan": "yearly",
+                    "start_date": (datetime.now() - timedelta(days=60)).strftime("%Y-%m-%d"),
+                    "end_date": (datetime.now() + timedelta(days=305)).strftime("%Y-%m-%d"),
+                    "status": "active"
+                }
+            }
+        },
+        "user4@example.com": {
+            "first_name": "Diana",
+            "last_name": "Prince",
+            "email": "user4@example.com",
+            "balance": 500.00,
+            "friends": ["user1@example.com", "user2@example.com"],
+            "payment_cards": {
+                4: {"card_name": "Diana's Visa", "owner_name": "Diana Prince", "card_number": 1122, "expiry_year": 2030, "expiry_month": 3, "cvv_number": 101}
+            },
+            "addresses": {
+                4: {"name": "Vacation Home", "street_address": "321 Ocean Blvd", "city": "Beach City", "state": "FL", "country": "USA", "zip_code": 33455}
+            },
+            "cart": {},
+            "wish_list": {},
+            "orders": {
+                103: {
+                    "order_id": 103,
+                    "order_date": (datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d"),
+                    "total_amount": 40.00,
+                    "status": "processing",
+                    "products": {
+                        3: {"product_id": 3, "name": "T-Shirt", "quantity": 2, "price": 20.00}
+                    }
+                },
+                104: {
+                    "order_id": 104,
+                    "order_date": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d"),
+                    "total_amount": 25.00,
+                    "status": "pending",
+                    "products": {
+                        2: {"product_id": 2, "name": "Wireless Mouse", "quantity": 1, "price": 25.00}
+                    }
+                }
+            },
+            "prime_subscriptions": {
+                3: {
+                    "subscription_id": 3,
+                    "plan": "monthly",
+                    "start_date": (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d"),
+                    "end_date": (datetime.now() + timedelta(days=25)).strftime("%Y-%m-%d"),
+                    "status": "active"
+                }
+            }
+        },
+        "user5@example.com": {
+            "first_name": "Eve",
+            "last_name": "Adams",
+            "email": "user5@example.com",
+            "balance": 150.00,
+            "friends": ["user3@example.com"],
+            "payment_cards": {
+                5: {"card_name": "Eve's MasterCard", "owner_name": "Eve Adams", "card_number": 3344, "expiry_year": 2026, "expiry_month": 9, "cvv_number": 222}
+            },
+            "addresses": {
+                5: {"name": "Primary Home", "street_address": "876 River Rd", "city": "Riverside", "state": "GA", "country": "USA", "zip_code": 30303}
+            },
+            "cart": {},
+            "wish_list": {
+                1: {"product_id": 1, "name": "Laptop", "price": 75.00}
+            },
+            "orders": {},
+            "prime_subscriptions": {}
+        }
     },
     "current_user": "user1@example.com",
     "products": {
@@ -118,11 +239,11 @@ DEFAULT_STATE = {
         "yearly": {"price": 139.00, "description": "Yearly Prime subscription"}
     },
     "transaction_counter": 0,
-    "payment_card_counter": 1, 
-    "address_counter": 1, 
-    "order_counter": 101, 
+    "payment_card_counter": 5,
+    "address_counter": 5,
+    "order_counter": 104,
     "return_counter": 0,
-    "prime_subscription_counter": 1,
+    "prime_subscription_counter": 3,
     "product_review_counter": 2,
     "product_question_counter": 1,
 }
@@ -170,7 +291,6 @@ class AmazonApis:
         self.prime_subscription_counter = scenario.get("prime_subscription_counter", DEFAULT_STATE_COPY["prime_subscription_counter"])
         self.product_review_counter = scenario.get("product_review_counter", DEFAULT_STATE_COPY["product_review_counter"])
         self.product_question_counter = scenario.get("product_question_counter", DEFAULT_STATE_COPY["product_question_counter"])
-
 
     def _get_user_data(self, user: User) -> Dict:
         """Helper to get user data."""

@@ -224,7 +224,6 @@ class YouTubeApis:
     def youtube_playlist_items_list(self, part: str, id: Optional[str] = None, max_results: int = 5, page_token: Optional[str] = None, playlist_id: Optional[str] = None, video_id: Optional[str] = None, on_behalf_of_content_owner: Optional[str] = None) -> Dict[str, Any]:
         """
         Returns a collection of playlist items that match the API request parameters.
-
         Parameters:
             part (str): The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include.
             id (Optional[str]): The id parameter specifies a comma-separated list of the YouTube playlist item ID(s) for the resource(s) that are being retrieved.

@@ -304,7 +304,7 @@ class GmailApis:
         if user_id == 'me':
             user_id = self.state["current_user"]
         return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("drafts")
-
+    
     def _get_user_labels_data(self, user_id: str) -> Optional[Dict[str, Any]]:
         """
         Helper to get user labels data.

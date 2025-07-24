@@ -1,0 +1,55 @@
+{"Single Tool Prompts": {
+        "prompts": [{
+        "prompt": "Can you call Bob for me and tell him that I'm running late for the meeting?",
+        "tools": [
+            "CommuniLinkApis"
+        ],
+        "context": {
+            "user1@example.com": {
+                "first_name": "Alice",
+                "last_name": "Smith",
+                "email": "user1@example.com",
+                "phone_number": "+15551234567",
+                "balance": 100.00,
+                "sms_history": [],
+                "call_history": [],
+                "settings": {
+                    "sms_notifications": true,
+                    "call_forwarding_enabled": false,
+                    "call_forwarding_number": ""
+                },
+                "friends": ["user2@example.com", "user3@example.com"]
+            }
+        }
+        },
+        {
+            "prompt": "Can you delete the file my document alice dot txt file from my Google Drive?",
+            "tools": [
+                "GoogleDriveApis"
+            ],
+            "context": "CURRENT USER: user1@example.com"
+        },
+        {
+            "prompt": "Can you play the next song on my Spotify?",
+            "tools": ["SpotifyApis"],
+            "context": "CURRENT USER: spotify_user@example.com"
+        },
+        {
+            "prompt": "Set up a meeting tomorrow at 6PM for an evening jog",
+            "tools": ["GoogleCalendarApis"],
+            "context": "CURRENT USER: user1@example.com"
+        }]
+    },
+    "Multi Tool Prompts": {
+        "prompts": [{
+            "prompt": "Put my Tesla model s to sleep and turn on my bedroom fan",
+            "tools": ["TeslaFleetApis", "SmartThingsApis"],
+            "contex": {"my_tesla_model_s vehicle_tag": "5YJ3E1EH4PF000316", "bedroom fan deviced_id": "device4"} 
+        },
+        {
+            "prompt": "Make a note for me to go to room 64 at Chappel Hill, make sure that my front door is locked, and start my spotify",
+            "tools": ["SimpleNoteApis", "SmartThingsApis", "SpotifyApis"],
+            "contex": {"front door lock device_id": "device2", "note user": "user123", "spotify_email": "spotify_user@example.com"}
+        }]},
+    "Multi Step Prompts": 0
+}

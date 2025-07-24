@@ -1,4 +1,4 @@
-from audio_gorilla.SimpleNoteApis import SimpleNoteApis, DEFAULT_STATE
+from SimpleNoteApis import SimpleNoteApis, DEFAULT_STATE
 import unittest
 from copy import deepcopy
 
