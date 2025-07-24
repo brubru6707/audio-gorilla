@@ -121,3 +121,17 @@ python -m unittest -v unit_tests.test_slack_api
 
 Each test file follows this structure:
 1. **Setup** - Initialize API instances in `setUp()`
+2. **Individual Function Tests** - One method per API function
+3. **Parameter Variations & Edge-Cases**
+4. **Error Conditions**
+5. **State / Concurrent Operations**
+
+Every file ends with:
+```python
+if __name__ == "__main__":
+    unittest.main()
+```
+so you can also run a file directly, e.g. `python unit_tests/test_slack_api.py`.
+
+## Prerequisites
+This repo uses only the Python Standard Library (no external packages). Ensure you are running Python 3.8+.
