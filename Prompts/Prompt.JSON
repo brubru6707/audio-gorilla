@@ -1,55 +1,490 @@
-{"Single Tool Prompts": {
-        "prompts": [{
-        "prompt": "Can you call Bob for me and tell him that I'm running late for the meeting?",
-        "tools": [
-            "CommuniLinkApis"
-        ],
+{
+    "Multi Step Prompts": [
+      {
+        "prompt": "Call Bob to remind him about dinner tonight, then send him an SMS with the restaurant address.",
+        "tools": ["CommuniLinkApis"],
         "context": {
-            "user1@example.com": {
-                "first_name": "Alice",
-                "last_name": "Smith",
-                "email": "user1@example.com",
-                "phone_number": "+15551234567",
-                "balance": 100.00,
-                "sms_history": [],
-                "call_history": [],
-                "settings": {
-                    "sms_notifications": true,
-                    "call_forwarding_enabled": false,
-                    "call_forwarding_number": ""
-                },
-                "friends": ["user2@example.com", "user3@example.com"]
+          "user1@example.com": {
+            "first_name": "Alice",
+            "last_name": "Smith",
+            "email": "user1@example.com",
+            "phone_number": "+15551234567",
+            "balance": 100.00,
+            "friends": ["user2@example.com"],
+            "settings": {
+              "call_forwarding_enabled": false
             }
+          },
+          "user2@example.com": {
+            "phone_number": "+15559876543"
+          }
         }
-        },
-        {
-            "prompt": "Can you delete the file my document alice dot txt file from my Google Drive?",
-            "tools": [
-                "GoogleDriveApis"
-            ],
-            "context": "CURRENT USER: user1@example.com"
-        },
-        {
-            "prompt": "Can you play the next song on my Spotify?",
-            "tools": ["SpotifyApis"],
-            "context": "CURRENT USER: spotify_user@example.com"
-        },
-        {
-            "prompt": "Set up a meeting tomorrow at 6PM for an evening jog",
-            "tools": ["GoogleCalendarApis"],
-            "context": "CURRENT USER: user1@example.com"
-        }]
-    },
-    "Multi Tool Prompts": {
-        "prompts": [{
-            "prompt": "Put my Tesla model s to sleep and turn on my bedroom fan",
-            "tools": ["TeslaFleetApis", "SmartThingsApis"],
-            "contex": {"my_tesla_model_s vehicle_tag": "5YJ3E1EH4PF000316", "bedroom fan deviced_id": "device4"} 
-        },
-        {
-            "prompt": "Make a note for me to go to room 64 at Chappel Hill, make sure that my front door is locked, and start my spotify",
-            "tools": ["SimpleNoteApis", "SmartThingsApis", "SpotifyApis"],
-            "contex": {"front door lock device_id": "device2", "note user": "user123", "spotify_email": "spotify_user@example.com"}
-        }]},
-    "Multi Step Prompts": 0
+      },
+      {
+        "prompt": "Create a team meeting event for next Monday at 2 PM in Google Calendar, then send SMS invites to all team members.",
+        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
+        "context": {
+          "current_user": "alice.smith@bizmail.co",
+          "team_members": ["bob.johnson@globalcorp.net", "clara.davis@designco.com"]
+        }
+      },
+      {
+        "prompt": "Upload my new tutorial video to YouTube, set it to unlisted, then share the link with my premium subscribers via SMS.",
+        "tools": ["YouTubeApis", "CommuniLinkApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "subscribers": ["user2@example.com", "user3@example.com"]
+        }
+      },
+      {
+        "prompt": "Request $50 from Charlie for lunch via Venmo, and if he doesn't pay in 2 hours, send him a reminder.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "user3@example.com": {
+            "first_name": "Charlie",
+            "balance": 250.00
+          }
+        }
+      },
+      {
+        "prompt": "Make a copy of my presentation file in Google Drive and share it with my manager.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "manager": "user2@example.com"
+        }
+      },
+      {
+        "prompt": "Create a birthday event in Google Calendar for my mom next month, then call her to remind her about it.",
+        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "mom_number": "+15556667777"
+        }
+      },
+      {
+        "prompt": "Check my last transaction with Bob on Venmo, and if it's over $30, open a support ticket about it.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "recent_transactions": [
+            {
+              "id": 1,
+              "amount": 35,
+              "receiver": "user2@example.com"
+            }
+          ]
+        }
+      },
+      {
+        "prompt": "Update the project spreadsheet in Google Drive with the latest numbers, then email the team about the changes.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "project_file": "file_2_alice"
+        }
+      },
+      {
+        "prompt": "Check the CommuniLink network status, and if it's down, create a support ticket and notify my team via SMS.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "team_numbers": ["+15559876543", "+15553334444"]
+        }
+      },
+      {
+        "prompt": "Create a YouTube playlist for my vacation videos, then share it with my family via Venmo message.",
+        "tools": ["YouTubeApis", "VenmoApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "family_members": ["user2@example.com", "user3@example.com"]
+        }
+      },
+      {
+        "prompt": "Check when my YouTube premium subscription expires, and if it's within 7 days, remind me via SMS to renew it.",
+        "tools": ["YouTubeApis", "CommuniLinkApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "my_number": "+15551234567"
+        }
+      },
+      {
+        "prompt": "Add all project milestones from the Google Drive document to my Google Calendar, then notify my manager.",
+        "tools": ["GoogleDriveApis", "GoogleCalendarApis"],
+        "context": {
+          "current_user": "alice.smith@bizmail.co",
+          "project_doc": "file_2_alice"
+        }
+      },
+      {
+        "prompt": "Check if I received the $75 payment from David on Venmo, and if so, transfer it to my bank account.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "expected_payment": {
+            "from": "david.kim@freelancer.org",
+            "amount": 75
+          }
+        }
+      },
+      {
+        "prompt": "Export all my SMS conversations with my lawyer to a Google Drive document for record keeping.",
+        "tools": ["CommuniLinkApis", "GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "lawyer_number": "+15558889999"
+        }
+      },
+      {
+        "prompt": "Create a team outing event in Google Calendar, then send Venmo payment requests to everyone for their share.",
+        "tools": ["GoogleCalendarApis", "VenmoApis"],
+        "context": {
+          "current_user": "alice.smith@bizmail.co",
+          "team_members": [
+            {
+              "email": "bob.johnson@globalcorp.net",
+              "share": 50
+            },
+            {
+              "email": "clara.davis@designco.com",
+              "share": 50
+            }
+          ]
+        }
+      },
+      {
+        "prompt": "Check if my latest YouTube video has any copyright claims, and if so, file a dispute and notify me via SMS.",
+        "tools": ["YouTubeApis", "CommuniLinkApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "latest_video": "videoABC"
+        }
+      },
+      {
+        "prompt": "Update the quarterly report in Google Drive with the latest sales numbers, then share it with the board members.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "report_file": "file_2_alice",
+          "board_members": ["user2@example.com", "user3@example.com"]
+        }
+      },
+      {
+        "prompt": "If my balance falls below $20, send an SMS to my emergency contact asking for a Venmo transfer.",
+        "tools": ["CommuniLinkApis", "VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "emergency_contact": "+15557778888",
+          "current_balance": 15.00
+        }
+      },
+      {
+        "prompt": "Upload my new video to YouTube but schedule it for release next Friday, then add a reminder to my calendar.",
+        "tools": ["YouTubeApis", "GoogleCalendarApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "video_file": "/path/to/new_video.mp4"
+        }
+      },
+      {
+        "prompt": "Check if Emily paid me $30 on Venmo for the concert ticket, and if she did, send $15 back as a partial refund.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "expected_payment": {
+            "from": "emily.white@consulting.ai",
+            "amount": 30
+          }
+        }
+      },
+      {
+        "prompt": "Create a new folder in Google Drive for the Acme Corp project, upload all related files, then share it with the client.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "client_email": "acme@example.com",
+          "project_files": ["file1.pdf", "file2.docx"]
+        }
+      },
+      {
+        "prompt": "Check my last missed call from Bob, call him back, and if he doesn't answer, send an SMS asking what he needed.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "missed_calls": [
+            {
+              "from": "+15559876543",
+              "time": "2023-06-15T14:30:00Z"
+            }
+          ]
+        }
+      },
+      {
+        "prompt": "Create a collaborative YouTube playlist for the marketing team, then send the link to everyone via Venmo message.",
+        "tools": ["YouTubeApis", "VenmoApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "team_members": ["user2@example.com", "user3@example.com"]
+        }
+      },
+      {
+        "prompt": "Scan my Venmo transactions for this month, categorize them as business or personal, then save the report to Google Drive.",
+        "tools": ["VenmoApis", "GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "month": "June 2023"
+        }
+      },
+      {
+        "prompt": "Switch my CommuniLink plan to premium if I've sent more than 50 SMS this month, then notify me of the change via SMS.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "sms_count": 53,
+          "current_plan": "basic"
+        }
+      }
+    ],
+    "Multi Turn Prompts":  [{
+        "prompt": "I need to remind Bob about the money he owes me.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "outstanding_payments": [
+            {
+              "to": "user2@example.com",
+              "amount": 40,
+              "reason": "dinner"
+            }
+          ]
+        }
+      },
+      {
+        "prompt": "Let's plan my birthday party.",
+        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "birthday": "2023-07-30",
+          "friends": ["user2@example.com", "user3@example.com"]
+        }
+      },
+      {
+        "prompt": "I want to upload a new video to my channel.",
+        "tools": ["YouTubeApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "video_file": "/path/to/video.mp4"
+        }
+      },
+      {
+        "prompt": "I need to share some documents with my team.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "team_members": ["user2@example.com", "user3@example.com"],
+          "documents": ["project_plan.docx", "budget.xlsx"]
+        }
+      },
+      {
+        "prompt": "I think I'm using too many SMS messages.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "sms_usage": 120,
+          "current_plan": "basic"
+        }
+      },
+      {
+        "prompt": "There's a problem with a Venmo payment I received.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "recent_transactions": [
+            {
+              "id": 5,
+              "amount": 60,
+              "from": "user3@example.com",
+              "disputed": true
+            }
+          ]
+        }
+      },
+      {
+        "prompt": "My calendar is getting too crowded.",
+        "tools": ["GoogleCalendarApis"],
+        "context": {
+          "current_user": "alice.smith@bizmail.co",
+          "upcoming_events": 27
+        }
+      },
+      {
+        "prompt": "I want to make money from my YouTube videos.",
+        "tools": ["YouTubeApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "subscribers": 1245
+        }
+      },
+      {
+        "prompt": "My Google Drive is a mess.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "file_count": 347,
+          "unorganized_files": 210
+        }
+      },
+      {
+        "prompt": "I need to call my friend in London.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "international_contact": "+442072345678"
+        }
+      },
+      {
+        "prompt": "We need to split the rent payment.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "roommates": [
+            {
+              "email": "user2@example.com",
+              "share": 800
+            },
+            {
+              "email": "user3@example.com",
+              "share": 800
+            }
+          ],
+          "total_rent": 2400
+        }
+      },
+      {
+        "prompt": "I want to schedule my YouTube content better.",
+        "tools": ["YouTubeApis", "GoogleCalendarApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "upload_schedule": "random"
+        }
+      },
+      {
+        "prompt": "I think I accidentally deleted an important file.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "recent_deletions": ["annual_report.xlsx"]
+        }
+      },
+      {
+        "prompt": "I'm going on vacation and need to forward my calls.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "vacation_dates": "2023-07-01 to 2023-07-15",
+          "forward_to": "+15558889999"
+        }
+      },
+      {
+        "prompt": "How are my YouTube videos performing?",
+        "tools": ["YouTubeApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "recent_videos": ["videoABC", "videoDEF"]
+        }
+      },
+      {
+        "prompt": "I need to track my business expenses.",
+        "tools": ["VenmoApis", "GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "business_category": "consulting"
+        }
+      },
+      {
+        "prompt": "We need to schedule our quarterly team meeting.",
+        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
+        "context": {
+          "current_user": "alice.smith@bizmail.co",
+          "team_size": 8,
+          "timezones": ["EST", "PST", "GMT"]
+        }
+      },
+      {
+        "prompt": "I'm working on a video project with a colleague.",
+        "tools": ["YouTubeApis", "GoogleDriveApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "collaborator": "channel2@example.com"
+        }
+      },
+      {
+        "prompt": "I need to update my payment methods.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "expired_card": true
+        }
+      },
+      {
+        "prompt": "I'm having trouble with my phone service.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "recent_issues": ["dropped calls", "slow SMS"]
+        }
+      },
+      {
+        "prompt": "I want to plan my content for next month.",
+        "tools": ["YouTubeApis", "GoogleCalendarApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "content_types": ["tutorials", "reviews", "vlogs"]
+        }
+      },
+      {
+        "prompt": "I need to change who can access my files.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "sensitive_files": ["contract.pdf", "financials.xlsx"]
+        }
+      },
+      {
+        "prompt": "Can I send money to someone overseas?",
+        "tools": ["VenmoApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "recipient_country": "UK"
+        }
+      },
+      {
+        "prompt": "I want to review my recent calls.",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "current_user": "user1@example.com",
+          "call_history": [
+            {
+              "to": "+15559876543",
+              "duration": "5:23",
+              "date": "2023-06-10"
+            },
+            {
+              "from": "+15553334444",
+              "duration": "2:15",
+              "date": "2023-06-12"
+            }
+          ]
+        }
+      },
+      {
+        "prompt": "How can I get more views on my videos?",
+        "tools": ["YouTubeApis"],
+        "context": {
+          "current_channel": "channel1@example.com",
+          "average_views": 350
+        }
+      }
+    ]
 }

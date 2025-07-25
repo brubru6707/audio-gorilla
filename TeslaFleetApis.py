@@ -44,7 +44,7 @@ DEFAULT_STATE = {
             },
             "awake": True
            },
-        "my_tesla_model_s": {
+        "my_tesla_model_s": {   
             "vehicle_tag": "5YJ3E1EH4PF000316",
             "horn": False,
             "media": {

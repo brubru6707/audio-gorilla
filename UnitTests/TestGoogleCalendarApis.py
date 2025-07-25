@@ -15,8 +15,8 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """
         self.api = GoogleCalendarApis(state=copy.deepcopy(DEFAULT_STATE))
         # Define user IDs for easier access in tests
-        self.user1_id = "user1@example.com"
-        self.user2_id = "user2@example.com"
+        self.user1_id = "alice.smith@bizmail.co"
+        self.user2_id = "bob.johnson@globalcorp.net"
 
         # Pre-defined calendar and event IDs for user1
         self.user1_cal1_id = "cal_1"

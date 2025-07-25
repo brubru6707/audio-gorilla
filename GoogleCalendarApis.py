@@ -1,12 +1,12 @@
-from typing import Dict, Union, List, Any, Optional
+from typing import Dict, Union, Any, Optional
 from copy import deepcopy
 
 DEFAULT_STATE: Dict[str, Any] = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@bizmail.co": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
+            "email": "alice.smith@bizmail.co",
             "calendar_data": {
                 "calendars": {
                     "cal_1": {
@@ -23,47 +23,56 @@ DEFAULT_STATE: Dict[str, Any] = {
                 "events": {
                     "cal_1": { # Events for Alice's Personal Calendar
                         "event_1": {
-                            "summary": "Morning Run (Alice)",
+                            "summary": "Morning Run",
                             "location": "Central Park",
-                            "start": {"dateTime": "2025-07-19T07:00:00-04:00", "timeZone": "America/New_York"},
-                            "end": {"dateTime": "2025-07-19T08:00:00-04:00", "timeZone": "America/New_York"},
+                            "start": {"dateTime": "2025-07-25T07:00:00-04:00", "timeZone": "America/New_York"},
+                            "end": {"dateTime": "2025-07-25T08:00:00-04:00", "timeZone": "America/New_York"},
                             "description": "Daily 5k run.",
-                            "attendees": [{"email": "user1@example.com"}],
+                            "attendees": [{"email": "alice.smith@bizmail.co"}],
                             "id": "event_1"
                         },
                         "event_2": {
-                            "summary": "Dentist Appointment (Alice)",
+                            "summary": "Dentist Appointment",
                             "location": "123 Main St, Anytown",
-                            "start": {"dateTime": "2025-07-20T10:00:00-04:00", "timeZone": "America/New_York"},
-                            "end": {"dateTime": "2025-07-20T11:00:00-04:00", "timeZone": "America/New_York"},
+                            "start": {"dateTime": "2025-07-26T10:00:00-04:00", "timeZone": "America/New_York"},
+                            "end": {"dateTime": "2025-07-26T11:00:00-04:00", "timeZone": "America/New_York"},
                             "description": "Annual check-up.",
-                            "attendees": [{"email": "user1@example.com"}],
+                            "attendees": [{"email": "alice.smith@bizmail.co"}],
                             "id": "event_2"
                         }
                     },
                     "cal_2": { # Events for Alice's Work Calendar
                         "event_3": {
-                            "summary": "Team Meeting (Alice)",
+                            "summary": "Team Stand-up",
                             "location": "Conference Room A",
-                            "start": {"dateTime": "2025-07-19T09:00:00-07:00", "timeZone": "America/Los_Angeles"},
-                            "end": {"dateTime": "2025-07-19T10:00:00-07:00", "timeZone": "America/Los_Angeles"},
-                            "description": "Weekly sync-up.",
-                            "attendees": [{"email": "user1@example.com"}, {"email": "john.doe@work.com"}],
+                            "start": {"dateTime": "2025-07-25T09:00:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "end": {"dateTime": "2025-07-25T09:30:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "description": "Daily team sync.",
+                            "attendees": [{"email": "alice.smith@bizmail.co"}, {"email": "john.doe@work.com"}],
                             "id": "event_3"
+                        },
+                        "event_12": {
+                            "summary": "Project Brainstorm",
+                            "location": "Virtual Call",
+                            "start": {"dateTime": "2025-07-26T14:00:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "end": {"dateTime": "25-07-26T15:30:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "description": "New project ideas discussion.",
+                            "attendees": [{"email": "alice.smith@bizmail.co"}, {"email": "sara.lee@work.com"}],
+                            "id": "event_12"
                         }
                     }
                 },
                 "settings": {
-                    "timezone": "America/New_York", # Default timezone for new calendars/events if not specified
+                    "timezone": "America/New_York",
                     "week_start": "Sunday",
                     "event_reminders": True
                 }
             }
         },
-        "user2@example.com": {
+        "bob.johnson@globalcorp.net": {
             "first_name": "Bob",
             "last_name": "Johnson",
-            "email": "user2@example.com",
+            "email": "bob.johnson@globalcorp.net",
             "calendar_data": {
                 "calendars": {
                     "cal_3": {
@@ -80,24 +89,33 @@ DEFAULT_STATE: Dict[str, Any] = {
                 "events": {
                     "cal_3": { # Events for Bob's Personal Calendar
                         "event_4": {
-                            "summary": "Gym Session (Bob)",
+                            "summary": "Gym Session",
                             "location": "Local Gym",
-                            "start": {"dateTime": "2025-07-20T18:00:00+01:00", "timeZone": "Europe/London"},
-                            "end": {"dateTime": "2025-07-20T19:00:00+01:00", "timeZone": "Europe/London"},
+                            "start": {"dateTime": "2025-07-25T18:00:00+01:00", "timeZone": "Europe/London"},
+                            "end": {"dateTime": "2025-07-25T19:00:00+01:00", "timeZone": "Europe/London"},
                             "description": "Evening workout.",
-                            "attendees": [{"email": "user2@example.com"}],
+                            "attendees": [{"email": "bob.johnson@globalcorp.net"}],
                             "id": "event_4"
                         }
                     },
                     "cal_4": { # Events for Bob's Project Calendar
                         "event_5": {
-                            "summary": "Client Demo (Bob)",
+                            "summary": "Client Demo",
                             "location": "Online Meeting",
-                            "start": {"dateTime": "2025-07-22T10:00:00+09:00", "timeZone": "Asia/Tokyo"},
-                            "end": {"dateTime": "2025-07-22T11:00:00+09:00", "timeZone": "Asia/Tokyo"},
+                            "start": {"dateTime": "2025-07-26T10:00:00+09:00", "timeZone": "Asia/Tokyo"},
+                            "end": {"dateTime": "2025-07-26T11:00:00+09:00", "timeZone": "Asia/Tokyo"},
                             "description": "Present new features.",
-                            "attendees": [{"email": "user2@example.com"}, {"email": "client@example.com"}],
+                            "attendees": [{"email": "bob.johnson@globalcorp.net"}, {"email": "client@example.com"}],
                             "id": "event_5"
+                        },
+                        "event_13": {
+                            "summary": "Team Retrospective",
+                            "location": "Project Room B",
+                            "start": {"dateTime": "2025-07-27T14:00:00+09:00", "timeZone": "Asia/Tokyo"},
+                            "end": {"dateTime": "2025-07-27T15:00:00+09:00", "timeZone": "Asia/Tokyo"},
+                            "description": "Review sprint performance.",
+                            "attendees": [{"email": "bob.johnson@globalcorp.net"}, {"email": "teamlead@example.com"}],
+                            "id": "event_13"
                         }
                     }
                 },
@@ -107,11 +125,155 @@ DEFAULT_STATE: Dict[str, Any] = {
                     "event_reminders": False
                 }
             }
+        },
+        "clara.davis@designco.com": {
+            "first_name": "Clara",
+            "last_name": "Davis",
+            "email": "clara.davis@designco.com",
+            "calendar_data": {
+                "calendars": {
+                    "cal_5": {
+                        "summary": "Personal Schedule (Clara)",
+                        "timeZone": "America/New_York",
+                        "id": "cal_5"
+                    },
+                    "cal_6": {
+                        "summary": "Client Projects (Clara)",
+                        "timeZone": "Europe/London",
+                        "id": "cal_6"
+                    }
+                },
+                "events": {
+                    "cal_5": { # Events for Clara's Personal Schedule
+                        "event_6": {
+                            "summary": "Morning Yoga",
+                            "location": "Yoga Studio",
+                            "start": {"dateTime": "2025-07-25T06:30:00-04:00", "timeZone": "America/New_York"},
+                            "end": {"dateTime": "2025-07-25T07:30:00-04:00", "timeZone": "America/New_York"},
+                            "description": "Start the day with stretching.",
+                            "attendees": [{"email": "clara.davis@designco.com"}],
+                            "id": "event_6"
+                        }
+                    },
+                    "cal_6": { # Events for Clara's Client Projects
+                        "event_7": {
+                            "summary": "Design Review Meeting",
+                            "location": "Virtual Conference Room",
+                            "start": {"dateTime": "2025-07-26T15:00:00+01:00", "timeZone": "Europe/London"},
+                            "end": {"dateTime": "2025-07-26T16:30:00+01:00", "timeZone": "Europe/London"},
+                            "description": "Review latest design mockups with client.",
+                            "attendees": [{"email": "clara.davis@designco.com"}, {"email": "client.alpha@email.com"}],
+                            "id": "event_7"
+                        }
+                    }
+                },
+                "settings": {
+                    "timezone": "America/New_York",
+                    "week_start": "Monday",
+                    "event_reminders": True
+                }
+            }
+        },
+        "david.kim@freelancer.org": {
+            "first_name": "David",
+            "last_name": "Kim",
+            "email": "david.kim@freelancer.org",
+            "calendar_data": {
+                "calendars": {
+                    "cal_7": {
+                        "summary": "Study Schedule (David)",
+                        "timeZone": "America/Los_Angeles",
+                        "id": "cal_7"
+                    },
+                    "cal_8": {
+                        "summary": "Hobbies (David)",
+                        "timeZone": "America/Los_Angeles",
+                        "id": "cal_8"
+                    }
+                },
+                "events": {
+                    "cal_7": { # Events for David's Study Schedule
+                        "event_8": {
+                            "summary": "Library Study Session",
+                            "location": "University Library, Zone B",
+                            "start": {"dateTime": "2025-07-25T11:00:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "end": {"dateTime": "2025-07-25T13:00:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "description": "Focus on calculus chapter 3.",
+                            "attendees": [{"email": "david.kim@freelancer.org"}],
+                            "id": "event_8"
+                        }
+                    },
+                    "cal_8": { # Events for David's Hobbies
+                        "event_9": {
+                            "summary": "Guitar Practice",
+                            "location": "Home Studio",
+                            "start": {"dateTime": "2025-07-26T17:00:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "end": {"dateTime": "2025-07-26T18:30:00-07:00", "timeZone": "America/Los_Angeles"},
+                            "description": "Learn new chord progressions.",
+                            "attendees": [{"email": "david.kim@freelancer.org"}],
+                            "id": "event_9"
+                        }
+                    }
+                },
+                "settings": {
+                    "timezone": "America/Los_Angeles",
+                    "week_start": "Sunday",
+                    "event_reminders": False
+                }
+            }
+        },
+        "emily.white@consulting.ai": {
+            "first_name": "Emily",
+            "last_name": "White",
+            "email": "emily.white@consulting.ai",
+            "calendar_data": {
+                "calendars": {
+                    "cal_9": {
+                        "summary": "Team Calendar (Emily)",
+                        "timeZone": "Europe/Berlin",
+                        "id": "cal_9"
+                    },
+                    "cal_10": {
+                        "summary": "Training Sessions (Emily)",
+                        "timeZone": "Europe/Berlin",
+                        "id": "cal_10"
+                    }
+                },
+                "events": {
+                    "cal_9": { # Events for Emily's Team Calendar
+                        "event_10": {
+                            "summary": "Daily Stand-up",
+                            "location": "Team Video Call",
+                            "start": {"dateTime": "2025-07-25T09:30:00+02:00", "timeZone": "Europe/Berlin"},
+                            "end": {"dateTime": "2025-07-25T10:00:00+02:00", "timeZone": "Europe/Berlin"},
+                            "description": "Quick sync for the day's tasks.",
+                            "attendees": [{"email": "emily.white@consulting.ai"}, {"email": "team.member.a@consulting.ai"}],
+                            "id": "event_10"
+                        }
+                    },
+                    "cal_10": { # Events for Emily's Training Sessions
+                        "event_11": {
+                            "summary": "AI Ethics Workshop",
+                            "location": "Online Webinar",
+                            "start": {"dateTime": "2025-07-26T11:00:00+02:00", "timeZone": "Europe/Berlin"},
+                            "end": {"dateTime": "2025-07-26T13:00:00+02:00", "timeZone": "Europe/Berlin"},
+                            "description": "Advanced AI model training.",
+                            "attendees": [{"email": "emily.white@consulting.ai"}],
+                            "id": "event_11"
+                        }
+                    }
+                },
+                "settings": {
+                    "timezone": "Europe/Berlin",
+                    "week_start": "Monday",
+                    "event_reminders": True
+                }
+            }
         }
     },
-    "current_user": "user1@example.com",
-    "calendar_counter": 4, # Global counter for unique calendar IDs
-    "event_counter": 5 # Global counter for unique event IDs
+    "current_user": "alice.smith@bizmail.co",
+    "calendar_counter": 10, # Global counter for unique calendar IDs
+    "event_counter": 13 # Global counter for unique event IDs
 }
 
 class GoogleCalendarApis:
