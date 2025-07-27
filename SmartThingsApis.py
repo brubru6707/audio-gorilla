@@ -4,117 +4,44 @@ from copy import deepcopy
 
 DEFAULT_STATE: Dict[str, Any] = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@gmail.com": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
+            "email": "alice.smith@gmail.com",
             "smartthings_data": {
                 "devices": {
                     "device1": {
                         "id": "device1",
-                        "name": "Living Room Light",
+                        "name": "Living Room Lamp",
                         "location": "loc1_user1",
                         "room": "room1_user1",
                         "status": "online",
                         "components": {
                             "main": {
                                 "switch": {"switch": "on"},
-                                "level": {"level": 80}
+                                "level": {"level": 75}
                             }
                         },
                         "capabilities": ["switch", "level"]
                     },
                     "device2": {
                         "id": "device2",
-                        "name": "Front Door Lock",
+                        "name": "Front Door Smart Lock",
                         "location": "loc1_user1",
                         "room": "room2_user1",
                         "status": "online",
                         "components": {
                             "main": {
-                                "lock": {"lock": "unlocked"}
+                                "lock": {"lock": "locked"}
                             }
                         },
                         "capabilities": ["lock"]
                     },
                     "device3": {
                         "id": "device3",
-                        "name": "Kitchen Thermostat",
+                        "name": "Hallway Motion Sensor",
                         "location": "loc1_user1",
-                        "room": "room3_user1",
-                        "status": "online",
-                        "components": {
-                            "main": {
-                                "temperatureMeasurement": {"temperature": 22},
-                                "thermostatMode": {"thermostatMode": "auto"}
-                            }
-                        },
-                        "capabilities": ["temperatureMeasurement", "thermostatMode"]
-                    },
-                },
-                "locations": {
-                    "loc1_user1": {
-                        "id": "loc1_user1",
-                        "name": "Alice's Home",
-                        "timezone": "America/New_York",
-                        "latitude": 34.0522,
-                        "longitude": -118.2437
-                    },
-                },
-                "rooms": {
-                    "room1_user1": {"id": "room1_user1", "name": "Living Room", "locationId": "loc1_user1"},
-                    "room2_user1": {"id": "room2_user1", "name": "Front Hallway", "locationId": "loc1_user1"},
-                    "room3_user1": {"id": "room3_user1", "name": "Kitchen", "locationId": "loc1_user1"},
-                },
-                "scenes": {
-                    "scene1_user1": {"id": "scene1_user1", "name": "Movie Night", "locationId": "loc1_user1", "actions": [{"device": "device1", "command": "off"}]},
-                    "scene2_user1": {"id": "scene2_user1", "name": "Good Morning", "locationId": "loc1_user1", "actions": [{"device": "device1", "command": "on", "level": 50}]},
-                },
-                "capabilities": [
-                    {"id": "switch", "version": 1, "attributes": {"switch": {"valueType": "ENUM", "values": ["on", "off"]}}},
-                    {"id": "temperatureMeasurement", "version": 1, "attributes": {"temperature": {"valueType": "NUMBER", "unit": "C"}}},
-                    {"id": "level", "version": 1, "attributes": {"level": {"valueType": "NUMBER", "range": [0, 100]}}},
-                    {"id": "lock", "version": 1, "attributes": {"lock": {"valueType": "ENUM", "values": ["locked", "unlocked"]}}},
-                    {"id": "thermostatMode", "version": 1, "attributes": {"thermostatMode": {"valueType": "ENUM", "values": ["auto", "heat", "cool", "off"]}}},
-                    {"id": "fanSpeed", "version": 1, "attributes": {"fanSpeed": {"valueType": "NUMBER", "range": [0, 5]}}},
-                    {"id": "motionSensor", "version": 1, "attributes": {"motion": {"valueType": "ENUM", "values": ["active", "inactive"]}}},
-                ],
-                "location_modes": {
-                    "loc1_user1": [
-                        {"id": "mode1", "name": "Home"},
-                        {"id": "mode2", "name": "Away"},
-                    ],
-                },
-                "current_modes": {
-                    "loc1_user1": "mode1",
-                },
-            }
-        },
-        "user2@example.com": {
-            "first_name": "Bob",
-            "last_name": "Johnson",
-            "email": "user2@example.com",
-            "smartthings_data": {
-                "devices": {
-                    "device4": {
-                        "id": "device4",
-                        "name": "Bedroom Fan",
-                        "location": "loc2_user2",
-                        "room": "room4_user2",
-                        "status": "offline",
-                        "components": {
-                            "main": {
-                                "switch": {"switch": "off"},
-                                "fanSpeed": {"fanSpeed": 0}
-                            }
-                        },
-                        "capabilities": ["switch", "fanSpeed"]
-                    },
-                    "device5": {
-                        "id": "device5",
-                        "name": "Backyard Camera",
-                        "location": "loc2_user2",
-                        "room": "room5_user2",
+                        "room": "room2_user1",
                         "status": "online",
                         "components": {
                             "main": {
@@ -122,23 +49,40 @@ DEFAULT_STATE: Dict[str, Any] = {
                             }
                         },
                         "capabilities": ["motionSensor"]
+                    },
+                    "device6": {
+                        "id": "device6",
+                        "name": "Bedroom Blinds",
+                        "location": "loc1_user1",
+                        "room": "room4_user1",
+                        "status": "online",
+                        "components": {
+                            "main": {
+                                "windowShadeLevel": {"level": 0} # 0 is closed, 100 is open
+                            }
+                        },
+                        "capabilities": ["windowShadeLevel"]
                     }
                 },
                 "locations": {
-                    "loc2_user2": {
-                        "id": "loc2_user2",
-                        "name": "Bob's Office",
-                        "timezone": "America/Los_Angeles",
-                        "latitude": 40.7128,
-                        "longitude": -74.0060
+                    "loc1_user1": {
+                        "id": "loc1_user1",
+                        "name": "Alice's Primary Residence",
+                        "timezone": "America/New_York",
+                        "latitude": 34.0522,
+                        "longitude": -118.2437
                     },
                 },
                 "rooms": {
-                    "room4_user2": {"id": "room4_user2", "name": "Main Office", "locationId": "loc2_user2"},
-                    "room5_user2": {"id": "room5_user2", "name": "Meeting Room", "locationId": "loc2_user2"},
+                    "room1_user1": {"id": "room1_user1", "name": "Living Room", "locationId": "loc1_user1"},
+                    "room2_user1": {"id": "room2_user1", "name": "Entryway", "locationId": "loc1_user1"},
+                    "room3_user1": {"id": "room3_user1", "name": "Kitchen", "locationId": "loc1_user1"},
+                    "room4_user1": {"id": "room4_user1", "name": "Master Bedroom", "locationId": "loc1_user1"},
+
                 },
                 "scenes": {
-                    "scene3_user2": {"id": "scene3_user2", "name": "Leave Office", "locationId": "loc2_user2", "actions": [{"device": "device4", "command": "off"}]},
+                    "scene1_user1": {"id": "scene1_user1", "name": "Good Night", "locationId": "loc1_user1", "actions": [{"device": "device1", "command": "off"}, {"device": "device2", "command": "locked"}, {"device": "device6", "command": "set_level", "level": 0}]},
+                    "scene2_user1": {"id": "scene2_user1", "name": "Morning Coffee", "locationId": "loc1_user1", "actions": [{"device": "device1", "command": "on", "level": 40}, {"device": "device6", "command": "set_level", "level": 100}]},
                 },
                 "capabilities": [
                     {"id": "switch", "version": 1, "attributes": {"switch": {"valueType": "ENUM", "values": ["on", "off"]}}},
@@ -148,24 +92,188 @@ DEFAULT_STATE: Dict[str, Any] = {
                     {"id": "thermostatMode", "version": 1, "attributes": {"thermostatMode": {"valueType": "ENUM", "values": ["auto", "heat", "cool", "off"]}}},
                     {"id": "fanSpeed", "version": 1, "attributes": {"fanSpeed": {"valueType": "NUMBER", "range": [0, 5]}}},
                     {"id": "motionSensor", "version": 1, "attributes": {"motion": {"valueType": "ENUM", "values": ["active", "inactive"]}}},
+                    {"id": "windowShadeLevel", "version": 1, "attributes": {"level": {"valueType": "NUMBER", "range": [0, 100]}}},
+                    {"id": "waterSensor", "version": 1, "attributes": {"water": {"valueType": "ENUM", "values": ["wet", "dry"]}}},
+                ],
+                "location_modes": {
+                    "loc1_user1": [
+                        {"id": "mode1", "name": "Home"},
+                        {"id": "mode2", "name": "Away"},
+                        {"id": "mode3", "name": "Night"},
+                    ],
+                },
+                "current_modes": {
+                    "loc1_user1": "mode1",
+                },
+            }
+        },
+        "bob.johnson@outlook.com": {
+            "first_name": "Bob",
+            "last_name": "Johnson",
+            "email": "bob.johnson@outlook.com",
+            "smartthings_data": {
+                "devices": {
+                    "device4": {
+                        "id": "device4",
+                        "name": "Office Thermostat",
+                        "location": "loc2_user2",
+                        "room": "room5_user2",
+                        "status": "online",
+                        "components": {
+                            "main": {
+                                "temperatureMeasurement": {"temperature": 20},
+                                "thermostatMode": {"thermostatMode": "cool"}
+                            }
+                        },
+                        "capabilities": ["temperatureMeasurement", "thermostatMode"]
+                    },
+                    "device5": {
+                        "id": "device5",
+                        "name": "Conference Room Light",
+                        "location": "loc2_user2",
+                        "room": "room6_user2",
+                        "status": "online",
+                        "components": {
+                            "main": {
+                                "switch": {"switch": "off"},
+                                "level": {"level": 0}
+                            }
+                        },
+                        "capabilities": ["switch", "level"]
+                    },
+                    "device7": {
+                        "id": "device7",
+                        "name": "Server Room Water Sensor",
+                        "location": "loc2_user2",
+                        "room": "room7_user2",
+                        "status": "online",
+                        "components": {
+                            "main": {
+                                "waterSensor": {"water": "dry"}
+                            }
+                        },
+                        "capabilities": ["waterSensor"]
+                    }
+                },
+                "locations": {
+                    "loc2_user2": {
+                        "id": "loc2_user2",
+                        "name": "Bob's Business Office",
+                        "timezone": "America/Los_Angeles",
+                        "latitude": 34.0522,
+                        "longitude": -118.2437
+                    },
+                },
+                "rooms": {
+                    "room5_user2": {"id": "room5_user2", "name": "Main Office", "locationId": "loc2_user2"},
+                    "room6_user2": {"id": "room6_user2", "name": "Conference Room", "locationId": "loc2_user2"},
+                    "room7_user2": {"id": "room7_user2", "name": "Server Room", "locationId": "loc2_user2"},
+                },
+                "scenes": {
+                    "scene3_user2": {"id": "scene3_user2", "name": "End of Day", "locationId": "loc2_user2", "actions": [{"device": "device4", "command": "setThermostatMode", "thermostatMode": "off"}, {"device": "device5", "command": "off"}]},
+                },
+                "capabilities": [
+                    {"id": "switch", "version": 1, "attributes": {"switch": {"valueType": "ENUM", "values": ["on", "off"]}}},
+                    {"id": "temperatureMeasurement", "version": 1, "attributes": {"temperature": {"valueType": "NUMBER", "unit": "C"}}},
+                    {"id": "level", "version": 1, "attributes": {"level": {"valueType": "NUMBER", "range": [0, 100]}}},
+                    {"id": "lock", "version": 1, "attributes": {"lock": {"valueType": "ENUM", "values": ["locked", "unlocked"]}}},
+                    {"id": "thermostatMode", "version": 1, "attributes": {"thermostatMode": {"valueType": "ENUM", "values": ["auto", "heat", "cool", "off"]}}},
+                    {"id": "fanSpeed", "version": 1, "attributes": {"fanSpeed": {"valueType": "NUMBER", "range": [0, 5]}}},
+                    {"id": "motionSensor", "version": 1, "attributes": {"motion": {"valueType": "ENUM", "values": ["active", "inactive"]}}},
+                    {"id": "windowShadeLevel", "version": 1, "attributes": {"level": {"valueType": "NUMBER", "range": [0, 100]}}},
+                    {"id": "waterSensor", "version": 1, "attributes": {"water": {"valueType": "ENUM", "values": ["wet", "dry"]}}},
                 ],
                 "location_modes": {
                     "loc2_user2": [
-                        {"id": "modeA", "name": "Workday"},
-                        {"id": "modeB", "name": "Weekend"},
+                        {"id": "modeA", "name": "Office Hours"},
+                        {"id": "modeB", "name": "After Hours"},
                     ],
                 },
                 "current_modes": {
                     "loc2_user2": "modeA",
                 },
             }
+        },
+        "charlie.davis@yahoo.com": {
+            "first_name": "Charlie",
+            "last_name": "Davis",
+            "email": "charlie.davis@yahoo.com",
+            "smartthings_data": {
+                "devices": {
+                    "device8": {
+                        "id": "device8",
+                        "name": "Garage Door Opener",
+                        "location": "loc3_user3",
+                        "room": "room8_user3",
+                        "status": "online",
+                        "components": {
+                            "main": {
+                                "garageDoorControl": {"door": "closed"}
+                            }
+                        },
+                        "capabilities": ["garageDoorControl"]
+                    },
+                    "device9": {
+                        "id": "device9",
+                        "name": "Kids Room Light",
+                        "location": "loc3_user3",
+                        "room": "room9_user3",
+                        "status": "online",
+                        "components": {
+                            "main": {
+                                "switch": {"switch": "on"},
+                                "level": {"level": 60}
+                            }
+                        },
+                        "capabilities": ["switch", "level"]
+                    },
+                },
+                "locations": {
+                    "loc3_user3": {
+                        "id": "loc3_user3",
+                        "name": "Charlie's Lake House",
+                        "timezone": "America/Chicago",
+                        "latitude": 30.2672,
+                        "longitude": -97.7431
+                    },
+                },
+                "rooms": {
+                    "room8_user3": {"id": "room8_user3", "name": "Garage", "locationId": "loc3_user3"},
+                    "room9_user3": {"id": "room9_user3", "name": "Kids Bedroom", "locationId": "loc3_user3"},
+                },
+                "scenes": {
+                    "scene4_user3": {"id": "scene4_user3", "name": "Arrive Home", "locationId": "loc3_user3", "actions": [{"device": "device8", "command": "open"}]},
+                    "scene5_user3": {"id": "scene5_user3", "name": "Bedtime", "locationId": "loc3_user3", "actions": [{"device": "device9", "command": "off"}]},
+                },
+                "capabilities": [
+                    {"id": "switch", "version": 1, "attributes": {"switch": {"valueType": "ENUM", "values": ["on", "off"]}}},
+                    {"id": "temperatureMeasurement", "version": 1, "attributes": {"temperature": {"valueType": "NUMBER", "unit": "C"}}},
+                    {"id": "level", "version": 1, "attributes": {"level": {"valueType": "NUMBER", "range": [0, 100]}}},
+                    {"id": "lock", "version": 1, "attributes": {"lock": {"valueType": "ENUM", "values": ["locked", "unlocked"]}}},
+                    {"id": "thermostatMode", "version": 1, "attributes": {"thermostatMode": {"valueType": "ENUM", "values": ["auto", "heat", "cool", "off"]}}},
+                    {"id": "fanSpeed", "version": 1, "attributes": {"fanSpeed": {"valueType": "NUMBER", "range": [0, 5]}}},
+                    {"id": "motionSensor", "version": 1, "attributes": {"motion": {"valueType": "ENUM", "values": ["active", "inactive"]}}},
+                    {"id": "windowShadeLevel", "version": 1, "attributes": {"level": {"valueType": "NUMBER", "range": [0, 100]}}},
+                    {"id": "waterSensor", "version": 1, "attributes": {"water": {"valueType": "ENUM", "values": ["wet", "dry"]}}},
+                    {"id": "garageDoorControl", "version": 1, "attributes": {"door": {"valueType": "ENUM", "values": ["open", "closed", "opening", "closing", "unknown"]}}},
+                ],
+                "location_modes": {
+                    "loc3_user3": [
+                        {"id": "modeX", "name": "Present"},
+                        {"id": "modeY", "name": "Vacation"},
+                    ],
+                },
+                "current_modes": {
+                    "loc3_user3": "modeX",
+                },
+            }
         }
     },
-    "current_user": "user1@example.com",
-    "smartthings_device_counter": 5,
-    "smartthings_location_counter": 2,
-    "smartthings_room_counter": 5,
-    "smartthings_scene_counter": 3,
+    "current_user": "alice.smith@gmail.com",
+    "smartthings_device_counter": 9,
+    "smartthings_location_counter": 3,
+    "smartthings_room_counter": 9,
+    "smartthings_scene_counter": 5,
 }
 
 class SmartThingsApis:

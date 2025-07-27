@@ -3,32 +3,60 @@ from typing import Dict, List, Optional, Union
 
 DEFAULT_STATE = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@gmail.com": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
+            "email": "alice.smith@gmail.com",
             "balance": 100.00,
-            "friends": ["user2@example.com"],
+            "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com"],
             "payment_cards": {
-                1: {"card_name": "My Debit Card", "owner_name": "Alice Smith", "card_number": 1234, "expiry_year": 2028, "expiry_month": 12, "cvv_number": 123}
+                "card_1": {"card_name": "My Debit Card", "owner_name": "Alice Smith", "card_number": "4111222233334444", "expiry_year": 2028, "expiry_month": 12, "cvv_number": "123"}
             }
         },
-        "user2@example.com": {
+        "bob.johnson@yahoo.com": {
             "first_name": "Bob",
             "last_name": "Johnson",
-            "email": "user2@example.com",
+            "email": "bob.johnson@yahoo.com",
             "balance": 50.00,
-            "friends": ["user1@example.com"],
+            "friends": ["alice.smith@gmail.com", "diana.prince@protonmail.com"],
+            "payment_cards": {
+                "card_1": {"card_name": "Bob's Visa", "owner_name": "Bob Johnson", "card_number": "4222333344445555", "expiry_year": 2026, "expiry_month": 7, "cvv_number": "456"}
+            }
+        },
+        "charlie.brown@outlook.com": {
+            "first_name": "Charlie",
+            "last_name": "Brown",
+            "email": "charlie.brown@outlook.com",
+            "balance": 25.50,
+            "friends": ["alice.smith@gmail.com"],
+            "payment_cards": {}
+        },
+        "diana.prince@protonmail.com": {
+            "first_name": "Diana",
+            "last_name": "Prince",
+            "email": "diana.prince@protonmail.com",
+            "balance": 75.20,
+            "friends": ["bob.johnson@yahoo.com"],
+            "payment_cards": {
+                "card_1": {"card_name": "My Credit Card", "owner_name": "Diana Prince", "card_number": "5111222233334444", "expiry_year": 2029, "expiry_month": 3, "cvv_number": "789"}
+            }
+        },
+        "eve.davis@hotmail.com": {
+            "first_name": "Eve",
+            "last_name": "Davis",
+            "email": "eve.davis@hotmail.com",
+            "balance": 150.00,
+            "friends": [],
             "payment_cards": {}
         }
     },
-    "current_user": "user1@example.com",
+    "current_user": "alice.smith@gmail.com",
     "transactions": {},
-    "payment_cards": {},
+    "payment_cards": {}, # This might be used for a global lookup or to store card details not directly tied to a user for some reason.
     "payment_requests": {},
     "transaction_comments": {},
     "notifications": {},
-    "friends": {},
+    "friends": {}, # This can be used for a global friends list if relationships are complex, otherwise redundant with user's friends list.
     "verification_codes": {},
     "password_reset_codes": {},
     "transaction_counter": 0,

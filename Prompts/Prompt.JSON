@@ -1,490 +1,843 @@
 {
-    "Multi Step Prompts": [
-      {
-        "prompt": "Call Bob to remind him about dinner tonight, then send him an SMS with the restaurant address.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "user1@example.com": {
-            "first_name": "Alice",
-            "last_name": "Smith",
-            "email": "user1@example.com",
-            "phone_number": "+15551234567",
-            "balance": 100.00,
-            "friends": ["user2@example.com"],
-            "settings": {
-              "call_forwarding_enabled": false
-            }
+  "Multi Step Prompts": {
+      "prompts": [
+          {
+              "prompt": "Send $25 to Bob Johnson for lunch and then request $15 from Charlie Brown for my share of the dinner bill",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "first_name": "Alice",
+                          "last_name": "Smith",
+                          "balance": 100.00,
+                          "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com"]
+                      },
+                      "bob.johnson@yahoo.com": {
+                          "first_name": "Bob",
+                          "last_name": "Johnson",
+                          "balance": 50.00
+                      },
+                      "charlie.brown@outlook.com": {
+                          "first_name": "Charlie",
+                          "last_name": "Brown",
+                          "balance": 25.50
+                      }
+                  }
+              }
           },
-          "user2@example.com": {
-            "phone_number": "+15559876543"
+          {
+              "prompt": "Search for travel videos on YouTube, then create a playlist called 'Dream Destinations' and add the top 3 results to it",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs",
+                  "channels": {
+                      "UC_AliceVlogs": {
+                          "title": "Alice's Daily Vlogs",
+                          "playlists": {}
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Turn off my living room lamp and lock the front door using SmartThings",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "devices": {
+                      "device1": {
+                          "name": "Living Room Lamp",
+                          "status": "online",
+                          "components": {
+                              "main": {
+                                  "switch": {"switch": "on"}
+                              }
+                          }
+                      },
+                      "device2": {
+                          "name": "Front Door Smart Lock",
+                          "status": "online",
+                          "components": {
+                              "main": {
+                                  "lock": {"lock": "unlocked"}
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Post a tweet about the new AI conference I attended, then search for similar posts to see what others are saying",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith",
+                  "posts": {}
+              }
+          },
+          {
+              "prompt": "Find my most recent Venmo transaction with Diana and comment 'Thanks for the coffee!' on it",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "transactions": {
+                      "1": {
+                          "sender": "alice.smith@gmail.com",
+                          "receiver": "diana.prince@protonmail.com",
+                          "amount": 5.00,
+                          "description": "Coffee",
+                          "comments": []
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Subscribe to a tech review channel on YouTube, then add their latest video to my watch later playlist",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs",
+                  "channels": {
+                      "UC_BobTech": {
+                          "title": "Bob's Tech Reviews",
+                          "videos": {
+                              "vid_002": {
+                                  "title": "iPhone 16 Pro Max Unboxing",
+                                  "description": "Getting my hands on the new iPhone 16!"
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Activate my 'Good Night' scene in SmartThings and then check if the front door is locked",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "scenes": {
+                      "scene1_user1": {
+                          "name": "Good Night",
+                          "actions": [
+                              {"device": "device1", "command": "off"},
+                              {"device": "device2", "command": "locked"}
+                          ]
+                      }
+                  },
+                  "devices": {
+                      "device2": {
+                          "name": "Front Door Smart Lock",
+                          "components": {
+                              "main": {
+                                  "lock": {"lock": "unlocked"}
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Search for tweets about quantum computing, like the most recent one, and reply with a link to my latest blog post",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith",
+                  "posts": {
+                      "post_001": {
+                          "text": "My new blog post about quantum computing is live!",
+                          "author_id": "usr_alice_smith"
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Add a new payment card to my Venmo account and then send $50 to Eve Davis",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "eve.davis@hotmail.com": {
+                          "first_name": "Eve",
+                          "last_name": "Davis",
+                          "balance": 150.00
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Create a YouTube playlist called 'Cooking Tutorials', search for Italian recipes, and add the top 2 results to the playlist",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs",
+                  "channels": {
+                      "UC_CharlieCooks": {
+                          "title": "Charlie's Kitchen",
+                          "videos": {
+                              "vid_003": {
+                                  "title": "Authentic Pasta Carbonara",
+                                  "description": "Learn to make perfect carbonara"
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Check if my bedroom blinds are closed using SmartThings, and if not, close them to 0%",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "devices": {
+                      "device6": {
+                          "name": "Bedroom Blinds",
+                          "components": {
+                              "main": {
+                                  "windowShadeLevel": {"level": 50}
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Find tweets from John Doe about cryptography, like them all, and retweet the most recent one",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith",
+                  "users": {
+                      "usr_john_doe": {
+                          "username": "john_doe_writer",
+                          "posts": ["post_005"]
+                      }
+                  },
+                  "posts": {
+                      "post_005": {
+                          "text": "Working on a new piece about cryptography history",
+                          "author_id": "usr_john_doe"
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Request $30 from Bob for concert tickets and then remind him if he hasn't paid in 2 days",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "bob.johnson@yahoo.com": {
+                          "first_name": "Bob",
+                          "last_name": "Johnson"
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Subscribe to a travel vlog channel on YouTube and add their most popular video to my 'Travel Adventures' playlist",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs",
+                  "channels": {
+                      "UC_AliceVlogs": {
+                          "playlists": {
+                              "PL_AliceTravel": {
+                                  "title": "Travel Adventures"
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Turn on my office thermostat to 22°C and set the fan speed to 3 using SmartThings",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "bob.johnson@outlook.com",
+                  "devices": {
+                      "device4": {
+                          "name": "Office Thermostat",
+                          "components": {
+                              "main": {
+                                  "temperatureMeasurement": {"temperature": 20},
+                                  "thermostatMode": {"thermostatMode": "off"}
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Post a tweet about my new smart home setup, then search for similar posts to engage with the community",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_bob_johnson",
+                  "posts": {}
+              }
+          },
+          {
+              "prompt": "Check my Venmo balance and if it's below $50, add $100 from my primary payment card",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "balance": 40.00,
+                          "payment_cards": {
+                              "card_1": {"card_name": "Primary Card"}
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Search for Python tutorial videos on YouTube, then create a playlist called 'Python Learning' with the top 5 results",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceGaming",
+                  "channels": {
+                      "UC_AliceGaming": {
+                          "playlists": {}
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Activate my 'Morning Coffee' scene in SmartThings and then check if the garage door is closed",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "charlie.davis@yahoo.com",
+                  "scenes": {
+                      "scene4_user3": {
+                          "name": "Morning Coffee",
+                          "actions": [
+                              {"device": "device9", "command": "on", "level": 40}
+                          ]
+                      }
+                  },
+                  "devices": {
+                      "device8": {
+                          "name": "Garage Door Opener",
+                          "components": {
+                              "main": {
+                                  "garageDoorControl": {"door": "open"}
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Search for tweets about AI in healthcare, like the most informative ones, and reply with my perspective",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith",
+                  "posts": {
+                      "post_001": {
+                          "text": "Just attended an amazing webinar on AI in healthcare!",
+                          "author_id": "usr_alice_smith"
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Send $15 to Diana for dinner and then check my transaction history for the past week",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "diana.prince@protonmail.com": {
+                          "first_name": "Diana",
+                          "last_name": "Prince"
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Find my most liked YouTube video and add it to the 'Popular Videos' section of my channel",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs",
+                  "channels": {
+                      "UC_AliceVlogs": {
+                          "videos": {
+                              "vid_001": {
+                                  "title": "Exploring the Grand Canyon",
+                                  "likes": 4200
+                              },
+                              "vid_005": {
+                                  "title": "My Morning Routine",
+                                  "likes": 5000
+                              }
+                          },
+                          "channel_sections": [
+                              {"type": "popular_uploads", "title": "Popular Videos"}
+                          ]
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Check if the server room water sensor is dry, and if not, send me a notification",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "bob.johnson@outlook.com",
+                  "devices": {
+                      "device7": {
+                          "name": "Server Room Water Sensor",
+                          "components": {
+                              "main": {
+                                  "waterSensor": {"water": "wet"}
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          {
+              "prompt": "Create a tweet thread about my recent tech purchases, then pin the first tweet to my profile",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_bob_johnson",
+                  "posts": {}
+              }
+          },
+          {
+              "prompt": "Approve the pending payment request from Charlie and then check my new Venmo balance",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "payment_requests": {
+                      "1": {
+                          "from_user": "charlie.brown@outlook.com",
+                          "to_user": "alice.smith@gmail.com",
+                          "amount": 20.00,
+                          "status": "pending"
+                      }
+                  }
+              }
           }
-        }
-      },
-      {
-        "prompt": "Create a team meeting event for next Monday at 2 PM in Google Calendar, then send SMS invites to all team members.",
-        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
-        "context": {
-          "current_user": "alice.smith@bizmail.co",
-          "team_members": ["bob.johnson@globalcorp.net", "clara.davis@designco.com"]
-        }
-      },
-      {
-        "prompt": "Upload my new tutorial video to YouTube, set it to unlisted, then share the link with my premium subscribers via SMS.",
-        "tools": ["YouTubeApis", "CommuniLinkApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "subscribers": ["user2@example.com", "user3@example.com"]
-        }
-      },
-      {
-        "prompt": "Request $50 from Charlie for lunch via Venmo, and if he doesn't pay in 2 hours, send him a reminder.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "user3@example.com": {
-            "first_name": "Charlie",
-            "balance": 250.00
+      ]
+  },
+  "Multi Turn Prompts": {
+      "prompts": [
+          {
+              "prompt": "I want to send money to a friend on Venmo",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "friends": ["bob.johnson@yahoo.com"]
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "How much do you want to send?", "assistant": "$25"},
+                  {"user": "Who do you want to send it to?", "assistant": "Bob Johnson"},
+                  {"user": "What should I put as the description?", "assistant": "Lunch money"}
+              ]
+          },
+          {
+              "prompt": "I need help creating a YouTube playlist",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs"
+              },
+              "expected_turns": [
+                  {"user": "What would you like to name your playlist?", "assistant": "Travel Vlogs"},
+                  {"user": "Should it be public, private, or unlisted?", "assistant": "Public"},
+                  {"user": "Would you like to add any videos to it now?", "assistant": "Yes, search for 'Bali travel guide'"}
+              ]
+          },
+          {
+              "prompt": "I want to control my smart lights",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "devices": {
+                      "device1": {
+                          "name": "Living Room Lamp",
+                          "components": {
+                              "main": {
+                                  "switch": {"switch": "on"},
+                                  "level": {"level": 75}
+                              }
+                          }
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "Which light would you like to control?", "assistant": "Living Room Lamp"},
+                  {"user": "Do you want to turn it on or off?", "assistant": "Turn it off"},
+                  {"user": "Would you like to set a brightness level?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I want to post something on Twitter",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith"
+              },
+              "expected_turns": [
+                  {"user": "What would you like to tweet about?", "assistant": "My vacation to Hawaii"},
+                  {"user": "Would you like to add any hashtags?", "assistant": "#Travel #Hawaii"},
+                  {"user": "Should I attach any media?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I need to split a bill with friends",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com"]
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "What was the total amount?", "assistant": "$120"},
+                  {"user": "How many people are splitting it?", "assistant": "3 people"},
+                  {"user": "Should I send requests to everyone?", "assistant": "Yes, request $40 from each"}
+              ]
+          },
+          {
+              "prompt": "I want to find cooking videos",
+              "tools": ["YouTubeApis"],
+              "context": {},
+              "expected_turns": [
+                  {"user": "What type of cooking videos are you looking for?", "assistant": "Italian recipes"},
+                  {"user": "From any specific channel?", "assistant": "No, just popular ones"},
+                  {"user": "How many results would you like?", "assistant": "5 videos"}
+              ]
+          },
+          {
+              "prompt": "I need to set up my smart home for bedtime",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "devices": {
+                      "device1": {"name": "Living Room Lamp"},
+                      "device2": {"name": "Front Door Lock"},
+                      "device6": {"name": "Bedroom Blinds"}
+                  }
+              },
+              "expected_turns": [
+                  {"user": "Would you like to turn off all lights?", "assistant": "Yes"},
+                  {"user": "Should I lock the front door?", "assistant": "Yes"},
+                  {"user": "Would you like to close the bedroom blinds?", "assistant": "Yes, close them completely"}
+              ]
+          },
+          {
+              "prompt": "I want to engage with tech tweets",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_bob_johnson"
+              },
+              "expected_turns": [
+                  {"user": "What tech topics interest you?", "assistant": "Artificial intelligence"},
+                  {"user": "Would you like to like, retweet, or reply?", "assistant": "Like and retweet"},
+                  {"user": "How many recent tweets should I find?", "assistant": "3 most popular ones"}
+              ]
+          },
+          {
+              "prompt": "I need to check my Venmo activity",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com"
+              },
+              "expected_turns": [
+                  {"user": "Do you want to see sent or received payments?", "assistant": "Received payments"},
+                  {"user": "From which time period?", "assistant": "Last 7 days"},
+                  {"user": "Should I show the most recent first?", "assistant": "Yes"}
+              ]
+          },
+          {
+              "prompt": "I want to organize my YouTube subscriptions",
+              "tools": ["YouTubeApis"],
+              "context": {
+                  "current_channel": "UC_AliceVlogs",
+                  "channels": {
+                      "UC_AliceVlogs": {
+                          "subscriptions": ["UC_BobTech", "UC_CharlieCooks"]
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "Would you like to see your current subscriptions?", "assistant": "Yes"},
+                  {"user": "Do you want to unsubscribe from any?", "assistant": "No"},
+                  {"user": "Would you like to create subscription categories?", "assistant": "Not now"}
+              ]
+          },
+          {
+              "prompt": "I need to adjust my thermostat",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "bob.johnson@outlook.com",
+                  "devices": {
+                      "device4": {
+                          "name": "Office Thermostat",
+                          "components": {
+                              "main": {
+                                  "temperatureMeasurement": {"temperature": 20},
+                                  "thermostatMode": {"thermostatMode": "cool"}
+                              }
+                          }
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "What temperature would you like?", "assistant": "22°C"},
+                  {"user": "Should I change the mode (heat/cool/auto)?", "assistant": "Set to auto"},
+                  {"user": "Would you like to set a schedule?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I want to find my old tweets about travel",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith",
+                  "posts": {
+                      "post_004": {
+                          "text": "Breathtaking sunset over the Grand Canyon yesterday!",
+                          "author_id": "usr_alice_smith"
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "What time period should I search?", "assistant": "Last 6 months"},
+                  {"user": "Any specific keywords?", "assistant": "Grand Canyon"},
+                  {"user": "Would you like to repost any?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I need to pay my roommate",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "friends": ["eve.davis@hotmail.com"]
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "How much do you need to pay?", "assistant": "$600"},
+                  {"user": "What's it for?", "assistant": "Monthly rent"},
+                  {"user": "Should I send it now?", "assistant": "Yes"}
+              ]
+          },
+          {
+              "prompt": "I want to watch gaming videos",
+              "tools": ["YouTubeApis"],
+              "context": {},
+              "expected_turns": [
+                  {"user": "What game are you interested in?", "assistant": "Valorant"},
+                  {"user": "Would you like tutorials or gameplay?", "assistant": "Gameplay"},
+                  {"user": "From professional players or casual?", "assistant": "Professional players"}
+              ]
+          },
+          {
+              "prompt": "I need to check my smart home security",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "devices": {
+                      "device2": {"name": "Front Door Lock"},
+                      "device3": {"name": "Hallway Motion Sensor"}
+                  }
+              },
+              "expected_turns": [
+                  {"user": "Would you like to check door locks?", "assistant": "Yes"},
+                  {"user": "Should I verify motion sensors?", "assistant": "Yes"},
+                  {"user": "Would you like a security report?", "assistant": "Yes"}
+              ]
+          },
+          {
+              "prompt": "I want to tweet about a tech conference",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_bob_johnson"
+              },
+              "expected_turns": [
+                  {"user": "What conference did you attend?", "assistant": "CES 2024"},
+                  {"user": "What was the highlight?", "assistant": "The new AI demos"},
+                  {"user": "Would you like to tag the event?", "assistant": "Yes, use #CES2024"}
+              ]
+          },
+          {
+              "prompt": "I need to request money from a group",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com", "diana.prince@protonmail.com"]
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "What's the total amount?", "assistant": "$150"},
+                  {"user": "How should I split it?", "assistant": "Equal parts for 3 people"},
+                  {"user": "Who should I request from?", "assistant": "Bob, Charlie, and Diana"}
+              ]
+          },
+          {
+              "prompt": "I want to find yoga videos",
+              "tools": ["YouTubeApis"],
+              "context": {},
+              "expected_turns": [
+                  {"user": "What type of yoga?", "assistant": "Morning yoga"},
+                  {"user": "How long should the session be?", "assistant": "20 minutes"},
+                  {"user": "Any specific instructor?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I need to set up my vacation home mode",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "charlie.davis@yahoo.com",
+                  "devices": {
+                      "device8": {"name": "Garage Door"},
+                      "device9": {"name": "Kids Room Light"}
+                  },
+                  "location_modes": {
+                      "loc3_user3": [
+                          {"id": "modeX", "name": "Present"},
+                          {"id": "modeY", "name": "Vacation"}
+                      ]
+                  }
+              },
+              "expected_turns": [
+                  {"user": "Would you like to activate vacation mode?", "assistant": "Yes"},
+                  {"user": "Should I close the garage door?", "assistant": "Yes"},
+                  {"user": "Would you like lights on a random schedule?", "assistant": "Yes"}
+              ]
+          },
+          {
+              "prompt": "I want to share my blog post",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_alice_smith"
+              },
+              "expected_turns": [
+                  {"user": "What's the blog post about?", "assistant": "Sustainable living"},
+                  {"user": "Would you like to add a link?", "assistant": "Yes, here's the URL"},
+                  {"user": "Should I tag any related accounts?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I need to pay back my friend",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "friends": ["bob.johnson@yahoo.com"]
+                      },
+                      "bob.johnson@yahoo.com": {
+                          "first_name": "Bob",
+                          "last_name": "Johnson"
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "How much do you owe?", "assistant": "$35"},
+                  {"user": "What's it for?", "assistant": "Concert tickets"},
+                  {"user": "Should I add a note?", "assistant": "Thanks for getting the tickets!"}
+              ]
+          },
+          {
+              "prompt": "I want to learn photo editing",
+              "tools": ["YouTubeApis"],
+              "context": {},
+              "expected_turns": [
+                  {"user": "What software are you using?", "assistant": "Adobe Photoshop"},
+                  {"user": "Beginner or advanced techniques?", "assistant": "Beginner"},
+                  {"user": "How many videos would you like?", "assistant": "3"}
+              ]
+          },
+          {
+              "prompt": "I need to check my office devices",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "bob.johnson@outlook.com",
+                  "devices": {
+                      "device4": {"name": "Office Thermostat"},
+                      "device5": {"name": "Conference Room Light"},
+                      "device7": {"name": "Server Room Water Sensor"}
+                  }
+              },
+              "expected_turns": [
+                  {"user": "Would you like to check the thermostat?", "assistant": "Yes"},
+                  {"user": "Should I verify the water sensor?", "assistant": "Yes"},
+                  {"user": "Would you like a status report?", "assistant": "Yes"}
+              ]
+          },
+          {
+              "prompt": "I want to join a Twitter discussion about books",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_john_doe"
+              },
+              "expected_turns": [
+                  {"user": "What book topics interest you?", "assistant": "Science fiction"},
+                  {"user": "Would you like to reply to existing tweets?", "assistant": "Yes"},
+                  {"user": "Should I find recent discussions?", "assistant": "Yes, from this week"}
+              ]
+          },
+          {
+              "prompt": "I need to split dinner costs",
+              "tools": ["VenmoApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "users": {
+                      "alice.smith@gmail.com": {
+                          "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com"]
+                      }
+                  }
+              },
+              "expected_turns": [
+                  {"user": "What was the total bill?", "assistant": "$90"},
+                  {"user": "How many people?", "assistant": "3 people"},
+                  {"user": "Should I request equal amounts?", "assistant": "Yes, $30 each"}
+              ]
+          },
+          {
+              "prompt": "I want to find home workout videos",
+              "tools": ["YouTubeApis"],
+              "context": {},
+              "expected_turns": [
+                  {"user": "What type of workout?", "assistant": "No equipment strength training"},
+                  {"user": "How long should the workout be?", "assistant": "30 minutes"},
+                  {"user": "Any specific trainer?", "assistant": "No"}
+              ]
+          },
+          {
+              "prompt": "I need to set up my smart home for morning",
+              "tools": ["SmartThingsApis"],
+              "context": {
+                  "current_user": "alice.smith@gmail.com",
+                  "devices": {
+                      "device1": {"name": "Living Room Lamp"},
+                      "device6": {"name": "Bedroom Blinds"}
+                  },
+                  "scenes": {}
+              },
+              "expected_turns": [
+                  {"user": "Would you like to open the blinds?", "assistant": "Yes, 50%"},
+                  {"user": "Should I turn on any lights?", "assistant": "Yes, living room at 40%"},
+                  {"user": "Would you like to save this as a scene?", "assistant": "Yes, call it 'Morning Routine'"}
+              ]
+          },
+          {
+              "prompt": "I want to share my photography",
+              "tools": ["XApis"],
+              "context": {
+                  "current_user": "usr_emily_white"
+              },
+              "expected_turns": [
+                  {"user": "What photos would you like to share?", "assistant": "Landscape photos from my trip"},
+                  {"user": "Would you like to add a caption?", "assistant": "Sunset views from Santorini"},
+                  {"user": "Should I use any hashtags?", "assistant": "#Travel #Photography #Santorini"}
+              ]
           }
-        }
-      },
-      {
-        "prompt": "Make a copy of my presentation file in Google Drive and share it with my manager.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "manager": "user2@example.com"
-        }
-      },
-      {
-        "prompt": "Create a birthday event in Google Calendar for my mom next month, then call her to remind her about it.",
-        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "mom_number": "+15556667777"
-        }
-      },
-      {
-        "prompt": "Check my last transaction with Bob on Venmo, and if it's over $30, open a support ticket about it.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "recent_transactions": [
-            {
-              "id": 1,
-              "amount": 35,
-              "receiver": "user2@example.com"
-            }
-          ]
-        }
-      },
-      {
-        "prompt": "Update the project spreadsheet in Google Drive with the latest numbers, then email the team about the changes.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "project_file": "file_2_alice"
-        }
-      },
-      {
-        "prompt": "Check the CommuniLink network status, and if it's down, create a support ticket and notify my team via SMS.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "team_numbers": ["+15559876543", "+15553334444"]
-        }
-      },
-      {
-        "prompt": "Create a YouTube playlist for my vacation videos, then share it with my family via Venmo message.",
-        "tools": ["YouTubeApis", "VenmoApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "family_members": ["user2@example.com", "user3@example.com"]
-        }
-      },
-      {
-        "prompt": "Check when my YouTube premium subscription expires, and if it's within 7 days, remind me via SMS to renew it.",
-        "tools": ["YouTubeApis", "CommuniLinkApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "my_number": "+15551234567"
-        }
-      },
-      {
-        "prompt": "Add all project milestones from the Google Drive document to my Google Calendar, then notify my manager.",
-        "tools": ["GoogleDriveApis", "GoogleCalendarApis"],
-        "context": {
-          "current_user": "alice.smith@bizmail.co",
-          "project_doc": "file_2_alice"
-        }
-      },
-      {
-        "prompt": "Check if I received the $75 payment from David on Venmo, and if so, transfer it to my bank account.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "expected_payment": {
-            "from": "david.kim@freelancer.org",
-            "amount": 75
-          }
-        }
-      },
-      {
-        "prompt": "Export all my SMS conversations with my lawyer to a Google Drive document for record keeping.",
-        "tools": ["CommuniLinkApis", "GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "lawyer_number": "+15558889999"
-        }
-      },
-      {
-        "prompt": "Create a team outing event in Google Calendar, then send Venmo payment requests to everyone for their share.",
-        "tools": ["GoogleCalendarApis", "VenmoApis"],
-        "context": {
-          "current_user": "alice.smith@bizmail.co",
-          "team_members": [
-            {
-              "email": "bob.johnson@globalcorp.net",
-              "share": 50
-            },
-            {
-              "email": "clara.davis@designco.com",
-              "share": 50
-            }
-          ]
-        }
-      },
-      {
-        "prompt": "Check if my latest YouTube video has any copyright claims, and if so, file a dispute and notify me via SMS.",
-        "tools": ["YouTubeApis", "CommuniLinkApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "latest_video": "videoABC"
-        }
-      },
-      {
-        "prompt": "Update the quarterly report in Google Drive with the latest sales numbers, then share it with the board members.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "report_file": "file_2_alice",
-          "board_members": ["user2@example.com", "user3@example.com"]
-        }
-      },
-      {
-        "prompt": "If my balance falls below $20, send an SMS to my emergency contact asking for a Venmo transfer.",
-        "tools": ["CommuniLinkApis", "VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "emergency_contact": "+15557778888",
-          "current_balance": 15.00
-        }
-      },
-      {
-        "prompt": "Upload my new video to YouTube but schedule it for release next Friday, then add a reminder to my calendar.",
-        "tools": ["YouTubeApis", "GoogleCalendarApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "video_file": "/path/to/new_video.mp4"
-        }
-      },
-      {
-        "prompt": "Check if Emily paid me $30 on Venmo for the concert ticket, and if she did, send $15 back as a partial refund.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "expected_payment": {
-            "from": "emily.white@consulting.ai",
-            "amount": 30
-          }
-        }
-      },
-      {
-        "prompt": "Create a new folder in Google Drive for the Acme Corp project, upload all related files, then share it with the client.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "client_email": "acme@example.com",
-          "project_files": ["file1.pdf", "file2.docx"]
-        }
-      },
-      {
-        "prompt": "Check my last missed call from Bob, call him back, and if he doesn't answer, send an SMS asking what he needed.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "missed_calls": [
-            {
-              "from": "+15559876543",
-              "time": "2023-06-15T14:30:00Z"
-            }
-          ]
-        }
-      },
-      {
-        "prompt": "Create a collaborative YouTube playlist for the marketing team, then send the link to everyone via Venmo message.",
-        "tools": ["YouTubeApis", "VenmoApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "team_members": ["user2@example.com", "user3@example.com"]
-        }
-      },
-      {
-        "prompt": "Scan my Venmo transactions for this month, categorize them as business or personal, then save the report to Google Drive.",
-        "tools": ["VenmoApis", "GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "month": "June 2023"
-        }
-      },
-      {
-        "prompt": "Switch my CommuniLink plan to premium if I've sent more than 50 SMS this month, then notify me of the change via SMS.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "sms_count": 53,
-          "current_plan": "basic"
-        }
-      }
-    ],
-    "Multi Turn Prompts":  [{
-        "prompt": "I need to remind Bob about the money he owes me.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "outstanding_payments": [
-            {
-              "to": "user2@example.com",
-              "amount": 40,
-              "reason": "dinner"
-            }
-          ]
-        }
-      },
-      {
-        "prompt": "Let's plan my birthday party.",
-        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "birthday": "2023-07-30",
-          "friends": ["user2@example.com", "user3@example.com"]
-        }
-      },
-      {
-        "prompt": "I want to upload a new video to my channel.",
-        "tools": ["YouTubeApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "video_file": "/path/to/video.mp4"
-        }
-      },
-      {
-        "prompt": "I need to share some documents with my team.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "team_members": ["user2@example.com", "user3@example.com"],
-          "documents": ["project_plan.docx", "budget.xlsx"]
-        }
-      },
-      {
-        "prompt": "I think I'm using too many SMS messages.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "sms_usage": 120,
-          "current_plan": "basic"
-        }
-      },
-      {
-        "prompt": "There's a problem with a Venmo payment I received.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "recent_transactions": [
-            {
-              "id": 5,
-              "amount": 60,
-              "from": "user3@example.com",
-              "disputed": true
-            }
-          ]
-        }
-      },
-      {
-        "prompt": "My calendar is getting too crowded.",
-        "tools": ["GoogleCalendarApis"],
-        "context": {
-          "current_user": "alice.smith@bizmail.co",
-          "upcoming_events": 27
-        }
-      },
-      {
-        "prompt": "I want to make money from my YouTube videos.",
-        "tools": ["YouTubeApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "subscribers": 1245
-        }
-      },
-      {
-        "prompt": "My Google Drive is a mess.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "file_count": 347,
-          "unorganized_files": 210
-        }
-      },
-      {
-        "prompt": "I need to call my friend in London.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "international_contact": "+442072345678"
-        }
-      },
-      {
-        "prompt": "We need to split the rent payment.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "roommates": [
-            {
-              "email": "user2@example.com",
-              "share": 800
-            },
-            {
-              "email": "user3@example.com",
-              "share": 800
-            }
-          ],
-          "total_rent": 2400
-        }
-      },
-      {
-        "prompt": "I want to schedule my YouTube content better.",
-        "tools": ["YouTubeApis", "GoogleCalendarApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "upload_schedule": "random"
-        }
-      },
-      {
-        "prompt": "I think I accidentally deleted an important file.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "recent_deletions": ["annual_report.xlsx"]
-        }
-      },
-      {
-        "prompt": "I'm going on vacation and need to forward my calls.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "vacation_dates": "2023-07-01 to 2023-07-15",
-          "forward_to": "+15558889999"
-        }
-      },
-      {
-        "prompt": "How are my YouTube videos performing?",
-        "tools": ["YouTubeApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "recent_videos": ["videoABC", "videoDEF"]
-        }
-      },
-      {
-        "prompt": "I need to track my business expenses.",
-        "tools": ["VenmoApis", "GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "business_category": "consulting"
-        }
-      },
-      {
-        "prompt": "We need to schedule our quarterly team meeting.",
-        "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
-        "context": {
-          "current_user": "alice.smith@bizmail.co",
-          "team_size": 8,
-          "timezones": ["EST", "PST", "GMT"]
-        }
-      },
-      {
-        "prompt": "I'm working on a video project with a colleague.",
-        "tools": ["YouTubeApis", "GoogleDriveApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "collaborator": "channel2@example.com"
-        }
-      },
-      {
-        "prompt": "I need to update my payment methods.",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "expired_card": true
-        }
-      },
-      {
-        "prompt": "I'm having trouble with my phone service.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "recent_issues": ["dropped calls", "slow SMS"]
-        }
-      },
-      {
-        "prompt": "I want to plan my content for next month.",
-        "tools": ["YouTubeApis", "GoogleCalendarApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "content_types": ["tutorials", "reviews", "vlogs"]
-        }
-      },
-      {
-        "prompt": "I need to change who can access my files.",
-        "tools": ["GoogleDriveApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "sensitive_files": ["contract.pdf", "financials.xlsx"]
-        }
-      },
-      {
-        "prompt": "Can I send money to someone overseas?",
-        "tools": ["VenmoApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "recipient_country": "UK"
-        }
-      },
-      {
-        "prompt": "I want to review my recent calls.",
-        "tools": ["CommuniLinkApis"],
-        "context": {
-          "current_user": "user1@example.com",
-          "call_history": [
-            {
-              "to": "+15559876543",
-              "duration": "5:23",
-              "date": "2023-06-10"
-            },
-            {
-              "from": "+15553334444",
-              "duration": "2:15",
-              "date": "2023-06-12"
-            }
-          ]
-        }
-      },
-      {
-        "prompt": "How can I get more views on my videos?",
-        "tools": ["YouTubeApis"],
-        "context": {
-          "current_channel": "channel1@example.com",
-          "average_views": 350
-        }
-      }
-    ]
+      ]
+  }
 }

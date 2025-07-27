@@ -3,48 +3,76 @@ from datetime import datetime
 from copy import deepcopy
 
 DEFAULT_STATE = {
-    "username": "spotify_user@example.com",
+    "username": "samantha.davis@melodify.com",
     "users": {
-        "spotify_user@example.com": {
-            "first_name": "Spotify",
-            "last_name": "User",
-            "email": "spotify_user@example.com",
+        "samantha.davis@melodify.com": {
+            "first_name": "Samantha",
+            "last_name": "Davis",
+            "email": "samantha.davis@melodify.com",
             "verified": True,
-            "liked_songs": [101, 103],
-            "liked_albums": [201],
-            "liked_playlists": [301],
-            "following_artists": [401],
-            "library_songs": [101, 102, 103],
-            "library_albums": [201],
-            "downloaded_songs": [101],
+            "liked_songs": [101, 103, 106],
+            "liked_albums": [201, 204],
+            "liked_playlists": [301, 303],
+            "following_artists": [401, 404],
+            "library_songs": [101, 102, 103, 106, 107],
+            "library_albums": [201, 204, 205],
+            "downloaded_songs": [101, 106],
             "premium": True
         },
-        "john.doe@example.com": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "email": "john.doe@example.com",
+        "liam.wilson@melodify.com": {
+            "first_name": "Liam",
+            "last_name": "Wilson",
+            "email": "liam.wilson@melodify.com",
             "verified": True,
-            "liked_songs": [102, 104],
+            "liked_songs": [102, 104, 105],
             "liked_albums": [202],
             "liked_playlists": [],
             "following_artists": [402, 403],
-            "library_songs": [102, 104, 105],
-            "library_albums": [202],
+            "library_songs": [102, 104, 105, 108],
+            "library_albums": [202, 206],
             "downloaded_songs": [],
             "premium": False
         },
-        "jane.smith@example.com": {
-            "first_name": "Jane",
-            "last_name": "Smith",
-            "email": "jane.smith@example.com",
+        "olivia.taylor@melodify.com": {
+            "first_name": "Olivia",
+            "last_name": "Taylor",
+            "email": "olivia.taylor@melodify.com",
+            "verified": True,
+            "liked_songs": [103, 108, 109],
+            "liked_albums": [203, 205],
+            "liked_playlists": [302, 304],
+            "following_artists": [401, 405],
+            "library_songs": [103, 107, 108, 109],
+            "library_albums": [203, 205],
+            "downloaded_songs": [103, 108],
+            "premium": True
+        },
+        "noah.brown@melodify.com": {
+            "first_name": "Noah",
+            "last_name": "Brown",
+            "email": "noah.brown@melodify.com",
             "verified": False,
-            "liked_songs": [],
+            "liked_songs": [107],
             "liked_albums": [],
-            "liked_playlists": [302],
-            "following_artists": [401],
-            "library_songs": [103],
-            "library_albums": [203],
-            "downloaded_songs": [103],
+            "liked_playlists": [],
+            "following_artists": [406],
+            "library_songs": [106, 107],
+            "library_albums": [],
+            "downloaded_songs": [],
+            "premium": False
+        },
+        "emma.jones@melodify.com": {
+            "first_name": "Emma",
+            "last_name": "Jones",
+            "email": "emma.jones@melodify.com",
+            "verified": True,
+            "liked_songs": [101, 104, 109],
+            "liked_albums": [201, 206],
+            "liked_playlists": [305],
+            "following_artists": [401, 403, 405],
+            "library_songs": [101, 104, 109, 110],
+            "library_albums": [201, 206],
+            "downloaded_songs": [104],
             "premium": True
         }
     },
@@ -53,21 +81,35 @@ DEFAULT_STATE = {
         102: {"id": 102, "title": "Bohemian Rhapsody", "artist": "Queen", "album": "A Night at the Opera", "duration_ms": 354000, "genre": "Rock"},
         103: {"id": 103, "title": "Blinding Lights", "artist": "The Weeknd", "album": "After Hours", "duration_ms": 202000, "genre": "Pop"},
         104: {"id": 104, "title": "Watermelon Sugar", "artist": "Harry Styles", "album": "Fine Line", "duration_ms": 174000, "genre": "Pop"},
-        105: {"id": 105, "title": "Old Town Road", "artist": "Lil Nas X", "album": "7", "duration_ms": 113000, "genre": "Country Rap"}
+        105: {"id": 105, "title": "Old Town Road", "artist": "Lil Nas X", "album": "7", "duration_ms": 113000, "genre": "Country Rap"},
+        106: {"id": 106, "title": "Good 4 U", "artist": "Olivia Rodrigo", "album": "SOUR", "duration_ms": 175000, "genre": "Pop Punk"},
+        107: {"id": 107, "title": "Levitating", "artist": "Dua Lipa", "album": "Future Nostalgia", "duration_ms": 203000, "genre": "Pop"},
+        108: {"id": 108, "title": "Save Your Tears", "artist": "The Weeknd", "album": "After Hours", "duration_ms": 215000, "genre": "Pop"},
+        109: {"id": 109, "title": "Drivers License", "artist": "Olivia Rodrigo", "album": "SOUR", "duration_ms": 242000, "genre": "Pop"},
+        110: {"id": 110, "title": "Happier Than Ever", "artist": "Billie Eilish", "album": "Happier Than Ever", "duration_ms": 268000, "genre": "Pop"}
     },
     "albums": {
         201: {"id": 201, "title": "Divide", "artist": "Ed Sheeran", "release_year": 2017, "genre": "Pop", "songs": [101]},
         202: {"id": 202, "title": "A Night at the Opera", "artist": "Queen", "release_year": 1975, "genre": "Rock", "songs": [102]},
-        203: {"id": 203, "title": "After Hours", "artist": "The Weeknd", "release_year": 2020, "genre": "R&B", "songs": [103]}
+        203: {"id": 203, "title": "After Hours", "artist": "The Weeknd", "release_year": 2020, "genre": "R&B", "songs": [103, 108]},
+        204: {"id": 204, "title": "SOUR", "artist": "Olivia Rodrigo", "release_year": 2021, "genre": "Pop", "songs": [106, 109]},
+        205: {"id": 205, "title": "Future Nostalgia", "artist": "Dua Lipa", "release_year": 2020, "genre": "Pop", "songs": [107]},
+        206: {"id": 206, "title": "Happier Than Ever", "artist": "Billie Eilish", "release_year": 2021, "genre": "Pop", "songs": [110]}
     },
     "playlists": {
-        301: {"id": 301, "title": "My Favorite Pop Hits", "public": True, "owner": "spotify_user@example.com", "songs": [101, 103, 104], "created_at": "2023-01-15"},
-        302: {"id": 302, "title": "Workout Jams", "public": False, "owner": "spotify_user@example.com", "songs": [103, 105], "created_at": "2023-02-01"}
+        301: {"id": 301, "title": "My Chill Pop Mix", "public": True, "owner": "samantha.davis@melodify.com", "songs": [101, 103, 104, 107], "created_at": "2023-01-15"},
+        302: {"id": 302, "title": "Evening Drive", "public": False, "owner": "olivia.taylor@melodify.com", "songs": [103, 108, 109], "created_at": "2023-02-01"},
+        303: {"id": 303, "title": "Workout Hits", "public": True, "owner": "samantha.davis@melodify.com", "songs": [106, 107], "created_at": "2023-03-10"},
+        304: {"id": 304, "title": "Discover Weekly", "public": False, "owner": "olivia.taylor@melodify.com", "songs": [105, 110], "created_at": "2023-04-05"},
+        305: {"id": 305, "title": "Feel Good Vibes", "public": True, "owner": "emma.jones@melodify.com", "songs": [101, 104, 106], "created_at": "2023-05-20"}
     },
     "artists": {
         401: {"id": 401, "name": "Ed Sheeran", "genre": "Pop", "followers": 15000000},
         402: {"id": 402, "name": "Queen", "genre": "Rock", "followers": 20000000},
-        403: {"id": 403, "name": "The Weeknd", "genre": "R&B", "followers": 18000000}
+        403: {"id": 403, "name": "The Weeknd", "genre": "R&B", "followers": 18000000},
+        404: {"id": 404, "name": "Olivia Rodrigo", "genre": "Pop", "followers": 12000000},
+        405: {"id": 405, "name": "Dua Lipa", "genre": "Pop", "followers": 10000000},
+        406: {"id": 406, "name": "Billie Eilish", "genre": "Pop", "followers": 22000000}
     },
     "reviews": {},
     "payment_cards": {},
@@ -75,14 +117,15 @@ DEFAULT_STATE = {
     "song_queue": [],
     "volume": 75,
     "premium_subscriptions": {
-        "spotify_user@example.com": {"plan": "Premium Individual", "start_date": "2023-01-01", "end_date": "2024-01-01"},
-        "jane.smith@example.com": {"plan": "Premium Family", "start_date": "2024-03-01", "end_date": "2025-03-01"}
+        "samantha.davis@melodify.com": {"plan": "Premium Individual", "start_date": "2023-01-01", "end_date": "2024-01-01"},
+        "olivia.taylor@melodify.com": {"plan": "Premium Family", "start_date": "2024-03-01", "end_date": "2025-03-01"},
+        "emma.jones@melodify.com": {"plan": "Premium Individual", "start_date": "2023-08-15", "end_date": "2024-08-15"}
     },
     "id_counters": {
-        "song": 106,
-        "album": 204,
-        "playlist": 303,
-        "artist": 404,
+        "song": 111,
+        "album": 207,
+        "playlist": 306,
+        "artist": 407,
         "review": 0,
         "payment_card": 0,
     }

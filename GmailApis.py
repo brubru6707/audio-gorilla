@@ -1,72 +1,107 @@
 import datetime
 import copy
-import base64
 from typing import Dict, List, Any, Optional, Union
 
 DEFAULT_STATE: Dict[str, Any] = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@example.net": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
-            "friends": ["user2@example.com"],
+            "email": "alice.smith@example.net",
+            "friends": ["bob.johnson@example.com", "charlie.davis@example.org"],
             "gmail_data": {
                 "profile": {
-                    "emailAddress": "user1@example.com",
-                    "messagesTotal": 150,
-                    "threadsTotal": 50,
-                    "historyId": "987654321"
+                    "emailAddress": "alice.smith@example.net",
+                    "messagesTotal": 1500,
+                    "threadsTotal": 500,
+                    "historyId": "9876543210987"
                 },
                 "drafts": {
-                    "draft123": {
-                        "id": "draft123",
+                    "draft_abc_123": {
+                        "id": "draft_abc_123",
                         "message": {
-                            "to": "recipient@example.com",
-                            "subject": "Meeting Reminder",
-                            "body": "Hi, just a reminder about our meeting tomorrow."
+                            "to": "project.team@example.com",
+                            "subject": "Project Status Update",
+                            "body": "Hi team, here's the latest on our project. We're on track for completion."
                         }
                     }
                 },
                 "labels": {
-                    "label456": {
-                        "id": "label456",
-                        "name": "Important",
+                    "label_important_client": {
+                        "id": "label_important_client",
+                        "name": "Important Clients",
                         "messageListVisibility": "show",
                         "labelListVisibility": "show",
                         "type": "user",
-                        "messagesTotal": 10,
-                        "messagesUnread": 2,
-                        "threadsTotal": 5,
-                        "threadsUnread": 1
+                        "messagesTotal": 85,
+                        "messagesUnread": 5,
+                        "threadsTotal": 30,
+                        "threadsUnread": 2
+                    },
+                    "label_personal": {
+                        "id": "label_personal",
+                        "name": "Personal",
+                        "messageListVisibility": "show",
+                        "labelListVisibility": "show",
+                        "type": "user",
+                        "messagesTotal": 120,
+                        "messagesUnread": 10,
+                        "threadsTotal": 45,
+                        "threadsUnread": 7
                     }
                 },
                 "messages": {
-                    "msg789": {
-                        "id": "msg789",
-                        "threadId": "thread001",
-                        "labelIds": ["INBOX", "label456"],
-                        "snippet": "Hello, how are you?",
+                    "msg_def_456": {
+                        "id": "msg_def_456",
+                        "threadId": "thread_proj_update",
+                        "labelIds": ["INBOX", "label_important_client"],
+                        "snippet": "Meeting confirmed for next Tuesday at 10 AM.",
                         "payload": {"headers": [], "body": {}},
-                        "sizeEstimate": 1024,
-                        "historyId": "123456789"
+                        "sizeEstimate": 2048,
+                        "historyId": "1234567890123"
+                    },
+                    "msg_ghi_789": {
+                        "id": "msg_ghi_789",
+                        "threadId": "thread_family_vacation",
+                        "labelIds": ["INBOX", "label_personal"],
+                        "snippet": "Just booked the flights for our vacation to Hawaii!",
+                        "payload": {"headers": [], "body": {}},
+                        "sizeEstimate": 1500,
+                        "historyId": "1234567890124"
                     }
                 },
                 "threads": {
-                    "thread001": {
-                        "id": "thread001",
-                        "historyId": "123456789",
+                    "thread_proj_update": {
+                        "id": "thread_proj_update",
+                        "historyId": "1234567890123",
                         "messages": [
                             {
-                                "id": "msg789",
-                                "threadId": "thread001",
-                                "labelIds": ["INBOX", "label456"],
-                                "snippet": "Hello, how are you?",
+                                "id": "msg_def_456",
+                                "threadId": "thread_proj_update",
+                                "labelIds": ["INBOX", "label_important_client"],
+                                "snippet": "Meeting confirmed for next Tuesday at 10 AM.",
                                 "payload": {"headers": [], "body": {}},
-                                "sizeEstimate": 1024,
-                                "historyId": "123456789"
+                                "sizeEstimate": 2048,
+                                "historyId": "1234567890123"
                             }
                         ],
-                        "snippet": "Hello, how are you?"
+                        "snippet": "Meeting confirmed for next Tuesday at 10 AM."
+                    },
+                    "thread_family_vacation": {
+                        "id": "thread_family_vacation",
+                        "historyId": "1234567890124",
+                        "messages": [
+                            {
+                                "id": "msg_ghi_789",
+                                "threadId": "thread_family_vacation",
+                                "labelIds": ["INBOX", "label_personal"],
+                                "snippet": "Just booked the flights for our vacation to Hawaii!",
+                                "payload": {"headers": [], "body": {}},
+                                "sizeEstimate": 1500,
+                                "historyId": "1234567890124"
+                            }
+                        ],
+                        "snippet": "Just booked the flights for our vacation to Hawaii!"
                     }
                 },
                 "settings": {
@@ -93,84 +128,120 @@ DEFAULT_STATE: Dict[str, Any] = {
                         "displayLanguage": "en"
                     },
                     "delegates": {
-                        "delegate1@example.com": {
-                            "delegateEmail": "delegate1@example.com",
+                        "delegate_fin_assistant": {
+                            "delegateEmail": "finance.assistant@example.net",
                             "verificationStatus": "accepted"
                         }
                     },
                     "filters": {
-                        "filter1": {
-                            "id": "filter1",
-                            "criteria": {"from": "spam@example.com"},
-                            "action": {"removeLabelIds": ["INBOX"], "addLabelIds": ["TRASH"]}
+                        "filter_newsletter_promo": {
+                            "id": "filter_newsletter_promo",
+                            "criteria": {"from": "*@promotions.com", "subject": "Newsletter"},
+                            "action": {"addLabelIds": ["SPAM", "TRASH"]}
                         }
                     },
                     "forwarding_addresses": {
-                        "forward1@example.com": {
-                            "forwardingEmail": "forward1@example.com",
+                        "forward_backup": {
+                            "forwardingEmail": "alice.backup@gmail.com",
                             "verificationStatus": "accepted"
                         }
                     },
                     "send_as_aliases": {
-                        "alias1@example.com": {
-                            "sendAsEmail": "alias1@example.com",
-                            "displayName": "Alice Alias",
+                        "alias_work": {
+                            "sendAsEmail": "alice.work@example.net",
+                            "displayName": "Alice Smith (Work)",
                             "replyToAddress": None,
-                            "signature": "Sent from my custom alias.",
+                            "signature": "Best regards,\nAlice Smith",
                             "isPrimary": False,
                             "verificationStatus": "accepted"
                         }
                     }
                 },
                 "history": {
-                    "hist999": {
-                        "id": "hist999",
+                    "hist_1001": {
+                        "id": "hist_1001",
                         "messages": [],
-                        "labelsAdded": [],
-                        "historyId": "999"
+                        "labelsAdded": [{"messageIds": ["msg_def_456"], "labelIds": ["STARRED"]}],
+                        "historyId": "1001"
                     }
                 }
             }
         },
-        "user2@example.com": {
+        "bob.johnson@example.com": {
             "first_name": "Bob",
             "last_name": "Johnson",
-            "email": "user2@example.com",
-            "friends": ["user1@example.com"],
+            "email": "bob.johnson@example.com",
+            "friends": ["alice.smith@example.net"],
             "gmail_data": {
                 "profile": {
-                    "emailAddress": "user2@example.com",
-                    "messagesTotal": 75,
-                    "threadsTotal": 20,
-                    "historyId": "123456789"
+                    "emailAddress": "bob.johnson@example.com",
+                    "messagesTotal": 750,
+                    "threadsTotal": 200,
+                    "historyId": "1234567890123"
                 },
-                "drafts": {},
+                "drafts": {
+                    "draft_re_meeting": {
+                        "id": "draft_re_meeting",
+                        "message": {
+                            "to": "alice.smith@example.net",
+                            "subject": "Re: Meeting Reminder",
+                            "body": "Thanks for the reminder! See you then."
+                        }
+                    }
+                },
                 "labels": {
-                    "label789": {
-                        "id": "label789",
-                        "name": "Work",
+                    "label_project_x": {
+                        "id": "label_project_x",
+                        "name": "Project X",
                         "messageListVisibility": "show",
                         "labelListVisibility": "show",
                         "type": "user",
-                        "messagesTotal": 5,
+                        "messagesTotal": 55,
                         "messagesUnread": 0,
-                        "threadsTotal": 3,
+                        "threadsTotal": 15,
                         "threadsUnread": 0
                     }
                 },
-                "messages": {},
-                "threads": {},
+                "messages": {
+                    "msg_xyz_111": {
+                        "id": "msg_xyz_111",
+                        "threadId": "thread_client_feedback",
+                        "labelIds": ["INBOX", "label_project_x"],
+                        "snippet": "Feedback received on the latest design mockups.",
+                        "payload": {"headers": [], "body": {}},
+                        "sizeEstimate": 1800,
+                        "historyId": "9876543210123"
+                    }
+                },
+                "threads": {
+                    "thread_client_feedback": {
+                        "id": "thread_client_feedback",
+                        "historyId": "9876543210123",
+                        "messages": [
+                            {
+                                "id": "msg_xyz_111",
+                                "threadId": "thread_client_feedback",
+                                "labelIds": ["INBOX", "label_project_x"],
+                                "snippet": "Feedback received on the latest design mockups.",
+                                "payload": {"headers": [], "body": {}},
+                                "sizeEstimate": 1800,
+                                "historyId": "9876543210123"
+                            }
+                        ],
+                        "snippet": "Feedback received on the latest design mockups."
+                    }
+                },
                 "settings": {
                     "auto_forwarding": {
                         "enabled": True,
-                        "emailAddress": "bob_forward@example.com",
+                        "emailAddress": "bob.alternate@outlook.com",
                         "disposition": "archive"
                     },
                     "vacation_responder": {
                         "enableAutoReply": True,
-                        "responseSubject": "Out of Office",
-                        "responseBodyPlainText": "I'm currently on vacation.",
-                        "responseBodyHtml": "I'm currently on vacation.",
+                        "responseSubject": "Out of Office - Unavailable",
+                        "responseBodyPlainText": "I am currently out of the office until [Date]. I will respond to your email as soon as possible upon my return.",
+                        "responseBodyHtml": "I am currently out of the office until [Date]. I will respond to your email as soon as possible upon my return.",
                         "restrictToContacts": False,
                         "restrictToDomain": False,
                         "startTime": (datetime.datetime.now() - datetime.timedelta(days=2)).timestamp() * 1000,
@@ -184,27 +255,45 @@ DEFAULT_STATE: Dict[str, Any] = {
                         "displayLanguage": "es"
                     },
                     "delegates": {},
-                    "filters": {},
+                    "filters": {
+                        "filter_spam_block": {
+                            "id": "filter_spam_block",
+                            "criteria": {"from": "suspicious@malware.net", "subject": "URGENT ACTION REQUIRED"},
+                            "action": {"addLabelIds": ["SPAM", "TRASH"], "markAsRead": True}
+                        }
+                    },
                     "forwarding_addresses": {},
                     "send_as_aliases": {}
                 },
                 "history": {}
             }
         },
-        "user3@example.com": {
+        "charlie.davis@example.org": {
             "first_name": "Charlie",
-            "last_name": "Brown",
-            "email": "user3@example.com",
-            "friends": [],
+            "last_name": "Davis",
+            "email": "charlie.davis@example.org",
+            "friends": ["alice.smith@example.net"],
             "gmail_data": {
                 "profile": {
-                    "emailAddress": "user3@example.com",
-                    "messagesTotal": 25,
-                    "threadsTotal": 10,
-                    "historyId": "246813579"
+                    "emailAddress": "charlie.davis@example.org",
+                    "messagesTotal": 250,
+                    "threadsTotal": 100,
+                    "historyId": "2468135790246"
                 },
                 "drafts": {},
-                "labels": {},
+                "labels": {
+                    "label_news": {
+                        "id": "label_news",
+                        "name": "Newsletters",
+                        "messageListVisibility": "hide",
+                        "labelListVisibility": "hide",
+                        "type": "user",
+                        "messagesTotal": 70,
+                        "messagesUnread": 15,
+                        "threadsTotal": 25,
+                        "threadsUnread": 5
+                    }
+                },
                 "messages": {},
                 "threads": {},
                 "settings": {
@@ -228,7 +317,69 @@ DEFAULT_STATE: Dict[str, Any] = {
                         "disposition": "leaveInInbox"
                     },
                     "language": {
-                        "displayLanguage": "en"
+                        "displayLanguage": "en-GB"
+                    },
+                    "delegates": {},
+                    "filters": {
+                        "filter_social_media": {
+                            "id": "filter_social_media",
+                            "criteria": {"from": "*@facebookmail.com OR *@twitter.com"},
+                            "action": {"addLabelIds": ["SOCIAL"], "markAsRead": True}
+                        }
+                    },
+                    "forwarding_addresses": {},
+                    "send_as_aliases": {
+                        "alias_personal": {
+                            "sendAsEmail": "charlie.davis.personal@gmail.com",
+                            "displayName": "Charlie Davis (Personal)",
+                            "replyToAddress": None,
+                            "signature": "Cheers,\nCharlie",
+                            "isPrimary": False,
+                            "verificationStatus": "accepted"
+                        }
+                    }
+                },
+                "history": {}
+            }
+        },
+        "diana.miller@webmail.co": {
+            "first_name": "Diana",
+            "last_name": "Miller",
+            "email": "diana.miller@webmail.co",
+            "friends": ["bob.johnson@example.com"],
+            "gmail_data": {
+                "profile": {
+                    "emailAddress": "diana.miller@webmail.co",
+                    "messagesTotal": 50,
+                    "threadsTotal": 15,
+                    "historyId": "3692581470369"
+                },
+                "drafts": {},
+                "labels": {},
+                "messages": {},
+                "threads": {},
+                "settings": {
+                    "auto_forwarding": {
+                        "enabled": False,
+                        "emailAddress": None,
+                        "disposition": "leaveInInbox"
+                    },
+                    "vacation_responder": {
+                        "enableAutoReply": False,
+                        "responseSubject": None,
+                        "responseBodyPlainText": None,
+                        "responseBodyHtml": None,
+                        "restrictToContacts": False,
+                        "restrictToDomain": False,
+                        "startTime": None,
+                        "endTime": None
+                    },
+                    "pop_settings": {
+                        "accessWindow": "allMail",
+                        "disposition": "leaveInInbox"
+                    },
+                    "language": {
+                        "displayLanguage": "fr"
                     },
                     "delegates": {},
                     "filters": {},
@@ -239,16 +390,16 @@ DEFAULT_STATE: Dict[str, Any] = {
             }
         }
     },
-    "current_user": "user1@example.com",
-    "gmail_draft_counter": 1,
-    "gmail_label_counter": 1,
-    "gmail_message_counter": 1,
-    "gmail_thread_counter": 1,
-    "gmail_history_counter": 1,
-    "gmail_delegate_counter": 1,
-    "gmail_filter_counter": 1,
-    "gmail_forwarding_address_counter": 1,
-    "gmail_send_as_counter": 1
+    "current_user": "alice.smith@example.net",
+    "gmail_draft_counter": 10, # Adjusted for existing drafts
+    "gmail_label_counter": 10, # Adjusted for existing labels
+    "gmail_message_counter": 100, # Adjusted for existing messages
+    "gmail_thread_counter": 50, # Adjusted for existing threads
+    "gmail_history_counter": 200, # Adjusted for existing history
+    "gmail_delegate_counter": 5,
+    "gmail_filter_counter": 5,
+    "gmail_forwarding_address_counter": 5,
+    "gmail_send_as_counter": 5
 }
 
 class GmailApis:

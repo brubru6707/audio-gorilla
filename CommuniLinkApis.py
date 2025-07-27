@@ -2,67 +2,148 @@ import time
 import random
 from copy import deepcopy
 from typing import Dict, List, Optional, Union
+from datetime import datetime, timedelta
 
 
 DEFAULT_COMMUNILINK_STATE = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@communi.link": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
-            "phone_number": "+15551234567",
+            "email": "alice.smith@communi.link",
+            "phone_number": "+12025550101",
             "balance": 100.00,
-            "sms_history": [],
-            "call_history": [],
+            "sms_history": [
+                {"sms_id": 1, "sender": "alice.smith@communi.link", "receiver": "bob.johnson@communi.link", "message": "Hey Bob, planning anything for the weekend?", "timestamp": (datetime.now() - timedelta(days=2, hours=10)).isoformat()},
+                {"sms_id": 2, "sender": "bob.johnson@communi.link", "receiver": "alice.smith@communi.link", "message": "Just chilling. Wanna grab coffee?", "timestamp": (datetime.now() - timedelta(days=2, hours=9, minutes=30)).isoformat()},
+                {"sms_id": 3, "sender": "alice.smith@communi.link", "receiver": "+12025550105", "message": "Reminder: Dentist appointment tomorrow at 2 PM.", "timestamp": (datetime.now() - timedelta(hours=5)).isoformat(), "is_external": True},
+            ],
+            "call_history": [
+                {"call_id": 1, "caller": "alice.smith@communi.link", "receiver": "charlie.brown@communi.link", "duration_minutes": 5, "timestamp": (datetime.now() - timedelta(days=3)).isoformat(), "type": "outgoing"},
+                {"call_id": 2, "caller": "diana.miller@communi.link", "receiver": "alice.smith@communi.link", "duration_minutes": 2, "timestamp": (datetime.now() - timedelta(days=1)).isoformat(), "type": "incoming"},
+            ],
             "settings": {
                 "sms_notifications": True,
                 "call_forwarding_enabled": False,
                 "call_forwarding_number": ""
             },
-            "friends": ["user2@example.com", "user3@example.com"]
+            "friends": ["bob.johnson@communi.link", "charlie.brown@communi.link"]
         },
-        "user2@example.com": {
-            "first_name": "Bob",
+        "bob.johnson@communi.link": {
+            "first_name": "Robert",
             "last_name": "Johnson",
-            "email": "user2@example.com",
-            "phone_number": "+15559876543",
+            "email": "bob.johnson@communi.link",
+            "phone_number": "+12025550102",
             "balance": 50.00,
-            "sms_history": [],
-            "call_history": [],
+            "sms_history": [
+                {"sms_id": 2, "sender": "bob.johnson@communi.link", "receiver": "alice.smith@communi.link", "message": "Just chilling. Wanna grab coffee?", "timestamp": (datetime.now() - timedelta(days=2, hours=9, minutes=30)).isoformat()},
+            ],
+            "call_history": [
+                {"call_id": 3, "caller": "bob.johnson@communi.link", "receiver": "+12025550103", "duration_minutes": 10, "timestamp": (datetime.now() - timedelta(hours=12)).isoformat(), "type": "outgoing", "is_external": True},
+            ],
             "settings": {
                 "sms_notifications": False,
                 "call_forwarding_enabled": True,
-                "call_forwarding_number": "+15551112222"
+                "call_forwarding_number": "+12025550103" # Changed to match the external number for believability
             },
-            "friends": ["user1@example.com", "user3@example.com"]
+            "friends": ["alice.smith@communi.link", "charlie.brown@communi.link"]
         },
-        "user3@example.com": {
-            "first_name": "Charlie",
+        "charlie.brown@communi.link": {
+            "first_name": "Charles",
             "last_name": "Brown",
-            "email": "user3@example.com",
-            "phone_number": "+15553334444",
+            "email": "charlie.brown@communi.link",
+            "phone_number": "+12025550104",
             "balance": 250.00,
+            "sms_history": [
+                {"sms_id": 4, "sender": "charlie.brown@communi.link", "receiver": "alice.smith@communi.link", "message": "Don't forget our meeting at 3 PM!", "timestamp": (datetime.now() - timedelta(hours=2)).isoformat()},
+            ],
+            "call_history": [
+                {"call_id": 1, "caller": "alice.smith@communi.link", "receiver": "charlie.brown@communi.link", "duration_minutes": 5, "timestamp": (datetime.now() - timedelta(days=3)).isoformat(), "type": "incoming"},
+            ],
+            "settings": {
+                "sms_notifications": True,
+                "call_forwarding_enabled": False,
+                "call_forwarding_number": ""
+            },
+            "friends": ["alice.smith@communi.link", "bob.johnson@communi.link", "diana.miller@communi.link"]
+        },
+        "diana.miller@communi.link": {
+            "first_name": "Diana",
+            "last_name": "Miller",
+            "email": "diana.miller@communi.link",
+            "phone_number": "+12025550105",
+            "balance": 180.50,
+            "sms_history": [
+                {"sms_id": 5, "sender": "diana.miller@communi.link", "receiver": "charlie.brown@communi.link", "message": "Got the report ready for review.", "timestamp": (datetime.now() - timedelta(hours=4)).isoformat()},
+            ],
+            "call_history": [
+                {"call_id": 2, "caller": "diana.miller@communi.link", "receiver": "alice.smith@communi.link", "duration_minutes": 2, "timestamp": (datetime.now() - timedelta(days=1)).isoformat(), "type": "outgoing"},
+                {"call_id": 4, "caller": "charlie.brown@communi.link", "receiver": "diana.miller@communi.link", "duration_minutes": 7, "timestamp": (datetime.now() - timedelta(hours=6)).isoformat(), "type": "incoming"},
+            ],
+            "settings": {
+                "sms_notifications": True,
+                "call_forwarding_enabled": True,
+                "call_forwarding_number": "+12025550106"
+            },
+            "friends": ["charlie.brown@communi.link"]
+        },
+        "eva.gonzalez@communi.link": {
+            "first_name": "Eva",
+            "last_name": "Gonzalez",
+            "email": "eva.gonzalez@communi.link",
+            "phone_number": "+12025550107",
+            "balance": 75.20,
             "sms_history": [],
+            "call_history": [
+                {"call_id": 5, "caller": "eva.gonzalez@communi.link", "receiver": "+12025550108", "duration_minutes": 1, "timestamp": (datetime.now() - timedelta(minutes=30)).isoformat(), "type": "outgoing", "is_external": True},
+            ],
+            "settings": {
+                "sms_notifications": False,
+                "call_forwarding_enabled": False,
+                "call_forwarding_number": ""
+            },
+            "friends": []
+        },
+        "frank.white@communi.link": {
+            "first_name": "Frank",
+            "last_name": "White",
+            "email": "frank.white@communi.link",
+            "phone_number": "+12025550109",
+            "balance": 300.00,
+            "sms_history": [
+                {"sms_id": 6, "sender": "frank.white@communi.link", "receiver": "alice.smith@communi.link", "message": "Let's catch up soon!", "timestamp": (datetime.now() - timedelta(days=7)).isoformat()},
+            ],
             "call_history": [],
             "settings": {
                 "sms_notifications": True,
                 "call_forwarding_enabled": False,
                 "call_forwarding_number": ""
             },
-            "friends": ["user1@example.com", "user2@example.com"]
+            "friends": ["alice.smith@communi.link"]
         }
     },
-    "current_user": "user1@example.com",
-    "sms_counter": 0,
-    "call_counter": 0,
-    "billing_history": [],
-    "support_tickets": [],
+    "current_user": "alice.smith@communi.link",
+    "sms_counter": 6,
+    "call_counter": 5,
+    "billing_history": [
+        {"transaction_id": 1, "user_email": "alice.smith@communi.link", "type": "plan_charge", "amount": -10.00, "date": (datetime.now() - timedelta(days=30)).isoformat(), "description": "Monthly basic plan charge"},
+        {"transaction_id": 2, "user_email": "bob.johnson@communi.link", "type": "sms_charge", "amount": -0.10, "date": (datetime.now() - timedelta(days=2)).isoformat(), "description": "SMS charge to Alice"},
+        {"transaction_id": 3, "user_email": "diana.miller@communi.link", "type": "top_up", "amount": 25.00, "date": (datetime.now() - timedelta(days=10)).isoformat(), "description": "Account top-up"},
+        {"transaction_id": 4, "user_email": "frank.white@communi.link", "type": "plan_charge", "amount": -20.00, "date": (datetime.now() - timedelta(days=45)).isoformat(), "description": "Monthly premium plan charge"},
+    ],
+    "support_tickets": [
+        {"ticket_id": 1, "user_email": "bob.johnson@communi.link", "subject": "Call Forwarding Issue", "status": "open", "description": "Calls are not forwarding correctly to my external number.", "created_at": (datetime.now() - timedelta(days=5)).isoformat()},
+        {"ticket_id": 2, "user_email": "eva.gonzalez@communi.link", "subject": "Balance Inquiry", "status": "closed", "description": "My balance seems incorrect after my last call.", "created_at": (datetime.now() - timedelta(days=1)).isoformat(), "resolved_at": datetime.now().isoformat()},
+    ],
     "service_plans": {
-        "basic": {"price_per_sms": 0.05, "price_per_minute": 0.10, "description": "Basic communication plan"},
-        "premium": {"price_per_sms": 0.02, "price_per_minute": 0.05, "description": "Premium communication plan with lower rates"}
+        "basic": {"price_per_sms": 0.05, "price_per_minute": 0.10, "description": "Basic communication plan: Affordable messaging and calling rates."},
+        "premium": {"price_per_sms": 0.02, "price_per_minute": 0.05, "description": "Premium communication plan: Enjoy significantly lower rates on SMS and calls, plus priority support."},
+        "unlimited": {"price_per_sms": 0.00, "price_per_minute": 0.00, "monthly_fee": 30.00, "description": "Unlimited plan: All SMS and calls are free within the network for a flat monthly fee."},
     },
     "active_plan": "basic",
-    "network_status": "operational"
+    "network_status": "operational",
+    "ticket_counter": 2,
+    "transaction_counter": 4,
 }
 
 class CommuniLinkApis:

@@ -1,68 +1,186 @@
 import time
 import copy
 from typing import Dict, Any, Optional
+from datetime import datetime, timedelta
 
 DEFAULT_STATE: Dict[str, Any] = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@cloudrive.com": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
+            "email": "alice.smith@cloudrive.com",
             "drive_data": {
                 "user_info": {
                     "name": "Alice Smith",
-                    "email": "user1@example.com",
-                    "storage_quota": {"total": 1000000000, "used": 0}
+                    "email": "alice.smith@cloudrive.com",
+                    "storage_quota": {"total": 100 * 1024 * 1024 * 1024, "used": 50 * 1024 * 1024} # 100 GB total, 50 MB used
                 },
                 "files": {
-                    "file_1_alice": {
-                        "id": "file_1_alice",
-                        "name": "MyDocument_Alice.txt",
-                        "mimeType": "text/plain",
-                        "createdTime": "1678886400",
-                        "modifiedTime": "1678886400",
-                        "owners": [{"displayName": "Alice Smith", "emailAddress": "user1@example.com"}],
-                        "parents": ["root"]
+                    "file_alice_project_plan.docx": {
+                        "id": "file_alice_project_plan.docx",
+                        "name": "Project_Plan_Q3.docx",
+                        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "createdTime": int((datetime.now() - timedelta(days=15, hours=3)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=10, hours=1)).timestamp()),
+                        "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 152000 # in bytes
                     },
-                    "file_2_alice": {
-                        "id": "file_2_alice",
-                        "name": "MySpreadsheet_Alice.xlsx",
-                        "mimeType": "application/vnd.google-apps.spreadsheet",
-                        "createdTime": "1678972800",
-                        "modifiedTime": "1678972800",
-                        "owners": [{"displayName": "Alice Smith", "emailAddress": "user1@example.com"}],
-                        "parents": ["root"]
+                    "file_alice_budget_2025.xlsx": {
+                        "id": "file_alice_budget_2025.xlsx",
+                        "name": "Annual_Budget_2025.xlsx",
+                        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "createdTime": int((datetime.now() - timedelta(days=30)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=25, minutes=30)).timestamp()),
+                        "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 230000
+                    },
+                    "file_alice_family_vacation.jpg": {
+                        "id": "file_alice_family_vacation.jpg",
+                        "name": "Family_Vacation_2024.jpg",
+                        "mimeType": "image/jpeg",
+                        "createdTime": int((datetime.now() - timedelta(days=60)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=60)).timestamp()),
+                        "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 5120000 # 5 MB
+                    },
+                    "folder_alice_presentations": {
+                        "id": "folder_alice_presentations",
+                        "name": "Presentations",
+                        "mimeType": "application/vnd.google-apps.folder",
+                        "createdTime": int((datetime.now() - timedelta(days=20)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=5)).timestamp()),
+                        "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 0
+                    },
+                    "file_alice_marketing_deck.pptx": {
+                        "id": "file_alice_marketing_deck.pptx",
+                        "name": "Marketing_Strategy_Deck.pptx",
+                        "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                        "createdTime": int((datetime.now() - timedelta(days=18)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=5)).timestamp()),
+                        "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
+                        "parents": ["folder_alice_presentations"],
+                        "size": 8900000 # 8.9 MB
                     }
                 },
-                "next_file_id_counter": 3 # Counter for this user's files
+                "next_file_id_counter": 5 # Counter for this user's files (based on unique names for simplicity)
             }
         },
-        "user2@example.com": {
+        "bob.johnson@cloudrive.com": {
             "first_name": "Bob",
             "last_name": "Johnson",
-            "email": "user2@example.com",
+            "email": "bob.johnson@cloudrive.com",
             "drive_data": {
                 "user_info": {
                     "name": "Bob Johnson",
-                    "email": "user2@example.com",
-                    "storage_quota": {"total": 500000000, "used": 0}
+                    "email": "bob.johnson@cloudrive.com",
+                    "storage_quota": {"total": 50 * 1024 * 1024 * 1024, "used": 10 * 1024 * 1024} # 50 GB total, 10 MB used
                 },
                 "files": {
-                    "file_1_bob": {
-                        "id": "file_1_bob",
-                        "name": "Presentation_Bob.pptx",
-                        "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                        "createdTime": "1679059200",
-                        "modifiedTime": "1679059200",
-                        "owners": [{"displayName": "Bob Johnson", "emailAddress": "user2@example.com"}],
-                        "parents": ["root"]
+                    "file_bob_team_meeting_notes.txt": {
+                        "id": "file_bob_team_meeting_notes.txt",
+                        "name": "Team_Meeting_Notes_07-2025.txt",
+                        "mimeType": "text/plain",
+                        "createdTime": int((datetime.now() - timedelta(days=7)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=1, hours=2)).timestamp()),
+                        "owners": [{"displayName": "Bob Johnson", "emailAddress": "bob.johnson@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 50000
+                    },
+                    "file_bob_client_proposal.pdf": {
+                        "id": "file_bob_client_proposal.pdf",
+                        "name": "Client_Proposal_Acme_Corp.pdf",
+                        "mimeType": "application/pdf",
+                        "createdTime": int((datetime.now() - timedelta(days=10)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=3)).timestamp()),
+                        "owners": [{"displayName": "Bob Johnson", "emailAddress": "bob.johnson@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 3500000 # 3.5 MB
+                    }
+                },
+                "next_file_id_counter": 2
+            }
+        },
+        "charlie.davis@cloudrive.com": {
+            "first_name": "Charlie",
+            "last_name": "Davis",
+            "email": "charlie.davis@cloudrive.com",
+            "drive_data": {
+                "user_info": {
+                    "name": "Charlie Davis",
+                    "email": "charlie.davis@cloudrive.com",
+                    "storage_quota": {"total": 25 * 1024 * 1024 * 1024, "used": 2 * 1024 * 1024} # 25 GB total, 2 MB used
+                },
+                "files": {
+                    "file_charlie_research_paper.pdf": {
+                        "id": "file_charlie_research_paper.pdf",
+                        "name": "Quantum_Physics_Research.pdf",
+                        "mimeType": "application/pdf",
+                        "createdTime": int((datetime.now() - timedelta(days=40)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=20)).timestamp()),
+                        "owners": [{"displayName": "Charlie Davis", "emailAddress": "charlie.davis@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 2000000
+                    }
+                },
+                "next_file_id_counter": 1
+            }
+        },
+        "diana.perez@cloudrive.com": {
+            "first_name": "Diana",
+            "last_name": "Perez",
+            "email": "diana.perez@cloudrive.com",
+            "drive_data": {
+                "user_info": {
+                    "name": "Diana Perez",
+                    "email": "diana.perez@cloudrive.com",
+                    "storage_quota": {"total": 100 * 1024 * 1024 * 1024, "used": 0} # 100 GB total, 0 used
+                },
+                "files": {},
+                "next_file_id_counter": 0
+            }
+        },
+        "eve.wang@cloudrive.com": {
+            "first_name": "Eve",
+            "last_name": "Wang",
+            "email": "eve.wang@cloudrive.com",
+            "drive_data": {
+                "user_info": {
+                    "name": "Eve Wang",
+                    "email": "eve.wang@cloudrive.com",
+                    "storage_quota": {"total": 200 * 1024 * 1024 * 1024, "used": 15 * 1024 * 1024 * 1024} # 200 GB total, 15 GB used
+                },
+                "files": {
+                    "file_eve_video_project_part1.mp4": {
+                        "id": "file_eve_video_project_part1.mp4",
+                        "name": "Travel_Vlog_Project_Part1.mp4",
+                        "mimeType": "video/mp4",
+                        "createdTime": int((datetime.now() - timedelta(days=90)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=1)).timestamp()),
+                        "owners": [{"displayName": "Eve Wang", "emailAddress": "eve.wang@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 10 * 1024 * 1024 * 1024 # 10 GB
+                    },
+                    "file_eve_presentation_notes.txt": {
+                        "id": "file_eve_presentation_notes.txt",
+                        "name": "Presentation_Notes.txt",
+                        "mimeType": "text/plain",
+                        "createdTime": int((datetime.now() - timedelta(days=5)).timestamp()),
+                        "modifiedTime": int((datetime.now() - timedelta(days=2, hours=4)).timestamp()),
+                        "owners": [{"displayName": "Eve Wang", "emailAddress": "eve.wang@cloudrive.com"}],
+                        "parents": ["root"],
+                        "size": 10000
                     }
                 },
                 "next_file_id_counter": 2
             }
         }
     },
-    "current_user": "user1@example.com", 
+    "current_user": "alice.smith@cloudrive.com",
 }
 
 class GoogleDriveApis:

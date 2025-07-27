@@ -9,24 +9,28 @@ class User:
     def __init__(self, email: str):
         self.email = email
 
-from datetime import datetime, timedelta
-
 DEFAULT_STATE = {
     "users": {
-        "user1@example.com": {
+        "alice.smith@example.com": {
             "first_name": "Alice",
             "last_name": "Smith",
-            "email": "user1@example.com",
-            "balance": 100.00,
-            "friends": [],
+            "email": "alice.smith@example.com",
+            "balance": 125.75,
+            "friends": ["charlie.brown@example.com"],
             "payment_cards": {
-                1: {"card_name": "My Debit Card", "owner_name": "Alice Smith", "card_number": 1234, "expiry_year": 2028, "expiry_month": 12, "cvv_number": 123}
+                1: {"card_name": "Alice's Visa", "owner_name": "Alice Smith", "card_number": 4111, "expiry_year": 2028, "expiry_month": 12, "cvv_number": 123},
+                6: {"card_name": "Alice's Mastercard", "owner_name": "Alice Smith", "card_number": 5222, "expiry_year": 2027, "expiry_month": 7, "cvv_number": 456}
             },
             "addresses": {
-                1: {"name": "Home Address", "street_address": "123 Main St", "city": "Anytown", "state": "FL", "country": "USA", "zip_code": 12345}
+                1: {"name": "Home Address", "street_address": "123 Oak Avenue", "city": "Springfield", "state": "IL", "country": "USA", "zip_code": 62704},
+                6: {"name": "Cabin Getaway", "street_address": "789 Lake View Rd", "city": "Lakefield", "state": "WI", "country": "USA", "zip_code": 54123}
             },
-            "cart": {},
-            "wish_list": {},
+            "cart": {
+                2: {"product_id": 2, "name": "Wireless Earbuds", "quantity": 1, "price": 49.99}
+            },
+            "wish_list": {
+                4: {"product_id": 4, "name": "Coffee Maker", "price": 80.00}
+            },
             "orders": {
                 101: {
                     "order_id": 101,
@@ -35,6 +39,16 @@ DEFAULT_STATE = {
                     "status": "delivered",
                     "products": {
                         1: {"product_id": 1, "name": "Laptop", "quantity": 1, "price": 75.00}
+                    }
+                },
+                105: {
+                    "order_id": 105,
+                    "order_date": (datetime.now() - timedelta(days=15)).strftime("%Y-%m-%d"),
+                    "total_amount": 30.00,
+                    "status": "delivered",
+                    "products": {
+                        3: {"product_id": 3, "name": "T-Shirt", "quantity": 1, "price": 20.00},
+                        5: {"product_id": 5, "name": "Water Bottle", "quantity": 1, "price": 10.00}
                     }
                 },
             },
@@ -48,17 +62,17 @@ DEFAULT_STATE = {
                 }
             }
         },
-        "user2@example.com": {
-            "first_name": "Bob",
+        "bob.johnson@example.com": {
+            "first_name": "Robert",
             "last_name": "Johnson",
-            "email": "user2@example.com",
+            "email": "bob.johnson@example.com",
             "balance": 250.00,
-            "friends": ["user1@example.com"],
+            "friends": ["alice.smith@example.com", "diana.prince@example.com"],
             "payment_cards": {
-                2: {"card_name": "Bob's Credit Card", "owner_name": "Bob Johnson", "card_number": 5678, "expiry_year": 2029, "expiry_month": 10, "cvv_number": 456}
+                2: {"card_name": "Bob's Credit Card", "owner_name": "Robert Johnson", "card_number": 5678, "expiry_year": 2029, "expiry_month": 10, "cvv_number": 456}
             },
             "addresses": {
-                2: {"name": "Work Address", "street_address": "456 Business Ave", "city": "Big City", "state": "NY", "country": "USA", "zip_code": 67890}
+                2: {"name": "Work Address", "street_address": "456 Business Ave", "city": "Metropolis", "state": "NY", "country": "USA", "zip_code": 10001}
             },
             "cart": {},
             "wish_list": {
@@ -77,14 +91,14 @@ DEFAULT_STATE = {
             },
             "prime_subscriptions": {}
         },
-        "user3@example.com": {
-            "first_name": "Charlie",
+        "charlie.brown@example.com": {
+            "first_name": "Charles",
             "last_name": "Brown",
-            "email": "user3@example.com",
+            "email": "charlie.brown@example.com",
             "balance": 50.00,
-            "friends": [],
+            "friends": ["alice.smith@example.com"],
             "payment_cards": {
-                3: {"card_name": "Charlie's Card", "owner_name": "Charlie Brown", "card_number": 9876, "expiry_year": 2027, "expiry_month": 6, "cvv_number": 789}
+                3: {"card_name": "Charlie's Card", "owner_name": "Charles Brown", "card_number": 9876, "expiry_year": 2027, "expiry_month": 6, "cvv_number": 789}
             },
             "addresses": {
                 3: {"name": "Apartment", "street_address": "789 Pine Ln", "city": "Smallville", "state": "CA", "country": "USA", "zip_code": 90210}
@@ -104,12 +118,12 @@ DEFAULT_STATE = {
                 }
             }
         },
-        "user4@example.com": {
+        "diana.prince@example.com": {
             "first_name": "Diana",
             "last_name": "Prince",
-            "email": "user4@example.com",
+            "email": "diana.prince@example.com",
             "balance": 500.00,
-            "friends": ["user1@example.com", "user2@example.com"],
+            "friends": ["bob.johnson@example.com"],
             "payment_cards": {
                 4: {"card_name": "Diana's Visa", "owner_name": "Diana Prince", "card_number": 1122, "expiry_year": 2030, "expiry_month": 3, "cvv_number": 101}
             },
@@ -117,7 +131,9 @@ DEFAULT_STATE = {
                 4: {"name": "Vacation Home", "street_address": "321 Ocean Blvd", "city": "Beach City", "state": "FL", "country": "USA", "zip_code": 33455}
             },
             "cart": {},
-            "wish_list": {},
+            "wish_list": {
+                1: {"product_id": 1, "name": "Laptop", "price": 75.00}
+            },
             "orders": {
                 103: {
                     "order_id": 103,
@@ -148,12 +164,12 @@ DEFAULT_STATE = {
                 }
             }
         },
-        "user5@example.com": {
+        "eve.adams@example.com": {
             "first_name": "Eve",
             "last_name": "Adams",
-            "email": "user5@example.com",
+            "email": "eve.adams@example.com",
             "balance": 150.00,
-            "friends": ["user3@example.com"],
+            "friends": ["charlie.brown@example.com"],
             "payment_cards": {
                 5: {"card_name": "Eve's MasterCard", "owner_name": "Eve Adams", "card_number": 3344, "expiry_year": 2026, "expiry_month": 9, "cvv_number": 222}
             },
@@ -166,15 +182,67 @@ DEFAULT_STATE = {
             },
             "orders": {},
             "prime_subscriptions": {}
-        }
+        },
+        "frank.jones@example.com": {
+            "first_name": "Frank",
+            "last_name": "Jones",
+            "email": "frank.jones@example.com",
+            "balance": 80.00,
+            "friends": [],
+            "payment_cards": {},
+            "addresses": {
+                7: {"name": "Apartment", "street_address": "555 Cedar St", "city": "Townsville", "state": "TX", "country": "USA", "zip_code": 75001}
+            },
+            "cart": {
+                5: {"product_id": 5, "name": "Water Bottle", "quantity": 2, "price": 10.00}
+            },
+            "wish_list": {},
+            "orders": {
+                106: {
+                    "order_id": 106,
+                    "order_date": (datetime.now() - timedelta(days=3)).strftime("%Y-%m-%d"),
+                    "total_amount": 60.00,
+                    "status": "shipped",
+                    "products": {
+                        4: {"product_id": 4, "name": "Coffee Maker", "quantity": 1, "price": 80.00}
+                    }
+                }
+            },
+            "prime_subscriptions": {
+                4: {
+                    "subscription_id": 4,
+                    "plan": "monthly",
+                    "start_date": (datetime.now() - timedelta(days=10)).strftime("%Y-%m-%d"),
+                    "end_date": (datetime.now() + timedelta(days=20)).strftime("%Y-%m-%d"),
+                    "status": "active"
+                }
+            }
+        },
+        "grace.taylor@example.com": {
+            "first_name": "Grace",
+            "last_name": "Taylor",
+            "email": "grace.taylor@example.com",
+            "balance": 300.00,
+            "friends": ["alice.smith@example.com", "frank.jones@example.com"],
+            "payment_cards": {
+                8: {"card_name": "Grace's Discover", "owner_name": "Grace Taylor", "card_number": 9988, "expiry_year": 2029, "expiry_month": 11, "cvv_number": 333}
+            },
+            "addresses": {
+                8: {"name": "Home", "street_address": "101 Elm Street", "city": "Maplewood", "state": "OR", "country": "USA", "zip_code": 97005}
+            },
+            "cart": {},
+            "wish_list": {},
+            "orders": {},
+            "prime_subscriptions": {}
+        },
     },
-    "current_user": "user1@example.com",
+    "current_user": "alice.smith@example.com",
     "products": {
         1: {
             "product_id": 1,
             "name": "Laptop",
-            "description": "Powerful laptop for all your needs.",
-            "price": 75.00,
+            "description": "Powerful laptop for all your needs with a 15-inch display.",
+            "price": 750.00,
             "product_type": "electronics",
             "color": "silver",
             "relative_size": "medium",
@@ -185,7 +253,7 @@ DEFAULT_STATE = {
         2: {
             "product_id": 2,
             "name": "Wireless Mouse",
-            "description": "Ergonomic wireless mouse.",
+            "description": "Ergonomic wireless mouse with customizable buttons.",
             "price": 25.00,
             "product_type": "electronics",
             "color": "black",
@@ -197,7 +265,7 @@ DEFAULT_STATE = {
         3: {
             "product_id": 3,
             "name": "T-Shirt",
-            "description": "Comfortable cotton t-shirt.",
+            "description": "Comfortable 100% \cotton t-shirt, breathable and soft.",
             "price": 20.00,
             "product_type": "apparel",
             "color": "blue",
@@ -205,47 +273,99 @@ DEFAULT_STATE = {
             "product_rating": 4.2,
             "seller_id": 2,
             "stock": 100
-        }
+        },
+        4: {
+            "product_id": 4,
+            "name": "Coffee Maker",
+            "description": "Automatic drip coffee maker with a 12-cup capacity.",
+            "price": 80.00,
+            "product_type": "home_appliances",
+            "color": "black",
+            "relative_size": "medium",
+            "product_rating": 4.7,
+            "seller_id": 3,
+            "stock": 20
+        },
+        5: {
+            "product_id": 5,
+            "name": "Water Bottle",
+            "description": "Insulated stainless steel water bottle, keeps drinks cold for 24 hours.",
+            "price": 10.00,
+            "product_type": "kitchen_dining",
+            "color": "red",
+            "relative_size": "small",
+            "product_rating": 4.9,
+            "seller_id": 2,
+            "stock": 200
+        },
+        6: {
+            "product_id": 6,
+            "name": "Bluetooth Speaker",
+            "description": "Portable Bluetooth speaker with rich bass and clear sound.",
+            "price": 60.00,
+            "product_type": "electronics",
+            "color": "grey",
+            "relative_size": "small",
+            "product_rating": 4.3,
+            "seller_id": 1,
+            "stock": 30
+        },
     },
     "sellers": {
         1: {
             "seller_id": 1,
-            "name": "Tech Gadgets Inc.",
+            "name": "ElectroTech Solutions",
             "rating": 4.8
         },
         2: {
             "seller_id": 2,
-            "name": "Fashion Forward",
+            "name": "Trendy Threads Co.",
             "rating": 4.5
+        },
+        3: {
+            "seller_id": 3,
+            "name": "Home Comforts Ltd.",
+            "rating": 4.7
         }
     },
     "product_reviews": {
         1: [
-            {"review_id": 1, "product_id": 1, "user_email": "user1@example.com", "rating": 5, "comment": "Great laptop!", "is_verified": True},
-            {"review_id": 2, "product_id": 1, "user_email": "user_other@example.com", "rating": 4, "comment": "Good value.", "is_verified": False}
+            {"review_id": 1, "product_id": 1, "user_email": "alice.smith@example.com", "rating": 5, "comment": "Amazing laptop for coding!", "is_verified": True},
+            {"review_id": 2, "product_id": 1, "user_email": "diana.prince@example.com", "rating": 4, "comment": "Good value, but battery life could be better.", "is_verified": True}
+        ],
+        3: [
+            {"review_id": 3, "product_id": 3, "user_email": "bob.johnson@example.com", "rating": 4, "comment": "Comfortable and fits well.", "is_verified": True}
+        ],
+        5: [
+            {"review_id": 4, "product_id": 5, "user_email": "frank.jones@example.com", "rating": 5, "comment": "My new favorite water bottle!", "is_verified": True}
         ]
     },
     "product_questions": {
         1: [
-            {"question_id": 1, "product_id": 1, "user_email": "user1@example.com", "question": "Does it come with Windows?", "answers": []}
+            {"question_id": 1, "product_id": 1, "user_email": "charlie.brown@example.com", "question": "Does it come with Windows Pro or Home?", "answers": [
+                {"answer_id": 1, "user_email": "ElectroTech Solutions", "answer": "It comes pre-installed with Windows 11 Home edition."}
+            ]}
+        ],
+        4: [
+            {"question_id": 2, "product_id": 4, "user_email": "grace.taylor@example.com", "question": "Is this coffee maker programmable?", "answers": []}
         ]
     },
     "deliverers": {
-        1: {"deliverer_id": 1, "name": "UPS"},
-        2: {"deliverer_id": 2, "name": "FedEx"}
+        1: {"deliverer_id": 1, "name": "Speedy Deliveries"},
+        2: {"deliverer_id": 2, "name": "Global Freight"}
     },
     "prime_plans": {
-        "monthly": {"price": 14.99, "description": "Monthly Prime subscription"},
-        "yearly": {"price": 139.00, "description": "Yearly Prime subscription"}
+        "monthly": {"price": 14.99, "description": "Monthly Prime subscription with free express shipping."},
+        "yearly": {"price": 139.00, "description": "Yearly Prime subscription, saving you money, includes free express shipping and exclusive deals."}
     },
     "transaction_counter": 0,
-    "payment_card_counter": 5,
-    "address_counter": 5,
-    "order_counter": 104,
+    "payment_card_counter": 8,
+    "address_counter": 8,
+    "order_counter": 106,
     "return_counter": 0,
-    "prime_subscription_counter": 3,
-    "product_review_counter": 2,
-    "product_question_counter": 1,
+    "prime_subscription_counter": 4,
+    "product_review_counter": 4,
+    "product_question_counter": 2,
 }
 
 class AmazonApis:

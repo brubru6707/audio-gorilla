@@ -1,79 +1,162 @@
-from typing import Dict, Union, Optional, Literal, List
-from copy import deepcopy
+import datetime
+import copy
+from typing import Dict, List, Any, Optional, Union, Literal
 
-# Dummy backend data for SimpleNoteApis
 DEFAULT_STATE = {
-    "notes": {
-        0: {
-            "id": 0,
-            "title": "My First Note",
-            "content": "This is the content of my first note. It's about getting started.",
-            "tags": ["personal", "getting-started"],
-            "pinned": True,
-            "user": "user123"
+    "users": {
+        "jdoe": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john.doe@noted.com",
+            "note_data": {
+                "notes": {
+                    0: {
+                        "id": 0,
+                        "title": "Onboarding Checklist for New Devs",
+                        "content": "1. Set up dev environment. 2. Clone repositories. 3. Attend morning stand-up. 4. Review coding standards.",
+                        "tags": ["work", "onboarding", "dev"],
+                        "pinned": True,
+                        "user": "jdoe"
+                    },
+                    1: {
+                        "id": 1,
+                        "title": "Weekend Hike Gear List",
+                        "content": "Backpack, water bottles, trail mix, first-aid kit, comfortable boots, rain jacket.",
+                        "tags": ["personal", "hiking", "weekend"],
+                        "pinned": False,
+                        "user": "jdoe"
+                    },
+                    2: {
+                        "id": 2,
+                        "title": "Q3 Marketing Campaign Brainstorm",
+                        "content": "Focus on social media engagement. Explore TikTok ads. Partner with influencers in niche markets.",
+                        "tags": ["work", "marketing", "ideas"],
+                        "pinned": True,
+                        "user": "jdoe"
+                    }
+                },
+                "note_counter": 3
+            }
         },
-        1: {
-            "id": 1,
-            "title": "Grocery List",
-            "content": "Milk, Eggs, Bread, Butter, Coffee",
-            "tags": ["shopping", "food"],
-            "pinned": False,
-            "user": "user123"
+        "jsmith": {
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "email": "jane.smith@noted.com",
+            "note_data": {
+                "notes": {
+                    3: {
+                        "id": 3,
+                        "title": "Team Meeting Agenda - July 26",
+                        "content": "Review sprint progress, discuss blocker issues, allocate tasks for next sprint, open floor for questions.",
+                        "tags": ["work", "meeting", "agile"],
+                        "pinned": True,
+                        "user": "jsmith"
+                    },
+                    4: {
+                        "id": 4,
+                        "title": "Healthy Dinner Recipes to Try",
+                        "content": "Quinoa salad with roasted vegetables, baked salmon with asparagus, lentil soup.",
+                        "tags": ["personal", "cooking", "health"],
+                        "pinned": False,
+                        "user": "jsmith"
+                    }
+                },
+                "note_counter": 5
+            }
         },
-        2: {
-            "id": 2,
-            "title": "Project Ideas",
-            "content": "Brainstorming new features for the app. Need to consider user feedback.",
-            "tags": ["work", "ideas", "development"],
-            "pinned": True,
-            "user": "user123"
+        "achang": {
+            "first_name": "Alex",
+            "last_name": "Chang",
+            "email": "alex.chang@noted.com",
+            "note_data": {
+                "notes": {
+                    5: {
+                        "id": 5,
+                        "title": "Research Paper Outline",
+                        "content": "Introduction: Background, Thesis. Body Paragraph 1: Supporting evidence. Body Paragraph 2: Counterarguments. Conclusion: Summary, Future work.",
+                        "tags": ["academic", "research", "writing"],
+                        "pinned": False,
+                        "user": "achang"
+                    },
+                    6: {
+                        "id": 6,
+                        "title": "Gym Workout Plan - Week 1",
+                        "content": "Monday: Chest/Triceps. Wednesday: Back/Biceps. Friday: Legs/Shoulders. Cardio on rest days.",
+                        "tags": ["personal", "fitness", "workout"],
+                        "pinned": True,
+                        "user": "achang"
+                    },
+                    7: {
+                        "id": 7,
+                        "title": "Book Recommendations for Summer",
+                        "content": "Dune by Frank Herbert, The Midnight Library by Matt Haig, Project Hail Mary by Andy Weir.",
+                        "tags": ["personal", "books", "reading"],
+                        "pinned": False,
+                        "user": "achang"
+                    }
+                },
+                "note_counter": 8
+            }
         },
-        3: {
-            "id": 3,
-            "title": "Meeting Minutes",
-            "content": "Discussed Q3 strategy and next steps for marketing campaign.",
-            "tags": ["work", "meeting"],
-            "pinned": False,
-            "user": "user456" # Note for a different user
+        "sgupta": {
+            "first_name": "Sarah",
+            "last_name": "Gupta",
+            "email": "sarah.gupta@noted.com",
+            "note_data": {
+                "notes": {
+                    8: {
+                        "id": 8,
+                        "title": "Client Feedback - Project Alpha",
+                        "content": "Client requested changes to UI color scheme and added a new reporting feature. Schedule follow-up meeting.",
+                        "tags": ["work", "client", "project"],
+                        "pinned": True,
+                        "user": "sgupta"
+                    },
+                    9: {
+                        "id": 9,
+                        "title": "Vacation Planning - Europe Trip",
+                        "content": "Research flights to Paris. Book accommodation in Rome. Plan itinerary for Barcelona.",
+                        "tags": ["personal", "travel", "vacation"],
+                        "pinned": False,
+                        "user": "sgupta"
+                    }
+                },
+                "note_counter": 10
+            }
         }
     },
-    "note_counter": 4 # Next available ID for a new note
+    "global_note_counter": 10
 }
 
 class SimpleNoteApis:
-    def __init__(self):
+    def __init__(self, state: Optional[Dict[str, Any]] = None) -> None:
         """
         Initializes the SimpleNoteApis instance and loads the default scenario.
         """
-        self.notes: Dict[int, Dict] = {}  # note_id -> note data
-        self.note_counter: int = 0
+        self.state: Dict[str, Any] = copy.deepcopy(state if state is not None else DEFAULT_STATE)
         self._api_description = "This tool belongs to the SimpleNoteApis, which provides core functionality for note management."
-        self._load_scenario(DEFAULT_STATE)
 
-    def _load_scenario(self, scenario: dict) -> None:
+    def _get_user_note_data(self, user_id: str) -> Optional[Dict[str, Any]]:
         """
-        Loads a scenario into the SimpleNoteApis instance.
-        This method is used to set up the initial state of the API for testing or specific scenarios.
+        Helper to get user-specific note data.
 
         Args:
-            scenario (dict): A dictionary containing the initial state for notes and note_counter.
-        """
-        # Create a deep copy of the default state to avoid modifying the original DEFAULT_STATE
-        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+            user_id (str): The ID of the user.
 
-        # Populate instance variables using data from the scenario or default values
-        self.notes = scenario.get("notes", DEFAULT_STATE_COPY["notes"])
-        self.note_counter = scenario.get("note_counter", DEFAULT_STATE_COPY["note_counter"])
+        Returns:
+            Optional[Dict[str, Any]]: A dictionary containing the user's note data, or None if not found.
+        """
+        return self.state["users"].get(user_id, {}).get("note_data")
 
     def search_notes(
         self,
         query: str,
         tags: Optional[List[str]] = None,
         pinned: Optional[bool] = None,
-        page_index: int = 0, # Default to first page
-        page_limit: int = 10, # Default to 10 items per page
+        page_index: int = 0,
+        page_limit: int = 10,
         sort_by: Optional[str] = None,
-        user: str = "" # Added user parameter to filter notes by owner
+        user: str = ""
     ) -> Dict[str, Union[bool, list]]:
         """
         Search for notes based on various criteria.
@@ -96,13 +179,14 @@ class SimpleNoteApis:
                                           - "notes" (list): A list of dictionaries, where each dictionary
                                                             represents a matching note.
         """
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False, "notes": []}
+
+        notes = user_note_data.get("notes", {})
         results = []
 
-        for _, note in self.notes.items():
-            # Filter by user
-            if user and note.get("user") != user:
-                continue
-
+        for _, note in notes.items():
             # Filter by query in title or content
             matches_query = query.lower() in note["title"].lower() or query.lower() in note["content"].lower()
 
@@ -127,7 +211,7 @@ class SimpleNoteApis:
         end = start + page_limit
         paginated_results = results[start:end]
 
-        return {"status": True, "notes": paginated_results}
+        return {"status": True, "notes": copy.deepcopy(paginated_results)}
 
     def show_note(
         self,
@@ -152,10 +236,15 @@ class SimpleNoteApis:
                                                     Returns {"status": False} if the note is not found or
                                                     does not belong to the specified user.
         """
-        if note_id not in self.notes or self.notes[note_id].get("user") != user:
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
             return {"status": False}
 
-        note = self.notes[note_id]
+        notes = user_note_data.get("notes", {})
+        if note_id not in notes:
+            return {"status": False}
+
+        note = notes[note_id]
         return {
             "status": True,
             "id": note_id,
@@ -170,8 +259,8 @@ class SimpleNoteApis:
         title: str,
         content: str,
         tags: Optional[List[str]] = None,
-        pinned: bool = False, # Default to not pinned
-        user: str = "" # User who is creating the note
+        pinned: bool = False,
+        user: str = ""
     ) -> Dict[str, Union[bool, int]]:
         """
         Create a new note.
@@ -188,16 +277,27 @@ class SimpleNoteApis:
                                           - "status" (bool): True if the note was created successfully.
                                           - "id" (int): The ID of the newly created note.
         """
-        note_id = self.note_counter
-        self.notes[note_id] = {
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False}
+
+        notes = user_note_data.get("notes")
+        if notes is None:
+            return {"status": False}
+
+        # Use the global note counter for unique IDs across all users
+        note_id = self.state["global_note_counter"]
+        self.state["global_note_counter"] += 1
+
+        new_note = {
             "id": note_id,
             "title": title,
             "content": content,
-            "tags": tags or [], # Ensure tags is always a list
+            "tags": tags or [],
             "pinned": pinned,
             "user": user
         }
-        self.note_counter += 1
+        notes[note_id] = new_note
         return {"status": True, "id": note_id}
 
     def update_note(
@@ -207,7 +307,7 @@ class SimpleNoteApis:
         content: Optional[str] = None,
         tags: Optional[List[str]] = None,
         pinned: Optional[bool] = None,
-        user: str = "" # User who is updating the note
+        user: str = ""
     ) -> Dict[str, bool]:
         """
         Update an existing note.
@@ -227,10 +327,15 @@ class SimpleNoteApis:
                                                 False if the note was not found or does not
                                                 belong to the specified user.
         """
-        if note_id not in self.notes or self.notes[note_id].get("user") != user:
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
             return {"status": False}
 
-        note = self.notes[note_id]
+        notes = user_note_data.get("notes", {})
+        if note_id not in notes:
+            return {"status": False}
+
+        note = notes[note_id]
         if title is not None:
             note["title"] = title
         if content is not None:
@@ -247,7 +352,7 @@ class SimpleNoteApis:
         note_id: int,
         append_or_prepend: Literal["append", "prepend"],
         added_content: str,
-        user: str = "" # User who is modifying the note
+        user: str = ""
     ) -> Dict[str, bool]:
         """
         Add content to an existing note, either by appending or prepending.
@@ -266,10 +371,15 @@ class SimpleNoteApis:
                                                 False if the note was not found or does not
                                                 belong to the specified user.
         """
-        if note_id not in self.notes or self.notes[note_id].get("user") != user:
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
             return {"status": False}
 
-        note = self.notes[note_id]
+        notes = user_note_data.get("notes", {})
+        if note_id not in notes:
+            return {"status": False}
+
+        note = notes[note_id]
         if append_or_prepend == "append":
             note["content"] += "\n" + added_content
         else: # prepend
@@ -295,8 +405,13 @@ class SimpleNoteApis:
                                                 False if the note was not found or does not
                                                 belong to the specified user.
         """
-        if note_id not in self.notes or self.notes[note_id].get("user") != user:
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
             return {"status": False}
 
-        del self.notes[note_id]
+        notes = user_note_data.get("notes", {})
+        if note_id not in notes:
+            return {"status": False}
+
+        del notes[note_id]
         return {"status": True}
