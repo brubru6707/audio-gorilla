@@ -1,7 +1,167 @@
-from copy import deepcopy
-from typing import Dict, List, Optional, Union
+import datetime
+import copy
+import uuid
+import random
+from typing import Dict, List, Any, Optional, Union, Literal
 
-DEFAULT_STATE = {
+# Class definitions for type hinting, as per previous files
+class EmailStr(str):
+    pass
+
+class User:
+    def __init__(self, email: EmailStr):
+        self.email = email
+
+# Global mappings for initial data conversion from old string/int IDs/emails to new UUIDs
+_initial_user_email_to_uuid_map = {}
+_initial_payment_card_id_map = {} # Map (user_uuid, original_card_id_string) to new_card_uuid
+_initial_transaction_id_map = {} # Map original_int_id to new_transaction_uuid
+_initial_notification_id_map = {} # Map original_int_id to new_notification_uuid
+
+
+def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Converts the initial RAW_DEFAULT_STATE data to use UUIDs for all relevant IDs and adds realism."""
+
+    converted_data = copy.deepcopy(initial_data)
+
+    # Reset maps for a clean conversion
+    global _initial_user_email_to_uuid_map
+    global _initial_payment_card_id_map
+    global _initial_transaction_id_map
+    global _initial_notification_id_map
+
+    _initial_user_email_to_uuid_map = {}
+    _initial_payment_card_id_map = {}
+    _initial_transaction_id_map = {}
+    _initial_notification_id_map = {}
+
+    current_time_iso = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='milliseconds') + "Z"
+
+    # Convert users and their friends, and map emails to UUIDs first
+    new_users = {}
+    for email, user_data in converted_data.get("users", {}).items():
+        user_id = str(uuid.uuid4())
+        _initial_user_email_to_uuid_map[email] = user_id
+        user_data["id"] = user_id # Add a UUID ID to the user data itself
+        new_users[user_id] = user_data
+    converted_data["users"] = new_users
+
+    # Now that user UUIDs are generated, update friends lists and payment cards
+    for user_uuid, user_data in converted_data["users"].items():
+        # Update friends to UUIDs
+        if "friends" in user_data:
+            user_data["friends"] = [
+                _initial_user_email_to_uuid_map.get(friend_email, friend_email)
+                for friend_email in user_data["friends"]
+            ]
+            # Clean up friends list to ensure they are valid UUIDs, remove if not mapped
+            user_data["friends"] = [
+                friend_id for friend_id in user_data["friends"]
+                if friend_id in converted_data["users"]
+            ]
+
+        # Convert payment cards to UUIDs and add realism
+        new_payment_cards = {}
+        for old_card_id, card_data in user_data.get("payment_cards", {}).items():
+            new_card_uuid = str(uuid.uuid4())
+            _initial_payment_card_id_map[(user_uuid, old_card_id)] = new_card_uuid
+
+            card_data["id"] = new_card_uuid
+            # Mask card number (last 4 digits visible)
+            original_card_num = str(card_data.get("card_number", "0000"))
+            card_data["card_number"] = f"**** **** **** {original_card_num[-4:]}"
+            # Remove CVV for realism
+            if "cvv_number" in card_data:
+                del card_data["cvv_number"]
+            
+            # Add timestamps for creation/modification
+            if "created_at" not in card_data:
+                card_data["created_at"] = generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*3) # 1-3 years ago
+            card_data["last_modified"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=90) # Last 90 days
+
+            # Add card_type
+            if "card_type" not in card_data:
+                card_data["card_type"] = random.choice(["Visa", "Mastercard", "Amex", "Discover"])
+            # Add billing_address
+            if "billing_address" not in card_data:
+                card_data["billing_address"] = f"{random.randint(100,999)} {random.choice(['Main', 'Oak', 'Pine'])} St, {random.choice(['Springfield', 'Rivertown'])}, {random.choice(['FL', 'GA', 'AL', 'NC'])} {random.randint(10000, 99999)}"
+
+
+            new_payment_cards[new_card_uuid] = card_data
+        user_data["payment_cards"] = new_payment_cards
+
+    # Convert transactions
+    new_transactions = {}
+    for old_transaction_id, transaction_data in converted_data.get("transactions", {}).items():
+        new_transaction_uuid = str(uuid.uuid4())
+        _initial_transaction_id_map[old_transaction_id] = new_transaction_uuid
+
+        transaction_data["id"] = new_transaction_uuid
+        
+        # Convert sender/receiver emails to UUIDs
+        sender_email = transaction_data.get("sender")
+        receiver_email = transaction_data.get("receiver")
+        transaction_data["sender"] = _initial_user_email_to_uuid_map.get(sender_email, sender_email)
+        transaction_data["receiver"] = _initial_user_email_to_uuid_map.get(receiver_email, receiver_email)
+        
+        # Ensure timestamp is ISO 8601
+        if "timestamp" in transaction_data and not isinstance(transaction_data["timestamp"], str):
+             transaction_data["timestamp"] = datetime.datetime.fromtimestamp(transaction_data["timestamp"], datetime.timezone.utc).isoformat(timespec='milliseconds') + "Z"
+        elif "timestamp" not in transaction_data:
+            transaction_data["timestamp"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365) # Last year
+
+        # Add transaction_type if not present
+        if "transaction_type" not in transaction_data:
+            transaction_data["transaction_type"] = random.choice(["peer_to_peer", "bill_payment", "deposit", "withdrawal"])
+        # Add fee if not present
+        if "fee" not in transaction_data:
+            transaction_data["fee"] = round(random.uniform(0.00, 1.50), 2) if transaction_data["amount"] > 10 else 0.00
+        # Add currency
+        if "currency" not in transaction_data:
+            transaction_data["currency"] = "USD"
+        
+        new_transactions[new_transaction_uuid] = transaction_data
+    converted_data["transactions"] = new_transactions
+
+    # Convert notifications
+    new_notifications = {}
+    for old_notification_id, notification_data in converted_data.get("notifications", {}).items():
+        new_notification_uuid = str(uuid.uuid4())
+        _initial_notification_id_map[old_notification_id] = new_notification_uuid
+
+        notification_data["id"] = new_notification_uuid
+        
+        # Convert user email to UUID
+        notification_user_email = notification_data.get("user")
+        notification_data["user"] = _initial_user_email_to_uuid_map.get(notification_user_email, notification_user_email)
+        
+        # Ensure timestamp is ISO 8601
+        if "notification_time" in notification_data and not isinstance(notification_data["notification_time"], str):
+             notification_data["notification_time"] = datetime.datetime.fromtimestamp(notification_data["notification_time"], datetime.timezone.utc).isoformat(timespec='milliseconds') + "Z"
+        elif "notification_time" not in notification_data:
+            notification_data["notification_time"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=90) # Last 90 days
+
+        # Add priority if not present
+        if "priority" not in notification_data:
+            notification_data["priority"] = random.choice(["high", "medium", "low"])
+        # Add channel
+        if "channel" not in notification_data:
+            notification_data["channel"] = random.choice(["app", "email", "sms"])
+
+        new_notifications[new_notification_uuid] = notification_data
+    converted_data["notifications"] = new_notifications
+
+
+    # If current_user is set, convert it to UUID
+    if converted_data.get("current_user") and converted_data["current_user"] in _initial_user_email_to_uuid_map:
+        converted_data["current_user"] = _initial_user_email_to_uuid_map[converted_data["current_user"]]
+
+    return converted_data
+
+# Define the initial raw state with string/integer IDs and emails for conversion
+# --- THIS BLOCK MUST BE BEFORE THE DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE) LINE ---
+RAW_DEFAULT_STATE = {
+    "current_user": "alice.smith@gmail.com",
     "users": {
         "alice.smith@gmail.com": {
             "first_name": "Alice",
@@ -10,7 +170,7 @@ DEFAULT_STATE = {
             "balance": 100.00,
             "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com"],
             "payment_cards": {
-                "card_1": {"card_name": "My Debit Card", "owner_name": "Alice Smith", "card_number": "4111222233334444", "expiry_year": 2028, "expiry_month": 12, "cvv_number": "123"}
+                "card_1": {"card_name": "My Debit Card", "owner_name": "Alice Smith", "card_number": "4111222233334444", "expiry_year": 2028, "expiry_month": 12, "cvv_number": "123", "is_default": True}
             }
         },
         "bob.johnson@yahoo.com": {
@@ -20,7 +180,7 @@ DEFAULT_STATE = {
             "balance": 50.00,
             "friends": ["alice.smith@gmail.com", "diana.prince@protonmail.com"],
             "payment_cards": {
-                "card_1": {"card_name": "Bob's Visa", "owner_name": "Bob Johnson", "card_number": "4222333344445555", "expiry_year": 2026, "expiry_month": 7, "cvv_number": "456"}
+                "card_1": {"card_name": "Bob's Visa", "owner_name": "Bob Johnson", "card_number": "4222333344445555", "expiry_year": 2027, "expiry_month": 11, "cvv_number": "456", "is_default": True}
             }
         },
         "charlie.brown@outlook.com": {
@@ -29,840 +189,767 @@ DEFAULT_STATE = {
             "email": "charlie.brown@outlook.com",
             "balance": 25.50,
             "friends": ["alice.smith@gmail.com"],
-            "payment_cards": {}
+            "payment_cards": {
+                "card_1": {"card_name": "Charlie's Amex", "owner_name": "Charlie Brown", "card_number": "3777888899990000", "expiry_year": 2026, "expiry_month": 9, "cvv_number": "789", "is_default": True}
+            }
         },
         "diana.prince@protonmail.com": {
             "first_name": "Diana",
             "last_name": "Prince",
             "email": "diana.prince@protonmail.com",
-            "balance": 75.20,
-            "friends": ["bob.johnson@yahoo.com"],
-            "payment_cards": {
-                "card_1": {"card_name": "My Credit Card", "owner_name": "Diana Prince", "card_number": "5111222233334444", "expiry_year": 2029, "expiry_month": 3, "cvv_number": "789"}
-            }
-        },
-        "eve.davis@hotmail.com": {
-            "first_name": "Eve",
-            "last_name": "Davis",
-            "email": "eve.davis@hotmail.com",
             "balance": 150.00,
-            "friends": [],
-            "payment_cards": {}
+            "friends": ["bob.johnson@yahoo.com"],
+            "payment_cards": {} # No cards for Diana initially
         }
     },
-    "current_user": "alice.smith@gmail.com",
-    "transactions": {},
-    "payment_cards": {}, # This might be used for a global lookup or to store card details not directly tied to a user for some reason.
-    "payment_requests": {},
-    "transaction_comments": {},
-    "notifications": {},
-    "friends": {}, # This can be used for a global friends list if relationships are complex, otherwise redundant with user's friends list.
-    "verification_codes": {},
-    "password_reset_codes": {},
-    "transaction_counter": 0,
-    "comment_counter": 0,
-    "request_counter": 0,
-    "notification_counter": 0,
+    "transactions": {
+        1: {
+            "id": 1,
+            "sender": "alice.smith@gmail.com",
+            "receiver": "bob.johnson@yahoo.com",
+            "amount": 20.00,
+            "note": "For dinner last night",
+            "status": "completed",
+            "timestamp": datetime.datetime.now().timestamp() - 86400 # 1 day ago
+        },
+        2: {
+            "id": 2,
+            "sender": "bob.johnson@yahoo.com",
+            "receiver": "charlie.brown@outlook.com",
+            "amount": 5.00,
+            "note": "Coffee money",
+            "status": "pending",
+            "timestamp": datetime.datetime.now().timestamp() - 3600 # 1 hour ago
+        },
+        3: {
+            "id": 3,
+            "sender": "alice.smith@gmail.com",
+            "receiver": "alice.smith@gmail.com", # Self-payment example
+            "amount": 10.00,
+            "note": "Test payment to self",
+            "status": "completed",
+            "timestamp": datetime.datetime.now().timestamp() - 7200 # 2 hours ago
+        }
+    },
+    "notifications": {
+        1: {
+            "id": 1,
+            "user": "alice.smith@gmail.com",
+            "type": "payment_received",
+            "message": "You received $20.00 from Bob Johnson.",
+            "read": False,
+            "notification_time": datetime.datetime.now().timestamp() - 86300 # Just after the transaction
+        },
+        2: {
+            "id": 2,
+            "user": "charlie.brown@outlook.com",
+            "type": "payment_request",
+            "message": "Bob Johnson requested $5.00.",
+            "read": False,
+            "notification_time": datetime.datetime.now().timestamp() - 3500 # Just after the transaction
+        },
+        3: {
+            "id": 3,
+            "user": "alice.smith@gmail.com",
+            "type": "friend_request",
+            "message": "Diana Prince sent you a friend request.",
+            "read": True,
+            "notification_time": datetime.datetime.now().timestamp() - 172800 # 2 days ago
+        }
+    }
 }
 
+
+# --- Helper functions for generating diverse data ---
+def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
+    """Generates a random ISO 8601 formatted datetime string (with Z for UTC) in the past."""
+    delta_days = random.randint(days_ago_min, days_ago_max)
+    time_offset = datetime.timedelta(days=delta_days, 
+                                     hours=random.randint(0, 23), 
+                                     minutes=random.randint(0, 59), 
+                                     seconds=random.randint(0, 59))
+    dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
+    return dt.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
+
+# --- Data for generating new users ---
+first_names = ["Olivia", "Liam", "Emma", "Noah", "Charlotte", "James", "Amelia", "Oliver", "Sophia", "Elijah", "Isabella", "William", "Ava", "Lucas", "Mia", "Henry", "Evelyn", "Theodore", "Harper", "Benjamin", "Luna", "Michael", "Ella", "Alexander", "Aurora", "Daniel", "Chloe", "Jacob", "Grace", "Logan", "Penelope", "Jackson", "Riley", "Sebastian", "Lily", "Aiden", "Nora", "Matthew", "Zoey", "Samuel", "Mila", "David", "Sofia", "Joseph", "Aria", "John", "Eleanor", "Gabriel", "Scarlett", "Anthony"]
+last_names = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts"]
+email_domains = ["example.com", "mail.net", "web.org", "inbox.co", "domain.app", "email.xyz", "securemail.io", "fastmail.cc"]
+card_names = ["Personal Card", "Work Card", "Travel Card", "Savings Card", "Main Account"]
+billing_cities = ["Orlando", "Miami", "Tampa", "Jacksonville", "Atlanta", "Charlotte", "Nashville", "New Orleans"]
+billing_states = ["FL", "GA", "AL", "NC", "SC", "MS", "TN"]
+transaction_notes = [
+    "Dinner with friends", "Groceries", "Online shopping", "Rent payment",
+    "Coffee break", "Subscription service", "Movie tickets", "Gas refill",
+    "Utilities bill", "Gift for birthday", "Lunch meeting", "Gym membership",
+    "Car maintenance", "Donation", "Book purchase", "Travel expenses"
+]
+notification_messages = {
+    "payment_received": ["You received ${amount:.2f} from {sender_name}.", "${sender_name} sent you ${amount:.2f}.", "A payment of ${amount:.2f} arrived from {sender_name}."],
+    "payment_sent": ["You sent ${amount:.2f} to {receiver_name}.", "Payment of ${amount:.2f} to {receiver_name} completed.", "Your transaction to {receiver_name} for ${amount:.2f} was successful."],
+    "payment_request": ["{sender_name} requested ${amount:.2f}.", "You have a pending request for ${amount:.2f} from {sender_name}.", "Action required: {sender_name} is requesting ${amount:.2f}."],
+    "friend_request": ["{sender_name} sent you a friend request.", "New friend request from {sender_name}.", "You have a pending friend request from {sender_name}."],
+    "balance_update": ["Your balance has been updated to ${balance:.2f}.", "Balance update: ${balance:.2f} available.", "Your new balance is ${balance:.2f}."],
+    "security_alert": ["Unusual login detected.", "Suspicious activity on your account.", "Please verify a recent login from a new device."]
+}
+
+# The actual DEFAULT_STATE used by the API will be the converted one
+# --- THIS LINE MUST BE AFTER THE RAW_DEFAULT_STATE DICTIONARY IS DEFINED ---
+DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
+
+# --- Generate additional data ---
+num_initial_users = len(RAW_DEFAULT_STATE["users"])
+num_users_to_add = 50 - num_initial_users # Aim for 50 total users
+
+# Collect existing user UUIDs for friend linking
+all_user_uuids = list(DEFAULT_STATE["users"].keys())
+existing_user_emails = set([DEFAULT_STATE["users"][uid]["email"] for uid in DEFAULT_STATE["users"].keys()])
+
+
+# Generate additional users
+for i in range(num_users_to_add):
+    first = random.choice(first_names)
+    last = random.choice(last_names)
+    email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(email_domains)}"
+    
+    # Ensure unique email
+    while email in existing_user_emails:
+        email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(email_domains)}"
+    
+    existing_user_emails.add(email) # Add new email to set of existing emails
+
+    user_id = str(uuid.uuid4())
+    _initial_user_email_to_uuid_map[email] = user_id # Add to map for friend linking
+
+    # Generate friends for new user
+    num_friends = random.randint(0, min(8, len(all_user_uuids)))
+    friends_list_uuids = random.sample(all_user_uuids, num_friends)
+    
+    # Add a couple of payment cards
+    user_payment_cards = {}
+    num_cards = random.choices([0, 1, 2], weights=[0.2, 0.6, 0.2], k=1)[0] # 20% no card, 60% one, 20% two
+    for c_idx in range(num_cards):
+        card_uuid = str(uuid.uuid4())
+        card_type = random.choice(["Visa", "Mastercard", "Amex", "Discover"])
+        expiry_year = random.randint(2026, 2035)
+        expiry_month = random.randint(1, 12)
+        last_four = ''.join(random.choices('0123456789', k=4))
+        full_card_number_prefix = {
+            "Visa": "4", "Mastercard": "5", "Amex": "34", "Discover": "6011"
+        }.get(card_type, "9") # Placeholder for start of card number
+        card_number_masked = f"{full_card_number_prefix}{'X'*(15 - len(full_card_number_prefix))}{last_four}"
+
+        user_payment_cards[card_uuid] = {
+            "id": card_uuid,
+            "card_name": f"{random.choice(card_names)} ({card_type})",
+            "owner_name": f"{first} {last}",
+            "card_number": card_number_masked,
+            "expiry_year": expiry_year,
+            "expiry_month": expiry_month,
+            "is_default": (c_idx == 0), # First card is default
+            "card_type": card_type,
+            "billing_address": f"{random.randint(100, 999)} {random.choice(['Park', 'Lake', 'Main', 'Cedar'])} Ave, {random.choice(billing_cities)}, {random.choice(billing_states)} {random.randint(10000, 99999)}",
+            "created_at": generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*3),
+            "last_modified": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=90)
+        }
+
+    new_user_data = {
+        "id": user_id,
+        "first_name": first,
+        "last_name": last,
+        "email": email,
+        "balance": round(random.uniform(5.00, 500.00), 2),
+        "friends": friends_list_uuids,
+        "payment_cards": user_payment_cards,
+        "registration_date": generate_random_iso_timestamp(days_ago_min=365*2, days_ago_max=365*5), # 2-5 years ago
+        "last_login_date": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30), # Last 30 days
+        "is_premium": random.random() < 0.3 # 30% premium users
+    }
+    DEFAULT_STATE["users"][user_id] = new_user_data
+    all_user_uuids.append(user_id) # Add the new user's UUID to the list for subsequent friend linking
+
+
+# Generate additional transactions
+initial_transaction_count = len(DEFAULT_STATE["transactions"])
+num_transactions_to_add = 70 # Aim for 70 new transactions
+for i in range(num_transactions_to_add):
+    sender_uuid = random.choice(all_user_uuids)
+    receiver_uuid = random.choice([u_id for u_id in all_user_uuids if u_id != sender_uuid]) # Receiver must be different
+
+    amount = round(random.uniform(1.00, 200.00), 2)
+    transaction_type = random.choice(["peer_to_peer", "bill_payment", "deposit", "withdrawal", "refund"])
+    status = random.choice(["completed", "pending", "failed"])
+    note = random.choice(transaction_notes)
+
+    transaction_uuid = str(uuid.uuid4())
+    DEFAULT_STATE["transactions"][transaction_uuid] = {
+        "id": transaction_uuid,
+        "sender": sender_uuid,
+        "receiver": receiver_uuid,
+        "amount": amount,
+        "note": note,
+        "status": status,
+        "timestamp": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365),
+        "transaction_type": transaction_type,
+        "fee": round(random.uniform(0.00, 1.50), 2) if amount > 10 and transaction_type != "refund" else 0.00,
+        "currency": "USD"
+    }
+
+# Generate additional notifications
+initial_notification_count = len(DEFAULT_STATE["notifications"])
+num_notifications_to_add = 100 # Aim for 100 new notifications
+for i in range(num_notifications_to_add):
+    user_uuid = random.choice(all_user_uuids)
+    notification_type = random.choice(list(notification_messages.keys()))
+    
+    # Customize message based on type
+    message_template = random.choice(notification_messages[notification_type])
+    message_params = {}
+    if "amount" in message_template:
+        message_params["amount"] = round(random.uniform(5.00, 150.00), 2)
+    if "{sender_name}" in message_template:
+        sender_info = DEFAULT_STATE["users"].get(random.choice(all_user_uuids))
+        message_params["sender_name"] = sender_info["first_name"] if sender_info else "Someone"
+    if "{receiver_name}" in message_template:
+        receiver_info = DEFAULT_STATE["users"].get(random.choice(all_user_uuids))
+        message_params["receiver_name"] = receiver_info["first_name"] if receiver_info else "Someone"
+    if "{balance}" in message_template:
+        message_params["balance"] = round(random.uniform(10.00, 600.00), 2)
+
+    message = message_template.format(**message_params)
+
+    notification_uuid = str(uuid.uuid4())
+    DEFAULT_STATE["notifications"][notification_uuid] = {
+        "id": notification_uuid,
+        "user": user_uuid,
+        "type": notification_type,
+        "message": message,
+        "read": random.random() < 0.7, # 70% chance read
+        "notification_time": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=90),
+        "priority": random.choice(["high", "medium", "low"]),
+        "channel": random.choice(["app", "email", "sms"])
+    }
+
+# --- Final pass to ensure all friend UUIDs are valid and populate current_user if needed ---
+# This is crucial in case friends were added as emails for users generated *later* in the loop
+for user_id, user_data in DEFAULT_STATE["users"].items():
+    if "friends" in user_data:
+        updated_friends = []
+        for friend_identifier in user_data["friends"]:
+            if friend_identifier in _initial_user_email_to_uuid_map: # It's an initial email that was mapped
+                updated_friends.append(_initial_user_email_to_uuid_map[friend_identifier])
+            elif friend_identifier in DEFAULT_STATE["users"]: # It's already a UUID that exists
+                updated_friends.append(friend_identifier)
+            # If it's an email that wasn't mapped (e.g., a typo or non-existent), we drop it.
+            # Or if it's a UUID not in DEFAULT_STATE users (shouldn't happen with current logic)
+        user_data["friends"] = list(set(updated_friends)) # Use set to remove duplicates if any
+
+# Ensure the "current_user" is set to a UUID and exists in the users dictionary
+if DEFAULT_STATE.get("current_user") and DEFAULT_STATE["current_user"] in _initial_user_email_to_uuid_map:
+    DEFAULT_STATE["current_user"] = _initial_user_email_to_uuid_map[RAW_DEFAULT_STATE["current_user"]]
+elif DEFAULT_STATE["users"]: # If original current_user wasn't found, pick a random existing one
+    DEFAULT_STATE["current_user"] = random.choice(list(DEFAULT_STATE["users"].keys()))
+else:
+    DEFAULT_STATE["current_user"] = None # No users to set as current
+
+# --- Output the generated DEFAULT_STATE ---
+import json
+output_filename = 'diverse_finance_state.json'
+with open(output_filename, 'w') as f:
+    json.dump(DEFAULT_STATE, f, indent=2)
+
+print(f"Total number of users: {len(DEFAULT_STATE['users'])}")
+print(f"Total number of transactions: {len(DEFAULT_STATE['transactions'])}")
+print(f"Total number of notifications: {len(DEFAULT_STATE['notifications'])}")
+print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
+
 class VenmoApis:
+    """
+    A dummy API class for simulating Venmo operations.
+    This class provides an in-memory backend for development and testing purposes.
+    """
+
     def __init__(self):
-        self.users: Dict[str, Dict] = {}
-        self.current_user: Optional[str] = None
-        self.transactions: Dict[int, Dict] = {}
-        self.payment_cards: Dict[int, Dict] = {}
-        self.payment_requests: Dict[int, Dict] = {}
-        self.transaction_comments: Dict[int, Dict] = {}
-        self.notifications: Dict[int, Dict] = {}
-        self.friends: Dict[str, List[str]] = {}
-        self.verification_codes: Dict[str, str] = {}
-        self.password_reset_codes: Dict[str, str] = {}
-        self.transaction_counter: int = 0
-        self.comment_counter: int = 0
-        self.request_counter: int = 0
-        self.notification_counter: int = 0
-        self._api_description = "This tool belongs to the VenmoAPI, which provides core functionality for payments, friends, and account management on Venmo."
+        """
+        Initializes the VenmoApis instance, setting up the in-memory
+        data stores and loading the default scenario.
+        """
+        self._api_description = "This tool simulates Venmo payment and social functionalities."
+        self.users: Dict[str, Any] = {} # Keyed by user UUID
+        self.transactions: Dict[str, Any] = {} # Keyed by transaction UUID
+        self.notifications: Dict[str, Any] = {} # Keyed by notification UUID
+        self.current_user: Optional[str] = None # Stores the UUID of the current user
+
+        # Internal map for efficient lookup of original string card IDs to new UUIDs per user
+        # {(user_uuid, original_card_id_string): card_uuid}
+        self._payment_card_lookup_map: Dict[tuple[str, str], str] = {}
+        
         self._load_scenario(DEFAULT_STATE)
+        self._populate_lookup_maps()
 
-    def _load_scenario(self, scenario: dict) -> None:
-        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
-        self.users = scenario.get("users", DEFAULT_STATE_COPY["users"])
-        self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
-        self.transactions = scenario.get("transactions", DEFAULT_STATE_COPY["transactions"])
-        self.payment_requests = scenario.get("payment_requests", DEFAULT_STATE_COPY["payment_requests"])
-        self.transaction_comments = scenario.get("transaction_comments", DEFAULT_STATE_COPY["transaction_comments"])
-        self.notifications = scenario.get("notifications", DEFAULT_STATE_COPY["notifications"])
-        self.friends = scenario.get("friends", DEFAULT_STATE_COPY["friends"])
-        self.verification_codes = scenario.get("verification_codes", DEFAULT_STATE_COPY["verification_codes"])
-        self.password_reset_codes = scenario.get("password_reset_codes", DEFAULT_STATE_COPY["password_reset_codes"])
-        self.transaction_counter = scenario.get("transaction_counter", DEFAULT_STATE_COPY["transaction_counter"])
-        self.comment_counter = scenario.get("comment_counter", DEFAULT_STATE_COPY["comment_counter"])
-        self.request_counter = scenario.get("request_counter", DEFAULT_STATE_COPY["request_counter"])
-        self.notification_counter = scenario.get("notification_counter", DEFAULT_STATE_COPY["notification_counter"])
+    def _populate_lookup_maps(self):
+        """Populates the internal maps for looking up IDs after loading scenario."""
+        self._payment_card_lookup_map = {}
+        for user_uuid, user_data in self.users.items():
+            payment_cards = user_data.get("payment_cards", {})
+            for card_uuid, card_data in payment_cards.items():
+                # We stored the original_card_id as the key in RAW_DEFAULT_STATE,
+                # but it's not a direct property in the converted card_data.
+                # If we need to map a *string* card_id from the API call to a UUID,
+                # we need to ensure this mapping is handled during conversion or here.
+                # For simplicity, if the API takes `card_id: str`, we assume it's a UUID.
+                # If it takes `payment_method_id: int`, we would need a map from int to UUID.
+                # Given the user's request for "long complex string", I'm assuming such inputs are UUIDs.
+                pass # No direct mapping needed for old_card_id if API takes UUIDs for card_id
 
-        if self.current_user and self.current_user in self.users:
-            self.payment_cards = self.users[self.current_user].get("payment_cards", {})
-            self.friends[self.current_user] = self.users[self.current_user].get("friends", [])
+        # Rebuild transaction and notification lookup maps from the current state (already UUIDs)
+        # These are direct lookups by UUID, so no extra map needed for "old" IDs
 
-    def show_my_account_info(self) -> Dict[str, Union[bool, Dict]]:
+
+    def _load_scenario(self, scenario: Dict) -> None:
         """
-        Show account information for the current user.
-
-        Returns:
-            Dict: A dictionary containing 'account_status' (bool) and 'account_info' (Dict) if successful.
-        """
-        if not self.current_user or self.current_user not in self.users:
-            return {"account_status": False, "account_info": {}}
-        
-        return {"account_status": True, "account_info": self.users[self.current_user]}
-
-    def update_my_account_name(self, first_name: str, last_name: str) -> Dict[str, bool]:
-        """
-        Update the current user's first and last name.
+        Loads a predefined scenario into the dummy backend's state.
+        This allows for resetting the state or initializing with specific data.
 
         Args:
-            first_name (str): New first name.
-            last_name (str): New last name.
-
-        Returns:
-            Dict: A dictionary containing 'update_status' (bool).
+            scenario (Dict): A dictionary representing the state to load.
+                             It should contain "users", "transactions", "notifications".
         """
-        if not self.current_user or self.current_user not in self.users:
-            return {"update_status": False}
+        # Create deep copy to ensure the original DEFAULT_STATE is not modified
+        self.users = copy.deepcopy(scenario.get("users", {}))
+        self.transactions = copy.deepcopy(scenario.get("transactions", {}))
+        self.notifications = copy.deepcopy(scenario.get("notifications", {}))
+        self.current_user = scenario.get("current_user") # This will already be a UUID after conversion
+
+        self._populate_lookup_maps() # Repopulate map on load
+        print("VenmoApis: Loaded scenario with UUIDs for users, transactions, and notifications.")
+
+    def _generate_unique_id(self) -> str:
+        """
+        Generates a unique UUID for dummy entities.
+        """
+        return str(uuid.uuid4())
+
+    def _get_user_data(self, user: User) -> Optional[Dict[str, Any]]:
+        """Helper to get a user's data based on User object (email to UUID mapping)."""
+        target_user_uuid = None
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == user.email:
+                target_user_uuid = user_id
+                break
         
-        self.users[self.current_user]["first_name"] = first_name
-        self.users[self.current_user]["last_name"] = last_name
-        return {"update_status": True}
+        if not target_user_uuid:
+            return None # User not found by email
 
-    def search_for_users(self, query: str, page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[Dict]]]:
+        return self.users.get(target_user_uuid)
+
+    def _update_user_data(self, user: User, key: str, value: Any) -> bool:
+        """Helper to update a specific key in a user's data by User object."""
+        target_user_uuid = None
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == user.email:
+                target_user_uuid = user_id
+                break
+        
+        if not target_user_uuid:
+            return False # User not found by email
+
+        if target_user_uuid in self.users:
+            self.users[target_user_uuid][key] = value
+            return True
+        return False
+    
+    def _get_user_uuid_from_email(self, email: str) -> Optional[str]:
+        """Helper to get user UUID from email."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == email:
+                return user_id
+        return None
+
+    def _get_user_email_from_uuid(self, user_uuid: str) -> Optional[str]:
+        """Helper to get user email from UUID."""
+        user_data = self.users.get(user_uuid)
+        return user_data.get("email") if user_data else None
+
+
+    def set_current_user(self, user_email: str) -> Dict[str, bool]:
         """
-        Search for users based on a query.
+        Sets the current authenticated user for the API session.
 
         Args:
-            query (str): Search query (e.g., name, email).
-            page_index (int): Page index for pagination (defaults to 1).
-            page_limit (int): Number of results per page (defaults to 10).
+            user_email (str): The email address of the user to set as current.
 
         Returns:
-            Dict: A dictionary containing 'search_status' (bool) and 'users' (List[Dict]) if successful.
+            Dict[str, bool]: A dictionary with 'status' indicating success or failure.
         """
-        # Dummy search: returns users whose name or email contains the query
-        found_users = [
-            {"email": email, "first_name": user["first_name"], "last_name": user["last_name"]}
-            for email, user in self.users.items()
-            if query.lower() in user["first_name"].lower() or
-               query.lower() in user["last_name"].lower() or
-               query.lower() in email.lower()
-        ]
-        
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_users = found_users[start_index:end_index]
+        user_uuid = self._get_user_uuid_from_email(user_email)
+        if user_uuid:
+            self.current_user = user_uuid
+            return {"status": True, "message": f"Current user set to {user_email} (ID: {user_uuid})."}
+        return {"status": False, "message": f"User with email {user_email} not found."}
 
-        return {"search_status": True, "users": paginated_users}
+    # ================
+    # Account & Profile
+    # ================
 
-    def show_my_friends(self, query: str = "", page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[Dict]]]:
+    def show_account(self, user: User) -> Dict[str, Any]:
         """
-        Show friends of the current user, optionally filtered by a query.
+        Shows the current user's account details.
 
         Args:
-            query (str): Optional search query to filter friends.
-            page_index (int): Page index for pagination (defaults to 1).
-            page_limit (int): Number of results per page (defaults to 10).
+            user (User): The current user object.
+
+        Returns:
+            Dict: A dictionary containing 'account_status' (bool) and 'account_details' (Dict) if successful.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"account_status": False, "account_details": {}}
+        return {"account_status": True, "account_details": copy.deepcopy(user_data)}
+
+    def list_friends(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Lists the friends of the current user.
+
+        Args:
+            user (User): The current user object.
 
         Returns:
             Dict: A dictionary containing 'friends_status' (bool) and 'friends' (List[Dict]) if successful.
         """
-        if not self.current_user or self.current_user not in self.users:
+        user_data = self._get_user_data(user)
+        if not user_data:
             return {"friends_status": False, "friends": []}
-
-        my_friends_emails = self.friends.get(self.current_user, [])
-        all_my_friends_details = [
-            {"email": email, "first_name": self.users[email]["first_name"], "last_name": self.users[email]["last_name"]}
-            for email in my_friends_emails if email in self.users
-        ]
-
-        filtered_friends = [
-            friend for friend in all_my_friends_details
-            if query.lower() in friend["first_name"].lower() or
-               query.lower() in friend["last_name"].lower() or
-               query.lower() in friend["email"].lower()
-        ]
         
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_friends = filtered_friends[start_index:end_index]
+        friend_uuids = user_data.get("friends", [])
+        friends_list = []
+        for friend_uuid in friend_uuids:
+            friend_data = self.users.get(friend_uuid)
+            if friend_data:
+                friends_list.append({
+                    "id": friend_data["id"],
+                    "email": friend_data["email"],
+                    "first_name": friend_data["first_name"],
+                    "last_name": friend_data["last_name"]
+                })
+        return {"friends_status": True, "friends": friends_list}
 
-        return {"friends_status": True, "friends": paginated_friends}
+    # ================
+    # Money Transfers
+    # ================
 
-    def add_a_friend(self, user_email: str) -> Dict[str, bool]:
+    def send_money(self, sender_user: User, receiver_email: str, amount: float, note: str) -> Dict[str, Union[bool, str]]:
         """
-        Add a user as a friend to the current user.
+        Sends money from the current user to another user.
 
         Args:
-            user_email (str): Email of the user to add as friend.
+            sender_user (User): The user sending the money.
+            receiver_email (str): The email of the receiver.
+            amount (float): The amount of money to send.
+            note (str): A note for the transaction.
 
         Returns:
-            Dict: A dictionary containing 'add_status' (bool).
+            Dict: A dictionary containing 'send_status' (bool) and 'message' (str).
         """
-        if not self.current_user or user_email not in self.users:
-            return {"add_status": False}
-        
-        if self.current_user not in self.friends:
-            self.friends[self.current_user] = []
-        
-        if user_email in self.friends[self.current_user]:
-            return {"add_status": False} # Already friends
-        
-        self.friends[self.current_user].append(user_email)
-        return {"add_status": True}
+        sender_data = self._get_user_data(sender_user)
+        receiver_uuid = self._get_user_uuid_from_email(receiver_email)
+        receiver_data = self.users.get(receiver_uuid)
 
-    def remove_a_friend(self, user_email: str) -> Dict[str, bool]:
+        if not sender_data:
+            return {"send_status": False, "message": f"Sender user {sender_user.email} not found."}
+        if not receiver_data:
+            return {"send_status": False, "message": f"Receiver user {receiver_email} not found."}
+        if sender_data["balance"] < amount:
+            return {"send_status": False, "message": "Insufficient balance."}
+        if amount <= 0:
+            return {"send_status": False, "message": "Amount must be positive."}
+
+        sender_data["balance"] -= amount
+        receiver_data["balance"] += amount
+
+        transaction_id = self._generate_unique_id()
+        new_transaction = {
+            "id": transaction_id,
+            "sender": sender_data["id"],
+            "receiver": receiver_data["id"],
+            "amount": amount,
+            "note": note,
+            "status": "completed",
+            "timestamp": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+        }
+        self.transactions[transaction_id] = new_transaction
+        
+        # Create notifications for sender and receiver
+        self.notifications[self._generate_unique_id()] = {
+            "id": self._generate_unique_id(), # New UUID for notification
+            "user": sender_data["id"],
+            "type": "payment_sent",
+            "message": f"You sent ${amount:.2f} to {receiver_data['first_name']} {receiver_data['last_name']}.",
+            "read": False,
+            "notification_time": new_transaction["timestamp"]
+        }
+        self.notifications[self._generate_unique_id()] = {
+            "id": self._generate_unique_id(), # New UUID for notification
+            "user": receiver_data["id"],
+            "type": "payment_received",
+            "message": f"You received ${amount:.2f} from {sender_data['first_name']} {sender_data['last_name']}.",
+            "read": False,
+            "notification_time": new_transaction["timestamp"]
+        }
+
+        print(f"Transaction {transaction_id}: {sender_user.email} sent ${amount} to {receiver_email}")
+        return {"send_status": True, "transaction_id": transaction_id}
+
+    def request_money(self, sender_user: User, receiver_email: str, amount: float, note: str) -> Dict[str, Union[bool, str]]:
         """
-        Remove a user from the current user's friends.
+        Requests money from another user to the current user.
 
         Args:
-            user_email (str): Email of the user to remove from friends.
+            sender_user (User): The user requesting the money (will be the receiver of the payment).
+            receiver_email (str): The email of the user from whom money is requested (will be the sender of the payment).
+            amount (float): The amount of money to request.
+            note (str): A note for the request.
 
         Returns:
-            Dict: A dictionary containing 'remove_status' (bool).
+            Dict: A dictionary containing 'request_status' (bool) and 'message' (str).
         """
-        if not self.current_user or user_email not in self.users:
-            return {"remove_status": False}
-        
-        if self.current_user not in self.friends or user_email not in self.friends[self.current_user]:
-            return {"remove_status": False} # Not friends with this user
-        
-        self.friends[self.current_user].remove(user_email)
-        return {"remove_status": True}
+        requester_data = self._get_user_data(sender_user) # This is the person initiating the request
+        payer_uuid = self._get_user_uuid_from_email(receiver_email)
+        payer_data = self.users.get(payer_uuid)
 
-    def add_money_to_my_venmo_balance(self, amount: float, payment_card_id: int) -> Dict[str, bool]:
+        if not requester_data:
+            return {"request_status": False, "message": f"Requester user {sender_user.email} not found."}
+        if not payer_data:
+            return {"request_status": False, "message": f"Payer user {receiver_email} not found."}
+        if amount <= 0:
+            return {"request_status": False, "message": "Amount must be positive."}
+
+        transaction_id = self._generate_unique_id()
+        new_transaction = {
+            "id": transaction_id,
+            "sender": payer_data["id"], # Payer is sender in the actual payment
+            "receiver": requester_data["id"], # Requester is receiver in the actual payment
+            "amount": amount,
+            "note": note,
+            "status": "pending", # Request starts as pending
+            "timestamp": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+        }
+        self.transactions[transaction_id] = new_transaction
+
+        # Create notifications for requester and payer
+        self.notifications[self._generate_unique_id()] = {
+            "id": self._generate_unique_id(), # New UUID for notification
+            "user": requester_data["id"],
+            "type": "payment_request_sent",
+            "message": f"You requested ${amount:.2f} from {payer_data['first_name']} {payer_data['last_name']}.",
+            "read": False,
+            "notification_time": new_transaction["timestamp"]
+        }
+        self.notifications[self._generate_unique_id()] = {
+            "id": self._generate_unique_id(), # New UUID for notification
+            "user": payer_data["id"],
+            "type": "payment_request_received",
+            "message": f"{requester_data['first_name']} {requester_data['last_name']} requested ${amount:.2f}.",
+            "read": False,
+            "notification_time": new_transaction["timestamp"]
+        }
+
+        print(f"Transaction {transaction_id}: {sender_user.email} requested ${amount} from {receiver_email}")
+        return {"request_status": True, "transaction_id": transaction_id}
+    
+    # Signature change: transaction_id from int to str (UUID) for realism
+    def get_transaction_details(self, transaction_id: str) -> Dict[str, Union[bool, Dict]]:
         """
-        Add money to the current user's Venmo balance from a payment card.
+        Retrieves details of a specific transaction.
 
         Args:
-            amount (float): Amount to add.
-            payment_card_id (int): ID of the payment card to use.
-
-        Returns:
-            Dict: A dictionary containing 'add_status' (bool).
-        """
-        if not self.current_user or payment_card_id not in self.payment_cards:
-            return {"add_status": False}
-        
-        self.users[self.current_user]["balance"] += amount
-        return {"add_status": True}
-
-    def show_my_venmo_balance(self) -> Dict[str, Union[bool, float]]:
-        """
-        Show the current user's Venmo balance.
-
-        Returns:
-            Dict: A dictionary containing 'balance_status' (bool) and 'balance' (float) if successful.
-        """
-        if not self.current_user or self.current_user not in self.users:
-            return {"balance_status": False, "balance": 0.0}
-        
-        return {"balance_status": True, "balance": self.users[self.current_user]["balance"]}
-
-    def withdraw_money_from_my_venmo_balance(self, amount: float, payment_card_id: int) -> Dict[str, bool]:
-        """
-        Withdraw money from the current user's Venmo balance to a payment card.
-
-        Args:
-            amount (float): Amount to withdraw.
-            payment_card_id (int): ID of the payment card to use.
-
-        Returns:
-            Dict: A dictionary containing 'withdraw_status' (bool).
-        """
-        if not self.current_user or payment_card_id not in self.payment_cards:
-            return {"withdraw_status": False}
-        
-        if self.users[self.current_user]["balance"] < amount:
-            return {"withdraw_status": False} # Insufficient balance
-        
-        self.users[self.current_user]["balance"] -= amount
-        return {"withdraw_status": True}
-
-    def show_my_bank_transfer_history(self, transfer_type: str = "", page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Show history of bank transfers for the current user.
-
-        Args:
-            transfer_type (str): Optional type of transfer to filter by (e.g., 'add', 'withdraw').
-            page_index (int): Page index for pagination (defaults to 1).
-            page_limit (int): Number of results per page (defaults to 10).
-
-        Returns:
-            Dict: A dictionary containing 'history_status' (bool) and 'transfers' (List[Dict]) if successful.
-        """
-        if not self.current_user:
-            return {"history_status": False, "transfers": []}
-        
-        # Dummy bank transfer history (since we don't have detailed transfer records)
-        dummy_transfers = []
-        if transfer_type == "add" or not transfer_type:
-            dummy_transfers.append({"type": "add", "amount": 50.00, "date": "2023-06-01"})
-        if transfer_type == "withdraw" or not transfer_type:
-            dummy_transfers.append({"type": "withdraw", "amount": 20.00, "date": "2023-05-15"})
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_transfers = dummy_transfers[start_index:end_index]
-        
-        return {"history_status": True, "transfers": paginated_transfers}
-
-    def show_a_transaction(self, transaction_id: int) -> Dict[str, Union[bool, Dict]]:
-        """
-        Show details of a specific transaction.
-
-        Args:
-            transaction_id (int): ID of the transaction.
+            transaction_id (str): The ID (UUID) of the transaction.
 
         Returns:
             Dict: A dictionary containing 'transaction_status' (bool) and 'transaction_details' (Dict) if successful.
         """
-        if transaction_id not in self.transactions:
+        transaction = self.transactions.get(transaction_id)
+        if not transaction:
             return {"transaction_status": False, "transaction_details": {}}
-        
-        return {"transaction_status": True, "transaction_details": self.transactions[transaction_id]}
+        return {"transaction_status": True, "transaction_details": copy.deepcopy(transaction)}
 
-    def send_money(self, receiver_email: str, amount: float, description: str, payment_card_id: Optional[int] = None, private: bool = False) -> Dict[str, bool]:
+    def list_user_transactions(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Send money to another user.
+        Lists all transactions (sent and received) for the current user.
 
         Args:
-            receiver_email (str): Email of the receiver.
-            amount (float): Amount to send.
-            description (str): Description of the transaction.
-            payment_card_id (int, optional): ID of the payment card to use. If not provided, uses Venmo balance.
-            private (bool): Whether the transaction is private (defaults to False).
-
-        Returns:
-            Dict: A dictionary containing 'create_status' (bool).
-        """
-        if not self.current_user or receiver_email not in self.users:
-            return {"create_status": False}
-
-        if payment_card_id:
-            if payment_card_id not in self.payment_cards:
-                return {"create_status": False}
-        else: # Using Venmo balance
-            if self.users[self.current_user]["balance"] < amount:
-                return {"create_status": False} # Insufficient balance
-
-        transaction_id = self.transaction_counter
-        self.transactions[transaction_id] = {
-            "transaction_id": transaction_id,
-            "sender": self.current_user,
-            "receiver": receiver_email,
-            "amount": amount,
-            "description": description,
-            "private": private,
-            "timestamp": "2023-01-01",
-            "likes": 0,
-            "comments": []
-        }
-        self.transaction_counter += 1
-        
-        # Update balances
-        if not payment_card_id: # Only deduct from balance if not using a card
-            self.users[self.current_user]["balance"] -= amount
-        self.users[receiver_email]["balance"] += amount
-        
-        return {"create_status": True}
-
-    def update_my_transaction(self, transaction_id: int, description: Optional[str] = None, private: Optional[bool] = None) -> Dict[str, bool]:
-        """
-        Update a transaction's details, specifically for transactions sent by the current user.
-
-        Args:
-            transaction_id (int): ID of the transaction to update.
-            description (str, optional): New description.
-            private (bool, optional): New privacy setting.
-
-        Returns:
-            Dict: A dictionary containing 'update_status' (bool).
-        """
-        if transaction_id not in self.transactions or self.transactions[transaction_id]["sender"] != self.current_user:
-            return {"update_status": False}
-        
-        if description is not None:
-            self.transactions[transaction_id]["description"] = description
-        if private is not None:
-            self.transactions[transaction_id]["private"] = private
-        return {"update_status": True}
-
-    def show_my_transactions(self, query: str = "", user_email: str = "", min_created_at: str = "", max_created_at: str = "", min_like_count: int = 0, max_like_count: int = 1000, min_amount: float = 0.0, max_amount: float = float('inf'), private: Optional[bool] = None, direction: str = "", page_index: int = 1, page_limit: int = 10, sort_by: str = "timestamp") -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Show a list of transactions involving the current user based on filters.
-
-        Args:
-            query (str): Search query for description.
-            user_email (str): Email of specific user to filter transactions with.
-            min_created_at (str): Minimum creation date (YYYY-MM-DD).
-            max_created_at (str): Maximum creation date (YYYY-MM-DD).
-            min_like_count (int): Minimum like count.
-            max_like_count (int): Maximum like count.
-            min_amount (float): Minimum amount.
-            max_amount (float): Maximum amount.
-            private (bool, optional): Whether to include only private (True), public (False), or all (None) transactions.
-            direction (str): Direction of transactions ('sent', 'received', or '').
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            sort_by (str): Field to sort by ('timestamp', 'amount', 'likes').
+            user (User): The current user object.
 
         Returns:
             Dict: A dictionary containing 'transactions_status' (bool) and 'transactions' (List[Dict]) if successful.
         """
-        if not self.current_user:
+        user_data = self._get_user_data(user)
+        if not user_data:
             return {"transactions_status": False, "transactions": []}
 
-        filtered_transactions = []
-        for trans_id, transaction in self.transactions.items():
-            # Filter by current user involvement
-            if transaction["sender"] != self.current_user and transaction["receiver"] != self.current_user:
-                continue
+        user_transactions = [
+            copy.deepcopy(t) for t in self.transactions.values()
+            if t["sender"] == user_data["id"] or t["receiver"] == user_data["id"]
+        ]
+        user_transactions.sort(key=lambda x: x.get("timestamp", ""), reverse=True) # Sort by timestamp
+        return {"transactions_status": True, "transactions": user_transactions}
 
-            # Filter by direction
-            if direction == "sent" and transaction["sender"] != self.current_user:
-                continue
-            if direction == "received" and transaction["receiver"] != self.current_user:
-                continue
+    # ================
+    # Payment Methods
+    # ================
 
-            # Filter by specific user email
-            if user_email and not (transaction["sender"] == user_email or transaction["receiver"] == user_email):
-                continue
-
-            # Filter by query in description
-            if query and query.lower() not in transaction["description"].lower():
-                continue
-
-            # Filter by amount
-            if not (min_amount <= transaction["amount"] <= max_amount):
-                continue
-            
-            # Filter by private status
-            if private is not None and transaction["private"] != private:
-                continue
-
-            # Dummy date and like count filtering (simplified for backend)
-            # In a real backend, you'd parse dates and check ranges.
-            if min_created_at and transaction["timestamp"] < min_created_at:
-                continue
-            if max_created_at and transaction["timestamp"] > max_created_at:
-                continue
-            if not (min_like_count <= transaction["likes"] <= max_like_count):
-                continue
-
-
-            filtered_transactions.append(transaction)
-
-        # Sort transactions
-        filtered_transactions.sort(key=lambda x: x.get(sort_by, 0), reverse=True if sort_by == "timestamp" else False) # Basic sorting
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_transactions = filtered_transactions[start_index:end_index]
-
-        return {"transactions_status": True, "transactions": paginated_transactions}
-
-    def show_a_payment_card(self, card_id: int) -> Dict[str, Union[bool, Dict]]:
+    def add_payment_card(
+        self,
+        user: User,
+        card_name: str,
+        owner_name: str,
+        card_number: str, # Assume this can be full number for input, then masked
+        expiry_year: int,
+        expiry_month: int,
+        cvv_number: str, # Will not store, just for input validation (dummy)
+        is_default: bool = False,
+    ) -> Dict[str, Union[bool, str]]:
         """
-        Show details of a specific payment card belonging to the current user.
+        Adds a new payment card for the current user.
 
         Args:
-            card_id (int): ID of the payment card.
+            user (User): The current user object.
+            card_name (str): A nickname for the card (e.g., "My Visa").
+            owner_name (str): The name of the card owner.
+            card_number (str): The full card number.
+            expiry_year (int): The expiry year (e.g., 2028).
+            expiry_month (int): The expiry month (1-12).
+            cvv_number (str): The CVV number. (Not stored for realism)
+            is_default (bool): Whether this card should be set as default.
 
         Returns:
-            Dict: A dictionary containing 'card_status' (bool) and 'card_details' (Dict) if successful.
+            Dict: A dictionary containing 'add_status' (bool) and 'card_id' (str) if successful.
         """
-        if not self.current_user or card_id not in self.payment_cards:
-            return {"card_status": False, "card_details": {}}
-        
-        return {"card_status": True, "card_details": self.payment_cards[card_id]}
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"add_status": False, "message": "User not found."}
 
-    def show_my_payment_cards(self) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Show all payment cards for the current user.
+        # Basic validation (dummy)
+        if not (1 <= expiry_month <= 12):
+            return {"add_status": False, "message": "Invalid expiry month."}
+        if not (datetime.datetime.now().year <= expiry_year <= datetime.datetime.now().year + 10):
+            return {"add_status": False, "message": "Invalid expiry year."}
+        # Mask card number for storage
+        masked_card_number = f"**** **** **** {card_number[-4:]}" if len(card_number) >= 4 else "****"
 
-        Returns:
-            Dict: A dictionary containing 'cards_status' (bool) and 'payment_cards' (List[Dict]) if successful.
-        """
-        if not self.current_user:
-            return {"cards_status": False, "payment_cards": []}
-        
-        return {"cards_status": True, "payment_cards": list(self.payment_cards.values())}
-
-    def add_a_payment_card(self, card_name: str, owner_name: str, card_number: int, expiry_year: int, expiry_month: int, cvv_number: int) -> Dict[str, bool]:
-        """
-        Add a new payment card for the current user.
-
-        Args:
-            card_name (str): Name of the card (e.g., "Primary Debit").
-            owner_name (str): Name of the card owner.
-            card_number (int): Card number (last 4 digits for display).
-            expiry_year (int): Expiry year.
-            expiry_month (int): Expiry month.
-            cvv_number (int): CVV number.
-
-        Returns:
-            Dict: A dictionary containing 'add_status' (bool).
-        """
-        if not self.current_user:
-            return {"add_status": False}
-        
-        # Simple ID generation
-        card_id = max(self.payment_cards.keys(), default=0) + 1
-        self.payment_cards[card_id] = {
-            "card_id": card_id,
-            "user": self.current_user,
+        new_card_uuid = self._generate_unique_id()
+        new_card = {
+            "id": new_card_uuid,
             "card_name": card_name,
             "owner_name": owner_name,
-            "card_number": card_number, # In a real app, this would be tokenized/masked
+            "card_number": masked_card_number,
             "expiry_year": expiry_year,
             "expiry_month": expiry_month,
-            "cvv_number": cvv_number # Never store CVV in a real app
+            "is_default": is_default,
+            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+            "last_modified": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
         }
-        # Also update the user's payment cards in their user dictionary
-        if self.current_user in self.users:
-            self.users[self.current_user]["payment_cards"][card_id] = self.payment_cards[card_id]
-        return {"add_status": True}
 
-    def update_a_payment_card_name(self, card_id: int, new_card_name: str) -> Dict[str, bool]:
+        user_payment_cards = user_data.get("payment_cards", {})
+        
+        # If new card is default, set existing default to false
+        if is_default:
+            for card_id, card_info in user_payment_cards.items():
+                if card_info.get("is_default"):
+                    user_payment_cards[card_id]["is_default"] = False
+                    break
+
+        user_payment_cards[new_card_uuid] = new_card
+        self._update_user_data(user, "payment_cards", user_payment_cards)
+
+        return {"add_status": True, "card_id": new_card_uuid}
+
+
+    def list_payment_methods(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Update a payment card's name for the current user.
+        Lists all payment methods associated with the current user.
 
         Args:
-            card_id (int): ID of the card to update.
-            new_card_name (str): New name for the card.
+            user (User): The current user object.
 
         Returns:
-            Dict: A dictionary containing 'update_status' (bool).
+            Dict: A dictionary containing 'payment_methods_status' (bool) and 'payment_methods' (List[Dict]) if successful.
         """
-        if not self.current_user or card_id not in self.payment_cards or self.payment_cards[card_id]["user"] != self.current_user:
-            return {"update_status": False}
-        
-        self.payment_cards[card_id]["card_name"] = new_card_name
-        # Also update the user's payment cards in their user dictionary
-        if self.current_user in self.users:
-            self.users[self.current_user]["payment_cards"][card_id]["card_name"] = new_card_name
-        return {"update_status": True}
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"payment_methods_status": False, "payment_methods": []}
 
-    def delete_a_payment_card(self, card_id: int) -> Dict[str, bool]:
+        payment_methods = list(user_data.get("payment_cards", {}).values())
+        return {"payment_methods_status": True, "payment_methods": copy.deepcopy(payment_methods)}
+
+    # Signature change: payment_method_id from int to str (UUID) for realism
+    def set_default_payment_method(self, user: User, payment_method_id: str) -> Dict[str, bool]:
         """
-        Delete a payment card belonging to the current user.
+        Set a specific payment method as the default for the current user.
 
         Args:
-            card_id (int): ID of the card to delete.
+            user (User): The current user object.
+            payment_method_id (str): The ID (UUID) of the payment method to set as default.
 
         Returns:
-            Dict: A dictionary containing 'delete_status' (bool).
+            Dict[str, bool]: {"set_default_status": True} if successful, {"set_default_status": False} otherwise.
         """
-        if not self.current_user or card_id not in self.payment_cards or self.payment_cards[card_id]["user"] != self.current_user:
-            return {"delete_status": False}
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"set_default_status": False, "message": "User not found."}
+
+        user_payment_cards = user_data.get("payment_cards", {})
+        if payment_method_id not in user_payment_cards:
+            return {"set_default_status": False, "message": f"Payment method with ID {payment_method_id} not found."}
+
+        # Clear any existing default for this user
+        for card_id, card_info in user_payment_cards.items():
+            if card_info.get("is_default"):
+                user_payment_cards[card_id]["is_default"] = False
+                user_payment_cards[card_id]["last_modified"] = datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+
+        user_payment_cards[payment_method_id]["is_default"] = True
+        user_payment_cards[payment_method_id]["last_modified"] = datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+        self._update_user_data(user, "payment_cards", user_payment_cards)
+        return {"set_default_status": True}
+
+    # Signature change: payment_method_id from int to str (UUID) for realism
+    def delete_payment_method(self, user: User, payment_method_id: str) -> Dict[str, bool]:
+        """
+        Delete a specific payment method for the current user.
+
+        Args:
+            user (User): The current user object.
+            payment_method_id (str): The ID (UUID) of the payment method to delete.
+
+        Returns:
+            Dict[str, bool]: {"delete_status": True} if successful, {"delete_status": False} otherwise.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"delete_status": False, "message": "User not found."}
+
+        user_payment_cards = user_data.get("payment_cards", {})
+        if payment_method_id not in user_payment_cards:
+            return {"delete_status": False, "message": f"Payment method with ID {payment_method_id} not found."}
         
-        del self.payment_cards[card_id]
-        # Also remove from the user's payment cards in their user dictionary
-        if self.current_user in self.users and card_id in self.users[self.current_user]["payment_cards"]:
-            del self.users[self.current_user]["payment_cards"][card_id]
+        del user_payment_cards[payment_method_id]
+        self._update_user_data(user, "payment_cards", user_payment_cards)
         return {"delete_status": True}
 
-    def show_my_received_payment_requests(self, status: str = "", page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Show payment requests received by the current user.
+    # ================
+    # Notifications
+    # ================
 
-        Args:
-            status (str): Optional status to filter by ('pending', 'approved', 'denied').
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
+    def get_unread_notification_count(self) -> Dict[str, Union[bool, int]]:
+        """
+        Retrieves the count of unread notifications for the current user.
 
         Returns:
-            Dict: A dictionary containing 'requests_status' (bool) and 'payment_requests' (List[Dict]) if successful.
+            Dict: A dictionary containing 'count_status' (bool) and 'unread_count' (int).
         """
         if not self.current_user:
-            return {"requests_status": False, "payment_requests": []}
-
-        filtered_requests = []
-        for req_id, request in self.payment_requests.items():
-            if request["to_user"] == self.current_user:
-                if not status or request["status"] == status:
-                    filtered_requests.append(request)
-        
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_requests = filtered_requests[start_index:end_index]
-        
-        return {"requests_status": True, "payment_requests": paginated_requests}
-
-    def show_my_sent_payment_requests(self, status: str = "", page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Show payment requests sent by the current user.
-
-        Args:
-            status (str): Optional status to filter by ('pending', 'approved', 'denied').
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-
-        Returns:
-            Dict: A dictionary containing 'requests_status' (bool) and 'payment_requests' (List[Dict]) if successful.
-        """
-        if not self.current_user:
-            return {"requests_status": False, "payment_requests": []}
-
-        filtered_requests = []
-        for req_id, request in self.payment_requests.items():
-            if request["from_user"] == self.current_user:
-                if not status or request["status"] == status:
-                    filtered_requests.append(request)
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_requests = filtered_requests[start_index:end_index]
-        
-        return {"requests_status": True, "payment_requests": paginated_requests}
-
-    def request_money(self, user_email: str, amount: float, description: str, private: bool = False) -> Dict[str, bool]:
-        """
-        Create a new payment request from the current user to another user.
-
-        Args:
-            user_email (str): Email of the user to request from.
-            amount (float): Amount to request.
-            description (str): Description of the request.
-            private (bool): Whether the request is private (defaults to False).
-
-        Returns:
-            Dict: A dictionary containing 'create_status' (bool).
-        """
-        if not self.current_user or user_email not in self.users:
-            return {"create_status": False}
-        
-        request_id = self.request_counter
-        self.payment_requests[request_id] = {
-            "request_id": request_id,
-            "from_user": self.current_user,
-            "to_user": user_email,
-            "amount": amount,
-            "description": description,
-            "private": private,
-            "status": "pending",
-            "timestamp": "2023-01-01"
-        }
-        self.request_counter += 1
-        
-        # Create a dummy notification for the recipient
-        notification_id = self.notification_counter
-        self.notifications[notification_id] = {
-            "notification_id": notification_id,
-            "user": user_email,
-            "type": "payment_request",
-            "content": f"{self.current_user} requested ${amount:.2f} from you for '{description}'.",
-            "read": False,
-            "timestamp": "2023-01-01"
-        }
-        self.notification_counter += 1
-        
-        return {"create_status": True}
-
-    def approve_a_payment_request(self, request_id: int, payment_card_id: Optional[int] = None) -> Dict[str, bool]:
-        """
-        Approve a payment request received by the current user.
-
-        Args:
-            request_id (int): ID of the request to approve.
-            payment_card_id (int, optional): ID of the payment card to use. If not provided, uses Venmo balance.
-
-        Returns:
-            Dict: A dictionary containing 'approve_status' (bool).
-        """
-        if (request_id not in self.payment_requests or 
-            self.payment_requests[request_id]["to_user"] != self.current_user or # Must be a request *to* the current user
-            self.payment_requests[request_id]["status"] != "pending"):
-            return {"approve_status": False}
-        
-        request = self.payment_requests[request_id]
-        from_user = request["from_user"] # Person who requested the money
-        to_user = request["to_user"] # Current user
-        amount = request["amount"]
-
-        if payment_card_id:
-            if payment_card_id not in self.payment_cards:
-                return {"approve_status": False}
-        else: # Using Venmo balance
-            if self.users[to_user]["balance"] < amount:
-                return {"approve_status": False} # Insufficient balance
-
-        # Update balances
-        if not payment_card_id: # Only deduct from balance if not using a card
-            self.users[to_user]["balance"] -= amount
-        self.users[from_user]["balance"] += amount
-        
-        # Update request status
-        self.payment_requests[request_id]["status"] = "approved"
-        
-        # Create transaction
-        transaction_id = self.transaction_counter
-        self.transactions[transaction_id] = {
-            "transaction_id": transaction_id,
-            "sender": to_user, # Current user is sending the money
-            "receiver": from_user, # Original requester is receiving
-            "amount": amount,
-            "description": f"Payment for: {request['description']}",
-            "private": request["private"],
-            "timestamp": "2023-01-01",
-            "likes": 0,
-            "comments": []
-        }
-        self.transaction_counter += 1
-
-        # Create a dummy notification for the original requester
-        notification_id = self.notification_counter
-        self.notifications[notification_id] = {
-            "notification_id": notification_id,
-            "user": from_user,
-            "type": "payment_approved",
-            "content": f"{self.current_user} approved your request for ${amount:.2f}.",
-            "read": False,
-            "timestamp": "2023-01-01"
-        }
-        self.notification_counter += 1
-        
-        return {"approve_status": True}
-
-    def deny_a_payment_request(self, request_id: int) -> Dict[str, bool]:
-        """
-        Deny a payment request received by the current user.
-
-        Args:
-            request_id (int): ID of the request to deny.
-
-        Returns:
-            Dict: A dictionary containing 'deny_status' (bool).
-        """
-        if (request_id not in self.payment_requests or
-            self.payment_requests[request_id]["to_user"] != self.current_user or # Must be a request *to* the current user
-            self.payment_requests[request_id]["status"] != "pending"):
-            return {"deny_status": False}
-        
-        self.payment_requests[request_id]["status"] = "denied"
-
-        # Create a dummy notification for the original requester
-        request = self.payment_requests[request_id]
-        notification_id = self.notification_counter
-        self.notifications[notification_id] = {
-            "notification_id": notification_id,
-            "user": request["from_user"],
-            "type": "payment_denied",
-            "content": f"{self.current_user} denied your request for ${request['amount']:.2f}.",
-            "read": False,
-            "timestamp": "2023-01-01"
-        }
-        self.notification_counter += 1
-
-        return {"deny_status": True}
-
-    def remind_a_payment_request(self, request_id: int) -> Dict[str, bool]:
-        """
-        Send a reminder for a payment request sent by the current user.
-
-        Args:
-            request_id (int): ID of the request to remind.
-
-        Returns:
-            Dict: A dictionary containing 'remind_status' (bool).
-        """
-        if (request_id not in self.payment_requests or
-            self.payment_requests[request_id]["from_user"] != self.current_user or # Must be a request *from* the current user
-            self.payment_requests[request_id]["status"] != "pending"):
-            return {"remind_status": False}
-        
-        request = self.payment_requests[request_id]
-        
-        # Create notification for the recipient
-        notification_id = self.notification_counter
-        self.notifications[notification_id] = {
-            "notification_id": notification_id,
-            "user": request["to_user"],
-            "type": "payment_reminder",
-            "content": f"Reminder: {request['from_user']} is still waiting for ${request['amount']:.2f} for '{request['description']}'.",
-            "read": False,
-            "timestamp": "2023-01-01"
-        }
-        self.notification_counter += 1
-        
-        return {"remind_status": True}
-
-    def cancel_a_payment_request(self, request_id: int) -> Dict[str, bool]:
-        """
-        Cancel a payment request sent by the current user.
-
-        Args:
-            request_id (int): ID of the request to cancel.
-
-        Returns:
-            Dict: A dictionary containing 'cancel_status' (bool).
-        """
-        if (request_id not in self.payment_requests or
-            self.payment_requests[request_id]["from_user"] != self.current_user or # Must be a request *from* the current user
-            self.payment_requests[request_id]["status"] != "pending"):
-            return {"cancel_status": False}
-        
-        request = self.payment_requests[request_id]
-        
-        del self.payment_requests[request_id]
-
-        # Create a dummy notification for the recipient
-        notification_id = self.notification_counter
-        self.notifications[notification_id] = {
-            "notification_id": notification_id,
-            "user": request["to_user"],
-            "type": "payment_request_canceled",
-            "content": f"{self.current_user} canceled their request for ${request['amount']:.2f}.",
-            "read": False,
-            "timestamp": "2023-01-01"
-        }
-        self.notification_counter += 1
-
-        return {"cancel_status": True}
-
-    def show_my_notifications(self, page_index: int = 1, page_limit: int = 10, read: Optional[bool] = None) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Show the current user's notifications.
-
-        Args:
-            page_index (int): Page index for pagination (defaults to 1).
-            page_limit (int): Number of results per page (defaults to 10).
-            read (bool, optional): Whether to show only read (True), unread (False), or all (None) notifications.
-
-        Returns:
-            Dict: A dictionary containing 'notifications_status' (bool) and 'notifications' (List[Dict]) if successful.
-        """
-        if not self.current_user:
-            return {"notifications_status": False, "notifications": []}
-
-        filtered_notifications = []
-        for notif_id, notification in self.notifications.items():
-            if notification["user"] == self.current_user:
-                if read is None or notification["read"] == read:
-                    filtered_notifications.append(notification)
-        
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_notifications = filtered_notifications[start_index:end_index]
-
-        return {"notifications_status": True, "notifications": paginated_notifications}
-
-    def show_my_unread_notifications_count(self) -> Dict[str, Union[bool, int]]:
-        """
-        Show count of the current user's unread notifications.
-
-        Returns:
-            Dict: A dictionary containing 'count_status' (bool) and 'unread_count' (int) if successful.
-        """
-        if not self.current_user:
-            return {"count_status": False, "unread_count": 0}
+            return {"count_status": False, "unread_count": 0, "message": "No current user set."}
         
         unread_count = sum(1 for notif in self.notifications.values() if notif["user"] == self.current_user and not notif["read"])
         return {"count_status": True, "unread_count": unread_count}
@@ -875,11 +962,12 @@ class VenmoApis:
             Dict: A dictionary containing 'delete_status' (bool).
         """
         if not self.current_user:
-            return {"delete_status": False}
+            return {"delete_status": False, "message": "No current user set."}
         
         to_delete_ids = [nid for nid, notif in self.notifications.items() if notif["user"] == self.current_user]
         for nid in to_delete_ids:
-            del self.notifications[nid]
+            if nid in self.notifications: # Check before deleting
+                del self.notifications[nid]
         
         return {"delete_status": True}
 
@@ -894,11 +982,25 @@ class VenmoApis:
             Dict: A dictionary containing 'mark_status' (bool).
         """
         if not self.current_user:
-            return {"mark_status": False}
+            return {"mark_status": False, "message": "No current user set."}
         
         for notif in self.notifications.values():
             if notif["user"] == self.current_user:
                 notif["read"] = read_status
         
         return {"mark_status": True}
-    
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        # Re-run the initial data conversion to reset maps and UUIDs
+        global DEFAULT_STATE
+        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
+        self._load_scenario(DEFAULT_STATE)
+        print("VenmoApis: All dummy data reset to default state.")
+        return {"reset_status": True}

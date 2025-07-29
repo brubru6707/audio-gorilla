@@ -1,1748 +1,1111 @@
+import uuid
 from typing import Dict, List, Union, Literal, Any
 from datetime import datetime, timedelta
 from copy import deepcopy
-
-class EmailStr(str):
-    pass
+import json
 
 class User:
-    def __init__(self, email: str):
+    def __init__(self, user_id: str, email: str = None):
+        self.user_id = user_id
         self.email = email
 
+import uuid
+import random
+from datetime import datetime, timedelta
+
+def generate_random_date(start_year, end_year):
+    start_date = datetime(start_year, 1, 1)
+    end_date = datetime(end_year, 12, 31)
+    time_between_dates = end_date - start_date
+    days_between_dates = time_between_dates.days
+    random_number_of_days = random.randrange(days_between_dates)
+    random_date = start_date + timedelta(days=random_number_of_days)
+    return random_date.strftime("%Y-%m-%d")
+
+def generate_user(existing_uuids, first_name=None, last_name=None, email=None, balance=None):
+    user_id = str(uuid.uuid4())
+    existing_uuids["users"].add(user_id)
+
+    if not first_name:
+        first_name = random.choice(["Emma", "Liam", "Olivia", "Noah", "Ava", "Isabella", "Sophia", "Jackson", "Aria", "Lucas", "Charlotte", "Ethan", "Amelia", "Mason", "Harper", "Evelyn", "Abigail", "Mia", "Benjamin", "Ella", "James", "Scarlett", "Henry", "Grace", "Alexander", "Chloe", "William", "Victoria", "Daniel", "Zoe"])
+    if not last_name:
+        last_name = random.choice(["Miller", "Davis", "Garcia", "Rodriguez", "Wilson", "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez", "Moore", "Martin", "Jackson", "Thompson", "White", "Lopez", "Lee", "Gonzalez", "Harris", "Clark", "Lewis", "Robinson", "Walker", "Perez", "Hall", "Young", "Allen", "Sanchez", "Wright", "King"])
+    if not email:
+        email = f"{first_name.lower()}.{last_name.lower()}@{random.choice(['example.com', 'mail.com', 'domain.org', 'test.net'])}"
+    if balance is None:
+        balance = round(random.uniform(0.00, 2500.00), 2)
+
+    num_friends = random.randint(0, 5)
+    friends = []
+    if existing_uuids["users"]:
+        friends = random.sample(list(existing_uuids["users"] - {user_id}), min(num_friends, len(existing_uuids["users"]) - 1))
+
+    payment_cards = {}
+    for _ in range(random.randint(0, 2)): # 0 to 2 cards per user
+        card_id = str(uuid.uuid4())
+        existing_uuids["payment_cards"].add(card_id)
+        card_name = random.choice(["Visa", "Mastercard", "Amex", "Discover"])
+        payment_cards[card_id] = {
+            "card_name": f"{first_name}'s {card_name}",
+            "owner_name": f"{first_name} {last_name}",
+            "card_number_last4": ''.join(random.choices('0123456789', k=4)),
+            "expiry_year": random.randint(datetime.now().year + 1, datetime.now().year + 6),
+            "expiry_month": random.randint(1, 12),
+        }
+
+    addresses = {}
+    for _ in range(random.randint(1, 2)): # 1 to 2 addresses per user
+        address_id = str(uuid.uuid4())
+        existing_uuids["addresses"].add(address_id)
+        address_type = "Home Address" if random.random() < 0.7 else "Work Address"
+        addresses[address_id] = {
+            "name": address_type,
+            "street_address": f"{random.randint(100, 999)} {random.choice(['Main', 'Oak', 'Elm', 'Maple', 'Pine'])} {random.choice(['Street', 'Avenue', 'Road', 'Lane'])}",
+            "city": random.choice(["Springfield", "Fairview", "Riverside", "Lakewood", "Centerville"]),
+            "state": random.choice(["CA", "NY", "TX", "FL", "IL", "GA", "WA"]),
+            "country": "USA",
+            "zip_code": random.randint(10000, 99999),
+        }
+
+    cart = {}
+    for _ in range(random.randint(0, 3)): # 0 to 3 items in cart
+        product_id = random.randint(1, 15) # Assuming more products will be added
+        cart[product_id] = random.randint(1, 3)
+
+    wish_list = {}
+    for _ in range(random.randint(0, 2)): # 0 to 2 items in wish list
+        product_id = random.randint(1, 15)
+        wish_list[product_id] = {"added_date": generate_random_date(2023, 2024)}
+
+    orders = {}
+    num_orders = random.randint(0, 3)
+    user_address_ids = list(addresses.keys())
+    user_card_ids = list(payment_cards.keys())
+
+    for _ in range(num_orders):
+        order_id = str(uuid.uuid4())
+        order_date = generate_random_date(2023, 2025)
+        total_amount = round(random.uniform(10.00, 1500.00), 2)
+        products_in_order = {}
+        for _ in range(random.randint(1, 3)):
+            product_id = random.randint(1, 15)
+            products_in_order[product_id] = random.randint(1, 2)
+
+        delivery_address_id = random.choice(user_address_ids) if user_address_ids else None
+        payment_card_id = random.choice(user_card_ids) if user_card_ids else None
+        status = random.choice(["delivered", "shipped", "pending", "cancelled"])
+        promo_code_applied = random.choice([None, "WELCOME10", "SAVE20", "FREESHIP"])
+        tracking_number = f"TRK{''.join(random.choices('0123456789', k=9))}" if status != "cancelled" else None
+
+        orders[order_id] = {
+            "order_date": order_date,
+            "total_amount": total_amount,
+            "products": products_in_order,
+            "delivery_address_id": delivery_address_id,
+            "payment_card_id": payment_card_id,
+            "status": status,
+            "promo_code_applied": promo_code_applied,
+            "tracking_number": tracking_number,
+        }
+        existing_uuids["orders"].add(order_id)
+
+    prime_subscriptions = {}
+    if random.random() < 0.3: # 30% chance of prime subscription
+        sub_id = str(uuid.uuid4())
+        start_date = generate_random_date(2022, 2024)
+        end_date = (datetime.strptime(start_date, "%Y-%m-%d") + timedelta(days=365 * random.randint(1, 3))).strftime("%Y-%m-%d")
+        prime_subscriptions[sub_id] = {
+            "start_date": start_date,
+            "end_date": end_date,
+            "plan_type": random.choice(["yearly", "monthly"]),
+            "status": random.choice(["active", "expired"]),
+        }
+
+    returns = {}
+    num_returns = random.randint(0, min(num_orders, 1)) # Max 1 return per user for simplicity
+    if num_returns > 0 and orders:
+        order_to_return_id = random.choice(list(orders.keys()))
+        order_products = list(orders[order_to_return_id]["products"].keys())
+        if order_products:
+            product_to_return = random.choice(order_products)
+            return_id = str(uuid.uuid4())
+            returns[return_id] = {
+                "order_id": order_to_return_id,
+                "product_id": product_to_return,
+                "return_date": generate_random_date(2023, 2025),
+                "reason": random.choice(["item damaged", "wrong size", "not as described", "changed mind"]),
+                "status": random.choice(["pending", "processed", "rejected"]),
+            }
+            existing_uuids["returns"].add(return_id)
+
+
+    return {
+        user_id: {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "balance": balance,
+            "friends": friends,
+            "payment_cards": payment_cards,
+            "addresses": addresses,
+            "cart": cart,
+            "wish_list": wish_list,
+            "orders": orders,
+            "prime_subscriptions": prime_subscriptions,
+            "returns": returns,
+        }
+    }, user_id
+
+def generate_product(product_id, existing_seller_ids):
+    product_names = [
+        "Smartwatch", "Wireless Earbuds", "Portable Speaker", "E-Reader", "Fitness Tracker",
+        "Coffee Maker", "Air Fryer", "Blender", "Robot Vacuum", "Electric Kettle",
+        "Graphic Novel", "Sci-Fi Novel", "Cookbook", "History Book", "Children's Book",
+        "Gaming Headset", "VR Headset", "Drone", "Action Camera", "Projector",
+        "Backpack", "Travel Mug", "Water Bottle", "Yoga Mat", "Dumbbell Set",
+        "Scented Candle", "Hand Cream", "Face Mask", "Essential Oil Diffuser", "Bath Bomb"
+    ]
+    product_descriptions = [
+        "Advanced features and sleek design.", "Crystal clear audio and comfortable fit.",
+        "Powerful sound in a compact design.", "Read thousands of books on the go.",
+        "Track your health and fitness goals.", "Brew the perfect cup every time.",
+        "Healthy frying with less oil.", "Smoothies and more with ease.",
+        "Effortless cleaning for your home.", "Boil water quickly and safely.",
+        "Stunning visuals and engaging story.", "Epic adventure awaits.",
+        "Delicious recipes for every occasion.", "Dive into the past.",
+        "Fun and educational stories.", "Immersive sound for gaming.",
+        "Experience virtual worlds.", "Capture breathtaking aerial views.",
+        "Record your adventures in 4K.", "Big screen entertainment anywhere.",
+        "Durable and spacious for daily use.", "Keep your drinks hot or cold.",
+        "Stay hydrated in style.", "Comfortable and non-slip.",
+        "Build strength and tone muscles.", "Relaxing aroma for your home.",
+        "Nourish and moisturize your hands.", "Revitalize your skin.",
+        "Create a calming atmosphere.", "Fizz and relax."
+    ]
+    product_categories = [
+        "Electronics", "Home Appliances", "Books", "Gaming & Hobbies",
+        "Fitness & Outdoors", "Health & Beauty", "Home Decor"
+    ]
+
+    seller_id = random.choice(list(existing_seller_ids)) if existing_seller_ids else 1 # Fallback if no sellers
+
+    return {
+        "name": random.choice(product_names),
+        "description": random.choice(product_descriptions),
+        "price": round(random.uniform(5.00, 1500.00), 2),
+        "category": random.choice(product_categories),
+        "stock": random.randint(0, 100),
+        "seller_id": seller_id,
+    }
+
+def generate_seller(seller_id):
+    seller_names = [
+        "Global Gadgets", "Home & Hearth Emporium", "Bookworm Haven",
+        "Active Life Gear", "Beauty Oasis", "The Tech Zone", "Gourmet Kitchenware",
+        "Paperback Paradise", "Outdoor Adventures Inc.", "Wellness Wonders"
+    ]
+    return {
+        "name": random.choice(seller_names),
+        "rating": round(random.uniform(3.0, 5.0), 1),
+    }
+
+def generate_review(product_id, existing_user_ids):
+    review_id = str(uuid.uuid4())
+    user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
+    return {
+        "review_id": review_id,
+        "user_id": user_id,
+        "rating": random.randint(1, 5),
+        "comment": random.choice([
+            "Absolutely fantastic!", "Works great, highly recommend.",
+            "Good value for money.", "Decent product, met expectations.",
+            "It's okay, but could be better.", "Not impressed, had issues.",
+            "Loved it!", "Could be improved.", "Very satisfied."
+        ]),
+        "date": generate_random_date(2023, 2025),
+    }
+
+def generate_question(product_id, existing_user_ids):
+    question_id = str(uuid.uuid4())
+    user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
+    question_texts = [
+        "Is this compatible with X device?", "What's the battery life like?",
+        "Does it come with a warranty?", "Is assembly required?",
+        "What materials is this made from?", "Can it be used outdoors?",
+        "Is it waterproof?", "How long does shipping usually take?"
+    ]
+    answer_texts = [
+        "Yes, it is.", "About 8 hours.", "Yes, a 1-year warranty.",
+        "Minimal assembly.", "High-quality plastic and metal.",
+        "It's designed for indoor use.", "No, it is not.",
+        "Typically 3-5 business days."
+    ]
+    answers = []
+    if random.random() < 0.7: # 70% chance of an answer
+        answer_id = str(uuid.uuid4())
+        answer_user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
+        answers.append({
+            "answer_id": answer_id,
+            "user_id": answer_user_id,
+            "answer": random.choice(answer_texts),
+            "date": generate_random_date(2023, 2025),
+        })
+
+    return {
+        "question_id": question_id,
+        "user_id": user_id,
+        "question": random.choice(question_texts),
+        "date": generate_random_date(2023, 2025),
+        "answers": answers,
+    }
+
+# Initialize the DEFAULT_STATE structure
 DEFAULT_STATE = {
-    "users": {
-        "alice.smith@example.com": {
-            "first_name": "Alice",
-            "last_name": "Smith",
-            "email": "alice.smith@example.com",
-            "balance": 125.75,
-            "friends": ["charlie.brown@example.com"],
-            "payment_cards": {
-                1: {"card_name": "Alice's Visa", "owner_name": "Alice Smith", "card_number": 4111, "expiry_year": 2028, "expiry_month": 12, "cvv_number": 123},
-                6: {"card_name": "Alice's Mastercard", "owner_name": "Alice Smith", "card_number": 5222, "expiry_year": 2027, "expiry_month": 7, "cvv_number": 456}
-            },
-            "addresses": {
-                1: {"name": "Home Address", "street_address": "123 Oak Avenue", "city": "Springfield", "state": "IL", "country": "USA", "zip_code": 62704},
-                6: {"name": "Cabin Getaway", "street_address": "789 Lake View Rd", "city": "Lakefield", "state": "WI", "country": "USA", "zip_code": 54123}
-            },
-            "cart": {
-                2: {"product_id": 2, "name": "Wireless Earbuds", "quantity": 1, "price": 49.99}
-            },
-            "wish_list": {
-                4: {"product_id": 4, "name": "Coffee Maker", "price": 80.00}
-            },
-            "orders": {
-                101: {
-                    "order_id": 101,
-                    "order_date": (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d"),
-                    "total_amount": 75.00,
-                    "status": "delivered",
-                    "products": {
-                        1: {"product_id": 1, "name": "Laptop", "quantity": 1, "price": 75.00}
-                    }
-                },
-                105: {
-                    "order_id": 105,
-                    "order_date": (datetime.now() - timedelta(days=15)).strftime("%Y-%m-%d"),
-                    "total_amount": 30.00,
-                    "status": "delivered",
-                    "products": {
-                        3: {"product_id": 3, "name": "T-Shirt", "quantity": 1, "price": 20.00},
-                        5: {"product_id": 5, "name": "Water Bottle", "quantity": 1, "price": 10.00}
-                    }
-                },
-            },
-            "prime_subscriptions": {
-                1: {
-                    "subscription_id": 1,
-                    "plan": "monthly",
-                    "start_date": (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d"),
-                    "end_date": (datetime.now() + timedelta(days=30)).strftime("%Y-%m-%d"),
-                    "status": "active"
-                }
-            }
+    "users": {},
+    "current_user": None,
+    "products": {},
+    "sellers": {},
+    "product_reviews": {},
+    "product_questions": {},
+    "promotions": { # Adding a new section for promotions
+        str(uuid.uuid4()): {
+            "code": "SUMMERFUN",
+            "discount_percentage": 15,
+            "min_purchase_amount": 50.00,
+            "expiry_date": "2025-08-31",
+            "description": "15% off orders over $50 for summer!",
+            "is_active": True
         },
-        "bob.johnson@example.com": {
-            "first_name": "Robert",
-            "last_name": "Johnson",
-            "email": "bob.johnson@example.com",
-            "balance": 250.00,
-            "friends": ["alice.smith@example.com", "diana.prince@example.com"],
-            "payment_cards": {
-                2: {"card_name": "Bob's Credit Card", "owner_name": "Robert Johnson", "card_number": 5678, "expiry_year": 2029, "expiry_month": 10, "cvv_number": 456}
-            },
-            "addresses": {
-                2: {"name": "Work Address", "street_address": "456 Business Ave", "city": "Metropolis", "state": "NY", "country": "USA", "zip_code": 10001}
-            },
-            "cart": {},
-            "wish_list": {
-                3: {"product_id": 3, "name": "T-Shirt", "price": 20.00}
-            },
-            "orders": {
-                102: {
-                    "order_id": 102,
-                    "order_date": (datetime.now() - timedelta(days=10)).strftime("%Y-%m-%d"),
-                    "total_amount": 25.00,
-                    "status": "shipped",
-                    "products": {
-                        2: {"product_id": 2, "name": "Wireless Mouse", "quantity": 1, "price": 25.00}
-                    }
-                }
-            },
-            "prime_subscriptions": {}
-        },
-        "charlie.brown@example.com": {
-            "first_name": "Charles",
-            "last_name": "Brown",
-            "email": "charlie.brown@example.com",
-            "balance": 50.00,
-            "friends": ["alice.smith@example.com"],
-            "payment_cards": {
-                3: {"card_name": "Charlie's Card", "owner_name": "Charles Brown", "card_number": 9876, "expiry_year": 2027, "expiry_month": 6, "cvv_number": 789}
-            },
-            "addresses": {
-                3: {"name": "Apartment", "street_address": "789 Pine Ln", "city": "Smallville", "state": "CA", "country": "USA", "zip_code": 90210}
-            },
-            "cart": {
-                1: {"product_id": 1, "name": "Laptop", "quantity": 1, "price": 75.00}
-            },
-            "wish_list": {},
-            "orders": {},
-            "prime_subscriptions": {
-                2: {
-                    "subscription_id": 2,
-                    "plan": "yearly",
-                    "start_date": (datetime.now() - timedelta(days=60)).strftime("%Y-%m-%d"),
-                    "end_date": (datetime.now() + timedelta(days=305)).strftime("%Y-%m-%d"),
-                    "status": "active"
-                }
-            }
-        },
-        "diana.prince@example.com": {
-            "first_name": "Diana",
-            "last_name": "Prince",
-            "email": "diana.prince@example.com",
-            "balance": 500.00,
-            "friends": ["bob.johnson@example.com"],
-            "payment_cards": {
-                4: {"card_name": "Diana's Visa", "owner_name": "Diana Prince", "card_number": 1122, "expiry_year": 2030, "expiry_month": 3, "cvv_number": 101}
-            },
-            "addresses": {
-                4: {"name": "Vacation Home", "street_address": "321 Ocean Blvd", "city": "Beach City", "state": "FL", "country": "USA", "zip_code": 33455}
-            },
-            "cart": {},
-            "wish_list": {
-                1: {"product_id": 1, "name": "Laptop", "price": 75.00}
-            },
-            "orders": {
-                103: {
-                    "order_id": 103,
-                    "order_date": (datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d"),
-                    "total_amount": 40.00,
-                    "status": "processing",
-                    "products": {
-                        3: {"product_id": 3, "name": "T-Shirt", "quantity": 2, "price": 20.00}
-                    }
-                },
-                104: {
-                    "order_id": 104,
-                    "order_date": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d"),
-                    "total_amount": 25.00,
-                    "status": "pending",
-                    "products": {
-                        2: {"product_id": 2, "name": "Wireless Mouse", "quantity": 1, "price": 25.00}
-                    }
-                }
-            },
-            "prime_subscriptions": {
-                3: {
-                    "subscription_id": 3,
-                    "plan": "monthly",
-                    "start_date": (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d"),
-                    "end_date": (datetime.now() + timedelta(days=25)).strftime("%Y-%m-%d"),
-                    "status": "active"
-                }
-            }
-        },
-        "eve.adams@example.com": {
-            "first_name": "Eve",
-            "last_name": "Adams",
-            "email": "eve.adams@example.com",
-            "balance": 150.00,
-            "friends": ["charlie.brown@example.com"],
-            "payment_cards": {
-                5: {"card_name": "Eve's MasterCard", "owner_name": "Eve Adams", "card_number": 3344, "expiry_year": 2026, "expiry_month": 9, "cvv_number": 222}
-            },
-            "addresses": {
-                5: {"name": "Primary Home", "street_address": "876 River Rd", "city": "Riverside", "state": "GA", "country": "USA", "zip_code": 30303}
-            },
-            "cart": {},
-            "wish_list": {
-                1: {"product_id": 1, "name": "Laptop", "price": 75.00}
-            },
-            "orders": {},
-            "prime_subscriptions": {}
-        },
-        "frank.jones@example.com": {
-            "first_name": "Frank",
-            "last_name": "Jones",
-            "email": "frank.jones@example.com",
-            "balance": 80.00,
-            "friends": [],
-            "payment_cards": {},
-            "addresses": {
-                7: {"name": "Apartment", "street_address": "555 Cedar St", "city": "Townsville", "state": "TX", "country": "USA", "zip_code": 75001}
-            },
-            "cart": {
-                5: {"product_id": 5, "name": "Water Bottle", "quantity": 2, "price": 10.00}
-            },
-            "wish_list": {},
-            "orders": {
-                106: {
-                    "order_id": 106,
-                    "order_date": (datetime.now() - timedelta(days=3)).strftime("%Y-%m-%d"),
-                    "total_amount": 60.00,
-                    "status": "shipped",
-                    "products": {
-                        4: {"product_id": 4, "name": "Coffee Maker", "quantity": 1, "price": 80.00}
-                    }
-                }
-            },
-            "prime_subscriptions": {
-                4: {
-                    "subscription_id": 4,
-                    "plan": "monthly",
-                    "start_date": (datetime.now() - timedelta(days=10)).strftime("%Y-%m-%d"),
-                    "end_date": (datetime.now() + timedelta(days=20)).strftime("%Y-%m-%d"),
-                    "status": "active"
-                }
-            }
-        },
-        "grace.taylor@example.com": {
-            "first_name": "Grace",
-            "last_name": "Taylor",
-            "email": "grace.taylor@example.com",
-            "balance": 300.00,
-            "friends": ["alice.smith@example.com", "frank.jones@example.com"],
-            "payment_cards": {
-                8: {"card_name": "Grace's Discover", "owner_name": "Grace Taylor", "card_number": 9988, "expiry_year": 2029, "expiry_month": 11, "cvv_number": 333}
-            },
-            "addresses": {
-                8: {"name": "Home", "street_address": "101 Elm Street", "city": "Maplewood", "state": "OR", "country": "USA", "zip_code": 97005}
-            },
-            "cart": {},
-            "wish_list": {},
-            "orders": {},
-            "prime_subscriptions": {}
-        },
-    },
-    "current_user": "alice.smith@example.com",
-    "products": {
-        1: {
-            "product_id": 1,
-            "name": "Laptop",
-            "description": "Powerful laptop for all your needs with a 15-inch display.",
-            "price": 750.00,
-            "product_type": "electronics",
-            "color": "silver",
-            "relative_size": "medium",
-            "product_rating": 4.5,
-            "seller_id": 1,
-            "stock": 10
-        },
-        2: {
-            "product_id": 2,
-            "name": "Wireless Mouse",
-            "description": "Ergonomic wireless mouse with customizable buttons.",
-            "price": 25.00,
-            "product_type": "electronics",
-            "color": "black",
-            "relative_size": "small",
-            "product_rating": 4.0,
-            "seller_id": 1,
-            "stock": 50
-        },
-        3: {
-            "product_id": 3,
-            "name": "T-Shirt",
-            "description": "Comfortable 100% \cotton t-shirt, breathable and soft.",
-            "price": 20.00,
-            "product_type": "apparel",
-            "color": "blue",
-            "relative_size": "large",
-            "product_rating": 4.2,
-            "seller_id": 2,
-            "stock": 100
-        },
-        4: {
-            "product_id": 4,
-            "name": "Coffee Maker",
-            "description": "Automatic drip coffee maker with a 12-cup capacity.",
-            "price": 80.00,
-            "product_type": "home_appliances",
-            "color": "black",
-            "relative_size": "medium",
-            "product_rating": 4.7,
-            "seller_id": 3,
-            "stock": 20
-        },
-        5: {
-            "product_id": 5,
-            "name": "Water Bottle",
-            "description": "Insulated stainless steel water bottle, keeps drinks cold for 24 hours.",
-            "price": 10.00,
-            "product_type": "kitchen_dining",
-            "color": "red",
-            "relative_size": "small",
-            "product_rating": 4.9,
-            "seller_id": 2,
-            "stock": 200
-        },
-        6: {
-            "product_id": 6,
-            "name": "Bluetooth Speaker",
-            "description": "Portable Bluetooth speaker with rich bass and clear sound.",
-            "price": 60.00,
-            "product_type": "electronics",
-            "color": "grey",
-            "relative_size": "small",
-            "product_rating": 4.3,
-            "seller_id": 1,
-            "stock": 30
-        },
-    },
-    "sellers": {
-        1: {
-            "seller_id": 1,
-            "name": "ElectroTech Solutions",
-            "rating": 4.8
-        },
-        2: {
-            "seller_id": 2,
-            "name": "Trendy Threads Co.",
-            "rating": 4.5
-        },
-        3: {
-            "seller_id": 3,
-            "name": "Home Comforts Ltd.",
-            "rating": 4.7
+        str(uuid.uuid4()): {
+            "code": "NEWCUSTOMER20",
+            "discount_percentage": 20,
+            "min_purchase_amount": 0.00,
+            "expiry_date": "2025-12-31",
+            "description": "20% off your first order!",
+            "is_active": True
         }
     },
-    "product_reviews": {
-        1: [
-            {"review_id": 1, "product_id": 1, "user_email": "alice.smith@example.com", "rating": 5, "comment": "Amazing laptop for coding!", "is_verified": True},
-            {"review_id": 2, "product_id": 1, "user_email": "diana.prince@example.com", "rating": 4, "comment": "Good value, but battery life could be better.", "is_verified": True}
-        ],
-        3: [
-            {"review_id": 3, "product_id": 3, "user_email": "bob.johnson@example.com", "rating": 4, "comment": "Comfortable and fits well.", "is_verified": True}
-        ],
-        5: [
-            {"review_id": 4, "product_id": 5, "user_email": "frank.jones@example.com", "rating": 5, "comment": "My new favorite water bottle!", "is_verified": True}
-        ]
-    },
-    "product_questions": {
-        1: [
-            {"question_id": 1, "product_id": 1, "user_email": "charlie.brown@example.com", "question": "Does it come with Windows Pro or Home?", "answers": [
-                {"answer_id": 1, "user_email": "ElectroTech Solutions", "answer": "It comes pre-installed with Windows 11 Home edition."}
-            ]}
-        ],
-        4: [
-            {"question_id": 2, "product_id": 4, "user_email": "grace.taylor@example.com", "question": "Is this coffee maker programmable?", "answers": []}
-        ]
-    },
-    "deliverers": {
-        1: {"deliverer_id": 1, "name": "Speedy Deliveries"},
-        2: {"deliverer_id": 2, "name": "Global Freight"}
-    },
-    "prime_plans": {
-        "monthly": {"price": 14.99, "description": "Monthly Prime subscription with free express shipping."},
-        "yearly": {"price": 139.00, "description": "Yearly Prime subscription, saving you money, includes free express shipping and exclusive deals."}
-    },
-    "transaction_counter": 0,
-    "payment_card_counter": 8,
-    "address_counter": 8,
-    "order_counter": 106,
-    "return_counter": 0,
-    "prime_subscription_counter": 4,
-    "product_review_counter": 4,
-    "product_question_counter": 2,
+    "customer_service_tickets": { # Adding a new section for customer service tickets
+        str(uuid.uuid4()): {
+            "user_id": "", # Will be linked to a generated user
+            "subject": "Missing Item in Order",
+            "description": "Order TRK123456789 arrived, but Product 5 was missing.",
+            "status": "open",
+            "created_date": "2025-07-20",
+            "last_updated_date": "2025-07-25",
+            "agent_notes": "Checked inventory, sending replacement for Product 5."
+        },
+        str(uuid.uuid4()): {
+            "user_id": "", # Will be linked to a generated user
+            "subject": "Issue with Payment",
+            "description": "My card was declined for order TRK987654321.",
+            "status": "closed",
+            "created_date": "2025-06-01",
+            "last_updated_date": "2025-06-05",
+            "agent_notes": "User updated card details, payment successful now."
+        }
+    }
 }
 
-class AmazonApis:
+# Keep track of generated UUIDs for linking friends, orders, etc.
+existing_uuids = {
+    "users": set(),
+    "payment_cards": set(),
+    "addresses": set(),
+    "orders": set(),
+    "returns": set()
+}
+
+# --- Add initial users (Alice and Bob) and ensure their IDs are tracked ---
+alice_info, alice_id = generate_user(existing_uuids, "Alice", "Smith", "alice.smith@example.com", 125.75)
+bob_info, bob_id = generate_user(existing_uuids, "Bob", "Johnson", "bob.johnson@example.com", 50.25)
+DEFAULT_STATE["users"].update(alice_info)
+DEFAULT_STATE["users"].update(bob_info)
+
+# Manually ensure Alice and Bob can be friends
+if bob_id not in DEFAULT_STATE["users"][alice_id]["friends"]:
+    DEFAULT_STATE["users"][alice_id]["friends"].append(bob_id)
+if alice_id not in DEFAULT_STATE["users"][bob_id]["friends"]:
+    DEFAULT_STATE["users"][bob_id]["friends"].append(alice_id)
+
+# --- Generate 48 more diverse users ---
+for _ in range(48):
+    new_user_info, new_user_id = generate_user(existing_uuids)
+    DEFAULT_STATE["users"].update(new_user_info)
+
+# --- Add more products (totaling around 15-20) ---
+num_initial_products = len(DEFAULT_STATE["products"])
+# Add a few more sellers first
+for i in range(3, 6): # Add sellers 3, 4, 5
+    DEFAULT_STATE["sellers"][i] = generate_seller(i)
+
+existing_seller_ids = list(DEFAULT_STATE["sellers"].keys())
+
+for i in range(num_initial_products + 1, num_initial_products + 16): # Add 15 more products
+    DEFAULT_STATE["products"][i] = generate_product(i, existing_seller_ids)
+
+# --- Generate more product reviews and questions ---
+all_product_ids = list(DEFAULT_STATE["products"].keys())
+all_user_ids = list(DEFAULT_STATE["users"].keys())
+
+for product_id in all_product_ids:
+    if product_id not in DEFAULT_STATE["product_reviews"]:
+        DEFAULT_STATE["product_reviews"][product_id] = []
+    if product_id not in DEFAULT_STATE["product_questions"]:
+        DEFAULT_STATE["product_questions"][product_id] = []
+
+    num_reviews = random.randint(0, 5)
+    for _ in range(num_reviews):
+        DEFAULT_STATE["product_reviews"][product_id].append(generate_review(product_id, all_user_ids))
+
+    num_questions = random.randint(0, 3)
+    for _ in range(num_questions):
+        DEFAULT_STATE["product_questions"][product_id].append(generate_question(product_id, all_user_ids))
+
+# --- Link customer service tickets to actual user IDs ---
+if all_user_ids:
+    for ticket_id in DEFAULT_STATE["customer_service_tickets"]:
+        DEFAULT_STATE["customer_service_tickets"][ticket_id]["user_id"] = random.choice(all_user_ids)
+
+print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
+print(f"Total number of products generated: {len(DEFAULT_STATE['products'])}")
+print(f"Total number of sellers generated: {len(DEFAULT_STATE['sellers'])}")
+
+# You would save DEFAULT_STATE to a JSON file or similar for your application
+# with open('diverse_amazon_state.json', 'w') as f:
+#     json.dump(DEFAULT_STATE, f, indent=2)
+
+class AmazonAPI:
     def __init__(self):
-        self.users: Dict[EmailStr, Dict[str, Any]]
-        self.current_user: EmailStr | None
-        self.products: Dict[int, Dict[str, Any]]
-        self.sellers: Dict[int, Dict[str, Any]]
-        self.product_reviews: Dict[int, List[Dict[str, Any]]]
-        self.product_questions: Dict[int, List[Dict[str, Any]]]
-        self.deliverers: Dict[int, Dict[str, Any]]
-        self.prime_plans: Dict[str, Dict[str, Any]]
-        self.transaction_counter: int
-        self.payment_card_counter: int
-        self.address_counter: int
-        self.order_counter: int
-        self.return_counter: int
-        self.prime_subscription_counter: int
-        self.product_review_counter: int
-        self.product_question_counter: int
-        self._api_description = "This tool provides core functionalities for managing user accounts, Browse products, managing shopping cart and wish lists, placing orders, handling returns, and managing Prime subscriptions on Amazon."
+        self.state = deepcopy(DEFAULT_STATE)
 
-    def _load_scenario(self, scenario: dict, long_context=False) -> None:
+    def _get_user_data(self, user: User) -> Union[Dict, None]:
         """
-        Load a scenario into the AmazonApis instance.
-        Args:
-            scenario (dict): A dictionary containing Amazon data.
+        Retrieves user data using user_id.
         """
-        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
-        self.users = scenario.get("users", DEFAULT_STATE_COPY["users"])
-        self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
-        self.products = scenario.get("products", DEFAULT_STATE_COPY["products"])
-        self.sellers = scenario.get("sellers", DEFAULT_STATE_COPY["sellers"])
-        self.product_reviews = scenario.get("product_reviews", DEFAULT_STATE_COPY["product_reviews"])
-        self.product_questions = scenario.get("product_questions", DEFAULT_STATE_COPY["product_questions"])
-        self.deliverers = scenario.get("deliverers", DEFAULT_STATE_COPY["deliverers"])
-        self.prime_plans = scenario.get("prime_plans", DEFAULT_STATE_COPY["prime_plans"])
-        self.transaction_counter = scenario.get("transaction_counter", DEFAULT_STATE_COPY["transaction_counter"])
-        self.payment_card_counter = scenario.get("payment_card_counter", DEFAULT_STATE_COPY["payment_card_counter"])
-        self.address_counter = scenario.get("address_counter", DEFAULT_STATE_COPY["address_counter"])
-        self.order_counter = scenario.get("order_counter", DEFAULT_STATE_COPY["order_counter"])
-        self.return_counter = scenario.get("return_counter", DEFAULT_STATE_COPY["return_counter"])
-        self.prime_subscription_counter = scenario.get("prime_subscription_counter", DEFAULT_STATE_COPY["prime_subscription_counter"])
-        self.product_review_counter = scenario.get("product_review_counter", DEFAULT_STATE_COPY["product_review_counter"])
-        self.product_question_counter = scenario.get("product_question_counter", DEFAULT_STATE_COPY["product_question_counter"])
-
-    def _get_user_data(self, user: User) -> Dict:
-        """Helper to get user data."""
-        return self.users.get(user.email, {})
+        return self.state["users"].get(user.user_id)
 
     def _update_user_data(self, user: User, key: str, value: Any):
-        """Helper to update user data."""
-        if user.email in self.users:
-            self.users[user.email][key] = value
-
-    def show_profile(self, email: EmailStr) -> Dict[str, Union[bool, Dict]]:
         """
-        Shows the profile of a user.
-
-        Args:
-            email (EmailStr): The email of the user whose profile is to be shown.
-
-        Returns:
-            Dict: A dictionary containing 'profile_status' (bool) and 'user_profile' (Dict) if successful.
+        Updates a specific key in user data using user_id.
         """
-        user_profile = self.users.get(str(email))
-        if user_profile:
-            return {
-                "profile_status": True,
-                "user_profile": {
-                    "first_name": user_profile["first_name"],
-                    "last_name": user_profile["last_name"],
-                    "email": user_profile["email"],
-                },
-            }
-        return {"profile_status": False, "user_profile": {}}
+        if user.user_id in self.state["users"]:
+            self.state["users"][user.user_id][key] = value
 
-    def show_account(self, user: User) -> Dict[str, Union[bool, Dict]]:
+    def register_user(
+        self,
+        first_name: str,
+        last_name: str,
+        email: str,
+        password: str
+    ) -> Dict[str, Union[bool, str]]:
         """
-        Shows the full account details of the current user.
+        Registers a new user with a unique user_id.
+        """
+        for user_id, user_data in self.state["users"].items():
+            if user_data["email"] == email:
+                return {"register_status": False, "message": "User with this email already exists."}
 
-        Args:
-            user (User): The current user object.
+        new_user_id = str(uuid.uuid4())
+        self.state["users"][new_user_id] = {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "balance": 0.0,
+            "friends": [],
+            "payment_cards": {},
+            "addresses": {},
+            "cart": {},
+            "wish_list": {},
+            "orders": {},
+            "prime_subscriptions": {},
+            "returns": {},
+        }
+        return {"register_status": True, "message": f"User {email} registered successfully with ID {new_user_id}."}
 
-        Returns:
-            Dict: A dictionary containing 'account_status' (bool) and 'user_account' (Dict) if successful.
+    def login_user(self, email: str, password: str) -> Dict[str, Union[bool, str]]:
+        """
+        Logs in a user and sets current_user to their user_id.
+        In a real app, password verification would happen here.
+        """
+        for user_id, user_data in self.state["users"].items():
+            if user_data["email"] == email:
+                self.state["current_user"] = user_id
+                return {"login_status": True, "message": f"User {email} logged in successfully."}
+        return {"login_status": False, "message": "Invalid email or password."}
+
+    def show_profile(self, user: User) -> Dict[str, Union[bool, Dict]]:
+        """
+        Shows the profile of the specified user using their user_id.
+        Function signature updated to take User object which holds user_id.
         """
         user_data = self._get_user_data(user)
         if user_data:
-            return {"account_status": True, "user_account": user_data}
-        return {"account_status": False, "user_account": {}}
+            return {"profile_status": True, "profile": user_data}
+        return {"profile_status": False, "profile": {}}
+
+    def show_account(self, user: User) -> Dict[str, Union[bool, str, Dict]]:
+        """
+        Shows account details for the current user, using user_id.
+        Function signature remains the same, but now `user` object internally holds `user_id`.
+        """
+        user_data = self._get_user_data(user)
+        if user_data:
+            return {
+                "account_status": True,
+                "message": f"Account details for {user_data.get('email', 'N/A')}",
+                "account": {
+                    "balance": user_data["balance"],
+                    "payment_cards": list(user_data["payment_cards"].values()),
+                    "addresses": list(user_data["addresses"].values()),
+                },
+            }
+        return {"account_status": False, "message": "User not found."}
 
     def delete_account(self, user: User) -> Dict[str, Union[bool, str]]:
         """
-        Deletes the account of the current user.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'delete_status' (bool) and 'message' (str).
+        Deletes the user's account using user_id.
         """
-        if user.email in self.users:
-            del self.users[user.email]
-            if self.current_user == user.email:
-                self.current_user = None
-            return {"delete_status": True, "message": f"Account {user.email} deleted successfully."}
+        if user.user_id in self.state["users"]:
+            del self.state["users"][user.user_id]
+            if self.state["current_user"] == user.user_id:
+                self.state["current_user"] = None
+            return {"delete_status": True, "message": f"Account for user ID {user.user_id} deleted successfully."}
         return {"delete_status": False, "message": "User not found."}
 
-    def show_product(self, product_id: int) -> Dict[str, Union[bool, Dict]]:
+    def add_friend(self, user: User, friend_email: str) -> Dict[str, Union[bool, str]]:
         """
-        Shows the details of a specific product.
-
-        Args:
-            product_id (int): The ID of the product.
-
-        Returns:
-            Dict: A dictionary containing 'product_status' (bool) and 'product' (Dict) if successful.
-        """
-        product = self.products.get(product_id)
-        if product:
-            return {"product_status": True, "product": product}
-        return {"product_status": False, "product": {}}
-
-    def search_sellers(self, query: str = "", page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Searches for sellers, optionally filtered by a query.
-
-        Args:
-            query (str): Optional search query to filter sellers by name.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-
-        Returns:
-            Dict: A dictionary containing 'sellers_status' (bool) and 'sellers' (List[Dict]) if successful.
-        """
-        all_sellers = list(self.sellers.values())
-        filtered_sellers = [
-            seller for seller in all_sellers
-            if query.lower() in seller["name"].lower()
-        ]
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_sellers = filtered_sellers[start_index:end_index]
-
-        return {"sellers_status": True, "sellers": paginated_sellers}
-
-    def show_seller(self, seller_id: int) -> Dict[str, Union[bool, Dict]]:
-        """
-        Shows the details of a specific seller.
-
-        Args:
-            seller_id (int): The ID of the seller.
-
-        Returns:
-            Dict: A dictionary containing 'seller_status' (bool) and 'seller' (Dict) if successful.
-        """
-        seller = self.sellers.get(seller_id)
-        if seller:
-            return {"seller_status": True, "seller": seller}
-        return {"seller_status": False, "seller": {}}
-
-    def search_product_types(self, query: str = "", page_index: int = 1, page_limit: int = 10) -> Dict[str, Union[bool, List[str]]]:
-        """
-        Searches for product types, optionally filtered by a query.
-
-        Args:
-            query (str): Optional search query to filter product types.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-
-        Returns:
-            Dict: A dictionary containing 'product_types_status' (bool) and 'product_types' (List[str]) if successful.
-        """
-        all_product_types = sorted(list(set(product["product_type"] for product in self.products.values())))
-        filtered_product_types = [
-            pt for pt in all_product_types
-            if query.lower() in pt.lower()
-        ]
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_product_types = filtered_product_types[start_index:end_index]
-
-        return {"product_types_status": True, "product_types": paginated_product_types}
-
-    def show_product_feature_choices(self, product_type: str | None) -> Dict[str, Union[bool, Dict]]:
-        """
-        Shows available feature choices for a given product type (e.g., colors, sizes).
-
-        Args:
-            product_type (str | None): The product type to get feature choices for. If None, shows all.
-
-        Returns:
-            Dict: A dictionary containing 'feature_choices_status' (bool) and 'feature_choices' (Dict).
-        """
-        feature_choices = {
-            "colors": [],
-            "relative_sizes": ["extra-small", "small", "medium", "large", "extra-large"]
-        }
-        
-        products_to_consider = []
-        if product_type:
-            products_to_consider = [p for p in self.products.values() if p["product_type"] == product_type]
-        else:
-            products_to_consider = list(self.products.values())
-
-        for product in products_to_consider:
-            if "color" in product and product["color"] not in feature_choices["colors"]:
-                feature_choices["colors"].append(product["color"])
-        
-        feature_choices["colors"].sort()
-        
-        return {"feature_choices_status": True, "feature_choices": feature_choices}
-
-    def search_products(
-        self,
-        query: str = "",
-        page_index: int = 1,
-        page_limit: int = 10,
-        product_type: str = None,
-        color: str = None,
-        relative_size: Literal["extra-small", "small", "medium", "large", "extra-large"] = None,
-        min_price: float = 0.0,
-        max_price: float = float('inf'),
-        min_product_rating: float = 0.0,
-        max_product_rating: float = 5.0,
-        min_seller_rating: float = 0.0,
-        max_seller_rating: float = 5.0,
-        seller_id: int | None = None,
-        sort_by: str | None = None,
-    ) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Searches for products with various filtering and sorting options.
-
-        Args:
-            query (str): Optional search query for product name or description.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            product_type (str): Filter by product type.
-            color (str): Filter by product color.
-            relative_size (Literal): Filter by product relative size.
-            min_price (float): Minimum price.
-            max_price (float): Maximum price.
-            min_product_rating (float): Minimum product rating.
-            max_product_rating (float): Maximum product rating.
-            min_seller_rating (float): Minimum seller rating.
-            max_seller_rating (float): Maximum seller rating.
-            seller_id (int | None): Filter by specific seller ID.
-            sort_by (str | None): Field to sort by (e.g., 'price_asc', 'price_desc', 'rating_asc', 'rating_desc').
-
-        Returns:
-            Dict: A dictionary containing 'products_status' (bool) and 'products' (List[Dict]) if successful.
-        """
-        filtered_products = []
-        for product in self.products.values():
-            if query and not (query.lower() in product["name"].lower() or query.lower() in product["description"].lower()):
-                continue
-            if product_type and product["product_type"] != product_type:
-                continue
-            if color and product.get("color") != color:
-                continue
-            if relative_size and product.get("relative_size") != relative_size:
-                continue
-            if not (min_price <= product["price"] <= max_price):
-                continue
-            if not (min_product_rating <= product["product_rating"] <= max_product_rating):
-                continue
-            
-            seller = self.sellers.get(product["seller_id"])
-            if seller and not (min_seller_rating <= seller["rating"] <= max_seller_rating):
-                continue
-            
-            if seller_id and product["seller_id"] != seller_id:
-                continue
-            
-            filtered_products.append(product)
-
-        if sort_by:
-            if sort_by == 'price_asc':
-                filtered_products.sort(key=lambda p: p['price'])
-            elif sort_by == 'price_desc':
-                filtered_products.sort(key=lambda p: p['price'], reverse=True)
-            elif sort_by == 'rating_asc':
-                filtered_products.sort(key=lambda p: p['product_rating'])
-            elif sort_by == 'rating_desc':
-                filtered_products.sort(key=lambda p: p['product_rating'], reverse=True)
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_products = filtered_products[start_index:end_index]
-
-        return {"products_status": True, "products": paginated_products}
-
-    def show_cart(self, user: User) -> Dict[str, Union[bool, List[Dict], float]]:
-        """
-        Shows the contents of the current user's shopping cart.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'cart_status' (bool), 'cart_items' (List[Dict]), and 'total_price' (float).
+        Adds a friend by their email, converting it to user_id.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"cart_status": False, "cart_items": [], "total_price": 0.0}
+            return {"add_friend_status": False, "message": "User not found."}
 
-        cart_items = []
-        total_price = 0.0
-        for product_id, quantity in user_data.get("cart", {}).items():
-            product = self.products.get(product_id)
-            if product:
-                item_price = product["price"] * quantity
-                cart_items.append({
-                    "product_id": product_id,
-                    "name": product["name"],
-                    "quantity": quantity,
-                    "price_per_unit": product["price"],
-                    "total_item_price": item_price
-                })
-                total_price += item_price
-        
-        return {"cart_status": True, "cart_items": cart_items, "total_price": total_price}
+        friend_user_id = None
+        for u_id, u_data in self.state["users"].items():
+            if u_data["email"] == friend_email:
+                friend_user_id = u_id
+                break
 
-    def add_product_to_cart(
-        self, product_id: int, quantity: int, clear_cart_first: bool, user: User
-    ) -> Dict[str, Union[bool, str]]:
+        if not friend_user_id:
+            return {"add_friend_status": False, "message": f"Friend with email {friend_email} not found."}
+
+        if friend_user_id == user.user_id:
+            return {"add_friend_status": False, "message": "Cannot add yourself as a friend."}
+
+        if friend_user_id in user_data["friends"]:
+            return {"add_friend_status": False, "message": f"{friend_email} is already your friend."}
+
+        user_data["friends"].append(friend_user_id)
+        self._update_user_data(user, "friends", user_data["friends"])
+        return {"add_friend_status": True, "message": f"Successfully added {friend_email} as a friend."}
+
+    def remove_friend(self, user: User, friend_email: str) -> Dict[str, Union[bool, str]]:
         """
-        Adds a product to the current user's cart.
-
-        Args:
-            product_id (int): The ID of the product to add.
-            quantity (int): The quantity to add.
-            clear_cart_first (bool): If True, clears the cart before adding the product.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'add_status' (bool) and 'message' (str).
+        Removes a friend by their email, converting it to user_id.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"add_status": False, "message": "User not found."}
+            return {"remove_friend_status": False, "message": "User not found."}
 
-        product = self.products.get(product_id)
-        if not product:
-            return {"add_status": False, "message": f"Product with ID {product_id} not found."}
-        if product["stock"] < quantity:
-            return {"add_status": False, "message": f"Not enough stock for product {product['name']} (available: {product['stock']})."}
+        friend_user_id = None
+        for u_id, u_data in self.state["users"].items():
+            if u_data["email"] == friend_email:
+                friend_user_id = u_id
+                break
 
-        cart = user_data.get("cart", {})
-        if clear_cart_first:
-            cart = {}
-        
-        cart[product_id] = cart.get(product_id, 0) + quantity
-        self._update_user_data(user, "cart", cart)
-        return {"add_status": True, "message": f"{quantity} of {product['name']} added to cart."}
+        if not friend_user_id:
+            return {"remove_friend_status": False, "message": f"Friend with email {friend_email} not found."}
 
-    def update_product_quantity_in_cart(
-        self, product_id: int, quantity: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
+        if friend_user_id not in user_data["friends"]:
+            return {"remove_friend_status": False, "message": f"{friend_email} is not in your friends list."}
+
+        user_data["friends"].remove(friend_user_id)
+        self._update_user_data(user, "friends", user_data["friends"])
+        return {"remove_friend_status": True, "message": f"Successfully removed {friend_email} from friends."}
+
+    def show_friends(self, user: User) -> Dict[str, Union[bool, List[str]]]:
         """
-        Updates the quantity of a product in the current user's cart.
-
-        Args:
-            product_id (int): The ID of the product to update.
-            quantity (int): The new quantity.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'update_status' (bool) and 'message' (str).
+        Shows the list of friends (emails) for the current user.
+        Converts friend user_ids back to emails for display.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"update_status": False, "message": "User not found."}
-
-        cart = user_data.get("cart", {})
-        if product_id not in cart:
-            return {"update_status": False, "message": f"Product with ID {product_id} not in cart."}
-        
-        product = self.products.get(product_id)
-        if not product:
-            return {"update_status": False, "message": f"Product with ID {product_id} not found."}
-        if product["stock"] < quantity:
-            return {"update_status": False, "message": f"Not enough stock for product {product['name']} (available: {product['stock']})."}
-
-        if quantity <= 0:
-            del cart[product_id]
-            message = f"Product {product['name']} removed from cart."
-        else:
-            cart[product_id] = quantity
-            message = f"Quantity of {product['name']} updated to {quantity} in cart."
-            
-        self._update_user_data(user, "cart", cart)
-        return {"update_status": True, "message": message}
-
-    def delete_product_from_cart(
-        self, product_id: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Deletes a product from the current user's cart.
-
-        Args:
-            product_id (int): The ID of the product to delete.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'delete_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"delete_status": False, "message": "User not found."}
-
-        cart = user_data.get("cart", {})
-        if product_id in cart:
-            del cart[product_id]
-            self._update_user_data(user, "cart", cart)
-            return {"delete_status": True, "message": f"Product with ID {product_id} removed from cart."}
-        return {"delete_status": False, "message": f"Product with ID {product_id} not found in cart."}
-
-    def apply_promo_code_to_cart(self, promo_code: str, user: User) -> Dict[str, Union[bool, str]]:
-        """
-        Applies a promo code to the current user's cart. (Dummy implementation)
-
-        Args:
-            promo_code (str): The promo code to apply.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'promo_status' (bool) and 'message' (str).
-        """
-        if user.email not in self.users:
-            return {"promo_status": False, "message": "User not found."}
-        
-        if promo_code == "DISCOUNT10":
-            return {"promo_status": True, "message": f"Promo code '{promo_code}' applied successfully. 10% discount added."}
-        return {"promo_status": False, "message": f"Invalid promo code: {promo_code}."}
-
-    def remove_promo_code_from_cart(self, user: User) -> Dict[str, Union[bool, str]]:
-        """
-        Removes any applied promo code from the current user's cart. (Dummy implementation)
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'promo_status' (bool) and 'message' (str).
-        """
-        if user.email not in self.users:
-            return {"promo_status": False, "message": "User not found."}
-        
-        return {"promo_status": True, "message": "Promo code removed from cart."}
-
-    def show_wish_list(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Shows the contents of the current user's wish list.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'wish_list_status' (bool) and 'wish_list_items' (List[Dict]) if successful.
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"wish_list_status": False, "wish_list_items": []}
-
-        wish_list_items = []
-        for product_id, quantity in user_data.get("wish_list", {}).items():
-            product = self.products.get(product_id)
-            if product:
-                wish_list_items.append({
-                    "product_id": product_id,
-                    "name": product["name"],
-                    "quantity": quantity,
-                    "price": product["price"]
-                })
-        
-        return {"wish_list_status": True, "wish_list_items": wish_list_items}
-
-    def add_product_to_wish_list(
-        self, product_id: int, quantity: int, clear_wish_list_first: bool, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Adds a product to the current user's wish list.
-
-        Args:
-            product_id (int): The ID of the product to add.
-            quantity (int): The quantity to add.
-            clear_wish_list_first (bool): If True, clears the wish list before adding the product.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'add_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"add_status": False, "message": "User not found."}
-
-        product = self.products.get(product_id)
-        if not product:
-            return {"add_status": False, "message": f"Product with ID {product_id} not found."}
-
-        wish_list = user_data.get("wish_list", {})
-        if clear_wish_list_first:
-            wish_list = {}
-        
-        wish_list[product_id] = wish_list.get(product_id, 0) + quantity
-        self._update_user_data(user, "wish_list", wish_list)
-        return {"add_status": True, "message": f"{quantity} of {product['name']} added to wish list."}
-
-    def update_product_quantity_in_wish_list(
-        self, product_id: int, quantity: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Updates the quantity of a product in the current user's wish list.
-
-        Args:
-            product_id (int): The ID of the product to update.
-            quantity (int): The new quantity.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'update_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"update_status": False, "message": "User not found."}
-
-        wish_list = user_data.get("wish_list", {})
-        if product_id not in wish_list:
-            return {"update_status": False, "message": f"Product with ID {product_id} not in wish list."}
-        
-        product = self.products.get(product_id)
-        if not product:
-            return {"update_status": False, "message": f"Product with ID {product_id} not found."}
-
-        if quantity <= 0:
-            del wish_list[product_id]
-            message = f"Product {product['name']} removed from wish list."
-        else:
-            wish_list[product_id] = quantity
-            message = f"Quantity of {product['name']} updated to {quantity} in wish list."
-            
-        self._update_user_data(user, "wish_list", wish_list)
-        return {"update_status": True, "message": message}
-
-    def delete_product_from_wish_list(
-        self, product_id: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Deletes a product from the current user's wish list.
-
-        Args:
-            product_id (int): The ID of the product to delete.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'delete_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"delete_status": False, "message": "User not found."}
-
-        wish_list = user_data.get("wish_list", {})
-        if product_id in wish_list:
-            del wish_list[product_id]
-            self._update_user_data(user, "wish_list", wish_list)
-            return {"delete_status": True, "message": f"Product with ID {product_id} removed from wish list."}
-        return {"delete_status": False, "message": f"Product with ID {product_id} not found in wish list."}
-
-    def move_product_from_cart_to_wish_list(
-        self, product_id: int, quantity: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Moves a product from the cart to the wish list.
-
-        Args:
-            product_id (int): The ID of the product to move.
-            quantity (int): The quantity to move.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'move_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"move_status": False, "message": "User not found."}
-
-        cart = user_data.get("cart", {})
-        wish_list = user_data.get("wish_list", {})
-
-        if product_id not in cart or cart[product_id] < quantity:
-            return {"move_status": False, "message": f"Product with ID {product_id} not in cart or insufficient quantity."}
-        
-        cart[product_id] -= quantity
-        if cart[product_id] == 0:
-            del cart[product_id]
-
-        wish_list[product_id] = wish_list.get(product_id, 0) + quantity
-
-        self._update_user_data(user, "cart", cart)
-        self._update_user_data(user, "wish_list", wish_list)
-        return {"move_status": True, "message": f"{quantity} of product {product_id} moved from cart to wish list."}
-
-    def move_product_from_wish_list_to_cart(
-        self, product_id: int, quantity: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Moves a product from the wish list to the cart.
-
-        Args:
-            product_id (int): The ID of the product to move.
-            quantity (int): The quantity to move.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'move_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"move_status": False, "message": "User not found."}
-
-        cart = user_data.get("cart", {})
-        wish_list = user_data.get("wish_list", {})
-
-        if product_id not in wish_list or wish_list[product_id] < quantity:
-            return {"move_status": False, "message": f"Product with ID {product_id} not in wish list or insufficient quantity."}
-        
-        wish_list[product_id] -= quantity
-        if wish_list[product_id] == 0:
-            del wish_list[product_id]
-
-        product = self.products.get(product_id)
-        if not product:
-            return {"move_status": False, "message": f"Product with ID {product_id} not found."}
-        if product["stock"] < quantity:
-            return {"move_status": False, "message": f"Not enough stock for product {product['name']} (available: {product['stock']})."}
-
-
-        cart[product_id] = cart.get(product_id, 0) + quantity
-
-        self._update_user_data(user, "cart", cart)
-        self._update_user_data(user, "wish_list", wish_list)
-        return {"move_status": True, "message": f"{quantity} of product {product_id} moved from wish list to cart."}
-
-    def clear_cart(self, user: User) -> Dict[str, Union[bool, str]]:
-        """
-        Clears the current user's shopping cart.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'clear_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"clear_status": False, "message": "User not found."}
-
-        self._update_user_data(user, "cart", {})
-        return {"clear_status": True, "message": "Cart cleared successfully."}
-
-    def add_gift_wrapping_to_product(
-        self, product_id: int, quantity: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Adds gift wrapping to a product in the cart. (Dummy implementation)
-
-        Args:
-            product_id (int): The ID of the product.
-            quantity (int): The quantity to apply gift wrapping to.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'gift_wrapping_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"gift_wrapping_status": False, "message": "User not found."}
-        
-        cart = user_data.get("cart", {})
-        if product_id not in cart or cart[product_id] < quantity:
-            return {"gift_wrapping_status": False, "message": f"Product {product_id} not in cart or insufficient quantity."}
-        
-        product = self.products.get(product_id)
-        if not product:
-            return {"gift_wrapping_status": False, "message": f"Product with ID {product_id} not found."}
-            
-        return {"gift_wrapping_status": True, "message": f"Gift wrapping added for {quantity} of {product['name']}."}
-
-    def remove_gift_wrapping_from_product(
-        self, product_id: int, user: User
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Removes gift wrapping from a product in the cart. (Dummy implementation)
-
-        Args:
-            product_id (int): The ID of the product.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'gift_wrapping_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"gift_wrapping_status": False, "message": "User not found."}
-        
-        cart = user_data.get("cart", {})
-        if product_id not in cart:
-            return {"gift_wrapping_status": False, "message": f"Product {product_id} not in cart."}
-            
-        product = self.products.get(product_id)
-        if not product:
-            return {"gift_wrapping_status": False, "message": f"Product with ID {product_id} not found."}
-
-        return {"gift_wrapping_status": True, "message": f"Gift wrapping removed for {product['name']}."}
-
-    def clear_wish_list(self, user: User) -> Dict[str, Union[bool, str]]:
-        """
-        Clears the current user's wish list.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'clear_status' (bool) and 'message' (str).
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"clear_status": False, "message": "User not found."}
-
-        self._update_user_data(user, "wish_list", {})
-        return {"clear_status": True, "message": "Wish list cleared successfully."}
-
-    def show_orders(
-        self, user: User, query: str = "", page_index: int = 1, page_limit: int = 10, sort_by: str | None = None
-    ) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Shows the current user's past orders, optionally filtered and sorted.
-
-        Args:
-            query (str): Optional search query to filter orders.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            sort_by (str | None): Field to sort by (e.g., 'date_asc', 'date_desc', 'total_asc', 'total_desc').
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'orders_status' (bool) and 'orders' (List[Dict]) if successful.
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"orders_status": False, "orders": []}
-
-        all_orders = list(user_data.get("orders", {}).values())
-        filtered_orders = [
-            order for order in all_orders
-            if query.lower() in str(order["order_id"]).lower() or
-               query.lower() in order["status"].lower() or
-               any(query.lower() in p["name"].lower() for p in order["products"].values())
-        ]
-
-        if sort_by:
-            if sort_by == 'date_asc':
-                filtered_orders.sort(key=lambda o: o['order_date'])
-            elif sort_by == 'date_desc':
-                filtered_orders.sort(key=lambda o: o['order_date'], reverse=True)
-            elif sort_by == 'total_asc':
-                filtered_orders.sort(key=lambda o: o['total_amount'])
-            elif sort_by == 'total_desc':
-                filtered_orders.sort(key=lambda o: o['total_amount'], reverse=True)
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_orders = filtered_orders[start_index:end_index]
-
-        return {"orders_status": True, "orders": paginated_orders}
-
-    def show_order(self, order_id: int, user: User) -> Dict[str, Union[bool, Dict]]:
-        """
-        Shows the details of a specific order for the current user.
-
-        Args:
-            order_id (int): The ID of the order.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'order_status' (bool) and 'order' (Dict) if successful.
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"order_status": False, "order": {}}
-
-        order = user_data.get("orders", {}).get(order_id)
-        if order:
-            return {"order_status": True, "order": order}
-        return {"order_status": False, "order": {}}
-
-    def place_order(
-        self, payment_card_id: int, address_id: int, user: User
-    ) -> Dict[str, Union[bool, str, int]]:
-        """
-        Places an order using the items in the current user's cart.
-
-        Args:
-            payment_card_id (int): The ID of the payment card to use.
-            address_id (int): The ID of the address to ship to.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'order_status' (bool), 'message' (str), and 'order_id' (int) if successful.
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"order_status": False, "message": "User not found."}
-
-        cart = user_data.get("cart", {})
-        if not cart:
-            return {"order_status": False, "message": "Cart is empty. Cannot place an order."}
-
-        payment_card = user_data.get("payment_cards", {}).get(payment_card_id)
-        if not payment_card:
-            return {"order_status": False, "message": f"Payment card with ID {payment_card_id} not found."}
-
-        address = user_data.get("addresses", {}).get(address_id)
-        if not address:
-            return {"order_status": False, "message": f"Address with ID {address_id} not found."}
-
-        new_order_id = self.order_counter + 1
-        self.order_counter = new_order_id
-
-        order_products = {}
-        total_amount = 0.0
-        for product_id, quantity in cart.items():
-            product = self.products.get(product_id)
-            if product and product["stock"] >= quantity:
-                order_products[product_id] = {
-                    "product_id": product_id,
-                    "name": product["name"],
-                    "quantity": quantity,
-                    "price": product["price"]
-                }
-                total_amount += product["price"] * quantity
-                # Deduct from stock
-                self.products[product_id]["stock"] -= quantity
-            else:
-                return {"order_status": False, "message": f"Insufficient stock for product {product_id} or product not found."}
-
-        new_order = {
-            "order_id": new_order_id,
-            "order_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "total_amount": total_amount,
-            "status": "pending",
-            "products": order_products,
-            "payment_card_used": payment_card,
-            "shipping_address": address
-        }
-        
-        user_orders = user_data.get("orders", {})
-        user_orders[new_order_id] = new_order
-        self._update_user_data(user, "orders", user_orders)
-        self._update_user_data(user, "cart", {}) # Clear cart after order
-
-        return {"order_status": True, "message": f"Order {new_order_id} placed successfully!", "order_id": new_order_id}
-
-    def show_payment_cards(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Shows the current user's registered payment cards.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'cards_status' (bool) and 'payment_cards' (List[Dict]) if successful.
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"cards_status": False, "payment_cards": []}
-        
-        return {"cards_status": True, "payment_cards": list(user_data.get("payment_cards", {}).values())}
+            return {"friends_status": False, "friends": []}
+
+        friend_emails = []
+        for friend_user_id in user_data["friends"]:
+            for u_id, u_data in self.state["users"].items():
+                if u_id == friend_user_id:
+                    friend_emails.append(u_data["email"])
+                    break
+        return {"friends_status": True, "friends": friend_emails}
 
     def add_payment_card(
         self,
+        user: User,
         card_name: str,
         owner_name: str,
         card_number: int,
         expiry_year: int,
         expiry_month: int,
-        cvv_number: int,
-        user: User,
     ) -> Dict[str, Union[bool, str, int]]:
         """
-        Adds a new payment card for the current user.
-
-        Args:
-            card_name (str): A name for the card (e.g., "My Visa").
-            owner_name (str): The name of the card owner.
-            card_number (int): The card number.
-            expiry_year (int): The expiry year of the card.
-            expiry_month (int): The expiry month of the card.
-            cvv_number (int): The CVV number of the card.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'add_status' (bool), 'message' (str), and 'payment_card_id' (int) if successful.
+        Adds a new payment card with a UUID as ID.
+        CVV is not stored for realism.
+        Card number stored as last 4 digits.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"add_status": False, "message": "User not found."}
+            return {"add_card_status": False, "message": "User not found."}
 
-        new_card_id = self.payment_card_counter + 1
-        self.payment_card_counter = new_card_id
-
-        new_card = {
+        new_card_id = str(uuid.uuid4())
+        user_payment_cards = user_data.get("payment_cards", {})
+        user_payment_cards[new_card_id] = {
             "card_name": card_name,
             "owner_name": owner_name,
-            "card_number": card_number,
+            "card_number_last4": str(card_number)[-4:],
             "expiry_year": expiry_year,
             "expiry_month": expiry_month,
-            "cvv_number": cvv_number,
-            "card_id": new_card_id # Add card_id to the card details
         }
-        
-        user_payment_cards = user_data.get("payment_cards", {})
-        user_payment_cards[new_card_id] = new_card
         self._update_user_data(user, "payment_cards", user_payment_cards)
-        
-        return {"add_status": True, "message": f"Payment card '{card_name}' added successfully.", "payment_card_id": new_card_id}
+        return {"add_card_status": True, "message": "Payment card added successfully.", "card_id": new_card_id}
 
-    def delete_payment_card(self, payment_card_id: int, user: User) -> Dict[str, Union[bool, str]]:
+    def remove_payment_card(self, user: User, card_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Deletes a payment card for the current user.
-
-        Args:
-            payment_card_id (int): The ID of the payment card to delete.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'delete_status' (bool) and 'message' (str).
+        Removes a payment card using its UUID.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"delete_status": False, "message": "User not found."}
+            return {"remove_card_status": False, "message": "User not found."}
 
         user_payment_cards = user_data.get("payment_cards", {})
-        if payment_card_id in user_payment_cards:
-            del user_payment_cards[payment_card_id]
+        if card_id in user_payment_cards:
+            del user_payment_cards[card_id]
             self._update_user_data(user, "payment_cards", user_payment_cards)
-            return {"delete_status": True, "message": f"Payment card with ID {payment_card_id} deleted successfully."}
-        return {"delete_status": False, "message": f"Payment card with ID {payment_card_id} not found."}
+            return {"remove_card_status": True, "message": f"Payment card {card_id} removed successfully."}
+        return {"remove_card_status": False, "message": "Payment card not found."}
 
-    def show_addresses(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
+    def show_payment_cards(
+        self, user: User, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Shows the current user's registered addresses.
-
-        Args:
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'addresses_status' (bool) and 'addresses' (List[Dict]) if successful.
+        Shows the current user's payment cards.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"addresses_status": False, "addresses": []}
+            return {"cards_status": False, "payment_cards": []}
+
+        all_cards = list(user_data.get("payment_cards", {}).values())
         
-        return {"addresses_status": True, "addresses": list(user_data.get("addresses", {}).values())}
+        start_index = (page_index - 1) * page_limit
+        end_index = start_index + page_limit
+        paginated_cards = all_cards[start_index:end_index]
+
+        return {"cards_status": True, "payment_cards": paginated_cards}
 
     def add_address(
         self,
+        user: User,
         name: str,
         street_address: str,
         city: str,
         state: str,
         country: str,
         zip_code: int,
-        user: User,
     ) -> Dict[str, Union[bool, str, int]]:
         """
-        Adds a new address for the current user.
-
-        Args:
-            name (str): A name for the address (e.g., "Home", "Work").
-            street_address (str): The street address.
-            city (str): The city.
-            state (str): The state.
-            country (str): The country.
-            zip_code (int): The zip code.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'add_status' (bool), 'message' (str), and 'address_id' (int) if successful.
+        Adds a new address with a UUID as ID.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"add_status": False, "message": "User not found."}
+            return {"add_address_status": False, "message": "User not found."}
 
-        new_address_id = self.address_counter + 1
-        self.address_counter = new_address_id
-
-        new_address = {
+        new_address_id = str(uuid.uuid4())
+        user_addresses = user_data.get("addresses", {})
+        user_addresses[new_address_id] = {
             "name": name,
             "street_address": street_address,
             "city": city,
             "state": state,
             "country": country,
             "zip_code": zip_code,
-            "address_id": new_address_id # Add address_id to the address details
         }
-        
-        user_addresses = user_data.get("addresses", {})
-        user_addresses[new_address_id] = new_address
         self._update_user_data(user, "addresses", user_addresses)
-        
-        return {"add_status": True, "message": f"Address '{name}' added successfully.", "address_id": new_address_id}
+        return {"add_address_status": True, "message": "Address added successfully.", "address_id": new_address_id}
 
-    def delete_address(self, address_id: int, user: User) -> Dict[str, Union[bool, str]]:
+    def remove_address(self, user: User, address_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Deletes an address for the current user.
-
-        Args:
-            address_id (int): The ID of the address to delete.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'delete_status' (bool) and 'message' (str).
+        Removes an address using its UUID.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"delete_status": False, "message": "User not found."}
+            return {"remove_address_status": False, "message": "User not found."}
 
         user_addresses = user_data.get("addresses", {})
         if address_id in user_addresses:
             del user_addresses[address_id]
             self._update_user_data(user, "addresses", user_addresses)
-            return {"delete_status": True, "message": f"Address with ID {address_id} deleted successfully."}
-        return {"delete_status": False, "message": f"Address with ID {address_id} not found."}
+            return {"remove_address_status": True, "message": f"Address {address_id} removed successfully."}
+        return {"remove_address_status": False, "message": "Address not found."}
 
-    def show_product_reviews(
-        self,
-        product_id: int,
-        query: str = "",
-        user_email: EmailStr | None = None,
-        page_index: int = 1,
-        page_limit: int = 10,
-        min_rating: int = 1,
-        max_rating: int = 5,
-        is_verified: bool | None = None,
-        sort_by: str | None = None,
+    def show_addresses(
+        self, user: User, page_index: int = 1, page_limit: int = 10
     ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Shows reviews for a specific product, with filtering and sorting options.
-
-        Args:
-            product_id (int): The ID of the product.
-            query (str): Optional search query for review comments.
-            user_email (EmailStr | None): Filter by the email of the reviewer.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            min_rating (int): Minimum rating for reviews.
-            max_rating (int): Maximum rating for reviews.
-            is_verified (bool | None): Filter by verified purchase status.
-            sort_by (str | None): Field to sort by (e.g., 'rating_asc', 'rating_desc').
-
-        Returns:
-            Dict: A dictionary containing 'reviews_status' (bool) and 'reviews' (List[Dict]) if successful.
-        """
-        product_reviews = self.product_reviews.get(product_id, [])
-        filtered_reviews = []
-        for review in product_reviews:
-            if query and query.lower() not in review["comment"].lower():
-                continue
-            if user_email and review["user_email"] != str(user_email):
-                continue
-            if not (min_rating <= review["rating"] <= max_rating):
-                continue
-            if is_verified is not None and review["is_verified"] != is_verified:
-                continue
-            filtered_reviews.append(review)
-
-        if sort_by:
-            if sort_by == 'rating_asc':
-                filtered_reviews.sort(key=lambda r: r['rating'])
-            elif sort_by == 'rating_desc':
-                filtered_reviews.sort(key=lambda r: r['rating'], reverse=True)
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_reviews = filtered_reviews[start_index:end_index]
-
-        return {"reviews_status": True, "reviews": paginated_reviews}
-
-    def show_product_questions(
-        self,
-        product_id: int,
-        query: str = "",
-        user_email: EmailStr | None = None,
-        page_index: int = 1,
-        page_limit: int = 10,
-        sort_by: str | None = None,
-    ) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Shows questions for a specific product, with filtering and sorting options.
-
-        Args:
-            product_id (int): The ID of the product.
-            query (str): Optional search query for question text.
-            user_email (EmailStr | None): Filter by the email of the questioner.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            sort_by (str | None): Field to sort by (e.g., 'date_asc', 'date_desc').
-
-        Returns:
-            Dict: A dictionary containing 'questions_status' (bool) and 'questions' (List[Dict]) if successful.
-        """
-        product_questions = self.product_questions.get(product_id, [])
-        filtered_questions = []
-        for question in product_questions:
-            if query and query.lower() not in question["question"].lower():
-                continue
-            if user_email and question["user_email"] != str(user_email):
-                continue
-            filtered_questions.append(question)
-
-        # Dummy sorting as no date/time for questions in default state
-        if sort_by:
-            pass 
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_questions = filtered_questions[start_index:end_index]
-
-        return {"questions_status": True, "questions": paginated_questions}
-
-    def show_product_Youtubes( # Renamed from show_product_answers to show_product_Youtubes as per the prompt
-        self,
-        question_id: int,
-        query: str = "",
-        user_email: EmailStr | None = None,
-        is_verified: bool | None = None,
-        page_index: int = 1,
-        page_limit: int = 10,
-        sort_by: str | None = None,
-    ) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Shows answers (Youtubes) for a specific product question, with filtering and sorting options.
-        NOTE: This is a dummy implementation and "Youtubes" are treated as answers here.
-
-        Args:
-            question_id (int): The ID of the product question.
-            query (str): Optional search query for answer text.
-            user_email (EmailStr | None): Filter by the email of the answerer.
-            is_verified (bool | None): Filter by verified status of the answerer (dummy).
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            sort_by (str | None): Field to sort by (dummy).
-
-        Returns:
-            Dict: A dictionary containing 'youtubes_status' (bool) and 'youtubes' (List[Dict]) if successful.
-        """
-        all_answers = []
-        for product_id, questions in self.product_questions.items():
-            for question in questions:
-                if question["question_id"] == question_id:
-                    # In a real scenario, answers would be stored separately or within the question
-                    # For dummy purposes, let's create a dummy answer if none exist
-                    if not question["answers"]:
-                        question["answers"].append({
-                            "answer_id": 1,
-                            "user_email": "seller@example.com",
-                            "answer": "Yes, it comes with Windows 11.",
-                            "is_verified": True
-                        })
-                    all_answers = question["answers"]
-                    break
-            if all_answers:
-                break
-
-        filtered_answers = []
-        for answer in all_answers:
-            if query and query.lower() not in answer["answer"].lower():
-                continue
-            if user_email and answer["user_email"] != str(user_email):
-                continue
-            if is_verified is not None and answer.get("is_verified", False) != is_verified:
-                continue
-            filtered_answers.append(answer)
-
-        # Dummy sorting as no date/time for answers in default state
-        if sort_by:
-            pass
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_answers = filtered_answers[start_index:end_index]
-
-        return {"youtubes_status": True, "youtubes": paginated_answers}
-
-
-    def show_returns(
-        self,
-        user: User,
-        order_id: int | None = None,
-        page_index: int = 1,
-        page_limit: int = 10,
-        sort_by: str = "date_desc",
-    ) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        Shows the current user's product returns, optionally filtered by order and sorted.
-
-        Args:
-            order_id (int | None): Optional order ID to filter returns.
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            sort_by (str): Field to sort by (e.g., 'date_asc', 'date_desc').
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'returns_status' (bool) and 'returns' (List[Dict]) if successful.
+        Shows the current user's addresses.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"returns_status": False, "returns": []}
+            return {"addresses_status": False, "addresses": []}
 
-        all_returns = list(user_data.get("returns", {}).values())
-        filtered_returns = [
-            ret for ret in all_returns
-            if order_id is None or ret["order_id"] == order_id
-        ]
-
-        if sort_by == 'date_asc':
-            filtered_returns.sort(key=lambda r: r['return_date'])
-        elif sort_by == 'date_desc':
-            filtered_returns.sort(key=lambda r: r['return_date'], reverse=True)
-
-        start_index = (page_index - 1) * page_limit
-        end_index = start_index + page_limit
-        paginated_returns = filtered_returns[start_index:end_index]
-
-        return {"returns_status": True, "returns": paginated_returns}
-
-    def show_return(self, return_id: int, user: User) -> Dict[str, Union[bool, Dict]]:
-        """
-        Shows the details of a specific product return for the current user.
-
-        Args:
-            return_id (int): The ID of the return.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'return_status' (bool) and 'return_details' (Dict) if successful.
-        """
-        user_data = self._get_user_data(user)
-        if not user_data:
-            return {"return_status": False, "return_details": {}}
+        all_addresses = list(user_data.get("addresses", {}).values())
         
-        return_details = user_data.get("returns", {}).get(return_id)
-        if return_details:
-            return {"return_status": True, "return_details": return_details}
-        return {"return_status": False, "return_details": {}}
+        start_index = (page_index - 1) * page_limit
+        end_index = start_index + page_limit
+        paginated_addresses = all_addresses[start_index:end_index]
 
-    def show_return_deliverers(self) -> Dict[str, Union[bool, List[Dict]]]:
+        return {"addresses_status": True, "addresses": paginated_addresses}
+
+    def add_to_cart(self, user: User, product_id: int, quantity: int) -> Dict[str, Union[bool, str]]:
         """
-        Shows available deliverers for product returns.
-
-        Returns:
-            Dict: A dictionary containing 'deliverers_status' (bool) and 'deliverers' (List[Dict]) if successful.
-        """
-        return {"deliverers_status": True, "deliverers": list(self.deliverers.values())}
-
-    def initiate_return(
-        self,
-        order_id: int,
-        product_id: int,
-        deliverer_id: int,
-        quantity: int,
-        user: User,
-    ) -> Dict[str, Union[bool, str, int]]:
-        """
-        Initiates a product return for the current user.
-
-        Args:
-            order_id (int): The ID of the original order.
-            product_id (int): The ID of the product to return.
-            deliverer_id (int): The ID of the selected deliverer.
-            quantity (int): The quantity to return.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'initiate_status' (bool), 'message' (str), and 'return_id' (int) if successful.
+        Adds a product to the user's cart.
         """
         user_data = self._get_user_data(user)
         if not user_data:
-            return {"initiate_status": False, "message": "User not found."}
+            return {"add_to_cart_status": False, "message": "User not found."}
 
-        order = user_data.get("orders", {}).get(order_id)
-        if not order:
-            return {"initiate_status": False, "message": f"Order with ID {order_id} not found."}
+        if product_id not in self.state["products"]:
+            return {"add_to_cart_status": False, "message": "Product not found."}
+        if self.state["products"][product_id]["stock"] < quantity:
+            return {"add_to_cart_status": False, "message": "Not enough stock."}
 
-        product_in_order = order["products"].get(product_id)
-        if not product_in_order or product_in_order["quantity"] < quantity:
-            return {"initiate_status": False, "message": f"Product {product_id} not found in order {order_id} or insufficient quantity."}
+        user_cart = user_data.get("cart", {})
+        user_cart[product_id] = user_cart.get(product_id, 0) + quantity
+        self._update_user_data(user, "cart", user_cart)
+        return {"add_to_cart_status": True, "message": "Product added to cart."}
 
-        deliverer = self.deliverers.get(deliverer_id)
-        if not deliverer:
-            return {"initiate_status": False, "message": f"Deliverer with ID {deliverer_id} not found."}
+    def remove_from_cart(self, user: User, product_id: int) -> Dict[str, Union[bool, str]]:
+        """
+        Removes a product from the user's cart.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"remove_from_cart_status": False, "message": "User not found."}
 
-        new_return_id = self.return_counter + 1
-        self.return_counter = new_return_id
+        user_cart = user_data.get("cart", {})
+        if product_id in user_cart:
+            del user_cart[product_id]
+            self._update_user_data(user, "cart", user_cart)
+            return {"remove_from_cart_status": True, "message": "Product removed from cart."}
+        return {"remove_from_cart_status": False, "message": "Product not found in cart."}
 
-        new_return = {
-            "return_id": new_return_id,
-            "order_id": order_id,
-            "product_id": product_id,
-            "quantity": quantity,
-            "return_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    def update_cart_item_quantity(self, user: User, product_id: int, quantity: int) -> Dict[str, Union[bool, str]]:
+        """
+        Updates the quantity of a product in the user's cart.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"update_cart_status": False, "message": "User not found."}
+
+        user_cart = user_data.get("cart", {})
+        if product_id not in user_cart:
+            return {"update_cart_status": False, "message": "Product not in cart."}
+        if self.state["products"][product_id]["stock"] < quantity:
+            return {"update_cart_status": False, "message": "Not enough stock."}
+
+        if quantity <= 0:
+            del user_cart[product_id]
+        else:
+            user_cart[product_id] = quantity
+        self._update_user_data(user, "cart", user_cart)
+        return {"update_cart_status": True, "message": "Cart updated."}
+
+    def show_cart(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Shows the current user's cart content.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"cart_status": False, "cart_items": []}
+
+        cart_items = []
+        for product_id, quantity in user_data.get("cart", {}).items():
+            product_info = self.state["products"].get(product_id)
+            if product_info:
+                cart_items.append(
+                    {
+                        "product_id": product_id,
+                        "name": product_info["name"],
+                        "price": product_info["price"],
+                        "quantity": quantity,
+                        "total": product_info["price"] * quantity,
+                    }
+                )
+        return {"cart_status": True, "cart_items": cart_items}
+
+    def apply_promo_code_to_cart(self, promo_code: str, user: User) -> Dict[str, Union[bool, str, float]]:
+        """
+        Applies a promo code to the current user's cart.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"promo_status": False, "message": "User not found."}
+
+        if promo_code == "WELCOME10":
+            discount_percentage = 0.10
+        elif promo_code == "FREESHIP":
+            discount_percentage = 0.0
+        else:
+            return {"promo_status": False, "message": "Invalid promo code."}
+
+        cart_total = 0.0
+        for product_id, quantity in user_data.get("cart", {}).items():
+            product_info = self.state["products"].get(product_id)
+            if product_info:
+                cart_total += product_info["price"] * quantity
+        
+        discount_amount = cart_total * discount_percentage
+        new_total = cart_total - discount_amount
+
+        return {"promo_status": True, "message": f"Promo code {promo_code} applied. Discount: ${discount_amount:.2f}", "discount_amount": discount_amount, "new_total": new_total}
+
+    def remove_promo_code_from_cart(self, user: User) -> Dict[str, Union[bool, str]]:
+        """
+        Removes any applied promo code from the user's cart.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"promo_status": False, "message": "User not found."}
+
+        return {"promo_status": True, "message": "Promo code removed from cart."}
+
+    def checkout(
+        self, user: User, delivery_address_id: str, payment_card_id: str, promo_code: Union[str, None] = None
+    ) -> Dict[str, Union[bool, str, Dict]]:
+        """
+        Processes the checkout, creates an order with a UUID, updates stock and balance.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"checkout_status": False, "message": "User not found."}
+
+        user_cart = user_data.get("cart", {})
+        if not user_cart:
+            return {"checkout_status": False, "message": "Cart is empty."}
+
+        if delivery_address_id not in user_data.get("addresses", {}):
+            return {"checkout_status": False, "message": "Delivery address not found."}
+        if payment_card_id not in user_data.get("payment_cards", {}):
+            return {"checkout_status": False, "message": "Payment card not found."}
+
+        total_amount = 0.0
+        products_in_order = {}
+        for product_id, quantity in user_cart.items():
+            product_info = self.state["products"].get(product_id)
+            if not product_info or product_info["stock"] < quantity:
+                return {"checkout_status": False, "message": f"Not enough stock for product ID {product_id}."}
+            total_amount += product_info["price"] * quantity
+            products_in_order[product_id] = quantity
+
+        if promo_code == "WELCOME10":
+            total_amount *= 0.90
+
+        if user_data["balance"] < total_amount:
+            return {"checkout_status": False, "message": "Insufficient balance."}
+
+        for product_id, quantity in products_in_order.items():
+            self.state["products"][product_id]["stock"] -= quantity
+        user_data["balance"] -= total_amount
+
+        new_order_id = str(uuid.uuid4())
+        user_orders = user_data.get("orders", {})
+        user_orders[new_order_id] = {
+            "order_date": datetime.now().strftime("%Y-%m-%d"),
+            "total_amount": total_amount,
+            "products": products_in_order,
+            "delivery_address_id": delivery_address_id,
+            "payment_card_id": payment_card_id,
             "status": "pending",
-            "deliverer": deliverer
+            "promo_code_applied": promo_code,
+            "tracking_number": f"TRK{str(uuid.uuid4())[:8].upper()}"
+        }
+        self._update_user_data(user, "orders", user_orders)
+        self._update_user_data(user, "balance", user_data["balance"])
+        self._update_user_data(user, "cart", {})
+
+        return {
+            "checkout_status": True,
+            "message": "Checkout successful. Order placed.",
+            "order": user_orders[new_order_id],
         }
 
-        user_returns = user_data.get("returns", {})
-        user_returns[new_return_id] = new_return
-        self._update_user_data(user, "returns", user_returns)
-
-        return {"initiate_status": True, "message": f"Return {new_return_id} initiated successfully.", "return_id": new_return_id}
-
-    def show_prime_plans(self) -> Dict[str, Union[bool, Dict]]:
+    def show_orders(
+        self, user: User, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Shows available Amazon Prime subscription plans.
-
-        Returns:
-            Dict: A dictionary containing 'prime_plans_status' (bool) and 'prime_plans' (Dict) if successful.
+        Shows the current user's orders.
         """
-        return {"prime_plans_status": True, "prime_plans": self.prime_plans}
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"orders_status": False, "orders": []}
+
+        all_orders = list(user_data.get("orders", {}).values())
+        
+        start_index = (page_index - 1) * page_limit
+        end_index = start_index + page_limit
+        paginated_orders = all_orders[start_index:end_index]
+
+        return {"orders_status": True, "orders": paginated_orders}
+
+    def add_to_wish_list(self, user: User, product_id: int) -> Dict[str, Union[bool, str]]:
+        """
+        Adds a product to the user's wish list.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"add_to_wish_list_status": False, "message": "User not found."}
+
+        if product_id not in self.state["products"]:
+            return {"add_to_wish_list_status": False, "message": "Product not found."}
+
+        user_wish_list = user_data.get("wish_list", {})
+        if product_id in user_wish_list:
+            return {"add_to_wish_list_status": False, "message": "Product already in wish list."}
+
+        user_wish_list[product_id] = {"added_date": datetime.now().strftime("%Y-%m-%d")}
+        self._update_user_data(user, "wish_list", user_wish_list)
+        return {"add_to_wish_list_status": True, "message": "Product added to wish list."}
+
+    def remove_from_wish_list(self, user: User, product_id: int) -> Dict[str, Union[bool, str]]:
+        """
+        Removes a product from the user's wish list.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"remove_from_wish_list_status": False, "message": "User not found."}
+
+        user_wish_list = user_data.get("wish_list", {})
+        if product_id in user_wish_list:
+            del user_wish_list[product_id]
+            self._update_user_data(user, "wish_list", user_wish_list)
+            return {"remove_from_wish_list_status": True, "message": "Product removed from wish list."}
+        return {"remove_from_wish_list_status": False, "message": "Product not found in wish list."}
+
+    def show_wish_list(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Shows the current user's wish list content.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"wish_list_status": False, "wish_list_items": []}
+
+        wish_list_items = []
+        for product_id, details in user_data.get("wish_list", {}).items():
+            product_info = self.state["products"].get(product_id)
+            if product_info:
+                wish_list_items.append(
+                    {
+                        "product_id": product_id,
+                        "name": product_info["name"],
+                        "price": product_info["price"],
+                        "added_date": details["added_date"],
+                    }
+                )
+        return {"wish_list_status": True, "wish_list_items": wish_list_items}
+
+    def search_products(
+        self, query: str, category: Union[str, None] = None, min_price: float = 0.0, max_price: float = float('inf')
+    ) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Searches for products based on query, category, and price range.
+        """
+        results = []
+        for product_id, product_info in self.state["products"].items():
+            if (
+                query.lower() in product_info["name"].lower()
+                or query.lower() in product_info["description"].lower()
+            ) and (category is None or product_info["category"].lower() == category.lower()) and (
+                min_price <= product_info["price"] <= max_price
+            ):
+                results.append({"product_id": product_id, **product_info})
+        return {"search_status": True, "products": results}
+
+    def show_product_details(self, product_id: int) -> Dict[str, Union[bool, Dict]]:
+        """
+        Shows details of a specific product.
+        """
+        product_info = self.state["products"].get(product_id)
+        if product_info:
+            return {"product_status": True, "product": product_info}
+        return {"product_status": False, "product": {}}
+
+    def submit_product_review(
+        self, user: User, product_id: int, rating: int, comment: str
+    ) -> Dict[str, Union[bool, str]]:
+        """
+        Submits a product review with a UUID for the review ID and user ID.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"submit_review_status": False, "message": "User not found."}
+
+        if product_id not in self.state["products"]:
+            return {"submit_review_status": False, "message": "Product not found."}
+
+        new_review_id = str(uuid.uuid4())
+        product_reviews = self.state["product_reviews"].get(product_id, [])
+        product_reviews.append(
+            {
+                "review_id": new_review_id,
+                "user_id": user.user_id,
+                "rating": rating,
+                "comment": comment,
+                "date": datetime.now().strftime("%Y-%m-%d"),
+            }
+        )
+        self.state["product_reviews"][product_id] = product_reviews
+        return {"submit_review_status": True, "message": "Review submitted successfully.", "review_id": new_review_id}
+
+    def show_product_reviews(
+        self, product_id: int, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Shows reviews for a specific product.
+        Converts user_id back to email for display in reviews.
+        """
+        reviews = self.state["product_reviews"].get(product_id, [])
+        
+        start_index = (page_index - 1) * page_limit
+        end_index = start_index + page_limit
+        paginated_reviews = reviews[start_index:end_index]
+
+        display_reviews = []
+        for review in paginated_reviews:
+            review_copy = review.copy()
+            for u_id, u_data in self.state["users"].items():
+                if u_id == review_copy["user_id"]:
+                    review_copy["user_email"] = u_data["email"]
+                    break
+            display_reviews.append(review_copy)
+
+        return {"reviews_status": True, "reviews": display_reviews}
+
+    def ask_product_question(
+        self, user: User, product_id: int, question: str
+    ) -> Dict[str, Union[bool, str]]:
+        """
+        Asks a question about a product with a UUID for the question ID and user ID.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"ask_question_status": False, "message": "User not found."}
+
+        if product_id not in self.state["products"]:
+            return {"ask_question_status": False, "message": "Product not found."}
+
+        new_question_id = str(uuid.uuid4())
+        product_questions = self.state["product_questions"].get(product_id, [])
+        product_questions.append(
+            {
+                "question_id": new_question_id,
+                "user_id": user.user_id,
+                "question": question,
+                "date": datetime.now().strftime("%Y-%m-%d"),
+                "answers": [],
+            }
+        )
+        self.state["product_questions"][product_id] = product_questions
+        return {"ask_question_status": True, "message": "Question submitted successfully.", "question_id": new_question_id}
+
+    def answer_product_question(
+        self, user: User, product_id: int, question_id: str, answer: str
+    ) -> Dict[str, Union[bool, str]]:
+        """
+        Answers a product question with a UUID for the answer ID and user ID.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"answer_question_status": False, "message": "User not found."}
+
+        if product_id not in self.state["products"]:
+            return {"answer_question_status": False, "message": "Product not found."}
+
+        product_questions = self.state["product_questions"].get(product_id, [])
+        for question_data in product_questions:
+            if question_data["question_id"] == question_id:
+                new_answer_id = str(uuid.uuid4())
+                question_data["answers"].append(
+                    {
+                        "answer_id": new_answer_id,
+                        "user_id": user.user_id,
+                        "answer": answer,
+                        "date": datetime.now().strftime("%Y-%m-%d"),
+                    }
+                )
+                return {"answer_question_status": True, "message": "Answer submitted successfully.", "answer_id": new_answer_id}
+        return {"answer_question_status": False, "message": "Question not found."}
+
+    def show_product_questions(
+        self, product_id: int, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Shows questions and answers for a specific product.
+        Converts user_ids back to emails for display.
+        """
+        questions = self.state["product_questions"].get(product_id, [])
+        
+        start_index = (page_index - 1) * page_limit
+        end_index = start_index + page_limit
+        paginated_questions = questions[start_index:end_index]
+
+        display_questions = []
+        for question in paginated_questions:
+            question_copy = question.copy()
+            for u_id, u_data in self.state["users"].items():
+                if u_id == question_copy["user_id"]:
+                    question_copy["user_email"] = u_data["email"]
+                    break
+            
+            display_answers = []
+            for answer in question_copy.get("answers", []):
+                answer_copy = answer.copy()
+                for u_id, u_data in self.state["users"].items():
+                    if u_id == answer_copy["user_id"]:
+                        answer_copy["user_email"] = u_data["email"]
+                        break
+                display_answers.append(answer_copy)
+            question_copy["answers"] = display_answers
+            display_questions.append(question_copy)
+
+        return {"questions_status": True, "questions": display_questions}
 
     def subscribe_prime(
-        self, payment_card_id: int, duration: Literal["monthly", "yearly"], user: User
-    ) -> Dict[str, Union[bool, str, int]]:
+        self, user: User, duration: Literal["monthly", "yearly"]
+    ) -> Dict[str, Union[bool, str, str]]:
         """
-        Subscribes the current user to an Amazon Prime plan.
-
-        Args:
-            payment_card_id (int): The ID of the payment card to use.
-            duration (Literal["monthly", "yearly"]): The duration of the subscription.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'subscribe_status' (bool), 'message' (str), and 'prime_subscription_id' (int) if successful.
+        Subscribes the user to Amazon Prime with a UUID for the subscription ID.
         """
         user_data = self._get_user_data(user)
         if not user_data:
             return {"subscribe_status": False, "message": "User not found."}
 
-        payment_card = user_data.get("payment_cards", {}).get(payment_card_id)
-        if not payment_card:
-            return {"subscribe_status": False, "message": f"Payment card with ID {payment_card_id} not found."}
+        for sub_id, sub_data in user_data.get("prime_subscriptions", {}).items():
+            if sub_data["status"] == "active" and datetime.strptime(sub_data["end_date"], "%Y-%m-%d") > datetime.now():
+                return {"subscribe_status": False, "message": "You already have an active Prime subscription."}
 
-        if duration not in self.prime_plans:
-            return {"subscribe_status": False, "message": f"Invalid Prime plan duration: {duration}."}
-
-        new_subscription_id = self.prime_subscription_counter + 1
-        self.prime_subscription_counter = new_subscription_id
-
+        new_subscription_id = str(uuid.uuid4())
         start_date = datetime.now()
         if duration == "monthly":
             end_date = start_date + timedelta(days=30)
-        elif duration == "yearly":
+        else:
             end_date = start_date + timedelta(days=365)
 
         new_subscription = {
-            "subscription_id": new_subscription_id,
-            "plan": duration,
             "start_date": start_date.strftime("%Y-%m-%d"),
             "end_date": end_date.strftime("%Y-%m-%d"),
+            "plan_type": duration,
             "status": "active",
-            "payment_card_used": payment_card["card_name"]
         }
 
         user_prime_subscriptions = user_data.get("prime_subscriptions", {})
@@ -1756,14 +1119,6 @@ class AmazonApis:
     ) -> Dict[str, Union[bool, List[Dict]]]:
         """
         Shows the current user's Amazon Prime subscriptions.
-
-        Args:
-            page_index (int): Page index for pagination.
-            page_limit (int): Number of results per page.
-            user (User): The current user object.
-
-        Returns:
-            Dict: A dictionary containing 'subscriptions_status' (bool) and 'prime_subscriptions' (List[Dict]) if successful.
         """
         user_data = self._get_user_data(user)
         if not user_data:
@@ -1776,3 +1131,60 @@ class AmazonApis:
         paginated_subscriptions = all_subscriptions[start_index:end_index]
 
         return {"subscriptions_status": True, "prime_subscriptions": paginated_subscriptions}
+
+    def request_return(
+        self, user: User, order_id: str, product_id: int, reason: str
+    ) -> Dict[str, Union[bool, str, str]]:
+        """
+        Initiates a return request with a UUID for the return ID.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"return_status": False, "message": "User not found."}
+
+        user_orders = user_data.get("orders", {})
+        if order_id not in user_orders:
+            return {"return_status": False, "message": "Order not found."}
+
+        order_products = user_orders[order_id]["products"]
+        if product_id not in order_products:
+            return {"return_status": False, "message": "Product not found in this order."}
+
+        new_return_id = str(uuid.uuid4())
+        user_returns = user_data.get("returns", {})
+        user_returns[new_return_id] = {
+            "order_id": order_id,
+            "product_id": product_id,
+            "return_date": datetime.now().strftime("%Y-%m-%d"),
+            "reason": reason,
+            "status": "pending",
+        }
+        self._update_user_data(user, "returns", user_returns)
+        return {"return_status": True, "message": "Return request submitted.", "return_id": new_return_id}
+
+    def show_returns(
+        self, user: User, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
+        """
+        Shows the current user's return requests.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"returns_status": False, "returns": []}
+
+        all_returns = list(user_data.get("returns", {}).values())
+        
+        start_index = (page_index - 1) * page_limit
+        end_index = start_index + page_limit
+        paginated_returns = all_returns[start_index:end_index]
+
+        return {"returns_status": True, "returns": paginated_returns}
+
+    def get_seller_info(self, seller_id: int) -> Dict[str, Union[bool, Dict]]:
+        """
+        Retrieves information about a specific seller.
+        """
+        seller_info = self.state["sellers"].get(seller_id)
+        if seller_info:
+            return {"seller_status": True, "seller_info": seller_info}
+        return {"seller_status": False, "seller_info": {}}

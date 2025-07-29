@@ -1,1292 +1,833 @@
 import datetime
 import copy
+import uuid
+import random
+import json
 from typing import Dict, List, Any, Optional, Union
 
+# Current time for realistic date generation
+current_datetime = datetime.datetime.now()
+
 DEFAULT_STATE: Dict[str, Any] = {
-    "users": {
-        "alice.smith@example.net": {
-            "first_name": "Alice",
-            "last_name": "Smith",
-            "email": "alice.smith@example.net",
-            "friends": ["bob.johnson@example.com", "charlie.davis@example.org"],
-            "gmail_data": {
-                "profile": {
-                    "emailAddress": "alice.smith@example.net",
-                    "messagesTotal": 1500,
-                    "threadsTotal": 500,
-                    "historyId": "9876543210987"
-                },
-                "drafts": {
-                    "draft_abc_123": {
-                        "id": "draft_abc_123",
-                        "message": {
-                            "to": "project.team@example.com",
-                            "subject": "Project Status Update",
-                            "body": "Hi team, here's the latest on our project. We're on track for completion."
-                        }
-                    }
-                },
-                "labels": {
-                    "label_important_client": {
-                        "id": "label_important_client",
-                        "name": "Important Clients",
-                        "messageListVisibility": "show",
-                        "labelListVisibility": "show",
-                        "type": "user",
-                        "messagesTotal": 85,
-                        "messagesUnread": 5,
-                        "threadsTotal": 30,
-                        "threadsUnread": 2
-                    },
-                    "label_personal": {
-                        "id": "label_personal",
-                        "name": "Personal",
-                        "messageListVisibility": "show",
-                        "labelListVisibility": "show",
-                        "type": "user",
-                        "messagesTotal": 120,
-                        "messagesUnread": 10,
-                        "threadsTotal": 45,
-                        "threadsUnread": 7
-                    }
-                },
-                "messages": {
-                    "msg_def_456": {
-                        "id": "msg_def_456",
-                        "threadId": "thread_proj_update",
-                        "labelIds": ["INBOX", "label_important_client"],
-                        "snippet": "Meeting confirmed for next Tuesday at 10 AM.",
-                        "payload": {"headers": [], "body": {}},
-                        "sizeEstimate": 2048,
-                        "historyId": "1234567890123"
-                    },
-                    "msg_ghi_789": {
-                        "id": "msg_ghi_789",
-                        "threadId": "thread_family_vacation",
-                        "labelIds": ["INBOX", "label_personal"],
-                        "snippet": "Just booked the flights for our vacation to Hawaii!",
-                        "payload": {"headers": [], "body": {}},
-                        "sizeEstimate": 1500,
-                        "historyId": "1234567890124"
-                    }
-                },
-                "threads": {
-                    "thread_proj_update": {
-                        "id": "thread_proj_update",
-                        "historyId": "1234567890123",
-                        "messages": [
-                            {
-                                "id": "msg_def_456",
-                                "threadId": "thread_proj_update",
-                                "labelIds": ["INBOX", "label_important_client"],
-                                "snippet": "Meeting confirmed for next Tuesday at 10 AM.",
-                                "payload": {"headers": [], "body": {}},
-                                "sizeEstimate": 2048,
-                                "historyId": "1234567890123"
-                            }
-                        ],
-                        "snippet": "Meeting confirmed for next Tuesday at 10 AM."
-                    },
-                    "thread_family_vacation": {
-                        "id": "thread_family_vacation",
-                        "historyId": "1234567890124",
-                        "messages": [
-                            {
-                                "id": "msg_ghi_789",
-                                "threadId": "thread_family_vacation",
-                                "labelIds": ["INBOX", "label_personal"],
-                                "snippet": "Just booked the flights for our vacation to Hawaii!",
-                                "payload": {"headers": [], "body": {}},
-                                "sizeEstimate": 1500,
-                                "historyId": "1234567890124"
-                            }
-                        ],
-                        "snippet": "Just booked the flights for our vacation to Hawaii!"
-                    }
-                },
-                "settings": {
-                    "auto_forwarding": {
-                        "enabled": False,
-                        "emailAddress": None,
-                        "disposition": "leaveInInbox"
-                    },
-                    "vacation_responder": {
-                        "enableAutoReply": False,
-                        "responseSubject": None,
-                        "responseBodyPlainText": None,
-                        "responseBodyHtml": None,
-                        "restrictToContacts": False,
-                        "restrictToDomain": False,
-                        "startTime": None,
-                        "endTime": None
-                    },
-                    "pop_settings": {
-                        "accessWindow": "allMail",
-                        "disposition": "leaveInInbox"
-                    },
-                    "language": {
-                        "displayLanguage": "en"
-                    },
-                    "delegates": {
-                        "delegate_fin_assistant": {
-                            "delegateEmail": "finance.assistant@example.net",
-                            "verificationStatus": "accepted"
-                        }
-                    },
-                    "filters": {
-                        "filter_newsletter_promo": {
-                            "id": "filter_newsletter_promo",
-                            "criteria": {"from": "*@promotions.com", "subject": "Newsletter"},
-                            "action": {"addLabelIds": ["SPAM", "TRASH"]}
-                        }
-                    },
-                    "forwarding_addresses": {
-                        "forward_backup": {
-                            "forwardingEmail": "alice.backup@gmail.com",
-                            "verificationStatus": "accepted"
-                        }
-                    },
-                    "send_as_aliases": {
-                        "alias_work": {
-                            "sendAsEmail": "alice.work@example.net",
-                            "displayName": "Alice Smith (Work)",
-                            "replyToAddress": None,
-                            "signature": "Best regards,\nAlice Smith",
-                            "isPrimary": False,
-                            "verificationStatus": "accepted"
-                        }
-                    }
-                },
-                "history": {
-                    "hist_1001": {
-                        "id": "hist_1001",
-                        "messages": [],
-                        "labelsAdded": [{"messageIds": ["msg_def_456"], "labelIds": ["STARRED"]}],
-                        "historyId": "1001"
-                    }
+    "users": {},
+}
+
+_user_email_to_uuid_map = {} # Global map to resolve email to UUIDs
+
+def generate_random_past_timestamp(max_days_ago=365):
+    days_ago = random.randint(1, max_days_ago)
+    return str(int((current_datetime - datetime.timedelta(days=days_ago, hours=random.randint(0, 23), minutes=random.randint(0, 59))).timestamp() * 1000))
+
+def generate_future_timestamp(max_days_from_now=365):
+    days_from_now = random.randint(1, max_days_from_now)
+    return str(int((current_datetime + datetime.timedelta(days=days_from_now, hours=random.randint(0, 23), minutes=random.randint(0, 59))).timestamp() * 1000))
+
+def generate_email(first_name, last_name):
+    domains = ["example.com", "mail.net", "corp.org", "outlook.biz", "email.co"]
+    return f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
+
+def _create_user_data(email, first_name, last_name, friends_emails, gmail_data):
+    user_id = str(uuid.uuid4())
+    _user_email_to_uuid_map[email] = user_id
+
+    # Friends emails will be resolved to UUIDs after all users are created
+    friends_ids = friends_emails
+
+    processed_gmail_data = copy.deepcopy(gmail_data)
+    
+    # --- Process messages ---
+    new_messages = {}
+    original_message_id_map = {} # Map original message ID to new UUID
+    for msg_id_old, msg_data in processed_gmail_data.get("messages", {}).items():
+        new_msg_id = str(uuid.uuid4())
+        original_message_id_map[msg_id_old] = new_msg_id # Store mapping
+        msg_data["id"] = new_msg_id
+        msg_data["threadId"] = str(uuid.uuid4()) # Each message gets a new threadId initially
+        
+        # Ensure internalDate is a string representing milliseconds timestamp
+        if "internalDate" in msg_data and isinstance(msg_data["internalDate"], datetime.datetime):
+            msg_data["internalDate"] = str(int(msg_data["internalDate"].timestamp() * 1000))
+        elif "internalDate" not in msg_data:
+            msg_data["internalDate"] = generate_random_past_timestamp()
+            
+        # Add basic headers if missing for realism
+        if "payload" not in msg_data:
+            msg_data["payload"] = {"headers": []}
+        if "headers" not in msg_data["payload"]:
+            msg_data["payload"]["headers"] = []
+
+        new_messages[new_msg_id] = msg_data
+    processed_gmail_data["messages"] = new_messages
+
+    # --- Rebuild threads with new message IDs and consistent thread IDs ---
+    final_threads = {}
+    
+    # First pass: map old thread IDs to new thread IDs and assign messages
+    old_thread_to_new_thread_map = {}
+    for msg_id_new, msg_data in processed_gmail_data["messages"].items():
+        # If this message was part of an old thread, ensure its new threadId is consistent
+        original_thread_id = None
+        for old_thread_id, old_thread_data in gmail_data.get("threads", {}).items():
+            if any(m.get("id") == msg_data.get("original_id") for m in old_thread_data.get("messages", [])):
+                original_thread_id = old_thread_id
+                break
+
+        if original_thread_id:
+            if original_thread_id not in old_thread_to_new_thread_map:
+                old_thread_to_new_thread_map[original_thread_id] = str(uuid.uuid4())
+            msg_data["threadId"] = old_thread_to_new_thread_map[original_thread_id]
+        else:
+            # If it wasn't part of an old thread, it keeps its randomly assigned new threadId
+            pass
+        
+        thread_id = msg_data["threadId"]
+        if thread_id not in final_threads:
+            final_threads[thread_id] = {"id": thread_id, "snippet": msg_data.get("snippet", "No snippet"), "messages": [], "historyId": str(random.randint(1000000000000, 9999999999999))}
+        final_threads[thread_id]["messages"].append({"id": msg_id_new})
+        
+        # Update thread snippet to be the latest message's snippet (or earliest unread)
+        # This is a simplification; real Gmail thread snippets are more complex
+        current_snippet_ts = int(msg_data["internalDate"])
+        thread_snippet_ts = int(final_threads[thread_id].get("snippet_timestamp", 0))
+
+        if current_snippet_ts > thread_snippet_ts:
+             final_threads[thread_id]["snippet"] = msg_data.get("snippet", "No snippet")
+             final_threads[thread_id]["snippet_timestamp"] = current_snippet_ts
+
+
+    processed_gmail_data["threads"] = final_threads
+
+    # --- Process drafts ---
+    new_drafts = {}
+    for draft_id_old, draft_data in processed_gmail_data.get("drafts", {}).items():
+        new_draft_id = str(uuid.uuid4())
+        draft_data["id"] = new_draft_id
+        # Ensure 'to' and 'from' fields are populated for drafts for realism
+        if "to" not in draft_data["message"]:
+             draft_data["message"]["to"] = random.choice(["colleague@example.com", "client@example.net"])
+        if "from" not in draft_data["message"]:
+             draft_data["message"]["from"] = email # Drafts are from the current user
+        new_drafts[new_draft_id] = draft_data
+    processed_gmail_data["drafts"] = new_drafts
+    
+    # --- Process labels ---
+    new_labels = {}
+    for label_id_old, label_data in processed_gmail_data.get("labels", {}).items():
+        new_label_id = str(uuid.uuid4()) # Labels can also have UUIDs for consistency
+        label_data["id"] = new_label_id
+        new_labels[new_label_id] = label_data
+    processed_gmail_data["labels"] = new_labels
+
+    # Add default system labels if missing from the initial data
+    default_system_labels = ["INBOX", "STARRED", "SPAM", "TRASH", "DRAFT", "SENT", "IMPORTANT", "UNREAD"]
+    for sys_label in default_system_labels:
+        if sys_label not in [lbl_data["name"] for lbl_data in processed_gmail_data["labels"].values()]:
+            processed_gmail_data["labels"][str(uuid.uuid4())] = {
+                "id": str(uuid.uuid4()),
+                "name": sys_label,
+                "messageListVisibility": "show",
+                "labelListVisibility": "labelShow",
+                "type": "system"
+            }
+
+
+    return user_id, {
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email,
+        "friends": friends_ids, # These will be resolved to UUIDs later
+        "password_hash": "dummy_hash",
+        "gmail_data": processed_gmail_data,
+        "last_active": generate_random_past_timestamp(30), # New field: last active timestamp
+        "timezone": random.choice(["America/New_York", "America/Los_Angeles", "Europe/London", "Asia/Tokyo"]), # New field
+        "is_premium_user": random.choice([True, False, False]), # New field, 33% chance
+    }
+
+# --- Initial Users (provided in the prompt) ---
+users_initial_data = [
+    ("alice.smith@example.net", "Alice", "Smith", ["bob.johnson@example.com", "charlie.davis@example.org"], {
+        "profile": {
+            "emailAddress": "alice.smith@example.net",
+            "messagesTotal": 1500,
+            "threadsTotal": 500,
+            "historyId": "9876543210987"
+        },
+        "drafts": {
+            "draft_abc_123": {
+                "id": "draft_abc_123",
+                "message": {
+                    "to": "project.team@example.com",
+                    "subject": "Project Status Update",
+                    "body": "Hi team, here's the latest on our project. We're on track for completion."
                 }
             }
         },
-        "bob.johnson@example.com": {
-            "first_name": "Bob",
-            "last_name": "Johnson",
-            "email": "bob.johnson@example.com",
-            "friends": ["alice.smith@example.net"],
-            "gmail_data": {
-                "profile": {
-                    "emailAddress": "bob.johnson@example.com",
-                    "messagesTotal": 750,
-                    "threadsTotal": 200,
-                    "historyId": "1234567890123"
-                },
-                "drafts": {
-                    "draft_re_meeting": {
-                        "id": "draft_re_meeting",
-                        "message": {
-                            "to": "alice.smith@example.net",
-                            "subject": "Re: Meeting Reminder",
-                            "body": "Thanks for the reminder! See you then."
-                        }
-                    }
-                },
-                "labels": {
-                    "label_project_x": {
-                        "id": "label_project_x",
-                        "name": "Project X",
-                        "messageListVisibility": "show",
-                        "labelListVisibility": "show",
-                        "type": "user",
-                        "messagesTotal": 55,
-                        "messagesUnread": 0,
-                        "threadsTotal": 15,
-                        "threadsUnread": 0
-                    }
-                },
-                "messages": {
-                    "msg_xyz_111": {
-                        "id": "msg_xyz_111",
-                        "threadId": "thread_client_feedback",
-                        "labelIds": ["INBOX", "label_project_x"],
-                        "snippet": "Feedback received on the latest design mockups.",
-                        "payload": {"headers": [], "body": {}},
-                        "sizeEstimate": 1800,
-                        "historyId": "9876543210123"
-                    }
-                },
-                "threads": {
-                    "thread_client_feedback": {
-                        "id": "thread_client_feedback",
-                        "historyId": "9876543210123",
-                        "messages": [
-                            {
-                                "id": "msg_xyz_111",
-                                "threadId": "thread_client_feedback",
-                                "labelIds": ["INBOX", "label_project_x"],
-                                "snippet": "Feedback received on the latest design mockups.",
-                                "payload": {"headers": [], "body": {}},
-                                "sizeEstimate": 1800,
-                                "historyId": "9876543210123"
-                            }
-                        ],
-                        "snippet": "Feedback received on the latest design mockups."
-                    }
-                },
-                "settings": {
-                    "auto_forwarding": {
-                        "enabled": True,
-                        "emailAddress": "bob.alternate@outlook.com",
-                        "disposition": "archive"
-                    },
-                    "vacation_responder": {
-                        "enableAutoReply": True,
-                        "responseSubject": "Out of Office - Unavailable",
-                        "responseBodyPlainText": "I am currently out of the office until [Date]. I will respond to your email as soon as possible upon my return.",
-                        "responseBodyHtml": "I am currently out of the office until [Date]. I will respond to your email as soon as possible upon my return.",
-                        "restrictToContacts": False,
-                        "restrictToDomain": False,
-                        "startTime": (datetime.datetime.now() - datetime.timedelta(days=2)).timestamp() * 1000,
-                        "endTime": (datetime.datetime.now() + datetime.timedelta(days=5)).timestamp() * 1000
-                    },
-                    "pop_settings": {
-                        "accessWindow": "enabledFrom",
-                        "disposition": "archive"
-                    },
-                    "language": {
-                        "displayLanguage": "es"
-                    },
-                    "delegates": {},
-                    "filters": {
-                        "filter_spam_block": {
-                            "id": "filter_spam_block",
-                            "criteria": {"from": "suspicious@malware.net", "subject": "URGENT ACTION REQUIRED"},
-                            "action": {"addLabelIds": ["SPAM", "TRASH"], "markAsRead": True}
-                        }
-                    },
-                    "forwarding_addresses": {},
-                    "send_as_aliases": {}
-                },
-                "history": {}
+        "labels": {
+            "label_important_client": {
+                "id": "label_important_client",
+                "name": "Important Clients",
+                "messageListVisibility": "show",
+                "labelListVisibility": "show",
+                "type": "user"
             }
         },
-        "charlie.davis@example.org": {
-            "first_name": "Charlie",
-            "last_name": "Davis",
-            "email": "charlie.davis@example.org",
-            "friends": ["alice.smith@example.net"],
-            "gmail_data": {
-                "profile": {
-                    "emailAddress": "charlie.davis@example.org",
-                    "messagesTotal": 250,
-                    "threadsTotal": 100,
-                    "historyId": "2468135790246"
-                },
-                "drafts": {},
-                "labels": {
-                    "label_news": {
-                        "id": "label_news",
-                        "name": "Newsletters",
-                        "messageListVisibility": "hide",
-                        "labelListVisibility": "hide",
-                        "type": "user",
-                        "messagesTotal": 70,
-                        "messagesUnread": 15,
-                        "threadsTotal": 25,
-                        "threadsUnread": 5
-                    }
-                },
-                "messages": {},
-                "threads": {},
-                "settings": {
-                    "auto_forwarding": {
-                        "enabled": False,
-                        "emailAddress": None,
-                        "disposition": "leaveInInbox"
-                    },
-                    "vacation_responder": {
-                        "enableAutoReply": False,
-                        "responseSubject": None,
-                        "responseBodyPlainText": None,
-                        "responseBodyHtml": None,
-                        "restrictToContacts": False,
-                        "restrictToDomain": False,
-                        "startTime": None,
-                        "endTime": None
-                    },
-                    "pop_settings": {
-                        "accessWindow": "disabled",
-                        "disposition": "leaveInInbox"
-                    },
-                    "language": {
-                        "displayLanguage": "en-GB"
-                    },
-                    "delegates": {},
-                    "filters": {
-                        "filter_social_media": {
-                            "id": "filter_social_media",
-                            "criteria": {"from": "*@facebookmail.com OR *@twitter.com"},
-                            "action": {"addLabelIds": ["SOCIAL"], "markAsRead": True}
-                        }
-                    },
-                    "forwarding_addresses": {},
-                    "send_as_aliases": {
-                        "alias_personal": {
-                            "sendAsEmail": "charlie.davis.personal@gmail.com",
-                            "displayName": "Charlie Davis (Personal)",
-                            "replyToAddress": None,
-                            "signature": "Cheers,\nCharlie",
-                            "isPrimary": False,
-                            "verificationStatus": "accepted"
-                        }
-                    }
-                },
-                "history": {}
+        "messages": {
+            "msg_1": {
+                "id": "msg_1",
+                "threadId": "thread_1",
+                "snippet": "Meeting tomorrow at 10 AM.",
+                "payload": {"headers": [{"name": "Subject", "value": "Meeting"}]},
+                "internalDate": current_datetime.timestamp() * 1000 - random.randint(1000, 100000000), # Ensure it's a number for processing, then converted to string
+                "labelIds": ["INBOX", "UNREAD"],
+                "original_id": "msg_1", # Keep original_id to link back to threads
+            },
+            "msg_2": {
+                "id": "msg_2",
+                "threadId": "thread_1",
+                "snippet": "Don't forget the deadline.",
+                "payload": {"headers": [{"name": "Subject", "value": "Deadline"}]},
+                "internalDate": (current_datetime - datetime.timedelta(days=1)).timestamp() * 1000 - random.randint(1000, 100000000),
+                "labelIds": ["INBOX", "UNREAD"],
+                "original_id": "msg_2",
             }
         },
-        "diana.miller@webmail.co": {
-            "first_name": "Diana",
-            "last_name": "Miller",
-            "email": "diana.miller@webmail.co",
-            "friends": ["bob.johnson@example.com"],
-            "gmail_data": {
-                "profile": {
-                    "emailAddress": "diana.miller@webmail.co",
-                    "messagesTotal": 50,
-                    "threadsTotal": 15,
-                    "historyId": "3692581470369"
-                },
-                "drafts": {},
-                "labels": {},
-                "messages": {},
-                "threads": {},
-                "settings": {
-                    "auto_forwarding": {
-                        "enabled": False,
-                        "emailAddress": None,
-                        "disposition": "leaveInInbox"
-                    },
-                    "vacation_responder": {
-                        "enableAutoReply": False,
-                        "responseSubject": None,
-                        "responseBodyPlainText": None,
-                        "responseBodyHtml": None,
-                        "restrictToContacts": False,
-                        "restrictToDomain": False,
-                        "startTime": None,
-                        "endTime": None
-                    },
-                    "pop_settings": {
-                        "accessWindow": "allMail",
-                        "disposition": "leaveInInbox"
-                    },
-                    "language": {
-                        "displayLanguage": "fr"
-                    },
-                    "delegates": {},
-                    "filters": {},
-                    "forwarding_addresses": {},
-                    "send_as_aliases": {}
-                },
-                "history": {}
+        "threads": {
+            "thread_1": {
+                "id": "thread_1",
+                "snippet": "Meeting tomorrow at 10 AM.",
+                "messages": [{"id": "msg_1"}, {"id": "msg_2"}],
+                "historyId": "9876543210989"
             }
         }
-    },
-    "current_user": "alice.smith@example.net",
-    "gmail_draft_counter": 10, # Adjusted for existing drafts
-    "gmail_label_counter": 10, # Adjusted for existing labels
-    "gmail_message_counter": 100, # Adjusted for existing messages
-    "gmail_thread_counter": 50, # Adjusted for existing threads
-    "gmail_history_counter": 200, # Adjusted for existing history
-    "gmail_delegate_counter": 5,
-    "gmail_filter_counter": 5,
-    "gmail_forwarding_address_counter": 5,
-    "gmail_send_as_counter": 5
-}
+    }),
+    ("bob.johnson@example.com", "Bob", "Johnson", ["alice.smith@example.net"], {
+        "profile": {
+            "emailAddress": "bob.johnson@example.com",
+            "messagesTotal": 800,
+            "threadsTotal": 300,
+            "historyId": "1234567890123"
+        },
+        "drafts": {},
+        "labels": {
+            "label_personal": {
+                "id": "label_personal",
+                "name": "Personal",
+                "messageListVisibility": "show",
+                "labelListVisibility": "show",
+                "type": "user"
+            }
+        },
+        "messages": {
+            "msg_3": {
+                "id": "msg_3",
+                "threadId": "thread_2",
+                "snippet": "Project update.",
+                "payload": {"headers": [{"name": "Subject", "value": "Project"}]},
+                "internalDate": current_datetime.timestamp() * 1000 - random.randint(1000, 100000000),
+                "labelIds": ["INBOX"],
+                "original_id": "msg_3",
+            }
+        },
+        "threads": {
+            "thread_2": {
+                "id": "thread_2",
+                "snippet": "Project update.",
+                "messages": [{"id": "msg_3"}],
+                "historyId": "1234567890125"
+            }
+        }
+    }),
+    ("charlie.davis@example.org", "Charlie", "Davis", ["alice.smith@example.net"], {
+        "profile": {
+            "emailAddress": "charlie.davis@example.org",
+            "messagesTotal": 300,
+            "threadsTotal": 100,
+            "historyId": "0987654321098"
+        },
+        "drafts": {},
+        "labels": {},
+        "messages": {},
+        "threads": {}
+    })
+]
+
+# Populate initial users
+for email, first_name, last_name, friends_emails, gmail_data in users_initial_data:
+    user_id, user_data = _create_user_data(email, first_name, last_name, friends_emails, gmail_data)
+    DEFAULT_STATE["users"][user_id] = user_data
+
+# --- Generate 47 more diverse and realistic users ---
+first_names = ["Sophia", "Liam", "Olivia", "Noah", "Ava", "Jackson", "Isabella", "Aiden", "Mia", "Lucas", "Harper", "Ethan", "Evelyn", "Mason", "Abigail", "Caleb", "Charlotte", "Logan", "Amelia", "Michael", "Ella", "Jacob", "Aria", "Daniel", "Chloe", "Samuel", "Grace", "David", "Victoria", "Joseph", "Penelope", "Matthew", "Riley", "Benjamin", "Layla", "Andrew", "Lily", "Gabriel", "Natalie", "Christopher", "Hannah", "James", "Zoe", "Ryan", "Scarlett", "Nathan", "Addison", "Christian", "Aubrey", "Joshua"]
+last_names = ["Chen", "Kim", "Singh", "Lopez", "Garcia", "Nguyen", "Davis", "Jackson", "Harris", "White", "Moore", "Clark", "Lewis", "Baker", "Adams", "Hill", "Nelson", "Carter", "Mitchell", "Roberts", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson", "Brooks", "Kelly", "Sanders"]
+
+current_user_emails = list(_user_email_to_uuid_map.keys())
+
+for i in range(47): # Generate 47 additional users (3 existing + 47 new = 50 total)
+    first = random.choice(first_names)
+    last = random.choice(last_names)
+    email = generate_email(first, last)
+    
+    # Ensure unique email
+    while email in _user_email_to_uuid_map:
+        email = generate_email(first, last)
+
+    # Select friends from existing users
+    num_friends = random.randint(0, 5)
+    possible_friends_emails = list(_user_email_to_uuid_map.keys())
+    # Ensure they don't add themselves as a friend and try to add existing users
+    friends_for_new_user = random.sample(possible_friends_emails, min(num_friends, len(possible_friends_emails)))
+
+    # Generate realistic Gmail data
+    new_gmail_data = {
+        "profile": {
+            "emailAddress": email,
+            "messagesTotal": random.randint(50, 5000),
+            "threadsTotal": random.randint(20, 1500),
+            "historyId": str(random.randint(1000000000000, 9999999999999))
+        },
+        "drafts": {},
+        "labels": {},
+        "messages": {},
+        "threads": {}
+    }
+
+    # Add random drafts
+    num_drafts = random.randint(0, 2)
+    for _ in range(num_drafts):
+        draft_id = str(uuid.uuid4())
+        new_gmail_data["drafts"][draft_id] = {
+            "id": draft_id,
+            "message": {
+                "to": generate_email(random.choice(first_names), random.choice(last_names)),
+                "from": email,
+                "subject": random.choice(["Follow up on meeting", "Question about project X", "Regarding your inquiry", "Draft email for client"]),
+                "body": "This is a draft message. [Placeholder for content]"
+            }
+        }
+
+    # Add random labels
+    num_labels = random.randint(0, 4)
+    for _ in range(num_labels):
+        label_id = str(uuid.uuid4())
+        label_name = random.choice(["Work", "Personal", "Family", "Receipts", "Travel", "Urgent", "Archive"])
+        new_gmail_data["labels"][label_id] = {
+            "id": label_id,
+            "name": label_name,
+            "messageListVisibility": random.choice(["show", "hide"]),
+            "labelListVisibility": random.choice(["labelShow", "labelHide"]),
+            "type": "user"
+        }
+    
+    # Add random messages and threads
+    num_messages = random.randint(5, 50)
+    user_message_ids = [] # To link messages within threads later
+    all_possible_recipients = list(_user_email_to_uuid_map.keys()) + [generate_email("external", "user")] # Include external too
+
+    for msg_idx in range(num_messages):
+        msg_id_old_placeholder = f"temp_msg_{i}_{msg_idx}" # Use temporary IDs for internal _create_user_data logic
+        sender = random.choice([email, random.choice(friends_for_new_user) if friends_for_new_user else generate_email("random", "sender")])
+        recipient = random.choice([email, random.choice(all_possible_recipients)])
+        
+        # Ensure 'from' and 'to' headers are present in payload
+        headers = [
+            {"name": "From", "value": sender},
+            {"name": "To", "value": recipient},
+            {"name": "Subject", "value": random.choice(["Hello!", "Re: Your question", "Meeting reminder", "Update", "Checking in", "Fwd: Interesting article"])}
+        ]
+        
+        # Determine if it's an unread message
+        is_unread = random.random() < 0.3 # 30% chance of being unread
+        label_ids = ["INBOX"]
+        if is_unread:
+            label_ids.append("UNREAD")
+        if random.random() < 0.1: # 10% chance of being starred
+            label_ids.append("STARRED")
+        if random.random() < 0.05: # 5% chance of being spam
+            label_ids.append("SPAM")
+
+        new_gmail_data["messages"][msg_id_old_placeholder] = {
+            "id": msg_id_old_placeholder, # This will be replaced by UUID
+            "threadId": f"temp_thread_{i}_{msg_idx}", # This will be replaced by UUID
+            "snippet": random.choice(["Just checking in.", "Acknowledged.", "Will do.", "Thanks!", "Got it."]),
+            "payload": {"headers": headers},
+            "internalDate": generate_random_past_timestamp(365),
+            "labelIds": label_ids,
+            "original_id": msg_id_old_placeholder,
+        }
+        user_message_ids.append(msg_id_old_placeholder)
+
+    # Simulate conversations by linking some messages into threads
+    num_threads_to_create = random.randint(min(5, num_messages // 2), min(15, num_messages // 2))
+    
+    # Ensure messages that should be in the same thread actually are
+    threads_dict_for_user = {}
+    if user_message_ids:
+        # Create some multi-message threads
+        for _ in range(num_threads_to_create // 2):
+            if len(user_message_ids) >= 2:
+                thread_msg_ids = random.sample(user_message_ids, random.randint(2, min(5, len(user_message_ids))))
+                thread_uuid = str(uuid.uuid4())
+                for mid in thread_msg_ids:
+                    # Update the temporary threadId in the message data
+                    new_gmail_data["messages"][mid]["threadId"] = thread_uuid
+                
+                # Remove these messages from the pool so they don't form new threads
+                user_message_ids = [m for m in user_message_ids if m not in thread_msg_ids]
+    
+        # Any remaining messages that didn't get grouped into a multi-message thread become single-message threads
+        for msg_id in user_message_ids:
+            new_gmail_data["messages"][msg_id]["threadId"] = str(uuid.uuid4())
+
+
+    # The _create_user_data function will handle the final UUID generation for messages and threads.
+    user_id, user_data = _create_user_data(email, first, last, friends_for_new_user, new_gmail_data)
+    DEFAULT_STATE["users"][user_id] = user_data
+    current_user_emails.append(email) # Add new user to possible friends for subsequent users
+
+
+# --- Final Resolution of Friends (needed because some friends might have been added later) ---
+all_user_uuids = list(_user_email_to_uuid_map.values())
+for user_id, user_data in DEFAULT_STATE["users"].items():
+    resolved_friends = []
+    for friend_item in user_data["friends"]:
+        if friend_item in _user_email_to_uuid_map: # Check if it's an email that has a UUID now
+            resolved_friends.append(_user_email_to_uuid_map[friend_item])
+        elif friend_item in all_user_uuids: # Already a UUID
+            resolved_friends.append(friend_item)
+        # If it's an email that wasn't found (e.g., placeholder for non-Gmail user), or an invalid ID, skip it
+    
+    # Ensure friends list only contains valid UUIDs and no duplicates, and not self
+    user_data["friends"] = list(set([f for f in resolved_friends if f != user_id]))
+
+
+# --- Output the generated DEFAULT_STATE ---
+# This part is crucial: we are printing the full, static DEFAULT_STATE
+# to a JSON file so you can load it consistently.
+import json
+
+print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
+
+# Save the generated DEFAULT_STATE to a JSON file
+# output_filename = 'diverse_gmail_state.json'
+# with open(output_filename, 'w') as f:
+#     json.dump(DEFAULT_STATE, f, indent=2)
+
+print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
+
+# Optionally, print a sample user's data for review
+# if DEFAULT_STATE["users"]:
+#     sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
+#     print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
+#     print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))
 
 class GmailApis:
-    def __init__(self, state: Optional[Dict[str, Any]] = None) -> None:
-        """
-        Initializes the GmailBackendSimulator with a given state.
-        If no state is provided, it uses a deep copy of the DEFAULT_STATE.
+    """
+    A dummy API class for simulating Gmail operations.
+    This class provides an in-memory backend for development and testing purposes.
+    """
 
-        Args:
-            state (Optional[Dict[str, Any]]): The initial state for the simulator.
-                                               Defaults to a deep copy of DEFAULT_STATE.
-        """
-        self.state: Dict[str, Any] = copy.deepcopy(state if state is not None else DEFAULT_STATE)
+    def __init__(self):
+        self.users: Dict[str, Any] = {}
+        self._api_description = "This tool belongs to the Gmail API, which provides core functionality for managing emails, drafts, and labels."
+        self._load_scenario(DEFAULT_STATE)
 
-    def _get_user_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user-specific Gmail data.
+    def _load_scenario(self, scenario: Dict) -> None:
+        DEFAULT_STATE_COPY = copy.deepcopy(DEFAULT_STATE)
+        self.users = scenario.get("users", DEFAULT_STATE_COPY["users"])
+        print("GmailApis: Loaded scenario with users and their UUIDs.")
 
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
+    def _generate_id(self) -> str:
+        return str(uuid.uuid4())
 
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's Gmail data, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data")
-
-    def _get_user_profile_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user profile data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's profile information, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("profile")
-
-    def _get_user_drafts_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user drafts data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's drafts, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("drafts")
-    
-    def _get_user_labels_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user labels data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's labels, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("labels")
-
-    def _get_user_messages_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user messages data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's messages, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("messages")
-
-    def _get_user_threads_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user threads data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's threads, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("threads")
-
-    def _get_user_settings_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user settings data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's settings, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("settings")
-
-    def _get_user_history_data(self, user_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Helper to get user history data.
-
-        Args:
-            user_id (str): The ID of the user or 'me' for the current user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's history, or None if not found.
-        """
-        if user_id == 'me':
-            user_id = self.state["current_user"]
-        return self.state["users"].get(user_id, {}).get("gmail_data", {}).get("history")
-
-    def get_user_profile(self, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the current user's Gmail profile from the backend state.
-
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the user's profile information,
-                                      or None if the profile is not found.
-        """
-        profile = self._get_user_profile_data(user_id)
-        if profile:
-            return copy.deepcopy(profile)
+    def _get_user_id_by_email(self, email: str) -> Optional[str]:
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == email:
+                return user_id
         return None
 
-    def create_draft(self, message_body: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Creates a new draft in the backend state.
+    def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
+        user_data = self.users.get(user_id)
+        return user_data.get("email") if user_data else None
 
-        Args:
-            message_body (Dict[str, Any]): The draft message content to create.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the created draft, or None if the user data is not found.
-        """
-        drafts = self._get_user_drafts_data(user_id)
-        if drafts is None:
+    def _get_user_gmail_data(self, user_id: str) -> Optional[Dict]:
+        internal_user_id = self._get_user_id_by_email(user_id)
+        if not internal_user_id:
             return None
+        return self.users.get(internal_user_id, {}).get("gmail_data")
 
-        self.state["gmail_draft_counter"] += 1
-        new_draft_id = f"draft{self.state['gmail_draft_counter']}"
-        new_draft = {
-            "id": new_draft_id,
-            "message": message_body
+    def _get_user_threads_data(self, user_id: str) -> Optional[Dict]:
+        gmail_data = self._get_user_gmail_data(user_id)
+        return gmail_data.get("threads") if gmail_data else None
+
+    def _get_user_messages_data(self, user_id: str) -> Optional[Dict]:
+        gmail_data = self._get_user_gmail_data(user_id)
+        return gmail_data.get("messages") if gmail_data else None
+
+    def _get_user_drafts_data(self, user_id: str) -> Optional[Dict]:
+        gmail_data = self._get_user_gmail_data(user_id)
+        return gmail_data.get("drafts") if gmail_data else None
+
+    def _get_user_labels_data(self, user_id: str) -> Optional[Dict]:
+        gmail_data = self._get_user_gmail_data(user_id)
+        return gmail_data.get("labels") if gmail_data else None
+
+    def get_profile(self, user_id: str) -> Optional[Dict[str, Any]]:
+        internal_user_id = self._get_user_id_by_email(user_id)
+        if not internal_user_id:
+            return None
+        
+        user_data = self.users.get(internal_user_id)
+        return user_data.get("gmail_data", {}).get("profile") if user_data else None
+
+    def list_messages(
+        self,
+        user_id: str,
+        query: Optional[str] = None,
+        label_ids: Optional[List[str]] = None,
+        page_token: Optional[str] = None,
+        max_results: int = 10,
+    ) -> Dict[str, Union[List[Dict], str, int]]:
+        messages = self._get_user_messages_data(user_id)
+        if messages is None:
+            return {"messages": [], "resultSizeEstimate": 0}
+
+        filtered_messages = []
+        for msg_id, msg_data in messages.items():
+            match = True
+            if query and query.lower() not in msg_data.get("snippet", "").lower() and \
+               query.lower() not in msg_data.get("payload", {}).get("headers", [{"value":""}])[0].get("value", "").lower():
+                match = False
+            if label_ids:
+                msg_labels = set(msg_data.get("labelIds", []))
+                if not all(label in msg_labels for label in label_ids):
+                    match = False
+            
+            if match:
+                filtered_messages.append({
+                    "id": msg_data["id"],
+                    "threadId": msg_data["threadId"],
+                    "snippet": msg_data["snippet"],
+                    "labelIds": msg_data["labelIds"]
+                })
+
+        start_index = 0
+        if page_token:
+            try:
+                start_index = int(page_token)
+            except ValueError:
+                start_index = 0
+
+        paginated_messages = filtered_messages[start_index : start_index + max_results]
+        next_page_token = str(start_index + max_results) if start_index + max_results < len(filtered_messages) else None
+
+        return {
+            "messages": paginated_messages,
+            "nextPageToken": next_page_token,
+            "resultSizeEstimate": len(filtered_messages)
         }
-        drafts[new_draft_id] = new_draft
-        return copy.deepcopy(new_draft)
 
-    def delete_draft(self, draft_id: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes the specified draft from the backend state.
-
-        Args:
-            draft_id (str): The ID of the draft to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the draft or user data is not found.
-        """
-        drafts = self._get_user_drafts_data(user_id)
-        if drafts is None:
+    def get_message(
+        self, user_id: str, msg_id: str, format: str = "full"
+    ) -> Optional[Dict[str, Any]]:
+        messages = self._get_user_messages_data(user_id)
+        if messages is None:
             return None
-
-        if draft_id in drafts:
-            del drafts[draft_id]
-            return None
+        
+        message = messages.get(msg_id)
+        if message:
+            if format == "minimal":
+                return {"id": message["id"], "threadId": message["threadId"], "snippet": message["snippet"]}
+            elif format == "raw":
+                return {"id": message["id"], "raw": "dummy_raw_content_for_" + message["id"]}
+            return copy.deepcopy(message)
         return None
 
-    def get_draft(self, draft_id: str, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the specified draft from the backend state.
+    def send_message(
+        self, user_id: str, to: str, subject: str, body: str, thread_id: Optional[str] = None
+    ) -> Dict[str, Union[str, Dict]]:
+        internal_user_id = self._get_user_id_by_email(user_id)
+        if not internal_user_id:
+            return {"error": "User not found."}
 
-        Args:
-            draft_id (str): The ID of the draft to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the draft, or None if the draft or user data is not found.
-        """
+        gmail_data = self.users[internal_user_id].get("gmail_data")
+        if not gmail_data:
+            return {"error": "Gmail data not available for user."}
+
+        new_msg_id = self._generate_id()
+        if not thread_id:
+            thread_id = self._generate_id()
+
+        new_message = {
+            "id": new_msg_id,
+            "threadId": thread_id,
+            "snippet": body[:100] + "...",
+            "payload": {
+                "headers": [
+                    {"name": "To", "value": to},
+                    {"name": "From", "value": user_id},
+                    {"name": "Subject", "value": subject}
+                ],
+                "body": {"data": body}
+            },
+            "internalDate": str(int(datetime.datetime.now().timestamp() * 1000)),
+            "labelIds": ["SENT", "INBOX"]
+        }
+
+        gmail_data["messages"][new_msg_id] = new_message
+        if thread_id not in gmail_data["threads"]:
+            gmail_data["threads"][thread_id] = {"id": thread_id, "messages": []}
+        gmail_data["threads"][thread_id]["messages"].append({"id": new_msg_id})
+        gmail_data["profile"]["messagesTotal"] = gmail_data["profile"].get("messagesTotal", 0) + 1
+        gmail_data["profile"]["threadsTotal"] = len(gmail_data["threads"])
+
+        recipient_user_id = self._get_user_id_by_email(to)
+        if recipient_user_id and recipient_user_id != internal_user_id:
+            recipient_gmail_data = self.users[recipient_user_id].get("gmail_data")
+            if recipient_gmail_data:
+                recipient_message = copy.deepcopy(new_message)
+                recipient_message["labelIds"] = ["INBOX", "UNREAD"]
+                recipient_gmail_data["messages"][new_msg_id] = recipient_message
+                if thread_id not in recipient_gmail_data["threads"]:
+                    recipient_gmail_data["threads"][thread_id] = {"id": thread_id, "messages": []}
+                recipient_gmail_data["threads"][thread_id]["messages"].append({"id": new_msg_id})
+                recipient_gmail_data["profile"]["messagesTotal"] = recipient_gmail_data["profile"].get("messagesTotal", 0) + 1
+                recipient_gmail_data["profile"]["threadsTotal"] = len(recipient_gmail_data["threads"])
+
+        print(f"Dummy email sent: from {user_id} to {to}, subject '{subject}'")
+        return {"id": new_msg_id, "threadId": thread_id}
+
+    def delete_message(self, user_id: str, msg_id: str) -> Dict[str, Union[bool, str]]:
+        messages = self._get_user_messages_data(user_id)
+        if messages is None:
+            return {"success": False, "message": "User not found or no messages data."}
+        
+        if msg_id in messages:
+            thread_id = messages[msg_id]["threadId"]
+            del messages[msg_id]
+            
+            threads = self._get_user_threads_data(user_id)
+            if threads and thread_id in threads:
+                threads[thread_id]["messages"] = [m for m in threads[thread_id]["messages"] if m["id"] != msg_id]
+                if not threads[thread_id]["messages"]:
+                    del threads[thread_id]
+
+            internal_user_id = self._get_user_id_by_email(user_id)
+            if internal_user_id:
+                profile = self.users[internal_user_id].get("gmail_data", {}).get("profile")
+                if profile:
+                    profile["messagesTotal"] = max(0, profile.get("messagesTotal", 0) - 1)
+                    profile["threadsTotal"] = len(threads) if threads else 0
+
+            print(f"Dummy message deleted: ID={msg_id} for user {user_id}")
+            return {"success": True, "message": f"Message {msg_id} deleted."}
+        return {"success": False, "message": f"Message {msg_id} not found."}
+
+    def list_drafts(
+        self, user_id: str, page_token: Optional[str] = None, max_results: int = 10
+    ) -> Dict[str, Union[List[Dict], str, int]]:
+        drafts = self._get_user_drafts_data(user_id)
+        if drafts is None:
+            return {"drafts": [], "resultSizeEstimate": 0}
+
+        all_drafts = list(drafts.values())
+        
+        start_index = 0
+        if page_token:
+            try:
+                start_index = int(page_token)
+            except ValueError:
+                start_index = 0
+
+        paginated_drafts = all_drafts[start_index : start_index + max_results]
+        next_page_token = str(start_index + max_results) if start_index + max_results < len(all_drafts) else None
+
+        formatted_drafts = [{"id": d["id"], "message": d["message"]} for d in paginated_drafts]
+
+        return {
+            "drafts": formatted_drafts,
+            "nextPageToken": next_page_token,
+            "resultSizeEstimate": len(all_drafts)
+        }
+
+    def get_draft(self, user_id: str, draft_id: str) -> Optional[Dict[str, Any]]:
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return None
-
+        
         draft = drafts.get(draft_id)
         if draft:
             return copy.deepcopy(draft)
         return None
 
-    def list_drafts(self, user_id: str = 'me', max_results: Optional[int] = None) -> Optional[Dict[str, Any]]:
-        """
-        Lists the drafts in the user's mailbox from the backend state.
+    def create_draft(
+        self, user_id: str, to: str, subject: str, body: str
+    ) -> Dict[str, Union[str, Dict]]:
+        internal_user_id = self._get_user_id_by_email(user_id)
+        if not internal_user_id:
+            return {"error": "User not found."}
 
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-            max_results (Optional[int]): Maximum number of drafts to return (simulated).
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing a list of drafts and result estimate,
-                                      or None if the user data is not found.
-        """
-        drafts_data = self._get_user_drafts_data(user_id)
-        if drafts_data is None:
-            return None
+        gmail_data = self.users[internal_user_id].get("gmail_data")
+        if not gmail_data:
+            return {"error": "Gmail data not available for user."}
 
-        all_drafts = list(drafts_data.values())
-        if max_results:
-            all_drafts = all_drafts[:max_results]
-        return {"drafts": copy.deepcopy(all_drafts), "resultSizeEstimate": len(all_drafts)}
-
-    def create_label(self, label_body: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Creates a new label in the backend state.
-
-        Args:
-            label_body (Dict[str, Any]): The label to create (with name, messageListVisibility, etc.).
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: The created label, or None if the user data is not found.
-        """
-        labels = self._get_user_labels_data(user_id)
-        if labels is None:
-            return None
-
-        self.state["gmail_label_counter"] += 1
-        new_label_id = f"label{self.state['gmail_label_counter']}"
-        new_label = {
-            "id": new_label_id,
-            "name": label_body.get("name"),
-            "messageListVisibility": label_body.get("messageListVisibility", "show"),
-            "labelListVisibility": label_body.get("labelListVisibility", "show"),
-            "type": label_body.get("type", "user"),
-            "messagesTotal": 0,
-            "messagesUnread": 0,
-            "threadsTotal": 0,
-            "threadsUnread": 0
+        new_draft_id = self._generate_id()
+        new_draft = {
+            "id": new_draft_id,
+            "message": {
+                "to": to,
+                "subject": subject,
+                "body": body
+            }
         }
-        labels[new_label_id] = new_label
-        return copy.deepcopy(new_label)
+        gmail_data["drafts"][new_draft_id] = new_draft
+        print(f"Dummy draft created: ID={new_draft_id} for user {user_id}")
+        return {"id": new_draft_id, "message": new_draft["message"]}
 
-    def delete_label(self, label_id: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes the specified label from the backend state.
+    def update_draft(
+        self, user_id: str, draft_id: str, to: str, subject: str, body: str
+    ) -> Dict[str, Union[str, Dict]]:
+        drafts = self._get_user_drafts_data(user_id)
+        if drafts is None:
+            return {"error": "User not found or no drafts data."}
 
-        Args:
-            label_id (str): The ID of the label to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
+        if draft_id in drafts:
+            drafts[draft_id]["message"]["to"] = to
+            drafts[draft_id]["message"]["subject"] = subject
+            drafts[draft_id]["message"]["body"] = body
+            print(f"Dummy draft updated: ID={draft_id} for user {user_id}")
+            return {"id": draft_id, "message": drafts[draft_id]["message"]}
+        return {"error": f"Draft {draft_id} not found."}
 
-        Returns:
-            Optional[None]: None if successful, or None if the label or user data is not found.
-        """
+    def delete_draft(self, user_id: str, draft_id: str) -> Dict[str, Union[bool, str]]:
+        drafts = self._get_user_drafts_data(user_id)
+        if drafts is None:
+            return {"success": False, "message": "User not found or no drafts data."}
+        
+        if draft_id in drafts:
+            del drafts[draft_id]
+            print(f"Dummy draft deleted: ID={draft_id} for user {user_id}")
+            return {"success": True, "message": f"Draft {draft_id} deleted."}
+        return {"success": False, "message": f"Draft {draft_id} not found."}
+
+    def list_labels(self, user_id: str) -> Dict[str, Union[List[Dict], str]]:
+        labels = self._get_user_labels_data(user_id)
+        if labels is None:
+            return {"labels": []}
+        
+        formatted_labels = [copy.deepcopy(label) for label in labels.values()]
+        return {"labels": formatted_labels}
+
+    def get_label(self, user_id: str, label_id: str) -> Optional[Dict[str, Any]]:
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return None
-
-        if label_id in labels:
-            del labels[label_id]
-            return None
-        return None
-
-    def get_label(self, label_id: str, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the specified label from the backend state.
-
-        Args:
-            label_id (str): The ID of the label to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the label details, or None if the label or user data is not found.
-        """
-        labels = self._get_user_labels_data(user_id)
-        if labels is None:
-            return None
-
+        
         label = labels.get(label_id)
         if label:
             return copy.deepcopy(label)
         return None
 
-    def list_labels(self, user_id: str = 'me') -> Optional[Dict[str, List[Dict[str, Any]]]]:
-        """
-        Lists all labels in the user's mailbox from the backend state.
+    def create_label(self, user_id: str, label_name: str) -> Dict[str, Union[str, Dict]]:
+        internal_user_id = self._get_user_id_by_email(user_id)
+        if not internal_user_id:
+            return {"error": "User not found."}
 
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+        gmail_data = self.users[internal_user_id].get("gmail_data")
+        if not gmail_data:
+            return {"error": "Gmail data not available for user."}
+        
+        labels = gmail_data.get("labels")
+        if labels is None:
+            gmail_data["labels"] = {}
+            labels = gmail_data["labels"]
 
-        Returns:
-            Optional[Dict[str, List[Dict[str, Any]]]]: A dictionary containing a list of labels,
-                                                        or None if the user data is not found.
-        """
-        labels_data = self._get_user_labels_data(user_id)
-        if labels_data is None:
-            return None
+        new_label_id = self._generate_id()
+        new_label = {
+            "id": new_label_id,
+            "name": label_name,
+            "messageListVisibility": "show",
+            "labelListVisibility": "show",
+            "type": "user"
+        }
+        labels[new_label_id] = new_label
+        print(f"Dummy label created: ID={new_label_id}, Name='{label_name}' for user {user_id}")
+        return {"id": new_label_id, "name": label_name}
 
-        all_labels = list(labels_data.values())
-        return {"labels": copy.deepcopy(all_labels)}
+    def update_label(self, user_id: str, label_id: str, new_label_name: str) -> Dict[str, Union[str, Dict]]:
+        labels = self._get_user_labels_data(user_id)
+        if labels is None:
+            return {"error": "User not found or no labels data."}
+        
+        if label_id in labels:
+            labels[label_id]["name"] = new_label_name
+            print(f"Dummy label updated: ID={label_id}, New Name='{new_label_name}' for user {user_id}")
+            return {"id": label_id, "name": new_label_name}
+        return {"error": f"Label {label_id} not found."}
 
-    def batch_delete_messages(self, message_ids: List[str], user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes many messages by message ID from the backend state.
+    def delete_label(self, user_id: str, label_id: str) -> Dict[str, Union[bool, str]]:
+        labels = self._get_user_labels_data(user_id)
+        if labels is None:
+            return {"success": False, "message": "User not found or no labels data."}
+        
+        if label_id in labels:
+            del labels[label_id]
+            print(f"Dummy label deleted: ID={label_id} for user {user_id}")
+            return {"success": True, "message": f"Label {label_id} deleted."}
+        return {"success": False, "message": f"Label {label_id} not found."}
 
-        Args:
-            message_ids (List[str]): List of IDs of messages to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the user data is not found.
-        """
+    def modify_message(
+        self, user_id: str, message_id: str, modify_request: Dict[str, List[str]]
+    ) -> Optional[Dict[str, Any]]:
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return None
-
-        deleted_count = 0
-        for msg_id in message_ids:
-            if msg_id in messages:
-                del messages[msg_id]
-                deleted_count += 1
-        return None
-
-    def get_message(self, message_id: str, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the specified message from the backend state.
-
-        Args:
-            message_id (str): The ID of the message to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the message, or None if the message or user data is not found.
-        """
-        messages = self._get_user_messages_data(user_id)
-        if messages is None:
-            return None
-
+        
         message = messages.get(message_id)
-        if message:
-            return copy.deepcopy(message)
-        return None
+        if not message:
+            return None
 
-    def list_messages(self, user_id: str = 'me', label_ids: Optional[List[str]] = None, max_results: Optional[int] = None, q: Optional[str] = None) -> Optional[Dict[str, Any]]:
-        """
-        Lists the messages in the user's mailbox from the backend state.
+        current_labels = set(message.get("labelIds", []))
+        
+        add_labels = set(modify_request.get("addLabelIds", []))
+        remove_labels = set(modify_request.get("removeLabelIds", []))
 
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-            label_ids (Optional[List[str]]): Only return messages with these label IDs applied.
-            max_results (Optional[int]): Maximum number of messages to return (simulated).
-            q (Optional[str]): Search query in the same format as the Gmail search box (basic simulation).
+        message["labelIds"] = list(current_labels.union(add_labels))
+        message["labelIds"] = list(set(message["labelIds"]) - remove_labels)
 
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing a list of messages and result estimate,
-                                      or None if the user data is not found.
-        """
+        print(f"Dummy message modified: ID={message_id}, New Labels={message['labelIds']} for user {user_id}")
+        return copy.deepcopy(message)
+
+    def get_thread(
+        self, user_id: str, thread_id: str, format: str = "full"
+    ) -> Optional[Dict[str, Any]]:
+        threads = self._get_user_threads_data(user_id)
         messages_data = self._get_user_messages_data(user_id)
-        if messages_data is None:
+        if threads is None or messages_data is None:
             return None
-
-        filtered_messages = []
-        for _, message in messages_data.items():
-            match = True
-            if label_ids:
-                if not all(lbl in message.get("labelIds", []) for lbl in label_ids):
-                    match = False
-            if q:
-                query_lower = q.lower()
-                snippet_lower = message.get("snippet", "").lower()
-                body_lower = message.get("payload", {}).get("body", {}).get("data", "").lower()
-                if query_lower not in snippet_lower and query_lower not in body_lower:
-                    match = False
-            if match:
-                filtered_messages.append(message)
-
-        if max_results:
-            filtered_messages = filtered_messages[:max_results]
-        return {"messages": copy.deepcopy(filtered_messages), "resultSizeEstimate": len(filtered_messages)}
-
-    def send_message(self, message_body: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Sends the specified message by adding it to the user's messages in the backend state.
-        Also simulates adding it to a thread.
-
-        Args:
-            message_body (Dict[str, Any]): The message to send.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: The sent message, or None if the user data is not found.
-        """
-        messages = self._get_user_messages_data(user_id)
-        threads = self._get_user_threads_data(user_id)
-        if messages is None or threads is None:
-            return None
-
-        self.state["gmail_message_counter"] += 1
-        new_msg_id = f"msg{self.state['gmail_message_counter']}"
-        thread_id = message_body.get("threadId", f"thread{self.state['gmail_thread_counter']}")
-
-        sent_message = {
-            "id": new_msg_id,
-            "threadId": thread_id,
-            "labelIds": message_body.get("labelIds", ["SENT", "INBOX"]),
-            "snippet": message_body.get("body", {}).get("raw", "")[:100],
-            "payload": message_body.get("payload", {}),
-            "sizeEstimate": len(message_body.get("body", {}).get("raw", "")),
-            "historyId": str(self.state["gmail_history_counter"])
-        }
-        messages[new_msg_id] = sent_message
-
-        if thread_id not in threads:
-            self.state["gmail_thread_counter"] += 1
-            threads[thread_id] = {
-                "id": thread_id,
-                "historyId": str(self.state["gmail_history_counter"]),
-                "messages": [],
-                "snippet": ""
-            }
-        threads[thread_id]["messages"].append(sent_message)
-        threads[thread_id]["snippet"] = sent_message["snippet"]
-
-        self.state["gmail_history_counter"] += 1
-        history_id = str(self.state["gmail_history_counter"])
-        if history_id not in self._get_user_history_data(user_id):
-            self._get_user_history_data(user_id)[history_id] = {
-                "id": history_id,
-                "messages": [],
-                "labelsAdded": []
-            }
-        self._get_user_history_data(user_id)[history_id]["messages"].append({"messageAdded": {"message": sent_message}})
-
-        return copy.deepcopy(sent_message)
-
-    def get_auto_forwarding(self, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the auto-forwarding setting from the backend state.
-
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing auto-forwarding settings, or None if not found.
-        """
-        settings = self._get_user_settings_data(user_id)
-        if settings and "auto_forwarding" in settings:
-            return copy.deepcopy(settings["auto_forwarding"])
-        return None
-
-    def update_vacation(self, vacation_settings: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Updates vacation responder settings in the backend state.
-
-        Args:
-            vacation_settings (Dict[str, Any]): The vacation responder settings to update.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: The updated vacation responder settings, or None if the user data is not found.
-        """
-        settings = self._get_user_settings_data(user_id)
-        if settings is None:
-            return None
-
-        settings["vacation_responder"].update(vacation_settings)
-        return copy.deepcopy(settings["vacation_responder"])
-
-    def get_pop_settings(self, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets POP settings from the backend state.
-
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing POP settings, or None if not found.
-        """
-        settings = self._get_user_settings_data(user_id)
-        if settings and "pop_settings" in settings:
-            return copy.deepcopy(settings["pop_settings"])
-        return None
-
-    def update_language(self, language_settings: Dict[str, str], user_id: str = 'me') -> Optional[Dict[str, str]]:
-        """
-        Updates language settings in the backend state.
-
-        Args:
-            language_settings (Dict[str, str]): The language settings to update.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, str]]: The updated language settings, or None if the user data is not found.
-        """
-        settings = self._get_user_settings_data(user_id)
-        if settings is None:
-            return None
-
-        settings["language"].update(language_settings)
-        return copy.deepcopy(settings["language"])
-
-    def list_history(self, start_history_id: str, user_id: str = 'me', max_results: Optional[int] = None) -> Optional[Dict[str, Union[List[Dict[str, Any]], str]]]:
-        """
-        Lists the history of all changes to the user's mailbox from the backend state.
-
-        Args:
-            start_history_id (str): Required. Returns history records after the specified historyId.
-            user_id (str): User's email address or 'me' for the authenticated user.
-            max_results (Optional[int]): Maximum number of history records to return (simulated).
-        Returns:
-            Optional[Dict[str, Union[List[Dict[str, Any]], str]]]: A dictionary containing history records and the current history ID,
-                                                                    or None if the user data is not found.
-        """
-        history_data = self._get_user_history_data(user_id)
-        if history_data is None:
-            return None
-
-        all_history = sorted(list(history_data.values()), key=lambda x: int(x['id']))
-        filtered_history = [h for h in all_history if int(h['id']) > int(start_history_id)]
-
-        if max_results:
-            filtered_history = filtered_history[:max_results]
-
-        current_history_id = str(self.state["gmail_history_counter"])
-        return {"history": copy.deepcopy(filtered_history), "historyId": current_history_id}
-
-    def create_delegate(self, delegate_body: Dict[str, str], user_id: str = 'me') -> Optional[Dict[str, str]]:
-        """
-        Adds a delegate to the specified account in the backend state.
-
-        Args:
-            delegate_body (Dict[str, str]): The delegate to add (e.g., {"delegateEmail": "delegate@example.com"}).
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, str]]: The created delegate, or None if the user data is not found or delegate email is missing.
-        """
-        delegates = self._get_user_settings_data(user_id).get("delegates")
-        if delegates is None:
-            return None
-
-        delegate_email = delegate_body.get("delegateEmail")
-        if not delegate_email:
-            return None
-
-        if delegate_email in delegates:
-            return copy.deepcopy(delegates[delegate_email])
-
-        new_delegate = {
-            "delegateEmail": delegate_email,
-            "verificationStatus": "pending"
-        }
-        delegates[delegate_email] = new_delegate
-        self.state["gmail_delegate_counter"] += 1
-        return copy.deepcopy(new_delegate)
-
-    def delete_delegate(self, delegate_email: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Removes a delegate from the specified account in the backend state.
-
-        Args:
-            delegate_email (str): The email address of the delegate to remove.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the delegate or user data is not found.
-        """
-        delegates = self._get_user_settings_data(user_id).get("delegates")
-        if delegates is None:
-            return None
-
-        if delegate_email in delegates:
-            del delegates[delegate_email]
-            return None
-        return None
-
-    def get_delegate(self, delegate_email: str, user_id: str = 'me') -> Optional[Dict[str, str]]:
-        """
-        Gets the specified delegate from the backend state.
-
-        Args:
-            delegate_email (str): The email address of the delegate to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, str]]: The delegate, or None if the delegate or user data is not found.
-        """
-        delegates = self._get_user_settings_data(user_id).get("delegates")
-        if delegates is None:
-            return None
-
-        delegate = delegates.get(delegate_email)
-        if delegate:
-            return copy.deepcopy(delegate)
-        return None
-
-    def create_filter(self, filter_body: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Creates a filter in the backend state.
-
-        Args:
-            filter_body (Dict[str, Any]): The filter to create (with criteria, action, etc.).
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: The created filter, or None if the user data is not found.
-        """
-        filters = self._get_user_settings_data(user_id).get("filters")
-        if filters is None:
-            return None
-
-        self.state["gmail_filter_counter"] += 1
-        new_filter_id = f"filter{self.state['gmail_filter_counter']}"
-        new_filter = {
-            "id": new_filter_id,
-            "criteria": filter_body.get("criteria", {}),
-            "action": filter_body.get("action", {})
-        }
-        filters[new_filter_id] = new_filter
-        return copy.deepcopy(new_filter)
-
-    def delete_filter(self, filter_id: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes a filter from the backend state.
-
-        Args:
-            filter_id (str): The ID of the filter to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the filter or user data is not found.
-        """
-        filters = self._get_user_settings_data(user_id).get("filters")
-        if filters is None:
-            return None
-
-        if filter_id in filters:
-            del filters[filter_id]
-            return None
-        return None
-
-    def list_filters(self, user_id: str = 'me') -> Optional[Dict[str, List[Dict[str, Any]]]]:
-        """
-        Lists all filters for the specified account from the backend state.
-
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, List[Dict[str, Any]]]]: A dictionary containing a list of filters,
-                                                        or None if the user data is not found.
-        """
-        filters_data = self._get_user_settings_data(user_id).get("filters")
-        if filters_data is None:
-            return None
-
-        all_filters = list(filters_data.values())
-        return {"filter": copy.deepcopy(all_filters)}
-
-    def create_forwarding_address(self, forwarding_email: str, user_id: str = 'me') -> Optional[Dict[str, str]]:
-        """
-        Creates a forwarding address in the backend state.
-
-        Args:
-            forwarding_email (str): The email address to forward to.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, str]]: The created forwarding address, or None if the user data is not found.
-        """
-        forwarding_addresses = self._get_user_settings_data(user_id).get("forwarding_addresses")
-        if forwarding_addresses is None:
-            return None
-
-        if forwarding_email in forwarding_addresses:
-            return copy.deepcopy(forwarding_addresses[forwarding_email])
-
-        new_forwarding_address = {
-            "forwardingEmail": forwarding_email,
-            "verificationStatus": "pending"
-        }
-        forwarding_addresses[forwarding_email] = new_forwarding_address
-        self.state["gmail_forwarding_address_counter"] += 1
-        return copy.deepcopy(new_forwarding_address)
-
-    def delete_forwarding_address(self, forwarding_email: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes a forwarding address from the backend state.
-
-        Args:
-            forwarding_email (str): The forwarding address to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the forwarding address or user data is not found.
-        """
-        forwarding_addresses = self._get_user_settings_data(user_id).get("forwarding_addresses")
-        if forwarding_addresses is None:
-            return None
-
-        if forwarding_email in forwarding_addresses:
-            del forwarding_addresses[forwarding_email]
-            return None
-        return None
-
-    def get_forwarding_address(self, forwarding_email: str, user_id: str = 'me') -> Optional[Dict[str, str]]:
-        """
-        Gets the specified forwarding address from the backend state.
-
-        Args:
-            forwarding_email (str): The forwarding address to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, str]]: The forwarding address, or None if the address or user data is not found.
-        """
-        forwarding_addresses = self._get_user_settings_data(user_id).get("forwarding_addresses")
-        if forwarding_addresses is None:
-            return None
-
-        address = forwarding_addresses.get(forwarding_email)
-        if address:
-            return copy.deepcopy(address)
-        return None
-
-    def list_forwarding_addresses(self, user_id: str = 'me') -> Optional[Dict[str, List[Dict[str, str]]]]:
-        """
-        Lists all forwarding addresses for the specified account from the backend state.
-
-        Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, List[Dict[str, str]]]]: A dictionary containing a list of forwarding addresses,
-                                                        or None if the user data is not found.
-        """
-        forwarding_addresses_data = self._get_user_settings_data(user_id).get("forwarding_addresses")
-        if forwarding_addresses_data is None:
-            return None
-
-        all_addresses = list(forwarding_addresses_data.values())
-        return {"forwardingAddresses": copy.deepcopy(all_addresses)}
-
-    def create_send_as(self, send_as_body: Dict[str, Any], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Creates a custom "from" send-as alias in the backend state.
-
-        Args:
-            send_as_body (Dict[str, Any]): The send-as alias to create.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: The created send-as alias, or None if the user data is not found or email is missing.
-        """
-        send_as_aliases = self._get_user_settings_data(user_id).get("send_as_aliases")
-        if send_as_aliases is None:
-            return None
-
-        send_as_email = send_as_body.get("sendAsEmail")
-        if not send_as_email:
-            return None
-
-        if send_as_email in send_as_aliases:
-            return copy.deepcopy(send_as_aliases[send_as_email])
-
-        new_send_as = {
-            "sendAsEmail": send_as_email,
-            "displayName": send_as_body.get("displayName"),
-            "replyToAddress": send_as_body.get("replyToAddress"),
-            "signature": send_as_body.get("signature"),
-            "isPrimary": send_as_body.get("isPrimary", False),
-            "verificationStatus": "pending"
-        }
-        send_as_aliases[send_as_email] = new_send_as
-        self.state["gmail_send_as_counter"] += 1
-        return copy.deepcopy(new_send_as)
-
-    def delete_send_as(self, send_as_email: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes a custom "from" send-as alias from the backend state.
-
-        Args:
-            send_as_email (str): The send-as alias to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the alias or user data is not found.
-        """
-        send_as_aliases = self._get_user_settings_data(user_id).get("send_as_aliases")
-        if send_as_aliases is None:
-            return None
-
-        if send_as_email in send_as_aliases:
-            del send_as_aliases[send_as_email]
-            return None
-        return None
-
-    def get_send_as(self, send_as_email: str, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the specified send-as alias from the backend state.
-
-        Args:
-            send_as_email (str): The send-as alias to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: The send-as alias, or None if the alias or user data is not found.
-        """
-        send_as_aliases = self._get_user_settings_data(user_id).get("send_as_aliases")
-        if send_as_aliases is None:
-            return None
-
-        alias = send_as_aliases.get(send_as_email)
-        if alias:
-            return copy.deepcopy(alias)
-        return None
-
-    def delete_thread(self, thread_id: str, user_id: str = 'me') -> Optional[None]:
-        """
-        Deletes the specified thread and its messages from the backend state.
-
-        Args:
-            thread_id (str): The ID of the thread to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[None]: None if successful, or None if the thread or user data is not found.
-        """
-        threads = self._get_user_threads_data(user_id)
-        messages = self._get_user_messages_data(user_id)
-        if threads is None or messages is None:
-            return None
-
-        if thread_id in threads:
-            # Delete messages associated with the thread
-            for msg in threads[thread_id].get("messages", []):
-                if msg["id"] in messages:
-                    del messages[msg["id"]]
-            del threads[thread_id]
-            return None
-        return None
-
-    def get_thread(self, thread_id: str, user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Gets the specified thread from the backend state.
-
-        Args:
-            thread_id (str): The ID of the thread to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
-
-        Returns:
-            Optional[Dict[str, Any]]: A dictionary containing the thread, or None if the thread or user data is not found.
-        """
-        threads = self._get_user_threads_data(user_id)
-        if threads is None:
-            return None
-
+        
         thread = threads.get(thread_id)
-        if thread:
-            return copy.deepcopy(thread)
-        return None
+        if not thread:
+            return None
 
-    def modify_thread(self, thread_id: str, modify_request: Dict[str, List[str]], user_id: str = 'me') -> Optional[Dict[str, Any]]:
-        """
-        Modifies the labels applied to the thread in the backend state.
+        thread_copy = copy.deepcopy(thread)
+        detailed_messages = []
+        for msg_summary in thread_copy.get("messages", []):
+            msg_id = msg_summary.get("id")
+            if msg_id and msg_id in messages_data:
+                message = messages_data[msg_id]
+                if format == "minimal":
+                    detailed_messages.append({"id": message["id"], "threadId": message["threadId"], "snippet": message["snippet"]})
+                elif format == "raw":
+                    detailed_messages.append({"id": message["id"], "raw": "dummy_raw_content_for_" + message["id"]})
+                else:
+                    detailed_messages.append(copy.deepcopy(message))
+        thread_copy["messages"] = detailed_messages
 
-        Args:
-            thread_id (str): The ID of the thread to modify.
-            modify_request (Dict[str, List[str]]): The modification request (e.g., {"addLabelIds": ["LABEL_ID"], "removeLabelIds": ["LABEL_ID"]}).
-            user_id (str): User's email address or 'me' for the authenticated user.
+        return thread_copy
 
-        Returns:
-            Optional[Dict[str, Any]]: The modified thread, or None if the thread or user data is not found.
-        """
+    def modify_thread(
+        self, user_id: str, thread_id: str, modify_request: Dict[str, List[str]]
+    ) -> Optional[Dict[str, Any]]:
         threads = self._get_user_threads_data(user_id)
         messages = self._get_user_messages_data(user_id)
         if threads is None or messages is None:
@@ -1299,14 +840,17 @@ class GmailApis:
         add_labels = set(modify_request.get("addLabelIds", []))
         remove_labels = set(modify_request.get("removeLabelIds", []))
 
-        # Apply label modifications to all messages within the thread
-        for msg_data in thread.get("messages", []):
-            msg_id = msg_data["id"]
+        for msg_data_summary in thread.get("messages", []):
+            msg_id = msg_data_summary["id"]
             if msg_id in messages:
                 current_labels = set(messages[msg_id].get("labelIds", []))
-                # Add labels
                 messages[msg_id]["labelIds"] = list(current_labels.union(add_labels))
-                # Remove labels
-                messages[msg_id]["labelIds"] = [lbl for lbl in messages[msg_id]["labelIds"] if lbl not in remove_labels]
+                messages[msg_id]["labelIds"] = list(set(messages[msg_id]["labelIds"]) - remove_labels)
+        
+        print(f"Dummy thread modified: ID={thread_id} for user {user_id}. Labels applied to contained messages.")
+        return self.get_thread(user_id, thread_id, format="full")
 
-        return copy.deepcopy(thread)
+    def reset_data(self) -> Dict[str, bool]:
+        self._load_scenario(DEFAULT_STATE)
+        print("GmailApis: All dummy data reset to default state.")
+        return {"reset_status": True}
