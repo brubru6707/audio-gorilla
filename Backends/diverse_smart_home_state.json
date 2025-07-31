@@ -1,0 +1,607 @@
+{
+  "users": {
+    "974277c8-62ca-40c3-a18c-cde01879a66b": {
+      "first_name": "Olivia",
+      "last_name": "Johnson",
+      "email": "olivia.johnson@icloud.com",
+      "joined": "2025-05-04T14:01:39Z"
+    },
+    "2b338354-ce11-40d9-817d-466d9bbd7c6c": {
+      "first_name": "Elijah",
+      "last_name": "Jones",
+      "email": "elijah.jones@outlook.com",
+      "joined": "2024-07-26T08:51:40Z"
+    },
+    "5bb2fa86-c868-43a0-83b4-cfdcd5cf9920": {
+      "first_name": "Mason",
+      "last_name": "Lopez",
+      "email": "mason.lopez@gmail.com",
+      "joined": "2024-01-04T14:38:35Z"
+    },
+    "16575c77-355b-4b27-a175-246ee4dfbe30": {
+      "first_name": "Isabella",
+      "last_name": "Martinez",
+      "email": "isabella.martinez@outlook.com",
+      "joined": "2025-05-16T23:54:51Z"
+    },
+    "f8f85dd0-d8b8-4988-b06b-402f7526f97c": {
+      "first_name": "Mia",
+      "last_name": "Gonzales",
+      "email": "mia.gonzales@gmail.com",
+      "joined": "2022-08-03T21:15:09Z"
+    }
+  },
+  "devices": {
+    "5121c334-00fc-452a-aca2-d826adf93bd9": {
+      "name": "Patio Light",
+      "type": "light",
+      "room": "Patio",
+      "state": {
+        "on": true,
+        "level": 36,
+        "color": {
+          "hue": 172,
+          "saturation": 96
+        }
+      },
+      "last_updated": "2025-07-25T21:44:06Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "a881eab5-d021-44bd-a430-7758e7110bb5": {
+      "name": "Living Room Sensor",
+      "type": "sensor",
+      "room": "Living Room",
+      "state": {
+        "temperature": 26.4,
+        "humidity": 65
+      },
+      "last_updated": "2025-07-05T19:43:27Z",
+      "room_id": "9a9959f7-deec-4ac8-bcef-5500ab0ef05a"
+    },
+    "542cebca-9b8b-4169-bec6-1e9bb3ea4f3f": {
+      "name": "Living Room Light",
+      "type": "light",
+      "room": "Living Room",
+      "state": {
+        "on": true,
+        "level": 16,
+        "color": {
+          "hue": 157,
+          "saturation": 14
+        }
+      },
+      "last_updated": "2025-07-13T03:18:02Z",
+      "room_id": "9a9959f7-deec-4ac8-bcef-5500ab0ef05a"
+    },
+    "b0eb8a34-7887-4f80-b80f-aeaa6397ba01": {
+      "name": "Kitchen Sensor",
+      "type": "sensor",
+      "room": "Kitchen",
+      "state": {
+        "temperature": 28.4,
+        "humidity": 66
+      },
+      "last_updated": "2025-07-06T21:41:04Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    },
+    "68446356-459a-42fd-aaaa-6338d03a6f4e": {
+      "name": "Hallway Lock",
+      "type": "lock",
+      "room": "Hallway",
+      "state": {
+        "locked": false
+      },
+      "last_updated": "2025-07-03T13:00:40Z",
+      "room_id": "0aa6fe6f-4d71-4583-ade8-5b4b3181c45e"
+    },
+    "4fc013ac-9ae8-45df-8431-721f5936e753": {
+      "name": "Patio Sensor",
+      "type": "sensor",
+      "room": "Patio",
+      "state": {
+        "temperature": 33.7,
+        "humidity": 53
+      },
+      "last_updated": "2025-07-09T09:28:08Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "0b3c50ba-51d6-42c8-86a9-2621fb1ccbaa": {
+      "name": "Bedroom Lock",
+      "type": "lock",
+      "room": "Bedroom",
+      "state": {
+        "locked": true
+      },
+      "last_updated": "2025-07-15T08:05:33Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "2376ecab-e563-498a-abe2-180cf9e90ab7": {
+      "name": "Bedroom Sensor",
+      "type": "sensor",
+      "room": "Bedroom",
+      "state": {
+        "temperature": 20.3,
+        "humidity": 78
+      },
+      "last_updated": "2025-07-08T06:47:24Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "debeda32-a2f4-42b2-9941-2f26aa842ebe": {
+      "name": "Living Room Thermostat",
+      "type": "thermostat",
+      "room": "Living Room",
+      "state": {
+        "mode": "heat",
+        "temperature": 64
+      },
+      "last_updated": "2025-07-24T11:41:10Z",
+      "room_id": "9a9959f7-deec-4ac8-bcef-5500ab0ef05a"
+    },
+    "15b1e2b4-7f02-4cf5-8e67-8cd3d443a76e": {
+      "name": "Garage Lock",
+      "type": "lock",
+      "room": "Garage",
+      "state": {
+        "locked": true
+      },
+      "last_updated": "2025-07-12T12:16:09Z",
+      "room_id": "c0f00a1f-c8bb-4088-b709-6cbf42d496af"
+    },
+    "2dc6a660-b836-4455-9aed-ca509f830086": {
+      "name": "Bedroom Thermostat",
+      "type": "thermostat",
+      "room": "Bedroom",
+      "state": {
+        "mode": "auto",
+        "temperature": 70
+      },
+      "last_updated": "2025-07-01T06:18:19Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "cf81d597-37b3-4c9d-8428-a93aa861643a": {
+      "name": "Bedroom Sensor",
+      "type": "sensor",
+      "room": "Bedroom",
+      "state": {
+        "temperature": 21.7,
+        "humidity": 47
+      },
+      "last_updated": "2025-07-20T03:26:37Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "feb15eac-5032-41cf-be26-52e7b425fa41": {
+      "name": "Office Lock",
+      "type": "lock",
+      "room": "Office",
+      "state": {
+        "locked": true
+      },
+      "last_updated": "2025-07-04T19:46:23Z",
+      "room_id": "42ae1bef-1afb-4f33-b29b-4e0310cd14a2"
+    },
+    "38301600-1f37-4061-8003-0d6fc584e0f7": {
+      "name": "Kitchen Switch",
+      "type": "switch",
+      "room": "Kitchen",
+      "state": {
+        "on": true
+      },
+      "last_updated": "2025-07-29T03:33:49Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    },
+    "78cfcb47-83fc-45f1-9bfb-55fa3535c0c9": {
+      "name": "Bedroom Switch",
+      "type": "switch",
+      "room": "Bedroom",
+      "state": {
+        "on": true
+      },
+      "last_updated": "2025-07-14T21:30:21Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "d5303d58-fb29-4e06-8c64-cecd8fa14345": {
+      "name": "Hallway Switch",
+      "type": "switch",
+      "room": "Hallway",
+      "state": {
+        "on": true
+      },
+      "last_updated": "2025-07-03T08:21:57Z",
+      "room_id": "0aa6fe6f-4d71-4583-ade8-5b4b3181c45e"
+    },
+    "be19de8d-e374-4a44-a50f-4f4ae932a9b6": {
+      "name": "Kitchen Light",
+      "type": "light",
+      "room": "Kitchen",
+      "state": {
+        "on": false,
+        "level": 93,
+        "color": {
+          "hue": 26,
+          "saturation": 55
+        }
+      },
+      "last_updated": "2025-07-07T04:59:25Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    },
+    "85d57b7b-ff16-454a-ad4e-499732f3a91b": {
+      "name": "Kitchen Light",
+      "type": "light",
+      "room": "Kitchen",
+      "state": {
+        "on": true,
+        "level": 17,
+        "color": {
+          "hue": 14,
+          "saturation": 83
+        }
+      },
+      "last_updated": "2025-07-29T08:18:25Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    },
+    "b52161a8-11ee-4b87-8807-0ea398aeecdb": {
+      "name": "Patio Switch",
+      "type": "switch",
+      "room": "Patio",
+      "state": {
+        "on": false
+      },
+      "last_updated": "2025-07-10T23:38:25Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "728732f3-8f41-4dbb-87ae-2abec34edbfa": {
+      "name": "Patio Thermostat",
+      "type": "thermostat",
+      "room": "Patio",
+      "state": {
+        "mode": "heat",
+        "temperature": 79
+      },
+      "last_updated": "2025-07-11T18:52:29Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "a3a5fec2-84f8-44a4-8f68-e73a32ac9f95": {
+      "name": "Living Room Sensor",
+      "type": "sensor",
+      "room": "Living Room",
+      "state": {
+        "temperature": 33.2,
+        "humidity": 37
+      },
+      "last_updated": "2025-07-09T01:58:12Z",
+      "room_id": "9a9959f7-deec-4ac8-bcef-5500ab0ef05a"
+    },
+    "87794612-eda8-4ff4-bda7-fe4edd2a2288": {
+      "name": "Bathroom Switch",
+      "type": "switch",
+      "room": "Bathroom",
+      "state": {
+        "on": false
+      },
+      "last_updated": "2025-07-09T09:40:38Z",
+      "room_id": "e3d56584-57a2-46ca-a937-e9e60c8811ba"
+    },
+    "f15a4011-0dca-42b3-ad1a-5c4357c1aafd": {
+      "name": "Office Thermostat",
+      "type": "thermostat",
+      "room": "Office",
+      "state": {
+        "mode": "heat",
+        "temperature": 78
+      },
+      "last_updated": "2025-07-15T18:21:59Z",
+      "room_id": "42ae1bef-1afb-4f33-b29b-4e0310cd14a2"
+    },
+    "79066f28-fb67-4750-b5af-f34f9e8ea27c": {
+      "name": "Bedroom Sensor",
+      "type": "sensor",
+      "room": "Bedroom",
+      "state": {
+        "temperature": 27.6,
+        "humidity": 20
+      },
+      "last_updated": "2025-07-07T11:04:20Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "0ae61516-67a5-4cd7-a074-97c39a11a5a3": {
+      "name": "Hallway Lock",
+      "type": "lock",
+      "room": "Hallway",
+      "state": {
+        "locked": true
+      },
+      "last_updated": "2025-07-23T00:03:56Z",
+      "room_id": "0aa6fe6f-4d71-4583-ade8-5b4b3181c45e"
+    },
+    "29eb5a87-93b0-40b2-8f7e-b85b67ed2815": {
+      "name": "Patio Light",
+      "type": "light",
+      "room": "Patio",
+      "state": {
+        "on": true,
+        "level": 48,
+        "color": {
+          "hue": 26,
+          "saturation": 17
+        }
+      },
+      "last_updated": "2025-07-24T07:18:03Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "5b8a83dc-06b3-42d3-aa77-5bebe66931a8": {
+      "name": "Living Room Lock",
+      "type": "lock",
+      "room": "Living Room",
+      "state": {
+        "locked": false
+      },
+      "last_updated": "2025-07-03T08:58:12Z",
+      "room_id": "9a9959f7-deec-4ac8-bcef-5500ab0ef05a"
+    },
+    "c3380671-79a0-4d1f-8e63-566df231819f": {
+      "name": "Patio Lock",
+      "type": "lock",
+      "room": "Patio",
+      "state": {
+        "locked": true
+      },
+      "last_updated": "2025-07-28T22:59:31Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "9ea33f6f-0998-4bf8-ac78-f456b46b9cf2": {
+      "name": "Kitchen Switch",
+      "type": "switch",
+      "room": "Kitchen",
+      "state": {
+        "on": false
+      },
+      "last_updated": "2025-07-14T21:23:12Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    },
+    "05508a65-0245-43c8-ae8c-7f804ec26ffe": {
+      "name": "Patio Switch",
+      "type": "switch",
+      "room": "Patio",
+      "state": {
+        "on": false
+      },
+      "last_updated": "2025-07-22T10:25:39Z",
+      "room_id": "705358f6-71c5-4631-ade6-f1af1b32f2cf"
+    },
+    "9d8e33d9-12d5-4e28-9aa9-a381de1f474a": {
+      "name": "Hallway Switch",
+      "type": "switch",
+      "room": "Hallway",
+      "state": {
+        "on": false
+      },
+      "last_updated": "2025-07-02T06:50:20Z",
+      "room_id": "0aa6fe6f-4d71-4583-ade8-5b4b3181c45e"
+    },
+    "c8e49541-7c9a-4bf7-a9d9-bec5bd21e537": {
+      "name": "Bathroom Thermostat",
+      "type": "thermostat",
+      "room": "Bathroom",
+      "state": {
+        "mode": "heat",
+        "temperature": 67
+      },
+      "last_updated": "2025-07-18T18:05:48Z",
+      "room_id": "e3d56584-57a2-46ca-a937-e9e60c8811ba"
+    },
+    "2bc4cbcf-7262-4b14-b34d-083f7eb2fd75": {
+      "name": "Bedroom Thermostat",
+      "type": "thermostat",
+      "room": "Bedroom",
+      "state": {
+        "mode": "auto",
+        "temperature": 69
+      },
+      "last_updated": "2025-07-08T14:49:57Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "286c3bed-74d4-4d51-87b2-3cfd29eca2cb": {
+      "name": "Hallway Thermostat",
+      "type": "thermostat",
+      "room": "Hallway",
+      "state": {
+        "mode": "heat",
+        "temperature": 67
+      },
+      "last_updated": "2025-07-21T05:14:10Z",
+      "room_id": "0aa6fe6f-4d71-4583-ade8-5b4b3181c45e"
+    },
+    "dad7c6db-5eac-4d9d-aa64-0fc28afdd49c": {
+      "name": "Kitchen Thermostat",
+      "type": "thermostat",
+      "room": "Kitchen",
+      "state": {
+        "mode": "cool",
+        "temperature": 80
+      },
+      "last_updated": "2025-07-01T21:08:53Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    },
+    "feb6a481-f5ef-4997-bfcf-c37d01e1e094": {
+      "name": "Bedroom Sensor",
+      "type": "sensor",
+      "room": "Bedroom",
+      "state": {
+        "temperature": 33.3,
+        "humidity": 75
+      },
+      "last_updated": "2025-07-30T14:35:02Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "6846896b-75e6-4454-a9fd-49299f61672a": {
+      "name": "Bedroom Light",
+      "type": "light",
+      "room": "Bedroom",
+      "state": {
+        "on": true,
+        "level": 89,
+        "color": {
+          "hue": 121,
+          "saturation": 81
+        }
+      },
+      "last_updated": "2025-07-24T21:05:05Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "e4fbae01-df95-402c-970a-067afe664fbc": {
+      "name": "Living Room Light",
+      "type": "light",
+      "room": "Living Room",
+      "state": {
+        "on": false,
+        "level": 25,
+        "color": {
+          "hue": 257,
+          "saturation": 9
+        }
+      },
+      "last_updated": "2025-07-25T08:46:03Z",
+      "room_id": "9a9959f7-deec-4ac8-bcef-5500ab0ef05a"
+    },
+    "47096958-7725-4c9f-9da7-a610788c0569": {
+      "name": "Bedroom Thermostat",
+      "type": "thermostat",
+      "room": "Bedroom",
+      "state": {
+        "mode": "cool",
+        "temperature": 62
+      },
+      "last_updated": "2025-07-18T02:07:21Z",
+      "room_id": "b9a9ac56-60e4-4ca4-8d37-842a15e8685a"
+    },
+    "1cfa5e51-5c15-4003-96a3-a5af67be5844": {
+      "name": "Kitchen Light",
+      "type": "light",
+      "room": "Kitchen",
+      "state": {
+        "on": true,
+        "level": 67,
+        "color": {
+          "hue": 327,
+          "saturation": 67
+        }
+      },
+      "last_updated": "2025-07-28T10:35:28Z",
+      "room_id": "669b87c8-5676-482c-a89d-c8c4ab157ff8"
+    }
+  },
+  "rooms": {
+    "9a9959f7-deec-4ac8-bcef-5500ab0ef05a": {
+      "name": "Living Room"
+    },
+    "669b87c8-5676-482c-a89d-c8c4ab157ff8": {
+      "name": "Kitchen"
+    },
+    "b9a9ac56-60e4-4ca4-8d37-842a15e8685a": {
+      "name": "Bedroom"
+    },
+    "e3d56584-57a2-46ca-a937-e9e60c8811ba": {
+      "name": "Bathroom"
+    },
+    "c0f00a1f-c8bb-4088-b709-6cbf42d496af": {
+      "name": "Garage"
+    },
+    "42ae1bef-1afb-4f33-b29b-4e0310cd14a2": {
+      "name": "Office"
+    },
+    "705358f6-71c5-4631-ade6-f1af1b32f2cf": {
+      "name": "Patio"
+    },
+    "0aa6fe6f-4d71-4583-ade8-5b4b3181c45e": {
+      "name": "Hallway"
+    }
+  },
+  "scenes": {
+    "a60608cf-cffb-4b8e-9f6a-2e0717f65f26": {
+      "name": "Scene a606",
+      "actions": [
+        {
+          "device_id": "542cebca-9b8b-4169-bec6-1e9bb3ea4f3f",
+          "action": "on"
+        },
+        {
+          "device_id": "debeda32-a2f4-42b2-9941-2f26aa842ebe",
+          "action": "set",
+          "temperature": 72
+        }
+      ]
+    },
+    "079ba747-b1ca-4509-a4b5-5252e4a78789": {
+      "name": "Scene 079b",
+      "actions": [
+        {
+          "device_id": "0ae61516-67a5-4cd7-a074-97c39a11a5a3",
+          "action": "lock"
+        },
+        {
+          "device_id": "38301600-1f37-4061-8003-0d6fc584e0f7",
+          "action": "on"
+        },
+        {
+          "device_id": "87794612-eda8-4ff4-bda7-fe4edd2a2288",
+          "action": "on"
+        }
+      ]
+    },
+    "02c89dd9-e448-4f9b-aaae-bd73043002a7": {
+      "name": "Scene 02c8",
+      "actions": [
+        {
+          "device_id": "9ea33f6f-0998-4bf8-ac78-f456b46b9cf2",
+          "action": "on"
+        },
+        {
+          "device_id": "c8e49541-7c9a-4bf7-a9d9-bec5bd21e537",
+          "action": "set",
+          "temperature": 72
+        },
+        {
+          "device_id": "0ae61516-67a5-4cd7-a074-97c39a11a5a3",
+          "action": "lock"
+        }
+      ]
+    },
+    "fd88272d-7c22-41ec-8af0-6bc8a73c9f15": {
+      "name": "Scene fd88",
+      "actions": [
+        {
+          "device_id": "d5303d58-fb29-4e06-8c64-cecd8fa14345",
+          "action": "on"
+        },
+        {
+          "device_id": "e4fbae01-df95-402c-970a-067afe664fbc",
+          "action": "on"
+        },
+        {
+          "device_id": "728732f3-8f41-4dbb-87ae-2abec34edbfa",
+          "action": "set",
+          "temperature": 72
+        }
+      ]
+    },
+    "e43aaec1-7e27-491b-a713-208d6204c62f": {
+      "name": "Scene e43a",
+      "actions": [
+        {
+          "device_id": "b52161a8-11ee-4b87-8807-0ea398aeecdb",
+          "action": "on"
+        },
+        {
+          "device_id": "debeda32-a2f4-42b2-9941-2f26aa842ebe",
+          "action": "set",
+          "temperature": 72
+        },
+        {
+          "device_id": "29eb5a87-93b0-40b2-8f7e-b85b67ed2815",
+          "action": "on"
+        }
+      ]
+    }
+  },
+  "current_user": "974277c8-62ca-40c3-a18c-cde01879a66b"
+}

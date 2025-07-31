@@ -1,0 +1,270 @@
+{
+  "items": {
+    "SKU001": {
+      "sku": "SKU001",
+      "product_name": "Eco-Friendly Lamp",
+      "price": 74.26,
+      "description": "Get ready for convenience on the go with this Eco-Friendly Lamp.",
+      "category": "Clothing",
+      "status": "Inactive"
+    },
+    "SKU002": {
+      "sku": "SKU002",
+      "product_name": "Portable Speaker",
+      "price": 111.79,
+      "description": "Get ready for convenience on the go with this Portable Speaker.",
+      "category": "Automotive",
+      "status": "Inactive"
+    },
+    "SKU003": {
+      "sku": "SKU003",
+      "product_name": "Smart Air Fryer",
+      "price": 25.59,
+      "description": "Upgrade your lifestyle with the new Smart Air Fryer.",
+      "category": "Toys",
+      "status": "Inactive"
+    },
+    "SKU004": {
+      "sku": "SKU004",
+      "product_name": "Premium Air Fryer",
+      "price": 100.84,
+      "description": "Get ready for convenience on the go with this Premium Air Fryer.",
+      "category": "Electronics",
+      "status": "Inactive"
+    },
+    "SKU005": {
+      "sku": "SKU005",
+      "product_name": "Portable Air Fryer",
+      "price": 105.85,
+      "description": "Upgrade your lifestyle with the new Portable Air Fryer.",
+      "category": "Toys",
+      "status": "Active"
+    },
+    "SKU006": {
+      "sku": "SKU006",
+      "product_name": "Portable Vacuum",
+      "price": 63.6,
+      "description": "Upgrade your lifestyle with the new Portable Vacuum.",
+      "category": "Health",
+      "status": "Active"
+    },
+    "SKU007": {
+      "sku": "SKU007",
+      "product_name": "Compact Backpack",
+      "price": 124.29,
+      "description": "The Compact Backpack combines style and performance for modern households.",
+      "category": "Automotive",
+      "status": "Inactive"
+    },
+    "SKU008": {
+      "sku": "SKU008",
+      "product_name": "Ultra Speaker",
+      "price": 92.0,
+      "description": "Upgrade your lifestyle with the new Ultra Speaker.",
+      "category": "Home & Garden",
+      "status": "Inactive"
+    },
+    "SKU009": {
+      "sku": "SKU009",
+      "product_name": "Wireless Air Fryer",
+      "price": 105.42,
+      "description": "Experience unmatched quality with our Wireless Air Fryer \u2013 built for everyday use.",
+      "category": "Automotive",
+      "status": "Active"
+    },
+    "SKU010": {
+      "sku": "SKU010",
+      "product_name": "Smart Vacuum",
+      "price": 12.74,
+      "description": "Get ready for convenience on the go with this Smart Vacuum.",
+      "category": "Toys",
+      "status": "Active"
+    }
+  },
+  "inventory": {
+    "SKU001": {
+      "quantity": 184,
+      "fulfillment_center_id": "FC002"
+    },
+    "SKU002": {
+      "quantity": 81,
+      "fulfillment_center_id": "FC002"
+    },
+    "SKU003": {
+      "quantity": 234,
+      "fulfillment_center_id": "FC001"
+    },
+    "SKU004": {
+      "quantity": 61,
+      "fulfillment_center_id": "FC002"
+    },
+    "SKU005": {
+      "quantity": 74,
+      "fulfillment_center_id": "FC001"
+    },
+    "SKU006": {
+      "quantity": 25,
+      "fulfillment_center_id": "FC002"
+    },
+    "SKU007": {
+      "quantity": 152,
+      "fulfillment_center_id": "FC001"
+    },
+    "SKU008": {
+      "quantity": 106,
+      "fulfillment_center_id": "FC003"
+    },
+    "SKU009": {
+      "quantity": 8,
+      "fulfillment_center_id": "FC001"
+    },
+    "SKU010": {
+      "quantity": 231,
+      "fulfillment_center_id": "FC001"
+    }
+  },
+  "prices": {
+    "SKU001": {
+      "price": 74.26
+    },
+    "SKU002": {
+      "price": 111.79
+    },
+    "SKU003": {
+      "price": 25.59
+    },
+    "SKU004": {
+      "price": 100.84
+    },
+    "SKU005": {
+      "price": 105.85
+    },
+    "SKU006": {
+      "price": 63.6
+    },
+    "SKU007": {
+      "price": 124.29
+    },
+    "SKU008": {
+      "price": 92.0
+    },
+    "SKU009": {
+      "price": 105.42
+    },
+    "SKU010": {
+      "price": 12.74
+    }
+  },
+  "orders": {
+    "PO001": {
+      "purchase_order_id": "PO001",
+      "order_date": "2025-07-25T15:33:58Z",
+      "status": "Created",
+      "items": [
+        {
+          "sku": "SKU007",
+          "quantity": 1,
+          "price": 124.29
+        }
+      ],
+      "total_amount": 124.29
+    },
+    "PO002": {
+      "purchase_order_id": "PO002",
+      "order_date": "2025-07-11T10:33:58Z",
+      "status": "Created",
+      "items": [
+        {
+          "sku": "SKU002",
+          "quantity": 2,
+          "price": 111.79
+        }
+      ],
+      "total_amount": 223.58
+    },
+    "PO003": {
+      "purchase_order_id": "PO003",
+      "order_date": "2025-07-28T02:33:58Z",
+      "status": "Cancelled",
+      "items": [
+        {
+          "sku": "SKU009",
+          "quantity": 2,
+          "price": 105.42
+        }
+      ],
+      "total_amount": 210.84
+    },
+    "PO004": {
+      "purchase_order_id": "PO004",
+      "order_date": "2025-07-08T21:33:58Z",
+      "status": "Created",
+      "items": [
+        {
+          "sku": "SKU006",
+          "quantity": 4,
+          "price": 63.6
+        }
+      ],
+      "total_amount": 254.4
+    },
+    "PO005": {
+      "purchase_order_id": "PO005",
+      "order_date": "2025-07-26T16:33:58Z",
+      "status": "Acknowledged",
+      "items": [
+        {
+          "sku": "SKU003",
+          "quantity": 2,
+          "price": 25.59
+        }
+      ],
+      "total_amount": 51.18
+    }
+  },
+  "promotions": {
+    "PROMO001": {
+      "promo_id": "PROMO001",
+      "name": "Promo 1",
+      "discount_percent": 15,
+      "start_date": "2025-07-30",
+      "end_date": "2025-08-30",
+      "status": "Active"
+    },
+    "PROMO002": {
+      "promo_id": "PROMO002",
+      "name": "Promo 2",
+      "discount_percent": 5,
+      "start_date": "2025-07-30",
+      "end_date": "2025-08-30",
+      "status": "Active"
+    }
+  },
+  "returns": {
+    "RET001": {
+      "return_id": "RET001",
+      "order_id": "PO005",
+      "items": [
+        {
+          "sku": "SKU003",
+          "quantity": 1
+        }
+      ],
+      "status": "Completed",
+      "created_date": "2025-07-30T01:33:58Z"
+    },
+    "RET002": {
+      "return_id": "RET002",
+      "order_id": "PO002",
+      "items": [
+        {
+          "sku": "SKU002",
+          "quantity": 1
+        }
+      ],
+      "status": "Completed",
+      "created_date": "2025-07-29T12:33:58Z"
+    }
+  },
+  "generated_at": "2025-07-31T04:33:58.402499Z"
+}

@@ -1,0 +1,5847 @@
+{
+  "users": {
+    "U001": {
+      "id": "U001",
+      "name": "alice",
+      "real_name": "Alice Johnson",
+      "email": "alice.johnson@gmail.com"
+    },
+    "U002": {
+      "id": "U002",
+      "name": "bob",
+      "real_name": "Robert Lee",
+      "email": "robert.lee@outlook.com"
+    },
+    "U003": {
+      "id": "U003",
+      "name": "carol",
+      "real_name": "Carol Garcia",
+      "email": "carol.garcia@yahoo.com"
+    },
+    "U004": {
+      "id": "U004",
+      "name": "dave",
+      "real_name": "David Smith",
+      "email": "david.smith@fastmail.com"
+    },
+    "U005": {
+      "id": "U005",
+      "name": "eve",
+      "real_name": "Evelyn Chen",
+      "email": "evelyn.chen@icloud.com"
+    },
+    "U006": {
+      "id": "U006",
+      "name": "lucas",
+      "real_name": "Lucas Lee",
+      "email": "lucas.lee@gmail.com"
+    },
+    "U007": {
+      "id": "U007",
+      "name": "amelia",
+      "real_name": "Amelia Lee",
+      "email": "amelia.lee@outlook.com"
+    },
+    "U008": {
+      "id": "U008",
+      "name": "benjamin",
+      "real_name": "Benjamin Thomas",
+      "email": "benjamin.thomas@yahoo.com"
+    },
+    "U009": {
+      "id": "U009",
+      "name": "noah",
+      "real_name": "Noah Wilson",
+      "email": "noah.wilson@gmail.com"
+    },
+    "U010": {
+      "id": "U010",
+      "name": "ethan",
+      "real_name": "Ethan Moore",
+      "email": "ethan.moore@outlook.com"
+    },
+    "U011": {
+      "id": "U011",
+      "name": "charlotte",
+      "real_name": "Charlotte Martinez",
+      "email": "charlotte.martinez@gmail.com"
+    },
+    "U012": {
+      "id": "U012",
+      "name": "evelyn",
+      "real_name": "Evelyn Lee",
+      "email": "evelyn.lee@proton.me"
+    },
+    "U013": {
+      "id": "U013",
+      "name": "charlotte",
+      "real_name": "Charlotte Thompson",
+      "email": "charlotte.thompson@gmail.com"
+    },
+    "U014": {
+      "id": "U014",
+      "name": "alexander",
+      "real_name": "Alexander Lewis",
+      "email": "alexander.lewis@gmail.com"
+    },
+    "U015": {
+      "id": "U015",
+      "name": "henry",
+      "real_name": "Henry Anderson",
+      "email": "henry.anderson@gmail.com"
+    },
+    "U016": {
+      "id": "U016",
+      "name": "alexander",
+      "real_name": "Alexander Wilson",
+      "email": "alexander.wilson@yahoo.com"
+    },
+    "U017": {
+      "id": "U017",
+      "name": "harper",
+      "real_name": "Harper Taylor",
+      "email": "harper.taylor@yahoo.com"
+    },
+    "U018": {
+      "id": "U018",
+      "name": "evelyn",
+      "real_name": "Evelyn Lewis",
+      "email": "evelyn.lewis@proton.me"
+    },
+    "U019": {
+      "id": "U019",
+      "name": "noah",
+      "real_name": "Noah Brown",
+      "email": "noah.brown@icloud.com"
+    },
+    "U020": {
+      "id": "U020",
+      "name": "noah",
+      "real_name": "Noah White",
+      "email": "noah.white@outlook.com"
+    },
+    "U021": {
+      "id": "U021",
+      "name": "noah",
+      "real_name": "Noah Taylor",
+      "email": "noah.taylor@icloud.com"
+    },
+    "U022": {
+      "id": "U022",
+      "name": "noah",
+      "real_name": "Noah Miller",
+      "email": "noah.miller@gmail.com"
+    },
+    "U023": {
+      "id": "U023",
+      "name": "harper",
+      "real_name": "Harper Harris",
+      "email": "harper.harris@outlook.com"
+    },
+    "U024": {
+      "id": "U024",
+      "name": "henry",
+      "real_name": "Henry Lewis",
+      "email": "henry.lewis@proton.me"
+    },
+    "U025": {
+      "id": "U025",
+      "name": "mason",
+      "real_name": "Mason Jackson",
+      "email": "mason.jackson@outlook.com"
+    },
+    "U026": {
+      "id": "U026",
+      "name": "benjamin",
+      "real_name": "Benjamin Taylor",
+      "email": "benjamin.taylor@yahoo.com"
+    },
+    "U027": {
+      "id": "U027",
+      "name": "noah",
+      "real_name": "Noah Davis",
+      "email": "noah.davis@yahoo.com"
+    },
+    "U028": {
+      "id": "U028",
+      "name": "lucas",
+      "real_name": "Lucas Garcia",
+      "email": "lucas.garcia@gmail.com"
+    },
+    "U029": {
+      "id": "U029",
+      "name": "olivia",
+      "real_name": "Olivia Brown",
+      "email": "olivia.brown@outlook.com"
+    },
+    "U030": {
+      "id": "U030",
+      "name": "harper",
+      "real_name": "Harper Jackson",
+      "email": "harper.jackson@yahoo.com"
+    },
+    "U031": {
+      "id": "U031",
+      "name": "harper",
+      "real_name": "Harper Miller",
+      "email": "harper.miller@proton.me"
+    },
+    "U032": {
+      "id": "U032",
+      "name": "isabella",
+      "real_name": "Isabella Taylor",
+      "email": "isabella.taylor@yahoo.com"
+    },
+    "U033": {
+      "id": "U033",
+      "name": "harper",
+      "real_name": "Harper Lee",
+      "email": "harper.lee@gmail.com"
+    },
+    "U034": {
+      "id": "U034",
+      "name": "benjamin",
+      "real_name": "Benjamin Martin",
+      "email": "benjamin.martin@proton.me"
+    },
+    "U035": {
+      "id": "U035",
+      "name": "mason",
+      "real_name": "Mason Brown",
+      "email": "mason.brown@outlook.com"
+    }
+  },
+  "channels": {
+    "C001": {
+      "id": "C001",
+      "name": "general",
+      "is_channel": true,
+      "topic": "General discussion",
+      "purpose": "Company-wide chatter"
+    },
+    "C002": {
+      "id": "C002",
+      "name": "random",
+      "is_channel": true,
+      "topic": "Random",
+      "purpose": "Non-work banter"
+    },
+    "Cce4ada": {
+      "id": "Cce4ada",
+      "name": "frontend",
+      "is_channel": true,
+      "topic": "Frontend discussions",
+      "purpose": "All about frontend"
+    },
+    "C115706": {
+      "id": "C115706",
+      "name": "backend",
+      "is_channel": true,
+      "topic": "Backend discussions",
+      "purpose": "All about backend"
+    },
+    "C271713": {
+      "id": "C271713",
+      "name": "design",
+      "is_channel": true,
+      "topic": "Design discussions",
+      "purpose": "All about design"
+    },
+    "Cc40fb3": {
+      "id": "Cc40fb3",
+      "name": "marketing",
+      "is_channel": true,
+      "topic": "Marketing discussions",
+      "purpose": "All about marketing"
+    },
+    "Cc46d35": {
+      "id": "Cc46d35",
+      "name": "sales",
+      "is_channel": true,
+      "topic": "Sales discussions",
+      "purpose": "All about sales"
+    },
+    "C2ef03a": {
+      "id": "C2ef03a",
+      "name": "support",
+      "is_channel": true,
+      "topic": "Support discussions",
+      "purpose": "All about support"
+    },
+    "Ca01a83": {
+      "id": "Ca01a83",
+      "name": "devops",
+      "is_channel": true,
+      "topic": "Devops discussions",
+      "purpose": "All about devops"
+    },
+    "Ca7ae2b": {
+      "id": "Ca7ae2b",
+      "name": "research",
+      "is_channel": true,
+      "topic": "Research discussions",
+      "purpose": "All about research"
+    },
+    "Dcfb62f": {
+      "id": "Dcfb62f",
+      "is_im": true,
+      "user": "U003",
+      "users": [
+        "U003"
+      ]
+    },
+    "D4ce2db": {
+      "id": "D4ce2db",
+      "is_im": true,
+      "user": "U004",
+      "users": [
+        "U004"
+      ]
+    }
+  },
+  "messages": [
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C001",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C001",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C001",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C001",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C001",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C001",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C002",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "How's it going?",
+      "ts": "1753936884.3521738",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Lunch time",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3521738",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3521738",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Hello world!",
+      "ts": "1753936884.3521738",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "I'll check.",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Sounds good",
+      "ts": "1753936884.3521738",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3521738"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C271713",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U023",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U015",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U035",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U012",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U009",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "C002",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U028",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U027",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cce4ada"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U010",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U025",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U019",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U017",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U004",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc40fb3"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U014",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U013",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C001",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U006",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "Dcfb62f"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U031",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U020",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U029",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "C115706",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "\ud83d\udc4d",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U024",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U005",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U026",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C115706"
+    },
+    {
+      "type": "message",
+      "user": "U003",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca7ae2b"
+    },
+    {
+      "type": "message",
+      "user": "U011",
+      "text": "Lunch time",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83"
+    },
+    {
+      "type": "message",
+      "user": "U007",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U016",
+      "text": "I'll check.",
+      "ts": "1753936884.3531725",
+      "channel": "Ca01a83",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U021",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U008",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db",
+      "thread_ts": "1753936884.3531725"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "D4ce2db"
+    },
+    {
+      "type": "message",
+      "user": "U034",
+      "text": "How's it going?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U001",
+      "text": "\ud83d\ude80",
+      "ts": "1753936884.3531725",
+      "channel": "C271713"
+    },
+    {
+      "type": "message",
+      "user": "U018",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U030",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C002"
+    },
+    {
+      "type": "message",
+      "user": "U033",
+      "text": "Anyone up for coffee?",
+      "ts": "1753936884.3531725",
+      "channel": "C001"
+    },
+    {
+      "type": "message",
+      "user": "U032",
+      "text": "Did you deploy the fix?",
+      "ts": "1753936884.3531725",
+      "channel": "C2ef03a"
+    },
+    {
+      "type": "message",
+      "user": "U002",
+      "text": "Hello world!",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35"
+    },
+    {
+      "type": "message",
+      "user": "U022",
+      "text": "Sounds good",
+      "ts": "1753936884.3531725",
+      "channel": "Cc46d35",
+      "thread_ts": "1753936884.3531725"
+    }
+  ],
+  "threads": {
+    "1753936884.3521738": [
+      {
+        "type": "message",
+        "user": "U003",
+        "text": "I'll check.",
+        "ts": "1753936884.3521738",
+        "channel": "C115706",
+        "thread_ts": "1753936884.3521738"
+      },
+      {
+        "type": "message",
+        "user": "U034",
+        "text": "\ud83d\udc4d",
+        "ts": "1753936884.3521738",
+        "channel": "C115706",
+        "thread_ts": "1753936884.3521738"
+      },
+      {
+        "type": "message",
+        "user": "U017",
+        "text": "Sounds good",
+        "ts": "1753936884.3521738",
+        "channel": "C115706",
+        "thread_ts": "1753936884.3521738"
+      }
+    ],
+    "1753936884.3531725": [
+      {
+        "type": "message",
+        "user": "U022",
+        "text": "Sounds good",
+        "ts": "1753936884.3531725",
+        "channel": "Cc46d35",
+        "thread_ts": "1753936884.3531725"
+      }
+    ]
+  },
+  "reminders": {
+    "Rcc9f74": {
+      "id": "Rcc9f74",
+      "user": "U001",
+      "text": "Stand-up meeting",
+      "time": 1753940484,
+      "complete": false
+    },
+    "Rb95140": {
+      "id": "Rb95140",
+      "user": "U002",
+      "text": "Stand-up meeting",
+      "time": 1753940484,
+      "complete": false
+    }
+  },
+  "files": {},
+  "reactions": {},
+  "pins": {
+    "C001": [],
+    "C002": [],
+    "Cce4ada": [],
+    "C115706": [],
+    "C271713": [],
+    "Cc40fb3": [],
+    "Cc46d35": [],
+    "C2ef03a": [],
+    "Ca01a83": [],
+    "Ca7ae2b": [],
+    "Dcfb62f": [],
+    "D4ce2db": []
+  },
+  "dnd": {
+    "U001": {
+      "dnd_enabled": false
+    },
+    "U002": {
+      "dnd_enabled": false
+    },
+    "U003": {
+      "dnd_enabled": false
+    },
+    "U004": {
+      "dnd_enabled": false
+    },
+    "U005": {
+      "dnd_enabled": false
+    },
+    "U006": {
+      "dnd_enabled": false
+    },
+    "U007": {
+      "dnd_enabled": false
+    },
+    "U008": {
+      "dnd_enabled": false
+    },
+    "U009": {
+      "dnd_enabled": false
+    },
+    "U010": {
+      "dnd_enabled": false
+    },
+    "U011": {
+      "dnd_enabled": false
+    },
+    "U012": {
+      "dnd_enabled": false
+    },
+    "U013": {
+      "dnd_enabled": false
+    },
+    "U014": {
+      "dnd_enabled": false
+    },
+    "U015": {
+      "dnd_enabled": false
+    },
+    "U016": {
+      "dnd_enabled": false
+    },
+    "U017": {
+      "dnd_enabled": false
+    },
+    "U018": {
+      "dnd_enabled": false
+    },
+    "U019": {
+      "dnd_enabled": false
+    },
+    "U020": {
+      "dnd_enabled": false
+    },
+    "U021": {
+      "dnd_enabled": false
+    },
+    "U022": {
+      "dnd_enabled": false
+    },
+    "U023": {
+      "dnd_enabled": false
+    },
+    "U024": {
+      "dnd_enabled": false
+    },
+    "U025": {
+      "dnd_enabled": false
+    },
+    "U026": {
+      "dnd_enabled": false
+    },
+    "U027": {
+      "dnd_enabled": false
+    },
+    "U028": {
+      "dnd_enabled": false
+    },
+    "U029": {
+      "dnd_enabled": false
+    },
+    "U030": {
+      "dnd_enabled": false
+    },
+    "U031": {
+      "dnd_enabled": false
+    },
+    "U032": {
+      "dnd_enabled": false
+    },
+    "U033": {
+      "dnd_enabled": false
+    },
+    "U034": {
+      "dnd_enabled": false
+    },
+    "U035": {
+      "dnd_enabled": false
+    }
+  },
+  "emoji": {
+    ":wave:": "https://emoji.url/wave.png",
+    ":tada:": "https://emoji.url/tada.png"
+  },
+  "team_info": {
+    "id": "T123",
+    "name": "Mock Team",
+    "domain": "mockteam"
+  },
+  "generated_at": "2025-07-31T04:41:24.353172Z"
+}

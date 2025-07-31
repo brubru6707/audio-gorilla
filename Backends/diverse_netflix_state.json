@@ -1,0 +1,4267 @@
+{
+  "profiles": {
+    "P001": {
+      "id": "P001",
+      "name": "Main",
+      "avatar": "https://cdn.moviestream.net/avatars/P001.png",
+      "maturity_level": "teen",
+      "language": "es",
+      "autoplay": true
+    },
+    "P002": {
+      "id": "P002",
+      "name": "Kids",
+      "avatar": "https://cdn.moviestream.net/avatars/P002.png",
+      "maturity_level": "teen",
+      "language": "pt",
+      "autoplay": true
+    },
+    "P003": {
+      "id": "P003",
+      "name": "Guest",
+      "avatar": "https://cdn.moviestream.net/avatars/P003.png",
+      "maturity_level": "adult",
+      "language": "it",
+      "autoplay": false
+    },
+    "P004": {
+      "id": "P004",
+      "name": "Dad",
+      "avatar": "https://cdn.moviestream.net/avatars/P004.png",
+      "maturity_level": "adult",
+      "language": "es",
+      "autoplay": true
+    },
+    "P005": {
+      "id": "P005",
+      "name": "Mom",
+      "avatar": "https://cdn.moviestream.net/avatars/P005.png",
+      "maturity_level": "kids",
+      "language": "it",
+      "autoplay": false
+    },
+    "P006": {
+      "id": "P006",
+      "name": "Roommate",
+      "avatar": "https://cdn.moviestream.net/avatars/P006.png",
+      "maturity_level": "adult",
+      "language": "pt",
+      "autoplay": true
+    },
+    "P007": {
+      "id": "P007",
+      "name": "Liam",
+      "avatar": "https://cdn.moviestream.net/avatars/P007.png",
+      "maturity_level": "kids",
+      "language": "es",
+      "autoplay": true
+    },
+    "P008": {
+      "id": "P008",
+      "name": "Noah",
+      "avatar": "https://cdn.moviestream.net/avatars/P008.png",
+      "maturity_level": "kids",
+      "language": "pt",
+      "autoplay": true
+    },
+    "P009": {
+      "id": "P009",
+      "name": "Olivia",
+      "avatar": "https://cdn.moviestream.net/avatars/P009.png",
+      "maturity_level": "teen",
+      "language": "de",
+      "autoplay": true
+    },
+    "P010": {
+      "id": "P010",
+      "name": "Mason",
+      "avatar": "https://cdn.moviestream.net/avatars/P010.png",
+      "maturity_level": "adult",
+      "language": "pt",
+      "autoplay": true
+    },
+    "P011": {
+      "id": "P011",
+      "name": "Ava",
+      "avatar": "https://cdn.moviestream.net/avatars/P011.png",
+      "maturity_level": "teen",
+      "language": "it",
+      "autoplay": true
+    },
+    "P012": {
+      "id": "P012",
+      "name": "Emma",
+      "avatar": "https://cdn.moviestream.net/avatars/P012.png",
+      "maturity_level": "teen",
+      "language": "es",
+      "autoplay": true
+    },
+    "P013": {
+      "id": "P013",
+      "name": "Ethan",
+      "avatar": "https://cdn.moviestream.net/avatars/P013.png",
+      "maturity_level": "adult",
+      "language": "nl",
+      "autoplay": true
+    },
+    "P014": {
+      "id": "P014",
+      "name": "Sophia",
+      "avatar": "https://cdn.moviestream.net/avatars/P014.png",
+      "maturity_level": "teen",
+      "language": "nl",
+      "autoplay": true
+    },
+    "P015": {
+      "id": "P015",
+      "name": "Logan",
+      "avatar": "https://cdn.moviestream.net/avatars/P015.png",
+      "maturity_level": "kids",
+      "language": "en",
+      "autoplay": true
+    },
+    "P016": {
+      "id": "P016",
+      "name": "Isabella",
+      "avatar": "https://cdn.moviestream.net/avatars/P016.png",
+      "maturity_level": "adult",
+      "language": "fr",
+      "autoplay": true
+    }
+  },
+  "content": {
+    "M001": {
+      "id": "M001",
+      "title": "The Matrix",
+      "type": "movie",
+      "year": 2014,
+      "rating": "TV-14",
+      "duration": 114,
+      "genre": [
+        "Thriller",
+        "Sci-Fi"
+      ]
+    },
+    "M002": {
+      "id": "M002",
+      "title": "Inception",
+      "type": "movie",
+      "year": 2004,
+      "rating": "PG",
+      "duration": 136,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "M003": {
+      "id": "M003",
+      "title": "Interstellar",
+      "type": "movie",
+      "year": 2010,
+      "rating": "PG",
+      "duration": 109,
+      "genre": [
+        "Sci-Fi",
+        "Action"
+      ]
+    },
+    "M004": {
+      "id": "M004",
+      "title": "Parasite",
+      "type": "movie",
+      "year": 2010,
+      "rating": "G",
+      "duration": 164,
+      "genre": [
+        "Sci-Fi",
+        "Action"
+      ]
+    },
+    "M005": {
+      "id": "M005",
+      "title": "Whiplash",
+      "type": "movie",
+      "year": 2009,
+      "rating": "TV-14",
+      "duration": 104,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "M006": {
+      "id": "M006",
+      "title": "The Dark Knight",
+      "type": "movie",
+      "year": 2019,
+      "rating": "TV-14",
+      "duration": 136,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "M007": {
+      "id": "M007",
+      "title": "Fight Club",
+      "type": "movie",
+      "year": 1997,
+      "rating": "TV-MA",
+      "duration": 172,
+      "genre": [
+        "Sci-Fi",
+        "Action"
+      ]
+    },
+    "M008": {
+      "id": "M008",
+      "title": "Forrest Gump",
+      "type": "movie",
+      "year": 2007,
+      "rating": "TV-MA",
+      "duration": 180,
+      "genre": [
+        "Thriller",
+        "Sci-Fi"
+      ]
+    },
+    "M009": {
+      "id": "M009",
+      "title": "Gladiator",
+      "type": "movie",
+      "year": 2004,
+      "rating": "G",
+      "duration": 152,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M010": {
+      "id": "M010",
+      "title": "Se7en",
+      "type": "movie",
+      "year": 2008,
+      "rating": "PG-13",
+      "duration": 143,
+      "genre": [
+        "Sci-Fi",
+        "Drama"
+      ]
+    },
+    "S001": {
+      "id": "S001",
+      "title": "Breaking Bad",
+      "type": "series",
+      "year": 2017,
+      "rating": "G",
+      "seasons": 7,
+      "genre": [
+        "Fantasy",
+        "Action"
+      ]
+    },
+    "S002": {
+      "id": "S002",
+      "title": "Stranger Things",
+      "type": "series",
+      "year": 1999,
+      "rating": "TV-14",
+      "seasons": 4,
+      "genre": [
+        "Fantasy",
+        "Action"
+      ]
+    },
+    "S003": {
+      "id": "S003",
+      "title": "The Crown",
+      "type": "series",
+      "year": 1990,
+      "rating": "G",
+      "seasons": 5,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "S004": {
+      "id": "S004",
+      "title": "Money Heist",
+      "type": "series",
+      "year": 2015,
+      "rating": "G",
+      "seasons": 1,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "S005": {
+      "id": "S005",
+      "title": "The Witcher",
+      "type": "series",
+      "year": 2022,
+      "rating": "G",
+      "seasons": 4,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ]
+    },
+    "S006": {
+      "id": "S006",
+      "title": "Ozark",
+      "type": "series",
+      "year": 2011,
+      "rating": "R",
+      "seasons": 7,
+      "genre": [
+        "Thriller",
+        "Drama"
+      ]
+    },
+    "S007": {
+      "id": "S007",
+      "title": "Dark",
+      "type": "series",
+      "year": 2020,
+      "rating": "PG-13",
+      "seasons": 2,
+      "genre": [
+        "Fantasy",
+        "Comedy"
+      ]
+    },
+    "S008": {
+      "id": "S008",
+      "title": "Narcos",
+      "type": "series",
+      "year": 1992,
+      "rating": "R",
+      "seasons": 2,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "S009": {
+      "id": "S009",
+      "title": "Friends",
+      "type": "series",
+      "year": 2015,
+      "rating": "R",
+      "seasons": 1,
+      "genre": [
+        "Action",
+        "Fantasy"
+      ]
+    },
+    "S010": {
+      "id": "S010",
+      "title": "The Office",
+      "type": "series",
+      "year": 2010,
+      "rating": "TV-MA",
+      "seasons": 7,
+      "genre": [
+        "Fantasy",
+        "Drama"
+      ]
+    },
+    "M011": {
+      "id": "M011",
+      "title": "Silent Legacy",
+      "type": "movie",
+      "year": 2023,
+      "rating": "G",
+      "duration": 153,
+      "genre": [
+        "Drama",
+        "Sci-Fi"
+      ]
+    },
+    "M012": {
+      "id": "M012",
+      "title": "Shattered Legacy",
+      "type": "movie",
+      "year": 1995,
+      "rating": "PG",
+      "duration": 79,
+      "genre": [
+        "Action",
+        "Sci-Fi"
+      ]
+    },
+    "M013": {
+      "id": "M013",
+      "title": "Scarlet Dreams",
+      "type": "movie",
+      "year": 1997,
+      "rating": "R",
+      "duration": 113,
+      "genre": [
+        "Drama",
+        "Sci-Fi"
+      ]
+    },
+    "M014": {
+      "id": "M014",
+      "title": "Golden River",
+      "type": "movie",
+      "year": 1990,
+      "rating": "TV-14",
+      "duration": 96,
+      "genre": [
+        "Romance",
+        "Action"
+      ]
+    },
+    "M015": {
+      "id": "M015",
+      "title": "Silent Galaxy",
+      "type": "movie",
+      "year": 2011,
+      "rating": "TV-MA",
+      "duration": 170,
+      "genre": [
+        "Thriller",
+        "Fantasy"
+      ]
+    },
+    "M016": {
+      "id": "M016",
+      "title": "Silent Legacy",
+      "type": "movie",
+      "year": 2015,
+      "rating": "TV-14",
+      "duration": 171,
+      "genre": [
+        "Fantasy",
+        "Drama"
+      ]
+    },
+    "M017": {
+      "id": "M017",
+      "title": "Silent Shadow",
+      "type": "movie",
+      "year": 1993,
+      "rating": "R",
+      "duration": 140,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "M018": {
+      "id": "M018",
+      "title": "Golden Legacy",
+      "type": "movie",
+      "year": 1997,
+      "rating": "PG",
+      "duration": 111,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "M019": {
+      "id": "M019",
+      "title": "Hidden Shadow",
+      "type": "movie",
+      "year": 2000,
+      "rating": "G",
+      "duration": 76,
+      "genre": [
+        "Fantasy",
+        "Comedy"
+      ]
+    },
+    "M020": {
+      "id": "M020",
+      "title": "Scarlet Empire",
+      "type": "movie",
+      "year": 2023,
+      "rating": "TV-14",
+      "duration": 162,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "M021": {
+      "id": "M021",
+      "title": "Burning Dreams",
+      "type": "movie",
+      "year": 2003,
+      "rating": "TV-14",
+      "duration": 99,
+      "genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    "M022": {
+      "id": "M022",
+      "title": "Lost River",
+      "type": "movie",
+      "year": 1987,
+      "rating": "G",
+      "duration": 120,
+      "genre": [
+        "Thriller",
+        "Romance"
+      ]
+    },
+    "M023": {
+      "id": "M023",
+      "title": "Burning Legacy",
+      "type": "movie",
+      "year": 2018,
+      "rating": "G",
+      "duration": 138,
+      "genre": [
+        "Romance",
+        "Comedy"
+      ]
+    },
+    "M024": {
+      "id": "M024",
+      "title": "Shattered River",
+      "type": "movie",
+      "year": 1982,
+      "rating": "TV-MA",
+      "duration": 184,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "M025": {
+      "id": "M025",
+      "title": "Shattered Galaxy",
+      "type": "movie",
+      "year": 2013,
+      "rating": "PG-13",
+      "duration": 93,
+      "genre": [
+        "Action",
+        "Romance"
+      ]
+    },
+    "M026": {
+      "id": "M026",
+      "title": "Shattered Galaxy",
+      "type": "movie",
+      "year": 2002,
+      "rating": "R",
+      "duration": 188,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M027": {
+      "id": "M027",
+      "title": "Hidden Shadow",
+      "type": "movie",
+      "year": 2014,
+      "rating": "TV-14",
+      "duration": 122,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "M028": {
+      "id": "M028",
+      "title": "Burning Secret",
+      "type": "movie",
+      "year": 1987,
+      "rating": "TV-14",
+      "duration": 162,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "M029": {
+      "id": "M029",
+      "title": "Golden Secret",
+      "type": "movie",
+      "year": 2007,
+      "rating": "R",
+      "duration": 119,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "M030": {
+      "id": "M030",
+      "title": "Shattered Dreams",
+      "type": "movie",
+      "year": 2015,
+      "rating": "TV-MA",
+      "duration": 80,
+      "genre": [
+        "Sci-Fi",
+        "Romance"
+      ]
+    },
+    "M031": {
+      "id": "M031",
+      "title": "Scarlet Shadow",
+      "type": "movie",
+      "year": 2018,
+      "rating": "PG-13",
+      "duration": 157,
+      "genre": [
+        "Comedy",
+        "Sci-Fi"
+      ]
+    },
+    "M032": {
+      "id": "M032",
+      "title": "Scarlet Gate",
+      "type": "movie",
+      "year": 1994,
+      "rating": "G",
+      "duration": 185,
+      "genre": [
+        "Drama",
+        "Sci-Fi"
+      ]
+    },
+    "M033": {
+      "id": "M033",
+      "title": "Shattered Shadow",
+      "type": "movie",
+      "year": 1990,
+      "rating": "TV-MA",
+      "duration": 76,
+      "genre": [
+        "Romance",
+        "Fantasy"
+      ]
+    },
+    "M034": {
+      "id": "M034",
+      "title": "Burning Shadow",
+      "type": "movie",
+      "year": 1991,
+      "rating": "PG-13",
+      "duration": 182,
+      "genre": [
+        "Comedy",
+        "Action"
+      ]
+    },
+    "M035": {
+      "id": "M035",
+      "title": "Shattered River",
+      "type": "movie",
+      "year": 2017,
+      "rating": "TV-MA",
+      "duration": 89,
+      "genre": [
+        "Fantasy",
+        "Thriller"
+      ]
+    },
+    "M036": {
+      "id": "M036",
+      "title": "Forgotten River",
+      "type": "movie",
+      "year": 2002,
+      "rating": "G",
+      "duration": 139,
+      "genre": [
+        "Thriller",
+        "Drama"
+      ]
+    },
+    "M037": {
+      "id": "M037",
+      "title": "Lost Legacy",
+      "type": "movie",
+      "year": 1986,
+      "rating": "TV-14",
+      "duration": 140,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "M038": {
+      "id": "M038",
+      "title": "Shattered Galaxy",
+      "type": "movie",
+      "year": 1985,
+      "rating": "G",
+      "duration": 153,
+      "genre": [
+        "Romance",
+        "Action"
+      ]
+    },
+    "M039": {
+      "id": "M039",
+      "title": "Shattered River",
+      "type": "movie",
+      "year": 1987,
+      "rating": "PG-13",
+      "duration": 170,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "M040": {
+      "id": "M040",
+      "title": "Hidden Galaxy",
+      "type": "movie",
+      "year": 2004,
+      "rating": "PG",
+      "duration": 91,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "M041": {
+      "id": "M041",
+      "title": "Silent Empire",
+      "type": "movie",
+      "year": 1989,
+      "rating": "PG-13",
+      "duration": 180,
+      "genre": [
+        "Thriller",
+        "Romance"
+      ]
+    },
+    "M042": {
+      "id": "M042",
+      "title": "Hidden Shadow",
+      "type": "movie",
+      "year": 1982,
+      "rating": "PG-13",
+      "duration": 189,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "M043": {
+      "id": "M043",
+      "title": "Silent Gate",
+      "type": "movie",
+      "year": 2015,
+      "rating": "R",
+      "duration": 113,
+      "genre": [
+        "Sci-Fi",
+        "Action"
+      ]
+    },
+    "M044": {
+      "id": "M044",
+      "title": "Scarlet Legacy",
+      "type": "movie",
+      "year": 2021,
+      "rating": "PG",
+      "duration": 81,
+      "genre": [
+        "Drama",
+        "Romance"
+      ]
+    },
+    "M045": {
+      "id": "M045",
+      "title": "Lost Gate",
+      "type": "movie",
+      "year": 2024,
+      "rating": "PG",
+      "duration": 83,
+      "genre": [
+        "Thriller",
+        "Sci-Fi"
+      ]
+    },
+    "M046": {
+      "id": "M046",
+      "title": "Burning Empire",
+      "type": "movie",
+      "year": 1988,
+      "rating": "PG",
+      "duration": 140,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M047": {
+      "id": "M047",
+      "title": "Forgotten Legacy",
+      "type": "movie",
+      "year": 2013,
+      "rating": "G",
+      "duration": 178,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "M048": {
+      "id": "M048",
+      "title": "Forgotten Empire",
+      "type": "movie",
+      "year": 2013,
+      "rating": "R",
+      "duration": 168,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "M049": {
+      "id": "M049",
+      "title": "Forgotten Gate",
+      "type": "movie",
+      "year": 2012,
+      "rating": "TV-14",
+      "duration": 140,
+      "genre": [
+        "Drama",
+        "Romance"
+      ]
+    },
+    "M050": {
+      "id": "M050",
+      "title": "Hidden Empire",
+      "type": "movie",
+      "year": 2000,
+      "rating": "PG",
+      "duration": 133,
+      "genre": [
+        "Romance",
+        "Fantasy"
+      ]
+    },
+    "M051": {
+      "id": "M051",
+      "title": "Scarlet Secret",
+      "type": "movie",
+      "year": 2010,
+      "rating": "G",
+      "duration": 137,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "M052": {
+      "id": "M052",
+      "title": "Lost Galaxy",
+      "type": "movie",
+      "year": 1995,
+      "rating": "PG-13",
+      "duration": 185,
+      "genre": [
+        "Comedy",
+        "Action"
+      ]
+    },
+    "M053": {
+      "id": "M053",
+      "title": "Shattered Dreams",
+      "type": "movie",
+      "year": 2001,
+      "rating": "R",
+      "duration": 135,
+      "genre": [
+        "Drama",
+        "Sci-Fi"
+      ]
+    },
+    "M054": {
+      "id": "M054",
+      "title": "Scarlet River",
+      "type": "movie",
+      "year": 2010,
+      "rating": "R",
+      "duration": 179,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "M055": {
+      "id": "M055",
+      "title": "Hidden Shadow",
+      "type": "movie",
+      "year": 1995,
+      "rating": "R",
+      "duration": 92,
+      "genre": [
+        "Action",
+        "Sci-Fi"
+      ]
+    },
+    "M056": {
+      "id": "M056",
+      "title": "Hidden Empire",
+      "type": "movie",
+      "year": 2009,
+      "rating": "PG",
+      "duration": 147,
+      "genre": [
+        "Action",
+        "Sci-Fi"
+      ]
+    },
+    "M057": {
+      "id": "M057",
+      "title": "Scarlet River",
+      "type": "movie",
+      "year": 1992,
+      "rating": "PG-13",
+      "duration": 119,
+      "genre": [
+        "Drama",
+        "Romance"
+      ]
+    },
+    "M058": {
+      "id": "M058",
+      "title": "Shattered Dreams",
+      "type": "movie",
+      "year": 2020,
+      "rating": "TV-MA",
+      "duration": 180,
+      "genre": [
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    "M059": {
+      "id": "M059",
+      "title": "Scarlet Gate",
+      "type": "movie",
+      "year": 1991,
+      "rating": "TV-MA",
+      "duration": 167,
+      "genre": [
+        "Sci-Fi",
+        "Drama"
+      ]
+    },
+    "M060": {
+      "id": "M060",
+      "title": "Golden Gate",
+      "type": "movie",
+      "year": 2005,
+      "rating": "TV-MA",
+      "duration": 182,
+      "genre": [
+        "Romance",
+        "Action"
+      ]
+    },
+    "M061": {
+      "id": "M061",
+      "title": "Burning Secret",
+      "type": "movie",
+      "year": 2011,
+      "rating": "TV-MA",
+      "duration": 184,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "M062": {
+      "id": "M062",
+      "title": "Lost River",
+      "type": "movie",
+      "year": 2006,
+      "rating": "PG",
+      "duration": 170,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "M063": {
+      "id": "M063",
+      "title": "Burning Galaxy",
+      "type": "movie",
+      "year": 2019,
+      "rating": "R",
+      "duration": 152,
+      "genre": [
+        "Romance",
+        "Action"
+      ]
+    },
+    "M064": {
+      "id": "M064",
+      "title": "Lost Secret",
+      "type": "movie",
+      "year": 1982,
+      "rating": "PG",
+      "duration": 89,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "M065": {
+      "id": "M065",
+      "title": "Silent Empire",
+      "type": "movie",
+      "year": 2007,
+      "rating": "TV-14",
+      "duration": 187,
+      "genre": [
+        "Thriller",
+        "Romance"
+      ]
+    },
+    "M066": {
+      "id": "M066",
+      "title": "Silent Empire",
+      "type": "movie",
+      "year": 1981,
+      "rating": "PG-13",
+      "duration": 118,
+      "genre": [
+        "Romance",
+        "Sci-Fi"
+      ]
+    },
+    "M067": {
+      "id": "M067",
+      "title": "Burning Empire",
+      "type": "movie",
+      "year": 1995,
+      "rating": "TV-14",
+      "duration": 87,
+      "genre": [
+        "Comedy",
+        "Romance"
+      ]
+    },
+    "M068": {
+      "id": "M068",
+      "title": "Lost Gate",
+      "type": "movie",
+      "year": 1997,
+      "rating": "PG-13",
+      "duration": 106,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M069": {
+      "id": "M069",
+      "title": "Lost River",
+      "type": "movie",
+      "year": 2022,
+      "rating": "PG",
+      "duration": 90,
+      "genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    "M070": {
+      "id": "M070",
+      "title": "Hidden Secret",
+      "type": "movie",
+      "year": 2021,
+      "rating": "R",
+      "duration": 78,
+      "genre": [
+        "Romance",
+        "Thriller"
+      ]
+    },
+    "M071": {
+      "id": "M071",
+      "title": "Lost Gate",
+      "type": "movie",
+      "year": 2016,
+      "rating": "PG-13",
+      "duration": 95,
+      "genre": [
+        "Comedy",
+        "Action"
+      ]
+    },
+    "M072": {
+      "id": "M072",
+      "title": "Hidden Empire",
+      "type": "movie",
+      "year": 2008,
+      "rating": "TV-MA",
+      "duration": 76,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M073": {
+      "id": "M073",
+      "title": "Scarlet Shadow",
+      "type": "movie",
+      "year": 2012,
+      "rating": "G",
+      "duration": 182,
+      "genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    "M074": {
+      "id": "M074",
+      "title": "Hidden River",
+      "type": "movie",
+      "year": 1993,
+      "rating": "TV-MA",
+      "duration": 78,
+      "genre": [
+        "Comedy",
+        "Fantasy"
+      ]
+    },
+    "M075": {
+      "id": "M075",
+      "title": "Silent Empire",
+      "type": "movie",
+      "year": 2014,
+      "rating": "TV-14",
+      "duration": 133,
+      "genre": [
+        "Romance",
+        "Drama"
+      ]
+    },
+    "M076": {
+      "id": "M076",
+      "title": "Hidden Gate",
+      "type": "movie",
+      "year": 1998,
+      "rating": "G",
+      "duration": 146,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "M077": {
+      "id": "M077",
+      "title": "Lost Galaxy",
+      "type": "movie",
+      "year": 2019,
+      "rating": "TV-14",
+      "duration": 85,
+      "genre": [
+        "Drama",
+        "Romance"
+      ]
+    },
+    "M078": {
+      "id": "M078",
+      "title": "Scarlet Empire",
+      "type": "movie",
+      "year": 1994,
+      "rating": "R",
+      "duration": 137,
+      "genre": [
+        "Thriller",
+        "Romance"
+      ]
+    },
+    "M079": {
+      "id": "M079",
+      "title": "Shattered Galaxy",
+      "type": "movie",
+      "year": 2000,
+      "rating": "R",
+      "duration": 141,
+      "genre": [
+        "Fantasy",
+        "Romance"
+      ]
+    },
+    "M080": {
+      "id": "M080",
+      "title": "Scarlet Shadow",
+      "type": "movie",
+      "year": 1986,
+      "rating": "TV-MA",
+      "duration": 93,
+      "genre": [
+        "Action",
+        "Sci-Fi"
+      ]
+    },
+    "M081": {
+      "id": "M081",
+      "title": "Forgotten Shadow",
+      "type": "movie",
+      "year": 2004,
+      "rating": "R",
+      "duration": 107,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "M082": {
+      "id": "M082",
+      "title": "Shattered River",
+      "type": "movie",
+      "year": 1990,
+      "rating": "G",
+      "duration": 88,
+      "genre": [
+        "Fantasy",
+        "Comedy"
+      ]
+    },
+    "M083": {
+      "id": "M083",
+      "title": "Golden River",
+      "type": "movie",
+      "year": 1990,
+      "rating": "TV-14",
+      "duration": 187,
+      "genre": [
+        "Drama",
+        "Romance"
+      ]
+    },
+    "M084": {
+      "id": "M084",
+      "title": "Scarlet Shadow",
+      "type": "movie",
+      "year": 1990,
+      "rating": "G",
+      "duration": 131,
+      "genre": [
+        "Romance",
+        "Action"
+      ]
+    },
+    "M085": {
+      "id": "M085",
+      "title": "Golden Gate",
+      "type": "movie",
+      "year": 1999,
+      "rating": "TV-MA",
+      "duration": 179,
+      "genre": [
+        "Romance",
+        "Sci-Fi"
+      ]
+    },
+    "M086": {
+      "id": "M086",
+      "title": "Shattered Galaxy",
+      "type": "movie",
+      "year": 1999,
+      "rating": "TV-14",
+      "duration": 156,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ]
+    },
+    "M087": {
+      "id": "M087",
+      "title": "Silent Galaxy",
+      "type": "movie",
+      "year": 1983,
+      "rating": "TV-14",
+      "duration": 165,
+      "genre": [
+        "Action",
+        "Sci-Fi"
+      ]
+    },
+    "M088": {
+      "id": "M088",
+      "title": "Lost Galaxy",
+      "type": "movie",
+      "year": 2009,
+      "rating": "TV-MA",
+      "duration": 172,
+      "genre": [
+        "Comedy",
+        "Sci-Fi"
+      ]
+    },
+    "M089": {
+      "id": "M089",
+      "title": "Hidden River",
+      "type": "movie",
+      "year": 2006,
+      "rating": "R",
+      "duration": 123,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "M090": {
+      "id": "M090",
+      "title": "Hidden Gate",
+      "type": "movie",
+      "year": 1989,
+      "rating": "TV-14",
+      "duration": 117,
+      "genre": [
+        "Romance",
+        "Thriller"
+      ]
+    },
+    "M091": {
+      "id": "M091",
+      "title": "Scarlet Gate",
+      "type": "movie",
+      "year": 1986,
+      "rating": "G",
+      "duration": 78,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M092": {
+      "id": "M092",
+      "title": "Shattered Dreams",
+      "type": "movie",
+      "year": 1984,
+      "rating": "TV-MA",
+      "duration": 122,
+      "genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    "M093": {
+      "id": "M093",
+      "title": "Golden Shadow",
+      "type": "movie",
+      "year": 2012,
+      "rating": "PG-13",
+      "duration": 146,
+      "genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    "M094": {
+      "id": "M094",
+      "title": "Scarlet Empire",
+      "type": "movie",
+      "year": 2011,
+      "rating": "PG",
+      "duration": 180,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "M095": {
+      "id": "M095",
+      "title": "Silent Galaxy",
+      "type": "movie",
+      "year": 2000,
+      "rating": "PG-13",
+      "duration": 175,
+      "genre": [
+        "Drama",
+        "Thriller"
+      ]
+    },
+    "M096": {
+      "id": "M096",
+      "title": "Burning Gate",
+      "type": "movie",
+      "year": 1980,
+      "rating": "PG-13",
+      "duration": 88,
+      "genre": [
+        "Sci-Fi",
+        "Drama"
+      ]
+    },
+    "M097": {
+      "id": "M097",
+      "title": "Silent River",
+      "type": "movie",
+      "year": 1981,
+      "rating": "PG",
+      "duration": 83,
+      "genre": [
+        "Drama",
+        "Action"
+      ]
+    },
+    "M098": {
+      "id": "M098",
+      "title": "Lost Secret",
+      "type": "movie",
+      "year": 2021,
+      "rating": "PG-13",
+      "duration": 178,
+      "genre": [
+        "Comedy",
+        "Romance"
+      ]
+    },
+    "M099": {
+      "id": "M099",
+      "title": "Forgotten Galaxy",
+      "type": "movie",
+      "year": 2007,
+      "rating": "R",
+      "duration": 101,
+      "genre": [
+        "Comedy",
+        "Fantasy"
+      ]
+    },
+    "M100": {
+      "id": "M100",
+      "title": "Scarlet Dreams",
+      "type": "movie",
+      "year": 1998,
+      "rating": "TV-14",
+      "duration": 125,
+      "genre": [
+        "Comedy",
+        "Fantasy"
+      ]
+    },
+    "M101": {
+      "id": "M101",
+      "title": "Burning Empire",
+      "type": "movie",
+      "year": 1995,
+      "rating": "TV-MA",
+      "duration": 108,
+      "genre": [
+        "Comedy",
+        "Drama"
+      ]
+    },
+    "M102": {
+      "id": "M102",
+      "title": "Shattered Empire",
+      "type": "movie",
+      "year": 1987,
+      "rating": "PG",
+      "duration": 133,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "M103": {
+      "id": "M103",
+      "title": "Lost Empire",
+      "type": "movie",
+      "year": 2017,
+      "rating": "TV-14",
+      "duration": 172,
+      "genre": [
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    "M104": {
+      "id": "M104",
+      "title": "Lost Galaxy",
+      "type": "movie",
+      "year": 1983,
+      "rating": "TV-MA",
+      "duration": 166,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "M105": {
+      "id": "M105",
+      "title": "Lost Galaxy",
+      "type": "movie",
+      "year": 2002,
+      "rating": "PG",
+      "duration": 187,
+      "genre": [
+        "Action",
+        "Romance"
+      ]
+    },
+    "M106": {
+      "id": "M106",
+      "title": "Shattered Gate",
+      "type": "movie",
+      "year": 1982,
+      "rating": "R",
+      "duration": 158,
+      "genre": [
+        "Romance",
+        "Thriller"
+      ]
+    },
+    "M107": {
+      "id": "M107",
+      "title": "Hidden Secret",
+      "type": "movie",
+      "year": 2024,
+      "rating": "PG-13",
+      "duration": 127,
+      "genre": [
+        "Comedy",
+        "Romance"
+      ]
+    },
+    "M108": {
+      "id": "M108",
+      "title": "Hidden Gate",
+      "type": "movie",
+      "year": 2003,
+      "rating": "R",
+      "duration": 138,
+      "genre": [
+        "Action",
+        "Sci-Fi"
+      ]
+    },
+    "M109": {
+      "id": "M109",
+      "title": "Scarlet Gate",
+      "type": "movie",
+      "year": 1989,
+      "rating": "TV-14",
+      "duration": 93,
+      "genre": [
+        "Comedy",
+        "Sci-Fi"
+      ]
+    },
+    "M110": {
+      "id": "M110",
+      "title": "Burning Gate",
+      "type": "movie",
+      "year": 2000,
+      "rating": "PG",
+      "duration": 88,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "S011": {
+      "id": "S011",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2002,
+      "rating": "PG-13",
+      "seasons": 8,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "S012": {
+      "id": "S012",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 2023,
+      "rating": "TV-14",
+      "seasons": 8,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "S013": {
+      "id": "S013",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 2017,
+      "rating": "PG-13",
+      "seasons": 5,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "S014": {
+      "id": "S014",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2005,
+      "rating": "PG",
+      "seasons": 3,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "S015": {
+      "id": "S015",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 1991,
+      "rating": "TV-MA",
+      "seasons": 8,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "S016": {
+      "id": "S016",
+      "title": "The River Chronicles",
+      "type": "series",
+      "year": 2000,
+      "rating": "PG",
+      "seasons": 7,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "S017": {
+      "id": "S017",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2009,
+      "rating": "TV-MA",
+      "seasons": 1,
+      "genre": [
+        "Action",
+        "Fantasy"
+      ]
+    },
+    "S018": {
+      "id": "S018",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2011,
+      "rating": "R",
+      "seasons": 10,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "S019": {
+      "id": "S019",
+      "title": "The Shadow Chronicles",
+      "type": "series",
+      "year": 2018,
+      "rating": "G",
+      "seasons": 9,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "S020": {
+      "id": "S020",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2016,
+      "rating": "G",
+      "seasons": 10,
+      "genre": [
+        "Sci-Fi",
+        "Drama"
+      ]
+    },
+    "S021": {
+      "id": "S021",
+      "title": "The River Chronicles",
+      "type": "series",
+      "year": 2023,
+      "rating": "TV-14",
+      "seasons": 4,
+      "genre": [
+        "Fantasy",
+        "Thriller"
+      ]
+    },
+    "S022": {
+      "id": "S022",
+      "title": "The River Chronicles",
+      "type": "series",
+      "year": 1993,
+      "rating": "G",
+      "seasons": 8,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "S023": {
+      "id": "S023",
+      "title": "The Shadow Chronicles",
+      "type": "series",
+      "year": 1992,
+      "rating": "R",
+      "seasons": 9,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "S024": {
+      "id": "S024",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 2016,
+      "rating": "PG-13",
+      "seasons": 1,
+      "genre": [
+        "Thriller",
+        "Sci-Fi"
+      ]
+    },
+    "S025": {
+      "id": "S025",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2012,
+      "rating": "R",
+      "seasons": 2,
+      "genre": [
+        "Fantasy",
+        "Thriller"
+      ]
+    },
+    "S026": {
+      "id": "S026",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 2019,
+      "rating": "G",
+      "seasons": 9,
+      "genre": [
+        "Thriller",
+        "Drama"
+      ]
+    },
+    "S027": {
+      "id": "S027",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 1997,
+      "rating": "PG-13",
+      "seasons": 8,
+      "genre": [
+        "Comedy",
+        "Sci-Fi"
+      ]
+    },
+    "S028": {
+      "id": "S028",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 2010,
+      "rating": "PG",
+      "seasons": 1,
+      "genre": [
+        "Sci-Fi",
+        "Action"
+      ]
+    },
+    "S029": {
+      "id": "S029",
+      "title": "The Gate Chronicles",
+      "type": "series",
+      "year": 2014,
+      "rating": "PG",
+      "seasons": 1,
+      "genre": [
+        "Comedy",
+        "Thriller"
+      ]
+    },
+    "S030": {
+      "id": "S030",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2022,
+      "rating": "PG",
+      "seasons": 7,
+      "genre": [
+        "Fantasy",
+        "Action"
+      ]
+    },
+    "S031": {
+      "id": "S031",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2015,
+      "rating": "PG",
+      "seasons": 5,
+      "genre": [
+        "Drama",
+        "Sci-Fi"
+      ]
+    },
+    "S032": {
+      "id": "S032",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2006,
+      "rating": "PG",
+      "seasons": 5,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "S033": {
+      "id": "S033",
+      "title": "The Gate Chronicles",
+      "type": "series",
+      "year": 2005,
+      "rating": "TV-14",
+      "seasons": 2,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "S034": {
+      "id": "S034",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 2017,
+      "rating": "PG",
+      "seasons": 4,
+      "genre": [
+        "Drama",
+        "Sci-Fi"
+      ]
+    },
+    "S035": {
+      "id": "S035",
+      "title": "The Shadow Chronicles",
+      "type": "series",
+      "year": 2005,
+      "rating": "PG",
+      "seasons": 10,
+      "genre": [
+        "Sci-Fi",
+        "Drama"
+      ]
+    },
+    "S036": {
+      "id": "S036",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 1990,
+      "rating": "TV-MA",
+      "seasons": 6,
+      "genre": [
+        "Comedy",
+        "Action"
+      ]
+    },
+    "S037": {
+      "id": "S037",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2016,
+      "rating": "TV-MA",
+      "seasons": 4,
+      "genre": [
+        "Comedy",
+        "Sci-Fi"
+      ]
+    },
+    "S038": {
+      "id": "S038",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2005,
+      "rating": "PG",
+      "seasons": 7,
+      "genre": [
+        "Drama",
+        "Comedy"
+      ]
+    },
+    "S039": {
+      "id": "S039",
+      "title": "The River Chronicles",
+      "type": "series",
+      "year": 2023,
+      "rating": "PG-13",
+      "seasons": 7,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "S040": {
+      "id": "S040",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 1995,
+      "rating": "R",
+      "seasons": 2,
+      "genre": [
+        "Fantasy",
+        "Thriller"
+      ]
+    },
+    "S041": {
+      "id": "S041",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2004,
+      "rating": "PG-13",
+      "seasons": 7,
+      "genre": [
+        "Thriller",
+        "Fantasy"
+      ]
+    },
+    "S042": {
+      "id": "S042",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 1997,
+      "rating": "TV-14",
+      "seasons": 6,
+      "genre": [
+        "Drama",
+        "Comedy"
+      ]
+    },
+    "S043": {
+      "id": "S043",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 1997,
+      "rating": "G",
+      "seasons": 2,
+      "genre": [
+        "Sci-Fi",
+        "Fantasy"
+      ]
+    },
+    "S044": {
+      "id": "S044",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2015,
+      "rating": "G",
+      "seasons": 1,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "S045": {
+      "id": "S045",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 2006,
+      "rating": "R",
+      "seasons": 2,
+      "genre": [
+        "Fantasy",
+        "Sci-Fi"
+      ]
+    },
+    "S046": {
+      "id": "S046",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2023,
+      "rating": "G",
+      "seasons": 9,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "S047": {
+      "id": "S047",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 1990,
+      "rating": "G",
+      "seasons": 3,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "S048": {
+      "id": "S048",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2000,
+      "rating": "G",
+      "seasons": 10,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "S049": {
+      "id": "S049",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 1991,
+      "rating": "TV-MA",
+      "seasons": 5,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "S050": {
+      "id": "S050",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 1999,
+      "rating": "R",
+      "seasons": 9,
+      "genre": [
+        "Thriller",
+        "Sci-Fi"
+      ]
+    },
+    "S051": {
+      "id": "S051",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2021,
+      "rating": "G",
+      "seasons": 5,
+      "genre": [
+        "Action",
+        "Thriller"
+      ]
+    },
+    "S052": {
+      "id": "S052",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2018,
+      "rating": "PG",
+      "seasons": 1,
+      "genre": [
+        "Sci-Fi",
+        "Thriller"
+      ]
+    },
+    "S053": {
+      "id": "S053",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2000,
+      "rating": "TV-MA",
+      "seasons": 7,
+      "genre": [
+        "Fantasy",
+        "Drama"
+      ]
+    },
+    "S054": {
+      "id": "S054",
+      "title": "The Shadow Chronicles",
+      "type": "series",
+      "year": 2020,
+      "rating": "TV-MA",
+      "seasons": 7,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "S055": {
+      "id": "S055",
+      "title": "The River Chronicles",
+      "type": "series",
+      "year": 2002,
+      "rating": "PG",
+      "seasons": 9,
+      "genre": [
+        "Thriller",
+        "Drama"
+      ]
+    },
+    "S056": {
+      "id": "S056",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2015,
+      "rating": "TV-MA",
+      "seasons": 1,
+      "genre": [
+        "Thriller",
+        "Sci-Fi"
+      ]
+    },
+    "S057": {
+      "id": "S057",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 2012,
+      "rating": "PG-13",
+      "seasons": 4,
+      "genre": [
+        "Fantasy",
+        "Thriller"
+      ]
+    },
+    "S058": {
+      "id": "S058",
+      "title": "The Gate Chronicles",
+      "type": "series",
+      "year": 2015,
+      "rating": "R",
+      "seasons": 4,
+      "genre": [
+        "Fantasy",
+        "Comedy"
+      ]
+    },
+    "S059": {
+      "id": "S059",
+      "title": "The Empire Chronicles",
+      "type": "series",
+      "year": 1998,
+      "rating": "R",
+      "seasons": 9,
+      "genre": [
+        "Drama",
+        "Comedy"
+      ]
+    },
+    "S060": {
+      "id": "S060",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2017,
+      "rating": "PG-13",
+      "seasons": 10,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "S061": {
+      "id": "S061",
+      "title": "The Galaxy Chronicles",
+      "type": "series",
+      "year": 2023,
+      "rating": "TV-MA",
+      "seasons": 10,
+      "genre": [
+        "Action",
+        "Comedy"
+      ]
+    },
+    "S062": {
+      "id": "S062",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2006,
+      "rating": "G",
+      "seasons": 7,
+      "genre": [
+        "Comedy",
+        "Fantasy"
+      ]
+    },
+    "S063": {
+      "id": "S063",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2010,
+      "rating": "R",
+      "seasons": 9,
+      "genre": [
+        "Thriller",
+        "Comedy"
+      ]
+    },
+    "S064": {
+      "id": "S064",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2005,
+      "rating": "PG-13",
+      "seasons": 2,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    },
+    "S065": {
+      "id": "S065",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 2020,
+      "rating": "TV-MA",
+      "seasons": 6,
+      "genre": [
+        "Fantasy",
+        "Thriller"
+      ]
+    },
+    "S066": {
+      "id": "S066",
+      "title": "The Gate Chronicles",
+      "type": "series",
+      "year": 2006,
+      "rating": "G",
+      "seasons": 9,
+      "genre": [
+        "Comedy",
+        "Fantasy"
+      ]
+    },
+    "S067": {
+      "id": "S067",
+      "title": "The Legacy Chronicles",
+      "type": "series",
+      "year": 2010,
+      "rating": "R",
+      "seasons": 5,
+      "genre": [
+        "Sci-Fi",
+        "Comedy"
+      ]
+    },
+    "S068": {
+      "id": "S068",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 2005,
+      "rating": "G",
+      "seasons": 4,
+      "genre": [
+        "Fantasy",
+        "Action"
+      ]
+    },
+    "S069": {
+      "id": "S069",
+      "title": "The Dreams Chronicles",
+      "type": "series",
+      "year": 2011,
+      "rating": "TV-14",
+      "seasons": 6,
+      "genre": [
+        "Thriller",
+        "Action"
+      ]
+    },
+    "S070": {
+      "id": "S070",
+      "title": "The Secret Chronicles",
+      "type": "series",
+      "year": 1995,
+      "rating": "G",
+      "seasons": 9,
+      "genre": [
+        "Action",
+        "Drama"
+      ]
+    }
+  },
+  "watchlist": {
+    "P001": [
+      {
+        "id": "S061",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2023,
+        "rating": "TV-MA",
+        "seasons": 10,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S058",
+        "title": "The Gate Chronicles",
+        "type": "series",
+        "year": 2015,
+        "rating": "R",
+        "seasons": 4,
+        "genre": [
+          "Fantasy",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M042",
+        "title": "Hidden Shadow",
+        "type": "movie",
+        "year": 1982,
+        "rating": "PG-13",
+        "duration": 189,
+        "genre": [
+          "Action",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M107",
+        "title": "Hidden Secret",
+        "type": "movie",
+        "year": 2024,
+        "rating": "PG-13",
+        "duration": 127,
+        "genre": [
+          "Comedy",
+          "Romance"
+        ]
+      },
+      {
+        "id": "S012",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2023,
+        "rating": "TV-14",
+        "seasons": 8,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M005",
+        "title": "Whiplash",
+        "type": "movie",
+        "year": 2009,
+        "rating": "TV-14",
+        "duration": 104,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M056",
+        "title": "Hidden Empire",
+        "type": "movie",
+        "year": 2009,
+        "rating": "PG",
+        "duration": 147,
+        "genre": [
+          "Action",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M075",
+        "title": "Silent Empire",
+        "type": "movie",
+        "year": 2014,
+        "rating": "TV-14",
+        "duration": 133,
+        "genre": [
+          "Romance",
+          "Drama"
+        ]
+      },
+      {
+        "id": "S041",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2004,
+        "rating": "PG-13",
+        "seasons": 7,
+        "genre": [
+          "Thriller",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M020",
+        "title": "Scarlet Empire",
+        "type": "movie",
+        "year": 2023,
+        "rating": "TV-14",
+        "duration": 162,
+        "genre": [
+          "Sci-Fi",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M030",
+        "title": "Shattered Dreams",
+        "type": "movie",
+        "year": 2015,
+        "rating": "TV-MA",
+        "duration": 80,
+        "genre": [
+          "Sci-Fi",
+          "Romance"
+        ]
+      }
+    ],
+    "P002": [
+      {
+        "id": "S009",
+        "title": "Friends",
+        "type": "series",
+        "year": 2015,
+        "rating": "R",
+        "seasons": 1,
+        "genre": [
+          "Action",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "S045",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 2006,
+        "rating": "R",
+        "seasons": 2,
+        "genre": [
+          "Fantasy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S042",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 1997,
+        "rating": "TV-14",
+        "seasons": 6,
+        "genre": [
+          "Drama",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M027",
+        "title": "Hidden Shadow",
+        "type": "movie",
+        "year": 2014,
+        "rating": "TV-14",
+        "duration": 122,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      }
+    ],
+    "P003": [
+      {
+        "id": "M064",
+        "title": "Lost Secret",
+        "type": "movie",
+        "year": 1982,
+        "rating": "PG",
+        "duration": 89,
+        "genre": [
+          "Thriller",
+          "Action"
+        ]
+      },
+      {
+        "id": "S012",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2023,
+        "rating": "TV-14",
+        "seasons": 8,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S036",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 1990,
+        "rating": "TV-MA",
+        "seasons": 6,
+        "genre": [
+          "Comedy",
+          "Action"
+        ]
+      },
+      {
+        "id": "M086",
+        "title": "Shattered Galaxy",
+        "type": "movie",
+        "year": 1999,
+        "rating": "TV-14",
+        "duration": 156,
+        "genre": [
+          "Comedy",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M015",
+        "title": "Silent Galaxy",
+        "type": "movie",
+        "year": 2011,
+        "rating": "TV-MA",
+        "duration": 170,
+        "genre": [
+          "Thriller",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M049",
+        "title": "Forgotten Gate",
+        "type": "movie",
+        "year": 2012,
+        "rating": "TV-14",
+        "duration": 140,
+        "genre": [
+          "Drama",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M057",
+        "title": "Scarlet River",
+        "type": "movie",
+        "year": 1992,
+        "rating": "PG-13",
+        "duration": 119,
+        "genre": [
+          "Drama",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M003",
+        "title": "Interstellar",
+        "type": "movie",
+        "year": 2010,
+        "rating": "PG",
+        "duration": 109,
+        "genre": [
+          "Sci-Fi",
+          "Action"
+        ]
+      },
+      {
+        "id": "M088",
+        "title": "Lost Galaxy",
+        "type": "movie",
+        "year": 2009,
+        "rating": "TV-MA",
+        "duration": 172,
+        "genre": [
+          "Comedy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M081",
+        "title": "Forgotten Shadow",
+        "type": "movie",
+        "year": 2004,
+        "rating": "R",
+        "duration": 107,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M007",
+        "title": "Fight Club",
+        "type": "movie",
+        "year": 1997,
+        "rating": "TV-MA",
+        "duration": 172,
+        "genre": [
+          "Sci-Fi",
+          "Action"
+        ]
+      },
+      {
+        "id": "S034",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 2017,
+        "rating": "PG",
+        "seasons": 4,
+        "genre": [
+          "Drama",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M040",
+        "title": "Hidden Galaxy",
+        "type": "movie",
+        "year": 2004,
+        "rating": "PG",
+        "duration": 91,
+        "genre": [
+          "Thriller",
+          "Action"
+        ]
+      },
+      {
+        "id": "M106",
+        "title": "Shattered Gate",
+        "type": "movie",
+        "year": 1982,
+        "rating": "R",
+        "duration": 158,
+        "genre": [
+          "Romance",
+          "Thriller"
+        ]
+      }
+    ],
+    "P004": [
+      {
+        "id": "S012",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2023,
+        "rating": "TV-14",
+        "seasons": 8,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S014",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2005,
+        "rating": "PG",
+        "seasons": 3,
+        "genre": [
+          "Sci-Fi",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M103",
+        "title": "Lost Empire",
+        "type": "movie",
+        "year": 2017,
+        "rating": "TV-14",
+        "duration": 172,
+        "genre": [
+          "Comedy",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M030",
+        "title": "Shattered Dreams",
+        "type": "movie",
+        "year": 2015,
+        "rating": "TV-MA",
+        "duration": 80,
+        "genre": [
+          "Sci-Fi",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M108",
+        "title": "Hidden Gate",
+        "type": "movie",
+        "year": 2003,
+        "rating": "R",
+        "duration": 138,
+        "genre": [
+          "Action",
+          "Sci-Fi"
+        ]
+      }
+    ],
+    "P005": [
+      {
+        "id": "M063",
+        "title": "Burning Galaxy",
+        "type": "movie",
+        "year": 2019,
+        "rating": "R",
+        "duration": 152,
+        "genre": [
+          "Romance",
+          "Action"
+        ]
+      },
+      {
+        "id": "S029",
+        "title": "The Gate Chronicles",
+        "type": "series",
+        "year": 2014,
+        "rating": "PG",
+        "seasons": 1,
+        "genre": [
+          "Comedy",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S067",
+        "title": "The Legacy Chronicles",
+        "type": "series",
+        "year": 2010,
+        "rating": "R",
+        "seasons": 5,
+        "genre": [
+          "Sci-Fi",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M065",
+        "title": "Silent Empire",
+        "type": "movie",
+        "year": 2007,
+        "rating": "TV-14",
+        "duration": 187,
+        "genre": [
+          "Thriller",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M034",
+        "title": "Burning Shadow",
+        "type": "movie",
+        "year": 1991,
+        "rating": "PG-13",
+        "duration": 182,
+        "genre": [
+          "Comedy",
+          "Action"
+        ]
+      },
+      {
+        "id": "M070",
+        "title": "Hidden Secret",
+        "type": "movie",
+        "year": 2021,
+        "rating": "R",
+        "duration": 78,
+        "genre": [
+          "Romance",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M033",
+        "title": "Shattered Shadow",
+        "type": "movie",
+        "year": 1990,
+        "rating": "TV-MA",
+        "duration": 76,
+        "genre": [
+          "Romance",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M097",
+        "title": "Silent River",
+        "type": "movie",
+        "year": 1981,
+        "rating": "PG",
+        "duration": 83,
+        "genre": [
+          "Drama",
+          "Action"
+        ]
+      },
+      {
+        "id": "M016",
+        "title": "Silent Legacy",
+        "type": "movie",
+        "year": 2015,
+        "rating": "TV-14",
+        "duration": 171,
+        "genre": [
+          "Fantasy",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M045",
+        "title": "Lost Gate",
+        "type": "movie",
+        "year": 2024,
+        "rating": "PG",
+        "duration": 83,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      }
+    ],
+    "P006": [
+      {
+        "id": "S031",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2015,
+        "rating": "PG",
+        "seasons": 5,
+        "genre": [
+          "Drama",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S054",
+        "title": "The Shadow Chronicles",
+        "type": "series",
+        "year": 2020,
+        "rating": "TV-MA",
+        "seasons": 7,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M102",
+        "title": "Shattered Empire",
+        "type": "movie",
+        "year": 1987,
+        "rating": "PG",
+        "duration": 133,
+        "genre": [
+          "Sci-Fi",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S025",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2012,
+        "rating": "R",
+        "seasons": 2,
+        "genre": [
+          "Fantasy",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S032",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2006,
+        "rating": "PG",
+        "seasons": 5,
+        "genre": [
+          "Fantasy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M005",
+        "title": "Whiplash",
+        "type": "movie",
+        "year": 2009,
+        "rating": "TV-14",
+        "duration": 104,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S037",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2016,
+        "rating": "TV-MA",
+        "seasons": 4,
+        "genre": [
+          "Comedy",
+          "Sci-Fi"
+        ]
+      }
+    ],
+    "P007": [
+      {
+        "id": "S024",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2016,
+        "rating": "PG-13",
+        "seasons": 1,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M070",
+        "title": "Hidden Secret",
+        "type": "movie",
+        "year": 2021,
+        "rating": "R",
+        "duration": 78,
+        "genre": [
+          "Romance",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M041",
+        "title": "Silent Empire",
+        "type": "movie",
+        "year": 1989,
+        "rating": "PG-13",
+        "duration": 180,
+        "genre": [
+          "Thriller",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M002",
+        "title": "Inception",
+        "type": "movie",
+        "year": 2004,
+        "rating": "PG",
+        "duration": 136,
+        "genre": [
+          "Thriller",
+          "Action"
+        ]
+      },
+      {
+        "id": "S059",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 1998,
+        "rating": "R",
+        "seasons": 9,
+        "genre": [
+          "Drama",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S020",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2016,
+        "rating": "G",
+        "seasons": 10,
+        "genre": [
+          "Sci-Fi",
+          "Drama"
+        ]
+      },
+      {
+        "id": "S007",
+        "title": "Dark",
+        "type": "series",
+        "year": 2020,
+        "rating": "PG-13",
+        "seasons": 2,
+        "genre": [
+          "Fantasy",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M069",
+        "title": "Lost River",
+        "type": "movie",
+        "year": 2022,
+        "rating": "PG",
+        "duration": 90,
+        "genre": [
+          "Drama",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M031",
+        "title": "Scarlet Shadow",
+        "type": "movie",
+        "year": 2018,
+        "rating": "PG-13",
+        "duration": 157,
+        "genre": [
+          "Comedy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S055",
+        "title": "The River Chronicles",
+        "type": "series",
+        "year": 2002,
+        "rating": "PG",
+        "seasons": 9,
+        "genre": [
+          "Thriller",
+          "Drama"
+        ]
+      },
+      {
+        "id": "S050",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 1999,
+        "rating": "R",
+        "seasons": 9,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M091",
+        "title": "Scarlet Gate",
+        "type": "movie",
+        "year": 1986,
+        "rating": "G",
+        "duration": 78,
+        "genre": [
+          "Sci-Fi",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M110",
+        "title": "Burning Gate",
+        "type": "movie",
+        "year": 2000,
+        "rating": "PG",
+        "duration": 88,
+        "genre": [
+          "Sci-Fi",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M022",
+        "title": "Lost River",
+        "type": "movie",
+        "year": 1987,
+        "rating": "G",
+        "duration": 120,
+        "genre": [
+          "Thriller",
+          "Romance"
+        ]
+      },
+      {
+        "id": "S042",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 1997,
+        "rating": "TV-14",
+        "seasons": 6,
+        "genre": [
+          "Drama",
+          "Comedy"
+        ]
+      }
+    ],
+    "P008": [
+      {
+        "id": "M061",
+        "title": "Burning Secret",
+        "type": "movie",
+        "year": 2011,
+        "rating": "TV-MA",
+        "duration": 184,
+        "genre": [
+          "Fantasy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M006",
+        "title": "The Dark Knight",
+        "type": "movie",
+        "year": 2019,
+        "rating": "TV-14",
+        "duration": 136,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S014",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2005,
+        "rating": "PG",
+        "seasons": 3,
+        "genre": [
+          "Sci-Fi",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M070",
+        "title": "Hidden Secret",
+        "type": "movie",
+        "year": 2021,
+        "rating": "R",
+        "duration": 78,
+        "genre": [
+          "Romance",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S043",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 1997,
+        "rating": "G",
+        "seasons": 2,
+        "genre": [
+          "Sci-Fi",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "S031",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2015,
+        "rating": "PG",
+        "seasons": 5,
+        "genre": [
+          "Drama",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M038",
+        "title": "Shattered Galaxy",
+        "type": "movie",
+        "year": 1985,
+        "rating": "G",
+        "duration": 153,
+        "genre": [
+          "Romance",
+          "Action"
+        ]
+      },
+      {
+        "id": "S041",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2004,
+        "rating": "PG-13",
+        "seasons": 7,
+        "genre": [
+          "Thriller",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "S057",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2012,
+        "rating": "PG-13",
+        "seasons": 4,
+        "genre": [
+          "Fantasy",
+          "Thriller"
+        ]
+      }
+    ],
+    "P009": [
+      {
+        "id": "S007",
+        "title": "Dark",
+        "type": "series",
+        "year": 2020,
+        "rating": "PG-13",
+        "seasons": 2,
+        "genre": [
+          "Fantasy",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M087",
+        "title": "Silent Galaxy",
+        "type": "movie",
+        "year": 1983,
+        "rating": "TV-14",
+        "duration": 165,
+        "genre": [
+          "Action",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S061",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2023,
+        "rating": "TV-MA",
+        "seasons": 10,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M061",
+        "title": "Burning Secret",
+        "type": "movie",
+        "year": 2011,
+        "rating": "TV-MA",
+        "duration": 184,
+        "genre": [
+          "Fantasy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M020",
+        "title": "Scarlet Empire",
+        "type": "movie",
+        "year": 2023,
+        "rating": "TV-14",
+        "duration": 162,
+        "genre": [
+          "Sci-Fi",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M048",
+        "title": "Forgotten Empire",
+        "type": "movie",
+        "year": 2013,
+        "rating": "R",
+        "duration": 168,
+        "genre": [
+          "Fantasy",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M006",
+        "title": "The Dark Knight",
+        "type": "movie",
+        "year": 2019,
+        "rating": "TV-14",
+        "duration": 136,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S015",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 1991,
+        "rating": "TV-MA",
+        "seasons": 8,
+        "genre": [
+          "Action",
+          "Thriller"
+        ]
+      }
+    ],
+    "P010": [
+      {
+        "id": "M059",
+        "title": "Scarlet Gate",
+        "type": "movie",
+        "year": 1991,
+        "rating": "TV-MA",
+        "duration": 167,
+        "genre": [
+          "Sci-Fi",
+          "Drama"
+        ]
+      },
+      {
+        "id": "S006",
+        "title": "Ozark",
+        "type": "series",
+        "year": 2011,
+        "rating": "R",
+        "seasons": 7,
+        "genre": [
+          "Thriller",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M099",
+        "title": "Forgotten Galaxy",
+        "type": "movie",
+        "year": 2007,
+        "rating": "R",
+        "duration": 101,
+        "genre": [
+          "Comedy",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "S044",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2015,
+        "rating": "G",
+        "seasons": 1,
+        "genre": [
+          "Action",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M025",
+        "title": "Shattered Galaxy",
+        "type": "movie",
+        "year": 2013,
+        "rating": "PG-13",
+        "duration": 93,
+        "genre": [
+          "Action",
+          "Romance"
+        ]
+      }
+    ],
+    "P011": [
+      {
+        "id": "M011",
+        "title": "Silent Legacy",
+        "type": "movie",
+        "year": 2023,
+        "rating": "G",
+        "duration": 153,
+        "genre": [
+          "Drama",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S041",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2004,
+        "rating": "PG-13",
+        "seasons": 7,
+        "genre": [
+          "Thriller",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M077",
+        "title": "Lost Galaxy",
+        "type": "movie",
+        "year": 2019,
+        "rating": "TV-14",
+        "duration": 85,
+        "genre": [
+          "Drama",
+          "Romance"
+        ]
+      },
+      {
+        "id": "S049",
+        "title": "The Legacy Chronicles",
+        "type": "series",
+        "year": 1991,
+        "rating": "TV-MA",
+        "seasons": 5,
+        "genre": [
+          "Action",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M014",
+        "title": "Golden River",
+        "type": "movie",
+        "year": 1990,
+        "rating": "TV-14",
+        "duration": 96,
+        "genre": [
+          "Romance",
+          "Action"
+        ]
+      },
+      {
+        "id": "S057",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2012,
+        "rating": "PG-13",
+        "seasons": 4,
+        "genre": [
+          "Fantasy",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S002",
+        "title": "Stranger Things",
+        "type": "series",
+        "year": 1999,
+        "rating": "TV-14",
+        "seasons": 4,
+        "genre": [
+          "Fantasy",
+          "Action"
+        ]
+      },
+      {
+        "id": "M008",
+        "title": "Forrest Gump",
+        "type": "movie",
+        "year": 2007,
+        "rating": "TV-MA",
+        "duration": 180,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S052",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2018,
+        "rating": "PG",
+        "seasons": 1,
+        "genre": [
+          "Sci-Fi",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S069",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 2011,
+        "rating": "TV-14",
+        "seasons": 6,
+        "genre": [
+          "Thriller",
+          "Action"
+        ]
+      },
+      {
+        "id": "M100",
+        "title": "Scarlet Dreams",
+        "type": "movie",
+        "year": 1998,
+        "rating": "TV-14",
+        "duration": 125,
+        "genre": [
+          "Comedy",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "S055",
+        "title": "The River Chronicles",
+        "type": "series",
+        "year": 2002,
+        "rating": "PG",
+        "seasons": 9,
+        "genre": [
+          "Thriller",
+          "Drama"
+        ]
+      }
+    ],
+    "P012": [
+      {
+        "id": "M106",
+        "title": "Shattered Gate",
+        "type": "movie",
+        "year": 1982,
+        "rating": "R",
+        "duration": 158,
+        "genre": [
+          "Romance",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S029",
+        "title": "The Gate Chronicles",
+        "type": "series",
+        "year": 2014,
+        "rating": "PG",
+        "seasons": 1,
+        "genre": [
+          "Comedy",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M049",
+        "title": "Forgotten Gate",
+        "type": "movie",
+        "year": 2012,
+        "rating": "TV-14",
+        "duration": 140,
+        "genre": [
+          "Drama",
+          "Romance"
+        ]
+      },
+      {
+        "id": "S013",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2017,
+        "rating": "PG-13",
+        "seasons": 5,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M001",
+        "title": "The Matrix",
+        "type": "movie",
+        "year": 2014,
+        "rating": "TV-14",
+        "duration": 114,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M014",
+        "title": "Golden River",
+        "type": "movie",
+        "year": 1990,
+        "rating": "TV-14",
+        "duration": 96,
+        "genre": [
+          "Romance",
+          "Action"
+        ]
+      },
+      {
+        "id": "S016",
+        "title": "The River Chronicles",
+        "type": "series",
+        "year": 2000,
+        "rating": "PG",
+        "seasons": 7,
+        "genre": [
+          "Action",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M090",
+        "title": "Hidden Gate",
+        "type": "movie",
+        "year": 1989,
+        "rating": "TV-14",
+        "duration": 117,
+        "genre": [
+          "Romance",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S038",
+        "title": "The Legacy Chronicles",
+        "type": "series",
+        "year": 2005,
+        "rating": "PG",
+        "seasons": 7,
+        "genre": [
+          "Drama",
+          "Comedy"
+        ]
+      }
+    ],
+    "P013": [
+      {
+        "id": "S036",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 1990,
+        "rating": "TV-MA",
+        "seasons": 6,
+        "genre": [
+          "Comedy",
+          "Action"
+        ]
+      },
+      {
+        "id": "S010",
+        "title": "The Office",
+        "type": "series",
+        "year": 2010,
+        "rating": "TV-MA",
+        "seasons": 7,
+        "genre": [
+          "Fantasy",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M007",
+        "title": "Fight Club",
+        "type": "movie",
+        "year": 1997,
+        "rating": "TV-MA",
+        "duration": 172,
+        "genre": [
+          "Sci-Fi",
+          "Action"
+        ]
+      },
+      {
+        "id": "M084",
+        "title": "Scarlet Shadow",
+        "type": "movie",
+        "year": 1990,
+        "rating": "G",
+        "duration": 131,
+        "genre": [
+          "Romance",
+          "Action"
+        ]
+      },
+      {
+        "id": "M089",
+        "title": "Hidden River",
+        "type": "movie",
+        "year": 2006,
+        "rating": "R",
+        "duration": 123,
+        "genre": [
+          "Action",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M041",
+        "title": "Silent Empire",
+        "type": "movie",
+        "year": 1989,
+        "rating": "PG-13",
+        "duration": 180,
+        "genre": [
+          "Thriller",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M075",
+        "title": "Silent Empire",
+        "type": "movie",
+        "year": 2014,
+        "rating": "TV-14",
+        "duration": 133,
+        "genre": [
+          "Romance",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M055",
+        "title": "Hidden Shadow",
+        "type": "movie",
+        "year": 1995,
+        "rating": "R",
+        "duration": 92,
+        "genre": [
+          "Action",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M059",
+        "title": "Scarlet Gate",
+        "type": "movie",
+        "year": 1991,
+        "rating": "TV-MA",
+        "duration": 167,
+        "genre": [
+          "Sci-Fi",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M093",
+        "title": "Golden Shadow",
+        "type": "movie",
+        "year": 2012,
+        "rating": "PG-13",
+        "duration": 146,
+        "genre": [
+          "Drama",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S028",
+        "title": "The Empire Chronicles",
+        "type": "series",
+        "year": 2010,
+        "rating": "PG",
+        "seasons": 1,
+        "genre": [
+          "Sci-Fi",
+          "Action"
+        ]
+      }
+    ],
+    "P014": [
+      {
+        "id": "S069",
+        "title": "The Dreams Chronicles",
+        "type": "series",
+        "year": 2011,
+        "rating": "TV-14",
+        "seasons": 6,
+        "genre": [
+          "Thriller",
+          "Action"
+        ]
+      },
+      {
+        "id": "S063",
+        "title": "The Legacy Chronicles",
+        "type": "series",
+        "year": 2010,
+        "rating": "R",
+        "seasons": 9,
+        "genre": [
+          "Thriller",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M055",
+        "title": "Hidden Shadow",
+        "type": "movie",
+        "year": 1995,
+        "rating": "R",
+        "duration": 92,
+        "genre": [
+          "Action",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M021",
+        "title": "Burning Dreams",
+        "type": "movie",
+        "year": 2003,
+        "rating": "TV-14",
+        "duration": 99,
+        "genre": [
+          "Drama",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "S062",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2006,
+        "rating": "G",
+        "seasons": 7,
+        "genre": [
+          "Comedy",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M107",
+        "title": "Hidden Secret",
+        "type": "movie",
+        "year": 2024,
+        "rating": "PG-13",
+        "duration": 127,
+        "genre": [
+          "Comedy",
+          "Romance"
+        ]
+      },
+      {
+        "id": "S049",
+        "title": "The Legacy Chronicles",
+        "type": "series",
+        "year": 1991,
+        "rating": "TV-MA",
+        "seasons": 5,
+        "genre": [
+          "Action",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M025",
+        "title": "Shattered Galaxy",
+        "type": "movie",
+        "year": 2013,
+        "rating": "PG-13",
+        "duration": 93,
+        "genre": [
+          "Action",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M028",
+        "title": "Burning Secret",
+        "type": "movie",
+        "year": 1987,
+        "rating": "TV-14",
+        "duration": 162,
+        "genre": [
+          "Thriller",
+          "Action"
+        ]
+      },
+      {
+        "id": "S002",
+        "title": "Stranger Things",
+        "type": "series",
+        "year": 1999,
+        "rating": "TV-14",
+        "seasons": 4,
+        "genre": [
+          "Fantasy",
+          "Action"
+        ]
+      },
+      {
+        "id": "S022",
+        "title": "The River Chronicles",
+        "type": "series",
+        "year": 1993,
+        "rating": "G",
+        "seasons": 8,
+        "genre": [
+          "Sci-Fi",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "M007",
+        "title": "Fight Club",
+        "type": "movie",
+        "year": 1997,
+        "rating": "TV-MA",
+        "duration": 172,
+        "genre": [
+          "Sci-Fi",
+          "Action"
+        ]
+      },
+      {
+        "id": "M059",
+        "title": "Scarlet Gate",
+        "type": "movie",
+        "year": 1991,
+        "rating": "TV-MA",
+        "duration": 167,
+        "genre": [
+          "Sci-Fi",
+          "Drama"
+        ]
+      }
+    ],
+    "P015": [
+      {
+        "id": "S017",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2009,
+        "rating": "TV-MA",
+        "seasons": 1,
+        "genre": [
+          "Action",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M008",
+        "title": "Forrest Gump",
+        "type": "movie",
+        "year": 2007,
+        "rating": "TV-MA",
+        "duration": 180,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "M055",
+        "title": "Hidden Shadow",
+        "type": "movie",
+        "year": 1995,
+        "rating": "R",
+        "duration": 92,
+        "genre": [
+          "Action",
+          "Sci-Fi"
+        ]
+      },
+      {
+        "id": "S060",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2017,
+        "rating": "PG-13",
+        "seasons": 10,
+        "genre": [
+          "Action",
+          "Drama"
+        ]
+      },
+      {
+        "id": "M076",
+        "title": "Hidden Gate",
+        "type": "movie",
+        "year": 1998,
+        "rating": "G",
+        "duration": 146,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      },
+      {
+        "id": "S035",
+        "title": "The Shadow Chronicles",
+        "type": "series",
+        "year": 2005,
+        "rating": "PG",
+        "seasons": 10,
+        "genre": [
+          "Sci-Fi",
+          "Drama"
+        ]
+      },
+      {
+        "id": "S048",
+        "title": "The Secret Chronicles",
+        "type": "series",
+        "year": 2000,
+        "rating": "G",
+        "seasons": 10,
+        "genre": [
+          "Action",
+          "Thriller"
+        ]
+      },
+      {
+        "id": "M105",
+        "title": "Lost Galaxy",
+        "type": "movie",
+        "year": 2002,
+        "rating": "PG",
+        "duration": 187,
+        "genre": [
+          "Action",
+          "Romance"
+        ]
+      },
+      {
+        "id": "M015",
+        "title": "Silent Galaxy",
+        "type": "movie",
+        "year": 2011,
+        "rating": "TV-MA",
+        "duration": 170,
+        "genre": [
+          "Thriller",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "S009",
+        "title": "Friends",
+        "type": "series",
+        "year": 2015,
+        "rating": "R",
+        "seasons": 1,
+        "genre": [
+          "Action",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M075",
+        "title": "Silent Empire",
+        "type": "movie",
+        "year": 2014,
+        "rating": "TV-14",
+        "duration": 133,
+        "genre": [
+          "Romance",
+          "Drama"
+        ]
+      },
+      {
+        "id": "S041",
+        "title": "The Galaxy Chronicles",
+        "type": "series",
+        "year": 2004,
+        "rating": "PG-13",
+        "seasons": 7,
+        "genre": [
+          "Thriller",
+          "Fantasy"
+        ]
+      },
+      {
+        "id": "M045",
+        "title": "Lost Gate",
+        "type": "movie",
+        "year": 2024,
+        "rating": "PG",
+        "duration": 83,
+        "genre": [
+          "Thriller",
+          "Sci-Fi"
+        ]
+      }
+    ],
+    "P016": [
+      {
+        "id": "S054",
+        "title": "The Shadow Chronicles",
+        "type": "series",
+        "year": 2020,
+        "rating": "TV-MA",
+        "seasons": 7,
+        "genre": [
+          "Action",
+          "Comedy"
+        ]
+      }
+    ]
+  },
+  "ratings": {
+    "P001": {
+      "S064": 3,
+      "S068": 5,
+      "M052": 2,
+      "M075": 4,
+      "M104": 5,
+      "S055": 1,
+      "M024": 4,
+      "M003": 5,
+      "S009": 4
+    },
+    "P002": {
+      "M019": 1,
+      "M002": 5,
+      "S027": 2,
+      "M071": 2,
+      "M013": 3,
+      "S013": 1,
+      "M083": 1,
+      "M003": 4,
+      "S009": 2
+    },
+    "P003": {
+      "M006": 3,
+      "S006": 1,
+      "M100": 4,
+      "S050": 2,
+      "S067": 3,
+      "M070": 1,
+      "M053": 3,
+      "M105": 5,
+      "M018": 2
+    },
+    "P004": {
+      "M075": 4,
+      "M030": 5,
+      "S030": 5,
+      "M002": 2,
+      "S057": 4,
+      "M006": 1,
+      "S045": 5,
+      "M060": 5
+    },
+    "P005": {
+      "S040": 4,
+      "M051": 3,
+      "M084": 2,
+      "M020": 5
+    },
+    "P006": {
+      "S046": 1,
+      "S050": 4,
+      "M022": 2,
+      "S041": 1,
+      "M004": 1,
+      "M066": 1
+    },
+    "P007": {
+      "S044": 3
+    },
+    "P008": {
+      "M085": 1,
+      "S019": 4,
+      "S062": 5,
+      "M058": 2,
+      "M106": 3,
+      "M003": 5,
+      "S022": 1,
+      "M069": 5,
+      "M004": 1,
+      "M070": 2
+    },
+    "P009": {
+      "M042": 5,
+      "M034": 2,
+      "M090": 1,
+      "M080": 1,
+      "S040": 5,
+      "M017": 3,
+      "S055": 1,
+      "S039": 1
+    },
+    "P010": {
+      "S031": 1,
+      "S042": 4,
+      "M001": 4
+    },
+    "P011": {
+      "M049": 4,
+      "M064": 1,
+      "M093": 3
+    },
+    "P012": {
+      "M005": 4,
+      "M027": 4
+    },
+    "P013": {
+      "M025": 1,
+      "M066": 3,
+      "M090": 4,
+      "M038": 4,
+      "S042": 3,
+      "M070": 4
+    },
+    "P014": {
+      "M038": 3,
+      "S067": 4,
+      "S030": 4,
+      "M052": 3,
+      "M088": 1
+    },
+    "P015": {
+      "S062": 3,
+      "M006": 2
+    },
+    "P016": {
+      "M040": 1,
+      "S025": 5
+    }
+  },
+  "continue_watching": {
+    "P001": [],
+    "P002": [],
+    "P003": [],
+    "P004": [],
+    "P005": [],
+    "P006": [],
+    "P007": [],
+    "P008": [],
+    "P009": [
+      {
+        "content_id": "S052",
+        "progress": 7,
+        "resume_time": 504,
+        "updated": 1753936891
+      }
+    ],
+    "P010": [
+      {
+        "content_id": "M083",
+        "progress": 18,
+        "resume_time": 1296,
+        "updated": 1753936891
+      }
+    ],
+    "P011": [],
+    "P012": [
+      {
+        "content_id": "S062",
+        "progress": 53,
+        "resume_time": 3816,
+        "updated": 1753936891
+      }
+    ],
+    "P013": [
+      {
+        "content_id": "M025",
+        "progress": 24,
+        "resume_time": 1728,
+        "updated": 1753936891
+      }
+    ],
+    "P014": [],
+    "P015": [
+      {
+        "content_id": "M027",
+        "progress": 44,
+        "resume_time": 3168,
+        "updated": 1753936891
+      }
+    ],
+    "P016": []
+  },
+  "generated_at": "2025-07-31T04:41:31.596025Z"
+}
