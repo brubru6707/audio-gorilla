@@ -1,636 +1,697 @@
-from typing import List, Dict, Any, Optional, Union
-from datetime import datetime
-
-# ================
-# Apps
-# ================
-
-def list_apps() -> List[Dict[str, Any]]:
-    """
-    List all apps.
-
-    Returns:
-        List[Dict[str, Any]]: List of all apps with their details.
-    """
-
-def get_app(app_id: str) -> Dict[str, Any]:
-    """
-    Get a specific app.
-
-    Args:
-        app_id (str): ID of the app to retrieve.
-    Returns:
-        Dict[str, Any]: Details of the requested app.
-    """
-
-def create_app(app_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new app.
-
-    Args:
-        app_data (Dict[str, Any]): Data for the new app.
-    Returns:
-        Dict[str, Any]: Details of the created app.
-    """
-
-def update_app(app_id: str, app_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Update an existing app.
-
-    Args:
-        app_id (str): ID of the app to update.
-        app_data (Dict[str, Any]): New data for the app.
-    Returns:
-        Dict[str, Any]: Updated details of the app.
-    """
-
-def delete_app(app_id: str) -> None:
-    """
-    Delete an app.
-
-    Args:
-        app_id (str): ID of the app to delete.
-    """
-
-def get_app_settings(app_id: str) -> Dict[str, Any]:
-    """
-    Get settings for an app.
-
-    Args:
-        app_id (str): ID of the app.
-    Returns:
-        Dict[str, Any]: Current settings of the app.
-    """
-
-def update_app_settings(app_id: str, settings: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Update settings for an app.
-
-    Args:
-        app_id (str): ID of the app.
-        settings (Dict[str, Any]): New settings for the app.
-    Returns:
-        Dict[str, Any]: Updated settings of the app.
-    """
-
-def get_app_oauth(app_id: str) -> Dict[str, Any]:
-    """
-    Get OAuth settings for an app.
-
-    Args:
-        app_id (str): ID of the app.
-    Returns:
-        Dict[str, Any]: OAuth settings of the app.
-    """
-
-def update_app_oauth(app_id: str, oauth_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Update OAuth settings for an app.
-
-    Args:
-        app_id (str): ID of the app.
-        oauth_data (Dict[str, Any]): New OAuth settings.
-    Returns:
-        Dict[str, Any]: Updated OAuth settings.
-    """
-
-def get_app_oauth_metadata() -> Dict[str, Any]:
-    """
-    Get OAuth metadata for apps.
-
-    Returns:
-        Dict[str, Any]: OAuth metadata for all apps.
-    """
-
-# ================
-# Devices
-# ================
-
-def list_devices(
-    location_id: Optional[str] = None,
-    capability: Optional[str] = None,
-    device_id: Optional[List[str]] = None
-) -> List[Dict[str, Any]]:
-    """
-    List devices with optional filters.
-
-    Args:
-        location_id (Optional[str]): Filter by location ID.
-        capability (Optional[str]): Filter by capability.
-        device_id (Optional[List[str]]): Filter by device IDs.
-    Returns:
-        List[Dict[str, Any]]: List of devices matching the filters.
-    """
-
-def get_device(device_id: str) -> Dict[str, Any]:
-    """
-    Get a specific device.
-
-    Args:
-        device_id (str): ID of the device to retrieve.
-    Returns:
-        Dict[str, Any]: Details of the requested device.
-    """
-
-def get_device_status(device_id: str) -> Dict[str, Any]:
-    """
-    Get status of a device.
-
-    Args:
-        device_id (str): ID of the device.
-    Returns:
-        Dict[str, Any]: Current status of the device.
-    """
-
-def execute_device_command(
-    device_id: str,
-    commands: List[Dict[str, Any]]
-) -> Dict[str, Any]:
-    """
-    Execute commands on a device.
-
-    Args:
-        device_id (str): ID of the device.
-        commands (List[Dict[str, Any]]): Commands to execute.
-    Returns:
-        Dict[str, Any]: Result of the command execution.
-    """
-
-def get_device_health(device_id: str) -> Dict[str, Any]:
-    """
-    Get health status of a device.
-
-    Args:
-        device_id (str): ID of the device.
-    Returns:
-        Dict[str, Any]: Health status of the device.
-    """
-
-def get_device_events(
-    device_id: str,
-    limit: Optional[int] = None,
-    since: Optional[datetime] = None,
-    until: Optional[datetime] = None
-) -> List[Dict[str, Any]]:
-    """
-    Get events for a device.
-
-    Args:
-        device_id (str): ID of the device.
-        limit (Optional[int]): Maximum number of events to return.
-        since (Optional[datetime]): Start time for events.
-        until (Optional[datetime]): End time for events.
-    Returns:
-        List[Dict[str, Any]]: List of device events.
-    """
-
-def create_device(device_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new device.
-
-    Args:
-        device_data (Dict[str, Any]): Data for the new device.
-    Returns:
-        Dict[str, Any]: Details of the created device.
-    """
-
-def delete_device(device_id: str) -> None:
-    """
-    Delete a device.
-
-    Args:
-        device_id (str): ID of the device to delete.
-    """
-
-def get_device_component_status(
-    device_id: str,
-    component_id: str
-) -> Dict[str, Any]:
-    """
-    Get status of a device component.
-
-    Args:
-        device_id (str): ID of the device.
-        component_id (str): ID of the component.
-    Returns:
-        Dict[str, Any]: Status of the component.
-    """
-
-# ================
-# Installed Apps
-# ================
-
-def list_installed_apps() -> List[Dict[str, Any]]:
-    """
-    List all installed apps.
-
-    Returns:
-        List[Dict[str, Any]]: List of all installed apps.
-    """
-
-def get_installed_app(installed_app_id: str) -> Dict[str, Any]:
-    """
-    Get a specific installed app.
-
-    Args:
-        installed_app_id (str): ID of the installed app.
-    Returns:
-        Dict[str, Any]: Details of the installed app.
-    """
-
-def delete_installed_app(installed_app_id: str) -> None:
-    """
-    Delete an installed app.
-
-    Args:
-        installed_app_id (str): ID of the installed app to delete.
-    """
-
-def get_installed_app_config(installed_app_id: str) -> Dict[str, Any]:
-    """
-    Get configuration for an installed app.
-
-    Args:
-        installed_app_id (str): ID of the installed app.
-    Returns:
-        Dict[str, Any]: Configuration of the installed app.
-    """
-
-def update_installed_app_config(
-    installed_app_id: str,
-    config: Dict[str, Any]
-) -> Dict[str, Any]:
-    """
-    Update configuration for an installed app.
-
-    Args:
-        installed_app_id (str): ID of the installed app.
-        config (Dict[str, Any]): New configuration data.
-    Returns:
-        Dict[str, Any]: Updated configuration.
-    """
-
-# ================
-# Locations
-# ================
-
-def list_locations() -> List[Dict[str, Any]]:
-    """
-    List all locations.
-
-    Returns:
-        List[Dict[str, Any]]: List of all locations.
-    """
-
-def get_location(location_id: str) -> Dict[str, Any]:
-    """
-    Get a specific location.
-
-    Args:
-        location_id (str): ID of the location.
-    Returns:
-        Dict[str, Any]: Details of the location.
-    """
-
-def create_location(location_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new location.
-
-    Args:
-        location_data (Dict[str, Any]): Data for the new location.
-    Returns:
-        Dict[str, Any]: Details of the created location.
-    """
-
-def update_location(
-    location_id: str,
-    location_data: Dict[str, Any]
-) -> Dict[str, Any]:
-    """
-    Update a location.
-
-    Args:
-        location_id (str): ID of the location.
-        location_data (Dict[str, Any]): New data for the location.
-    Returns:
-        Dict[str, Any]: Updated details of the location.
-    """
-
-def delete_location(location_id: str) -> None:
-    """
-    Delete a location.
-
-    Args:
-        location_id (str): ID of the location to delete.
-    """
-
-def get_location_modes(location_id: str) -> List[Dict[str, Any]]:
-    """
-    Get modes for a location.
-
-    Args:
-        location_id (str): ID of the location.
-    Returns:
-        List[Dict[str, Any]]: List of modes for the location.
-    """
-
-def set_location_mode(location_id: str, mode_id: str) -> Dict[str, Any]:
-    """
-    Set the current mode for a location.
-
-    Args:
-        location_id (str): ID of the location.
-        mode_id (str): ID of the mode to set.
-    Returns:
-        Dict[str, Any]: Updated mode information.
-    """
-
-# ================
-# Rooms
-# ================
-
-def list_rooms(location_id: str) -> List[Dict[str, Any]]:
-    """
-    List rooms in a location.
-
-    Args:
-        location_id (str): ID of the location.
-    Returns:
-        List[Dict[str, Any]]: List of rooms in the location.
-    """
-
-def get_room(location_id: str, room_id: str) -> Dict[str, Any]:
-    """
-    Get a specific room.
-
-    Args:
-        location_id (str): ID of the location.
-        room_id (str): ID of the room.
-    Returns:
-        Dict[str, Any]: Details of the room.
-    """
-
-def create_room(location_id: str, room_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new room.
-
-    Args:
-        location_id (str): ID of the location.
-        room_data (Dict[str, Any]): Data for the new room.
-    Returns:
-        Dict[str, Any]: Details of the created room.
-    """
-
-def update_room(
-    location_id: str,
-    room_id: str,
-    room_data: Dict[str, Any]
-) -> Dict[str, Any]:
-    """
-    Update a room.
-
-    Args:
-        location_id (str): ID of the location.
-        room_id (str): ID of the room.
-        room_data (Dict[str, Any]): New data for the room.
-    Returns:
-        Dict[str, Any]: Updated details of the room.
-    """
-
-def delete_room(location_id: str, room_id: str) -> None:
-    """
-    Delete a room.
-
-    Args:
-        location_id (str): ID of the location.
-        room_id (str): ID of the room to delete.
-    """
-
-# ================
-# Scenes
-# ================
-
-def list_scenes(location_id: str) -> List[Dict[str, Any]]:
-    """
-    List scenes in a location.
-
-    Args:
-        location_id (str): ID of the location.
-    Returns:
-        List[Dict[str, Any]]: List of scenes in the location.
-    """
-
-def execute_scene(location_id: str, scene_id: str) -> Dict[str, Any]:
-    """
-    Execute a scene.
-
-    Args:
-        location_id (str): ID of the location.
-        scene_id (str): ID of the scene to execute.
-    Returns:
-        Dict[str, Any]: Result of the scene execution.
-    """
-
-def get_scene(location_id: str, scene_id: str) -> Dict[str, Any]:
-    """
-    Get a specific scene.
-
-    Args:
-        location_id (str): ID of the location.
-        scene_id (str): ID of the scene.
-    Returns:
-        Dict[str, Any]: Details of the scene.
-    """
-
-# ================
-# Subscriptions
-# ================
-
-def list_subscriptions() -> List[Dict[str, Any]]:
-    """
-    List all subscriptions.
-
-    Returns:
-        List[Dict[str, Any]]: List of all subscriptions.
-    """
-
-def get_subscription(subscription_id: str) -> Dict[str, Any]:
-    """
-    Get a specific subscription.
-
-    Args:
-        subscription_id (str): ID of the subscription.
-    Returns:
-        Dict[str, Any]: Details of the subscription.
-    """
-
-def create_subscription(subscription_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new subscription.
-
-    Args:
-        subscription_data (Dict[str, Any]): Data for the new subscription.
-    Returns:
-        Dict[str, Any]: Details of the created subscription.
-    """
-
-def delete_subscription(subscription_id: str) -> None:
-    """
-    Delete a subscription.
-
-    Args:
-        subscription_id (str): ID of the subscription to delete.
-    """
-
-# ================
-# Schedules
-# ================
-
-def list_schedules() -> List[Dict[str, Any]]:
-    """
-    List all schedules.
-
-    Returns:
-        List[Dict[str, Any]]: List of all schedules.
-    """
-
-def get_schedule(schedule_id: str) -> Dict[str, Any]:
-    """
-    Get a specific schedule.
-
-    Args:
-        schedule_id (str): ID of the schedule.
-    Returns:
-        Dict[str, Any]: Details of the schedule.
-    """
-
-def create_schedule(schedule_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new schedule.
-
-    Args:
-        schedule_data (Dict[str, Any]): Data for the new schedule.
-    Returns:
-        Dict[str, Any]: Details of the created schedule.
-    """
-
-def delete_schedule(schedule_id: str) -> None:
-    """
-    Delete a schedule.
-
-    Args:
-        schedule_id (str): ID of the schedule to delete.
-    """
-
-# ================
-# History
-# ================
-
-def get_device_history(
-    device_id: str,
-    limit: Optional[int] = None,
-    since: Optional[datetime] = None,
-    until: Optional[datetime] = None
-) -> List[Dict[str, Any]]:
-    """
-    Get history for a device.
-
-    Args:
-        device_id (str): ID of the device.
-        limit (Optional[int]): Maximum number of history entries to return.
-        since (Optional[datetime]): Start time for history.
-        until (Optional[datetime]): End time for history.
-    Returns:
-        List[Dict[str, Any]]: List of history entries for the device.
-    """
-
-# ================
-# Capabilities
-# ================
-
-def list_capabilities() -> List[Dict[str, Any]]:
-    """
-    List all capabilities.
-
-    Returns:
-        List[Dict[str, Any]]: List of all capabilities.
-    """
-
-def get_capability(
-    capability_id: str,
-    version: Optional[int] = None
-) -> Dict[str, Any]:
-    """
-    Get a specific capability.
-
-    Args:
-        capability_id (str): ID of the capability.
-        version (Optional[int]): Version of the capability.
-    Returns:
-        Dict[str, Any]: Details of the capability.
-    """
-
-# ================
-# Device Profiles
-# ================
-
-def list_device_profiles() -> List[Dict[str, Any]]:
-    """
-    List all device profiles.
-
-    Returns:
-        List[Dict[str, Any]]: List of all device profiles.
-    """
-
-def get_device_profile(profile_id: str) -> Dict[str, Any]:
-    """
-    Get a specific device profile.
-
-    Args:
-        profile_id (str): ID of the profile.
-    Returns:
-        Dict[str, Any]: Details of the profile.
-    """
-
-def create_device_profile(profile_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Create a new device profile.
-
-    Args:
-        profile_data (Dict[str, Any]): Data for the new profile.
-    Returns:
-        Dict[str, Any]: Details of the created profile.
-    """
-
-def delete_device_profile(profile_id: str) -> None:
-    """
-    Delete a device profile.
-
-    Args:
-        profile_id (str): ID of the profile to delete.
-    """
-
-# ================
-# Utilities
-# ================
-
-def get_schema(schema_type: str) -> Dict[str, Any]:
-    """
-    Get schema definition for a type.
-
-    Args:
-        schema_type (str): Type of schema to retrieve.
-    
-    Returns:
-        Dict[str, Any]: Schema definition.
-    """
-
-def get_public_key(key_id: str) -> Dict[str, Any]:
-    """
-    Get a public key by ID.
-
-    Args:
-        key_id (str): ID of the public key.
-    Returns:
-        Dict[str, Any]: Public key details.
-    """
+import datetime
+import copy
+import uuid
+import random
+import json
+from typing import Dict, List, Any, Optional, Union, Literal
+
+class SmartThingsApis:
+    """
+    A dummy API class for simulating SmartThings operations.
+    This class provides an in-memory backend for development and testing purposes.
+    """
+
+    def __init__(self):
+        """
+        Initializes the SmartThingsApis instance, setting up the in-memory
+        data stores and loading the default scenario.
+        """
+        self.users: Dict[str, Any] = {}
+        self._api_description = "This tool belongs to the SmartThings API, which provides core functionality for managing smart home devices, locations, and rooms."
+        self._load_scenario(DEFAULT_STATE)
+
+    def _load_scenario(self, scenario: Dict) -> None:
+        """
+        Loads a predefined scenario into the dummy backend's state.
+        This allows for resetting the state or initializing with specific data.
+
+        Args:
+            scenario (Dict): A dictionary representing the state to load.
+                             It should contain a "users" key.
+        """
+        
+        DEFAULT_STATE_COPY = copy.deepcopy(scenario)
+        self.users = DEFAULT_STATE_COPY.get("users", {})
+        print("SmartThingsApis: Loaded scenario with users, devices, locations, and rooms (all with UUIDs).")
+
+    def _generate_id(self) -> str:
+        """
+        Generates a unique UUID for dummy entities (devices, locations, rooms).
+        """
+        return str(uuid.uuid4())
+
+    def _get_user_id_by_email(self, email: str) -> Optional[str]:
+        """Helper to get user_id (UUID) from email (string)."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == email:
+                return user_id
+        return None
+
+    def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
+        """Helper to get user email (string) from user_id (UUID)."""
+        user_data = self.users.get(user_id)
+        return user_data.get("email") if user_data else None
+
+    def _get_user_smartthings_data(self, user_id: str) -> Optional[Dict]:
+        """Helper to get a user's SmartThings data."""
+        internal_user_id = self._get_user_id_by_email(user_id) if user_id != 'me' else self._get_user_id_by_email("alice.smith@gmail.com") 
+        if not internal_user_id:
+            return None
+        return self.users.get(internal_user_id, {}).get("smartthings_data")
+
+    def _get_user_devices_data(self, user_id: str) -> Optional[Dict]:
+        """Helper to get a user's devices data."""
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        return smartthings_data.get("devices") if smartthings_data else None
+
+    def _get_user_locations_data(self, user_id: str) -> Optional[Dict]:
+        """Helper to get a user's locations data."""
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        return smartthings_data.get("locations") if smartthings_data else None
+
+    def _get_user_rooms_data(self, user_id: str) -> Optional[Dict]:
+        """Helper to get a user's rooms data."""
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        return smartthings_data.get("rooms") if smartthings_data else None
+
+    def _get_user_capabilities_data(self, user_id: str) -> Optional[List[Dict]]:
+        """Helper to get a user's capabilities data."""
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        return smartthings_data.get("capabilities") if smartthings_data else None
+
+
+    def get_user_profile(self, user_id: str = 'me') -> Dict[str, Union[bool, Dict]]:
+        """
+        Retrieves the profile information for the authenticated SmartThings user.
+
+        Args:
+            user_id (str): User's email address or 'me' for the authenticated user.
+
+        Returns:
+            Dict: A dictionary containing 'status' (bool) and 'profile' (Dict) if successful.
+        """
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        if smartthings_data and "profile" in smartthings_data:
+            return {"status": True, "profile": copy.deepcopy(smartthings_data["profile"])}
+        return {"status": False, "profile": {}}
+
+    def list_devices(self, user_id: str = 'me') -> List[Dict[str, Any]]:
+        """
+        List all devices for a user.
+
+        Args:
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            List[Dict[str, Any]]: List of all devices.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return []
+        return [copy.deepcopy(d) for d in user_devices.values()]
+
+    def get_device(self, device_id: str, user_id: str = 'me') -> Dict[str, Any]:
+        """
+        Get a specific device for a user.
+
+        Args:
+            device_id (str): ID of the device.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, Any]: Details of the device.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return {"error": f"User with ID {user_id} not found or has no devices."}
+        
+        device = user_devices.get(device_id)
+        if device:
+            return copy.deepcopy(device)
+        return {"error": f"Device {device_id} not found."}
+
+    def create_device(
+        self,
+        name: str,
+        user_id: str = 'me',
+        location_name: Optional[str] = None, 
+        room_name: Optional[str] = None, 
+        capabilities: Optional[List[str]] = None,
+        initial_status: Optional[Dict] = None
+    ) -> Dict[str, Any]:
+        """
+        Create a new device for a user.
+
+        Args:
+            name (str): The name of the new device.
+            user_id (str): User's email address or 'me' for the authenticated user.
+            location_name (Optional[str]): The name of the location for the device. If not found, a new one will be created.
+            room_name (Optional[str]): The name of the room for the device. If not found, a new one will be created.
+            capabilities (Optional[List[str]]): List of capabilities the device supports (e.g., ["switch", "level"]).
+            initial_status (Optional[Dict]): Initial state of device components and capabilities.
+
+        Returns:
+            Dict[str, Any]: Details of the created device.
+        """
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        if smartthings_data is None:
+            return {"error": f"User with ID {user_id} not found or has no SmartThings data."}
+
+        devices = smartthings_data.get("devices", {})
+        locations = smartthings_data.get("locations", {})
+        rooms = smartthings_data.get("rooms", {})
+
+        
+        location_id = None
+        if location_name:
+            for loc_uuid, loc_data in locations.items():
+                if loc_data.get("name") == location_name:
+                    location_id = loc_uuid
+                    break
+            if not location_id:
+                location_id = self._generate_id()
+                locations[location_id] = {"id": location_id, "name": location_name, "address": "Unspecified"}
+                print(f"Created new location: {location_name} with ID {location_id}")
+
+        
+        room_id = None
+        if room_name:
+            for r_uuid, r_data in rooms.items():
+                if r_data.get("name") == room_name and (not location_id or r_data.get("location_id") == location_id):
+                    room_id = r_uuid
+                    break
+            if not room_id:
+                room_id = self._generate_id()
+                new_room_data = {"id": room_id, "name": room_name}
+                if location_id:
+                    new_room_data["location_id"] = location_id
+                rooms[room_id] = new_room_data
+                print(f"Created new room: {room_name} with ID {room_id}")
+
+        new_device_id = self._generate_id()
+        current_time_iso = datetime.datetime.now().isoformat() + "Z"
+
+        new_device = {
+            "id": new_device_id,
+            "name": name,
+            "status": "online", 
+            "location": location_id,
+            "room": room_id,
+            "components": initial_status if initial_status is not None else {"main": {}},
+            "capabilities": capabilities if capabilities is not None else [],
+            "creation_time": current_time_iso,
+            "last_activity_time": current_time_iso
+        }
+        devices[new_device_id] = new_device
+        
+        return {"status": "success", "device": copy.deepcopy(new_device)}
+
+    def update_device_status(
+        self,
+        device_id: str,
+        component_id: str,
+        capability_id: str,
+        command: str,
+        args: Optional[List[Any]] = None,
+        user_id: str = 'me'
+    ) -> Dict[str, Any]:
+        """
+        Update the status of a specific device's capability.
+
+        Args:
+            device_id (str): ID of the device to update.
+            component_id (str): ID of the component (e.g., 'main').
+            capability_id (str): ID of the capability (e.g., 'switch').
+            command (str): Command to send (e.g., 'on', 'off', 'setLevel').
+            args (Optional[List[Any]]): Arguments for the command (e.g., [75] for setLevel).
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, Any]: The updated device status or an error message.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return {"error": f"User with ID {user_id} not found or has no devices."}
+
+        device = user_devices.get(device_id)
+        if not device:
+            return {"error": f"Device {device_id} not found."}
+
+        
+        if component_id in device["components"] and capability_id in device["components"][component_id]:
+            if capability_id == "switch":
+                if command == "on":
+                    device["components"][component_id]["switch"]["switch"] = "on"
+                elif command == "off":
+                    device["components"][component_id]["switch"]["switch"] = "off"
+                else:
+                    return {"error": f"Invalid command '{command}' for switch capability."}
+            elif capability_id == "level":
+                if command == "setLevel" and args and isinstance(args[0], (int, float)):
+                    device["components"][component_id]["level"]["level"] = args[0]
+                else:
+                    return {"error": f"Invalid command or arguments for level capability."}
+            elif capability_id == "lock":
+                if command == "lock":
+                    device["components"][component_id]["lock"]["lock"] = "locked"
+                elif command == "unlock":
+                    device["components"][component_id]["lock"]["lock"] = "unlocked"
+                else:
+                    return {"error": f"Invalid command '{command}' for lock capability."}
+            elif capability_id == "thermostatMode":
+                if command in ["cool", "heat", "auto", "off"]:
+                    device["components"][component_id]["thermostatMode"]["thermostatMode"] = command
+                else:
+                    return {"error": f"Invalid command '{command}' for thermostatMode capability."}
+            elif capability_id == "temperatureMeasurement":
+                
+                if command == "setTemperature" and args and isinstance(args[0], (int, float)):
+                     device["components"][component_id]["temperatureMeasurement"]["temperature"] = args[0]
+                else:
+                    return {"error": f"Temperature measurement is usually read-only. Command '{command}' not supported."}
+
+            device["last_activity_time"] = datetime.datetime.now().isoformat() + "Z"
+            return {"status": "success", "device_status": copy.deepcopy(device["components"][component_id])}
+        
+        return {"error": f"Component '{component_id}' or capability '{capability_id}' not found for device '{device_id}'."}
+
+    def delete_device(self, device_id: str, user_id: str = 'me') -> Dict[str, bool]:
+        """
+        Delete a device.
+
+        Args:
+            device_id (str): ID of the device to delete.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, bool]: True if the device was deleted successfully, False otherwise.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return {"status": False}
+
+        if device_id in user_devices:
+            del user_devices[device_id]
+            print(f"Device '{device_id}' deleted for {user_id}")
+            return {"status": True}
+        return {"status": False}
+
+    def get_device_status(
+        self,
+        device_id: str,
+        component_id: str = "main",
+        capability_id: Optional[str] = None,
+        user_id: str = 'me'
+    ) -> Dict[str, Any]:
+        """
+        Get the current status of a device or a specific capability.
+
+        Args:
+            device_id (str): ID of the device.
+            component_id (str): ID of the component (e.g., 'main').
+            capability_id (Optional[str]): ID of the capability (e.g., 'switch', 'level'). If None, returns all component status.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, Any]: The status of the device/capability or an error message.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return {"error": f"User with ID {user_id} not found or has no devices."}
+
+        device = user_devices.get(device_id)
+        if not device:
+            return {"error": f"Device {device_id} not found."}
+
+        if component_id not in device["components"]:
+            return {"error": f"Component '{component_id}' not found for device '{device_id}'."}
+
+        component_status = device["components"][component_id]
+
+        if capability_id:
+            if capability_id in component_status:
+                return {"status": "success", "capability_status": copy.deepcopy(component_status[capability_id])}
+            return {"error": f"Capability '{capability_id}' not found for component '{component_id}' of device '{device_id}'."}
+        
+        return {"status": "success", "component_status": copy.deepcopy(component_status)}
+
+    def list_locations(self, user_id: str = 'me') -> List[Dict[str, Any]]:
+        """
+        List all locations for a user.
+
+        Args:
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            List[Dict[str, Any]]: List of all locations.
+        """
+        user_locations = self._get_user_locations_data(user_id)
+        if user_locations is None:
+            return []
+        return [copy.deepcopy(loc) for loc in user_locations.values()]
+
+    def get_location(self, location_id: str, user_id: str = 'me') -> Dict[str, Any]:
+        """
+        Get a specific location for a user.
+
+        Args:
+            location_id (str): ID of the location.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, Any]: Details of the location.
+        """
+        user_locations = self._get_user_locations_data(user_id)
+        if user_locations is None:
+            return {"error": f"User with ID {user_id} not found or has no locations."}
+        
+        location = user_locations.get(location_id)
+        if location:
+            return copy.deepcopy(location)
+        return {"error": f"Location {location_id} not found."}
+
+    def create_location(
+        self,
+        name: str,
+        user_id: str = 'me',
+        address: Optional[str] = None,
+        latitude: Optional[float] = None,
+        longitude: Optional[float] = None
+    ) -> Dict[str, Any]:
+        """
+        Create a new location for a user.
+
+        Args:
+            name (str): The name of the new location.
+            user_id (str): User's email address or 'me' for the authenticated user.
+            address (Optional[str]): The address of the location.
+            latitude (Optional[float]): The latitude of the location.
+            longitude (Optional[float]): The longitude of the location.
+
+        Returns:
+            Dict[str, Any]: Details of the created location.
+        """
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        if smartthings_data is None:
+            return {"error": f"User with ID {user_id} not found or has no SmartThings data."}
+        
+        locations = smartthings_data.get("locations", {})
+        
+        
+        for loc_id, loc_data in locations.items():
+            if loc_data.get("name") == name:
+                return {"error": f"Location with name '{name}' already exists."}
+
+        new_location_id = self._generate_id()
+        new_location = {
+            "id": new_location_id,
+            "name": name,
+            "address": address,
+            "latitude": latitude,
+            "longitude": longitude
+        }
+        locations[new_location_id] = new_location
+        return {"status": "success", "location": copy.deepcopy(new_location)}
+
+    def update_location(
+        self,
+        location_id: str,
+        user_id: str = 'me',
+        name: Optional[str] = None,
+        address: Optional[str] = None,
+        latitude: Optional[float] = None,
+        longitude: Optional[float] = None
+    ) -> Dict[str, Any]:
+        """
+        Update an existing location for a user.
+
+        Args:
+            location_id (str): ID of the location to update.
+            user_id (str): User's email address or 'me' for the authenticated user.
+            name (Optional[str]): New name for the location.
+            address (Optional[str]): New address for the location.
+            latitude (Optional[float]): New latitude for the location.
+            longitude (Optional[float]): New longitude for the location.
+
+        Returns:
+            Dict[str, Any]: Details of the updated location.
+        """
+        user_locations = self._get_user_locations_data(user_id)
+        if user_locations is None:
+            return {"error": f"User with ID {user_id} not found or has no locations."}
+        
+        location = user_locations.get(location_id)
+        if not location:
+            return {"error": f"Location {location_id} not found."}
+
+        if name:
+            location["name"] = name
+        if address:
+            location["address"] = address
+        if latitude is not None:
+            location["latitude"] = latitude
+        if longitude is not None:
+            location["longitude"] = longitude
+        
+        return {"status": "success", "location": copy.deepcopy(location)}
+
+    def delete_location(self, location_id: str, user_id: str = 'me') -> Dict[str, bool]:
+        """
+        Delete a location.
+
+        Args:
+            location_id (str): ID of the location to delete.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, bool]: True if the location was deleted successfully, False otherwise.
+        """
+        user_locations = self._get_user_locations_data(user_id)
+        if user_locations is None:
+            return {"status": False}
+
+        if location_id in user_locations:
+            
+            user_rooms = self._get_user_rooms_data(user_id)
+            if user_rooms:
+                rooms_to_delete = [room_id for room_id, room_data in user_rooms.items() if room_data.get("location_id") == location_id]
+                for room_id in rooms_to_delete:
+                    del user_rooms[room_id]
+
+            user_devices = self._get_user_devices_data(user_id)
+            if user_devices:
+                devices_to_delete = [device_id for device_id, device_data in user_devices.items() if device_data.get("location") == location_id]
+                for device_id in devices_to_delete:
+                    del user_devices[device_id]
+
+            del user_locations[location_id]
+            print(f"Location '{location_id}' deleted for {user_id}")
+            return {"status": True}
+        return {"status": False}
+
+    def list_rooms(self, user_id: str = 'me', location_id: Optional[str] = None) -> List[Dict[str, Any]]:
+        """
+        List all rooms for a user, optionally filtered by location.
+
+        Args:
+            user_id (str): User's email address or 'me' for the authenticated user.
+            location_id (Optional[str]): Filter rooms by this location ID.
+        Returns:
+            List[Dict[str, Any]]: List of all rooms.
+        """
+        user_rooms = self._get_user_rooms_data(user_id)
+        if user_rooms is None:
+            return []
+        
+        filtered_rooms = []
+        for room_id, room_data in user_rooms.items():
+            if location_id is None or room_data.get("location_id") == location_id:
+                filtered_rooms.append(copy.deepcopy(room_data))
+        return filtered_rooms
+
+    def get_room(self, room_id: str, user_id: str = 'me') -> Dict[str, Any]:
+        """
+        Get a specific room for a user.
+
+        Args:
+            room_id (str): ID of the room.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, Any]: Details of the room.
+        """
+        user_rooms = self._get_user_rooms_data(user_id)
+        if user_rooms is None:
+            return {"error": f"User with ID {user_id} not found or has no rooms."}
+        
+        room = user_rooms.get(room_id)
+        if room:
+            return copy.deepcopy(room)
+        return {"error": f"Room {room_id} not found."}
+
+    def create_room(
+        self,
+        name: str,
+        user_id: str = 'me',
+        location_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Create a new room for a user.
+
+        Args:
+            name (str): The name of the new room.
+            user_id (str): User's email address or 'me' for the authenticated user.
+            location_id (Optional[str]): The ID of the location this room belongs to.
+
+        Returns:
+            Dict[str, Any]: Details of the created room.
+        """
+        smartthings_data = self._get_user_smartthings_data(user_id)
+        if smartthings_data is None:
+            return {"error": f"User with ID {user_id} not found or has no SmartThings data."}
+        
+        rooms = smartthings_data.get("rooms", {})
+        locations = smartthings_data.get("locations", {})
+
+        
+        for r_id, r_data in rooms.items():
+            if r_data.get("name") == name and (not location_id or r_data.get("location_id") == location_id):
+                return {"error": f"Room with name '{name}' already exists in this location."}
+
+        if location_id and location_id not in locations:
+            return {"error": f"Location with ID '{location_id}' not found."}
+
+        new_room_id = self._generate_id()
+        new_room = {
+            "id": new_room_id,
+            "name": name,
+            "location_id": location_id
+        }
+        rooms[new_room_id] = new_room
+        return {"status": "success", "room": copy.deepcopy(new_room)}
+
+    def update_room(
+        self,
+        room_id: str,
+        user_id: str = 'me',
+        name: Optional[str] = None,
+        location_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Update an existing room for a user.
+
+        Args:
+            room_id (str): ID of the room to update.
+            user_id (str): User's email address or 'me' for the authenticated user.
+            name (Optional[str]): New name for the room.
+            location_id (Optional[str]): New location ID for the room.
+
+        Returns:
+            Dict[str, Any]: Details of the updated room.
+        """
+        user_rooms = self._get_user_rooms_data(user_id)
+        if user_rooms is None:
+            return {"error": f"User with ID {user_id} not found or has no rooms."}
+        
+        room = user_rooms.get(room_id)
+        if not room:
+            return {"error": f"Room {room_id} not found."}
+
+        if name:
+            room["name"] = name
+        if location_id:
+            user_locations = self._get_user_locations_data(user_id)
+            if user_locations and location_id in user_locations:
+                room["location_id"] = location_id
+            else:
+                return {"error": f"Location with ID '{location_id}' not found."}
+        
+        return {"status": "success", "room": copy.deepcopy(room)}
+
+    def delete_room(self, room_id: str, user_id: str = 'me') -> Dict[str, bool]:
+        """
+        Delete a room.
+
+        Args:
+            room_id (str): ID of the room to delete.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, bool]: True if the room was deleted successfully, False otherwise.
+        """
+        user_rooms = self._get_user_rooms_data(user_id)
+        if user_rooms is None:
+            return {"status": False}
+
+        if room_id in user_rooms:
+            
+            user_devices = self._get_user_devices_data(user_id)
+            if user_devices:
+                for device_id, device_data in user_devices.items():
+                    if device_data.get("room") == room_id:
+                        device_data["room"] = None 
+            
+            del user_rooms[room_id]
+            print(f"Room '{room_id}' deleted for {user_id}")
+            return {"status": True}
+        return {"status": False}
+
+    def list_capabilities(self, user_id: str = 'me') -> List[Dict[str, Any]]:
+        """
+        List all capabilities for a user.
+
+        Args:
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            List[Dict[str, Any]]: List of all capabilities.
+        """
+        user_capabilities = self._get_user_capabilities_data(user_id)
+        if user_capabilities is None:
+            return []
+        return copy.deepcopy(user_capabilities)
+
+    def get_capability(
+        self,
+        capability_id: str,
+        version: Optional[int] = None,
+        user_id: str = 'me'
+    ) -> Dict[str, Any]:
+        """
+        Get a specific capability for a user.
+
+        Args:
+            capability_id (str): ID of the capability.
+            version (Optional[int]): Version of the capability.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        Returns:
+            Dict[str, Any]: Details of the capability.
+        """
+        user_capabilities = self._get_user_capabilities_data(user_id)
+        if user_capabilities is None:
+            return {"error": f"User with ID {user_id} not found or has no capabilities."}
+
+        for cap in user_capabilities:
+            if cap["id"] == capability_id and (version is None or cap.get("version") == version):
+                return copy.deepcopy(cap)
+        return {"error": f"Capability {capability_id} not found."}
+
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        
+        global DEFAULT_STATE
+        global _user_email_to_uuid_map
+        global _location_name_to_uuid_map
+        global _room_name_to_uuid_map
+
+        
+        _user_email_to_uuid_map = {}
+        _location_name_to_uuid_map = {}
+        _room_name_to_uuid_map = {}
+
+        
+        new_default_state = {"users": {}}
+        for email, first_name, last_name, smartthings_data in users_initial_data:
+            user_id, user_data = _create_user_data(email, first_name, last_name, smartthings_data)
+            new_default_state["users"][user_id] = user_data
+        DEFAULT_STATE = new_default_state
+
+        self._load_scenario(DEFAULT_STATE)
+        print("SmartThingsApis: All dummy data reset to default state.")
+        return {"reset_status": True}

@@ -1,0 +1,86 @@
+{
+    "Prompts": {
+      "MultiStep": [
+        {
+          "prompt": "Order a new smartwatch from Amazon and add the delivery date to my Google Calendar",
+          "tools": ["AmazonApis", "GoogleCalendarApis"],
+          "context": {
+            "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06",
+            "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+          }
+        },
+        {
+          "prompt": "Send an SMS to Bob Johnson about our meeting tomorrow and then email him the meeting agenda",
+          "tools": ["CommuniLinkApis", "GmailApis"],
+          "context": {
+            "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926",
+            "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548"
+          }
+        },
+        {
+          "prompt": "Check my Amazon order status for the coffee maker and text Charlie Brown the delivery estimate",
+          "tools": ["AmazonApis", "CommuniLinkApis"],
+          "context": {
+            "amazon_current_user": "c1270c08-b8db-4848-9249-5fd315f295ca",
+            "communilink_current_user": "4f603dd6-ebf6-4acd-9ea9-cd848215b408"
+          }
+        },
+        {
+          "prompt": "Create a calendar event for the team retreat next month and email the details to all attendees",
+          "tools": ["GoogleCalendarApis", "GmailApis"],
+          "context": {
+            "googlecalendar_current_user": "5bc9a653-c474-4865-993d-3ee3334374a5",
+            "gmail_current_user": "62e12603-9032-4a49-abf7-a60b6968e1b4"
+          }
+        },
+        {
+          "prompt": "Call customer support about my missing Amazon package and then add the replacement item to my cart",
+          "tools": ["CommuniLinkApis", "AmazonApis"],
+          "context": {
+            "communilink_current_user": "a2dcaf92-b235-47f2-bb79-92068d58e8e0",
+            "amazon_current_user": "5af6122a-e40b-43ce-92f6-b69ab6dfd0a9"
+          }
+        }
+      ],
+      "MultiTurn": [
+        {
+          "prompt": "I need to buy a birthday gift",
+          "tools": ["AmazonApis"],
+          "context": {
+            "amazon_current_user": "ff66938d-d13e-49ff-8dfd-dd44a3ef0e0b"
+          }
+        },
+        {
+          "prompt": "Let's schedule a meeting with the design team",
+          "tools": ["GoogleCalendarApis"],
+          "context": {
+            "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+          }
+        },
+        {
+          "prompt": "I need to follow up with several clients",
+          "tools": ["CommuniLinkApis", "GmailApis"],
+          "context": {
+            "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926",
+            "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548"
+          }
+        },
+        {
+          "prompt": "Where is my recent order?",
+          "tools": ["AmazonApis"],
+          "context": {
+            "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06"
+          }
+        },
+        {
+          "prompt": "I'm organizing a company picnic",
+          "tools": ["GoogleCalendarApis", "GmailApis", "CommuniLinkApis"],
+          "context": {
+            "googlecalendar_current_user": "5bc9a653-c474-4865-993d-3ee3334374a5",
+            "gmail_current_user": "62e12603-9032-4a49-abf7-a60b6968e1b4",
+            "communilink_current_user": "23012dd0-8bb2-43fd-b311-aa3ad92bcd2a"
+          }
+        }
+      ]
+    }
+  }

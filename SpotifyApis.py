@@ -1,1061 +1,705 @@
-from typing import Dict, List, Any
+import datetime
+import copy
+import uuid
+import random
+import json
+from typing import Dict, List, Any, Optional, Union, Literal
 
 class SpotifyApis:
-    def signup(self, first_name: str, last_name: str, email: str, password: str) -> Dict[str, bool]:
+    """
+    A dummy API class for simulating Spotify operations.
+    This class provides an in-memory backend for development and testing purposes.
+    """
+
+    def __init__(self):
         """
-        Sign up a new user with first name, last name, email and password.
+        Initializes the SpotifyApis instance, setting up the in-memory
+        data stores and loading the default scenario.
+        """
+        self._api_description = "This tool belongs to the Spotify API, which provides core functionality for managing music, playlists, and user profiles."
+        self.users: Dict[str, Any] = {}
+        self.payment_cards: Dict[str, Any] = {}
+        self.songs: Dict[str, Any] = {}
+        self.albums: Dict[str, Any] = {}
+        self.playlists: Dict[str, Any] = {}
+        self.artists: Dict[str, Any] = {}
+        self.username: Optional[str] = None
+
+        self._load_scenario(DEFAULT_STATE)
+        if DEFAULT_STATE.get("username"):
+            self.username = DEFAULT_STATE["username"]
+
+
+    def _load_scenario(self, scenario: Dict) -> None:
+        """
+        Loads a predefined scenario into the dummy backend's state.
 
         Args:
-            first_name (str): First name of the user.
-            last_name (str): Last name of the user.
-            email (str): Email of the user.
-            password (str): Password of the user.
-
-        Returns:
-            signup_status (bool): True if signup successful, False otherwise.
+            scenario (Dict): A dictionary representing the state to load.
+                             It should contain "users", "payment_cards", "songs", etc.
         """
-        return {"signup_status": True}
+        scenario_copy = copy.deepcopy(scenario)
+        self.users = scenario_copy.get("users", {})
+        self.payment_cards = scenario_copy.get("payment_cards", {})
+        self.songs = scenario_copy.get("songs", {})
+        self.albums = scenario_copy.get("albums", {})
+        self.playlists = scenario_copy.get("playlists", {})
+        self.artists = scenario_copy.get("artists", {})
+        self.username = scenario_copy.get("username")
+        print("SpotifyApis: Loaded scenario with UUIDs for all entities.")
 
-    def login(self, email: str, password: str) -> Dict[str, bool]:
+    def _generate_unique_id(self) -> str:
         """
-        Log in a user with email and password.
+        Generates a unique UUID for dummy entities.
+        """
+        return str(uuid.uuid4())
+
+    def _get_user_id_by_email(self, email: str) -> Optional[str]:
+        """Helper to get user_id (UUID) from email (string)."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == email:
+                return user_id
+        return None
+
+    def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
+        """Helper to get user email (string) from user_id (UUID)."""
+        user_data = self.users.get(user_id)
+        return user_data.get("email") if user_data else None
+
+    def _get_current_user_data(self) -> Optional[Dict]:
+        """Helper to get the data of the currently logged-in user (identified by self.username UUID)."""
+        if not self.username:
+            return None
+        return self.users.get(self.username)
+
+    def _get_user_payment_cards(self, user_id: str) -> Dict[str, Any]:
+        """Helper to get a user's payment cards, keyed by UUID."""
+        cards = {}
+        for card_id, card_data in self.payment_cards.items():
+            if card_data.get("user_id") == user_id:
+                cards[card_id] = card_data
+        return cards
+
+    def set_current_user(self, user_email: str) -> Dict[str, bool]:
+        """
+        Sets the current authenticated user for the API session.
 
         Args:
-            email (str): Email of the user.
-            password (str): Password of the user.
+            user_email (str): The email address of the user to set as current.
 
         Returns:
-            login_status (bool): True if login successful, False otherwise.
+            Dict[str, bool]: A dictionary with 'status' indicating success or failure.
         """
-        return {"login_status": True}
+        user_id = self._get_user_id_by_email(user_email)
+        if user_id:
+            self.username = user_id
+            return {"status": True, "message": f"User set to {user_email} (ID: {user_id})."}
+        return {"status": False, "message": f"User with email {user_email} not found."}
 
-    def logout(self) -> Dict[str, bool]:
-        """
-        Log out the current user.
-
-        Returns:
-            logout_status (bool): True if logout successful, False otherwise.
-        """
-        return {"logout_status": True}
-
-    def send_verification_code(self, email: str) -> Dict[str, bool]:
-        """
-        Send verification code to user's email.
-
-        Args:
-            email (str): Email of the user.
-
-        Returns:
-            send_status (bool): True if code sent successfully, False otherwise.
-        """
-        return {"send_status": True}
-
-    def verify_account(self, email: str, verification_code: str) -> Dict[str, bool]:
-        """
-        Verify user account with verification code.
-
-        Args:
-            email (str): Email of the user.
-            verification_code (str): Verification code sent to user's email.
-
-        Returns:
-            verification_status (bool): True if verification successful, False otherwise.
-        """
-        return {"verification_status": True}
-
-    def send_password_reset_code(self, email: str) -> Dict[str, bool]:
-        """
-        Send password reset code to user's email.
-
-        Args:
-            email (str): Email of the user.
-
-        Returns:
-            send_status (bool): True if code sent successfully, False otherwise.
-        """
-        return {"send_status": True}
-
-    def reset_password(self, email: str, password_reset_code: str, new_password: str) -> Dict[str, bool]:
-        """
-        Reset user password with reset code.
-
-        Args:
-            email (str): Email of the user.
-            password_reset_code (str): Password reset code sent to user's email.
-            new_password (str): New password to set.
-
-        Returns:
-            reset_status (bool): True if password reset successful, False otherwise.
-        """
-        return {"reset_status": True}
-
-    def show_profile(self, email: str) -> Dict[str, Any]:
-        """
-        Show user profile information.
-
-        Args:
-            email (str): Email of the user.
-
-        Returns:
-            profile (dict): Dictionary containing user profile information.
-        """
-        return {"profile": {}}
 
     def show_account(self) -> Dict[str, Any]:
         """
-        Show current user account information.
-
-        Returns:
-            account (dict): Dictionary containing user account information.
+        Shows the account information for the current user.
         """
-        return {"account": {}}
+        user_data = self._get_current_user_data()
+        if user_data:
+            profile = {k: v for k, v in user_data.items() if k not in ["id"]}
+            profile["email"] = self._get_user_email_by_id(self.username)
+            return {"status": "success", "profile": profile}
+        return {"status": "error", "message": "User not authenticated or not found."}
 
-    def update_account_name(self, first_name: str, last_name: str) -> Dict[str, bool]:
+    def add_payment_method(
+        self,
+        card_name: str,
+        card_number: str,
+        expiry_year: int,
+        expiry_month: int,
+        cvv_number: str,
+        is_default: bool = False,
+    ) -> Dict[str, Any]:
         """
-        Update user's first and last name.
+        Adds a new payment method for the current user.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
 
+        new_card_id = self._generate_unique_id()
+        user_id = user_data["id"]
+
+        if is_default:
+            for card_id, card_info in self.payment_cards.items():
+                if card_info.get("user_id") == user_id and card_info.get("is_default"):
+                    self.payment_cards[card_id]["is_default"] = False
+                    break
+
+        new_card = {
+            "id": new_card_id,
+            "card_name": card_name,
+            "user_id": user_id,
+            "card_number": card_number,
+            "expiry_year": expiry_year,
+            "expiry_month": expiry_month,
+            "cvv_number": cvv_number,
+            "is_default": is_default,
+        }
+        self.payment_cards[new_card_id] = new_card
+        return {"status": "success", "payment_method": copy.deepcopy(new_card)}
+
+    def show_payment_methods(self) -> Dict[str, Any]:
+        """
+        Shows all payment methods associated with the current user.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+
+        user_id = user_data["id"]
+        payment_methods = [
+            copy.deepcopy(card_info)
+            for card_id, card_info in self.payment_cards.items()
+            if card_info.get("user_id") == user_id
+        ]
+        return {"status": "success", "payment_methods": payment_methods}
+
+    def set_default_payment_method(self, payment_method_id: str) -> Dict[str, bool]:
+        """
+        Set a specific payment method as the default for the current user.
         Args:
-            first_name (str): New first name.
-            last_name (str): New last name.
-
-        Returns:
-            update_status (bool): True if update successful, False otherwise.
-        """
-        return {"update_status": True}
-
-    def delete_account(self) -> Dict[str, bool]:
-        """
-        Delete current user account.
-
-        Returns:
-            delete_status (bool): True if deletion successful, False otherwise.
-        """
-        return {"delete_status": True}
-
-    def show_genres(self) -> Dict[str, List[str]]:
-        """
-        Show available music genres.
-
-        Returns:
-            genres (list): List of available genres.
-        """
-        return {"genres": []}
-
-    def search_songs(self, query: str) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Search for songs.
-
-        Args:
-            query (str): Search query.
-
-        Returns:
-            songs (list): List of song dictionaries matching the query.
-        """
-        return {"songs": []}
-
-    def show_song(self, song_id: int) -> Dict[str, Any]:
-        """
-        Show details of a specific song.
-
-        Args:
-            song_id (int): ID of the song.
-
-        Returns:
-            song (dict): Dictionary containing song details.
-        """
-        return {"song": {}}
-
-    def show_song_privates(self, song_id: int) -> Dict[str, Any]:
-        """
-        Show private user-specific information about a song.
-
-        Args:
-            song_id (int): ID of the song.
-
-        Returns:
-            privates (dict): Dictionary containing private song information.
-        """
-        return {"privates": {}}
-
-    def like_song(self, song_id: int) -> Dict[str, bool]:
-        """
-        Like a song.
-
-        Args:
-            song_id (int): ID of the song to like.
-
-        Returns:
-            like_status (bool): True if like successful, False otherwise.
-        """
-        return {"like_status": True}
-
-    def unlike_song(self, song_id: int) -> Dict[str, bool]:
-        """
-        Unlike a song.
-
-        Args:
-            song_id (int): ID of the song to unlike.
-
-        Returns:
-            unlike_status (bool): True if unlike successful, False otherwise.
-        """
-        return {"unlike_status": True}
-
-    def show_liked_songs(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show all liked songs.
-
-        Returns:
-            songs (list): List of liked song dictionaries.
-        """
-        return {"songs": []}
-
-    def search_albums(self, query: str) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Search for albums.
-
-        Args:
-            query (str): Search query.
-
-        Returns:
-            albums (list): List of album dictionaries matching the query.
-        """
-        return {"albums": []}
-
-    def show_album(self, album_id: int) -> Dict[str, Any]:
-        """
-        Show details of a specific album.
-
-        Args:
-            album_id (int): ID of the album.
-
-        Returns:
-            album (dict): Dictionary containing album details.
-        """
-        return {"album": {}}
-
-    def show_album_privates(self, album_id: int) -> Dict[str, Any]:
-        """
-        Show private user-specific information about an album.
-
-        Args:
-            album_id (int): ID of the album.
-
-        Returns:
-            privates (dict): Dictionary containing private album information.
-        """
-        return {"privates": {}}
-
-    def like_album(self, album_id: int) -> Dict[str, bool]:
-        """
-        Like an album.
-
-        Args:
-            album_id (int): ID of the album to like.
-
-        Returns:
-            like_status (bool): True if like successful, False otherwise.
-        """
-        return {"like_status": True}
-
-    def unlike_album(self, album_id: int) -> Dict[str, bool]:
-        """
-        Unlike an album.
-
-        Args:
-            album_id (int): ID of the album to unlike.
-
-        Returns:
-            unlike_status (bool): True if unlike successful, False otherwise.
-        """
-        return {"unlike_status": True}
-
-    def show_liked_albums(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show all liked albums.
-
-        Returns:
-            albums (list): List of liked album dictionaries.
-        """
-        return {"albums": []}
-
-    def show_playlist_library(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show user's playlist library.
-
-        Returns:
-            playlists (list): List of playlist dictionaries.
-        """
-        return {"playlists": []}
-
-    def search_playlists(self, query: str) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Search for playlists.
-
-        Args:
-            query (str): Search query.
-
-        Returns:
-            playlists (list): List of playlist dictionaries matching the query.
-        """
-        return {"playlists": []}
-
-    def show_playlist(self, playlist_id: int) -> Dict[str, Any]:
-        """
-        Show details of a specific playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist.
-
-        Returns:
-            playlist (dict): Dictionary containing playlist details.
-        """
-        return {"playlist": {}}
-
-    def show_playlist_privates(self, playlist_id: int) -> Dict[str, Any]:
-        """
-        Show private user-specific information about a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist.
-
-        Returns:
-            privates (dict): Dictionary containing private playlist information.
-        """
-        return {"privates": {}}
-
-    def create_playlist(self, title: str, is_public: bool) -> Dict[str, Any]:
-        """
-        Create a new playlist.
-
-        Args:
-            title (str): Title of the playlist.
-            is_public (bool): Whether the playlist is public.
-
-        Returns:
-            playlist (dict): Dictionary containing new playlist information.
-        """
-        return {"playlist": {}}
-
-    def update_playlist(self, playlist_id: int, title: str, is_public: bool) -> Dict[str, bool]:
-        """
-        Update a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist to update.
-            title (str): New title for the playlist.
-            is_public (bool): New visibility status.
-
-        Returns:
-            update_status (bool): True if update successful, False otherwise.
-        """
-        return {"update_status": True}
-
-    def delete_playlist(self, playlist_id: int) -> Dict[str, bool]:
-        """
-        Delete a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist to delete.
-
-        Returns:
-            delete_status (bool): True if deletion successful, False otherwise.
-        """
-        return {"delete_status": True}
-
-    def like_playlist(self, playlist_id: int) -> Dict[str, bool]:
-        """
-        Like a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist to like.
-
-        Returns:
-            like_status (bool): True if like successful, False otherwise.
-        """
-        return {"like_status": True}
-
-    def unlike_playlist(self, playlist_id: int) -> Dict[str, bool]:
-        """
-        Unlike a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist to unlike.
-
-        Returns:
-            unlike_status (bool): True if unlike successful, False otherwise.
-        """
-        return {"unlike_status": True}
-
-    def show_liked_playlists(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show all liked playlists.
-
-        Returns:
-            playlists (list): List of liked playlist dictionaries.
-        """
-        return {"playlists": []}
-
-    def search_artists(self, query: str) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Search for artists.
-
-        Args:
-            query (str): Search query.
-
-        Returns:
-            artists (list): List of artist dictionaries matching the query.
-        """
-        return {"artists": []}
-
-    def show_artist(self, artist_id: int) -> Dict[str, Any]:
-        """
-        Show details of a specific artist.
-
-        Args:
-            artist_id (int): ID of the artist.
-
-        Returns:
-            artist (dict): Dictionary containing artist details.
-        """
-        return {"artist": {}}
-
-    def show_artist_following(self, artist_id: int) -> Dict[str, bool]:
-        """
-        Check if following an artist.
-
-        Args:
-            artist_id (int): ID of the artist.
-
-        Returns:
-            following_status (bool): True if following, False otherwise.
-        """
-        return {"following_status": True}
-
-    def show_song_library(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show user's song library.
-
-        Returns:
-            songs (list): List of song dictionaries in library.
-        """
-        return {"songs": []}
-
-    def add_song_to_library(self, song_id: int) -> Dict[str, bool]:
-        """
-        Add a song to user's library.
-
-        Args:
-            song_id (int): ID of the song to add.
-
-        Returns:
-            add_status (bool): True if add successful, False otherwise.
-        """
-        return {"add_status": True}
-
-    def remove_song_from_library(self, song_id: int) -> Dict[str, bool]:
-        """
-        Remove a song from user's library.
-
-        Args:
-            song_id (int): ID of the song to remove.
-
-        Returns:
-            remove_status (bool): True if remove successful, False otherwise.
-        """
-        return {"remove_status": True}
-
-    def show_album_library(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show user's album library.
-
-        Returns:
-            albums (list): List of album dictionaries in library.
-        """
-        return {"albums": []}
-
-    def add_album_to_library(self, album_id: int) -> Dict[str, bool]:
-        """
-        Add an album to user's library.
-
-        Args:
-            album_id (int): ID of the album to add.
-
-        Returns:
-            add_status (bool): True if add successful, False otherwise.
-        """
-        return {"add_status": True}
-
-    def remove_album_from_library(self, album_id: int) -> Dict[str, bool]:
-        """
-        Remove an album from user's library.
-
-        Args:
-            album_id (int): ID of the album to remove.
-
-        Returns:
-            remove_status (bool): True if remove successful, False otherwise.
-        """
-        return {"remove_status": True}
-
-    def add_song_to_playlist(self, playlist_id: int, song_id: int) -> Dict[str, bool]:
-        """
-        Add a song to a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist.
-            song_id (int): ID of the song to add.
-
-        Returns:
-            add_status (bool): True if add successful, False otherwise.
-        """
-        return {"add_status": True}
-
-    def remove_song_from_playlist(self, playlist_id: int, song_id: int) -> Dict[str, bool]:
-        """
-        Remove a song from a playlist.
-
-        Args:
-            playlist_id (int): ID of the playlist.
-            song_id (int): ID of the song to remove.
-
-        Returns:
-            remove_status (bool): True if remove successful, False otherwise.
-        """
-        return {"remove_status": True}
-
-    def show_downloaded_songs(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show user's downloaded songs.
-
-        Returns:
-            songs (list): List of downloaded song dictionaries.
-        """
-        return {"songs": []}
-
-    def download_song(self, song_id: int) -> Dict[str, bool]:
-        """
-        Download a song.
-
-        Args:
-            song_id (int): ID of the song to download.
-
-        Returns:
-            download_status (bool): True if download successful, False otherwise.
-        """
-        return {"download_status": True}
-
-    def remove_downloaded_song(self, song_id: int) -> Dict[str, bool]:
-        """
-        Remove a downloaded song.
-
-        Args:
-            song_id (int): ID of the song to remove.
-
-        Returns:
-            remove_status (bool): True if remove successful, False otherwise.
-        """
-        return {"remove_status": True}
-
-    def show_following_artists(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show artists the user is following.
-
-        Returns:
-            artists (list): List of followed artist dictionaries.
-        """
-        return {"artists": []}
-
-    def follow_artist(self, artist_id: int) -> Dict[str, bool]:
-        """
-        Follow an artist.
-
-        Args:
-            artist_id (int): ID of the artist to follow.
-
-        Returns:
-            follow_status (bool): True if follow successful, False otherwise.
-        """
-        return {"follow_status": True}
-
-    def unfollow_artist(self, artist_id: int) -> Dict[str, bool]:
-        """
-        Unfollow an artist.
-
-        Args:
-            artist_id (int): ID of the artist to unfollow.
-
-        Returns:
-            unfollow_status (bool): True if unfollow successful, False otherwise.
-        """
-        return {"unfollow_status": True}
-
-    def show_song_reviews(self, song_id: int) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show reviews for a song.
-
-        Args:
-            song_id (int): ID of the song.
-
+            payment_method_id (str): The ID (UUID) of the payment method to set as default.
         Returns:
-            reviews (list): List of review dictionaries for the song.
-        """
-        return {"reviews": []}
-
-    def review_song(self, song_id: int, rating: int, title: str, text: str) -> Dict[str, bool]:
+            Dict[str, bool]: {"set_default_status": True} if successful, {"set_default_status": False} otherwise.
         """
-        Review a song.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"set_default_status": False, "message": "User not authenticated."}
 
-        Args:
-            song_id (int): ID of the song to review.
-            rating (int): Rating for the song (1-5).
-            title (str): Title of the review.
-            text (str): Text content of the review.
+        if payment_method_id not in self.payment_cards:
+            return {"set_default_status": False, "message": f"Payment method with ID {payment_method_id} not found."}
 
-        Returns:
-            review_status (bool): True if review successful, False otherwise.
-        """
-        return {"review_status": True}
+        if self.payment_cards[payment_method_id]["user_id"] != user_data["id"]:
+            return {"set_default_status": False, "message": "You do not have permission to set this as default."}
 
-    def update_song_review(self, review_id: int, rating: int, title: str, text: str) -> Dict[str, bool]:
-        """
-        Update a song review.
+        for card_id, card_info in self.payment_cards.items():
+            if card_info["user_id"] == user_data["id"] and card_info["is_default"]:
+                self.payment_cards[card_id]["is_default"] = False
+                break
 
-        Args:
-            review_id (int): ID of the review to update.
-            rating (int): New rating for the song (1-5).
-            title (str): New title for the review.
-            text (str): New text content of the review.
+        self.payment_cards[payment_method_id]["is_default"] = True
+        return {"set_default_status": True, "message": f"Payment method {payment_method_id} set as default."}
 
-        Returns:
-            update_status (bool): True if update successful, False otherwise.
+    def get_user_liked_songs(self) -> Dict[str, Any]:
         """
-        return {"update_status": True}
-
-    def delete_song_review(self, review_id: int) -> Dict[str, bool]:
+        Retrieves the list of songs liked by the current user.
         """
-        Delete a song review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        liked_songs_ids = user_data.get("liked_songs", [])
+        liked_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in liked_songs_ids if s_id in self.songs]
+        return {"status": "success", "liked_songs": liked_songs_details}
 
-        Args:
-            review_id (int): ID of the review to delete.
-
-        Returns:
-            delete_status (bool): True if deletion successful, False otherwise.
+    def like_song(self, song_id: str) -> Dict[str, bool]:
         """
-        return {"delete_status": True}
-
-    def show_song_review(self, review_id: int) -> Dict[str, Any]:
+        Adds a song to the current user's liked songs.
         """
-        Show details of a specific song review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if song_id not in self.songs:
+            return {"status": False, "message": f"Song with ID {song_id} not found."}
 
-        Args:
-            review_id (int): ID of the review.
+        if song_id not in user_data.get("liked_songs", []):
+            user_data.setdefault("liked_songs", []).append(song_id)
+            return {"status": True, "message": f"Song {song_id} liked."}
+        return {"status": False, "message": f"Song {song_id} already liked."}
 
-        Returns:
-            review (dict): Dictionary containing review details.
+    def unlike_song(self, song_id: str) -> Dict[str, bool]:
         """
-        return {"review": {}}
-
-    def show_album_reviews(self, album_id: int) -> Dict[str, List[Dict[str, Any]]]:
+        Removes a song from the current user's liked songs.
         """
-        Show reviews for an album.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if song_id not in self.songs:
+            return {"status": False, "message": f"Song with ID {song_id} not found."}
 
-        Args:
-            album_id (int): ID of the album.
+        if song_id in user_data.get("liked_songs", []):
+            user_data["liked_songs"].remove(song_id)
+            return {"status": True, "message": f"Song {song_id} unliked."}
+        return {"status": False, "message": f"Song {song_id} not in liked songs."}
 
-        Returns:
-            reviews (list): List of review dictionaries for the album.
+    def get_user_library_songs(self) -> Dict[str, Any]:
         """
-        return {"reviews": []}
-
-    def review_album(self, album_id: int, rating: int, title: str, text: str) -> Dict[str, bool]:
+        Retrieves the list of songs in the current user's library.
         """
-        Review an album.
-
-        Args:
-            album_id (int): ID of the album to review.
-            rating (int): Rating for the album (1-5).
-            title (str): Title of the review.
-            text (str): Text content of the review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        library_songs_ids = user_data.get("library_songs", [])
+        library_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in library_songs_ids if s_id in self.songs]
+        return {"status": "success", "library_songs": library_songs_details}
 
-        Returns:
-            review_status (bool): True if review successful, False otherwise.
+    def add_song_to_library(self, song_id: str) -> Dict[str, bool]:
         """
-        return {"review_status": True}
-
-    def update_album_review(self, review_id: int, rating: int, title: str, text: str) -> Dict[str, bool]:
+        Adds a song to the current user's library.
         """
-        Update an album review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if song_id not in self.songs:
+            return {"status": False, "message": f"Song with ID {song_id} not found."}
 
-        Args:
-            review_id (int): ID of the review to update.
-            rating (int): New rating for the album (1-5).
-            title (str): New title for the review.
-            text (str): New text content of the review.
+        if song_id not in user_data.get("library_songs", []):
+            user_data.setdefault("library_songs", []).append(song_id)
+            return {"status": True, "message": f"Song {song_id} added to library."}
+        return {"status": False, "message": f"Song {song_id} already in library."}
 
-        Returns:
-            update_status (bool): True if update successful, False otherwise.
+    def remove_song_from_library(self, song_id: str) -> Dict[str, bool]:
         """
-        return {"update_status": True}
-
-    def delete_album_review(self, review_id: int) -> Dict[str, bool]:
+        Removes a song from the current user's library.
         """
-        Delete an album review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if song_id not in self.songs:
+            return {"status": False, "message": f"Song with ID {song_id} not found."}
 
-        Args:
-            review_id (int): ID of the review to delete.
+        if song_id in user_data.get("library_songs", []):
+            user_data["library_songs"].remove(song_id)
+            return {"status": True, "message": f"Song {song_id} removed from library."}
+        return {"status": False, "message": f"Song {song_id} not in library."}
 
-        Returns:
-            delete_status (bool): True if deletion successful, False otherwise.
+    def get_user_downloaded_songs(self) -> Dict[str, Any]:
         """
-        return {"delete_status": True}
-
-    def show_album_review(self, review_id: int) -> Dict[str, Any]:
+        Retrieves the list of songs downloaded by the current user.
         """
-        Show details of a specific album review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        downloaded_songs_ids = user_data.get("downloaded_songs", [])
+        downloaded_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in downloaded_songs_ids if s_id in self.songs]
+        return {"status": "success", "downloaded_songs": downloaded_songs_details}
 
-        Args:
-            review_id (int): ID of the review.
 
-        Returns:
-            review (dict): Dictionary containing review details.
+    def get_user_liked_albums(self) -> Dict[str, Any]:
         """
-        return {"review": {}}
-
-    def show_playlist_reviews(self, playlist_id: int) -> Dict[str, List[Dict[str, Any]]]:
+        Retrieves the list of albums liked by the current user.
         """
-        Show reviews for a playlist.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        liked_albums_ids = user_data.get("liked_albums", [])
+        liked_albums_details = [copy.deepcopy(self.albums[a_id]) for a_id in liked_albums_ids if a_id in self.albums]
+        return {"status": "success", "liked_albums": liked_albums_details}
 
-        Args:
-            playlist_id (int): ID of the playlist.
-
-        Returns:
-            reviews (list): List of review dictionaries for the playlist.
+    def like_album(self, album_id: str) -> Dict[str, bool]:
         """
-        return {"reviews": []}
-
-    def review_playlist(self, playlist_id: int, rating: int, title: str, text: str) -> Dict[str, bool]:
+        Adds an album to the current user's liked albums.
         """
-        Review a playlist.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if album_id not in self.albums:
+            return {"status": False, "message": f"Album with ID {album_id} not found."}
 
-        Args:
-            playlist_id (int): ID of the playlist to review.
-            rating (int): Rating for the playlist (1-5).
-            title (str): Title of the review.
-            text (str): Text content of the review.
+        if album_id not in user_data.get("liked_albums", []):
+            user_data.setdefault("liked_albums", []).append(album_id)
+            return {"status": True, "message": f"Album {album_id} liked."}
+        return {"status": False, "message": f"Album {album_id} already liked."}
 
-        Returns:
-            review_status (bool): True if review successful, False otherwise.
+    def unlike_album(self, album_id: str) -> Dict[str, bool]:
         """
-        return {"review_status": True}
-
-    def update_playlist_review(self, review_id: int, rating: int, title: str, text: str) -> Dict[str, bool]:
+        Removes an album from the current user's liked albums.
         """
-        Update a playlist review.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if album_id not in self.albums:
+            return {"status": False, "message": f"Album with ID {album_id} not found."}
 
-        Args:
-            review_id (int): ID of the review to update.
-            rating (int): New rating for the playlist (1-5).
-            title (str): New title for the review.
-            text (str): New text content of the review.
-
-        Returns:
-            update_status (bool): True if update successful, False otherwise.
-        """
-        return {"update_status": True}
+        if album_id in user_data.get("liked_albums", []):
+            user_data["liked_albums"].remove(album_id)
+            return {"status": True, "message": f"Album {album_id} unliked."}
+        return {"status": False, "message": f"Album {album_id} not in liked albums."}
 
-    def delete_playlist_review(self, review_id: int) -> Dict[str, bool]:
+    def get_user_library_albums(self) -> Dict[str, Any]:
         """
-        Delete a playlist review.
-
-        Args:
-            review_id (int): ID of the review to delete.
-
-        Returns:
-            delete_status (bool): True if deletion successful, False otherwise.
+        Retrieves the list of albums in the current user's library.
         """
-        return {"delete_status": True}
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        library_albums_ids = user_data.get("library_albums", [])
+        library_albums_details = [copy.deepcopy(self.albums[a_id]) for a_id in library_albums_ids if a_id in self.albums]
+        return {"status": "success", "library_albums": library_albums_details}
 
-    def show_playlist_review(self, review_id: int) -> Dict[str, Any]:
+    def add_album_to_library(self, album_id: str) -> Dict[str, bool]:
         """
-        Show details of a specific playlist review.
-
-        Args:
-            review_id (int): ID of the review.
-
-        Returns:
-            review (dict): Dictionary containing review details.
+        Adds an album to the current user's library.
         """
-        return {"review": {}}
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if album_id not in self.albums:
+            return {"status": False, "message": f"Album with ID {album_id} not found."}
 
-    def show_payment_cards(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show user's payment cards.
+        if album_id not in user_data.get("library_albums", []):
+            user_data.setdefault("library_albums", []).append(album_id)
+            return {"status": True, "message": f"Album {album_id} added to library."}
+        return {"status": False, "message": f"Album {album_id} already in library."}
 
-        Returns:
-            cards (list): List of payment card dictionaries.
+    def remove_album_from_library(self, album_id: str) -> Dict[str, bool]:
         """
-        return {"cards": []}
-
-    def show_payment_card(self, payment_card_id: int) -> Dict[str, Any]:
+        Removes an album from the current user's library.
         """
-        Show details of a specific payment card.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if album_id not in self.albums:
+            return {"status": False, "message": f"Album with ID {album_id} not found."}
 
-        Args:
-            payment_card_id (int): ID of the payment card.
+        if album_id in user_data.get("library_albums", []):
+            user_data["library_albums"].remove(album_id)
+            return {"status": True, "message": f"Album {album_id} removed from library."}
+        return {"status": False, "message": f"Album {album_id} not in library."}
 
-        Returns:
-            card (dict): Dictionary containing payment card details.
+    def get_user_liked_playlists(self) -> Dict[str, Any]:
         """
-        return {"card": {}}
-
-    def add_payment_card(self, card_name: str, owner_name: str, card_number: str, expiry_year: int, expiry_month: int, cvv_number: int) -> Dict[str, bool]:
+        Retrieves the list of playlists liked by the current user.
         """
-        Add a payment card.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        liked_playlists_ids = user_data.get("liked_playlists", [])
+        liked_playlists_details = [copy.deepcopy(self.playlists[p_id]) for p_id in liked_playlists_ids if p_id in self.playlists]
+        return {"status": "success", "liked_playlists": liked_playlists_details}
 
-        Args:
-            card_name (str): Name of the card.
-            owner_name (str): Name of the card owner.
-            card_number (str): Card number.
-            expiry_year (int): Expiry year.
-            expiry_month (int): Expiry month.
-            cvv_number (int): CVV number.
-
-        Returns:
-            add_status (bool): True if add successful, False otherwise.
+    def like_playlist(self, playlist_id: str) -> Dict[str, bool]:
         """
-        return {"add_status": True}
-
-    def update_payment_card(self, payment_card_id: int, card_name: str) -> Dict[str, bool]:
+        Adds a playlist to the current user's liked playlists.
         """
-        Update a payment card.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if playlist_id not in self.playlists:
+            return {"status": False, "message": f"Playlist with ID {playlist_id} not found."}
 
-        Args:
-            payment_card_id (int): ID of the card to update.
-            card_name (str): New name for the card.
-
-        Returns:
-            update_status (bool): True if update successful, False otherwise.
-        """
-        return {"update_status": True}
+        if playlist_id not in user_data.get("liked_playlists", []):
+            user_data.setdefault("liked_playlists", []).append(playlist_id)
+            return {"status": True, "message": f"Playlist {playlist_id} liked."}
+        return {"status": False, "message": f"Playlist {playlist_id} already liked."}
 
-    def delete_payment_card(self, payment_card_id: int) -> Dict[str, bool]:
+    def unlike_playlist(self, playlist_id: str) -> Dict[str, bool]:
         """
-        Delete a payment card.
-
-        Args:
-            payment_card_id (int): ID of the card to delete.
-
-        Returns:
-            delete_status (bool): True if deletion successful, False otherwise.
+        Removes a playlist from the current user's liked playlists.
         """
-        return {"delete_status": True}
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if playlist_id not in self.playlists:
+            return {"status": False, "message": f"Playlist with ID {playlist_id} not found."}
 
-    def show_current_song(self) -> Dict[str, Any]:
-        """
-        Show currently playing song.
+        if playlist_id in user_data.get("liked_playlists", []):
+            user_data["liked_playlists"].remove(playlist_id)
+            return {"status": True, "message": f"Playlist {playlist_id} unliked."}
+        return {"status": False, "message": f"Playlist {playlist_id} not in liked playlists."}
 
-        Returns:
-            song (dict): Dictionary containing current song details.
-        """
-        return {"song": {}}
 
-    def play_music(self, song_id: int) -> Dict[str, bool]:
+    def get_user_following_artists(self) -> Dict[str, Any]:
         """
-        Play a song.
-
-        Args:
-            song_id (int): ID of the song to play.
-
-        Returns:
-            play_status (bool): True if play successful, False otherwise.
+        Retrieves the list of artists followed by the current user.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        following_artists_ids = user_data.get("following_artists", [])
+        following_artists_details = [copy.deepcopy(self.artists[a_id]) for a_id in following_artists_ids if a_id in self.artists]
+        return {"status": "success", "following_artists": following_artists_details}
+
+    def follow_artist(self, artist_id: str) -> Dict[str, bool]:
         """
-        return {"play_status": True}
-
-    def pause_music(self) -> Dict[str, bool]:
+        Adds an artist to the current user's followed artists.
         """
-        Pause currently playing music.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if artist_id not in self.artists:
+            return {"status": False, "message": f"Artist with ID {artist_id} not found."}
+
+        if artist_id not in user_data.get("following_artists", []):
+            user_data.setdefault("following_artists", []).append(artist_id)
+            return {"status": True, "message": f"Artist {artist_id} followed."}
+        return {"status": False, "message": f"Artist {artist_id} already followed."}
+
+    def unfollow_artist(self, artist_id: str) -> Dict[str, bool]:
+        """
+        Removes an artist from the current user's followed artists.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        if artist_id not in self.artists:
+            return {"status": False, "message": f"Artist with ID {artist_id} not found."}
+
+        if artist_id in user_data.get("following_artists", []):
+            user_data["following_artists"].remove(artist_id)
+            return {"status": True, "message": f"Artist {artist_id} unfollowed."}
+        return {"status": False, "message": f"Artist {artist_id} not followed."}
+
+    def create_playlist(
+        self,
+        name: str,
+        description: Optional[str] = None,
+        public: bool = True,
+    ) -> Dict[str, Any]:
+        """
+        Creates a new playlist for the current user.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+
+        new_playlist_id = self._generate_unique_id()
+        current_time_iso = datetime.datetime.now().isoformat() + "Z"
+
+        new_playlist = {
+            "id": new_playlist_id,
+            "name": name,
+            "user_id": user_data["id"],
+            "description": description,
+            "public": public,
+            "tracks": [],
+            "created_at": current_time_iso,
+            "updated_at": current_time_iso,
+        }
+        self.playlists[new_playlist_id] = new_playlist
+        
+        user_data.setdefault("liked_playlists", []).append(new_playlist_id)
+
+        return {"status": "success", "playlist": copy.deepcopy(new_playlist)}
+
+    def delete_playlist(self, playlist_id: str) -> Dict[str, bool]:
+        """
+        Deletes a playlist owned by the current user.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        
+        if playlist_id in self.playlists and self.playlists[playlist_id]["user_id"] == user_data["id"]:
+            if playlist_id in user_data.get("liked_playlists", []):
+                user_data["liked_playlists"].remove(playlist_id)
+            del self.playlists[playlist_id]
+            return {"status": True, "message": f"Playlist {playlist_id} deleted."}
+        return {"status": False, "message": f"Playlist {playlist_id} not found or not owned by user."}
+
+    def add_song_to_playlist(self, playlist_id: str, song_id: str) -> Dict[str, bool]:
+        """
+        Adds a song to a specific playlist owned by the current user.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        
+        if playlist_id not in self.playlists:
+            return {"status": False, "message": f"Playlist {playlist_id} not found."}
+        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
+            return {"status": False, "message": "You do not own this playlist."}
+        if song_id not in self.songs:
+            return {"status": False, "message": f"Song {song_id} not found."}
 
-        Returns:
-            pause_status (bool): True if pause successful, False otherwise.
-        """
-        return {"pause_status": True}
+        playlist = self.playlists[playlist_id]
+        if song_id not in playlist["tracks"]:
+            playlist["tracks"].append(song_id)
+            playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+            return {"status": True, "message": f"Song {song_id} added to playlist {playlist_id}."}
+        return {"status": False, "message": f"Song {song_id} already in playlist {playlist_id}."}
 
-    def previous_song(self) -> Dict[str, bool]:
+    def remove_song_from_playlist(self, playlist_id: str, song_id: str) -> Dict[str, bool]:
         """
-        Play previous song in queue.
-
-        Returns:
-            previous_status (bool): True if successful, False otherwise.
+        Removes a song from a specific playlist owned by the current user.
         """
-        return {"previous_status": True}
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": False, "message": "User not authenticated."}
+        
+        if playlist_id not in self.playlists:
+            return {"status": False, "message": f"Playlist {playlist_id} not found."}
+        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
+            return {"status": False, "message": "You do not own this playlist."}
+        if song_id not in self.songs:
+            return {"status": False, "message": f"Song {song_id} not found."}
 
-    def next_song(self) -> Dict[str, bool]:
-        """
-        Play next song in queue.
+        playlist = self.playlists[playlist_id]
+        if song_id in playlist["tracks"]:
+            playlist["tracks"].remove(song_id)
+            playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+            return {"status": True, "message": f"Song {song_id} removed from playlist {playlist_id}."}
+        return {"status": False, "message": f"Song {song_id} not in playlist {playlist_id}."}
 
-        Returns:
-            next_status (bool): True if successful, False otherwise.
+    def update_playlist_details(
+        self,
+        playlist_id: str,
+        name: Optional[str] = None,
+        description: Optional[str] = None,
+        public: Optional[bool] = None,
+    ) -> Dict[str, Any]:
         """
-        return {"next_status": True}
-
-    def move_song_in_queue(self, current_position: int, new_position: int) -> Dict[str, bool]:
+        Updates details of a playlist owned by the current user.
         """
-        Move song in queue to new position.
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        if playlist_id not in self.playlists:
+            return {"status": "error", "message": f"Playlist {playlist_id} not found."}
+        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
+            return {"status": "error", "message": "You do not own this playlist."}
 
-        Args:
-            current_position (int): Current position in queue.
-            new_position (int): New position in queue.
+        playlist = self.playlists[playlist_id]
+        if name is not None:
+            playlist["name"] = name
+        if description is not None:
+            playlist["description"] = description
+        if public is not None:
+            playlist["public"] = public
+        
+        playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+        return {"status": "success", "playlist": copy.deepcopy(playlist)}
 
-        Returns:
-            move_status (bool): True if move successful, False otherwise.
+    def get_all_songs(self) -> Dict[str, Any]:
         """
-        return {"move_status": True}
-
-    def seek_song(self, seek_seconds: int) -> Dict[str, bool]:
+        Retrieves a list of all songs available on the platform.
         """
-        Seek to position in current song.
+        return {"status": "success", "songs": [copy.deepcopy(s) for s in self.songs.values()]}
 
-        Args:
-            seek_seconds (int): Number of seconds to seek.
-
-        Returns:
-            seek_status (bool): True if seek successful, False otherwise.
+    def get_song_details(self, song_id: str) -> Dict[str, Any]:
         """
-        return {"seek_status": True}
-
-    def loop_song(self, loop: bool) -> Dict[str, bool]:
+        Retrieves details for a specific song.
         """
-        Set loop mode for current song.
-
-        Args:
-            loop (bool): Whether to loop the song.
+        song = self.songs.get(song_id)
+        if song:
+            return {"status": "success", "song": copy.deepcopy(song)}
+        return {"status": "error", "message": f"Song {song_id} not found."}
 
-        Returns:
-            loop_status (bool): True if set successful, False otherwise.
+    def get_all_albums(self) -> Dict[str, Any]:
         """
-        return {"loop_status": True}
-
-    def shuffle_song_queue(self) -> Dict[str, bool]:
+        Retrieves a list of all albums available on the platform.
         """
-        Shuffle the song queue.
+        return {"status": "success", "albums": [copy.deepcopy(a) for a in self.albums.values()]}
 
-        Returns:
-            shuffle_status (bool): True if shuffle successful, False otherwise.
+    def get_album_details(self, album_id: str) -> Dict[str, Any]:
         """
-        return {"shuffle_status": True}
-
-    def show_song_queue(self) -> Dict[str, List[Dict[str, Any]]]:
+        Retrieves details for a specific album.
         """
-        Show current song queue.
+        album = self.albums.get(album_id)
+        if album:
+            return {"status": "success", "album": copy.deepcopy(album)}
+        return {"status": "error", "message": f"Album {album_id} not found."}
 
-        Returns:
-            queue (list): List of song dictionaries in queue.
+    def get_all_playlists(self) -> Dict[str, Any]:
         """
-        return {"queue": []}
-
-    def add_to_queue(self, song_id: int) -> Dict[str, bool]:
+        Retrieves a list of all public playlists available on the platform.
         """
-        Add a song to the queue.
+        public_playlists = [copy.deepcopy(p) for p in self.playlists.values() if p.get("public")]
+        return {"status": "success", "playlists": public_playlists}
 
-        Args:
-            song_id (int): ID of the song to add.
-
-        Returns:
-            add_status (bool): True if add successful, False otherwise.
+    def get_playlist_details(self, playlist_id: str) -> Dict[str, Any]:
         """
-        return {"add_status": True}
-
-    def remove_song_from_queue(self, position: int) -> Dict[str, bool]:
+        Retrieves details for a specific playlist.
         """
-        Remove a song from the queue.
+        playlist = self.playlists.get(playlist_id)
+        user_data = self._get_current_user_data()
 
-        Args:
-            position (int): Position in queue to remove.
+        if playlist:
+            if playlist.get("public") or (user_data and playlist.get("user_id") == user_data["id"]):
+                return {"status": "success", "playlist": copy.deepcopy(playlist)}
+            return {"status": "error", "message": "Access denied to private playlist."}
+        return {"status": "error", "message": f"Playlist {playlist_id} not found."}
 
-        Returns:
-            remove_status (bool): True if remove successful, False otherwise.
-        """
-        return {"remove_status": True}
 
-    def clear_song_queue(self) -> Dict[str, bool]:
+    def get_all_artists(self) -> Dict[str, Any]:
         """
-        Clear the song queue.
-
-        Returns:
-            clear_status (bool): True if clear successful, False otherwise.
+        Retrieves a list of all artists available on the platform.
         """
-        return {"clear_status": True}
+        return {"status": "success", "artists": [copy.deepcopy(a) for a in self.artists.values()]}
 
-    def show_volume(self) -> Dict[str, int]:
+    def get_artist_details(self, artist_id: str) -> Dict[str, Any]:
         """
-        Show current volume level.
-
-        Returns:
-            volume (int): Current volume level (0-100).
+        Retrieves details for a specific artist.
         """
-        return {"volume": 50}
+        artist = self.artists.get(artist_id)
+        if artist:
+            return {"status": "success", "artist": copy.deepcopy(artist)}
+        return {"status": "error", "message": f"Artist {artist_id} not found."}
 
-    def set_volume(self, volume: int) -> Dict[str, bool]:
+    def search_content(self, query: str, content_type: Literal["song", "album", "playlist", "artist", "all"] = "all") -> Dict[str, Any]:
         """
-        Set volume level.
-
-        Args:
-            volume (int): Volume level to set (0-100).
-
-        Returns:
-            set_status (bool): True if set successful, False otherwise.
+        Searches for content (songs, albums, playlists, artists) by a given query.
         """
-        return {"set_status": True}
+        results = {}
 
-    def show_recommendations(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show song recommendations.
+        if content_type in ["song", "all"]:
+            matched_songs = [copy.deepcopy(s) for s in self.songs.values() if query.lower() in s["title"].lower()]
+            results["songs"] = matched_songs
+        
+        if content_type in ["album", "all"]:
+            matched_albums = [copy.deepcopy(a) for a in self.albums.values() if query.lower() in a["title"].lower()]
+            results["albums"] = matched_albums
 
-        Returns:
-            recommendations (list): List of recommended song dictionaries.
-        """
-        return {"recommendations": []}
+        if content_type in ["playlist", "all"]:
+            user_data = self._get_current_user_data()
+            matched_playlists = []
+            for p in self.playlists.values():
+                if query.lower() in p["name"].lower():
+                    if p.get("public") or (user_data and p.get("user_id") == user_data["id"]):
+                        matched_playlists.append(copy.deepcopy(p))
+            results["playlists"] = matched_playlists
 
-    def show_premium_plans(self) -> Dict[str, Any]:
-        """
-        Show available premium plans.
+        if content_type in ["artist", "all"]:
+            matched_artists = [copy.deepcopy(ar) for ar in self.artists.values() if query.lower() in ar["name"].lower()]
+            results["artists"] = matched_artists
 
-        Returns:
-            plans (dict): Dictionary containing premium plan options.
-        """
-        return {"plans": {}}
+        return {"status": "success", "results": results}
 
-    def subscribe_premium(self, payment_card_id: int, duration: str) -> Dict[str, bool]:
+    def play_content(self, content_type: Literal["song", "album", "playlist"], content_id: str) -> Dict[str, Any]:
         """
-        Subscribe to premium service.
-
-        Args:
-            payment_card_id (int): ID of payment card to use.
-            duration (str): Duration of subscription ('monthly' or 'yearly').
-
-        Returns:
-            subscribe_status (bool): True if subscription successful, False otherwise.
+        Simulates playing a song, album, or playlist.
         """
-        return {"subscribe_status": True}
+        content = None
+        if content_type == "song":
+            content = self.songs.get(content_id)
+        elif content_type == "album":
+            content = self.albums.get(content_id)
+        elif content_type == "playlist":
+            content = self.playlists.get(content_id)
+            user_data = self._get_current_user_data()
+            if content and not content.get("public") and (not user_data or content.get("user_id") != user_data["id"]):
+                return {"status": "error", "message": "Access denied to private playlist."}
 
-    def show_premium_subscriptions(self) -> Dict[str, List[Dict[str, Any]]]:
-        """
-        Show user's premium subscriptions.
+        if content:
+            return {"status": "success", "message": f"Now playing {content_type}: {content.get('title') or content.get('name')} (ID: {content_id})."}
+        return {"status": "error", "message": f"{content_type.capitalize()} with ID {content_id} not found."}
 
-        Returns:
-            subscriptions (list): List of subscription dictionaries.
-        """
-        return {"subscriptions": []}
 
-    def download_premium_subscription_receipt(self, premium_subscription_id: int) -> Dict[str, bool]:
+    def reset_data(self) -> Dict[str, bool]:
         """
-        Download premium subscription receipt.
-
-        Args:
-            premium_subscription_id (int): ID of the subscription.
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
 
         Returns:
-            download_status (bool): True if download successful, False otherwise.
+            Dict: A dictionary indicating the success of the reset operation.
         """
-        return {"download_status": True}
+        global DEFAULT_STATE
+        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
+        self._load_scenario(DEFAULT_STATE)
+        print("SpotifyApis: All dummy data reset to default state.")
+        return {"reset_status": True}

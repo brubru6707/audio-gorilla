@@ -1,0 +1,4271 @@
+{
+  "users": {
+    "5dd86039-99f2-4aaa-9a5a-99a453adc80c": {
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "email": "alice.smith@gmail.com",
+      "balance": 125.75,
+      "friends": [
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "d75bfb66-f751-4ac6-9065-91876bbd1e00": {
+          "name": "Work Address",
+          "street_address": "799 Elm Street",
+          "city": "Centerville",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 45720
+        },
+        "b5348ca9-3d22-4c85-b12a-29411cff3391": {
+          "name": "Home Address",
+          "street_address": "741 Oak Road",
+          "city": "Springfield",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 78757
+        }
+      },
+      "cart": {},
+      "wish_list": {},
+      "orders": {
+        "243f7b3f-79bf-4956-8070-87be95f0b8b4": {
+          "order_date": "2023-07-11",
+          "total_amount": 119.43,
+          "products": {
+            "7": 2,
+            "9": 2
+          },
+          "delivery_address_id": "b5348ca9-3d22-4c85-b12a-29411cff3391",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK582691639"
+        },
+        "3a680fcb-4767-44af-8b2d-5ee5713dd50c": {
+          "order_date": "2023-11-27",
+          "total_amount": 1385.98,
+          "products": {
+            "14": 1,
+            "10": 1
+          },
+          "delivery_address_id": "d75bfb66-f751-4ac6-9065-91876bbd1e00",
+          "payment_card_id": null,
+          "status": "pending",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK812017668"
+        },
+        "53ce0a06-1ea7-4bcc-9337-92b74be0b0f6": {
+          "order_date": "2023-03-31",
+          "total_amount": 747.34,
+          "products": {
+            "10": 1
+          },
+          "delivery_address_id": "b5348ca9-3d22-4c85-b12a-29411cff3391",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {
+        "2bb0b1c3-c814-40ba-9411-a3325f17249b": {
+          "start_date": "2023-10-10",
+          "end_date": "2025-10-09",
+          "plan_type": "yearly",
+          "status": "expired"
+        }
+      },
+      "returns": {
+        "6173524a-9aa0-4baf-8f3c-36ed42bd42a9": {
+          "order_id": "3a680fcb-4767-44af-8b2d-5ee5713dd50c",
+          "product_id": 10,
+          "return_date": "2024-04-22",
+          "reason": "wrong size",
+          "status": "pending"
+        }
+      }
+    },
+    "cc1e1d29-2028-481f-a8d6-f37a0d38583d": {
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "email": "bob.johnson@gmail.com",
+      "balance": 50.25,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c"
+      ],
+      "payment_cards": {
+        "91894351-5692-4fd9-8bcb-57b0f51d5f47": {
+          "card_name": "Bob's Discover",
+          "owner_name": "Bob Johnson",
+          "card_number_last4": "4853",
+          "expiry_year": 2028,
+          "expiry_month": 8
+        },
+        "1b4a6da5-af7d-4d76-85bd-0f6290580010": {
+          "card_name": "Bob's Discover",
+          "owner_name": "Bob Johnson",
+          "card_number_last4": "9604",
+          "expiry_year": 2031,
+          "expiry_month": 10
+        }
+      },
+      "addresses": {
+        "8501f274-7d0b-4c4a-996a-e1724061d48c": {
+          "name": "Work Address",
+          "street_address": "430 Pine Road",
+          "city": "Riverside",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 37768
+        }
+      },
+      "cart": {
+        "12": 3
+      },
+      "wish_list": {},
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "01f052f0-bc55-4ccb-8003-8400f300ed20": {
+      "first_name": "Abigail",
+      "last_name": "Lopez",
+      "email": "abigail.lopez@gmail.com",
+      "balance": 872.3,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d"
+      ],
+      "payment_cards": {
+        "7190b1c4-439b-4768-987e-9acf51d953c6": {
+          "card_name": "Abigail's Mastercard",
+          "owner_name": "Abigail Lopez",
+          "card_number_last4": "1731",
+          "expiry_year": 2030,
+          "expiry_month": 6
+        },
+        "cfcec455-108d-48bd-a72c-cd6362d9cce5": {
+          "card_name": "Abigail's Discover",
+          "owner_name": "Abigail Lopez",
+          "card_number_last4": "0666",
+          "expiry_year": 2030,
+          "expiry_month": 5
+        }
+      },
+      "addresses": {
+        "099e45a6-910f-4004-aadc-6d53b67ceb41": {
+          "name": "Home Address",
+          "street_address": "221 Main Avenue",
+          "city": "Fairview",
+          "state": "FL",
+          "country": "USA",
+          "zip_code": 58571
+        }
+      },
+      "cart": {
+        "3": 3
+      },
+      "wish_list": {
+        "3": {
+          "added_date": "2024-08-02"
+        },
+        "7": {
+          "added_date": "2023-06-04"
+        }
+      },
+      "orders": {
+        "debf492d-5efb-428c-8053-c0eeccf1dd21": {
+          "order_date": "2023-12-18",
+          "total_amount": 540.31,
+          "products": {
+            "1": 1
+          },
+          "delivery_address_id": "099e45a6-910f-4004-aadc-6d53b67ceb41",
+          "payment_card_id": "7190b1c4-439b-4768-987e-9acf51d953c6",
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK500538847"
+        },
+        "256aabed-08ee-40dd-b865-53c8e748eafe": {
+          "order_date": "2024-07-21",
+          "total_amount": 1475.67,
+          "products": {
+            "9": 2,
+            "1": 2,
+            "8": 1
+          },
+          "delivery_address_id": "099e45a6-910f-4004-aadc-6d53b67ceb41",
+          "payment_card_id": "cfcec455-108d-48bd-a72c-cd6362d9cce5",
+          "status": "delivered",
+          "promo_code_applied": null,
+          "tracking_number": "TRK772617607"
+        },
+        "e9596d27-1517-4218-84a2-12f7216616d6": {
+          "order_date": "2024-12-13",
+          "total_amount": 222.47,
+          "products": {
+            "15": 2
+          },
+          "delivery_address_id": "099e45a6-910f-4004-aadc-6d53b67ceb41",
+          "payment_card_id": "7190b1c4-439b-4768-987e-9acf51d953c6",
+          "status": "pending",
+          "promo_code_applied": null,
+          "tracking_number": "TRK421141902"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd": {
+      "first_name": "Ella",
+      "last_name": "Robinson",
+      "email": "ella.robinson@yahoo.com",
+      "balance": 600.21,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "31737d34-ff27-4cae-a83b-2406e6bfaad0": {
+          "name": "Work Address",
+          "street_address": "651 Main Avenue",
+          "city": "Centerville",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 23881
+        },
+        "fbe42dba-a22a-4dc3-83d7-a0a0487ec721": {
+          "name": "Home Address",
+          "street_address": "497 Elm Avenue",
+          "city": "Centerville",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 83614
+        }
+      },
+      "cart": {
+        "7": 2,
+        "4": 3
+      },
+      "wish_list": {
+        "8": {
+          "added_date": "2023-02-13"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "e3b43d6b-5eb1-45c1-be91-09b067c68008": {
+      "first_name": "Alexander",
+      "last_name": "Sanchez",
+      "email": "alexander.sanchez@darkhorse.net",
+      "balance": 933.66,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd"
+      ],
+      "payment_cards": {
+        "4a332665-009a-4f67-936c-1c78ac2ff404": {
+          "card_name": "Alexander's Visa",
+          "owner_name": "Alexander Sanchez",
+          "card_number_last4": "2081",
+          "expiry_year": 2031,
+          "expiry_month": 6
+        }
+      },
+      "addresses": {
+        "1257ad9e-9272-4b11-8732-a0765f6815a0": {
+          "name": "Home Address",
+          "street_address": "922 Oak Road",
+          "city": "Riverside",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 75046
+        },
+        "84f87d84-f536-46a3-81d1-8ccdc9f9895b": {
+          "name": "Home Address",
+          "street_address": "740 Oak Lane",
+          "city": "Lakewood",
+          "state": "FL",
+          "country": "USA",
+          "zip_code": 70238
+        }
+      },
+      "cart": {
+        "4": 3
+      },
+      "wish_list": {
+        "9": {
+          "added_date": "2023-07-03"
+        },
+        "10": {
+          "added_date": "2023-01-21"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {
+        "b341552a-5c0d-4226-b29b-880fe478e0f4": {
+          "start_date": "2022-03-20",
+          "end_date": "2025-03-19",
+          "plan_type": "yearly",
+          "status": "expired"
+        }
+      },
+      "returns": {}
+    },
+    "e0c9568f-b849-4a24-90ee-b3e5c2240578": {
+      "first_name": "Amelia",
+      "last_name": "Davis",
+      "email": "amelia.davis@gmail.com",
+      "balance": 918.45,
+      "friends": [
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "e3b43d6b-5eb1-45c1-be91-09b067c68008"
+      ],
+      "payment_cards": {
+        "961c0122-469d-41ff-85f5-c4666b15595f": {
+          "card_name": "Amelia's Discover",
+          "owner_name": "Amelia Davis",
+          "card_number_last4": "9929",
+          "expiry_year": 2027,
+          "expiry_month": 4
+        },
+        "69ef189b-5c40-4e27-90ef-5a31257ac713": {
+          "card_name": "Amelia's Mastercard",
+          "owner_name": "Amelia Davis",
+          "card_number_last4": "7730",
+          "expiry_year": 2030,
+          "expiry_month": 1
+        }
+      },
+      "addresses": {
+        "b651dd9a-53fc-4d3e-9322-a30e2e9cc39b": {
+          "name": "Work Address",
+          "street_address": "317 Elm Lane",
+          "city": "Centerville",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 59047
+        },
+        "c883c62a-3c05-4ef3-8c14-4b387263e8b1": {
+          "name": "Work Address",
+          "street_address": "524 Elm Lane",
+          "city": "Riverside",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 15165
+        }
+      },
+      "cart": {
+        "3": 1,
+        "11": 3,
+        "13": 1
+      },
+      "wish_list": {
+        "10": {
+          "added_date": "2023-10-24"
+        },
+        "11": {
+          "added_date": "2024-03-08"
+        }
+      },
+      "orders": {
+        "67f38d3b-ba18-495d-98f0-4abe2404ff1a": {
+          "order_date": "2023-07-04",
+          "total_amount": 1358.32,
+          "products": {
+            "5": 1
+          },
+          "delivery_address_id": "b651dd9a-53fc-4d3e-9322-a30e2e9cc39b",
+          "payment_card_id": "69ef189b-5c40-4e27-90ef-5a31257ac713",
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK549506211"
+        },
+        "0dfb2f59-e1c0-4d2d-8d6a-a1556d8cf4d7": {
+          "order_date": "2025-02-10",
+          "total_amount": 49.1,
+          "products": {
+            "14": 2,
+            "5": 1
+          },
+          "delivery_address_id": "c883c62a-3c05-4ef3-8c14-4b387263e8b1",
+          "payment_card_id": "69ef189b-5c40-4e27-90ef-5a31257ac713",
+          "status": "delivered",
+          "promo_code_applied": null,
+          "tracking_number": "TRK401755635"
+        },
+        "57e54ca2-3366-4cb3-a5b2-204e2633f467": {
+          "order_date": "2024-10-28",
+          "total_amount": 84.58,
+          "products": {
+            "7": 1,
+            "1": 1,
+            "12": 2
+          },
+          "delivery_address_id": "b651dd9a-53fc-4d3e-9322-a30e2e9cc39b",
+          "payment_card_id": "69ef189b-5c40-4e27-90ef-5a31257ac713",
+          "status": "delivered",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK476453638"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "5fe2d8d4-48ef-4e90-9913-64a8b9760fe2": {
+          "order_id": "57e54ca2-3366-4cb3-a5b2-204e2633f467",
+          "product_id": 1,
+          "return_date": "2024-03-04",
+          "reason": "item damaged",
+          "status": "rejected"
+        }
+      }
+    },
+    "7c498099-93c8-44c8-8504-85f1b89e0681": {
+      "first_name": "Emma",
+      "last_name": "Moore",
+      "email": "emma.moore@gmail.com",
+      "balance": 2088.43,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "01f052f0-bc55-4ccb-8003-8400f300ed20"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "70afe64f-9a15-4c7c-acf0-a9b5c05455aa": {
+          "name": "Home Address",
+          "street_address": "982 Pine Road",
+          "city": "Springfield",
+          "state": "FL",
+          "country": "USA",
+          "zip_code": 23825
+        }
+      },
+      "cart": {
+        "7": 3,
+        "11": 1
+      },
+      "wish_list": {
+        "7": {
+          "added_date": "2024-01-27"
+        },
+        "6": {
+          "added_date": "2024-12-14"
+        }
+      },
+      "orders": {
+        "1fdf558a-d859-4eb0-b646-a7b64148c475": {
+          "order_date": "2023-10-05",
+          "total_amount": 1109.33,
+          "products": {
+            "15": 2
+          },
+          "delivery_address_id": "70afe64f-9a15-4c7c-acf0-a9b5c05455aa",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK003915843"
+        },
+        "ac17a8ea-a039-4c42-b4b5-b220f7eb78e1": {
+          "order_date": "2024-12-29",
+          "total_amount": 156.51,
+          "products": {
+            "5": 2
+          },
+          "delivery_address_id": "70afe64f-9a15-4c7c-acf0-a9b5c05455aa",
+          "payment_card_id": null,
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK258038548"
+        },
+        "77632958-7434-4291-aedf-0e100fbbff7c": {
+          "order_date": "2023-01-31",
+          "total_amount": 235.71,
+          "products": {
+            "4": 2,
+            "12": 2
+          },
+          "delivery_address_id": "70afe64f-9a15-4c7c-acf0-a9b5c05455aa",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK689972463"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "79921ae2-e918-4be1-8374-6862a978208e": {
+      "first_name": "Sophia",
+      "last_name": "Jackson",
+      "email": "sophia.jackson@zscaler.org",
+      "balance": 2322.36,
+      "friends": [
+        "7c498099-93c8-44c8-8504-85f1b89e0681",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "e0c9568f-b849-4a24-90ee-b3e5c2240578"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "545fd877-08f8-4c77-8669-e2d22d2b07b6": {
+          "name": "Home Address",
+          "street_address": "180 Pine Lane",
+          "city": "Lakewood",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 37189
+        }
+      },
+      "cart": {
+        "15": 3,
+        "14": 3
+      },
+      "wish_list": {
+        "10": {
+          "added_date": "2024-04-27"
+        },
+        "5": {
+          "added_date": "2024-11-02"
+        }
+      },
+      "orders": {
+        "06de289f-eb09-46a8-9c71-ce58d2f58192": {
+          "order_date": "2023-01-11",
+          "total_amount": 510.61,
+          "products": {
+            "9": 1
+          },
+          "delivery_address_id": "545fd877-08f8-4c77-8669-e2d22d2b07b6",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK535560571"
+        },
+        "8735bae4-8700-40c5-bd39-9087946fe62c": {
+          "order_date": "2025-09-22",
+          "total_amount": 1104.17,
+          "products": {
+            "6": 2,
+            "2": 1,
+            "3": 1
+          },
+          "delivery_address_id": "545fd877-08f8-4c77-8669-e2d22d2b07b6",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK404728630"
+        },
+        "77546457-fba9-4949-af60-31c118a67874": {
+          "order_date": "2025-08-01",
+          "total_amount": 1333.09,
+          "products": {
+            "2": 1,
+            "1": 2,
+            "9": 2
+          },
+          "delivery_address_id": "545fd877-08f8-4c77-8669-e2d22d2b07b6",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK949117328"
+        }
+      },
+      "prime_subscriptions": {
+        "434a910a-cf03-4e2e-9c1b-b0b4b6be82a6": {
+          "start_date": "2024-01-07",
+          "end_date": "2025-01-06",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {}
+    },
+    "60d1c4c4-88ae-4dbf-8a1e-dae32fb91a68": {
+      "first_name": "Aria",
+      "last_name": "Allen",
+      "email": "aria.allen@darkhorse.net",
+      "balance": 774.5,
+      "friends": [
+        "e0c9568f-b849-4a24-90ee-b3e5c2240578",
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "7449b869-1306-49e9-8a28-30e965fa6d2a": {
+          "name": "Home Address",
+          "street_address": "690 Pine Street",
+          "city": "Fairview",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 32252
+        }
+      },
+      "cart": {
+        "13": 1,
+        "10": 3,
+        "6": 1
+      },
+      "wish_list": {
+        "7": {
+          "added_date": "2023-05-25"
+        }
+      },
+      "orders": {
+        "e06ae2f7-45ab-44b7-9daf-6e5f24c7ba61": {
+          "order_date": "2025-10-08",
+          "total_amount": 1207.53,
+          "products": {
+            "15": 2,
+            "6": 2
+          },
+          "delivery_address_id": "7449b869-1306-49e9-8a28-30e965fa6d2a",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        },
+        "2123f0f5-5306-4dbd-8850-990feadb42ce": {
+          "order_date": "2025-02-23",
+          "total_amount": 1475.05,
+          "products": {
+            "12": 2,
+            "15": 1
+          },
+          "delivery_address_id": "7449b869-1306-49e9-8a28-30e965fa6d2a",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": null
+        },
+        "d235e0e0-06bc-42b6-9c25-eb20436a3d0c": {
+          "order_date": "2025-10-12",
+          "total_amount": 1242.13,
+          "products": {
+            "2": 1,
+            "9": 2,
+            "8": 2
+          },
+          "delivery_address_id": "7449b869-1306-49e9-8a28-30e965fa6d2a",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "986dcefc-dcb1-4a30-8362-e1735baa3c4d": {
+          "order_id": "2123f0f5-5306-4dbd-8850-990feadb42ce",
+          "product_id": 15,
+          "return_date": "2023-05-02",
+          "reason": "not as described",
+          "status": "rejected"
+        }
+      }
+    },
+    "6ea4bae9-e42e-4ab9-930f-79ffd9cd4b12": {
+      "first_name": "Mia",
+      "last_name": "Wilson",
+      "email": "mia.wilson@gmail.com",
+      "balance": 1794.75,
+      "friends": [],
+      "payment_cards": {
+        "81eab6f1-9ffb-4c3b-9a80-39073c45ea45": {
+          "card_name": "Mia's Visa",
+          "owner_name": "Mia Wilson",
+          "card_number_last4": "9983",
+          "expiry_year": 2029,
+          "expiry_month": 4
+        }
+      },
+      "addresses": {
+        "0df0a6c3-a3c2-4177-94b5-dfc922c74f4f": {
+          "name": "Work Address",
+          "street_address": "738 Pine Avenue",
+          "city": "Springfield",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 86132
+        }
+      },
+      "cart": {},
+      "wish_list": {
+        "2": {
+          "added_date": "2024-12-02"
+        },
+        "10": {
+          "added_date": "2024-03-26"
+        }
+      },
+      "orders": {
+        "07c2fb6e-94f7-4e54-bd29-447b3d029c40": {
+          "order_date": "2023-01-11",
+          "total_amount": 193.19,
+          "products": {
+            "4": 2
+          },
+          "delivery_address_id": "0df0a6c3-a3c2-4177-94b5-dfc922c74f4f",
+          "payment_card_id": "81eab6f1-9ffb-4c3b-9a80-39073c45ea45",
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "ace24e90-35f7-4b68-a44e-ea30de6b2d48": {
+          "order_id": "07c2fb6e-94f7-4e54-bd29-447b3d029c40",
+          "product_id": 4,
+          "return_date": "2024-04-21",
+          "reason": "changed mind",
+          "status": "pending"
+        }
+      }
+    },
+    "8beecd47-f6fb-424d-a62a-bb92685245ec": {
+      "first_name": "Harper",
+      "last_name": "Rodriguez",
+      "email": "harper.rodriguez@darkhorse.net",
+      "balance": 758.92,
+      "friends": [],
+      "payment_cards": {
+        "d5d92cfe-7d53-4909-a115-d36aa041afaa": {
+          "card_name": "Harper's Mastercard",
+          "owner_name": "Harper Rodriguez",
+          "card_number_last4": "2157",
+          "expiry_year": 2031,
+          "expiry_month": 9
+        },
+        "4202f297-4e09-499e-af60-318624555379": {
+          "card_name": "Harper's Discover",
+          "owner_name": "Harper Rodriguez",
+          "card_number_last4": "9788",
+          "expiry_year": 2027,
+          "expiry_month": 4
+        }
+      },
+      "addresses": {
+        "d6e89e05-c899-4822-98f2-a392bbd63302": {
+          "name": "Work Address",
+          "street_address": "100 Elm Avenue",
+          "city": "Fairview",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 25696
+        },
+        "08d6cec4-d471-4616-a5c7-6fd4c0913e0c": {
+          "name": "Work Address",
+          "street_address": "402 Main Lane",
+          "city": "Lakewood",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 44356
+        }
+      },
+      "cart": {},
+      "wish_list": {
+        "12": {
+          "added_date": "2024-02-06"
+        }
+      },
+      "orders": {
+        "cdfdd6a7-8a4e-49a7-b8c4-38994ad6fca2": {
+          "order_date": "2024-05-15",
+          "total_amount": 553.16,
+          "products": {
+            "6": 2
+          },
+          "delivery_address_id": "d6e89e05-c899-4822-98f2-a392bbd63302",
+          "payment_card_id": "d5d92cfe-7d53-4909-a115-d36aa041afaa",
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK414665349"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "e35e35cc-0c4c-47ba-838b-de086c80731b": {
+          "order_id": "cdfdd6a7-8a4e-49a7-b8c4-38994ad6fca2",
+          "product_id": 6,
+          "return_date": "2025-05-04",
+          "reason": "item damaged",
+          "status": "processed"
+        }
+      }
+    },
+    "2c8b5152-2104-4bcf-ae77-962a643c8675": {
+      "first_name": "Liam",
+      "last_name": "Garcia",
+      "email": "liam.garcia@yahoo.com",
+      "balance": 1870.76,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "e0c9568f-b849-4a24-90ee-b3e5c2240578",
+        "8beecd47-f6fb-424d-a62a-bb92685245ec"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "3fd7ce93-685c-4f81-a0e6-ade2bd827a7a": {
+          "name": "Home Address",
+          "street_address": "797 Oak Lane",
+          "city": "Lakewood",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 92555
+        },
+        "bd22260e-3a42-454e-83df-48551d6ecc37": {
+          "name": "Work Address",
+          "street_address": "934 Main Lane",
+          "city": "Riverside",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 82799
+        }
+      },
+      "cart": {
+        "6": 2,
+        "10": 1
+      },
+      "wish_list": {
+        "12": {
+          "added_date": "2023-12-13"
+        },
+        "10": {
+          "added_date": "2023-11-16"
+        }
+      },
+      "orders": {
+        "04b3cdb2-c0bb-491e-be60-f810ecc6f9e7": {
+          "order_date": "2025-05-25",
+          "total_amount": 71.67,
+          "products": {
+            "6": 1,
+            "2": 2,
+            "3": 1
+          },
+          "delivery_address_id": "bd22260e-3a42-454e-83df-48551d6ecc37",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": null,
+          "tracking_number": null
+        },
+        "ae3f3c05-9c87-44ca-a0ef-482265093085": {
+          "order_date": "2023-12-04",
+          "total_amount": 1408.13,
+          "products": {
+            "4": 1
+          },
+          "delivery_address_id": "bd22260e-3a42-454e-83df-48551d6ecc37",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK383522094"
+        },
+        "7d5c46e1-f568-4698-8f78-66f0a72490f7": {
+          "order_date": "2024-12-22",
+          "total_amount": 1234.52,
+          "products": {
+            "5": 2
+          },
+          "delivery_address_id": "bd22260e-3a42-454e-83df-48551d6ecc37",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK575229746"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "d49afbe4-22aa-482a-bc94-3c07467c8c83": {
+      "first_name": "Jackson",
+      "last_name": "Robinson",
+      "email": "jackson.robinson@zscaler.org",
+      "balance": 795.51,
+      "friends": [
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "8beecd47-f6fb-424d-a62a-bb92685245ec",
+        "7c498099-93c8-44c8-8504-85f1b89e0681",
+        "79921ae2-e918-4be1-8374-6862a978208e"
+      ],
+      "payment_cards": {
+        "63a7ab09-09ef-470a-9984-3cdfe8fd9cb9": {
+          "card_name": "Jackson's Discover",
+          "owner_name": "Jackson Robinson",
+          "card_number_last4": "6012",
+          "expiry_year": 2030,
+          "expiry_month": 11
+        }
+      },
+      "addresses": {
+        "8b20f56c-993d-4a79-aa60-433ace56a66d": {
+          "name": "Work Address",
+          "street_address": "829 Elm Avenue",
+          "city": "Centerville",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 52655
+        }
+      },
+      "cart": {
+        "3": 2,
+        "9": 3,
+        "1": 1
+      },
+      "wish_list": {},
+      "orders": {
+        "0daf5f0b-9b1e-44b1-9e91-f95d870abc97": {
+          "order_date": "2025-10-21",
+          "total_amount": 655.4,
+          "products": {
+            "11": 1,
+            "14": 1,
+            "10": 2
+          },
+          "delivery_address_id": "8b20f56c-993d-4a79-aa60-433ace56a66d",
+          "payment_card_id": "63a7ab09-09ef-470a-9984-3cdfe8fd9cb9",
+          "status": "pending",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK435496465"
+        },
+        "233a17c1-0ea6-4a7b-827b-756f76a3969f": {
+          "order_date": "2023-06-16",
+          "total_amount": 844.1,
+          "products": {
+            "15": 1,
+            "14": 2,
+            "10": 1
+          },
+          "delivery_address_id": "8b20f56c-993d-4a79-aa60-433ace56a66d",
+          "payment_card_id": "63a7ab09-09ef-470a-9984-3cdfe8fd9cb9",
+          "status": "cancelled",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {
+        "f19e527f-f256-430c-99c8-b25072147d31": {
+          "start_date": "2024-05-05",
+          "end_date": "2027-05-05",
+          "plan_type": "monthly",
+          "status": "active"
+        }
+      },
+      "returns": {
+        "db140af0-9130-4eff-9a8e-aedff3e1322c": {
+          "order_id": "0daf5f0b-9b1e-44b1-9e91-f95d870abc97",
+          "product_id": 14,
+          "return_date": "2025-03-28",
+          "reason": "wrong size",
+          "status": "rejected"
+        }
+      }
+    },
+    "45d9d866-a872-4908-a789-4c3e864232da": {
+      "first_name": "Evelyn",
+      "last_name": "Allen",
+      "email": "evelyn.allen@yahoo.com",
+      "balance": 363.94,
+      "friends": [
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "6177d6bd-c258-449d-935d-696634209361": {
+          "name": "Home Address",
+          "street_address": "315 Pine Avenue",
+          "city": "Springfield",
+          "state": "FL",
+          "country": "USA",
+          "zip_code": 99305
+        },
+        "36523da8-39e0-4527-8f9f-97b1a6fc2f0e": {
+          "name": "Home Address",
+          "street_address": "136 Pine Avenue",
+          "city": "Fairview",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 21961
+        }
+      },
+      "cart": {
+        "8": 3,
+        "4": 2,
+        "13": 3
+      },
+      "wish_list": {
+        "1": {
+          "added_date": "2024-02-29"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "1b262b9b-d159-4fee-ad87-0e9648193378": {
+      "first_name": "Isabella",
+      "last_name": "Anderson",
+      "email": "isabella.anderson@zscaler.org",
+      "balance": 1772.1,
+      "friends": [
+        "e0c9568f-b849-4a24-90ee-b3e5c2240578",
+        "7c498099-93c8-44c8-8504-85f1b89e0681",
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "d49afbe4-22aa-482a-bc94-3c07467c8c83"
+      ],
+      "payment_cards": {
+        "7ec81bb9-b1a6-47b3-8d37-a4f0eed7811d": {
+          "card_name": "Isabella's Discover",
+          "owner_name": "Isabella Anderson",
+          "card_number_last4": "8514",
+          "expiry_year": 2030,
+          "expiry_month": 7
+        }
+      },
+      "addresses": {
+        "668ebf78-3638-4ba9-98c7-5f4b599cecaf": {
+          "name": "Home Address",
+          "street_address": "907 Maple Street",
+          "city": "Springfield",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 35857
+        },
+        "cf70e469-8cc7-4635-a24f-6867e9a34a8c": {
+          "name": "Home Address",
+          "street_address": "112 Pine Street",
+          "city": "Lakewood",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 49767
+        }
+      },
+      "cart": {},
+      "wish_list": {
+        "5": {
+          "added_date": "2024-01-26"
+        }
+      },
+      "orders": {
+        "f67c514b-a9cd-4633-89f9-f055633d0a05": {
+          "order_date": "2023-04-25",
+          "total_amount": 1253.31,
+          "products": {
+            "2": 2,
+            "14": 2,
+            "3": 2
+          },
+          "delivery_address_id": "cf70e469-8cc7-4635-a24f-6867e9a34a8c",
+          "payment_card_id": "7ec81bb9-b1a6-47b3-8d37-a4f0eed7811d",
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK691464048"
+        },
+        "d6bc12f6-b095-4b28-a377-d4c63a67a066": {
+          "order_date": "2024-03-09",
+          "total_amount": 1072.2,
+          "products": {
+            "9": 2
+          },
+          "delivery_address_id": "668ebf78-3638-4ba9-98c7-5f4b599cecaf",
+          "payment_card_id": "7ec81bb9-b1a6-47b3-8d37-a4f0eed7811d",
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK089290499"
+        },
+        "7fb50fe0-daee-4b50-bbac-a3444281c077": {
+          "order_date": "2024-12-22",
+          "total_amount": 566.58,
+          "products": {
+            "15": 1
+          },
+          "delivery_address_id": "cf70e469-8cc7-4635-a24f-6867e9a34a8c",
+          "payment_card_id": "7ec81bb9-b1a6-47b3-8d37-a4f0eed7811d",
+          "status": "pending",
+          "promo_code_applied": null,
+          "tracking_number": "TRK242320290"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "1819e786-26f0-43d6-aecf-ee4641741d65": {
+      "first_name": "Alexander",
+      "last_name": "Perez",
+      "email": "alexander.perez@gmail.com",
+      "balance": 1090.84,
+      "friends": [
+        "79921ae2-e918-4be1-8374-6862a978208e",
+        "01f052f0-bc55-4ccb-8003-8400f300ed20",
+        "e3b43d6b-5eb1-45c1-be91-09b067c68008"
+      ],
+      "payment_cards": {
+        "636395a9-e892-4554-ab72-4de2ec9859d4": {
+          "card_name": "Alexander's Mastercard",
+          "owner_name": "Alexander Perez",
+          "card_number_last4": "1424",
+          "expiry_year": 2029,
+          "expiry_month": 1
+        },
+        "bf15ee14-9cd2-4fff-8898-83c256f385bf": {
+          "card_name": "Alexander's Mastercard",
+          "owner_name": "Alexander Perez",
+          "card_number_last4": "7568",
+          "expiry_year": 2028,
+          "expiry_month": 3
+        }
+      },
+      "addresses": {
+        "38e04e67-7f31-4a32-8617-e0d38086affe": {
+          "name": "Home Address",
+          "street_address": "557 Oak Avenue",
+          "city": "Springfield",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 18582
+        },
+        "1f3a3161-55dd-4c69-8981-92f30815dc50": {
+          "name": "Home Address",
+          "street_address": "344 Elm Lane",
+          "city": "Lakewood",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 28081
+        }
+      },
+      "cart": {
+        "10": 1,
+        "14": 1
+      },
+      "wish_list": {},
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "91cc6a5c-d4c7-4aed-a57f-e6720633b4d8": {
+      "first_name": "Scarlett",
+      "last_name": "Lewis",
+      "email": "scarlett.lewis@darkhorse.net",
+      "balance": 2294.83,
+      "friends": [
+        "45d9d866-a872-4908-a789-4c3e864232da",
+        "8beecd47-f6fb-424d-a62a-bb92685245ec"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "40fc1a40-c72b-46ca-ad39-e2020873c7fe": {
+          "name": "Home Address",
+          "street_address": "545 Pine Street",
+          "city": "Riverside",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 55062
+        },
+        "b5f561dd-dc56-47d4-b32d-e179c3c05b7d": {
+          "name": "Home Address",
+          "street_address": "432 Elm Street",
+          "city": "Lakewood",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 24468
+        }
+      },
+      "cart": {
+        "13": 2,
+        "5": 2
+      },
+      "wish_list": {
+        "1": {
+          "added_date": "2023-11-15"
+        },
+        "8": {
+          "added_date": "2024-06-24"
+        }
+      },
+      "orders": {
+        "2c1feef3-352a-47c0-8226-e98752cb1604": {
+          "order_date": "2025-06-07",
+          "total_amount": 1185.83,
+          "products": {
+            "3": 2,
+            "13": 1
+          },
+          "delivery_address_id": "40fc1a40-c72b-46ca-ad39-e2020873c7fe",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK646845009"
+        },
+        "05d1ac9f-a011-4462-b393-7f66b357bd22": {
+          "order_date": "2023-08-09",
+          "total_amount": 934.21,
+          "products": {
+            "10": 1
+          },
+          "delivery_address_id": "b5f561dd-dc56-47d4-b32d-e179c3c05b7d",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK635373673"
+        },
+        "910cf012-bb27-4c09-acd0-aff9c5604981": {
+          "order_date": "2025-02-26",
+          "total_amount": 1379.57,
+          "products": {
+            "13": 1,
+            "11": 1,
+            "1": 2
+          },
+          "delivery_address_id": "40fc1a40-c72b-46ca-ad39-e2020873c7fe",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK347720766"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "b39ab0d8-eea7-4500-a847-f8e7a5ba89da": {
+      "first_name": "Charlotte",
+      "last_name": "Thomas",
+      "email": "charlotte.thomas@darkhorse.net",
+      "balance": 196.46,
+      "friends": [
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "91cc6a5c-d4c7-4aed-a57f-e6720633b4d8"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "d20b03da-d71b-4fcc-a11a-6bff1209faf3": {
+          "name": "Home Address",
+          "street_address": "892 Elm Street",
+          "city": "Springfield",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 69778
+        },
+        "aa6b6d2a-43da-4715-930a-0516aac881a5": {
+          "name": "Home Address",
+          "street_address": "370 Maple Lane",
+          "city": "Fairview",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 88171
+        }
+      },
+      "cart": {
+        "6": 3,
+        "5": 1
+      },
+      "wish_list": {
+        "1": {
+          "added_date": "2023-12-03"
+        },
+        "15": {
+          "added_date": "2024-11-09"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "4d1253c7-9c43-4601-b3d3-54cc1448abba": {
+      "first_name": "Benjamin",
+      "last_name": "Lopez",
+      "email": "benjamin.lopez@zscaler.org",
+      "balance": 1317.11,
+      "friends": [
+        "45d9d866-a872-4908-a789-4c3e864232da",
+        "b39ab0d8-eea7-4500-a847-f8e7a5ba89da",
+        "2c8b5152-2104-4bcf-ae77-962a643c8675"
+      ],
+      "payment_cards": {
+        "6a720dee-65a1-4125-b900-0836aa9cefcc": {
+          "card_name": "Benjamin's Amex",
+          "owner_name": "Benjamin Lopez",
+          "card_number_last4": "1388",
+          "expiry_year": 2026,
+          "expiry_month": 2
+        }
+      },
+      "addresses": {
+        "c4e290d7-98bb-4bd4-9255-2766f642e1d0": {
+          "name": "Home Address",
+          "street_address": "426 Main Street",
+          "city": "Springfield",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 45292
+        },
+        "c1baf7c8-b14b-41c9-af3a-5c118559e459": {
+          "name": "Home Address",
+          "street_address": "822 Maple Avenue",
+          "city": "Lakewood",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 49308
+        }
+      },
+      "cart": {
+        "10": 3
+      },
+      "wish_list": {},
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "44acb1b6-e4bf-4c15-b96a-f062c3a1fdac": {
+      "first_name": "Olivia",
+      "last_name": "Martin",
+      "email": "olivia.martin@zscaler.org",
+      "balance": 53.43,
+      "friends": [
+        "e3b43d6b-5eb1-45c1-be91-09b067c68008",
+        "2c8b5152-2104-4bcf-ae77-962a643c8675",
+        "1819e786-26f0-43d6-aecf-ee4641741d65",
+        "79921ae2-e918-4be1-8374-6862a978208e",
+        "60d1c4c4-88ae-4dbf-8a1e-dae32fb91a68"
+      ],
+      "payment_cards": {
+        "a99f233c-843e-4117-a6dc-0b9e017a54ca": {
+          "card_name": "Olivia's Amex",
+          "owner_name": "Olivia Martin",
+          "card_number_last4": "1451",
+          "expiry_year": 2026,
+          "expiry_month": 4
+        },
+        "e2e520d2-f5e2-477e-b499-b1ebbf0d8d19": {
+          "card_name": "Olivia's Amex",
+          "owner_name": "Olivia Martin",
+          "card_number_last4": "8868",
+          "expiry_year": 2031,
+          "expiry_month": 8
+        }
+      },
+      "addresses": {
+        "3dec2b0b-7271-47f7-8193-8d75fcef9f8e": {
+          "name": "Work Address",
+          "street_address": "873 Pine Avenue",
+          "city": "Riverside",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 29937
+        },
+        "dca66969-33dd-4755-85d4-9efe0a337517": {
+          "name": "Home Address",
+          "street_address": "260 Elm Street",
+          "city": "Centerville",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 39188
+        }
+      },
+      "cart": {
+        "11": 3,
+        "8": 2,
+        "2": 3
+      },
+      "wish_list": {},
+      "orders": {
+        "809e5161-c0e0-4b02-997e-5c9a7326ac37": {
+          "order_date": "2024-02-09",
+          "total_amount": 797.09,
+          "products": {
+            "5": 2,
+            "7": 2
+          },
+          "delivery_address_id": "3dec2b0b-7271-47f7-8193-8d75fcef9f8e",
+          "payment_card_id": "e2e520d2-f5e2-477e-b499-b1ebbf0d8d19",
+          "status": "pending",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK861169819"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "b0e78636-9d71-4a82-ac70-e11c28d7ed20": {
+          "order_id": "809e5161-c0e0-4b02-997e-5c9a7326ac37",
+          "product_id": 5,
+          "return_date": "2024-04-21",
+          "reason": "item damaged",
+          "status": "rejected"
+        }
+      }
+    },
+    "ae677c1f-bad2-4757-928a-a2c31bb50b90": {
+      "first_name": "Alexander",
+      "last_name": "Lopez",
+      "email": "alexander.lopez@gmail.com",
+      "balance": 1045.51,
+      "friends": [],
+      "payment_cards": {
+        "98892d36-e5b1-43ef-bd93-fc98a391be44": {
+          "card_name": "Alexander's Visa",
+          "owner_name": "Alexander Lopez",
+          "card_number_last4": "6490",
+          "expiry_year": 2026,
+          "expiry_month": 5
+        }
+      },
+      "addresses": {
+        "d14fc5c0-7b6d-4693-ab8c-65862090ab7a": {
+          "name": "Work Address",
+          "street_address": "696 Main Street",
+          "city": "Centerville",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 40666
+        }
+      },
+      "cart": {
+        "13": 1,
+        "8": 2,
+        "2": 3
+      },
+      "wish_list": {
+        "13": {
+          "added_date": "2024-03-19"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "0dc85738-a20d-47ea-ad9b-39cc00a5a790": {
+      "first_name": "Scarlett",
+      "last_name": "Young",
+      "email": "scarlett.young@yahoo.com",
+      "balance": 321.59,
+      "friends": [],
+      "payment_cards": {
+        "07d5c8a9-e18a-4c97-8063-9383b91b2bd2": {
+          "card_name": "Scarlett's Visa",
+          "owner_name": "Scarlett Young",
+          "card_number_last4": "9524",
+          "expiry_year": 2030,
+          "expiry_month": 8
+        },
+        "57bbfbf5-8bad-4334-984a-06abd36b6f4f": {
+          "card_name": "Scarlett's Visa",
+          "owner_name": "Scarlett Young",
+          "card_number_last4": "8733",
+          "expiry_year": 2031,
+          "expiry_month": 11
+        }
+      },
+      "addresses": {
+        "3ccace76-4708-416d-a895-c9d3cc15129d": {
+          "name": "Home Address",
+          "street_address": "954 Main Road",
+          "city": "Lakewood",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 36783
+        },
+        "ace99179-8f95-4356-be19-19c3d7a8aaee": {
+          "name": "Home Address",
+          "street_address": "341 Oak Lane",
+          "city": "Springfield",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 65496
+        }
+      },
+      "cart": {
+        "8": 3,
+        "3": 3,
+        "9": 3
+      },
+      "wish_list": {},
+      "orders": {
+        "6e63db4a-e5a5-4245-8541-e0ea687ddee1": {
+          "order_date": "2024-05-01",
+          "total_amount": 507.62,
+          "products": {
+            "6": 1,
+            "5": 2
+          },
+          "delivery_address_id": "ace99179-8f95-4356-be19-19c3d7a8aaee",
+          "payment_card_id": "07d5c8a9-e18a-4c97-8063-9383b91b2bd2",
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK168912417"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "522b0615-36de-46be-9707-ad11c5b5c333": {
+      "first_name": "Ethan",
+      "last_name": "Anderson",
+      "email": "ethan.anderson@darkhorse.net",
+      "balance": 599.44,
+      "friends": [
+        "60d1c4c4-88ae-4dbf-8a1e-dae32fb91a68",
+        "91cc6a5c-d4c7-4aed-a57f-e6720633b4d8",
+        "d49afbe4-22aa-482a-bc94-3c07467c8c83"
+      ],
+      "payment_cards": {
+        "e69bf4b1-6f8e-4a35-8e5f-fe70b4072c3b": {
+          "card_name": "Ethan's Discover",
+          "owner_name": "Ethan Anderson",
+          "card_number_last4": "4350",
+          "expiry_year": 2029,
+          "expiry_month": 2
+        },
+        "3f6c4b20-4694-4ee6-98f1-1090834b99b9": {
+          "card_name": "Ethan's Discover",
+          "owner_name": "Ethan Anderson",
+          "card_number_last4": "1102",
+          "expiry_year": 2030,
+          "expiry_month": 7
+        }
+      },
+      "addresses": {
+        "2885dcc8-9ae6-4a7c-a37f-f405842daee8": {
+          "name": "Home Address",
+          "street_address": "175 Elm Avenue",
+          "city": "Riverside",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 91305
+        }
+      },
+      "cart": {},
+      "wish_list": {
+        "6": {
+          "added_date": "2024-11-15"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "d4998420-72c8-403c-a775-f3eed9557189": {
+      "first_name": "Liam",
+      "last_name": "Thompson",
+      "email": "liam.thompson@yahoo.com",
+      "balance": 2032.14,
+      "friends": [
+        "60d1c4c4-88ae-4dbf-8a1e-dae32fb91a68"
+      ],
+      "payment_cards": {
+        "b7646ff4-15a5-45d6-ac08-6f36d89aca98": {
+          "card_name": "Liam's Visa",
+          "owner_name": "Liam Thompson",
+          "card_number_last4": "9490",
+          "expiry_year": 2031,
+          "expiry_month": 3
+        },
+        "a26d08be-75d3-4f01-a3d2-1b4a23606233": {
+          "card_name": "Liam's Visa",
+          "owner_name": "Liam Thompson",
+          "card_number_last4": "2853",
+          "expiry_year": 2026,
+          "expiry_month": 11
+        }
+      },
+      "addresses": {
+        "7bda381a-3ee9-46c2-86cb-f39038f76056": {
+          "name": "Home Address",
+          "street_address": "727 Maple Street",
+          "city": "Lakewood",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 14399
+        },
+        "502aa657-1b36-45f5-9dc5-3ff0820c2b4c": {
+          "name": "Home Address",
+          "street_address": "961 Maple Avenue",
+          "city": "Fairview",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 49288
+        }
+      },
+      "cart": {
+        "3": 2,
+        "6": 1,
+        "2": 2
+      },
+      "wish_list": {
+        "5": {
+          "added_date": "2023-05-15"
+        },
+        "7": {
+          "added_date": "2023-03-07"
+        }
+      },
+      "orders": {
+        "99432000-ef22-454b-b0a3-4fcd4f3234f3": {
+          "order_date": "2024-02-04",
+          "total_amount": 518.22,
+          "products": {
+            "11": 2,
+            "14": 1
+          },
+          "delivery_address_id": "502aa657-1b36-45f5-9dc5-3ff0820c2b4c",
+          "payment_card_id": "b7646ff4-15a5-45d6-ac08-6f36d89aca98",
+          "status": "shipped",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK387803215"
+        }
+      },
+      "prime_subscriptions": {
+        "4980135a-5f27-4514-b112-6ae30ce59a02": {
+          "start_date": "2023-11-10",
+          "end_date": "2025-11-09",
+          "plan_type": "yearly",
+          "status": "active"
+        }
+      },
+      "returns": {
+        "39b2bfae-0ee5-4bf1-a739-ec1da1d1fcfb": {
+          "order_id": "99432000-ef22-454b-b0a3-4fcd4f3234f3",
+          "product_id": 14,
+          "return_date": "2023-07-13",
+          "reason": "not as described",
+          "status": "processed"
+        }
+      }
+    },
+    "3721e393-a110-4fb6-adb2-55aa6cfd3e4c": {
+      "first_name": "Liam",
+      "last_name": "Young",
+      "email": "liam.young@gmail.com",
+      "balance": 1458.27,
+      "friends": [
+        "8beecd47-f6fb-424d-a62a-bb92685245ec",
+        "91cc6a5c-d4c7-4aed-a57f-e6720633b4d8",
+        "e3b43d6b-5eb1-45c1-be91-09b067c68008"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "bdbc40c3-3867-4bfc-8b95-d3f20e76933a": {
+          "name": "Work Address",
+          "street_address": "485 Pine Lane",
+          "city": "Springfield",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 34237
+        },
+        "00d77c99-2b83-4fb0-9c03-8bef1667db55": {
+          "name": "Work Address",
+          "street_address": "449 Pine Lane",
+          "city": "Springfield",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 54513
+        }
+      },
+      "cart": {
+        "4": 1
+      },
+      "wish_list": {
+        "9": {
+          "added_date": "2024-01-01"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "b2f3da88-8d56-4c4c-a3e8-a7972d34c800": {
+      "first_name": "Daniel",
+      "last_name": "Martinez",
+      "email": "daniel.martinez@gmail.com",
+      "balance": 938.96,
+      "friends": [
+        "4d1253c7-9c43-4601-b3d3-54cc1448abba",
+        "ae677c1f-bad2-4757-928a-a2c31bb50b90"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "f06f792d-feca-4877-b557-8ee12d53b37c": {
+          "name": "Home Address",
+          "street_address": "371 Main Avenue",
+          "city": "Springfield",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 37198
+        }
+      },
+      "cart": {
+        "12": 1,
+        "5": 2,
+        "11": 3
+      },
+      "wish_list": {
+        "5": {
+          "added_date": "2023-02-08"
+        }
+      },
+      "orders": {
+        "97c76dd8-ea6d-4e65-8133-2d3005609388": {
+          "order_date": "2024-01-08",
+          "total_amount": 42.55,
+          "products": {
+            "15": 1,
+            "8": 2,
+            "4": 1
+          },
+          "delivery_address_id": "f06f792d-feca-4877-b557-8ee12d53b37c",
+          "payment_card_id": null,
+          "status": "pending",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK302160702"
+        },
+        "304adbcf-2da7-4e8d-b4e9-71df0e83a6c0": {
+          "order_date": "2023-11-05",
+          "total_amount": 518.46,
+          "products": {
+            "2": 1
+          },
+          "delivery_address_id": "f06f792d-feca-4877-b557-8ee12d53b37c",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": null,
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "c9ec9db3-d84b-45e8-9893-d1b6a0c08afd": {
+      "first_name": "Lucas",
+      "last_name": "Wilson",
+      "email": "lucas.wilson@gmail.com",
+      "balance": 2273.14,
+      "friends": [
+        "0dc85738-a20d-47ea-ad9b-39cc00a5a790",
+        "1b262b9b-d159-4fee-ad87-0e9648193378",
+        "d4998420-72c8-403c-a775-f3eed9557189"
+      ],
+      "payment_cards": {
+        "5ae6912f-1fe7-45f0-a0ac-fa176d5ec337": {
+          "card_name": "Lucas's Visa",
+          "owner_name": "Lucas Wilson",
+          "card_number_last4": "9294",
+          "expiry_year": 2029,
+          "expiry_month": 12
+        }
+      },
+      "addresses": {
+        "479377b7-138d-4db0-8f1f-42af6ad57b7d": {
+          "name": "Home Address",
+          "street_address": "566 Pine Lane",
+          "city": "Centerville",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 32107
+        }
+      },
+      "cart": {
+        "1": 1,
+        "9": 3,
+        "11": 3
+      },
+      "wish_list": {
+        "2": {
+          "added_date": "2023-11-13"
+        },
+        "3": {
+          "added_date": "2024-04-28"
+        }
+      },
+      "orders": {
+        "70593e23-d283-458e-a0e8-0e2cf0168ec8": {
+          "order_date": "2025-11-11",
+          "total_amount": 423.18,
+          "products": {
+            "6": 2,
+            "2": 1,
+            "13": 1
+          },
+          "delivery_address_id": "479377b7-138d-4db0-8f1f-42af6ad57b7d",
+          "payment_card_id": "5ae6912f-1fe7-45f0-a0ac-fa176d5ec337",
+          "status": "delivered",
+          "promo_code_applied": null,
+          "tracking_number": "TRK791577528"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "ba80de56-760a-49f1-8306-76c8574a6eb4": {
+          "order_id": "70593e23-d283-458e-a0e8-0e2cf0168ec8",
+          "product_id": 2,
+          "return_date": "2025-02-27",
+          "reason": "wrong size",
+          "status": "rejected"
+        }
+      }
+    },
+    "9ada727d-2fb1-4930-a0c4-dc0325b6ae93": {
+      "first_name": "Ethan",
+      "last_name": "Jackson",
+      "email": "ethan.jackson@zscaler.org",
+      "balance": 933.73,
+      "friends": [
+        "0dc85738-a20d-47ea-ad9b-39cc00a5a790"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "34c62879-bbfc-4835-8240-80dcb7588ec9": {
+          "name": "Home Address",
+          "street_address": "603 Elm Street",
+          "city": "Lakewood",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 64003
+        }
+      },
+      "cart": {
+        "10": 3,
+        "6": 3
+      },
+      "wish_list": {
+        "9": {
+          "added_date": "2023-01-13"
+        }
+      },
+      "orders": {
+        "a82a3237-58f5-4b77-bd3a-7003da340798": {
+          "order_date": "2024-01-08",
+          "total_amount": 103.36,
+          "products": {
+            "4": 1,
+            "3": 2
+          },
+          "delivery_address_id": "34c62879-bbfc-4835-8240-80dcb7588ec9",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK146046534"
+        },
+        "c5b71732-2363-4255-8525-f3c4c1ea82c8": {
+          "order_date": "2023-05-02",
+          "total_amount": 590.99,
+          "products": {
+            "14": 1
+          },
+          "delivery_address_id": "34c62879-bbfc-4835-8240-80dcb7588ec9",
+          "payment_card_id": null,
+          "status": "pending",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK448780479"
+        },
+        "19e7ca50-454b-41f5-9ea0-d400e2fa2c98": {
+          "order_date": "2024-11-07",
+          "total_amount": 1434.94,
+          "products": {
+            "12": 1
+          },
+          "delivery_address_id": "34c62879-bbfc-4835-8240-80dcb7588ec9",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "70a4d068-f244-4fd0-a5b0-ead6d5533206": {
+      "first_name": "Olivia",
+      "last_name": "Perez",
+      "email": "olivia.perez@gmail.com",
+      "balance": 1521.02,
+      "friends": [
+        "7c498099-93c8-44c8-8504-85f1b89e0681",
+        "3721e393-a110-4fb6-adb2-55aa6cfd3e4c",
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+        "8beecd47-f6fb-424d-a62a-bb92685245ec"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "23f19519-1fed-4348-bbf7-738051353d71": {
+          "name": "Work Address",
+          "street_address": "138 Oak Road",
+          "city": "Riverside",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 85594
+        }
+      },
+      "cart": {
+        "15": 1,
+        "11": 3,
+        "10": 1
+      },
+      "wish_list": {},
+      "orders": {
+        "fe86e0dd-79e9-446b-80e9-695d219c12b3": {
+          "order_date": "2023-05-28",
+          "total_amount": 155.29,
+          "products": {
+            "12": 2,
+            "11": 2,
+            "4": 2
+          },
+          "delivery_address_id": "23f19519-1fed-4348-bbf7-738051353d71",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": null,
+          "tracking_number": "TRK552771637"
+        },
+        "285d77c7-cca4-4036-8101-51d78b3e96aa": {
+          "order_date": "2024-11-05",
+          "total_amount": 906.81,
+          "products": {
+            "6": 1,
+            "3": 2,
+            "4": 1
+          },
+          "delivery_address_id": "23f19519-1fed-4348-bbf7-738051353d71",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK312984180"
+        }
+      },
+      "prime_subscriptions": {
+        "ba4d28f1-b0bc-437c-8f7f-76d9aea76fd3": {
+          "start_date": "2024-04-26",
+          "end_date": "2025-04-26",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {}
+    },
+    "a7051342-9a81-4f51-ae75-ab1a3111adb5": {
+      "first_name": "Ella",
+      "last_name": "White",
+      "email": "ella.white@gmail.com",
+      "balance": 1557.29,
+      "friends": [
+        "d4998420-72c8-403c-a775-f3eed9557189",
+        "45d9d866-a872-4908-a789-4c3e864232da",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "522b0615-36de-46be-9707-ad11c5b5c333"
+      ],
+      "payment_cards": {
+        "0945526e-ced5-43d0-97ed-82d53612d6d1": {
+          "card_name": "Ella's Visa",
+          "owner_name": "Ella White",
+          "card_number_last4": "0190",
+          "expiry_year": 2030,
+          "expiry_month": 8
+        }
+      },
+      "addresses": {
+        "5c3a56c9-7fe7-419f-91d9-6a2b57f0ef30": {
+          "name": "Work Address",
+          "street_address": "201 Maple Avenue",
+          "city": "Lakewood",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 80987
+        }
+      },
+      "cart": {},
+      "wish_list": {
+        "2": {
+          "added_date": "2024-10-09"
+        }
+      },
+      "orders": {
+        "cb7da38d-7d0e-42bf-a05d-4a1402a64d0a": {
+          "order_date": "2025-05-17",
+          "total_amount": 1062.23,
+          "products": {
+            "1": 1
+          },
+          "delivery_address_id": "5c3a56c9-7fe7-419f-91d9-6a2b57f0ef30",
+          "payment_card_id": "0945526e-ced5-43d0-97ed-82d53612d6d1",
+          "status": "cancelled",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": null
+        },
+        "56eea4e0-db7c-42d5-a554-d9f585982404": {
+          "order_date": "2025-09-26",
+          "total_amount": 242.14,
+          "products": {
+            "8": 2,
+            "7": 2,
+            "1": 2
+          },
+          "delivery_address_id": "5c3a56c9-7fe7-419f-91d9-6a2b57f0ef30",
+          "payment_card_id": "0945526e-ced5-43d0-97ed-82d53612d6d1",
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK312480589"
+        },
+        "d8a09119-5cb4-440b-ada1-e30df5c90b21": {
+          "order_date": "2023-10-04",
+          "total_amount": 1308.24,
+          "products": {
+            "13": 2,
+            "5": 1
+          },
+          "delivery_address_id": "5c3a56c9-7fe7-419f-91d9-6a2b57f0ef30",
+          "payment_card_id": "0945526e-ced5-43d0-97ed-82d53612d6d1",
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK618625215"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "0a7b5d40-f7b8-435b-97e4-6767424a6da7": {
+      "first_name": "William",
+      "last_name": "King",
+      "email": "william.king@gmail.com",
+      "balance": 893.81,
+      "friends": [],
+      "payment_cards": {
+        "e54c5eb3-443f-4622-8f17-e8fb9bfee4c8": {
+          "card_name": "William's Amex",
+          "owner_name": "William King",
+          "card_number_last4": "1230",
+          "expiry_year": 2027,
+          "expiry_month": 10
+        },
+        "73c33d9f-2907-4604-8e0f-b6fae8da268e": {
+          "card_name": "William's Discover",
+          "owner_name": "William King",
+          "card_number_last4": "0153",
+          "expiry_year": 2030,
+          "expiry_month": 3
+        }
+      },
+      "addresses": {
+        "2ab1cfa3-6208-4d5f-946a-88ad9e92385a": {
+          "name": "Home Address",
+          "street_address": "722 Elm Lane",
+          "city": "Lakewood",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 32859
+        }
+      },
+      "cart": {
+        "3": 1,
+        "8": 1
+      },
+      "wish_list": {
+        "9": {
+          "added_date": "2024-03-09"
+        }
+      },
+      "orders": {
+        "2d44083c-d2c1-48dd-91d7-10c175cfa8a0": {
+          "order_date": "2023-09-28",
+          "total_amount": 1187.57,
+          "products": {
+            "2": 1,
+            "1": 1,
+            "4": 2
+          },
+          "delivery_address_id": "2ab1cfa3-6208-4d5f-946a-88ad9e92385a",
+          "payment_card_id": "e54c5eb3-443f-4622-8f17-e8fb9bfee4c8",
+          "status": "delivered",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK467440155"
+        },
+        "22a4e50f-7d23-46b3-8103-7b395f8168f4": {
+          "order_date": "2023-01-09",
+          "total_amount": 117.98,
+          "products": {
+            "14": 1,
+            "4": 1,
+            "15": 1
+          },
+          "delivery_address_id": "2ab1cfa3-6208-4d5f-946a-88ad9e92385a",
+          "payment_card_id": "73c33d9f-2907-4604-8e0f-b6fae8da268e",
+          "status": "cancelled",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "3357dd7b-8061-43c6-9655-9ba18a6ce1fd": {
+          "order_id": "22a4e50f-7d23-46b3-8103-7b395f8168f4",
+          "product_id": 4,
+          "return_date": "2023-07-11",
+          "reason": "item damaged",
+          "status": "processed"
+        }
+      }
+    },
+    "e5317f0b-87b0-4a39-ba12-6d5591d0e303": {
+      "first_name": "Abigail",
+      "last_name": "Walker",
+      "email": "abigail.walker@yahoo.com",
+      "balance": 1580.08,
+      "friends": [
+        "2c8b5152-2104-4bcf-ae77-962a643c8675",
+        "a7051342-9a81-4f51-ae75-ab1a3111adb5",
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+        "b39ab0d8-eea7-4500-a847-f8e7a5ba89da"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "c54279ab-d343-4336-a2c9-eb45e7ff8113": {
+          "name": "Home Address",
+          "street_address": "716 Main Street",
+          "city": "Fairview",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 98773
+        },
+        "97cae668-867e-4620-b568-498ddef972f0": {
+          "name": "Work Address",
+          "street_address": "878 Pine Street",
+          "city": "Lakewood",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 87767
+        }
+      },
+      "cart": {
+        "12": 2,
+        "3": 2
+      },
+      "wish_list": {
+        "10": {
+          "added_date": "2024-11-02"
+        }
+      },
+      "orders": {
+        "d6bf0a3b-f346-412f-b7e4-03826ce59c87": {
+          "order_date": "2024-11-01",
+          "total_amount": 829.47,
+          "products": {
+            "6": 1,
+            "10": 1,
+            "12": 2
+          },
+          "delivery_address_id": "c54279ab-d343-4336-a2c9-eb45e7ff8113",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": null
+        },
+        "574c93d1-affc-41ed-96b5-0cf5798ae4e8": {
+          "order_date": "2023-03-28",
+          "total_amount": 1187.85,
+          "products": {
+            "10": 2
+          },
+          "delivery_address_id": "c54279ab-d343-4336-a2c9-eb45e7ff8113",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": null,
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {
+        "7a15eb48-30c0-454b-b6e0-039492d38b69": {
+          "start_date": "2024-01-11",
+          "end_date": "2026-01-10",
+          "plan_type": "monthly",
+          "status": "active"
+        }
+      },
+      "returns": {
+        "b645784d-3a81-42b6-ac82-d893c1819694": {
+          "order_id": "574c93d1-affc-41ed-96b5-0cf5798ae4e8",
+          "product_id": 10,
+          "return_date": "2023-12-14",
+          "reason": "changed mind",
+          "status": "pending"
+        }
+      }
+    },
+    "cad5b8cd-b53a-4a46-ae65-b4ee9b22d0f6": {
+      "first_name": "William",
+      "last_name": "Young",
+      "email": "william.young@darkhorse.net",
+      "balance": 1399.84,
+      "friends": [
+        "b39ab0d8-eea7-4500-a847-f8e7a5ba89da",
+        "01f052f0-bc55-4ccb-8003-8400f300ed20"
+      ],
+      "payment_cards": {
+        "7ab4022c-d720-4573-bffc-c1e663e80984": {
+          "card_name": "William's Visa",
+          "owner_name": "William Young",
+          "card_number_last4": "7932",
+          "expiry_year": 2027,
+          "expiry_month": 10
+        },
+        "5fc94e0d-caec-492e-9c14-9b7b91196727": {
+          "card_name": "William's Discover",
+          "owner_name": "William Young",
+          "card_number_last4": "9161",
+          "expiry_year": 2029,
+          "expiry_month": 11
+        }
+      },
+      "addresses": {
+        "e0ca584e-e89d-4f95-8eb6-daec17388b2c": {
+          "name": "Home Address",
+          "street_address": "433 Elm Lane",
+          "city": "Centerville",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 48857
+        }
+      },
+      "cart": {
+        "7": 3,
+        "9": 3
+      },
+      "wish_list": {
+        "2": {
+          "added_date": "2023-08-07"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "d1ad8647-5154-4702-877d-8726db5543d1": {
+      "first_name": "Sophia",
+      "last_name": "Martin",
+      "email": "sophia.martin@darkhorse.net",
+      "balance": 2403.14,
+      "friends": [
+        "b39ab0d8-eea7-4500-a847-f8e7a5ba89da",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "60d1c4c4-88ae-4dbf-8a1e-dae32fb91a68"
+      ],
+      "payment_cards": {
+        "36030649-6ae9-4fe5-96d3-5d5ce326f8a0": {
+          "card_name": "Sophia's Amex",
+          "owner_name": "Sophia Martin",
+          "card_number_last4": "2804",
+          "expiry_year": 2029,
+          "expiry_month": 8
+        }
+      },
+      "addresses": {
+        "17694015-b88d-40db-96b9-b2c3888fd7fa": {
+          "name": "Work Address",
+          "street_address": "290 Elm Lane",
+          "city": "Centerville",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 45966
+        }
+      },
+      "cart": {
+        "13": 3,
+        "2": 2,
+        "12": 2
+      },
+      "wish_list": {
+        "3": {
+          "added_date": "2024-10-16"
+        },
+        "15": {
+          "added_date": "2024-10-19"
+        }
+      },
+      "orders": {
+        "07d5255d-ed60-4576-ac3f-a34d8fc492b6": {
+          "order_date": "2025-08-19",
+          "total_amount": 333.03,
+          "products": {
+            "9": 1,
+            "6": 2,
+            "1": 1
+          },
+          "delivery_address_id": "17694015-b88d-40db-96b9-b2c3888fd7fa",
+          "payment_card_id": "36030649-6ae9-4fe5-96d3-5d5ce326f8a0",
+          "status": "pending",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK589572955"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "2e3a70cc-8581-4b97-aab5-077013b6acf3": {
+      "first_name": "Jackson",
+      "last_name": "Taylor",
+      "email": "jackson.taylor@gmail.com",
+      "balance": 1328.05,
+      "friends": [
+        "79921ae2-e918-4be1-8374-6862a978208e"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "f27d3f7b-82d7-4725-9f95-61dda816fcf6": {
+          "name": "Home Address",
+          "street_address": "824 Elm Lane",
+          "city": "Riverside",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 33689
+        },
+        "ea510d01-0e6a-45e9-90ca-a5c0a353d23f": {
+          "name": "Home Address",
+          "street_address": "205 Main Road",
+          "city": "Centerville",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 58877
+        }
+      },
+      "cart": {
+        "3": 3,
+        "8": 2
+      },
+      "wish_list": {},
+      "orders": {},
+      "prime_subscriptions": {
+        "98978786-54a9-40ee-86ff-d563bd5dd98d": {
+          "start_date": "2023-01-12",
+          "end_date": "2025-01-11",
+          "plan_type": "monthly",
+          "status": "active"
+        }
+      },
+      "returns": {}
+    },
+    "f445f189-8295-4b72-97cf-c447a25f15b8": {
+      "first_name": "James",
+      "last_name": "Wright",
+      "email": "james.wright@darkhorse.net",
+      "balance": 742.32,
+      "friends": [],
+      "payment_cards": {
+        "34132358-f012-4cf4-a028-636e90092f30": {
+          "card_name": "James's Visa",
+          "owner_name": "James Wright",
+          "card_number_last4": "8268",
+          "expiry_year": 2027,
+          "expiry_month": 7
+        },
+        "9dcc1c4f-3159-4708-9a02-190d4d919246": {
+          "card_name": "James's Visa",
+          "owner_name": "James Wright",
+          "card_number_last4": "4997",
+          "expiry_year": 2026,
+          "expiry_month": 1
+        }
+      },
+      "addresses": {
+        "993bb0b2-8245-41ca-b7ff-a8a29401eb35": {
+          "name": "Work Address",
+          "street_address": "780 Oak Street",
+          "city": "Lakewood",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 81917
+        }
+      },
+      "cart": {
+        "5": 1
+      },
+      "wish_list": {
+        "6": {
+          "added_date": "2023-03-27"
+        }
+      },
+      "orders": {
+        "66654721-1edc-41a0-9be2-724c2d5ddb1d": {
+          "order_date": "2024-12-11",
+          "total_amount": 678.72,
+          "products": {
+            "15": 2,
+            "6": 2
+          },
+          "delivery_address_id": "993bb0b2-8245-41ca-b7ff-a8a29401eb35",
+          "payment_card_id": "9dcc1c4f-3159-4708-9a02-190d4d919246",
+          "status": "pending",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK802063340"
+        },
+        "d831ed1d-06ee-4364-bd79-fab79aefaecc": {
+          "order_date": "2025-02-15",
+          "total_amount": 1253.52,
+          "products": {
+            "3": 1,
+            "6": 2
+          },
+          "delivery_address_id": "993bb0b2-8245-41ca-b7ff-a8a29401eb35",
+          "payment_card_id": "9dcc1c4f-3159-4708-9a02-190d4d919246",
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK746170113"
+        },
+        "9157a6fe-14c6-4d0f-9c0e-8fb345641dc4": {
+          "order_date": "2025-01-18",
+          "total_amount": 1282.78,
+          "products": {
+            "2": 2
+          },
+          "delivery_address_id": "993bb0b2-8245-41ca-b7ff-a8a29401eb35",
+          "payment_card_id": "34132358-f012-4cf4-a028-636e90092f30",
+          "status": "delivered",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK665726376"
+        }
+      },
+      "prime_subscriptions": {
+        "e3aab0f4-ff94-4895-8ba7-05e351dfe7a9": {
+          "start_date": "2023-11-23",
+          "end_date": "2025-11-22",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {
+        "26976afc-b3b6-4153-bd3f-e02fa2b6b235": {
+          "order_id": "9157a6fe-14c6-4d0f-9c0e-8fb345641dc4",
+          "product_id": 2,
+          "return_date": "2023-11-06",
+          "reason": "not as described",
+          "status": "processed"
+        }
+      }
+    },
+    "6ef8e1f6-019c-43eb-b03e-efd355a062bb": {
+      "first_name": "Sophia",
+      "last_name": "Taylor",
+      "email": "sophia.taylor@darkhorse.net",
+      "balance": 1027.89,
+      "friends": [
+        "0a7b5d40-f7b8-435b-97e4-6767424a6da7",
+        "01f052f0-bc55-4ccb-8003-8400f300ed20",
+        "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "c9ec9db3-d84b-45e8-9893-d1b6a0c08afd",
+        "d4998420-72c8-403c-a775-f3eed9557189"
+      ],
+      "payment_cards": {
+        "b3c01e04-0a32-4876-8228-4b6568d78087": {
+          "card_name": "Sophia's Mastercard",
+          "owner_name": "Sophia Taylor",
+          "card_number_last4": "0330",
+          "expiry_year": 2031,
+          "expiry_month": 8
+        },
+        "3e0592e0-5165-414f-8c87-f152d367a8e5": {
+          "card_name": "Sophia's Mastercard",
+          "owner_name": "Sophia Taylor",
+          "card_number_last4": "2013",
+          "expiry_year": 2026,
+          "expiry_month": 2
+        }
+      },
+      "addresses": {
+        "07114bfb-1484-46f2-9b0f-f8210f9dc47d": {
+          "name": "Work Address",
+          "street_address": "179 Pine Road",
+          "city": "Springfield",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 17538
+        },
+        "bfe6d213-8611-4957-aa86-62ee9975f582": {
+          "name": "Home Address",
+          "street_address": "849 Maple Street",
+          "city": "Fairview",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 41860
+        }
+      },
+      "cart": {
+        "9": 1
+      },
+      "wish_list": {
+        "6": {
+          "added_date": "2023-10-20"
+        }
+      },
+      "orders": {
+        "d504dd1c-c514-430f-8bf0-feaf74a8ad0e": {
+          "order_date": "2023-09-15",
+          "total_amount": 466.47,
+          "products": {
+            "6": 2,
+            "15": 1
+          },
+          "delivery_address_id": "07114bfb-1484-46f2-9b0f-f8210f9dc47d",
+          "payment_card_id": "3e0592e0-5165-414f-8c87-f152d367a8e5",
+          "status": "delivered",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK254210210"
+        },
+        "8201e51a-6d87-4a9a-aff5-e9d6b56861aa": {
+          "order_date": "2024-05-11",
+          "total_amount": 993.91,
+          "products": {
+            "5": 1,
+            "13": 1
+          },
+          "delivery_address_id": "07114bfb-1484-46f2-9b0f-f8210f9dc47d",
+          "payment_card_id": "b3c01e04-0a32-4876-8228-4b6568d78087",
+          "status": "delivered",
+          "promo_code_applied": null,
+          "tracking_number": "TRK751193019"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "c8bbec09-99e6-4496-8e02-761c1e120e11": {
+          "order_id": "8201e51a-6d87-4a9a-aff5-e9d6b56861aa",
+          "product_id": 13,
+          "return_date": "2023-12-09",
+          "reason": "not as described",
+          "status": "pending"
+        }
+      }
+    },
+    "3ecaa9e1-269e-4125-959e-a64b21feb943": {
+      "first_name": "Ella",
+      "last_name": "Young",
+      "email": "ella.young@gmail.com",
+      "balance": 1627.75,
+      "friends": [
+        "8beecd47-f6fb-424d-a62a-bb92685245ec",
+        "f445f189-8295-4b72-97cf-c447a25f15b8"
+      ],
+      "payment_cards": {
+        "b6559525-6277-46f9-a08f-13b5be8999ef": {
+          "card_name": "Ella's Amex",
+          "owner_name": "Ella Young",
+          "card_number_last4": "6462",
+          "expiry_year": 2029,
+          "expiry_month": 3
+        },
+        "b39e6c9f-138d-40bd-b9ca-a5cd06818bcc": {
+          "card_name": "Ella's Visa",
+          "owner_name": "Ella Young",
+          "card_number_last4": "0687",
+          "expiry_year": 2027,
+          "expiry_month": 8
+        }
+      },
+      "addresses": {
+        "97081120-1375-45be-99a0-b409359e216f": {
+          "name": "Home Address",
+          "street_address": "532 Oak Street",
+          "city": "Lakewood",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 50400
+        }
+      },
+      "cart": {
+        "15": 1,
+        "5": 1,
+        "13": 3
+      },
+      "wish_list": {
+        "3": {
+          "added_date": "2024-04-29"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {
+        "13ebb198-6be5-47e3-b33a-fd07d9c0370b": {
+          "start_date": "2024-06-05",
+          "end_date": "2026-06-05",
+          "plan_type": "yearly",
+          "status": "expired"
+        }
+      },
+      "returns": {}
+    },
+    "55e4f098-89c3-4483-bda4-a5db357c5a5d": {
+      "first_name": "Evelyn",
+      "last_name": "Hall",
+      "email": "evelyn.hall@darkhorse.net",
+      "balance": 435.89,
+      "friends": [
+        "4d1253c7-9c43-4601-b3d3-54cc1448abba",
+        "7c498099-93c8-44c8-8504-85f1b89e0681",
+        "3721e393-a110-4fb6-adb2-55aa6cfd3e4c"
+      ],
+      "payment_cards": {
+        "27f38256-9dfd-43be-bfa8-5408718b82df": {
+          "card_name": "Evelyn's Visa",
+          "owner_name": "Evelyn Hall",
+          "card_number_last4": "3860",
+          "expiry_year": 2028,
+          "expiry_month": 10
+        },
+        "b9d89e5b-3bce-4e54-9709-8d234716d9f2": {
+          "card_name": "Evelyn's Visa",
+          "owner_name": "Evelyn Hall",
+          "card_number_last4": "0290",
+          "expiry_year": 2030,
+          "expiry_month": 10
+        }
+      },
+      "addresses": {
+        "c8fd8ee8-2905-408f-a926-43496573e91f": {
+          "name": "Work Address",
+          "street_address": "473 Elm Avenue",
+          "city": "Riverside",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 17502
+        }
+      },
+      "cart": {
+        "4": 3
+      },
+      "wish_list": {},
+      "orders": {
+        "52d9f8e0-6bda-4e69-836f-743299470c4e": {
+          "order_date": "2025-01-23",
+          "total_amount": 1108.4,
+          "products": {
+            "9": 1,
+            "2": 1
+          },
+          "delivery_address_id": "c8fd8ee8-2905-408f-a926-43496573e91f",
+          "payment_card_id": "b9d89e5b-3bce-4e54-9709-8d234716d9f2",
+          "status": "shipped",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK008470907"
+        },
+        "2f3ba676-ef9c-468b-997c-335ea41ed585": {
+          "order_date": "2024-05-01",
+          "total_amount": 596.76,
+          "products": {
+            "4": 2,
+            "9": 2,
+            "12": 2
+          },
+          "delivery_address_id": "c8fd8ee8-2905-408f-a926-43496573e91f",
+          "payment_card_id": "27f38256-9dfd-43be-bfa8-5408718b82df",
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        },
+        "d518c472-c533-440e-bf82-e4e6648111c6": {
+          "order_date": "2024-11-22",
+          "total_amount": 227.31,
+          "products": {
+            "2": 2,
+            "14": 1,
+            "6": 2
+          },
+          "delivery_address_id": "c8fd8ee8-2905-408f-a926-43496573e91f",
+          "payment_card_id": "27f38256-9dfd-43be-bfa8-5408718b82df",
+          "status": "shipped",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK374383781"
+        }
+      },
+      "prime_subscriptions": {
+        "c1198dae-bd73-46e4-b047-5d6c31711b3a": {
+          "start_date": "2024-02-24",
+          "end_date": "2025-02-23",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {
+        "ef4f985b-d2c3-4a38-b3de-69d6e4a90073": {
+          "order_id": "2f3ba676-ef9c-468b-997c-335ea41ed585",
+          "product_id": 12,
+          "return_date": "2024-07-03",
+          "reason": "changed mind",
+          "status": "pending"
+        }
+      }
+    },
+    "f71f658e-e06f-41cd-8b44-3bd3f1d68a10": {
+      "first_name": "Evelyn",
+      "last_name": "Clark",
+      "email": "evelyn.clark@darkhorse.net",
+      "balance": 867.25,
+      "friends": [
+        "79921ae2-e918-4be1-8374-6862a978208e",
+        "55e4f098-89c3-4483-bda4-a5db357c5a5d"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "f27358d3-5840-483d-b1d4-b5cf92355431": {
+          "name": "Home Address",
+          "street_address": "516 Elm Road",
+          "city": "Centerville",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 15922
+        }
+      },
+      "cart": {},
+      "wish_list": {},
+      "orders": {
+        "c6d21468-c8d2-4acf-8a24-700498c398d3": {
+          "order_date": "2024-09-08",
+          "total_amount": 1417.51,
+          "products": {
+            "4": 1,
+            "5": 2
+          },
+          "delivery_address_id": "f27358d3-5840-483d-b1d4-b5cf92355431",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": null,
+          "tracking_number": "TRK553108971"
+        },
+        "1637f5f2-eafe-412a-b237-743a9fc98675": {
+          "order_date": "2023-08-29",
+          "total_amount": 536.93,
+          "products": {
+            "12": 2,
+            "14": 1
+          },
+          "delivery_address_id": "f27358d3-5840-483d-b1d4-b5cf92355431",
+          "payment_card_id": null,
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK792493425"
+        },
+        "e78d9959-39df-471a-9b3b-6a873cd02a85": {
+          "order_date": "2024-05-19",
+          "total_amount": 413.21,
+          "products": {
+            "7": 1,
+            "3": 2
+          },
+          "delivery_address_id": "f27358d3-5840-483d-b1d4-b5cf92355431",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK945229113"
+        }
+      },
+      "prime_subscriptions": {
+        "61c15ef6-5225-4f43-8b3a-a1e8aaeeb1c5": {
+          "start_date": "2022-03-27",
+          "end_date": "2024-03-26",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {}
+    },
+    "f876cc3c-97bd-4c02-b97b-277345667d04": {
+      "first_name": "Evelyn",
+      "last_name": "Thomas",
+      "email": "evelyn.thomas@gmail.com",
+      "balance": 1752.81,
+      "friends": [
+        "b39ab0d8-eea7-4500-a847-f8e7a5ba89da",
+        "3721e393-a110-4fb6-adb2-55aa6cfd3e4c",
+        "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+        "a7051342-9a81-4f51-ae75-ab1a3111adb5"
+      ],
+      "payment_cards": {
+        "fc600328-8977-4dab-98a4-c755fa7184c4": {
+          "card_name": "Evelyn's Amex",
+          "owner_name": "Evelyn Thomas",
+          "card_number_last4": "3899",
+          "expiry_year": 2030,
+          "expiry_month": 10
+        },
+        "4c27b324-abf6-4c06-acaa-274b6ac79626": {
+          "card_name": "Evelyn's Amex",
+          "owner_name": "Evelyn Thomas",
+          "card_number_last4": "5301",
+          "expiry_year": 2029,
+          "expiry_month": 7
+        }
+      },
+      "addresses": {
+        "cc5423cc-f5a7-4b32-a4b9-0d4c15e130f1": {
+          "name": "Home Address",
+          "street_address": "683 Oak Road",
+          "city": "Springfield",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 54350
+        }
+      },
+      "cart": {
+        "1": 1,
+        "13": 3
+      },
+      "wish_list": {},
+      "orders": {
+        "f9c2e62d-8b1f-4fd5-98ce-ba380245f451": {
+          "order_date": "2024-08-18",
+          "total_amount": 1201.8,
+          "products": {
+            "12": 1,
+            "2": 1
+          },
+          "delivery_address_id": "cc5423cc-f5a7-4b32-a4b9-0d4c15e130f1",
+          "payment_card_id": "4c27b324-abf6-4c06-acaa-274b6ac79626",
+          "status": "cancelled",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "d330687e-a8ef-44cd-9010-f195173982b1": {
+      "first_name": "Alexander",
+      "last_name": "Sanchez",
+      "email": "alexander.sanchez@gmail.com",
+      "balance": 490.17,
+      "friends": [],
+      "payment_cards": {},
+      "addresses": {
+        "3ff4fc2e-aa70-4595-894d-a9d92f87acb3": {
+          "name": "Work Address",
+          "street_address": "630 Elm Lane",
+          "city": "Fairview",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 22750
+        },
+        "0041e56d-4cfb-4bbd-8d25-436b48bcd5ab": {
+          "name": "Home Address",
+          "street_address": "436 Main Lane",
+          "city": "Centerville",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 25308
+        }
+      },
+      "cart": {
+        "12": 3
+      },
+      "wish_list": {},
+      "orders": {
+        "46565a81-d16f-45ff-a470-b45803f57b66": {
+          "order_date": "2025-12-13",
+          "total_amount": 934.74,
+          "products": {
+            "7": 1,
+            "5": 2,
+            "12": 2
+          },
+          "delivery_address_id": "0041e56d-4cfb-4bbd-8d25-436b48bcd5ab",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK545951245"
+        },
+        "cc8a8b49-0973-4264-99a1-d3b78a4689f7": {
+          "order_date": "2024-11-08",
+          "total_amount": 853.74,
+          "products": {
+            "6": 1,
+            "15": 2
+          },
+          "delivery_address_id": "3ff4fc2e-aa70-4595-894d-a9d92f87acb3",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": null,
+          "tracking_number": null
+        },
+        "afffe74c-e524-482d-90da-bb9f6a445a64": {
+          "order_date": "2024-01-21",
+          "total_amount": 1325.61,
+          "products": {
+            "1": 2,
+            "3": 1
+          },
+          "delivery_address_id": "3ff4fc2e-aa70-4595-894d-a9d92f87acb3",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK056372799"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "3aa07ab9-be3e-4f1f-9c48-59779f384538": {
+          "order_id": "cc8a8b49-0973-4264-99a1-d3b78a4689f7",
+          "product_id": 15,
+          "return_date": "2024-04-11",
+          "reason": "item damaged",
+          "status": "processed"
+        }
+      }
+    },
+    "781ec606-3867-46fc-b0df-78abf76a3673": {
+      "first_name": "Isabella",
+      "last_name": "Lopez",
+      "email": "isabella.lopez@yahoo.com",
+      "balance": 1541.34,
+      "friends": [
+        "a7051342-9a81-4f51-ae75-ab1a3111adb5"
+      ],
+      "payment_cards": {
+        "72ab527e-cb97-4d9c-8a90-ed5ed3ab690c": {
+          "card_name": "Isabella's Amex",
+          "owner_name": "Isabella Lopez",
+          "card_number_last4": "4705",
+          "expiry_year": 2029,
+          "expiry_month": 11
+        }
+      },
+      "addresses": {
+        "2d7ad22b-55a4-4887-adac-5548b3ea06c8": {
+          "name": "Work Address",
+          "street_address": "852 Elm Road",
+          "city": "Springfield",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 48129
+        }
+      },
+      "cart": {
+        "6": 2,
+        "13": 3
+      },
+      "wish_list": {
+        "8": {
+          "added_date": "2024-11-13"
+        }
+      },
+      "orders": {
+        "fa1ba198-c3eb-4552-a979-285d86468f0b": {
+          "order_date": "2025-10-22",
+          "total_amount": 97.13,
+          "products": {
+            "5": 2
+          },
+          "delivery_address_id": "2d7ad22b-55a4-4887-adac-5548b3ea06c8",
+          "payment_card_id": "72ab527e-cb97-4d9c-8a90-ed5ed3ab690c",
+          "status": "pending",
+          "promo_code_applied": null,
+          "tracking_number": "TRK925339256"
+        },
+        "f902c9ce-b331-40a8-a2a6-355d382bce25": {
+          "order_date": "2024-03-14",
+          "total_amount": 461.35,
+          "products": {
+            "14": 1,
+            "9": 2
+          },
+          "delivery_address_id": "2d7ad22b-55a4-4887-adac-5548b3ea06c8",
+          "payment_card_id": "72ab527e-cb97-4d9c-8a90-ed5ed3ab690c",
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK021395931"
+        },
+        "a97a0cad-905f-48b7-9f6d-00cd50dcea37": {
+          "order_date": "2025-03-15",
+          "total_amount": 1221.53,
+          "products": {
+            "5": 2,
+            "2": 1,
+            "4": 2
+          },
+          "delivery_address_id": "2d7ad22b-55a4-4887-adac-5548b3ea06c8",
+          "payment_card_id": "72ab527e-cb97-4d9c-8a90-ed5ed3ab690c",
+          "status": "cancelled",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": null
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "5dcb57ea-2779-4038-82eb-c41241a212a4": {
+          "order_id": "f902c9ce-b331-40a8-a2a6-355d382bce25",
+          "product_id": 14,
+          "return_date": "2024-04-08",
+          "reason": "changed mind",
+          "status": "pending"
+        }
+      }
+    },
+    "15e2e340-83e2-4680-b2f0-fee893693555": {
+      "first_name": "Liam",
+      "last_name": "Lewis",
+      "email": "liam.lewis@yahoo.com",
+      "balance": 95.31,
+      "friends": [
+        "9ada727d-2fb1-4930-a0c4-dc0325b6ae93",
+        "e5317f0b-87b0-4a39-ba12-6d5591d0e303",
+        "d330687e-a8ef-44cd-9010-f195173982b1",
+        "6ef8e1f6-019c-43eb-b03e-efd355a062bb",
+        "44acb1b6-e4bf-4c15-b96a-f062c3a1fdac"
+      ],
+      "payment_cards": {
+        "c3a167f7-4cfe-4653-8fc3-3ad2f50886cb": {
+          "card_name": "Liam's Mastercard",
+          "owner_name": "Liam Lewis",
+          "card_number_last4": "8972",
+          "expiry_year": 2029,
+          "expiry_month": 5
+        },
+        "7c7158d0-42e5-4186-b325-3191c65b14e6": {
+          "card_name": "Liam's Visa",
+          "owner_name": "Liam Lewis",
+          "card_number_last4": "7263",
+          "expiry_year": 2026,
+          "expiry_month": 8
+        }
+      },
+      "addresses": {
+        "99aeafe0-4648-4e1e-9970-a7eb7b26ecfe": {
+          "name": "Work Address",
+          "street_address": "857 Maple Street",
+          "city": "Fairview",
+          "state": "IL",
+          "country": "USA",
+          "zip_code": 66583
+        }
+      },
+      "cart": {
+        "15": 2,
+        "12": 2
+      },
+      "wish_list": {
+        "14": {
+          "added_date": "2024-01-16"
+        }
+      },
+      "orders": {
+        "be86a7a2-9b37-4afa-aaea-82abb5503424": {
+          "order_date": "2024-05-26",
+          "total_amount": 746.94,
+          "products": {
+            "1": 2
+          },
+          "delivery_address_id": "99aeafe0-4648-4e1e-9970-a7eb7b26ecfe",
+          "payment_card_id": "c3a167f7-4cfe-4653-8fc3-3ad2f50886cb",
+          "status": "pending",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK312321274"
+        },
+        "dc279a4e-6341-4c0a-a449-8d673bb06897": {
+          "order_date": "2025-03-09",
+          "total_amount": 1120.68,
+          "products": {
+            "3": 1,
+            "10": 2
+          },
+          "delivery_address_id": "99aeafe0-4648-4e1e-9970-a7eb7b26ecfe",
+          "payment_card_id": "7c7158d0-42e5-4186-b325-3191c65b14e6",
+          "status": "pending",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK884034655"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "24200f04-ea2a-40d8-a556-84ea0102c2f2": {
+      "first_name": "Evelyn",
+      "last_name": "Robinson",
+      "email": "evelyn.robinson@yahoo.com",
+      "balance": 70.35,
+      "friends": [],
+      "payment_cards": {
+        "d9b0c5f2-85e7-4748-833c-6b879b6c6304": {
+          "card_name": "Evelyn's Amex",
+          "owner_name": "Evelyn Robinson",
+          "card_number_last4": "7733",
+          "expiry_year": 2026,
+          "expiry_month": 6
+        },
+        "6c6d3e02-5529-436d-b4c1-1c3268ad1183": {
+          "card_name": "Evelyn's Amex",
+          "owner_name": "Evelyn Robinson",
+          "card_number_last4": "6140",
+          "expiry_year": 2029,
+          "expiry_month": 11
+        }
+      },
+      "addresses": {
+        "040faca5-a710-48a2-b8e6-b9d629d86a5f": {
+          "name": "Home Address",
+          "street_address": "254 Elm Lane",
+          "city": "Lakewood",
+          "state": "TX",
+          "country": "USA",
+          "zip_code": 97548
+        }
+      },
+      "cart": {
+        "13": 1,
+        "6": 2,
+        "2": 1
+      },
+      "wish_list": {},
+      "orders": {
+        "4e538baf-0f3d-4b7d-a6a3-97ef4711d21c": {
+          "order_date": "2024-05-20",
+          "total_amount": 767.44,
+          "products": {
+            "10": 2,
+            "15": 1,
+            "5": 2
+          },
+          "delivery_address_id": "040faca5-a710-48a2-b8e6-b9d629d86a5f",
+          "payment_card_id": "d9b0c5f2-85e7-4748-833c-6b879b6c6304",
+          "status": "shipped",
+          "promo_code_applied": null,
+          "tracking_number": "TRK015612666"
+        },
+        "411b5cf7-e004-4ba2-a2c7-439bc83979d6": {
+          "order_date": "2025-04-25",
+          "total_amount": 222.72,
+          "products": {
+            "5": 2,
+            "9": 2
+          },
+          "delivery_address_id": "040faca5-a710-48a2-b8e6-b9d629d86a5f",
+          "payment_card_id": "6c6d3e02-5529-436d-b4c1-1c3268ad1183",
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK225674480"
+        },
+        "d27f5484-70ef-4ea0-a6f6-350c71cd0e25": {
+          "order_date": "2025-08-21",
+          "total_amount": 655.32,
+          "products": {
+            "1": 2,
+            "6": 1
+          },
+          "delivery_address_id": "040faca5-a710-48a2-b8e6-b9d629d86a5f",
+          "payment_card_id": "6c6d3e02-5529-436d-b4c1-1c3268ad1183",
+          "status": "shipped",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK105457911"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "138abd5d-6164-4ab1-bb89-19583b5985af": {
+      "first_name": "Mason",
+      "last_name": "King",
+      "email": "mason.king@darkhorse.net",
+      "balance": 2281.03,
+      "friends": [
+        "d330687e-a8ef-44cd-9010-f195173982b1"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "0d80b68c-bee1-493e-a387-9fc8b7f24e53": {
+          "name": "Home Address",
+          "street_address": "814 Pine Road",
+          "city": "Centerville",
+          "state": "GA",
+          "country": "USA",
+          "zip_code": 86007
+        },
+        "bd9b1b78-04de-46cd-a8d5-826351f1a8f1": {
+          "name": "Home Address",
+          "street_address": "186 Oak Lane",
+          "city": "Centerville",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 94601
+        }
+      },
+      "cart": {
+        "5": 2
+      },
+      "wish_list": {
+        "11": {
+          "added_date": "2023-07-19"
+        },
+        "8": {
+          "added_date": "2024-07-04"
+        }
+      },
+      "orders": {
+        "677e68e4-cbfc-449a-b6f7-ae14dd3e3a32": {
+          "order_date": "2023-06-26",
+          "total_amount": 1099.25,
+          "products": {
+            "7": 1
+          },
+          "delivery_address_id": "bd9b1b78-04de-46cd-a8d5-826351f1a8f1",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        },
+        "2fbf0dea-0d5d-4682-8ab9-c9197e8b747b": {
+          "order_date": "2024-01-14",
+          "total_amount": 1018.96,
+          "products": {
+            "5": 1
+          },
+          "delivery_address_id": "bd9b1b78-04de-46cd-a8d5-826351f1a8f1",
+          "payment_card_id": null,
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        },
+        "5ddab36a-c2c8-44cd-8601-af420ebde7ce": {
+          "order_date": "2025-11-03",
+          "total_amount": 743.36,
+          "products": {
+            "4": 2,
+            "14": 1,
+            "9": 2
+          },
+          "delivery_address_id": "bd9b1b78-04de-46cd-a8d5-826351f1a8f1",
+          "payment_card_id": null,
+          "status": "shipped",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": "TRK554380483"
+        }
+      },
+      "prime_subscriptions": {
+        "6b2d5918-c065-4476-81e1-63e953802ef2": {
+          "start_date": "2023-08-07",
+          "end_date": "2024-08-06",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {
+        "0e93089f-edb0-494d-8740-c95ef7386ef0": {
+          "order_id": "677e68e4-cbfc-449a-b6f7-ae14dd3e3a32",
+          "product_id": 7,
+          "return_date": "2025-09-03",
+          "reason": "not as described",
+          "status": "rejected"
+        }
+      }
+    },
+    "81508f12-e67b-4566-b8c2-1ef07bb015f9": {
+      "first_name": "Jackson",
+      "last_name": "Lee",
+      "email": "jackson.lee@darkhorse.net",
+      "balance": 674.86,
+      "friends": [
+        "01f052f0-bc55-4ccb-8003-8400f300ed20",
+        "8beecd47-f6fb-424d-a62a-bb92685245ec",
+        "55e4f098-89c3-4483-bda4-a5db357c5a5d"
+      ],
+      "payment_cards": {},
+      "addresses": {
+        "f0bf9574-95df-4f2c-8055-8250c150854b": {
+          "name": "Work Address",
+          "street_address": "707 Pine Lane",
+          "city": "Riverside",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 18483
+        }
+      },
+      "cart": {
+        "11": 2
+      },
+      "wish_list": {},
+      "orders": {
+        "641dd324-8e62-41f1-b2a4-5338cff52e31": {
+          "order_date": "2023-06-23",
+          "total_amount": 342.12,
+          "products": {
+            "8": 1,
+            "10": 1
+          },
+          "delivery_address_id": "f0bf9574-95df-4f2c-8055-8250c150854b",
+          "payment_card_id": null,
+          "status": "delivered",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK790320689"
+        }
+      },
+      "prime_subscriptions": {
+        "df349e23-ac3d-4f25-ad18-5d9c4c32be77": {
+          "start_date": "2022-04-23",
+          "end_date": "2023-04-23",
+          "plan_type": "monthly",
+          "status": "expired"
+        }
+      },
+      "returns": {}
+    },
+    "83e1058c-456c-4ef0-8993-a85fc1c2ad26": {
+      "first_name": "Alexander",
+      "last_name": "Davis",
+      "email": "alexander.davis@yahoo.com",
+      "balance": 1098.17,
+      "friends": [
+        "0dc85738-a20d-47ea-ad9b-39cc00a5a790",
+        "b2f3da88-8d56-4c4c-a3e8-a7972d34c800"
+      ],
+      "payment_cards": {
+        "5081c300-be6e-495f-97cc-4e84341fdc72": {
+          "card_name": "Alexander's Amex",
+          "owner_name": "Alexander Davis",
+          "card_number_last4": "5550",
+          "expiry_year": 2026,
+          "expiry_month": 9
+        },
+        "f395e58e-78a0-442f-b94e-c9ddf40b7be6": {
+          "card_name": "Alexander's Mastercard",
+          "owner_name": "Alexander Davis",
+          "card_number_last4": "1570",
+          "expiry_year": 2029,
+          "expiry_month": 9
+        }
+      },
+      "addresses": {
+        "19d027d8-905e-45b1-ab08-7ce81bdd2ab7": {
+          "name": "Home Address",
+          "street_address": "181 Pine Avenue",
+          "city": "Fairview",
+          "state": "FL",
+          "country": "USA",
+          "zip_code": 32319
+        }
+      },
+      "cart": {
+        "15": 2,
+        "6": 1,
+        "13": 1
+      },
+      "wish_list": {},
+      "orders": {
+        "c82536da-86c2-40cd-9ba7-e34366ede3ce": {
+          "order_date": "2025-02-09",
+          "total_amount": 930.38,
+          "products": {
+            "13": 2,
+            "9": 2
+          },
+          "delivery_address_id": "19d027d8-905e-45b1-ab08-7ce81bdd2ab7",
+          "payment_card_id": "f395e58e-78a0-442f-b94e-c9ddf40b7be6",
+          "status": "cancelled",
+          "promo_code_applied": "WELCOME10",
+          "tracking_number": null
+        },
+        "98bbab19-44b4-4885-90b6-9900cb6bd248": {
+          "order_date": "2024-11-19",
+          "total_amount": 1058.56,
+          "products": {
+            "9": 2,
+            "3": 1
+          },
+          "delivery_address_id": "19d027d8-905e-45b1-ab08-7ce81bdd2ab7",
+          "payment_card_id": "5081c300-be6e-495f-97cc-4e84341fdc72",
+          "status": "shipped",
+          "promo_code_applied": "SAVE20",
+          "tracking_number": "TRK955949226"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {
+        "4b8cdc81-258d-4b1a-adb8-1c7977f2bac7": {
+          "order_id": "c82536da-86c2-40cd-9ba7-e34366ede3ce",
+          "product_id": 9,
+          "return_date": "2023-04-26",
+          "reason": "wrong size",
+          "status": "rejected"
+        }
+      }
+    },
+    "be51d5da-3e8c-4fa9-80a3-064d3a49bf26": {
+      "first_name": "Chloe",
+      "last_name": "Thompson",
+      "email": "chloe.thompson@zscaler.org",
+      "balance": 366.88,
+      "friends": [
+        "91cc6a5c-d4c7-4aed-a57f-e6720633b4d8",
+        "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "e5317f0b-87b0-4a39-ba12-6d5591d0e303",
+        "81508f12-e67b-4566-b8c2-1ef07bb015f9"
+      ],
+      "payment_cards": {
+        "aab3578a-19e4-4b29-a878-542a07841c19": {
+          "card_name": "Chloe's Discover",
+          "owner_name": "Chloe Thompson",
+          "card_number_last4": "8486",
+          "expiry_year": 2030,
+          "expiry_month": 10
+        },
+        "038a7bcb-a57e-4a81-a276-27a32cd1343d": {
+          "card_name": "Chloe's Mastercard",
+          "owner_name": "Chloe Thompson",
+          "card_number_last4": "6109",
+          "expiry_year": 2031,
+          "expiry_month": 5
+        }
+      },
+      "addresses": {
+        "2f39e69f-6baa-457a-93da-4eae834c8ff5": {
+          "name": "Home Address",
+          "street_address": "496 Pine Road",
+          "city": "Fairview",
+          "state": "NY",
+          "country": "USA",
+          "zip_code": 19133
+        },
+        "c7879808-240e-46bd-98d9-9b2bf930632e": {
+          "name": "Home Address",
+          "street_address": "738 Elm Street",
+          "city": "Fairview",
+          "state": "WA",
+          "country": "USA",
+          "zip_code": 50715
+        }
+      },
+      "cart": {
+        "14": 2
+      },
+      "wish_list": {
+        "14": {
+          "added_date": "2023-01-06"
+        },
+        "7": {
+          "added_date": "2023-04-03"
+        }
+      },
+      "orders": {
+        "0826ab48-5094-4d8a-9489-edc46903f317": {
+          "order_date": "2023-09-05",
+          "total_amount": 1418.59,
+          "products": {
+            "7": 2,
+            "1": 2
+          },
+          "delivery_address_id": "c7879808-240e-46bd-98d9-9b2bf930632e",
+          "payment_card_id": "038a7bcb-a57e-4a81-a276-27a32cd1343d",
+          "status": "pending",
+          "promo_code_applied": "FREESHIP",
+          "tracking_number": "TRK968490696"
+        },
+        "c7683a1f-0739-4bcc-a282-e08bc96756a7": {
+          "order_date": "2025-11-15",
+          "total_amount": 1144.33,
+          "products": {
+            "2": 1,
+            "10": 2
+          },
+          "delivery_address_id": "c7879808-240e-46bd-98d9-9b2bf930632e",
+          "payment_card_id": "aab3578a-19e4-4b29-a878-542a07841c19",
+          "status": "shipped",
+          "promo_code_applied": null,
+          "tracking_number": "TRK838320869"
+        }
+      },
+      "prime_subscriptions": {},
+      "returns": {}
+    },
+    "7d52f5e9-e4df-4a52-94c9-2f3eb7fc5617": {
+      "first_name": "Liam",
+      "last_name": "Martin",
+      "email": "liam.martin@yahoo.com",
+      "balance": 907.07,
+      "friends": [
+        "f445f189-8295-4b72-97cf-c447a25f15b8",
+        "79921ae2-e918-4be1-8374-6862a978208e"
+      ],
+      "payment_cards": {
+        "e204edb2-abd4-4541-a54e-0ce78e9ab8b2": {
+          "card_name": "Liam's Visa",
+          "owner_name": "Liam Martin",
+          "card_number_last4": "1629",
+          "expiry_year": 2027,
+          "expiry_month": 12
+        },
+        "a61d17cd-d5a6-47d0-b20a-bf90d91c68e6": {
+          "card_name": "Liam's Visa",
+          "owner_name": "Liam Martin",
+          "card_number_last4": "1874",
+          "expiry_year": 2031,
+          "expiry_month": 10
+        }
+      },
+      "addresses": {
+        "90a8f996-9226-446d-a3b1-fe90ff8d0285": {
+          "name": "Home Address",
+          "street_address": "340 Elm Street",
+          "city": "Fairview",
+          "state": "CA",
+          "country": "USA",
+          "zip_code": 95538
+        }
+      },
+      "cart": {
+        "9": 3,
+        "10": 2,
+        "2": 2
+      },
+      "wish_list": {
+        "10": {
+          "added_date": "2024-06-02"
+        }
+      },
+      "orders": {},
+      "prime_subscriptions": {},
+      "returns": {}
+    }
+  },
+  "current_user": null,
+  "products": {
+    "1": {
+      "name": "E-Reader",
+      "description": "Experience virtual worlds.",
+      "price": 138.51,
+      "category": "Gaming & Hobbies",
+      "stock": 0,
+      "seller_id": 3
+    },
+    "2": {
+      "name": "Smartwatch",
+      "description": "Record your adventures in 4K.",
+      "price": 1425.49,
+      "category": "Home Decor",
+      "stock": 60,
+      "seller_id": 4
+    },
+    "3": {
+      "name": "Smartwatch",
+      "description": "Fizz and relax.",
+      "price": 1424.54,
+      "category": "Home Appliances",
+      "stock": 61,
+      "seller_id": 3
+    },
+    "4": {
+      "name": "E-Reader",
+      "description": "Immersive sound for gaming.",
+      "price": 56.37,
+      "category": "Health & Beauty",
+      "stock": 63,
+      "seller_id": 4
+    },
+    "5": {
+      "name": "Smartwatch",
+      "description": "Effortless cleaning for your home.",
+      "price": 1477.18,
+      "category": "Home Appliances",
+      "stock": 37,
+      "seller_id": 5
+    },
+    "6": {
+      "name": "Electric Kettle",
+      "description": "Nourish and moisturize your hands.",
+      "price": 819.78,
+      "category": "Fitness & Outdoors",
+      "stock": 74,
+      "seller_id": 4
+    },
+    "7": {
+      "name": "Children's Book",
+      "description": "Boil water quickly and safely.",
+      "price": 222.91,
+      "category": "Health & Beauty",
+      "stock": 69,
+      "seller_id": 5
+    },
+    "8": {
+      "name": "Hand Cream",
+      "description": "Epic adventure awaits.",
+      "price": 932.82,
+      "category": "Fitness & Outdoors",
+      "stock": 10,
+      "seller_id": 3
+    },
+    "9": {
+      "name": "Travel Mug",
+      "description": "Immersive sound for gaming.",
+      "price": 301.97,
+      "category": "Books",
+      "stock": 41,
+      "seller_id": 5
+    },
+    "10": {
+      "name": "Travel Mug",
+      "description": "Track your health and fitness goals.",
+      "price": 210.09,
+      "category": "Electronics",
+      "stock": 45,
+      "seller_id": 3
+    },
+    "11": {
+      "name": "Sci-Fi Novel",
+      "description": "Brew the perfect cup every time.",
+      "price": 111.25,
+      "category": "Health & Beauty",
+      "stock": 97,
+      "seller_id": 5
+    },
+    "12": {
+      "name": "Robot Vacuum",
+      "description": "Stay hydrated in style.",
+      "price": 1348.42,
+      "category": "Fitness & Outdoors",
+      "stock": 58,
+      "seller_id": 3
+    },
+    "13": {
+      "name": "Yoga Mat",
+      "description": "Experience virtual worlds.",
+      "price": 866.42,
+      "category": "Gaming & Hobbies",
+      "stock": 67,
+      "seller_id": 3
+    },
+    "14": {
+      "name": "Wireless Earbuds",
+      "description": "Powerful sound in a compact design.",
+      "price": 1068.51,
+      "category": "Fitness & Outdoors",
+      "stock": 99,
+      "seller_id": 5
+    },
+    "15": {
+      "name": "VR Headset",
+      "description": "Create a calming atmosphere.",
+      "price": 955.78,
+      "category": "Home Appliances",
+      "stock": 66,
+      "seller_id": 4
+    }
+  },
+  "sellers": {
+    "3": {
+      "name": "Gourmet Kitchenware",
+      "rating": 3.1
+    },
+    "4": {
+      "name": "Active Life Gear",
+      "rating": 3.6
+    },
+    "5": {
+      "name": "Gourmet Kitchenware",
+      "rating": 3.8
+    }
+  },
+  "product_reviews": {
+    "1": [
+      {
+        "review_id": "f747f175-2561-4103-a619-ed4562d2a190",
+        "user_id": "b2f3da88-8d56-4c4c-a3e8-a7972d34c800",
+        "rating": 5,
+        "comment": "Loved it!",
+        "date": "2025-07-26"
+      },
+      {
+        "review_id": "7d0e27d1-2e80-4d0f-bc33-4a659d6f86dc",
+        "user_id": "7c498099-93c8-44c8-8504-85f1b89e0681",
+        "rating": 4,
+        "comment": "Not impressed, had issues.",
+        "date": "2025-06-10"
+      },
+      {
+        "review_id": "f3f782b3-5525-48b6-8e39-10bdf270031b",
+        "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+        "rating": 5,
+        "comment": "It's okay, but could be better.",
+        "date": "2025-03-31"
+      },
+      {
+        "review_id": "7653fd7a-caf4-4779-9dfa-8a6fc92fe83a",
+        "user_id": "b2f3da88-8d56-4c4c-a3e8-a7972d34c800",
+        "rating": 5,
+        "comment": "Loved it!",
+        "date": "2025-04-26"
+      },
+      {
+        "review_id": "3dbb8809-e35a-478c-8273-d332918bcc75",
+        "user_id": "d330687e-a8ef-44cd-9010-f195173982b1",
+        "rating": 4,
+        "comment": "Works great, highly recommend.",
+        "date": "2024-07-27"
+      }
+    ],
+    "2": [
+      {
+        "review_id": "de2ac0bf-b8c0-4efa-8aee-aa819448f45d",
+        "user_id": "e5317f0b-87b0-4a39-ba12-6d5591d0e303",
+        "rating": 1,
+        "comment": "Not impressed, had issues.",
+        "date": "2024-01-26"
+      },
+      {
+        "review_id": "bb1721d7-da00-42c6-b86a-fe762e0d5313",
+        "user_id": "e5317f0b-87b0-4a39-ba12-6d5591d0e303",
+        "rating": 4,
+        "comment": "Works great, highly recommend.",
+        "date": "2025-01-05"
+      }
+    ],
+    "3": [
+      {
+        "review_id": "340fd74d-5501-40ef-8091-2e741de12216",
+        "user_id": "1b262b9b-d159-4fee-ad87-0e9648193378",
+        "rating": 3,
+        "comment": "Very satisfied.",
+        "date": "2024-02-17"
+      },
+      {
+        "review_id": "25ea872d-beee-46c9-9cc1-1f09121fa41d",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "rating": 1,
+        "comment": "Works great, highly recommend.",
+        "date": "2024-04-18"
+      },
+      {
+        "review_id": "9824135f-5405-4b1b-8125-19d1a3ba23bc",
+        "user_id": "70a4d068-f244-4fd0-a5b0-ead6d5533206",
+        "rating": 1,
+        "comment": "Absolutely fantastic!",
+        "date": "2025-05-08"
+      },
+      {
+        "review_id": "111e8aad-2afc-4ba8-b431-d959c416730b",
+        "user_id": "45d9d866-a872-4908-a789-4c3e864232da",
+        "rating": 3,
+        "comment": "Absolutely fantastic!",
+        "date": "2024-07-14"
+      },
+      {
+        "review_id": "c1d82bdc-7777-4d49-a3d8-74967e1650e9",
+        "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+        "rating": 1,
+        "comment": "It's okay, but could be better.",
+        "date": "2024-05-21"
+      }
+    ],
+    "4": [
+      {
+        "review_id": "f6f93959-cd80-41d1-965b-5936b9937bce",
+        "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+        "rating": 1,
+        "comment": "Loved it!",
+        "date": "2025-04-24"
+      },
+      {
+        "review_id": "81acdd18-4e5a-4c1f-b3c6-8f2867e6c414",
+        "user_id": "6ef8e1f6-019c-43eb-b03e-efd355a062bb",
+        "rating": 1,
+        "comment": "Works great, highly recommend.",
+        "date": "2024-06-22"
+      },
+      {
+        "review_id": "c3ef5563-64b5-4531-958f-e5523dc9154c",
+        "user_id": "c9ec9db3-d84b-45e8-9893-d1b6a0c08afd",
+        "rating": 3,
+        "comment": "Good value for money.",
+        "date": "2024-11-17"
+      },
+      {
+        "review_id": "f74aa879-e52e-46db-9057-9c27f2b068bf",
+        "user_id": "1b262b9b-d159-4fee-ad87-0e9648193378",
+        "rating": 3,
+        "comment": "Loved it!",
+        "date": "2025-11-29"
+      }
+    ],
+    "5": [
+      {
+        "review_id": "43397627-4145-456b-8a38-9c9f3a7e5427",
+        "user_id": "7d52f5e9-e4df-4a52-94c9-2f3eb7fc5617",
+        "rating": 4,
+        "comment": "Loved it!",
+        "date": "2025-12-05"
+      },
+      {
+        "review_id": "e85ab28a-2abd-48c0-97ae-5a63cdd258d5",
+        "user_id": "0dc85738-a20d-47ea-ad9b-39cc00a5a790",
+        "rating": 3,
+        "comment": "Very satisfied.",
+        "date": "2025-05-22"
+      }
+    ],
+    "6": [
+      {
+        "review_id": "e000e84b-f4eb-44d8-9153-99f3a7c7408d",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "rating": 4,
+        "comment": "Not impressed, had issues.",
+        "date": "2024-08-23"
+      },
+      {
+        "review_id": "41c6fa1f-01b0-42dd-9203-6f19d4b15235",
+        "user_id": "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "rating": 4,
+        "comment": "Good value for money.",
+        "date": "2024-10-14"
+      }
+    ],
+    "7": [
+      {
+        "review_id": "fb6e26b9-f6f0-4b68-8b1c-2ac3419875b5",
+        "user_id": "138abd5d-6164-4ab1-bb89-19583b5985af",
+        "rating": 4,
+        "comment": "Loved it!",
+        "date": "2024-04-01"
+      }
+    ],
+    "8": [
+      {
+        "review_id": "5413bbed-546d-40ad-97d8-fb669487a5f7",
+        "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+        "rating": 1,
+        "comment": "Very satisfied.",
+        "date": "2025-03-08"
+      },
+      {
+        "review_id": "06bc1e48-3f8b-45a2-8459-fad59dc813e3",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "rating": 4,
+        "comment": "Good value for money.",
+        "date": "2025-02-27"
+      }
+    ],
+    "9": [
+      {
+        "review_id": "ff27adaf-cfed-41f8-a2eb-50c267cc49f1",
+        "user_id": "7d52f5e9-e4df-4a52-94c9-2f3eb7fc5617",
+        "rating": 2,
+        "comment": "It's okay, but could be better.",
+        "date": "2023-10-05"
+      },
+      {
+        "review_id": "d7d96021-9f1f-4f91-85a6-1a6f33d7479c",
+        "user_id": "138abd5d-6164-4ab1-bb89-19583b5985af",
+        "rating": 1,
+        "comment": "Not impressed, had issues.",
+        "date": "2025-06-14"
+      }
+    ],
+    "10": [
+      {
+        "review_id": "3e03ad16-fc88-452a-9a19-1e1b6fc4d292",
+        "user_id": "e3b43d6b-5eb1-45c1-be91-09b067c68008",
+        "rating": 4,
+        "comment": "It's okay, but could be better.",
+        "date": "2023-10-08"
+      },
+      {
+        "review_id": "9a8c7500-fe40-4b98-98fe-1b228f334fe3",
+        "user_id": "6ef8e1f6-019c-43eb-b03e-efd355a062bb",
+        "rating": 2,
+        "comment": "Not impressed, had issues.",
+        "date": "2025-10-24"
+      }
+    ],
+    "11": [
+      {
+        "review_id": "b095fc59-7d31-461f-9791-7dd04772c177",
+        "user_id": "f876cc3c-97bd-4c02-b97b-277345667d04",
+        "rating": 3,
+        "comment": "Absolutely fantastic!",
+        "date": "2025-08-13"
+      },
+      {
+        "review_id": "0a6ebcbe-f15a-44e8-9a26-acc061953e4b",
+        "user_id": "24200f04-ea2a-40d8-a556-84ea0102c2f2",
+        "rating": 2,
+        "comment": "Decent product, met expectations.",
+        "date": "2024-09-18"
+      },
+      {
+        "review_id": "4d176979-3223-4ed1-bd37-8300659f1281",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "rating": 1,
+        "comment": "Very satisfied.",
+        "date": "2024-02-07"
+      },
+      {
+        "review_id": "dabbdc30-d856-4a2b-86b0-852364d6e8cf",
+        "user_id": "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+        "rating": 2,
+        "comment": "Absolutely fantastic!",
+        "date": "2024-03-04"
+      },
+      {
+        "review_id": "5458445b-1afb-4732-ad8a-9662ed1f25b8",
+        "user_id": "9ada727d-2fb1-4930-a0c4-dc0325b6ae93",
+        "rating": 4,
+        "comment": "Loved it!",
+        "date": "2023-11-27"
+      }
+    ],
+    "12": [
+      {
+        "review_id": "4ac64b6d-a050-442e-8d18-32ddaa59cc94",
+        "user_id": "f876cc3c-97bd-4c02-b97b-277345667d04",
+        "rating": 4,
+        "comment": "Works great, highly recommend.",
+        "date": "2024-09-07"
+      }
+    ],
+    "13": [],
+    "14": [],
+    "15": [
+      {
+        "review_id": "1f48dbb1-5b3b-4680-bed0-150494578482",
+        "user_id": "79921ae2-e918-4be1-8374-6862a978208e",
+        "rating": 1,
+        "comment": "Decent product, met expectations.",
+        "date": "2023-09-15"
+      }
+    ]
+  },
+  "product_questions": {
+    "1": [
+      {
+        "question_id": "dfcf1709-3bdf-47d2-b75f-d25ff2dc0bf7",
+        "user_id": "24200f04-ea2a-40d8-a556-84ea0102c2f2",
+        "question": "How long does shipping usually take?",
+        "date": "2025-05-02",
+        "answers": [
+          {
+            "answer_id": "e7e3a154-ecda-498e-ba35-d912cee2bd52",
+            "user_id": "cad5b8cd-b53a-4a46-ae65-b4ee9b22d0f6",
+            "answer": "Typically 3-5 business days.",
+            "date": "2024-04-29"
+          }
+        ]
+      },
+      {
+        "question_id": "681ea64a-0aec-4a24-b439-e8481105da09",
+        "user_id": "781ec606-3867-46fc-b0df-78abf76a3673",
+        "question": "Is assembly required?",
+        "date": "2024-08-07",
+        "answers": [
+          {
+            "answer_id": "95bb5da0-d2b5-4b94-8bc9-9a6bbb12d25c",
+            "user_id": "3ecaa9e1-269e-4125-959e-a64b21feb943",
+            "answer": "Typically 3-5 business days.",
+            "date": "2023-10-30"
+          }
+        ]
+      },
+      {
+        "question_id": "5cf06064-b6ce-4de2-8946-cebad0c0bafc",
+        "user_id": "be51d5da-3e8c-4fa9-80a3-064d3a49bf26",
+        "question": "How long does shipping usually take?",
+        "date": "2023-10-22",
+        "answers": []
+      }
+    ],
+    "2": [
+      {
+        "question_id": "0d7c36c1-3ffa-4bb1-b29a-c7f273a195ee",
+        "user_id": "6ea4bae9-e42e-4ab9-930f-79ffd9cd4b12",
+        "question": "Is it waterproof?",
+        "date": "2023-08-17",
+        "answers": [
+          {
+            "answer_id": "adc64605-dbb7-4695-81b2-ad9d20302651",
+            "user_id": "81508f12-e67b-4566-b8c2-1ef07bb015f9",
+            "answer": "About 8 hours.",
+            "date": "2025-11-14"
+          }
+        ]
+      },
+      {
+        "question_id": "e80d52f8-3e8f-4c33-b92b-a8e9df398013",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "question": "Can it be used outdoors?",
+        "date": "2023-03-28",
+        "answers": [
+          {
+            "answer_id": "036ef362-ee4a-4d3a-aef6-3e8324387251",
+            "user_id": "6ef8e1f6-019c-43eb-b03e-efd355a062bb",
+            "answer": "High-quality plastic and metal.",
+            "date": "2025-08-19"
+          }
+        ]
+      },
+      {
+        "question_id": "c7028669-f3c2-4539-9b84-5c36cc7afd9b",
+        "user_id": "0dc85738-a20d-47ea-ad9b-39cc00a5a790",
+        "question": "What materials is this made from?",
+        "date": "2023-01-03",
+        "answers": [
+          {
+            "answer_id": "55547175-f394-49a3-ba84-59e9c1b7c710",
+            "user_id": "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+            "answer": "Minimal assembly.",
+            "date": "2023-03-03"
+          }
+        ]
+      }
+    ],
+    "3": [],
+    "4": [
+      {
+        "question_id": "291d2d31-d923-4baf-a592-d8d6ae644c6e",
+        "user_id": "55e4f098-89c3-4483-bda4-a5db357c5a5d",
+        "question": "Can it be used outdoors?",
+        "date": "2025-07-30",
+        "answers": []
+      },
+      {
+        "question_id": "51ab9c6d-475d-4902-a1b9-79acaaf9b63f",
+        "user_id": "3721e393-a110-4fb6-adb2-55aa6cfd3e4c",
+        "question": "How long does shipping usually take?",
+        "date": "2025-11-12",
+        "answers": [
+          {
+            "answer_id": "34715173-06c4-4c1d-81f4-d397d248c3ff",
+            "user_id": "81508f12-e67b-4566-b8c2-1ef07bb015f9",
+            "answer": "No, it is not.",
+            "date": "2025-06-07"
+          }
+        ]
+      },
+      {
+        "question_id": "2f26d95d-8d00-4324-967b-cfad42453ae1",
+        "user_id": "83e1058c-456c-4ef0-8993-a85fc1c2ad26",
+        "question": "Does it come with a warranty?",
+        "date": "2023-05-29",
+        "answers": [
+          {
+            "answer_id": "a1ac4965-7501-4a48-8543-40ab8eefbd48",
+            "user_id": "70a4d068-f244-4fd0-a5b0-ead6d5533206",
+            "answer": "It's designed for indoor use.",
+            "date": "2024-10-03"
+          }
+        ]
+      }
+    ],
+    "5": [],
+    "6": [
+      {
+        "question_id": "c69c75e7-e1ca-428d-9654-20c772acc3cc",
+        "user_id": "b2f3da88-8d56-4c4c-a3e8-a7972d34c800",
+        "question": "Is assembly required?",
+        "date": "2023-10-25",
+        "answers": [
+          {
+            "answer_id": "888b9c6c-8bef-4400-9fc9-51574cec727e",
+            "user_id": "522b0615-36de-46be-9707-ad11c5b5c333",
+            "answer": "Typically 3-5 business days.",
+            "date": "2024-02-14"
+          }
+        ]
+      },
+      {
+        "question_id": "e9a66eaa-6027-491a-90dd-8b0e6265cba6",
+        "user_id": "0a7b5d40-f7b8-435b-97e4-6767424a6da7",
+        "question": "Does it come with a warranty?",
+        "date": "2023-03-15",
+        "answers": [
+          {
+            "answer_id": "4cdfc5ef-fec7-4588-b9bd-02de384c15f7",
+            "user_id": "781ec606-3867-46fc-b0df-78abf76a3673",
+            "answer": "No, it is not.",
+            "date": "2023-05-14"
+          }
+        ]
+      },
+      {
+        "question_id": "52ce04e7-3514-4f80-88c8-96074909ee6a",
+        "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+        "question": "Can it be used outdoors?",
+        "date": "2024-07-10",
+        "answers": []
+      }
+    ],
+    "7": [
+      {
+        "question_id": "9f6c24d1-6776-473c-af8f-b45e6fe2d6a1",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "question": "Does it come with a warranty?",
+        "date": "2023-12-11",
+        "answers": []
+      }
+    ],
+    "8": [
+      {
+        "question_id": "dcbb0dd2-f960-4317-8bd9-2149e3df7cfc",
+        "user_id": "3ecaa9e1-269e-4125-959e-a64b21feb943",
+        "question": "Is this compatible with X device?",
+        "date": "2024-11-19",
+        "answers": []
+      },
+      {
+        "question_id": "abee1da1-41b2-4e4e-b010-856b120a99b4",
+        "user_id": "4d15ed5d-bcc2-4f41-834d-ca91e7cbb5cd",
+        "question": "What materials is this made from?",
+        "date": "2025-12-20",
+        "answers": [
+          {
+            "answer_id": "af913581-a193-4191-b1e9-2339968bf2d7",
+            "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+            "answer": "No, it is not.",
+            "date": "2025-12-13"
+          }
+        ]
+      },
+      {
+        "question_id": "fd35ecf6-22d3-4653-b467-9ac4d9aa0f76",
+        "user_id": "44acb1b6-e4bf-4c15-b96a-f062c3a1fdac",
+        "question": "Is this compatible with X device?",
+        "date": "2023-03-11",
+        "answers": [
+          {
+            "answer_id": "4429f27b-0b22-4279-bfe4-b27155e01276",
+            "user_id": "45d9d866-a872-4908-a789-4c3e864232da",
+            "answer": "High-quality plastic and metal.",
+            "date": "2024-09-16"
+          }
+        ]
+      }
+    ],
+    "9": [
+      {
+        "question_id": "cfa17524-6fc2-46fa-8326-766dad0c660c",
+        "user_id": "b2f3da88-8d56-4c4c-a3e8-a7972d34c800",
+        "question": "Is this compatible with X device?",
+        "date": "2024-06-03",
+        "answers": []
+      },
+      {
+        "question_id": "bb1df0f9-fd35-490a-9174-5aa780176e49",
+        "user_id": "b2f3da88-8d56-4c4c-a3e8-a7972d34c800",
+        "question": "Is it waterproof?",
+        "date": "2025-11-03",
+        "answers": [
+          {
+            "answer_id": "17f80418-61c1-4510-bdba-a84806659dc6",
+            "user_id": "3721e393-a110-4fb6-adb2-55aa6cfd3e4c",
+            "answer": "About 8 hours.",
+            "date": "2025-01-06"
+          }
+        ]
+      },
+      {
+        "question_id": "fbff211f-9337-4bda-b726-0725992f71eb",
+        "user_id": "ae677c1f-bad2-4757-928a-a2c31bb50b90",
+        "question": "Is this compatible with X device?",
+        "date": "2023-09-22",
+        "answers": [
+          {
+            "answer_id": "d2eb68ba-bb26-468f-8bab-58cc185570aa",
+            "user_id": "cc1e1d29-2028-481f-a8d6-f37a0d38583d",
+            "answer": "It's designed for indoor use.",
+            "date": "2023-10-26"
+          }
+        ]
+      }
+    ],
+    "10": [
+      {
+        "question_id": "066feb95-65c8-41d2-b708-5116939c4a0c",
+        "user_id": "d49afbe4-22aa-482a-bc94-3c07467c8c83",
+        "question": "Is it waterproof?",
+        "date": "2023-06-25",
+        "answers": [
+          {
+            "answer_id": "e908ca90-b511-4086-a08d-5bf62e1efac0",
+            "user_id": "3721e393-a110-4fb6-adb2-55aa6cfd3e4c",
+            "answer": "About 8 hours.",
+            "date": "2023-01-27"
+          }
+        ]
+      }
+    ],
+    "11": [
+      {
+        "question_id": "851af2ea-c1ad-4bed-a356-ac0b81d39154",
+        "user_id": "6ea4bae9-e42e-4ab9-930f-79ffd9cd4b12",
+        "question": "Can it be used outdoors?",
+        "date": "2025-07-23",
+        "answers": [
+          {
+            "answer_id": "1ce0fbbf-e6e7-4353-af29-596800fa23f6",
+            "user_id": "d4998420-72c8-403c-a775-f3eed9557189",
+            "answer": "No, it is not.",
+            "date": "2023-12-23"
+          }
+        ]
+      }
+    ],
+    "12": [],
+    "13": [
+      {
+        "question_id": "c3e9d2ff-7896-40af-9c89-9c234c151f06",
+        "user_id": "60d1c4c4-88ae-4dbf-8a1e-dae32fb91a68",
+        "question": "Can it be used outdoors?",
+        "date": "2025-12-20",
+        "answers": []
+      }
+    ],
+    "14": [
+      {
+        "question_id": "26acde86-c07a-4e7d-a91f-3cdb9c13336b",
+        "user_id": "81508f12-e67b-4566-b8c2-1ef07bb015f9",
+        "question": "Is this compatible with X device?",
+        "date": "2024-09-16",
+        "answers": []
+      },
+      {
+        "question_id": "59f73e41-6498-4a41-b192-60229225dba8",
+        "user_id": "3ecaa9e1-269e-4125-959e-a64b21feb943",
+        "question": "Can it be used outdoors?",
+        "date": "2024-04-29",
+        "answers": []
+      },
+      {
+        "question_id": "7960ef00-2719-4094-bfce-f7402e5bd618",
+        "user_id": "a7051342-9a81-4f51-ae75-ab1a3111adb5",
+        "question": "What's the battery life like?",
+        "date": "2024-03-02",
+        "answers": []
+      }
+    ],
+    "15": []
+  },
+  "promotions": {
+    "5a0ff04f-2549-4d28-99fd-611d456e95f5": {
+      "code": "SUMMERFUN",
+      "discount_percentage": 15,
+      "min_purchase_amount": 50.0,
+      "expiry_date": "2025-08-31",
+      "description": "15% off orders over $50 for summer!",
+      "is_active": true
+    },
+    "9f8c97d5-9743-40ac-b816-278b6ff4fca4": {
+      "code": "NEWCUSTOMER20",
+      "discount_percentage": 20,
+      "min_purchase_amount": 0.0,
+      "expiry_date": "2025-12-31",
+      "description": "20% off your first order!",
+      "is_active": true
+    }
+  },
+  "customer_service_tickets": {
+    "17820bc5-9bca-4645-b732-de36f6829088": {
+      "user_id": "f71f658e-e06f-41cd-8b44-3bd3f1d68a10",
+      "subject": "Missing Item in Order",
+      "description": "Order TRK123456789 arrived, but Product 5 was missing.",
+      "status": "open",
+      "created_date": "2025-07-20",
+      "last_updated_date": "2025-07-25",
+      "agent_notes": "Checked inventory, sending replacement for Product 5."
+    },
+    "fd93c682-d2d3-41bd-b543-8d550a12d278": {
+      "user_id": "1819e786-26f0-43d6-aecf-ee4641741d65",
+      "subject": "Issue with Payment",
+      "description": "My card was declined for order TRK987654321.",
+      "status": "closed",
+      "created_date": "2025-06-01",
+      "last_updated_date": "2025-06-05",
+      "agent_notes": "User updated card details, payment successful now."
+    }
+  }
+}

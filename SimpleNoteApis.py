@@ -1,299 +1,305 @@
-from typing import Dict, Union, Literal
+import datetime
+import copy
+import uuid
+import random
+from typing import Dict, List, Any, Optional, Union, Literal
 
 class SimpleNoteApis:
-    def signup(
-        self,
-        first_name: str,
-        last_name: str,
-        email: str,
-        password: str,
-    ) -> Dict[str, bool]:
+    """
+    A dummy API class for simulating Simple Note operations.
+    This class provides an in-memory backend for development and testing purposes.
+    """
+
+    def __init__(self):
         """
-        Sign up a new user with first name, last name, email and password.
+        Initializes the SimpleNoteApis instance, setting up the in-memory
+        data stores and loading the default scenario.
+        """
+        self.users: Dict[str, Any] = {}
+        self._api_description = "This tool belongs to the SimpleNote API, which provides core functionality for managing notes."
+        self._load_scenario(DEFAULT_STATE)
+
+    def _load_scenario(self, scenario: Dict) -> None:
+        """
+        Loads a predefined scenario into the dummy backend's state.
+        This allows for resetting the state or initializing with specific data.
 
         Args:
-            first_name (str): First name of the user.
-            last_name (str): Last name of the user.
-            email (str): Email of the user.
-            password (str): Password of the user.
-
-        Returns:
-            Dict[str, bool]: Dictionary with signup status.
+            scenario (Dict): A dictionary representing the state to load.
+                             It should contain a "users" key.
         """
-        ...
-    # def login(
-    #     self,
-    #     data: OAuth2PasswordRequestForm,
-    # ) -> Dict[str, Union[bool, str]]:
-    #     """
-    #     Log in a user with email and password.
+        DEFAULT_STATE_COPY = copy.deepcopy(scenario)
+        self.users = DEFAULT_STATE_COPY.get("users", {})
+        print("SimpleNoteApis: Loaded scenario with users and their UUIDs.")
 
-    #     Args:
-    #         data (OAuth2PasswordRequestForm): Form containing username (email) and password.
-
-    #     Returns:
-    #         Dict[str, Union[bool, str]]: Dictionary with login status and access token if successful.
-    #     """
-    #     ...
-    # def logout(
-    #     self,
-    #     request: Request,
-    # ) -> Dict[str, bool]:
-    #     """
-    #     Log out the current user.
-
-    #     Args:
-    #         request (Request): The request object.
-
-    #     Returns:
-    #         Dict[str, bool]: Dictionary with logout status.
-    #     """
-    #     ...
-    def send_verification_code(
-        self,
-        email: str,
-    ) -> Dict[str, bool]:
+    def _generate_unique_id(self) -> str:
         """
-        Send a verification code to the user's email.
+        Generates a unique UUID for dummy entities (notes).
+        """
+        return str(uuid.uuid4())
+
+    def _get_user_id_by_alias(self, alias: str) -> Optional[str]:
+        """Helper to get user_id (UUID) from alias (simple string)."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("alias") == alias:
+                return user_id
+        return None
+
+    def _get_user_alias_by_id(self, user_id: str) -> Optional[str]:
+        """Helper to get user alias (simple string) from user_id (UUID)."""
+        user_data = self.users.get(user_id)
+        return user_data.get("alias") if user_data else None
+
+    def _get_user_note_data(self, user_alias: str) -> Optional[Dict]:
+        """Helper to get a user's note data."""
+        internal_user_id = self._get_user_id_by_alias(user_alias)
+        if not internal_user_id:
+            return None
+        return self.users.get(internal_user_id, {}).get("note_data")
+
+    def show_account(self, user: str) -> Dict[str, Union[bool, Dict]]:
+        """
+        Shows the account information for the current user.
 
         Args:
-            email (str): Email of the user.
+            user (str): The user identifier.
 
         Returns:
-            Dict[str, bool]: Dictionary with send status.
+            Dict: A dictionary containing 'status' (bool) and 'profile_data' (Dict) if successful.
         """
-        ...
-    def verify_account(
-        self,
-        email: str,
-        verification_code: str,
-    ) -> Dict[str, bool]:
+        internal_user_id = self._get_user_id_by_alias(user)
+        if not internal_user_id:
+            return {"status": False, "profile_data": {}}
+
+        user_data = self.users.get(internal_user_id)
+        if user_data:
+            profile = {
+                "first_name": user_data["first_name"],
+                "last_name": user_data["last_name"],
+                "email": user_data["email"],
+                "alias": user_data["alias"]
+            }
+            return {"status": True, "profile_data": profile}
+        return {"status": False, "profile_data": {}}
+
+    def list_notes(
+        self, user: str, tag: Optional[str] = None, pinned: Optional[bool] = None
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Verify user's account with the verification code.
+        Lists all notes for a specific user, with optional filtering by tag or pinned status.
 
         Args:
-            email (str): Email of the user.
-            verification_code (str): Verification code sent to the user.
+            user (str): The user identifier.
+            tag (Optional[str]): If provided, only notes with this tag will be returned.
+            pinned (Optional[bool]): If True, only pinned notes; if False, only unpinned notes.
 
         Returns:
-            Dict[str, bool]: Dictionary with verification status.
+            Dict: A dictionary containing 'status' (bool) and 'notes' (List[Dict]) if successful.
         """
-        ...
-    def send_password_reset_code(
-        self,
-        email: str,
-    ) -> Dict[str, bool]:
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False, "notes": []}
+
+        notes = user_note_data.get("notes", {})
+        filtered_notes = []
+
+        for note_id, note_content in notes.items():
+            if tag and tag not in note_content.get("tags", []):
+                continue
+            if pinned is not None and note_content.get("pinned") != pinned:
+                continue
+            filtered_notes.append(copy.deepcopy(note_content))
+
+        return {"status": True, "notes": filtered_notes}
+
+    def get_note(self, note_id: str, user: str) -> Dict[str, Union[bool, Dict]]:
         """
-        Send a password reset code to the user's email.
+        Retrieves a single note by its ID for a specific user.
 
         Args:
-            email (str): Email of the user.
+            note_id (str): The ID of the note to retrieve.
+            user (str): The user identifier.
 
         Returns:
-            Dict[str, bool]: Dictionary with send status.
+            Dict: A dictionary containing 'status' (bool) and 'note' (Dict) if successful.
         """
-        ...
-    def reset_password(
-        self,
-        email: str,
-        password_reset_code: str,
-        new_password: str,
-    ) -> Dict[str, bool]:
-        """
-        Reset user's password with the reset code.
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False, "note": {}}
 
-        Args:
-            email (str): Email of the user.
-            password_reset_code (str): Password reset code sent to the user.
-            new_password (str): New password for the user.
+        notes = user_note_data.get("notes", {})
+        note = notes.get(note_id)
+        if note:
+            return {"status": True, "note": copy.deepcopy(note)}
+        return {"status": False, "note": {}}
 
-        Returns:
-            Dict[str, bool]: Dictionary with reset status.
-        """
-        ...
-    def show_profile(
-        self,
-        email: str,
-    ) -> Dict[str, Union[str, bool]]:
-        """
-        Show user's profile information.
-
-        Args:
-            email (str): Email of the user.
-
-        Returns:
-            Dict[str, Union[str, bool]]: Dictionary with user's profile information.
-        """
-        ...
-    def show_account(
-        self,
-        user: str,
-    ) -> Dict[str, Union[str, bool]]:
-        """
-        Show detailed account information.
-
-        Args:
-            user (User): The user object.
-
-        Returns:
-            Dict[str, Union[str, bool]]: Dictionary with account information.
-        """
-        ...
-    def update_account_name(
-        self,
-        first_name: str | None,
-        last_name: str | None,
-        user: str,
-    ) -> Dict[str, bool]:
-        """
-        Update user's first and/or last name.
-
-        Args:
-            first_name (str | None): New first name (optional).
-            last_name (str | None): New last name (optional).
-            user (User): The user object.
-
-        Returns:
-            Dict[str, bool]: Dictionary with update status.
-        """
-        ...
-    def delete_account(
-        self,
-        user: str,
-    ) -> Dict[str, bool]:
-        """
-        Delete user's account.
-
-        Args:
-            user (User): The user object.
-
-        Returns:
-            Dict[str, bool]: Dictionary with deletion status.
-        """
-        ...
-    def search_notes(
-        self,
-        query: str,
-        tags: list[str] | None,
-        pinned: bool | None,
-        dont_reorder_pinned: bool,
-        page_index: int,
-        page_limit: int,
-        sort_by: str | None,
-        user: str,
-    ) -> Dict[str, Union[bool, list]]:
-        """
-        Search for notes based on various criteria.
-
-        Args:
-            query (str): Search query string.
-            tags (list[str] | None): List of tags to filter by.
-            pinned (bool | None): Filter by pinned status.
-            dont_reorder_pinned (bool): Whether to keep pinned notes at top.
-            page_index (int): Pagination page index.
-            page_limit (int): Number of items per page.
-            sort_by (str | None): Field to sort by.
-            user (User): The user object.
-
-        Returns:
-            Dict[str, Union[bool, list]]: Dictionary with search results.
-        """
-        ...
-    def show_note(
-        self,
-        note_id: int,
-        user: str,
-    ) -> Dict[str, Union[bool, str, list]]:
-        """
-        Show details of a specific note.
-
-        Args:
-            note_id (int): ID of the note.
-            user (User): The user object.
-
-        Returns:
-            Dict[str, Union[bool, str, list]]: Dictionary with note details.
-        """
-        ...
     def create_note(
         self,
+        user: str,
         title: str,
         content: str,
-        tags: list[str] | None,
-        pinned: bool,
-        user: str,
-    ) -> Dict[str, Union[bool, int]]:
+        tags: Optional[List[str]] = None,
+        pinned: bool = False,
+    ) -> Dict[str, Union[bool, Dict]]:
         """
-        Create a new note.
+        Creates a new note for a specific user.
 
         Args:
-            title (str): Title of the note.
-            content (str): Content of the note.
-            tags (list[str] | None): List of tags for the note.
+            user (str): The user identifier.
+            title (str): The title of the new note.
+            content (str): The content of the new note.
+            tags (Optional[List[str]]): A list of tags for the note.
             pinned (bool): Whether the note should be pinned.
-            user (User): The user object.
 
         Returns:
-            Dict[str, Union[bool, int]]: Dictionary with creation status and note ID.
+            Dict: A dictionary containing 'status' (bool) and 'note' (Dict) if successful.
         """
-        ...
-    def update_note(
+        internal_user_id = self._get_user_id_by_alias(user)
+        if not internal_user_id:
+            return {"status": False, "message": "User not found."}
+
+        user_note_data = self.users[internal_user_id].get("note_data")
+        if user_note_data is None:
+            user_note_data = {"notes": {}}
+            self.users[internal_user_id]["note_data"] = user_note_data
+
+        notes = user_note_data.get("notes")
+
+        new_note_id = self._generate_unique_id()
+        current_time_iso = datetime.datetime.now().isoformat() + "Z"
+
+        new_note = {
+            "id": new_note_id,
+            "title": title,
+            "content": content,
+            "tags": tags if tags is not None else [],
+            "pinned": pinned,
+            "user": internal_user_id,
+            "created_at": current_time_iso,
+            "updated_at": current_time_iso,
+        }
+        notes[new_note_id] = new_note
+
+        print(f"Note '{title}' created for {user} with ID: {new_note_id}")
+        return {"status": True, "note": new_note}
+
+    def update_note_content(
         self,
-        note_id: int,
-        title: str | None,
-        content: str | None,
-        tags: list[str] | None,
-        pinned: bool | None,
+        note_id: str,
         user: str,
+        new_content: str,
+        new_title: Optional[str] = None,
+        new_tags: Optional[List[str]] = None,
+        new_pinned_status: Optional[bool] = None,
     ) -> Dict[str, bool]:
         """
-        Update an existing note.
+        Updates the content, title, tags, or pinned status of an existing note.
 
         Args:
-            note_id (int): ID of the note to update.
-            title (str | None): New title (optional).
-            content (str | None): New content (optional).
-            tags (list[str] | None): New tags (optional).
-            pinned (bool | None): New pinned status (optional).
-            user (User): The user object.
+            note_id (str): ID of the note to update.
+            user (str): The user identifier.
+            new_content (str): The new content for the note.
+            new_title (Optional[str]): The new title for the note.
+            new_tags (Optional[List[str]]): The new list of tags for the note.
+            new_pinned_status (Optional[bool]): The new pinned status for the note.
 
         Returns:
-            Dict[str, bool]: Dictionary with update status.
+            Dict[str, bool]: A dictionary containing 'status' (bool) indicating success or failure.
         """
-        ...
-    def add_content_to_note(
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False}
+
+        notes = user_note_data.get("notes", {})
+        if note_id not in notes:
+            return {"status": False}
+
+        note = notes[note_id]
+        note["content"] = new_content
+        if new_title is not None:
+            note["title"] = new_title
+        if new_tags is not None:
+            note["tags"] = new_tags
+        if new_pinned_status is not None:
+            note["pinned"] = new_pinned_status
+        
+        note["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+
+        return {"status": True}
+
+    def append_or_prepend_note_content(
         self,
-        note_id: int,
-        append_or_prepend: Literal["append", "prepend"],
+        note_id: str,
+        user: str,
         added_content: str,
-        user: str,
+        append_or_prepend: Literal["append", "prepend"] = "append",
     ) -> Dict[str, bool]:
         """
-        Add content to an existing note.
+        Appends or prepends content to an existing note.
 
         Args:
-            note_id (int): ID of the note.
-            append_or_prepend (Literal["append", "prepend"]): Where to add the content.
+            note_id (str): ID of the note to modify.
+            user (str): The user identifier.
             added_content (str): Content to add.
-            user (User): The user object.
+            append_or_prepend (Literal["append", "prepend"]): Whether to append or prepend.
 
         Returns:
-            Dict[str, bool]: Dictionary with update status.
+            Dict[str, bool]: A dictionary containing 'status' (bool) indicating success or failure.
         """
-        ...
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False}
+
+        notes = user_note_data.get("notes", {})
+        if note_id not in notes:
+            return {"status": False}
+
+        note = notes[note_id]
+        if append_or_prepend == "append":
+            note["content"] += "\n" + added_content
+        else:
+            note["content"] = added_content + "\n" + note["content"]
+        
+        note["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+
+        return {"status": True}
+
     def delete_note(
         self,
-        note_id: int,
+        note_id: str,
         user: str,
     ) -> Dict[str, bool]:
         """
         Delete a note.
 
         Args:
-            note_id (int): ID of the note to delete.
-            user (User): The user object.
+            note_id (str): ID of the note to delete.
+            user (str): The user identifier. Only notes belonging to this user can be deleted.
 
         Returns:
-            Dict[str, bool]: Dictionary with deletion status.
+            Dict[str, bool]: A dictionary containing:
+                             - "status" (bool): True if the note was deleted successfully,
+                                                False if the note was not found or does not
+                                                belong to the specified user.
         """
-        ...
+        user_note_data = self._get_user_note_data(user)
+        if user_note_data is None:
+            return {"status": False}
+
+        notes = user_note_data.get("notes", {})
+        if note_id in notes:
+            del notes[note_id]
+            return {"status": True}
+        return {"status": False}
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("SimpleNoteApis: All dummy data reset to default state.")
+        return {"reset_status": True}
