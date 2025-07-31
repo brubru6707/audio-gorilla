@@ -1,0 +1,3450 @@
+{
+  "current_user": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+  "users": {
+    "4886f759-8bc1-4574-a359-31bf55a7774b": {
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "email": "alice.smith@gmail.com",
+      "balance": 100.0,
+      "friends": [
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "e1c75c66-3c19-47e5-8622-3325962001ba"
+      ],
+      "payment_cards": {
+        "effc80e1-cfbf-452b-a055-4cf57b0d2fd2": {
+          "card_name": "My Debit Card",
+          "owner_name": "Alice Smith",
+          "card_number": "**** **** **** 4444",
+          "expiry_year": 2028,
+          "expiry_month": 12,
+          "is_default": true,
+          "id": "effc80e1-cfbf-452b-a055-4cf57b0d2fd2",
+          "created_at": "2023-10-02T01:11:13.932Z",
+          "last_modified": "2025-07-12T10:40:22.932Z",
+          "card_type": "Visa",
+          "billing_address": "349 Pine St, Rivertown, AL 94061"
+        }
+      },
+      "id": "4886f759-8bc1-4574-a359-31bf55a7774b"
+    },
+    "a080b82b-9885-4199-8778-156bf634716a": {
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "email": "bob.johnson@yahoo.com",
+      "balance": 50.0,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "4886f759-8bc1-4574-a359-31bf55a7774b"
+      ],
+      "payment_cards": {
+        "04b54289-7267-46d2-a621-d3b7be1bc149": {
+          "card_name": "Bob's Visa",
+          "owner_name": "Bob Johnson",
+          "card_number": "**** **** **** 5555",
+          "expiry_year": 2027,
+          "expiry_month": 11,
+          "is_default": true,
+          "id": "04b54289-7267-46d2-a621-d3b7be1bc149",
+          "created_at": "2023-04-21T06:35:38.933Z",
+          "last_modified": "2025-07-14T02:18:02.933Z",
+          "card_type": "Visa",
+          "billing_address": "539 Pine St, Rivertown, FL 86091"
+        }
+      },
+      "id": "a080b82b-9885-4199-8778-156bf634716a"
+    },
+    "e1c75c66-3c19-47e5-8622-3325962001ba": {
+      "first_name": "Charlie",
+      "last_name": "Brown",
+      "email": "charlie.brown@outlook.com",
+      "balance": 25.5,
+      "friends": [
+        "4886f759-8bc1-4574-a359-31bf55a7774b"
+      ],
+      "payment_cards": {
+        "285a1515-60a7-449b-96d8-2e7a2a1730cf": {
+          "card_name": "Charlie's Amex",
+          "owner_name": "Charlie Brown",
+          "card_number": "**** **** **** 0000",
+          "expiry_year": 2026,
+          "expiry_month": 9,
+          "is_default": true,
+          "id": "285a1515-60a7-449b-96d8-2e7a2a1730cf",
+          "created_at": "2023-09-07T03:13:35.933Z",
+          "last_modified": "2025-05-29T00:44:56.933Z",
+          "card_type": "Amex",
+          "billing_address": "684 Main St, Rivertown, GA 82160"
+        }
+      },
+      "id": "e1c75c66-3c19-47e5-8622-3325962001ba"
+    },
+    "4472b43e-d4b6-4862-b915-41bee2a04069": {
+      "first_name": "Diana",
+      "last_name": "Prince",
+      "email": "diana.prince@protonmail.com",
+      "balance": 150.0,
+      "friends": [
+        "a080b82b-9885-4199-8778-156bf634716a"
+      ],
+      "payment_cards": {},
+      "id": "4472b43e-d4b6-4862-b915-41bee2a04069"
+    },
+    "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a": {
+      "id": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "first_name": "Sophia",
+      "last_name": "Davis",
+      "email": "sophia.davis659@email.xyz",
+      "balance": 421.58,
+      "friends": [
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "e1c75c66-3c19-47e5-8622-3325962001ba"
+      ],
+      "payment_cards": {
+        "1fea9010-246a-4919-9b08-5df46e5bd00c": {
+          "id": "1fea9010-246a-4919-9b08-5df46e5bd00c",
+          "card_name": "Savings Card (Mastercard)",
+          "owner_name": "Sophia Davis",
+          "card_number": "5XXXXXXXXXXXXXX0508",
+          "expiry_year": 2030,
+          "expiry_month": 12,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "329 Main Ave, Orlando, FL 16394",
+          "created_at": "2024-01-08T07:54:02.933Z",
+          "last_modified": "2025-06-03T16:25:49.933Z"
+        }
+      },
+      "registration_date": "2021-09-03T23:49:52.933Z",
+      "last_login_date": "2025-07-17T08:31:29.933Z",
+      "is_premium": true
+    },
+    "4f74c089-297a-47a1-aa5a-c2b4a45e53fe": {
+      "id": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "first_name": "Logan",
+      "last_name": "Brown",
+      "email": "logan.brown4060@domain.app",
+      "balance": 214.12,
+      "friends": [
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a"
+      ],
+      "payment_cards": {
+        "615e49f5-ae2d-452f-9c4e-314ac663767a": {
+          "id": "615e49f5-ae2d-452f-9c4e-314ac663767a",
+          "card_name": "Work Card (Visa)",
+          "owner_name": "Logan Brown",
+          "card_number": "4XXXXXXXXXXXXXX3394",
+          "expiry_year": 2034,
+          "expiry_month": 7,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "576 Cedar Ave, Tampa, MS 60229",
+          "created_at": "2023-12-28T20:18:16.933Z",
+          "last_modified": "2025-05-31T10:55:13.933Z"
+        }
+      },
+      "registration_date": "2023-05-06T00:40:18.933Z",
+      "last_login_date": "2025-07-22T12:45:48.933Z",
+      "is_premium": true
+    },
+    "2872bb1a-be2f-48c6-b373-116c49b1e7c1": {
+      "id": "2872bb1a-be2f-48c6-b373-116c49b1e7c1",
+      "first_name": "Lily",
+      "last_name": "Wilson",
+      "email": "lily.wilson9577@example.com",
+      "balance": 194.93,
+      "friends": [
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "e1c75c66-3c19-47e5-8622-3325962001ba"
+      ],
+      "payment_cards": {
+        "3e994e8a-bb3f-440c-9558-b759080acad5": {
+          "id": "3e994e8a-bb3f-440c-9558-b759080acad5",
+          "card_name": "Travel Card (Mastercard)",
+          "owner_name": "Lily Wilson",
+          "card_number": "5XXXXXXXXXXXXXX8323",
+          "expiry_year": 2033,
+          "expiry_month": 1,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "371 Main Ave, Atlanta, SC 30222",
+          "created_at": "2024-06-23T18:00:30.933Z",
+          "last_modified": "2025-07-13T18:27:45.933Z"
+        }
+      },
+      "registration_date": "2023-06-17T23:57:33.933Z",
+      "last_login_date": "2025-07-14T08:13:30.933Z",
+      "is_premium": false
+    },
+    "b2cfab84-4cca-4dbe-8d50-844ad566b9ee": {
+      "id": "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+      "first_name": "Mila",
+      "last_name": "Thompson",
+      "email": "mila.thompson552@fastmail.cc",
+      "balance": 88.58,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "222dbc3b-292d-4356-bf2b-bcfbbb375546": {
+          "id": "222dbc3b-292d-4356-bf2b-bcfbbb375546",
+          "card_name": "Work Card (Discover)",
+          "owner_name": "Mila Thompson",
+          "card_number": "6011XXXXXXXXXXX2614",
+          "expiry_year": 2033,
+          "expiry_month": 8,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "704 Lake Ave, Nashville, FL 68042",
+          "created_at": "2023-01-13T22:45:03.933Z",
+          "last_modified": "2025-06-19T17:39:47.933Z"
+        }
+      },
+      "registration_date": "2022-02-11T12:03:51.933Z",
+      "last_login_date": "2025-07-20T08:06:43.933Z",
+      "is_premium": false
+    },
+    "161169b0-ac46-4a3c-96c9-741f6c75d31a": {
+      "id": "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+      "first_name": "Eleanor",
+      "last_name": "Torres",
+      "email": "eleanor.torres6985@securemail.io",
+      "balance": 375.96,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {},
+      "registration_date": "2021-07-20T14:48:27.933Z",
+      "last_login_date": "2025-07-22T23:01:37.933Z",
+      "is_premium": false
+    },
+    "2fa1a78d-9fe0-4998-85ff-ec5b80719188": {
+      "id": "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+      "first_name": "Liam",
+      "last_name": "Wright",
+      "email": "liam.wright5193@fastmail.cc",
+      "balance": 125.6,
+      "friends": [
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "bc89187c-981a-48f6-b73b-bdbaf889c679": {
+          "id": "bc89187c-981a-48f6-b73b-bdbaf889c679",
+          "card_name": "Main Account (Amex)",
+          "owner_name": "Liam Wright",
+          "card_number": "34XXXXXXXXXXXXX9372",
+          "expiry_year": 2026,
+          "expiry_month": 9,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "259 Cedar Ave, Miami, TN 92391",
+          "created_at": "2024-07-04T09:19:44.933Z",
+          "last_modified": "2025-06-25T19:46:41.933Z"
+        }
+      },
+      "registration_date": "2021-12-06T00:40:23.933Z",
+      "last_login_date": "2025-07-31T02:29:53.933Z",
+      "is_premium": true
+    },
+    "99027d1e-0a0c-4f5a-8f75-587d138a1e6b": {
+      "id": "99027d1e-0a0c-4f5a-8f75-587d138a1e6b",
+      "first_name": "Logan",
+      "last_name": "Adams",
+      "email": "logan.adams175@web.org",
+      "balance": 127.81,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "bc072ea8-f307-4cf4-a82b-1e339f5a6518": {
+          "id": "bc072ea8-f307-4cf4-a82b-1e339f5a6518",
+          "card_name": "Work Card (Amex)",
+          "owner_name": "Logan Adams",
+          "card_number": "34XXXXXXXXXXXXX2130",
+          "expiry_year": 2031,
+          "expiry_month": 4,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "197 Main Ave, Charlotte, MS 26047",
+          "created_at": "2023-02-28T00:11:54.933Z",
+          "last_modified": "2025-07-04T09:59:57.933Z"
+        }
+      },
+      "registration_date": "2022-09-04T22:21:59.933Z",
+      "last_login_date": "2025-07-23T08:39:06.933Z",
+      "is_premium": true
+    },
+    "6a5b2967-9f73-41ab-b139-c69b56a3400e": {
+      "id": "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+      "first_name": "Samuel",
+      "last_name": "Taylor",
+      "email": "samuel.taylor5232@domain.app",
+      "balance": 333.32,
+      "friends": [
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1",
+        "99027d1e-0a0c-4f5a-8f75-587d138a1e6b"
+      ],
+      "payment_cards": {
+        "1308709f-e4fd-424a-8b5a-ba192dd076e6": {
+          "id": "1308709f-e4fd-424a-8b5a-ba192dd076e6",
+          "card_name": "Personal Card (Visa)",
+          "owner_name": "Samuel Taylor",
+          "card_number": "4XXXXXXXXXXXXXX5883",
+          "expiry_year": 2028,
+          "expiry_month": 6,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "802 Park Ave, Nashville, TN 72405",
+          "created_at": "2022-12-29T00:49:16.933Z",
+          "last_modified": "2025-05-02T07:39:49.933Z"
+        }
+      },
+      "registration_date": "2021-03-24T01:07:54.933Z",
+      "last_login_date": "2025-07-24T16:53:56.933Z",
+      "is_premium": false
+    },
+    "63007fe2-9cee-41b0-8f10-d8379d0b4899": {
+      "id": "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+      "first_name": "Eleanor",
+      "last_name": "Anderson",
+      "email": "eleanor.anderson8749@securemail.io",
+      "balance": 493.11,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "0a6ecd81-3ff7-46ba-97fc-8cccab1049ff": {
+          "id": "0a6ecd81-3ff7-46ba-97fc-8cccab1049ff",
+          "card_name": "Savings Card (Mastercard)",
+          "owner_name": "Eleanor Anderson",
+          "card_number": "5XXXXXXXXXXXXXX9047",
+          "expiry_year": 2026,
+          "expiry_month": 3,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "344 Main Ave, Jacksonville, AL 30614",
+          "created_at": "2023-03-19T22:27:40.933Z",
+          "last_modified": "2025-06-02T10:46:06.933Z"
+        }
+      },
+      "registration_date": "2023-07-16T14:31:13.933Z",
+      "last_login_date": "2025-07-12T00:26:59.933Z",
+      "is_premium": true
+    },
+    "95ad2c84-84c8-4165-9265-71f7b278cbb8": {
+      "id": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "first_name": "Penelope",
+      "last_name": "Mitchell",
+      "email": "penelope.mitchell3989@domain.app",
+      "balance": 177.2,
+      "friends": [],
+      "payment_cards": {
+        "d626abf9-9043-48ed-9dd1-23432795e2bb": {
+          "id": "d626abf9-9043-48ed-9dd1-23432795e2bb",
+          "card_name": "Personal Card (Mastercard)",
+          "owner_name": "Penelope Mitchell",
+          "card_number": "5XXXXXXXXXXXXXX2990",
+          "expiry_year": 2028,
+          "expiry_month": 5,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "142 Park Ave, Atlanta, NC 55007",
+          "created_at": "2023-05-07T23:57:51.933Z",
+          "last_modified": "2025-07-19T18:25:29.933Z"
+        },
+        "a5fbb6a1-f1d8-4ad4-993c-a03c893b69ed": {
+          "id": "a5fbb6a1-f1d8-4ad4-993c-a03c893b69ed",
+          "card_name": "Work Card (Visa)",
+          "owner_name": "Penelope Mitchell",
+          "card_number": "4XXXXXXXXXXXXXX5734",
+          "expiry_year": 2031,
+          "expiry_month": 5,
+          "is_default": false,
+          "card_type": "Visa",
+          "billing_address": "540 Lake Ave, Tampa, FL 19196",
+          "created_at": "2022-11-08T22:20:39.933Z",
+          "last_modified": "2025-06-27T19:17:33.933Z"
+        }
+      },
+      "registration_date": "2023-03-02T15:40:32.933Z",
+      "last_login_date": "2025-07-21T05:40:35.933Z",
+      "is_premium": false
+    },
+    "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd": {
+      "id": "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd",
+      "first_name": "Chloe",
+      "last_name": "Perez",
+      "email": "chloe.perez6914@example.com",
+      "balance": 346.89,
+      "friends": [
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+        "99027d1e-0a0c-4f5a-8f75-587d138a1e6b",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+        "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a"
+      ],
+      "payment_cards": {
+        "4e5bde6c-d703-4ea2-9f94-50b42ad36de1": {
+          "id": "4e5bde6c-d703-4ea2-9f94-50b42ad36de1",
+          "card_name": "Personal Card (Mastercard)",
+          "owner_name": "Chloe Perez",
+          "card_number": "5XXXXXXXXXXXXXX3960",
+          "expiry_year": 2026,
+          "expiry_month": 12,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "561 Main Ave, Jacksonville, FL 41741",
+          "created_at": "2023-02-26T14:11:00.933Z",
+          "last_modified": "2025-05-02T22:33:41.933Z"
+        }
+      },
+      "registration_date": "2021-02-15T09:41:44.933Z",
+      "last_login_date": "2025-07-06T06:14:32.933Z",
+      "is_premium": false
+    },
+    "b2e44a91-b187-42b0-9dfb-f553836235bb": {
+      "id": "b2e44a91-b187-42b0-9dfb-f553836235bb",
+      "first_name": "Charlotte",
+      "last_name": "Carter",
+      "email": "charlotte.carter6731@securemail.io",
+      "balance": 334.44,
+      "friends": [
+        "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd",
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+        "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a"
+      ],
+      "payment_cards": {},
+      "registration_date": "2022-05-14T16:35:59.933Z",
+      "last_login_date": "2025-07-27T12:46:08.933Z",
+      "is_premium": false
+    },
+    "79d460dc-f477-40d2-8fe5-bceb150d8ce3": {
+      "id": "79d460dc-f477-40d2-8fe5-bceb150d8ce3",
+      "first_name": "Aria",
+      "last_name": "Hernandez",
+      "email": "aria.hernandez4192@domain.app",
+      "balance": 73.83,
+      "friends": [
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "4886f759-8bc1-4574-a359-31bf55a7774b"
+      ],
+      "payment_cards": {
+        "54646d76-230f-48fc-a42a-83dad347989a": {
+          "id": "54646d76-230f-48fc-a42a-83dad347989a",
+          "card_name": "Savings Card (Discover)",
+          "owner_name": "Aria Hernandez",
+          "card_number": "6011XXXXXXXXXXX2134",
+          "expiry_year": 2026,
+          "expiry_month": 4,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "952 Main Ave, Charlotte, AL 47298",
+          "created_at": "2023-10-28T06:58:48.933Z",
+          "last_modified": "2025-06-29T15:43:27.933Z"
+        }
+      },
+      "registration_date": "2020-09-30T14:35:34.933Z",
+      "last_login_date": "2025-07-10T11:21:15.933Z",
+      "is_premium": false
+    },
+    "a542f777-7280-41e5-808f-5980e4720fcf": {
+      "id": "a542f777-7280-41e5-808f-5980e4720fcf",
+      "first_name": "Oliver",
+      "last_name": "Martin",
+      "email": "oliver.martin8208@mail.net",
+      "balance": 27.95,
+      "friends": [],
+      "payment_cards": {
+        "a9fd8f4e-3cc0-47e0-9103-7829de07f76d": {
+          "id": "a9fd8f4e-3cc0-47e0-9103-7829de07f76d",
+          "card_name": "Savings Card (Mastercard)",
+          "owner_name": "Oliver Martin",
+          "card_number": "5XXXXXXXXXXXXXX4533",
+          "expiry_year": 2033,
+          "expiry_month": 8,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "339 Main Ave, Miami, TN 27463",
+          "created_at": "2024-04-10T12:15:07.933Z",
+          "last_modified": "2025-06-04T08:14:42.933Z"
+        }
+      },
+      "registration_date": "2022-11-22T18:54:02.933Z",
+      "last_login_date": "2025-07-11T12:58:21.933Z",
+      "is_premium": true
+    },
+    "516e02ba-6dfc-438c-aab1-7098c3c4bae4": {
+      "id": "516e02ba-6dfc-438c-aab1-7098c3c4bae4",
+      "first_name": "Theodore",
+      "last_name": "Brown",
+      "email": "theodore.brown5056@email.xyz",
+      "balance": 237.61,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+        "79d460dc-f477-40d2-8fe5-bceb150d8ce3",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a"
+      ],
+      "payment_cards": {
+        "6c70f742-1033-4280-833a-911d2a1c4e5a": {
+          "id": "6c70f742-1033-4280-833a-911d2a1c4e5a",
+          "card_name": "Travel Card (Mastercard)",
+          "owner_name": "Theodore Brown",
+          "card_number": "5XXXXXXXXXXXXXX9103",
+          "expiry_year": 2029,
+          "expiry_month": 6,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "506 Main Ave, Nashville, NC 59642",
+          "created_at": "2022-10-10T00:07:54.933Z",
+          "last_modified": "2025-05-11T21:48:01.933Z"
+        }
+      },
+      "registration_date": "2022-04-27T05:43:03.933Z",
+      "last_login_date": "2025-07-17T09:44:37.933Z",
+      "is_premium": false
+    },
+    "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e": {
+      "id": "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+      "first_name": "Alexander",
+      "last_name": "Mitchell",
+      "email": "alexander.mitchell4543@fastmail.cc",
+      "balance": 271.66,
+      "friends": [],
+      "payment_cards": {},
+      "registration_date": "2021-08-25T04:42:27.933Z",
+      "last_login_date": "2025-07-15T14:03:01.933Z",
+      "is_premium": false
+    },
+    "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86": {
+      "id": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "first_name": "Daniel",
+      "last_name": "Scott",
+      "email": "daniel.scott957@fastmail.cc",
+      "balance": 139.49,
+      "friends": [
+        "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+        "a542f777-7280-41e5-808f-5980e4720fcf",
+        "a080b82b-9885-4199-8778-156bf634716a"
+      ],
+      "payment_cards": {
+        "7ad08ffd-9cbb-46aa-be55-69e8be50b480": {
+          "id": "7ad08ffd-9cbb-46aa-be55-69e8be50b480",
+          "card_name": "Savings Card (Mastercard)",
+          "owner_name": "Daniel Scott",
+          "card_number": "5XXXXXXXXXXXXXX4850",
+          "expiry_year": 2028,
+          "expiry_month": 8,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "206 Park Ave, Nashville, FL 98489",
+          "created_at": "2024-04-29T06:54:12.933Z",
+          "last_modified": "2025-06-01T11:22:09.933Z"
+        },
+        "0fe0a465-4ed9-4be7-8d3f-4c31c750214c": {
+          "id": "0fe0a465-4ed9-4be7-8d3f-4c31c750214c",
+          "card_name": "Personal Card (Mastercard)",
+          "owner_name": "Daniel Scott",
+          "card_number": "5XXXXXXXXXXXXXX1823",
+          "expiry_year": 2027,
+          "expiry_month": 2,
+          "is_default": false,
+          "card_type": "Mastercard",
+          "billing_address": "420 Main Ave, Miami, TN 25648",
+          "created_at": "2023-07-03T02:52:33.933Z",
+          "last_modified": "2025-07-14T10:18:00.933Z"
+        }
+      },
+      "registration_date": "2020-12-05T05:08:17.933Z",
+      "last_login_date": "2025-07-24T08:51:04.933Z",
+      "is_premium": true
+    },
+    "5252c23c-45e9-4d27-816a-d683ac66ef35": {
+      "id": "5252c23c-45e9-4d27-816a-d683ac66ef35",
+      "first_name": "Aiden",
+      "last_name": "Flores",
+      "email": "aiden.flores9191@web.org",
+      "balance": 419.85,
+      "friends": [
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "a542f777-7280-41e5-808f-5980e4720fcf",
+        "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+        "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "e1556c15-3f8d-4b40-b269-edd60c079dcc": {
+          "id": "e1556c15-3f8d-4b40-b269-edd60c079dcc",
+          "card_name": "Main Account (Mastercard)",
+          "owner_name": "Aiden Flores",
+          "card_number": "5XXXXXXXXXXXXXX8364",
+          "expiry_year": 2026,
+          "expiry_month": 4,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "765 Main Ave, Atlanta, FL 43095",
+          "created_at": "2023-09-09T03:22:58.933Z",
+          "last_modified": "2025-06-09T01:01:00.933Z"
+        },
+        "90502f79-9465-4728-b089-00b018295098": {
+          "id": "90502f79-9465-4728-b089-00b018295098",
+          "card_name": "Personal Card (Visa)",
+          "owner_name": "Aiden Flores",
+          "card_number": "4XXXXXXXXXXXXXX5740",
+          "expiry_year": 2035,
+          "expiry_month": 7,
+          "is_default": false,
+          "card_type": "Visa",
+          "billing_address": "568 Lake Ave, Orlando, SC 94243",
+          "created_at": "2023-04-20T19:20:31.933Z",
+          "last_modified": "2025-05-16T03:53:15.933Z"
+        }
+      },
+      "registration_date": "2021-07-30T08:25:24.933Z",
+      "last_login_date": "2025-07-01T00:09:14.933Z",
+      "is_premium": true
+    },
+    "20f081c6-10d0-44be-bb41-5f611d4261bf": {
+      "id": "20f081c6-10d0-44be-bb41-5f611d4261bf",
+      "first_name": "Joseph",
+      "last_name": "Wright",
+      "email": "joseph.wright795@inbox.co",
+      "balance": 172.8,
+      "friends": [
+        "79d460dc-f477-40d2-8fe5-bceb150d8ce3",
+        "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a"
+      ],
+      "payment_cards": {
+        "f5d3e5fd-8028-45fe-ad5c-09055cb820b4": {
+          "id": "f5d3e5fd-8028-45fe-ad5c-09055cb820b4",
+          "card_name": "Savings Card (Mastercard)",
+          "owner_name": "Joseph Wright",
+          "card_number": "5XXXXXXXXXXXXXX7205",
+          "expiry_year": 2031,
+          "expiry_month": 3,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "296 Lake Ave, New Orleans, GA 43253",
+          "created_at": "2022-09-01T09:26:08.933Z",
+          "last_modified": "2025-06-04T09:09:29.933Z"
+        }
+      },
+      "registration_date": "2021-01-18T20:07:01.933Z",
+      "last_login_date": "2025-07-24T09:51:28.933Z",
+      "is_premium": true
+    },
+    "dbebd14c-c44c-41e2-a527-17a2ea91e425": {
+      "id": "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+      "first_name": "Benjamin",
+      "last_name": "Baker",
+      "email": "benjamin.baker2433@inbox.co",
+      "balance": 176.84,
+      "friends": [
+        "4886f759-8bc1-4574-a359-31bf55a7774b"
+      ],
+      "payment_cards": {
+        "be7c5d9d-7270-469e-9c1b-27a030928045": {
+          "id": "be7c5d9d-7270-469e-9c1b-27a030928045",
+          "card_name": "Main Account (Amex)",
+          "owner_name": "Benjamin Baker",
+          "card_number": "34XXXXXXXXXXXXX1075",
+          "expiry_year": 2034,
+          "expiry_month": 2,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "782 Cedar Ave, Jacksonville, TN 44475",
+          "created_at": "2024-02-24T06:48:07.933Z",
+          "last_modified": "2025-05-01T21:56:58.933Z"
+        }
+      },
+      "registration_date": "2022-04-23T18:34:51.933Z",
+      "last_login_date": "2025-07-15T03:43:34.933Z",
+      "is_premium": false
+    },
+    "fc743cb8-c252-49cd-b219-ad7c8a8fa045": {
+      "id": "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+      "first_name": "Mila",
+      "last_name": "Lopez",
+      "email": "mila.lopez8369@domain.app",
+      "balance": 61.3,
+      "friends": [
+        "5252c23c-45e9-4d27-816a-d683ac66ef35",
+        "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+        "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+        "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+        "79d460dc-f477-40d2-8fe5-bceb150d8ce3"
+      ],
+      "payment_cards": {
+        "bbcae9c5-df87-4380-b017-386322243fd5": {
+          "id": "bbcae9c5-df87-4380-b017-386322243fd5",
+          "card_name": "Main Account (Amex)",
+          "owner_name": "Mila Lopez",
+          "card_number": "34XXXXXXXXXXXXX4062",
+          "expiry_year": 2028,
+          "expiry_month": 5,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "740 Park Ave, New Orleans, GA 76627",
+          "created_at": "2022-11-26T06:53:59.933Z",
+          "last_modified": "2025-05-07T08:40:50.933Z"
+        }
+      },
+      "registration_date": "2021-06-10T01:46:25.933Z",
+      "last_login_date": "2025-07-06T07:05:28.933Z",
+      "is_premium": true
+    },
+    "8861f52c-8063-4013-a5b8-9d176a6453d1": {
+      "id": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "first_name": "Chloe",
+      "last_name": "Gonzalez",
+      "email": "chloe.gonzalez1546@email.xyz",
+      "balance": 345.02,
+      "friends": [
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd",
+        "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "79d460dc-f477-40d2-8fe5-bceb150d8ce3"
+      ],
+      "payment_cards": {
+        "0c554a10-4e58-4eaf-b5b0-08a696f9185c": {
+          "id": "0c554a10-4e58-4eaf-b5b0-08a696f9185c",
+          "card_name": "Travel Card (Discover)",
+          "owner_name": "Chloe Gonzalez",
+          "card_number": "6011XXXXXXXXXXX4586",
+          "expiry_year": 2028,
+          "expiry_month": 3,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "702 Lake Ave, Jacksonville, AL 80747",
+          "created_at": "2024-04-26T16:08:41.933Z",
+          "last_modified": "2025-06-21T15:33:02.933Z"
+        },
+        "b8364fb2-5bc7-4493-b32f-94e722f6a60f": {
+          "id": "b8364fb2-5bc7-4493-b32f-94e722f6a60f",
+          "card_name": "Travel Card (Mastercard)",
+          "owner_name": "Chloe Gonzalez",
+          "card_number": "5XXXXXXXXXXXXXX7424",
+          "expiry_year": 2032,
+          "expiry_month": 2,
+          "is_default": false,
+          "card_type": "Mastercard",
+          "billing_address": "789 Lake Ave, Nashville, AL 42434",
+          "created_at": "2023-06-25T20:47:40.933Z",
+          "last_modified": "2025-05-27T02:02:03.933Z"
+        }
+      },
+      "registration_date": "2021-09-19T10:00:12.933Z",
+      "last_login_date": "2025-07-28T21:03:10.933Z",
+      "is_premium": true
+    },
+    "cee535ea-2c58-4a93-87f8-3566040cc64a": {
+      "id": "cee535ea-2c58-4a93-87f8-3566040cc64a",
+      "first_name": "Benjamin",
+      "last_name": "Lee",
+      "email": "benjamin.lee8888@web.org",
+      "balance": 331.85,
+      "friends": [
+        "20f081c6-10d0-44be-bb41-5f611d4261bf",
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "99027d1e-0a0c-4f5a-8f75-587d138a1e6b"
+      ],
+      "payment_cards": {},
+      "registration_date": "2021-07-26T10:04:35.933Z",
+      "last_login_date": "2025-07-19T22:46:41.933Z",
+      "is_premium": false
+    },
+    "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d": {
+      "id": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "first_name": "Alexander",
+      "last_name": "Williams",
+      "email": "alexander.williams4449@example.com",
+      "balance": 342.34,
+      "friends": [],
+      "payment_cards": {
+        "c0d76c6f-34b3-4f62-bd4e-fd7b3a899242": {
+          "id": "c0d76c6f-34b3-4f62-bd4e-fd7b3a899242",
+          "card_name": "Work Card (Discover)",
+          "owner_name": "Alexander Williams",
+          "card_number": "6011XXXXXXXXXXX7935",
+          "expiry_year": 2028,
+          "expiry_month": 3,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "605 Park Ave, Atlanta, FL 88715",
+          "created_at": "2023-09-09T15:10:27.933Z",
+          "last_modified": "2025-05-02T05:45:04.933Z"
+        },
+        "e954faf9-6117-458b-b027-1b9f261b7e81": {
+          "id": "e954faf9-6117-458b-b027-1b9f261b7e81",
+          "card_name": "Work Card (Amex)",
+          "owner_name": "Alexander Williams",
+          "card_number": "34XXXXXXXXXXXXX6237",
+          "expiry_year": 2031,
+          "expiry_month": 2,
+          "is_default": false,
+          "card_type": "Amex",
+          "billing_address": "611 Park Ave, New Orleans, MS 67597",
+          "created_at": "2023-06-18T23:41:36.933Z",
+          "last_modified": "2025-05-24T18:52:50.933Z"
+        }
+      },
+      "registration_date": "2022-03-25T02:31:11.933Z",
+      "last_login_date": "2025-07-16T09:31:34.933Z",
+      "is_premium": true
+    },
+    "f64a57b3-75af-44d7-80ae-f41730560aca": {
+      "id": "f64a57b3-75af-44d7-80ae-f41730560aca",
+      "first_name": "Eleanor",
+      "last_name": "Perez",
+      "email": "eleanor.perez632@web.org",
+      "balance": 101.58,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "20f081c6-10d0-44be-bb41-5f611d4261bf",
+        "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "79d460dc-f477-40d2-8fe5-bceb150d8ce3"
+      ],
+      "payment_cards": {
+        "697c4128-35de-4085-ac0b-fa55c1a55b38": {
+          "id": "697c4128-35de-4085-ac0b-fa55c1a55b38",
+          "card_name": "Personal Card (Visa)",
+          "owner_name": "Eleanor Perez",
+          "card_number": "4XXXXXXXXXXXXXX4822",
+          "expiry_year": 2029,
+          "expiry_month": 5,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "581 Main Ave, Nashville, AL 16060",
+          "created_at": "2022-08-01T23:28:43.933Z",
+          "last_modified": "2025-06-14T17:31:16.933Z"
+        },
+        "476a5464-342f-44b7-8cf4-eb134fe82f2c": {
+          "id": "476a5464-342f-44b7-8cf4-eb134fe82f2c",
+          "card_name": "Main Account (Visa)",
+          "owner_name": "Eleanor Perez",
+          "card_number": "4XXXXXXXXXXXXXX9056",
+          "expiry_year": 2029,
+          "expiry_month": 12,
+          "is_default": false,
+          "card_type": "Visa",
+          "billing_address": "169 Cedar Ave, Tampa, GA 16566",
+          "created_at": "2022-12-31T03:12:24.933Z",
+          "last_modified": "2025-07-26T06:29:47.933Z"
+        }
+      },
+      "registration_date": "2023-07-21T19:04:36.933Z",
+      "last_login_date": "2025-07-21T23:38:39.933Z",
+      "is_premium": true
+    },
+    "5a9c5060-99af-4d10-8f0f-acf987f57338": {
+      "id": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "first_name": "Elijah",
+      "last_name": "Thompson",
+      "email": "elijah.thompson4282@web.org",
+      "balance": 59.92,
+      "friends": [
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe"
+      ],
+      "payment_cards": {
+        "d844be5e-799a-43ef-976c-f1d730460e73": {
+          "id": "d844be5e-799a-43ef-976c-f1d730460e73",
+          "card_name": "Savings Card (Mastercard)",
+          "owner_name": "Elijah Thompson",
+          "card_number": "5XXXXXXXXXXXXXX7012",
+          "expiry_year": 2030,
+          "expiry_month": 8,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "792 Cedar Ave, Orlando, NC 78699",
+          "created_at": "2023-05-08T16:22:57.933Z",
+          "last_modified": "2025-06-03T20:13:46.933Z"
+        }
+      },
+      "registration_date": "2020-11-21T17:38:19.933Z",
+      "last_login_date": "2025-07-20T07:18:00.933Z",
+      "is_premium": false
+    },
+    "89f3ba3d-3ad1-4e39-bff4-4a14297401e8": {
+      "id": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "first_name": "David",
+      "last_name": "Flores",
+      "email": "david.flores403@fastmail.cc",
+      "balance": 185.33,
+      "friends": [
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+        "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+        "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+        "e1c75c66-3c19-47e5-8622-3325962001ba"
+      ],
+      "payment_cards": {
+        "359334ef-0f64-43c1-8756-0f5bc3b592d6": {
+          "id": "359334ef-0f64-43c1-8756-0f5bc3b592d6",
+          "card_name": "Travel Card (Mastercard)",
+          "owner_name": "David Flores",
+          "card_number": "5XXXXXXXXXXXXXX2847",
+          "expiry_year": 2028,
+          "expiry_month": 1,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "746 Lake Ave, Jacksonville, NC 64441",
+          "created_at": "2024-04-16T00:55:50.933Z",
+          "last_modified": "2025-07-19T18:46:51.933Z"
+        }
+      },
+      "registration_date": "2022-02-04T10:23:45.933Z",
+      "last_login_date": "2025-07-16T20:56:55.933Z",
+      "is_premium": false
+    },
+    "862a600d-98b8-4a18-bfde-288dcd36af39": {
+      "id": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "first_name": "Evelyn",
+      "last_name": "Lee",
+      "email": "evelyn.lee3211@domain.app",
+      "balance": 203.98,
+      "friends": [
+        "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd",
+        "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+        "5252c23c-45e9-4d27-816a-d683ac66ef35",
+        "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+        "e1c75c66-3c19-47e5-8622-3325962001ba"
+      ],
+      "payment_cards": {
+        "8bcb32e3-6e4b-42d9-85e6-7fdd5fd7ea3f": {
+          "id": "8bcb32e3-6e4b-42d9-85e6-7fdd5fd7ea3f",
+          "card_name": "Personal Card (Amex)",
+          "owner_name": "Evelyn Lee",
+          "card_number": "34XXXXXXXXXXXXX8338",
+          "expiry_year": 2033,
+          "expiry_month": 7,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "859 Park Ave, Jacksonville, TN 10661",
+          "created_at": "2024-03-25T22:13:19.933Z",
+          "last_modified": "2025-07-24T08:36:44.933Z"
+        }
+      },
+      "registration_date": "2022-08-30T16:43:05.933Z",
+      "last_login_date": "2025-07-21T21:58:10.933Z",
+      "is_premium": false
+    },
+    "d8ae48ac-9498-482e-b9c9-fe97c45df006": {
+      "id": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "first_name": "Eleanor",
+      "last_name": "Clark",
+      "email": "eleanor.clark5869@securemail.io",
+      "balance": 108.08,
+      "friends": [
+        "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd",
+        "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+        "20f081c6-10d0-44be-bb41-5f611d4261bf",
+        "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+        "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+        "862a600d-98b8-4a18-bfde-288dcd36af39"
+      ],
+      "payment_cards": {},
+      "registration_date": "2021-11-01T02:18:38.933Z",
+      "last_login_date": "2025-07-09T13:50:23.933Z",
+      "is_premium": false
+    },
+    "6808240a-ccf9-4f3c-ab5b-f57871bd288e": {
+      "id": "6808240a-ccf9-4f3c-ab5b-f57871bd288e",
+      "first_name": "Gabriel",
+      "last_name": "Young",
+      "email": "gabriel.young2401@inbox.co",
+      "balance": 472.35,
+      "friends": [
+        "20f081c6-10d0-44be-bb41-5f611d4261bf",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "4886f759-8bc1-4574-a359-31bf55a7774b",
+        "862a600d-98b8-4a18-bfde-288dcd36af39"
+      ],
+      "payment_cards": {
+        "2dfd90cb-80e6-4a09-bc8e-f571c3328fb3": {
+          "id": "2dfd90cb-80e6-4a09-bc8e-f571c3328fb3",
+          "card_name": "Work Card (Visa)",
+          "owner_name": "Gabriel Young",
+          "card_number": "4XXXXXXXXXXXXXX2742",
+          "expiry_year": 2030,
+          "expiry_month": 6,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "217 Cedar Ave, Charlotte, AL 40131",
+          "created_at": "2024-02-26T05:01:11.933Z",
+          "last_modified": "2025-07-12T07:50:13.933Z"
+        },
+        "28053bbd-71a8-4ef2-ace1-1fe7f62afa3c": {
+          "id": "28053bbd-71a8-4ef2-ace1-1fe7f62afa3c",
+          "card_name": "Travel Card (Visa)",
+          "owner_name": "Gabriel Young",
+          "card_number": "4XXXXXXXXXXXXXX8259",
+          "expiry_year": 2026,
+          "expiry_month": 4,
+          "is_default": false,
+          "card_type": "Visa",
+          "billing_address": "741 Main Ave, Orlando, SC 38142",
+          "created_at": "2023-08-19T21:01:28.933Z",
+          "last_modified": "2025-06-09T14:31:30.933Z"
+        }
+      },
+      "registration_date": "2023-07-14T08:13:27.933Z",
+      "last_login_date": "2025-07-08T19:31:16.933Z",
+      "is_premium": true
+    },
+    "5703854e-cf27-41ae-8582-8db6ea93717b": {
+      "id": "5703854e-cf27-41ae-8582-8db6ea93717b",
+      "first_name": "Anthony",
+      "last_name": "Roberts",
+      "email": "anthony.roberts3752@fastmail.cc",
+      "balance": 148.12,
+      "friends": [
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+        "516e02ba-6dfc-438c-aab1-7098c3c4bae4",
+        "862a600d-98b8-4a18-bfde-288dcd36af39"
+      ],
+      "payment_cards": {
+        "5e02ae39-bf9f-47f1-84a6-c07e6f45b681": {
+          "id": "5e02ae39-bf9f-47f1-84a6-c07e6f45b681",
+          "card_name": "Travel Card (Mastercard)",
+          "owner_name": "Anthony Roberts",
+          "card_number": "5XXXXXXXXXXXXXX8285",
+          "expiry_year": 2032,
+          "expiry_month": 7,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "184 Lake Ave, Orlando, AL 18271",
+          "created_at": "2023-12-24T02:04:03.933Z",
+          "last_modified": "2025-05-22T19:03:45.933Z"
+        }
+      },
+      "registration_date": "2022-04-18T20:27:56.933Z",
+      "last_login_date": "2025-07-17T06:40:47.933Z",
+      "is_premium": true
+    },
+    "d08d2923-c934-4c79-900e-d21d8caf9330": {
+      "id": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "first_name": "Jacob",
+      "last_name": "Rivera",
+      "email": "jacob.rivera4102@email.xyz",
+      "balance": 435.88,
+      "friends": [
+        "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+        "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+        "f64a57b3-75af-44d7-80ae-f41730560aca",
+        "516e02ba-6dfc-438c-aab1-7098c3c4bae4",
+        "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "c3f0e8c2-8f89-4006-a12a-11d87f8db46a": {
+          "id": "c3f0e8c2-8f89-4006-a12a-11d87f8db46a",
+          "card_name": "Savings Card (Visa)",
+          "owner_name": "Jacob Rivera",
+          "card_number": "4XXXXXXXXXXXXXX5002",
+          "expiry_year": 2030,
+          "expiry_month": 10,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "936 Lake Ave, Atlanta, SC 52465",
+          "created_at": "2023-04-25T23:24:10.933Z",
+          "last_modified": "2025-07-16T06:35:52.933Z"
+        }
+      },
+      "registration_date": "2023-04-21T20:24:42.933Z",
+      "last_login_date": "2025-07-27T15:00:13.933Z",
+      "is_premium": false
+    },
+    "effb0a26-064f-4a03-8878-e27be25dd3d0": {
+      "id": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "first_name": "Zoey",
+      "last_name": "Adams",
+      "email": "zoey.adams6728@web.org",
+      "balance": 394.96,
+      "friends": [
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+        "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+        "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+        "5a9c5060-99af-4d10-8f0f-acf987f57338",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1"
+      ],
+      "payment_cards": {
+        "09f03542-e43b-49ed-8ab2-4f7d9b9ccb8c": {
+          "id": "09f03542-e43b-49ed-8ab2-4f7d9b9ccb8c",
+          "card_name": "Work Card (Visa)",
+          "owner_name": "Zoey Adams",
+          "card_number": "4XXXXXXXXXXXXXX1242",
+          "expiry_year": 2033,
+          "expiry_month": 8,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "661 Lake Ave, Jacksonville, NC 80414",
+          "created_at": "2023-03-06T14:10:01.933Z",
+          "last_modified": "2025-05-20T19:45:01.933Z"
+        }
+      },
+      "registration_date": "2023-07-22T16:05:46.933Z",
+      "last_login_date": "2025-07-23T08:27:03.933Z",
+      "is_premium": true
+    },
+    "0a9cb4ec-edc4-4271-b368-60b73f26baa2": {
+      "id": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "first_name": "Eleanor",
+      "last_name": "Jackson",
+      "email": "eleanor.jackson401@mail.net",
+      "balance": 285.75,
+      "friends": [
+        "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+        "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+        "5252c23c-45e9-4d27-816a-d683ac66ef35",
+        "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+        "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+        "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+        "cee535ea-2c58-4a93-87f8-3566040cc64a",
+        "5a9c5060-99af-4d10-8f0f-acf987f57338"
+      ],
+      "payment_cards": {
+        "65bea261-b9ac-469f-9e7a-089ccc4e6a57": {
+          "id": "65bea261-b9ac-469f-9e7a-089ccc4e6a57",
+          "card_name": "Main Account (Discover)",
+          "owner_name": "Eleanor Jackson",
+          "card_number": "6011XXXXXXXXXXX6286",
+          "expiry_year": 2028,
+          "expiry_month": 1,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "144 Cedar Ave, Atlanta, SC 86970",
+          "created_at": "2022-10-24T18:40:43.933Z",
+          "last_modified": "2025-05-16T01:20:19.933Z"
+        }
+      },
+      "registration_date": "2020-08-06T07:26:59.933Z",
+      "last_login_date": "2025-07-16T13:32:49.933Z",
+      "is_premium": false
+    },
+    "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c": {
+      "id": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "first_name": "Mila",
+      "last_name": "Lopez",
+      "email": "mila.lopez7632@web.org",
+      "balance": 328.55,
+      "friends": [
+        "a080b82b-9885-4199-8778-156bf634716a",
+        "5a9c5060-99af-4d10-8f0f-acf987f57338"
+      ],
+      "payment_cards": {},
+      "registration_date": "2021-10-27T21:55:39.933Z",
+      "last_login_date": "2025-07-08T18:55:23.933Z",
+      "is_premium": false
+    },
+    "7244f13b-697e-480e-b0bc-2c8a47f63868": {
+      "id": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "first_name": "Benjamin",
+      "last_name": "Rivera",
+      "email": "benjamin.rivera299@example.com",
+      "balance": 245.32,
+      "friends": [
+        "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1",
+        "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+        "e1c75c66-3c19-47e5-8622-3325962001ba"
+      ],
+      "payment_cards": {
+        "38d3d01d-47c3-4e31-a656-62c91e6aa0f1": {
+          "id": "38d3d01d-47c3-4e31-a656-62c91e6aa0f1",
+          "card_name": "Personal Card (Discover)",
+          "owner_name": "Benjamin Rivera",
+          "card_number": "6011XXXXXXXXXXX5105",
+          "expiry_year": 2028,
+          "expiry_month": 10,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "648 Lake Ave, Nashville, GA 72037",
+          "created_at": "2022-12-06T04:53:50.933Z",
+          "last_modified": "2025-06-16T18:32:00.933Z"
+        }
+      },
+      "registration_date": "2023-01-23T01:13:32.933Z",
+      "last_login_date": "2025-07-19T05:25:43.933Z",
+      "is_premium": true
+    },
+    "f182e2e6-8827-4a32-9361-86d9e822c6d8": {
+      "id": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "first_name": "Evelyn",
+      "last_name": "Hill",
+      "email": "evelyn.hill2427@email.xyz",
+      "balance": 212.25,
+      "friends": [],
+      "payment_cards": {
+        "46f37cec-f9c4-486f-946f-38b6efcd68df": {
+          "id": "46f37cec-f9c4-486f-946f-38b6efcd68df",
+          "card_name": "Work Card (Amex)",
+          "owner_name": "Evelyn Hill",
+          "card_number": "34XXXXXXXXXXXXX3908",
+          "expiry_year": 2029,
+          "expiry_month": 6,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "821 Lake Ave, New Orleans, NC 82489",
+          "created_at": "2024-04-14T14:44:05.933Z",
+          "last_modified": "2025-06-28T04:17:03.933Z"
+        }
+      },
+      "registration_date": "2021-05-30T14:57:45.933Z",
+      "last_login_date": "2025-07-02T22:46:54.933Z",
+      "is_premium": false
+    },
+    "7fbda7b2-074d-4f87-96a7-133b3c8ed456": {
+      "id": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "first_name": "Grace",
+      "last_name": "Lopez",
+      "email": "grace.lopez5581@example.com",
+      "balance": 146.29,
+      "friends": [
+        "5252c23c-45e9-4d27-816a-d683ac66ef35",
+        "4472b43e-d4b6-4862-b915-41bee2a04069",
+        "89f3ba3d-3ad1-4e39-bff4-4a14297401e8"
+      ],
+      "payment_cards": {
+        "7acb3930-bac3-4b41-95e5-263cb20f2d63": {
+          "id": "7acb3930-bac3-4b41-95e5-263cb20f2d63",
+          "card_name": "Work Card (Discover)",
+          "owner_name": "Grace Lopez",
+          "card_number": "6011XXXXXXXXXXX8989",
+          "expiry_year": 2026,
+          "expiry_month": 9,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "231 Lake Ave, Miami, TN 33908",
+          "created_at": "2023-12-09T15:17:31.933Z",
+          "last_modified": "2025-07-20T13:13:33.933Z"
+        }
+      },
+      "registration_date": "2022-02-21T15:42:27.933Z",
+      "last_login_date": "2025-07-11T07:16:08.933Z",
+      "is_premium": false
+    },
+    "6471845c-983b-4f7a-abf0-6aa7a61c6e9c": {
+      "id": "6471845c-983b-4f7a-abf0-6aa7a61c6e9c",
+      "first_name": "Sofia",
+      "last_name": "Nguyen",
+      "email": "sofia.nguyen4218@inbox.co",
+      "balance": 197.72,
+      "friends": [],
+      "payment_cards": {
+        "71b7f278-52aa-4618-9fe8-fc94c710c128": {
+          "id": "71b7f278-52aa-4618-9fe8-fc94c710c128",
+          "card_name": "Work Card (Amex)",
+          "owner_name": "Sofia Nguyen",
+          "card_number": "34XXXXXXXXXXXXX3771",
+          "expiry_year": 2028,
+          "expiry_month": 1,
+          "is_default": true,
+          "card_type": "Amex",
+          "billing_address": "315 Lake Ave, Tampa, SC 40610",
+          "created_at": "2023-07-26T23:15:40.933Z",
+          "last_modified": "2025-06-16T15:57:20.933Z"
+        }
+      },
+      "registration_date": "2021-09-20T22:20:47.933Z",
+      "last_login_date": "2025-07-23T15:14:49.933Z",
+      "is_premium": false
+    },
+    "887d334e-a408-4408-ab93-1bfac37abac1": {
+      "id": "887d334e-a408-4408-ab93-1bfac37abac1",
+      "first_name": "Michael",
+      "last_name": "Campbell",
+      "email": "michael.campbell2031@inbox.co",
+      "balance": 314.98,
+      "friends": [
+        "effb0a26-064f-4a03-8878-e27be25dd3d0",
+        "2872bb1a-be2f-48c6-b373-116c49b1e7c1",
+        "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+        "79d460dc-f477-40d2-8fe5-bceb150d8ce3",
+        "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+        "0a9cb4ec-edc4-4271-b368-60b73f26baa2"
+      ],
+      "payment_cards": {
+        "4a31015e-372b-4ba9-b4fc-c262510be4db": {
+          "id": "4a31015e-372b-4ba9-b4fc-c262510be4db",
+          "card_name": "Main Account (Visa)",
+          "owner_name": "Michael Campbell",
+          "card_number": "4XXXXXXXXXXXXXX7469",
+          "expiry_year": 2028,
+          "expiry_month": 1,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "392 Main Ave, Charlotte, NC 98119",
+          "created_at": "2024-05-22T15:51:26.933Z",
+          "last_modified": "2025-07-26T11:21:55.933Z"
+        },
+        "2ef14003-3a51-41b3-8b8a-0f4a2c249852": {
+          "id": "2ef14003-3a51-41b3-8b8a-0f4a2c249852",
+          "card_name": "Work Card (Visa)",
+          "owner_name": "Michael Campbell",
+          "card_number": "4XXXXXXXXXXXXXX2708",
+          "expiry_year": 2035,
+          "expiry_month": 9,
+          "is_default": false,
+          "card_type": "Visa",
+          "billing_address": "244 Main Ave, Atlanta, FL 87491",
+          "created_at": "2023-01-15T17:36:08.933Z",
+          "last_modified": "2025-05-17T19:43:51.933Z"
+        }
+      },
+      "registration_date": "2021-09-08T20:16:24.933Z",
+      "last_login_date": "2025-07-10T04:48:17.933Z",
+      "is_premium": true
+    },
+    "d48368a8-42a7-4e7b-b767-52b3e72a9bad": {
+      "id": "d48368a8-42a7-4e7b-b767-52b3e72a9bad",
+      "first_name": "Chloe",
+      "last_name": "Miller",
+      "email": "chloe.miller7572@inbox.co",
+      "balance": 382.84,
+      "friends": [
+        "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+        "f64a57b3-75af-44d7-80ae-f41730560aca",
+        "95ad2c84-84c8-4165-9265-71f7b278cbb8"
+      ],
+      "payment_cards": {
+        "3d1b05a2-a17a-4b87-9849-f41d2f082b7c": {
+          "id": "3d1b05a2-a17a-4b87-9849-f41d2f082b7c",
+          "card_name": "Savings Card (Visa)",
+          "owner_name": "Chloe Miller",
+          "card_number": "4XXXXXXXXXXXXXX8578",
+          "expiry_year": 2032,
+          "expiry_month": 8,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "669 Lake Ave, Orlando, NC 39319",
+          "created_at": "2024-01-04T19:22:14.933Z",
+          "last_modified": "2025-07-15T03:20:56.933Z"
+        }
+      },
+      "registration_date": "2022-09-09T00:12:53.933Z",
+      "last_login_date": "2025-07-15T09:31:48.933Z",
+      "is_premium": false
+    },
+    "5087baf2-d2df-4084-abe4-0930e4e81120": {
+      "id": "5087baf2-d2df-4084-abe4-0930e4e81120",
+      "first_name": "Joseph",
+      "last_name": "Lee",
+      "email": "joseph.lee5488@mail.net",
+      "balance": 457.72,
+      "friends": [
+        "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+        "e1c75c66-3c19-47e5-8622-3325962001ba",
+        "d48368a8-42a7-4e7b-b767-52b3e72a9bad",
+        "89f3ba3d-3ad1-4e39-bff4-4a14297401e8"
+      ],
+      "payment_cards": {
+        "2cb0e4db-30a8-44f5-bb70-bd193488591a": {
+          "id": "2cb0e4db-30a8-44f5-bb70-bd193488591a",
+          "card_name": "Personal Card (Discover)",
+          "owner_name": "Joseph Lee",
+          "card_number": "6011XXXXXXXXXXX3999",
+          "expiry_year": 2033,
+          "expiry_month": 3,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "459 Main Ave, Miami, AL 54808",
+          "created_at": "2022-11-16T08:09:54.933Z",
+          "last_modified": "2025-07-10T07:11:58.933Z"
+        }
+      },
+      "registration_date": "2021-04-04T07:42:26.933Z",
+      "last_login_date": "2025-07-14T01:43:11.933Z",
+      "is_premium": false
+    },
+    "838ebe02-6f5a-4ecc-9edc-73e92a1669e8": {
+      "id": "838ebe02-6f5a-4ecc-9edc-73e92a1669e8",
+      "first_name": "Noah",
+      "last_name": "Nelson",
+      "email": "noah.nelson5619@domain.app",
+      "balance": 352.89,
+      "friends": [
+        "b2e44a91-b187-42b0-9dfb-f553836235bb",
+        "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+        "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+        "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+        "161169b0-ac46-4a3c-96c9-741f6c75d31a"
+      ],
+      "payment_cards": {
+        "b7a00306-553e-46a5-b8f8-9b2f53b7e506": {
+          "id": "b7a00306-553e-46a5-b8f8-9b2f53b7e506",
+          "card_name": "Travel Card (Discover)",
+          "owner_name": "Noah Nelson",
+          "card_number": "6011XXXXXXXXXXX8488",
+          "expiry_year": 2032,
+          "expiry_month": 9,
+          "is_default": true,
+          "card_type": "Discover",
+          "billing_address": "922 Lake Ave, Miami, MS 22672",
+          "created_at": "2023-04-29T02:17:42.933Z",
+          "last_modified": "2025-05-24T13:35:21.933Z"
+        },
+        "f8bbc3e5-31f1-4cfe-b1ee-2a08e4dafc9f": {
+          "id": "f8bbc3e5-31f1-4cfe-b1ee-2a08e4dafc9f",
+          "card_name": "Travel Card (Amex)",
+          "owner_name": "Noah Nelson",
+          "card_number": "34XXXXXXXXXXXXX2363",
+          "expiry_year": 2033,
+          "expiry_month": 11,
+          "is_default": false,
+          "card_type": "Amex",
+          "billing_address": "461 Lake Ave, Miami, GA 59608",
+          "created_at": "2022-08-09T06:20:59.933Z",
+          "last_modified": "2025-06-05T10:35:19.933Z"
+        }
+      },
+      "registration_date": "2021-11-16T00:44:36.933Z",
+      "last_login_date": "2025-07-03T19:35:04.933Z",
+      "is_premium": false
+    },
+    "f6a03069-3071-462a-a293-5bdaf5c2b72f": {
+      "id": "f6a03069-3071-462a-a293-5bdaf5c2b72f",
+      "first_name": "Noah",
+      "last_name": "Carter",
+      "email": "noah.carter8801@mail.net",
+      "balance": 495.89,
+      "friends": [],
+      "payment_cards": {
+        "34ac223d-ab89-4284-aacd-40def4934726": {
+          "id": "34ac223d-ab89-4284-aacd-40def4934726",
+          "card_name": "Travel Card (Mastercard)",
+          "owner_name": "Noah Carter",
+          "card_number": "5XXXXXXXXXXXXXX0978",
+          "expiry_year": 2033,
+          "expiry_month": 7,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "823 Cedar Ave, Orlando, GA 17910",
+          "created_at": "2022-11-18T04:09:00.933Z",
+          "last_modified": "2025-06-10T21:56:33.933Z"
+        }
+      },
+      "registration_date": "2021-08-08T02:49:02.933Z",
+      "last_login_date": "2025-07-01T14:26:25.933Z",
+      "is_premium": false
+    },
+    "91858450-fb04-4cff-b207-cbaa43e69899": {
+      "id": "91858450-fb04-4cff-b207-cbaa43e69899",
+      "first_name": "Olivia",
+      "last_name": "Torres",
+      "email": "olivia.torres8131@example.com",
+      "balance": 20.54,
+      "friends": [
+        "20f081c6-10d0-44be-bb41-5f611d4261bf",
+        "a080b82b-9885-4199-8778-156bf634716a"
+      ],
+      "payment_cards": {
+        "5b86bf77-0028-4e82-afb4-ee6c2c7f1211": {
+          "id": "5b86bf77-0028-4e82-afb4-ee6c2c7f1211",
+          "card_name": "Main Account (Visa)",
+          "owner_name": "Olivia Torres",
+          "card_number": "4XXXXXXXXXXXXXX5531",
+          "expiry_year": 2035,
+          "expiry_month": 4,
+          "is_default": true,
+          "card_type": "Visa",
+          "billing_address": "589 Main Ave, Tampa, TN 25575",
+          "created_at": "2023-03-25T16:27:12.933Z",
+          "last_modified": "2025-06-12T09:12:21.933Z"
+        }
+      },
+      "registration_date": "2023-07-15T06:28:46.933Z",
+      "last_login_date": "2025-07-17T01:44:57.933Z",
+      "is_premium": false
+    },
+    "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6": {
+      "id": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "first_name": "Anthony",
+      "last_name": "Nguyen",
+      "email": "anthony.nguyen9964@email.xyz",
+      "balance": 231.28,
+      "friends": [
+        "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+        "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+        "5252c23c-45e9-4d27-816a-d683ac66ef35",
+        "6808240a-ccf9-4f3c-ab5b-f57871bd288e",
+        "5087baf2-d2df-4084-abe4-0930e4e81120"
+      ],
+      "payment_cards": {
+        "0df9ea1e-a1d3-4d04-9926-b8c93af098fb": {
+          "id": "0df9ea1e-a1d3-4d04-9926-b8c93af098fb",
+          "card_name": "Main Account (Mastercard)",
+          "owner_name": "Anthony Nguyen",
+          "card_number": "5XXXXXXXXXXXXXX2546",
+          "expiry_year": 2031,
+          "expiry_month": 9,
+          "is_default": true,
+          "card_type": "Mastercard",
+          "billing_address": "724 Cedar Ave, Tampa, TN 70541",
+          "created_at": "2023-07-05T13:50:32.933Z",
+          "last_modified": "2025-05-14T13:41:30.933Z"
+        }
+      },
+      "registration_date": "2022-01-21T09:36:22.933Z",
+      "last_login_date": "2025-07-02T12:40:57.933Z",
+      "is_premium": false
+    }
+  },
+  "transactions": {
+    "205702d9-8490-4e40-b8c4-e6e5313491eb": {
+      "id": "205702d9-8490-4e40-b8c4-e6e5313491eb",
+      "sender": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "receiver": "a080b82b-9885-4199-8778-156bf634716a",
+      "amount": 20.0,
+      "note": "For dinner last night",
+      "status": "completed",
+      "timestamp": "2025-07-30T02:36:31.932+00:00Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.33,
+      "currency": "USD"
+    },
+    "0810a56b-9386-4bf3-9298-95d8ab984246": {
+      "id": "0810a56b-9386-4bf3-9298-95d8ab984246",
+      "sender": "a080b82b-9885-4199-8778-156bf634716a",
+      "receiver": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "amount": 5.0,
+      "note": "Coffee money",
+      "status": "pending",
+      "timestamp": "2025-07-31T01:36:31.932+00:00Z",
+      "transaction_type": "deposit",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "5f14f425-f580-4cc5-8c04-bce72a32614a": {
+      "id": "5f14f425-f580-4cc5-8c04-bce72a32614a",
+      "sender": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "receiver": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "amount": 10.0,
+      "note": "Test payment to self",
+      "status": "completed",
+      "timestamp": "2025-07-31T00:36:31.932+00:00Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "258b8fd1-cafa-477d-bae7-cc32a0e10233": {
+      "id": "258b8fd1-cafa-477d-bae7-cc32a0e10233",
+      "sender": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "receiver": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "amount": 126.83,
+      "note": "Dinner with friends",
+      "status": "failed",
+      "timestamp": "2025-05-02T21:26:49.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.93,
+      "currency": "USD"
+    },
+    "43a13599-d4f1-4cd0-b1e4-8c5ca247addf": {
+      "id": "43a13599-d4f1-4cd0-b1e4-8c5ca247addf",
+      "sender": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "receiver": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "amount": 89.41,
+      "note": "Lunch meeting",
+      "status": "completed",
+      "timestamp": "2025-07-31T02:31:36.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 1.15,
+      "currency": "USD"
+    },
+    "a6017c4e-a0d1-474d-98b0-26946e890b83": {
+      "id": "a6017c4e-a0d1-474d-98b0-26946e890b83",
+      "sender": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "receiver": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "amount": 42.25,
+      "note": "Utilities bill",
+      "status": "pending",
+      "timestamp": "2025-03-21T20:11:48.933Z",
+      "transaction_type": "deposit",
+      "fee": 1.47,
+      "currency": "USD"
+    },
+    "e332f0c3-cf15-4926-934e-9a1ff98c87e0": {
+      "id": "e332f0c3-cf15-4926-934e-9a1ff98c87e0",
+      "sender": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "receiver": "99027d1e-0a0c-4f5a-8f75-587d138a1e6b",
+      "amount": 186.11,
+      "note": "Movie tickets",
+      "status": "completed",
+      "timestamp": "2024-12-29T00:56:00.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "3b00f67e-dfe9-4f6d-9e36-a5ed80272856": {
+      "id": "3b00f67e-dfe9-4f6d-9e36-a5ed80272856",
+      "sender": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "receiver": "516e02ba-6dfc-438c-aab1-7098c3c4bae4",
+      "amount": 109.29,
+      "note": "Travel expenses",
+      "status": "completed",
+      "timestamp": "2025-07-03T03:49:46.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.47,
+      "currency": "USD"
+    },
+    "90b002b5-c78e-4ac5-8901-bc91861ce732": {
+      "id": "90b002b5-c78e-4ac5-8901-bc91861ce732",
+      "sender": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "receiver": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "amount": 150.79,
+      "note": "Car maintenance",
+      "status": "pending",
+      "timestamp": "2025-04-20T07:46:18.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.43,
+      "currency": "USD"
+    },
+    "a1c5f781-57cc-40ec-af49-9e7a48d4527c": {
+      "id": "a1c5f781-57cc-40ec-af49-9e7a48d4527c",
+      "sender": "a080b82b-9885-4199-8778-156bf634716a",
+      "receiver": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "amount": 176.11,
+      "note": "Subscription service",
+      "status": "failed",
+      "timestamp": "2024-08-09T23:26:34.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.33,
+      "currency": "USD"
+    },
+    "dae1af21-17ab-42fb-9dfc-b823095ce8b3": {
+      "id": "dae1af21-17ab-42fb-9dfc-b823095ce8b3",
+      "sender": "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+      "receiver": "99027d1e-0a0c-4f5a-8f75-587d138a1e6b",
+      "amount": 103.54,
+      "note": "Gym membership",
+      "status": "failed",
+      "timestamp": "2025-03-06T03:49:26.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 1.31,
+      "currency": "USD"
+    },
+    "bcff012d-cc57-4456-90de-b96d9f560837": {
+      "id": "bcff012d-cc57-4456-90de-b96d9f560837",
+      "sender": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "receiver": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "amount": 43.88,
+      "note": "Gift for birthday",
+      "status": "pending",
+      "timestamp": "2024-09-01T15:23:31.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.84,
+      "currency": "USD"
+    },
+    "d106f7f2-8a8c-4569-9054-1d54cb8cb200": {
+      "id": "d106f7f2-8a8c-4569-9054-1d54cb8cb200",
+      "sender": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "receiver": "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+      "amount": 126.3,
+      "note": "Utilities bill",
+      "status": "failed",
+      "timestamp": "2025-04-05T13:15:12.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "8daa950e-b5bf-42eb-b045-cf9587ad052e": {
+      "id": "8daa950e-b5bf-42eb-b045-cf9587ad052e",
+      "sender": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "receiver": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "amount": 124.04,
+      "note": "Groceries",
+      "status": "pending",
+      "timestamp": "2024-10-11T11:51:41.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.11,
+      "currency": "USD"
+    },
+    "1eb19f64-a1db-4de9-b9da-9aac5066f544": {
+      "id": "1eb19f64-a1db-4de9-b9da-9aac5066f544",
+      "sender": "cee535ea-2c58-4a93-87f8-3566040cc64a",
+      "receiver": "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+      "amount": 129.95,
+      "note": "Gift for birthday",
+      "status": "completed",
+      "timestamp": "2025-01-13T09:51:29.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 0.63,
+      "currency": "USD"
+    },
+    "56cda7f0-c3a5-482a-97e0-aae571791432": {
+      "id": "56cda7f0-c3a5-482a-97e0-aae571791432",
+      "sender": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "receiver": "5703854e-cf27-41ae-8582-8db6ea93717b",
+      "amount": 3.95,
+      "note": "Gas refill",
+      "status": "completed",
+      "timestamp": "2024-08-30T03:32:16.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "f4e2b436-bf23-41ff-86e0-65756b563eab": {
+      "id": "f4e2b436-bf23-41ff-86e0-65756b563eab",
+      "sender": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "receiver": "91858450-fb04-4cff-b207-cbaa43e69899",
+      "amount": 185.88,
+      "note": "Gas refill",
+      "status": "completed",
+      "timestamp": "2025-04-08T05:06:51.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.94,
+      "currency": "USD"
+    },
+    "a6f4fb24-bd37-4c01-9f60-e03c7075b60b": {
+      "id": "a6f4fb24-bd37-4c01-9f60-e03c7075b60b",
+      "sender": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "receiver": "5252c23c-45e9-4d27-816a-d683ac66ef35",
+      "amount": 125.39,
+      "note": "Dinner with friends",
+      "status": "completed",
+      "timestamp": "2024-10-24T23:41:39.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 1.14,
+      "currency": "USD"
+    },
+    "77eab0ee-e835-4a90-ab68-e21f8edccf13": {
+      "id": "77eab0ee-e835-4a90-ab68-e21f8edccf13",
+      "sender": "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+      "receiver": "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+      "amount": 140.95,
+      "note": "Groceries",
+      "status": "failed",
+      "timestamp": "2025-06-08T21:18:28.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "34553f8e-a22d-4768-adea-23ddeed12b52": {
+      "id": "34553f8e-a22d-4768-adea-23ddeed12b52",
+      "sender": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "receiver": "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+      "amount": 135.14,
+      "note": "Utilities bill",
+      "status": "completed",
+      "timestamp": "2025-04-06T08:32:37.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.54,
+      "currency": "USD"
+    },
+    "79c0921b-ed79-4b60-883e-302a8edc72bf": {
+      "id": "79c0921b-ed79-4b60-883e-302a8edc72bf",
+      "sender": "6471845c-983b-4f7a-abf0-6aa7a61c6e9c",
+      "receiver": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "amount": 103.52,
+      "note": "Subscription service",
+      "status": "completed",
+      "timestamp": "2025-05-28T09:08:39.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 1.01,
+      "currency": "USD"
+    },
+    "01f47230-9265-4756-bd50-e708009ca069": {
+      "id": "01f47230-9265-4756-bd50-e708009ca069",
+      "sender": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "receiver": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "amount": 185.15,
+      "note": "Book purchase",
+      "status": "completed",
+      "timestamp": "2025-06-14T07:30:53.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "b69efaa1-b88e-4414-8f2f-ad543bb37012": {
+      "id": "b69efaa1-b88e-4414-8f2f-ad543bb37012",
+      "sender": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "receiver": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "amount": 20.37,
+      "note": "Subscription service",
+      "status": "pending",
+      "timestamp": "2025-07-22T03:27:03.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "5045cc4e-f61c-486b-b327-c5cfbff0e96e": {
+      "id": "5045cc4e-f61c-486b-b327-c5cfbff0e96e",
+      "sender": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "receiver": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "amount": 62.93,
+      "note": "Gas refill",
+      "status": "failed",
+      "timestamp": "2025-02-02T06:09:42.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 1.32,
+      "currency": "USD"
+    },
+    "5768e311-c38f-466c-aae1-d01c2d901547": {
+      "id": "5768e311-c38f-466c-aae1-d01c2d901547",
+      "sender": "f6a03069-3071-462a-a293-5bdaf5c2b72f",
+      "receiver": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "amount": 61.69,
+      "note": "Car maintenance",
+      "status": "completed",
+      "timestamp": "2024-08-12T10:49:18.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 1.11,
+      "currency": "USD"
+    },
+    "4c9465f0-b60b-482b-b758-393695b386ac": {
+      "id": "4c9465f0-b60b-482b-b758-393695b386ac",
+      "sender": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "receiver": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "amount": 72.99,
+      "note": "Dinner with friends",
+      "status": "completed",
+      "timestamp": "2025-07-04T14:52:23.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 1.43,
+      "currency": "USD"
+    },
+    "14943335-ada2-4c9b-a1f4-8503fcf082c0": {
+      "id": "14943335-ada2-4c9b-a1f4-8503fcf082c0",
+      "sender": "887d334e-a408-4408-ab93-1bfac37abac1",
+      "receiver": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "amount": 121.53,
+      "note": "Subscription service",
+      "status": "failed",
+      "timestamp": "2025-06-20T18:18:36.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.47,
+      "currency": "USD"
+    },
+    "9f50d96c-6a31-476a-852a-8474ab7e41e0": {
+      "id": "9f50d96c-6a31-476a-852a-8474ab7e41e0",
+      "sender": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "receiver": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "amount": 3.84,
+      "note": "Donation",
+      "status": "pending",
+      "timestamp": "2025-05-05T02:04:18.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "c73783b7-ff78-4c78-a0c3-b2dff037fb66": {
+      "id": "c73783b7-ff78-4c78-a0c3-b2dff037fb66",
+      "sender": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "receiver": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "amount": 20.96,
+      "note": "Rent payment",
+      "status": "pending",
+      "timestamp": "2024-12-23T08:49:21.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.63,
+      "currency": "USD"
+    },
+    "b83283ba-47ee-4211-a03d-8dbec422b3dd": {
+      "id": "b83283ba-47ee-4211-a03d-8dbec422b3dd",
+      "sender": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "receiver": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "amount": 189.59,
+      "note": "Groceries",
+      "status": "completed",
+      "timestamp": "2024-12-27T19:55:10.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 0.58,
+      "currency": "USD"
+    },
+    "b9d360f4-e2f4-4de5-ae7d-ae93d2945daa": {
+      "id": "b9d360f4-e2f4-4de5-ae7d-ae93d2945daa",
+      "sender": "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+      "receiver": "a542f777-7280-41e5-808f-5980e4720fcf",
+      "amount": 138.98,
+      "note": "Travel expenses",
+      "status": "completed",
+      "timestamp": "2024-08-02T00:57:17.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "98cd5f24-f141-47e8-9bfb-e3cb9f2a4f13": {
+      "id": "98cd5f24-f141-47e8-9bfb-e3cb9f2a4f13",
+      "sender": "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+      "receiver": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "amount": 112.64,
+      "note": "Gift for birthday",
+      "status": "completed",
+      "timestamp": "2024-08-31T10:18:29.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 0.02,
+      "currency": "USD"
+    },
+    "3022fd73-705c-46cb-afde-a4dde592f1ea": {
+      "id": "3022fd73-705c-46cb-afde-a4dde592f1ea",
+      "sender": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "receiver": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "amount": 73.35,
+      "note": "Utilities bill",
+      "status": "completed",
+      "timestamp": "2025-06-23T00:09:14.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "235a2a46-1a7b-4d6b-9a30-59565aa6cafd": {
+      "id": "235a2a46-1a7b-4d6b-9a30-59565aa6cafd",
+      "sender": "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+      "receiver": "887d334e-a408-4408-ab93-1bfac37abac1",
+      "amount": 103.93,
+      "note": "Movie tickets",
+      "status": "pending",
+      "timestamp": "2025-03-18T04:49:00.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.71,
+      "currency": "USD"
+    },
+    "c0d174f3-f82f-4f7f-9337-fc6ef95c925e": {
+      "id": "c0d174f3-f82f-4f7f-9337-fc6ef95c925e",
+      "sender": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "receiver": "838ebe02-6f5a-4ecc-9edc-73e92a1669e8",
+      "amount": 29.36,
+      "note": "Subscription service",
+      "status": "completed",
+      "timestamp": "2025-03-01T04:34:27.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "caf88abf-fcad-4bd1-bc93-24aa8255f505": {
+      "id": "caf88abf-fcad-4bd1-bc93-24aa8255f505",
+      "sender": "d48368a8-42a7-4e7b-b767-52b3e72a9bad",
+      "receiver": "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+      "amount": 172.5,
+      "note": "Subscription service",
+      "status": "failed",
+      "timestamp": "2025-01-06T22:42:36.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "ea14c87e-c036-48e1-91ac-2e4b33047f6c": {
+      "id": "ea14c87e-c036-48e1-91ac-2e4b33047f6c",
+      "sender": "b2e44a91-b187-42b0-9dfb-f553836235bb",
+      "receiver": "20f081c6-10d0-44be-bb41-5f611d4261bf",
+      "amount": 111.25,
+      "note": "Groceries",
+      "status": "failed",
+      "timestamp": "2024-10-01T10:46:26.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.44,
+      "currency": "USD"
+    },
+    "602c3b21-ac71-434b-8a0d-568c60434e90": {
+      "id": "602c3b21-ac71-434b-8a0d-568c60434e90",
+      "sender": "a542f777-7280-41e5-808f-5980e4720fcf",
+      "receiver": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "amount": 169.49,
+      "note": "Movie tickets",
+      "status": "failed",
+      "timestamp": "2025-06-13T09:33:20.933Z",
+      "transaction_type": "deposit",
+      "fee": 1.09,
+      "currency": "USD"
+    },
+    "539389c3-3cd8-40bd-95a8-2774265f7b33": {
+      "id": "539389c3-3cd8-40bd-95a8-2774265f7b33",
+      "sender": "516e02ba-6dfc-438c-aab1-7098c3c4bae4",
+      "receiver": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "amount": 15.27,
+      "note": "Gym membership",
+      "status": "pending",
+      "timestamp": "2024-10-04T23:05:35.933Z",
+      "transaction_type": "deposit",
+      "fee": 1.48,
+      "currency": "USD"
+    },
+    "44e46dd3-8b85-4f51-be39-ef73589dd188": {
+      "id": "44e46dd3-8b85-4f51-be39-ef73589dd188",
+      "sender": "f64a57b3-75af-44d7-80ae-f41730560aca",
+      "receiver": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "amount": 148.78,
+      "note": "Online shopping",
+      "status": "completed",
+      "timestamp": "2025-04-01T14:31:29.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.53,
+      "currency": "USD"
+    },
+    "40823d45-a120-4a74-b842-9dcb7bc8ff1f": {
+      "id": "40823d45-a120-4a74-b842-9dcb7bc8ff1f",
+      "sender": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "receiver": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "amount": 55.33,
+      "note": "Coffee break",
+      "status": "completed",
+      "timestamp": "2025-02-07T09:30:40.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.89,
+      "currency": "USD"
+    },
+    "5e8322bf-54ab-4949-86f4-ca92c2923762": {
+      "id": "5e8322bf-54ab-4949-86f4-ca92c2923762",
+      "sender": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "receiver": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "amount": 83.88,
+      "note": "Subscription service",
+      "status": "failed",
+      "timestamp": "2025-06-30T14:00:45.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.89,
+      "currency": "USD"
+    },
+    "f9238501-82ff-41ad-80ca-d399736810f0": {
+      "id": "f9238501-82ff-41ad-80ca-d399736810f0",
+      "sender": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "receiver": "6808240a-ccf9-4f3c-ab5b-f57871bd288e",
+      "amount": 138.17,
+      "note": "Lunch meeting",
+      "status": "pending",
+      "timestamp": "2025-05-13T19:15:02.933Z",
+      "transaction_type": "deposit",
+      "fee": 1.36,
+      "currency": "USD"
+    },
+    "e6899f48-319d-4afa-be76-8db9d47a5094": {
+      "id": "e6899f48-319d-4afa-be76-8db9d47a5094",
+      "sender": "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+      "receiver": "79d460dc-f477-40d2-8fe5-bceb150d8ce3",
+      "amount": 138.19,
+      "note": "Utilities bill",
+      "status": "completed",
+      "timestamp": "2024-09-07T21:34:02.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 1.08,
+      "currency": "USD"
+    },
+    "5aecd917-483b-4893-b36c-ef835193d0fc": {
+      "id": "5aecd917-483b-4893-b36c-ef835193d0fc",
+      "sender": "91858450-fb04-4cff-b207-cbaa43e69899",
+      "receiver": "5252c23c-45e9-4d27-816a-d683ac66ef35",
+      "amount": 78.31,
+      "note": "Dinner with friends",
+      "status": "completed",
+      "timestamp": "2025-05-11T21:13:19.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.26,
+      "currency": "USD"
+    },
+    "cd7d676b-62b8-4c94-9922-8a7df7f0a0b4": {
+      "id": "cd7d676b-62b8-4c94-9922-8a7df7f0a0b4",
+      "sender": "e91e05a9-6864-4c7a-9ec0-fa5c99bc75dd",
+      "receiver": "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+      "amount": 144.77,
+      "note": "Utilities bill",
+      "status": "completed",
+      "timestamp": "2025-02-06T22:08:52.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 1.1,
+      "currency": "USD"
+    },
+    "f55dc69e-a0d8-4653-aa75-b6c03ab647b6": {
+      "id": "f55dc69e-a0d8-4653-aa75-b6c03ab647b6",
+      "sender": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "receiver": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "amount": 10.4,
+      "note": "Coffee break",
+      "status": "failed",
+      "timestamp": "2024-10-14T01:28:07.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 1.43,
+      "currency": "USD"
+    },
+    "aaa65920-f9eb-41c0-b809-fc1035adb4fe": {
+      "id": "aaa65920-f9eb-41c0-b809-fc1035adb4fe",
+      "sender": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "receiver": "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+      "amount": 110.17,
+      "note": "Coffee break",
+      "status": "pending",
+      "timestamp": "2025-01-30T19:29:23.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.31,
+      "currency": "USD"
+    },
+    "86f18064-c12c-4016-b13f-d29d2b72ee92": {
+      "id": "86f18064-c12c-4016-b13f-d29d2b72ee92",
+      "sender": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "receiver": "20f081c6-10d0-44be-bb41-5f611d4261bf",
+      "amount": 103.3,
+      "note": "Gym membership",
+      "status": "pending",
+      "timestamp": "2024-10-06T03:23:39.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "e2293b77-945f-48dc-8c5c-b06f23b0f285": {
+      "id": "e2293b77-945f-48dc-8c5c-b06f23b0f285",
+      "sender": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "receiver": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "amount": 132.66,
+      "note": "Book purchase",
+      "status": "completed",
+      "timestamp": "2025-03-19T20:29:40.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 1.23,
+      "currency": "USD"
+    },
+    "1513d59d-9e00-4924-a032-70c7eb359779": {
+      "id": "1513d59d-9e00-4924-a032-70c7eb359779",
+      "sender": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "receiver": "2872bb1a-be2f-48c6-b373-116c49b1e7c1",
+      "amount": 181.49,
+      "note": "Subscription service",
+      "status": "pending",
+      "timestamp": "2025-01-19T08:27:26.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.75,
+      "currency": "USD"
+    },
+    "9bb0a70e-8ac9-4d69-a291-dfeda21f9dfb": {
+      "id": "9bb0a70e-8ac9-4d69-a291-dfeda21f9dfb",
+      "sender": "6471845c-983b-4f7a-abf0-6aa7a61c6e9c",
+      "receiver": "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+      "amount": 147.89,
+      "note": "Coffee break",
+      "status": "failed",
+      "timestamp": "2025-01-23T22:21:49.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 1.22,
+      "currency": "USD"
+    },
+    "87e63ad6-6d48-4bde-bb8b-982b24596e51": {
+      "id": "87e63ad6-6d48-4bde-bb8b-982b24596e51",
+      "sender": "b2e44a91-b187-42b0-9dfb-f553836235bb",
+      "receiver": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "amount": 121.85,
+      "note": "Donation",
+      "status": "pending",
+      "timestamp": "2024-08-19T10:31:49.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "4e000773-50e7-4728-b600-5ae327f29e8b": {
+      "id": "4e000773-50e7-4728-b600-5ae327f29e8b",
+      "sender": "887d334e-a408-4408-ab93-1bfac37abac1",
+      "receiver": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "amount": 51.54,
+      "note": "Movie tickets",
+      "status": "failed",
+      "timestamp": "2024-08-18T21:03:34.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "92467239-0918-49d4-add9-dcb9a52c8e59": {
+      "id": "92467239-0918-49d4-add9-dcb9a52c8e59",
+      "sender": "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+      "receiver": "79d460dc-f477-40d2-8fe5-bceb150d8ce3",
+      "amount": 188.81,
+      "note": "Car maintenance",
+      "status": "completed",
+      "timestamp": "2025-02-26T12:58:08.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.91,
+      "currency": "USD"
+    },
+    "fbfda630-bbfe-45b6-bbe1-68eb7d60c338": {
+      "id": "fbfda630-bbfe-45b6-bbe1-68eb7d60c338",
+      "sender": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "receiver": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "amount": 58.84,
+      "note": "Donation",
+      "status": "completed",
+      "timestamp": "2024-08-11T18:27:18.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.31,
+      "currency": "USD"
+    },
+    "9a24d9de-c6b1-4a00-af7f-1f45425d51cb": {
+      "id": "9a24d9de-c6b1-4a00-af7f-1f45425d51cb",
+      "sender": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "receiver": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "amount": 22.25,
+      "note": "Travel expenses",
+      "status": "completed",
+      "timestamp": "2025-06-07T08:31:33.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.92,
+      "currency": "USD"
+    },
+    "8ff56261-3d1d-4e20-92b7-7b09e7a3ff40": {
+      "id": "8ff56261-3d1d-4e20-92b7-7b09e7a3ff40",
+      "sender": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "receiver": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "amount": 169.15,
+      "note": "Donation",
+      "status": "failed",
+      "timestamp": "2025-07-25T17:29:49.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "ed915d3a-b900-4259-8aa5-9d9a12706772": {
+      "id": "ed915d3a-b900-4259-8aa5-9d9a12706772",
+      "sender": "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+      "receiver": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "amount": 131.37,
+      "note": "Donation",
+      "status": "failed",
+      "timestamp": "2025-03-10T08:32:11.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "3ba4461c-a010-430e-bb36-46898e2408fb": {
+      "id": "3ba4461c-a010-430e-bb36-46898e2408fb",
+      "sender": "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+      "receiver": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "amount": 32.16,
+      "note": "Online shopping",
+      "status": "pending",
+      "timestamp": "2025-06-11T13:45:13.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.99,
+      "currency": "USD"
+    },
+    "53080fc3-6068-4263-badb-52ec6f018259": {
+      "id": "53080fc3-6068-4263-badb-52ec6f018259",
+      "sender": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "receiver": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "amount": 60.83,
+      "note": "Gift for birthday",
+      "status": "pending",
+      "timestamp": "2024-10-17T19:41:10.933Z",
+      "transaction_type": "deposit",
+      "fee": 1.33,
+      "currency": "USD"
+    },
+    "ca11394a-980a-45b1-9102-1a59d97837e0": {
+      "id": "ca11394a-980a-45b1-9102-1a59d97837e0",
+      "sender": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "receiver": "d48368a8-42a7-4e7b-b767-52b3e72a9bad",
+      "amount": 81.86,
+      "note": "Car maintenance",
+      "status": "completed",
+      "timestamp": "2025-07-28T08:18:45.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.47,
+      "currency": "USD"
+    },
+    "c65a31ad-4ab4-40db-87c4-5bc5fe922e37": {
+      "id": "c65a31ad-4ab4-40db-87c4-5bc5fe922e37",
+      "sender": "20f081c6-10d0-44be-bb41-5f611d4261bf",
+      "receiver": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "amount": 151.22,
+      "note": "Gas refill",
+      "status": "completed",
+      "timestamp": "2025-05-23T10:47:33.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 1.5,
+      "currency": "USD"
+    },
+    "d00b805d-7cfe-43b3-8014-44aae0ba0468": {
+      "id": "d00b805d-7cfe-43b3-8014-44aae0ba0468",
+      "sender": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "receiver": "20f081c6-10d0-44be-bb41-5f611d4261bf",
+      "amount": 25.27,
+      "note": "Online shopping",
+      "status": "failed",
+      "timestamp": "2025-05-05T22:29:30.933Z",
+      "transaction_type": "bill_payment",
+      "fee": 0.7,
+      "currency": "USD"
+    },
+    "a4fa1fc0-d9a3-481c-bdf9-dcfb8784f8bf": {
+      "id": "a4fa1fc0-d9a3-481c-bdf9-dcfb8784f8bf",
+      "sender": "161169b0-ac46-4a3c-96c9-741f6c75d31a",
+      "receiver": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "amount": 172.39,
+      "note": "Movie tickets",
+      "status": "pending",
+      "timestamp": "2025-06-02T00:29:15.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "a0f94f04-23b5-4e05-ab19-f58db11bfaef": {
+      "id": "a0f94f04-23b5-4e05-ab19-f58db11bfaef",
+      "sender": "b2e44a91-b187-42b0-9dfb-f553836235bb",
+      "receiver": "a080b82b-9885-4199-8778-156bf634716a",
+      "amount": 110.02,
+      "note": "Gas refill",
+      "status": "completed",
+      "timestamp": "2025-03-28T05:50:34.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "605846c4-4061-446f-bf55-3250f8a9d829": {
+      "id": "605846c4-4061-446f-bf55-3250f8a9d829",
+      "sender": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "receiver": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "amount": 103.43,
+      "note": "Gym membership",
+      "status": "failed",
+      "timestamp": "2024-11-07T21:39:11.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "f8c8abba-212f-488b-a168-14312635be7f": {
+      "id": "f8c8abba-212f-488b-a168-14312635be7f",
+      "sender": "6808240a-ccf9-4f3c-ab5b-f57871bd288e",
+      "receiver": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "amount": 70.92,
+      "note": "Dinner with friends",
+      "status": "pending",
+      "timestamp": "2025-04-19T03:12:17.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 1.04,
+      "currency": "USD"
+    },
+    "67177ec3-85b0-497e-ae4d-626723f6a7a4": {
+      "id": "67177ec3-85b0-497e-ae4d-626723f6a7a4",
+      "sender": "cee535ea-2c58-4a93-87f8-3566040cc64a",
+      "receiver": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "amount": 172.96,
+      "note": "Gift for birthday",
+      "status": "completed",
+      "timestamp": "2024-09-17T18:23:45.933Z",
+      "transaction_type": "refund",
+      "fee": 0.0,
+      "currency": "USD"
+    },
+    "bad7371f-1483-416c-b4c5-987e891da76c": {
+      "id": "bad7371f-1483-416c-b4c5-987e891da76c",
+      "sender": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "receiver": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "amount": 79.72,
+      "note": "Utilities bill",
+      "status": "pending",
+      "timestamp": "2024-08-17T05:27:23.933Z",
+      "transaction_type": "peer_to_peer",
+      "fee": 0.61,
+      "currency": "USD"
+    },
+    "4e40c169-b772-4f0f-84e8-e6efbd352a1d": {
+      "id": "4e40c169-b772-4f0f-84e8-e6efbd352a1d",
+      "sender": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "receiver": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "amount": 167.58,
+      "note": "Gift for birthday",
+      "status": "pending",
+      "timestamp": "2025-03-01T09:47:14.933Z",
+      "transaction_type": "deposit",
+      "fee": 0.42,
+      "currency": "USD"
+    },
+    "8ece5d43-82a8-4277-9fb6-ffca94806473": {
+      "id": "8ece5d43-82a8-4277-9fb6-ffca94806473",
+      "sender": "5703854e-cf27-41ae-8582-8db6ea93717b",
+      "receiver": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "amount": 149.03,
+      "note": "Travel expenses",
+      "status": "pending",
+      "timestamp": "2024-11-19T00:16:11.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.41,
+      "currency": "USD"
+    },
+    "483f6498-f4f6-4caf-88dc-d59b02ca2670": {
+      "id": "483f6498-f4f6-4caf-88dc-d59b02ca2670",
+      "sender": "f64a57b3-75af-44d7-80ae-f41730560aca",
+      "receiver": "fc743cb8-c252-49cd-b219-ad7c8a8fa045",
+      "amount": 199.43,
+      "note": "Gas refill",
+      "status": "pending",
+      "timestamp": "2025-02-12T07:53:55.933Z",
+      "transaction_type": "withdrawal",
+      "fee": 0.7,
+      "currency": "USD"
+    }
+  },
+  "notifications": {
+    "f7644373-0a84-4263-a76e-3fdd9edfdc25": {
+      "id": "f7644373-0a84-4263-a76e-3fdd9edfdc25",
+      "user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "type": "payment_received",
+      "message": "You received $20.00 from Bob Johnson.",
+      "read": false,
+      "notification_time": "2025-07-30T02:38:11.932+00:00Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "e0a54f7b-5462-4198-b07a-cc377565c1ad": {
+      "id": "e0a54f7b-5462-4198-b07a-cc377565c1ad",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "payment_request",
+      "message": "Bob Johnson requested $5.00.",
+      "read": false,
+      "notification_time": "2025-07-31T01:38:11.932+00:00Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "a8c0bf8c-a891-4afd-9eb2-3dddde1954a8": {
+      "id": "a8c0bf8c-a891-4afd-9eb2-3dddde1954a8",
+      "user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "type": "friend_request",
+      "message": "Diana Prince sent you a friend request.",
+      "read": true,
+      "notification_time": "2025-07-29T02:36:31.932+00:00Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "fd5fc678-b4d8-4932-abc1-5ae20c2e2b4e": {
+      "id": "fd5fc678-b4d8-4932-abc1-5ae20c2e2b4e",
+      "user": "a542f777-7280-41e5-808f-5980e4720fcf",
+      "type": "security_alert",
+      "message": "Unusual login detected.",
+      "read": true,
+      "notification_time": "2025-07-11T00:05:18.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "cbf1ba80-35d4-4265-a855-ef1631b5076e": {
+      "id": "cbf1ba80-35d4-4265-a855-ef1631b5076e",
+      "user": "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+      "type": "balance_update",
+      "message": "Balance update: $103.54 available.",
+      "read": true,
+      "notification_time": "2025-05-08T15:24:19.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "73c8a0a8-fce4-4f6c-ae3a-9827b4548c55": {
+      "id": "73c8a0a8-fce4-4f6c-ae3a-9827b4548c55",
+      "user": "b2cfab84-4cca-4dbe-8d50-844ad566b9ee",
+      "type": "payment_sent",
+      "message": "Your transaction to Lily for $134.61 was successful.",
+      "read": true,
+      "notification_time": "2025-05-01T11:06:42.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "6807f56f-fdde-43b7-95ac-0c175825eb56": {
+      "id": "6807f56f-fdde-43b7-95ac-0c175825eb56",
+      "user": "effb0a26-064f-4a03-8878-e27be25dd3d0",
+      "type": "balance_update",
+      "message": "Your balance has been updated to $377.43.",
+      "read": true,
+      "notification_time": "2025-05-31T15:28:55.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "4064c30a-3d57-4570-8734-0404da1849bb": {
+      "id": "4064c30a-3d57-4570-8734-0404da1849bb",
+      "user": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "type": "payment_request",
+      "message": "Penelope requested $115.75.",
+      "read": true,
+      "notification_time": "2025-05-05T13:24:13.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "5a9c32c0-c001-40bd-8d87-61b78d488d18": {
+      "id": "5a9c32c0-c001-40bd-8d87-61b78d488d18",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "balance_update",
+      "message": "Your new balance is $309.05.",
+      "read": true,
+      "notification_time": "2025-06-04T23:22:33.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "b90bd14b-9cd6-4996-8bab-ecc996658a37": {
+      "id": "b90bd14b-9cd6-4996-8bab-ecc996658a37",
+      "user": "d48368a8-42a7-4e7b-b767-52b3e72a9bad",
+      "type": "friend_request",
+      "message": "Chloe sent you a friend request.",
+      "read": true,
+      "notification_time": "2025-06-12T04:27:01.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "aab0d779-9d40-42f9-a9a4-f0aedaf5aaaf": {
+      "id": "aab0d779-9d40-42f9-a9a4-f0aedaf5aaaf",
+      "user": "99027d1e-0a0c-4f5a-8f75-587d138a1e6b",
+      "type": "friend_request",
+      "message": "New friend request from Charlie.",
+      "read": false,
+      "notification_time": "2025-05-09T17:50:56.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "6acd58e0-f3dd-402f-adac-ae82dfe541a7": {
+      "id": "6acd58e0-f3dd-402f-adac-ae82dfe541a7",
+      "user": "887d334e-a408-4408-ab93-1bfac37abac1",
+      "type": "payment_request",
+      "message": "You have a pending request for $126.99 from David.",
+      "read": false,
+      "notification_time": "2025-06-29T18:34:03.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "ddc4164b-25fe-4ed5-9db5-adfdffdfe19b": {
+      "id": "ddc4164b-25fe-4ed5-9db5-adfdffdfe19b",
+      "user": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "type": "balance_update",
+      "message": "Balance update: $252.21 available.",
+      "read": false,
+      "notification_time": "2025-06-13T13:19:14.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "d0a5edf0-1e5e-4a25-b236-dcf32943bdd0": {
+      "id": "d0a5edf0-1e5e-4a25-b236-dcf32943bdd0",
+      "user": "6808240a-ccf9-4f3c-ab5b-f57871bd288e",
+      "type": "security_alert",
+      "message": "Unusual login detected.",
+      "read": false,
+      "notification_time": "2025-07-18T09:26:22.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "9c3081ea-9480-417a-afad-d9b89b0c46ad": {
+      "id": "9c3081ea-9480-417a-afad-d9b89b0c46ad",
+      "user": "4472b43e-d4b6-4862-b915-41bee2a04069",
+      "type": "payment_request",
+      "message": "You have a pending request for $76.50 from Noah.",
+      "read": false,
+      "notification_time": "2025-06-17T03:24:45.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "b6d4d301-2ca1-4f60-a9d2-8fafff5f2a4c": {
+      "id": "b6d4d301-2ca1-4f60-a9d2-8fafff5f2a4c",
+      "user": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "type": "payment_request",
+      "message": "Action required: Sophia is requesting $111.34.",
+      "read": true,
+      "notification_time": "2025-05-07T17:05:57.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "40e9c46a-8e84-4cb1-83af-561dfddc7a9a": {
+      "id": "40e9c46a-8e84-4cb1-83af-561dfddc7a9a",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "payment_request",
+      "message": "You have a pending request for $51.07 from Chloe.",
+      "read": false,
+      "notification_time": "2025-07-19T07:05:09.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "b2df6de0-479c-4a1b-a551-5133d5fb28a5": {
+      "id": "b2df6de0-479c-4a1b-a551-5133d5fb28a5",
+      "user": "6a5b2967-9f73-41ab-b139-c69b56a3400e",
+      "type": "security_alert",
+      "message": "Unusual login detected.",
+      "read": true,
+      "notification_time": "2025-05-16T13:48:01.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "39548990-c2b0-438c-a663-59ca2018ec12": {
+      "id": "39548990-c2b0-438c-a663-59ca2018ec12",
+      "user": "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+      "type": "security_alert",
+      "message": "Suspicious activity on your account.",
+      "read": true,
+      "notification_time": "2025-05-27T04:52:36.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "563f7e5a-4936-4eac-9dec-49ef3385ae93": {
+      "id": "563f7e5a-4936-4eac-9dec-49ef3385ae93",
+      "user": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "type": "payment_received",
+      "message": "$Evelyn sent you $78.55.",
+      "read": true,
+      "notification_time": "2025-05-14T12:06:59.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "c68aa825-0dd8-48a2-a7f3-d40049e36a44": {
+      "id": "c68aa825-0dd8-48a2-a7f3-d40049e36a44",
+      "user": "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+      "type": "friend_request",
+      "message": "You have a pending friend request from Eleanor.",
+      "read": true,
+      "notification_time": "2025-05-22T12:37:44.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "e7df5bdb-5f33-4fe6-b758-8d3ce5b69963": {
+      "id": "e7df5bdb-5f33-4fe6-b758-8d3ce5b69963",
+      "user": "2fa1a78d-9fe0-4998-85ff-ec5b80719188",
+      "type": "payment_sent",
+      "message": "Payment of $35.60 to Anthony completed.",
+      "read": true,
+      "notification_time": "2025-05-29T15:29:42.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "86db47b8-0224-44e3-927e-79ba64552683": {
+      "id": "86db47b8-0224-44e3-927e-79ba64552683",
+      "user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "type": "payment_received",
+      "message": "You received $99.85 from Bob.",
+      "read": false,
+      "notification_time": "2025-05-19T14:00:37.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "5d198700-ad65-4c3e-8dde-c8128279b56f": {
+      "id": "5d198700-ad65-4c3e-8dde-c8128279b56f",
+      "user": "f64a57b3-75af-44d7-80ae-f41730560aca",
+      "type": "payment_request",
+      "message": "You have a pending request for $48.14 from Aria.",
+      "read": true,
+      "notification_time": "2025-06-05T16:17:26.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "b5185e51-d4aa-4473-b7d8-ebe267836275": {
+      "id": "b5185e51-d4aa-4473-b7d8-ebe267836275",
+      "user": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "type": "balance_update",
+      "message": "Your new balance is $114.63.",
+      "read": true,
+      "notification_time": "2025-05-12T03:28:45.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "ae14c546-6230-42ce-96cc-5dfc3c7af659": {
+      "id": "ae14c546-6230-42ce-96cc-5dfc3c7af659",
+      "user": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "type": "security_alert",
+      "message": "Unusual login detected.",
+      "read": false,
+      "notification_time": "2025-06-12T16:48:10.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "84f79fa8-d092-4e9b-8958-1ebbfbfb66e0": {
+      "id": "84f79fa8-d092-4e9b-8958-1ebbfbfb66e0",
+      "user": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "type": "payment_received",
+      "message": "You received $124.09 from Chloe.",
+      "read": true,
+      "notification_time": "2025-06-14T23:12:38.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "0c2a212b-27ec-4d2a-9e09-23e5c5e65b84": {
+      "id": "0c2a212b-27ec-4d2a-9e09-23e5c5e65b84",
+      "user": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "type": "payment_sent",
+      "message": "Your transaction to Noah for $51.41 was successful.",
+      "read": false,
+      "notification_time": "2025-05-28T05:58:50.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "5c2fbcf4-6d3b-4dcf-b7cb-d9e1f4ceb55b": {
+      "id": "5c2fbcf4-6d3b-4dcf-b7cb-d9e1f4ceb55b",
+      "user": "5703854e-cf27-41ae-8582-8db6ea93717b",
+      "type": "friend_request",
+      "message": "You have a pending friend request from Gabriel.",
+      "read": false,
+      "notification_time": "2025-06-27T18:57:50.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "b9f7b9c0-0106-47a8-9b2e-b43a76883061": {
+      "id": "b9f7b9c0-0106-47a8-9b2e-b43a76883061",
+      "user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "type": "friend_request",
+      "message": "You have a pending friend request from Benjamin.",
+      "read": false,
+      "notification_time": "2025-06-10T11:07:32.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "7edf8717-a6b3-4b71-8b6f-9cbb88aa9ffe": {
+      "id": "7edf8717-a6b3-4b71-8b6f-9cbb88aa9ffe",
+      "user": "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+      "type": "payment_request",
+      "message": "You have a pending request for $106.22 from Charlotte.",
+      "read": true,
+      "notification_time": "2025-07-11T02:12:17.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "d056ce9c-5780-49cd-bdbc-4ab07835e8a2": {
+      "id": "d056ce9c-5780-49cd-bdbc-4ab07835e8a2",
+      "user": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "type": "payment_received",
+      "message": "You received $107.10 from Zoey.",
+      "read": true,
+      "notification_time": "2025-07-21T02:25:01.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "280f84c7-b92e-4989-a9cb-31686f40b543": {
+      "id": "280f84c7-b92e-4989-a9cb-31686f40b543",
+      "user": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "type": "friend_request",
+      "message": "Jacob sent you a friend request.",
+      "read": true,
+      "notification_time": "2025-06-03T07:28:28.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "b6ce209c-0a02-43d8-83ce-c12e70f3989f": {
+      "id": "b6ce209c-0a02-43d8-83ce-c12e70f3989f",
+      "user": "cee535ea-2c58-4a93-87f8-3566040cc64a",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": true,
+      "notification_time": "2025-05-25T04:51:23.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "b48ee1fe-c6e0-4e57-adff-97396f96d86c": {
+      "id": "b48ee1fe-c6e0-4e57-adff-97396f96d86c",
+      "user": "dbebd14c-c44c-41e2-a527-17a2ea91e425",
+      "type": "payment_received",
+      "message": "You received $72.25 from Bob.",
+      "read": false,
+      "notification_time": "2025-06-16T20:54:11.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "74198738-08cb-4ccd-9325-c46b43a99ba9": {
+      "id": "74198738-08cb-4ccd-9325-c46b43a99ba9",
+      "user": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "type": "friend_request",
+      "message": "Eleanor sent you a friend request.",
+      "read": true,
+      "notification_time": "2025-06-30T02:35:11.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "38efc545-2051-4f6f-a1e8-2dd64e4c324a": {
+      "id": "38efc545-2051-4f6f-a1e8-2dd64e4c324a",
+      "user": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "type": "payment_sent",
+      "message": "Payment of $46.24 to Mila completed.",
+      "read": true,
+      "notification_time": "2025-07-07T17:33:50.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "f9a7dffb-9e5b-4250-9d2f-6be4d1038ca0": {
+      "id": "f9a7dffb-9e5b-4250-9d2f-6be4d1038ca0",
+      "user": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "type": "payment_received",
+      "message": "A payment of $121.22 arrived from Logan.",
+      "read": true,
+      "notification_time": "2025-07-26T10:00:36.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "1b3762fa-425d-4e33-8e30-9f546e27e673": {
+      "id": "1b3762fa-425d-4e33-8e30-9f546e27e673",
+      "user": "f64a57b3-75af-44d7-80ae-f41730560aca",
+      "type": "payment_received",
+      "message": "$Gabriel sent you $49.11.",
+      "read": false,
+      "notification_time": "2025-06-03T04:57:57.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "b2d889d6-eeca-412d-b71b-686315ff72cb": {
+      "id": "b2d889d6-eeca-412d-b71b-686315ff72cb",
+      "user": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "type": "payment_received",
+      "message": "A payment of $92.32 arrived from Eleanor.",
+      "read": true,
+      "notification_time": "2025-06-16T17:58:50.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "2fb09679-d2f7-436d-bae7-f20435fb3d0b": {
+      "id": "2fb09679-d2f7-436d-bae7-f20435fb3d0b",
+      "user": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "type": "balance_update",
+      "message": "Your new balance is $521.65.",
+      "read": true,
+      "notification_time": "2025-06-05T20:50:14.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "3183bda5-21ba-4167-a34a-427b406a3bab": {
+      "id": "3183bda5-21ba-4167-a34a-427b406a3bab",
+      "user": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "type": "payment_request",
+      "message": "Logan requested $58.18.",
+      "read": true,
+      "notification_time": "2025-05-09T15:31:23.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "230ed94a-7925-4b02-9747-7dd861730714": {
+      "id": "230ed94a-7925-4b02-9747-7dd861730714",
+      "user": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "type": "payment_received",
+      "message": "$Evelyn sent you $47.77.",
+      "read": true,
+      "notification_time": "2025-06-07T09:26:40.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "2cd6e469-b883-4f3b-84a7-c19c4bff699b": {
+      "id": "2cd6e469-b883-4f3b-84a7-c19c4bff699b",
+      "user": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "type": "balance_update",
+      "message": "Your balance has been updated to $427.28.",
+      "read": false,
+      "notification_time": "2025-05-27T10:03:39.933Z",
+      "priority": "high",
+      "channel": "email"
+    },
+    "4102b72c-87ea-4c2d-ac4c-25ad0931d5d8": {
+      "id": "4102b72c-87ea-4c2d-ac4c-25ad0931d5d8",
+      "user": "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+      "type": "payment_request",
+      "message": "You have a pending request for $87.40 from Chloe.",
+      "read": false,
+      "notification_time": "2025-05-11T21:07:17.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "f8a3300f-a4b1-4172-8f84-b29efcc95c63": {
+      "id": "f8a3300f-a4b1-4172-8f84-b29efcc95c63",
+      "user": "f64a57b3-75af-44d7-80ae-f41730560aca",
+      "type": "payment_sent",
+      "message": "Your transaction to Eleanor for $104.59 was successful.",
+      "read": true,
+      "notification_time": "2025-06-27T12:06:18.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "93591dbc-5ebd-4615-a2db-9116c165e395": {
+      "id": "93591dbc-5ebd-4615-a2db-9116c165e395",
+      "user": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "type": "balance_update",
+      "message": "Balance update: $493.03 available.",
+      "read": true,
+      "notification_time": "2025-06-19T22:20:52.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "02d5a11c-5cd1-4d64-8772-80c88b44f828": {
+      "id": "02d5a11c-5cd1-4d64-8772-80c88b44f828",
+      "user": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "type": "payment_sent",
+      "message": "You sent $22.43 to Anthony.",
+      "read": true,
+      "notification_time": "2025-06-30T13:26:29.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "037a96ab-42cb-42c8-beb5-63500ff799bc": {
+      "id": "037a96ab-42cb-42c8-beb5-63500ff799bc",
+      "user": "fa7ce202-ea40-4da0-9c46-7ff6d38b5f9a",
+      "type": "balance_update",
+      "message": "Balance update: $15.93 available.",
+      "read": false,
+      "notification_time": "2025-05-20T03:06:21.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "ae17869a-b406-413e-9408-92ceda074a88": {
+      "id": "ae17869a-b406-413e-9408-92ceda074a88",
+      "user": "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+      "type": "payment_request",
+      "message": "You have a pending request for $32.37 from Aiden.",
+      "read": true,
+      "notification_time": "2025-06-27T06:58:44.933Z",
+      "priority": "high",
+      "channel": "email"
+    },
+    "931b0e66-0802-4849-a3de-2a9d99546e68": {
+      "id": "931b0e66-0802-4849-a3de-2a9d99546e68",
+      "user": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "type": "payment_request",
+      "message": "Action required: Benjamin is requesting $138.62.",
+      "read": true,
+      "notification_time": "2025-05-26T07:40:21.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "958991e3-8503-425f-8082-73ec8e50682a": {
+      "id": "958991e3-8503-425f-8082-73ec8e50682a",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "friend_request",
+      "message": "Samuel sent you a friend request.",
+      "read": true,
+      "notification_time": "2025-07-12T20:58:04.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "50dacefb-f2ee-4f9d-95cf-c40f6faad06e": {
+      "id": "50dacefb-f2ee-4f9d-95cf-c40f6faad06e",
+      "user": "7244f13b-697e-480e-b0bc-2c8a47f63868",
+      "type": "balance_update",
+      "message": "Your balance has been updated to $530.15.",
+      "read": false,
+      "notification_time": "2025-06-29T05:31:42.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "d3d991da-0e3f-46bb-a6b2-4d58e74a4b59": {
+      "id": "d3d991da-0e3f-46bb-a6b2-4d58e74a4b59",
+      "user": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "type": "friend_request",
+      "message": "New friend request from Bob.",
+      "read": true,
+      "notification_time": "2025-05-06T09:56:01.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "f9c2393f-3a57-415e-87aa-c45e68104aee": {
+      "id": "f9c2393f-3a57-415e-87aa-c45e68104aee",
+      "user": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "type": "payment_request",
+      "message": "Olivia requested $95.66.",
+      "read": false,
+      "notification_time": "2025-06-08T13:50:50.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "d4e33124-1937-42e9-93e5-c6920284391c": {
+      "id": "d4e33124-1937-42e9-93e5-c6920284391c",
+      "user": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "type": "payment_request",
+      "message": "You have a pending request for $140.02 from Bob.",
+      "read": false,
+      "notification_time": "2025-05-16T12:42:05.933Z",
+      "priority": "high",
+      "channel": "email"
+    },
+    "e527abfd-97fb-45fd-b721-623b5e709a61": {
+      "id": "e527abfd-97fb-45fd-b721-623b5e709a61",
+      "user": "887d334e-a408-4408-ab93-1bfac37abac1",
+      "type": "payment_received",
+      "message": "You received $43.04 from Eleanor.",
+      "read": false,
+      "notification_time": "2025-05-31T08:21:53.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "dc9eed77-e4fe-4dbd-a6fe-329c928585c4": {
+      "id": "dc9eed77-e4fe-4dbd-a6fe-329c928585c4",
+      "user": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": true,
+      "notification_time": "2025-07-18T10:07:36.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "225a592c-3d3d-4a94-9f73-f9d7b47ec501": {
+      "id": "225a592c-3d3d-4a94-9f73-f9d7b47ec501",
+      "user": "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+      "type": "payment_request",
+      "message": "Action required: Chloe is requesting $103.62.",
+      "read": false,
+      "notification_time": "2025-06-28T07:41:22.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "6d6e790f-6a40-486d-b48b-ee23851a72f8": {
+      "id": "6d6e790f-6a40-486d-b48b-ee23851a72f8",
+      "user": "f182e2e6-8827-4a32-9361-86d9e822c6d8",
+      "type": "payment_received",
+      "message": "You received $114.38 from Aiden.",
+      "read": false,
+      "notification_time": "2025-05-15T05:56:07.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "a68e45f8-41b6-42be-8251-2147264e0aa8": {
+      "id": "a68e45f8-41b6-42be-8251-2147264e0aa8",
+      "user": "5703854e-cf27-41ae-8582-8db6ea93717b",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": true,
+      "notification_time": "2025-07-06T07:25:48.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "59457390-66d7-42e6-94ca-2acb431dd88c": {
+      "id": "59457390-66d7-42e6-94ca-2acb431dd88c",
+      "user": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": false,
+      "notification_time": "2025-07-14T06:22:01.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "94d62c3f-ea21-4bbf-a2a8-39370fdc4a8b": {
+      "id": "94d62c3f-ea21-4bbf-a2a8-39370fdc4a8b",
+      "user": "63007fe2-9cee-41b0-8f10-d8379d0b4899",
+      "type": "payment_request",
+      "message": "You have a pending request for $95.93 from Charlie.",
+      "read": true,
+      "notification_time": "2025-06-25T03:15:17.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "d2e6da28-a2c8-4d33-9d1d-392aaf594eb1": {
+      "id": "d2e6da28-a2c8-4d33-9d1d-392aaf594eb1",
+      "user": "5087baf2-d2df-4084-abe4-0930e4e81120",
+      "type": "balance_update",
+      "message": "Your balance has been updated to $566.07.",
+      "read": true,
+      "notification_time": "2025-06-16T08:30:41.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "7523de6d-5ae0-47eb-b605-45631196b335": {
+      "id": "7523de6d-5ae0-47eb-b605-45631196b335",
+      "user": "20f081c6-10d0-44be-bb41-5f611d4261bf",
+      "type": "balance_update",
+      "message": "Your balance has been updated to $390.57.",
+      "read": true,
+      "notification_time": "2025-07-22T10:33:34.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "432352da-fbaf-431a-9c8d-ffba2115f160": {
+      "id": "432352da-fbaf-431a-9c8d-ffba2115f160",
+      "user": "6471845c-983b-4f7a-abf0-6aa7a61c6e9c",
+      "type": "security_alert",
+      "message": "Suspicious activity on your account.",
+      "read": true,
+      "notification_time": "2025-05-15T05:17:05.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "e505b76d-9d1b-48f4-b34a-18ce3a16efae": {
+      "id": "e505b76d-9d1b-48f4-b34a-18ce3a16efae",
+      "user": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "type": "balance_update",
+      "message": "Your new balance is $282.24.",
+      "read": true,
+      "notification_time": "2025-05-17T09:49:58.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "9b7fcf15-d97d-4077-8a20-1c3c7b7c752f": {
+      "id": "9b7fcf15-d97d-4077-8a20-1c3c7b7c752f",
+      "user": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "type": "security_alert",
+      "message": "Suspicious activity on your account.",
+      "read": true,
+      "notification_time": "2025-05-24T04:45:02.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "1969fe66-102d-4299-aafb-7e49991a6a87": {
+      "id": "1969fe66-102d-4299-aafb-7e49991a6a87",
+      "user": "a542f777-7280-41e5-808f-5980e4720fcf",
+      "type": "payment_received",
+      "message": "$Logan sent you $74.44.",
+      "read": false,
+      "notification_time": "2025-05-03T19:51:56.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "ea942064-c1ae-4c99-8c0b-82da9f0f5368": {
+      "id": "ea942064-c1ae-4c99-8c0b-82da9f0f5368",
+      "user": "5087baf2-d2df-4084-abe4-0930e4e81120",
+      "type": "balance_update",
+      "message": "Your new balance is $62.12.",
+      "read": false,
+      "notification_time": "2025-06-26T05:31:18.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "238ba4e9-544b-4c68-bead-2e6d73a71eed": {
+      "id": "238ba4e9-544b-4c68-bead-2e6d73a71eed",
+      "user": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "type": "friend_request",
+      "message": "You have a pending friend request from Eleanor.",
+      "read": true,
+      "notification_time": "2025-07-26T04:10:37.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "52f4b249-1102-48d2-b584-e65d13ee70cd": {
+      "id": "52f4b249-1102-48d2-b584-e65d13ee70cd",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "friend_request",
+      "message": "Benjamin sent you a friend request.",
+      "read": false,
+      "notification_time": "2025-07-25T20:05:31.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "e699e55a-896f-410a-aef0-3061ebd9fd37": {
+      "id": "e699e55a-896f-410a-aef0-3061ebd9fd37",
+      "user": "91858450-fb04-4cff-b207-cbaa43e69899",
+      "type": "friend_request",
+      "message": "You have a pending friend request from Eleanor.",
+      "read": true,
+      "notification_time": "2025-05-11T19:48:48.933Z",
+      "priority": "high",
+      "channel": "email"
+    },
+    "6478c4fe-7df4-4941-b5e8-701fd7f87d6c": {
+      "id": "6478c4fe-7df4-4941-b5e8-701fd7f87d6c",
+      "user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+      "type": "payment_sent",
+      "message": "You sent $11.63 to Benjamin.",
+      "read": true,
+      "notification_time": "2025-05-30T15:09:39.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "e21fe86f-6c3b-411a-a476-723c250e5139": {
+      "id": "e21fe86f-6c3b-411a-a476-723c250e5139",
+      "user": "2872bb1a-be2f-48c6-b373-116c49b1e7c1",
+      "type": "balance_update",
+      "message": "Balance update: $190.61 available.",
+      "read": true,
+      "notification_time": "2025-05-13T13:58:19.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "c2d25f7f-2cef-4e35-826c-7c9246bc845a": {
+      "id": "c2d25f7f-2cef-4e35-826c-7c9246bc845a",
+      "user": "c81acc69-1146-4bfb-ba3d-3374a1c0cc9c",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": false,
+      "notification_time": "2025-05-18T13:38:32.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "3428a6d9-210a-42e6-a127-c2b2f3f46bf1": {
+      "id": "3428a6d9-210a-42e6-a127-c2b2f3f46bf1",
+      "user": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "type": "security_alert",
+      "message": "Unusual login detected.",
+      "read": true,
+      "notification_time": "2025-06-02T01:53:12.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "8629e351-ed0e-4feb-8e37-ed96fc3f49b0": {
+      "id": "8629e351-ed0e-4feb-8e37-ed96fc3f49b0",
+      "user": "ea46c98f-822d-460c-bdc7-3ebf34e7ac0d",
+      "type": "balance_update",
+      "message": "Your balance has been updated to $159.29.",
+      "read": false,
+      "notification_time": "2025-07-28T09:57:21.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "28b44d72-e81d-4769-88c0-066b1cd7f8ac": {
+      "id": "28b44d72-e81d-4769-88c0-066b1cd7f8ac",
+      "user": "5a9c5060-99af-4d10-8f0f-acf987f57338",
+      "type": "payment_received",
+      "message": "A payment of $36.47 arrived from Michael.",
+      "read": false,
+      "notification_time": "2025-07-08T09:00:54.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "a10d3e22-ab94-402f-b3c2-303382619409": {
+      "id": "a10d3e22-ab94-402f-b3c2-303382619409",
+      "user": "5087baf2-d2df-4084-abe4-0930e4e81120",
+      "type": "security_alert",
+      "message": "Suspicious activity on your account.",
+      "read": true,
+      "notification_time": "2025-07-08T21:51:25.933Z",
+      "priority": "high",
+      "channel": "sms"
+    },
+    "031f0b74-8a29-4bc0-90c5-328aaba9d1ce": {
+      "id": "031f0b74-8a29-4bc0-90c5-328aaba9d1ce",
+      "user": "516e02ba-6dfc-438c-aab1-7098c3c4bae4",
+      "type": "payment_received",
+      "message": "$Zoey sent you $67.08.",
+      "read": true,
+      "notification_time": "2025-06-01T02:25:08.933Z",
+      "priority": "high",
+      "channel": "email"
+    },
+    "fb289ff2-e427-4b2a-b4c3-23cf5f2f3a8e": {
+      "id": "fb289ff2-e427-4b2a-b4c3-23cf5f2f3a8e",
+      "user": "d48368a8-42a7-4e7b-b767-52b3e72a9bad",
+      "type": "payment_request",
+      "message": "Benjamin requested $131.87.",
+      "read": false,
+      "notification_time": "2025-06-18T19:32:41.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "f830d142-bf91-4430-bde3-e0c5bd3e9fc3": {
+      "id": "f830d142-bf91-4430-bde3-e0c5bd3e9fc3",
+      "user": "3e368c83-d89b-475e-ac4d-c4c30a1b9dc6",
+      "type": "security_alert",
+      "message": "Suspicious activity on your account.",
+      "read": true,
+      "notification_time": "2025-05-23T00:07:51.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "2a39f585-16f9-4ca8-bb2b-5941db99e655": {
+      "id": "2a39f585-16f9-4ca8-bb2b-5941db99e655",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "payment_sent",
+      "message": "Your transaction to Charlotte for $78.85 was successful.",
+      "read": true,
+      "notification_time": "2025-05-07T08:13:08.933Z",
+      "priority": "low",
+      "channel": "sms"
+    },
+    "54fd7948-e1ee-460a-ba0b-9f15781fd75b": {
+      "id": "54fd7948-e1ee-460a-ba0b-9f15781fd75b",
+      "user": "7fbda7b2-074d-4f87-96a7-133b3c8ed456",
+      "type": "payment_received",
+      "message": "$Charlotte sent you $144.72.",
+      "read": true,
+      "notification_time": "2025-07-25T11:01:44.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "cda06ba7-b8c3-44fb-985d-128edaec7b7b": {
+      "id": "cda06ba7-b8c3-44fb-985d-128edaec7b7b",
+      "user": "8861f52c-8063-4013-a5b8-9d176a6453d1",
+      "type": "payment_received",
+      "message": "You received $122.29 from Penelope.",
+      "read": true,
+      "notification_time": "2025-06-21T04:19:20.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "54cb10f3-1388-4fc1-9954-a22e967c69af": {
+      "id": "54cb10f3-1388-4fc1-9954-a22e967c69af",
+      "user": "4f74c089-297a-47a1-aa5a-c2b4a45e53fe",
+      "type": "payment_request",
+      "message": "You have a pending request for $118.44 from Aiden.",
+      "read": true,
+      "notification_time": "2025-06-05T22:48:29.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "866d20b5-a85b-47d1-aeca-f3de04812067": {
+      "id": "866d20b5-a85b-47d1-aeca-f3de04812067",
+      "user": "6808240a-ccf9-4f3c-ab5b-f57871bd288e",
+      "type": "payment_sent",
+      "message": "Payment of $75.91 to Penelope completed.",
+      "read": false,
+      "notification_time": "2025-07-28T10:07:35.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "e09de538-529f-4fdf-9a39-50bf59f63040": {
+      "id": "e09de538-529f-4fdf-9a39-50bf59f63040",
+      "user": "39eac8c5-4cfa-4dc6-a458-5f8f445b6e5e",
+      "type": "balance_update",
+      "message": "Your new balance is $312.19.",
+      "read": false,
+      "notification_time": "2025-05-02T18:08:35.933Z",
+      "priority": "low",
+      "channel": "app"
+    },
+    "3b7b36d1-0e0b-4239-964e-9d73441a060c": {
+      "id": "3b7b36d1-0e0b-4239-964e-9d73441a060c",
+      "user": "91858450-fb04-4cff-b207-cbaa43e69899",
+      "type": "friend_request",
+      "message": "You have a pending friend request from Olivia.",
+      "read": true,
+      "notification_time": "2025-07-22T08:27:42.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "a6ca752e-3493-47bb-8bc1-021e028c7177": {
+      "id": "a6ca752e-3493-47bb-8bc1-021e028c7177",
+      "user": "d8ae48ac-9498-482e-b9c9-fe97c45df006",
+      "type": "security_alert",
+      "message": "Unusual login detected.",
+      "read": true,
+      "notification_time": "2025-06-24T09:34:27.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "f2b98377-a54c-4979-a72b-3b34350ff802": {
+      "id": "f2b98377-a54c-4979-a72b-3b34350ff802",
+      "user": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "type": "payment_request",
+      "message": "You have a pending request for $30.02 from Noah.",
+      "read": true,
+      "notification_time": "2025-06-02T17:48:07.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "da77b24b-aa95-4ea1-8b50-6243171a15c7": {
+      "id": "da77b24b-aa95-4ea1-8b50-6243171a15c7",
+      "user": "6d6bd4ef-c4c1-45e7-b1c2-cf7b5fba1e86",
+      "type": "payment_sent",
+      "message": "You sent $66.55 to Alice.",
+      "read": true,
+      "notification_time": "2025-06-08T12:25:13.933Z",
+      "priority": "high",
+      "channel": "email"
+    },
+    "930431af-794a-43c8-8350-5082803b2e71": {
+      "id": "930431af-794a-43c8-8350-5082803b2e71",
+      "user": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "type": "payment_received",
+      "message": "A payment of $26.38 arrived from Eleanor.",
+      "read": true,
+      "notification_time": "2025-05-28T06:39:58.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "630b2992-a23f-475f-afc7-2fc1a509b926": {
+      "id": "630b2992-a23f-475f-afc7-2fc1a509b926",
+      "user": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "type": "payment_request",
+      "message": "You have a pending request for $84.60 from Chloe.",
+      "read": true,
+      "notification_time": "2025-05-14T07:40:18.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "51800999-4c9e-4560-aa5f-9a38614e8610": {
+      "id": "51800999-4c9e-4560-aa5f-9a38614e8610",
+      "user": "95ad2c84-84c8-4165-9265-71f7b278cbb8",
+      "type": "payment_received",
+      "message": "$Zoey sent you $127.72.",
+      "read": true,
+      "notification_time": "2025-06-20T22:26:31.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "64b9114b-21e0-49cb-bd3f-ee519a1bba81": {
+      "id": "64b9114b-21e0-49cb-bd3f-ee519a1bba81",
+      "user": "91858450-fb04-4cff-b207-cbaa43e69899",
+      "type": "payment_request",
+      "message": "Joseph requested $54.76.",
+      "read": false,
+      "notification_time": "2025-07-01T18:06:14.933Z",
+      "priority": "high",
+      "channel": "app"
+    },
+    "59d624e3-af51-4528-bfea-6565d53893d9": {
+      "id": "59d624e3-af51-4528-bfea-6565d53893d9",
+      "user": "d08d2923-c934-4c79-900e-d21d8caf9330",
+      "type": "security_alert",
+      "message": "Suspicious activity on your account.",
+      "read": true,
+      "notification_time": "2025-06-30T22:24:33.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "adb1cb12-adc5-4b5d-9c68-7f6a6e5a087c": {
+      "id": "adb1cb12-adc5-4b5d-9c68-7f6a6e5a087c",
+      "user": "89f3ba3d-3ad1-4e39-bff4-4a14297401e8",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": false,
+      "notification_time": "2025-05-07T00:53:21.933Z",
+      "priority": "medium",
+      "channel": "app"
+    },
+    "cedce7e8-58d5-4865-9ee1-1cfe2327d3e0": {
+      "id": "cedce7e8-58d5-4865-9ee1-1cfe2327d3e0",
+      "user": "e1c75c66-3c19-47e5-8622-3325962001ba",
+      "type": "friend_request",
+      "message": "Samuel sent you a friend request.",
+      "read": false,
+      "notification_time": "2025-06-09T23:39:29.933Z",
+      "priority": "medium",
+      "channel": "email"
+    },
+    "c0f55ad3-c06e-4ff6-b990-4235e4ecce3b": {
+      "id": "c0f55ad3-c06e-4ff6-b990-4235e4ecce3b",
+      "user": "0a9cb4ec-edc4-4271-b368-60b73f26baa2",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": true,
+      "notification_time": "2025-05-31T02:25:25.933Z",
+      "priority": "low",
+      "channel": "email"
+    },
+    "a9b9bc7a-a682-47a0-bbe2-ba324e489e57": {
+      "id": "a9b9bc7a-a682-47a0-bbe2-ba324e489e57",
+      "user": "862a600d-98b8-4a18-bfde-288dcd36af39",
+      "type": "balance_update",
+      "message": "Your new balance is $454.64.",
+      "read": true,
+      "notification_time": "2025-06-26T07:39:08.933Z",
+      "priority": "medium",
+      "channel": "sms"
+    },
+    "ccbdca39-5132-4c90-aff1-a8989e9efb3a": {
+      "id": "ccbdca39-5132-4c90-aff1-a8989e9efb3a",
+      "user": "838ebe02-6f5a-4ecc-9edc-73e92a1669e8",
+      "type": "security_alert",
+      "message": "Please verify a recent login from a new device.",
+      "read": true,
+      "notification_time": "2025-07-29T11:17:38.933Z",
+      "priority": "medium",
+      "channel": "email"
+    }
+  }
+}
