@@ -1,7 +1,5 @@
 import uuid
-from typing import Dict, List, Union, Literal, Any
 from datetime import datetime, timedelta
-from copy import deepcopy
 import json
 
 class User:
@@ -34,14 +32,9 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         email = f"{first_name.lower()}.{last_name.lower()}@{random.choice(['gmail.com', 'yahoo.com', 'zscaler.org', 'darkhorse.net'])}"
     if balance is None:
         balance = round(random.uniform(0.00, 2500.00), 2)
-
-    num_friends = random.randint(0, 5)
-    friends = []
-    if existing_uuids["users"]:
-        friends = random.sample(list(existing_uuids["users"] - {user_id}), min(num_friends, len(existing_uuids["users"]) - 1))
-
+        
     payment_cards = {}
-    for _ in range(random.randint(0, 2)): # 0 to 2 cards per user
+    for _ in range(random.randint(0, 2)):
         card_id = str(uuid.uuid4())
         existing_uuids["payment_cards"].add(card_id)
         card_name = random.choice(["Visa", "Mastercard", "Amex", "Discover"])
@@ -54,7 +47,7 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         }
 
     addresses = {}
-    for _ in range(random.randint(1, 2)): # 1 to 2 addresses per user
+    for _ in range(random.randint(1, 2)):
         address_id = str(uuid.uuid4())
         existing_uuids["addresses"].add(address_id)
         address_type = "Home Address" if random.random() < 0.7 else "Work Address"
@@ -68,12 +61,12 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         }
 
     cart = {}
-    for _ in range(random.randint(0, 3)): # 0 to 3 items in cart
-        product_id = random.randint(1, 15) # Assuming more products will be added
+    for _ in range(random.randint(0, 3)):
+        product_id = random.randint(1, 15)
         cart[product_id] = random.randint(1, 3)
 
     wish_list = {}
-    for _ in range(random.randint(0, 2)): # 0 to 2 items in wish list
+    for _ in range(random.randint(0, 2)):
         product_id = random.randint(1, 15)
         wish_list[product_id] = {"added_date": generate_random_date(2023, 2024)}
 
@@ -110,7 +103,7 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         existing_uuids["orders"].add(order_id)
 
     prime_subscriptions = {}
-    if random.random() < 0.3: # 30% chance of prime subscription
+    if random.random() < 0.3:
         sub_id = str(uuid.uuid4())
         start_date = generate_random_date(2022, 2024)
         end_date = (datetime.strptime(start_date, "%Y-%m-%d") + timedelta(days=365 * random.randint(1, 3))).strftime("%Y-%m-%d")
@@ -122,7 +115,7 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         }
 
     returns = {}
-    num_returns = random.randint(0, min(num_orders, 1)) # Max 1 return per user for simplicity
+    num_returns = random.randint(0, min(num_orders, 1))
     if num_returns > 0 and orders:
         order_to_return_id = random.choice(list(orders.keys()))
         order_products = list(orders[order_to_return_id]["products"].keys())
@@ -138,14 +131,12 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
             }
             existing_uuids["returns"].add(return_id)
 
-
     return {
         user_id: {
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
             "balance": balance,
-            "friends": friends,
             "payment_cards": payment_cards,
             "addresses": addresses,
             "cart": cart,
@@ -157,45 +148,197 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
     }, user_id
 
 def generate_product(product_id, existing_seller_ids):
+    products_structured = []
+
     product_names = [
         "Smartwatch", "Wireless Earbuds", "Portable Speaker", "E-Reader", "Fitness Tracker",
         "Coffee Maker", "Air Fryer", "Blender", "Robot Vacuum", "Electric Kettle",
         "Graphic Novel", "Sci-Fi Novel", "Cookbook", "History Book", "Children's Book",
         "Gaming Headset", "VR Headset", "Drone", "Action Camera", "Projector",
         "Backpack", "Travel Mug", "Water Bottle", "Yoga Mat", "Dumbbell Set",
-        "Scented Candle", "Hand Cream", "Face Mask", "Essential Oil Diffuser", "Bath Bomb"
-    ]
-    product_descriptions = [
-        "Advanced features and sleek design.", "Crystal clear audio and comfortable fit.",
-        "Powerful sound in a compact design.", "Read thousands of books on the go.",
-        "Track your health and fitness goals.", "Brew the perfect cup every time.",
-        "Healthy frying with less oil.", "Smoothies and more with ease.",
-        "Effortless cleaning for your home.", "Boil water quickly and safely.",
-        "Stunning visuals and engaging story.", "Epic adventure awaits.",
-        "Delicious recipes for every occasion.", "Dive into the past.",
-        "Fun and educational stories.", "Immersive sound for gaming.",
-        "Experience virtual worlds.", "Capture breathtaking aerial views.",
-        "Record your adventures in 4K.", "Big screen entertainment anywhere.",
-        "Durable and spacious for daily use.", "Keep your drinks hot or cold.",
-        "Stay hydrated in style.", "Comfortable and non-slip.",
-        "Build strength and tone muscles.", "Relaxing aroma for your home.",
-        "Nourish and moisturize your hands.", "Revitalize your skin.",
-        "Create a calming atmosphere.", "Fizz and relax."
-    ]
-    product_categories = [
-        "Electronics", "Home Appliances", "Books", "Gaming & Hobbies",
-        "Fitness & Outdoors", "Health & Beauty", "Home Decor"
+        "Scented Candle", "Hand Cream", "Face Mask", "Essential Oil Diffuser", "Bath Bomb",
+        "Laptop", "Desktop Computer", "Tablet", "Smartphone", "Monitor",
+        "Keyboard", "Mouse", "Printer", "Scanner", "Webcam",
+        "Desk Lamp", "Office Chair", "Standing Desk", "Bookshelf", "File Cabinet",
+        "Running Shoes", "Hiking Boots", "Sandals", "Sneakers", "Dress Shoes",
+        "Winter Coat", "Rain Jacket", "Sweater", "T-Shirt", "Jeans",
+        "Dress", "Skirt", "Shorts", "Socks", "Hat",
+        "Umbrella", "Sunglasses", "Watch", "Necklace", "Bracelet",
+        "Earrings", "Ring", "Wallet", "Handbag", "Backpack",
+        "Suitcase", "Duffel Bag", "Messenger Bag", "Camera Bag", "Laptop Bag",
+        "Tent", "Sleeping Bag", "Camping Stove", "Flashlight", "Lantern",
+        "Fishing Rod", "Tackle Box", "Bicycle", "Helmet", "Water Bottle",
+        "Tennis Racket", "Soccer Ball", "Basketball", "Football", "Baseball Glove",
+        "Golf Clubs", "Golf Balls", "Yoga Block", "Resistance Bands", "Jump Rope",
+        "Foam Roller", "Massage Gun", "Protein Powder", "Energy Bar", "Sports Drink",
+        "Hair Dryer", "Curling Iron", "Straightener", "Shampoo", "Conditioner",
+        "Body Wash", "Lotion", "Deodorant", "Toothbrush", "Toothpaste",
+        "Mouthwash", "Floss", "Razor", "Shaving Cream", "Aftershave",
+        "Perfume", "Cologne", "Lipstick", "Mascara", "Eyeliner",
+        "Eyeshadow", "Blush", "Foundation", "Concealer", "Makeup Remover",
+        "Nail Polish", "Nail File", "Cuticle Oil", "Face Serum", "Face Scrub",
+        "Moisturizer", "Sunscreen", "Face Mask", "Sheet Mask", "Eye Cream",
+        "Night Cream", "Day Cream", "Spot Treatment", "Acne Patch", "Pimple Cream",
+        "Dog Food", "Cat Food", "Bird Seed", "Fish Food", "Pet Shampoo",
+        "Pet Collar", "Pet Leash", "Pet Bed", "Pet Toy", "Pet Carrier",
+        "Vacuum Cleaner", "Steam Mop", "Broom", "Dustpan", "Trash Can",
+        "Recycling Bin", "Laundry Basket", "Iron", "Ironing Board", "Drying Rack",
+        "Dish Soap", "Sponges", "Scrub Brush", "Paper Towels", "Cleaning Spray",
+        "Air Purifier", "Humidifier", "Dehumidifier", "Space Heater", "Fan",
+        "Window AC", "Portable AC", "Ceiling Fan", "Light Bulb", "Smart Plug",
+        "Smart Thermostat", "Security Camera", "Doorbell Camera", "Smoke Detector", "Carbon Monoxide Detector"
     ]
 
-    seller_id = random.choice(list(existing_seller_ids)) if existing_seller_ids else 1 # Fallback if no sellers
+    product_descriptions = [
+    "Advanced features and sleek design.", "Crystal clear audio and comfortable fit.",
+    "Powerful sound in a compact design.", "Read thousands of books on the go.",
+    "Track your health and fitness goals.", "Brew the perfect cup every time.",
+    "Healthy frying with less oil.", "Smoothies and more with ease.",
+    "Effortless cleaning for your home.", "Boil water quickly and safely.",
+    "Stunning visuals and engaging story.", "Epic adventure awaits.",
+    "Delicious recipes for every occasion.", "Dive into the past.",
+    "Fun and educational stories.", "Immersive sound for gaming.",
+    "Experience virtual worlds.", "Capture breathtaking aerial views.",
+    "Record your adventures in 4K.", "Big screen entertainment anywhere.",
+    "Durable and spacious for daily use.", "Keep your drinks hot or cold.",
+    "Stay hydrated in style.", "Comfortable and non-slip.",
+    "Build strength and tone muscles.", "Relaxing aroma for your home.",
+    "Nourish and moisturize your hands.", "Revitalize your skin.",
+    "Create a calming atmosphere.", "Fizz and relax.",
+    "High performance for work and play.", "Powerful desktop for productivity.",
+    "Portable and versatile tablet.", "Latest smartphone technology.",
+    "Vivid display for gaming and movies.", "Responsive keys for fast typing.",
+    "Precision mouse for smooth navigation.", "Print documents and photos easily.",
+    "Scan important papers quickly.", "HD webcam for video calls.",
+    "Brighten your workspace.", "Ergonomic chair for comfort.",
+    "Adjustable desk for standing or sitting.", "Organize your books and files.",
+    "Secure storage for documents.", "Run faster and longer.",
+    "Tough boots for outdoor adventures.", "Comfortable sandals for summer.",
+    "Stylish sneakers for everyday wear.", "Elegant shoes for formal occasions.",
+    "Warm coat for winter weather.", "Waterproof jacket for rainy days.",
+    "Soft sweater for chilly nights.", "Casual t-shirt for daily use.",
+    "Classic jeans for any outfit.", "Beautiful dress for special events.",
+    "Trendy skirt for summer.", "Cool shorts for hot days.",
+    "Cozy socks for comfort.", "Fashionable hat for sun protection.",
+    "Stay dry with a sturdy umbrella.", "Protect your eyes with sunglasses.",
+    "Keep time with a stylish watch.", "Elegant necklace for any occasion.",
+    "Chic bracelet for your wrist.", "Sparkling earrings for parties.",
+    "Shiny ring for celebrations.", "Organize your cash and cards.",
+    "Carry your essentials in style.", "Spacious backpack for travel.",
+    "Pack for trips with a durable suitcase.", "Roomy duffel bag for gym.",
+    "Messenger bag for work.", "Protect your camera on the go.",
+    "Laptop bag for professionals.", "Camp comfortably outdoors.",
+    "Stay warm with a sleeping bag.", "Cook meals at the campsite.",
+    "Light up the night with a flashlight.", "Lantern for camping.",
+    "Catch fish with a reliable rod.", "Store tackle for fishing.",
+    "Ride with a sturdy bicycle.", "Protect your head with a helmet.",
+    "Hydrate during rides.", "Play tennis with a quality racket.",
+    "Kick goals with a soccer ball.", "Shoot hoops with a basketball.",
+    "Throw passes with a football.", "Catch with a baseball glove.",
+    "Improve your golf game.", "Practice with golf balls.",
+    "Support your yoga practice.", "Increase resistance for workouts.",
+    "Jump rope for cardio.", "Relieve muscle tension.",
+    "Massage gun for recovery.", "Boost energy with protein powder.",
+    "Snack on energy bars.", "Stay hydrated with sports drinks.",
+    "Dry your hair quickly.", "Style with a curling iron.",
+    "Straighten hair easily.", "Cleanse with shampoo.",
+    "Condition for smooth hair.", "Wash your body gently.",
+    "Moisturize skin daily.", "Stay fresh with deodorant.",
+    "Brush teeth thoroughly.", "Whiten with toothpaste.",
+    "Freshen breath with mouthwash.", "Clean between teeth with floss.",
+    "Shave smoothly with a razor.", "Protect skin with shaving cream.",
+    "Soothe with aftershave.", "Smell great with perfume.",
+    "Cologne for men.", "Color lips with lipstick.",
+    "Define lashes with mascara.", "Shape eyes with eyeliner.",
+    "Blend eyeshadow for looks.", "Add color with blush.",
+    "Even skin tone with foundation.", "Cover blemishes with concealer.",
+    "Remove makeup easily.", "Polish nails for shine.",
+    "Shape nails with a file.", "Nourish cuticles.",
+    "Hydrate with face serum.", "Exfoliate with face scrub.",
+    "Moisturize for softness.", "Protect with sunscreen.",
+    "Detox with a face mask.", "Relax with a sheet mask.",
+    "Brighten eyes with cream.", "Repair skin overnight.",
+    "Hydrate during the day.", "Treat spots quickly.",
+    "Cover pimples with patches.", "Reduce acne with cream.",
+    "Nutritious food for dogs.", "Healthy food for cats.",
+    "Feed birds with seeds.", "Fish food for aquariums.",
+    "Clean pets with shampoo.", "Secure pets with a collar.",
+    "Walk pets with a leash.", "Comfortable bed for pets.",
+    "Fun toys for pets.", "Carry pets safely.",
+    "Clean floors with a vacuum.", "Sanitize with a steam mop.",
+    "Sweep with a broom.", "Collect dirt with a dustpan.",
+    "Dispose waste in a trash can.", "Recycle with a bin.",
+    "Carry laundry in a basket.", "Remove wrinkles with an iron.",
+    "Iron clothes on a board.", "Dry clothes on a rack.",
+    "Wash dishes with soap.", "Scrub with sponges.",
+    "Clean with a brush.", "Wipe with paper towels.",
+    "Spray for cleaning.", "Purify air at home.",
+    "Add moisture with a humidifier.", "Remove moisture with a dehumidifier.",
+    "Warm up with a space heater.", "Cool down with a fan.",
+    "Window AC for summer.", "Portable AC for any room.",
+    "Ceiling fan for airflow.", "Light up with bulbs.",
+    "Control devices with a smart plug.", "Regulate temperature with a smart thermostat.",
+    "Monitor home with a security camera.", "See visitors with a doorbell camera.",
+    "Detect smoke for safety.", "Detect carbon monoxide for safety."
+    ]
+
+    category_map = {
+        "Smartwatch": "Electronics", "Wireless Earbuds": "Electronics", "Portable Speaker": "Electronics", "E-Reader": "Electronics",
+        "Fitness Tracker": "Electronics", "Coffee Maker": "Home Appliances", "Air Fryer": "Home Appliances", "Blender": "Home Appliances",
+        "Robot Vacuum": "Home Appliances", "Electric Kettle": "Home Appliances", "Graphic Novel": "Books", "Sci-Fi Novel": "Books",
+        "Cookbook": "Books", "History Book": "Books", "Children's Book": "Books", "Gaming Headset": "Gaming & Hobbies",
+        "VR Headset": "Gaming & Hobbies", "Drone": "Electronics", "Action Camera": "Electronics", "Projector": "Electronics",
+        "Backpack": "Travel & Luggage", "Travel Mug": "Home Decor", "Water Bottle": "Fitness & Outdoors", "Yoga Mat": "Fitness & Outdoors",
+        "Dumbbell Set": "Fitness & Outdoors", "Scented Candle": "Home Decor", "Hand Cream": "Health & Beauty", "Face Mask": "Health & Beauty",
+        "Essential Oil Diffuser": "Home Decor", "Bath Bomb": "Health & Beauty", "Laptop": "Electronics", "Desktop Computer": "Electronics",
+        "Tablet": "Electronics", "Smartphone": "Electronics", "Monitor": "Electronics", "Keyboard": "Electronics", "Mouse": "Electronics",
+        "Printer": "Electronics", "Scanner": "Electronics", "Webcam": "Electronics", "Desk Lamp": "Home Decor", "Office Chair": "Office Supplies",
+        "Standing Desk": "Office Supplies", "Bookshelf": "Home Decor", "File Cabinet": "Office Supplies", "Running Shoes": "Fitness & Outdoors",
+        "Hiking Boots": "Fitness & Outdoors", "Sandals": "Clothing & Accessories", "Sneakers": "Clothing & Accessories", "Dress Shoes": "Clothing & Accessories",
+        "Winter Coat": "Clothing & Accessories", "Rain Jacket": "Clothing & Accessories", "Sweater": "Clothing & Accessories", "T-Shirt": "Clothing & Accessories",
+        "Jeans": "Clothing & Accessories", "Dress": "Clothing & Accessories", "Skirt": "Clothing & Accessories", "Shorts": "Clothing & Accessories",
+        "Socks": "Clothing & Accessories", "Hat": "Clothing & Accessories", "Umbrella": "Travel & Luggage", "Sunglasses": "Clothing & Accessories",
+        "Watch": "Clothing & Accessories", "Necklace": "Clothing & Accessories", "Bracelet": "Clothing & Accessories", "Earrings": "Clothing & Accessories",
+        "Ring": "Clothing & Accessories", "Wallet": "Clothing & Accessories", "Handbag": "Clothing & Accessories", "Suitcase": "Travel & Luggage",
+        "Duffel Bag": "Travel & Luggage", "Messenger Bag": "Travel & Luggage", "Camera Bag": "Travel & Luggage", "Laptop Bag": "Travel & Luggage",
+        "Tent": "Camping & Outdoors", "Sleeping Bag": "Camping & Outdoors", "Camping Stove": "Camping & Outdoors", "Flashlight": "Camping & Outdoors",
+        "Lantern": "Camping & Outdoors", "Fishing Rod": "Sports Equipment", "Tackle Box": "Sports Equipment", "Bicycle": "Sports Equipment",
+        "Helmet": "Sports Equipment", "Tennis Racket": "Sports Equipment", "Soccer Ball": "Sports Equipment", "Basketball": "Sports Equipment",
+        "Football": "Sports Equipment", "Baseball Glove": "Sports Equipment", "Golf Clubs": "Sports Equipment", "Golf Balls": "Sports Equipment",
+        "Yoga Block": "Fitness & Outdoors", "Resistance Bands": "Fitness & Outdoors", "Jump Rope": "Fitness & Outdoors", "Foam Roller": "Fitness & Outdoors",
+        "Massage Gun": "Health & Beauty", "Protein Powder": "Health & Beauty", "Energy Bar": "Health & Beauty", "Sports Drink": "Health & Beauty",
+        "Hair Dryer": "Personal Care", "Curling Iron": "Personal Care", "Straightener": "Personal Care", "Shampoo": "Personal Care",
+        "Conditioner": "Personal Care", "Body Wash": "Personal Care", "Lotion": "Personal Care", "Deodorant": "Personal Care",
+        "Toothbrush": "Personal Care", "Toothpaste": "Personal Care", "Mouthwash": "Personal Care", "Floss": "Personal Care",
+        "Razor": "Personal Care", "Shaving Cream": "Personal Care", "Aftershave": "Personal Care", "Perfume": "Personal Care",
+        "Cologne": "Personal Care", "Lipstick": "Personal Care", "Mascara": "Personal Care", "Eyeliner": "Personal Care",
+        "Eyeshadow": "Personal Care", "Blush": "Personal Care", "Foundation": "Personal Care", "Concealer": "Personal Care",
+        "Makeup Remover": "Personal Care", "Nail Polish": "Personal Care", "Nail File": "Personal Care", "Cuticle Oil": "Personal Care",
+        "Face Serum": "Personal Care", "Face Scrub": "Personal Care", "Moisturizer": "Personal Care", "Sunscreen": "Personal Care",
+        "Face Mask": "Personal Care", "Sheet Mask": "Personal Care", "Eye Cream": "Personal Care", "Night Cream": "Personal Care",
+        "Day Cream": "Personal Care", "Spot Treatment": "Personal Care", "Acne Patch": "Personal Care", "Pimple Cream": "Personal Care",
+        "Dog Food": "Pet Supplies", "Cat Food": "Pet Supplies", "Bird Seed": "Pet Supplies", "Fish Food": "Pet Supplies",
+        "Pet Shampoo": "Pet Supplies", "Pet Collar": "Pet Supplies", "Pet Leash": "Pet Supplies", "Pet Bed": "Pet Supplies",
+        "Pet Toy": "Pet Supplies", "Pet Carrier": "Pet Supplies", "Vacuum Cleaner": "Home Appliances", "Steam Mop": "Home Appliances",
+        "Broom": "Cleaning Supplies", "Dustpan": "Cleaning Supplies", "Trash Can": "Cleaning Supplies", "Recycling Bin": "Cleaning Supplies",
+        "Laundry Basket": "Cleaning Supplies", "Iron": "Home Appliances", "Ironing Board": "Home Appliances", "Drying Rack": "Home Appliances",
+        "Dish Soap": "Cleaning Supplies", "Sponges": "Cleaning Supplies", "Scrub Brush": "Cleaning Supplies", "Paper Towels": "Cleaning Supplies",
+        "Cleaning Spray": "Cleaning Supplies", "Air Purifier": "Home Appliances", "Humidifier": "Home Appliances", "Dehumidifier": "Home Appliances",
+        "Space Heater": "Home Appliances", "Fan": "Home Appliances", "Window AC": "Home Appliances", "Portable AC": "Home Appliances",
+        "Ceiling Fan": "Home Appliances", "Light Bulb": "Home Appliances", "Smart Plug": "Smart Home", "Smart Thermostat": "Smart Home",
+        "Security Camera": "Safety & Security", "Doorbell Camera": "Safety & Security", "Smoke Detector": "Safety & Security", "Carbon Monoxide Detector": "Safety & Security"
+    }
+
+    name = product_names[i]
+    description = product_descriptions[i]
+    category_name = category_map.get(name, "Miscellaneous")
 
     return {
-        "name": random.choice(product_names),
-        "description": random.choice(product_descriptions),
+        "name": name,
+        "description": description,
         "price": round(random.uniform(5.00, 1500.00), 2),
-        "category": random.choice(product_categories),
         "stock": random.randint(0, 100),
-        "seller_id": seller_id,
+        "category": category_name
     }
 
 def generate_seller(seller_id):
@@ -241,7 +384,7 @@ def generate_question(product_id, existing_user_ids):
         "Typically 3-5 business days."
     ]
     answers = []
-    if random.random() < 0.7: # 70% chance of an answer
+    if random.random() < 0.7:
         answer_id = str(uuid.uuid4())
         answer_user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
         answers.append({
@@ -259,15 +402,13 @@ def generate_question(product_id, existing_user_ids):
         "answers": answers,
     }
 
-# Initialize the DEFAULT_STATE structure
 DEFAULT_STATE = {
     "users": {},
-    "current_user": None,
     "products": {},
     "sellers": {},
     "product_reviews": {},
     "product_questions": {},
-    "promotions": { # Adding a new section for promotions
+    "promotions": {
         str(uuid.uuid4()): {
             "code": "SUMMERFUN",
             "discount_percentage": 15,
@@ -285,9 +426,9 @@ DEFAULT_STATE = {
             "is_active": True
         }
     },
-    "customer_service_tickets": { # Adding a new section for customer service tickets
+    "customer_service_tickets": {
         str(uuid.uuid4()): {
-            "user_id": "", # Will be linked to a generated user
+            "user_id": "",
             "subject": "Missing Item in Order",
             "description": "Order TRK123456789 arrived, but Product 5 was missing.",
             "status": "open",
@@ -296,7 +437,7 @@ DEFAULT_STATE = {
             "agent_notes": "Checked inventory, sending replacement for Product 5."
         },
         str(uuid.uuid4()): {
-            "user_id": "", # Will be linked to a generated user
+            "user_id": "",
             "subject": "Issue with Payment",
             "description": "My card was declined for order TRK987654321.",
             "status": "closed",
@@ -307,7 +448,6 @@ DEFAULT_STATE = {
     }
 }
 
-# Keep track of generated UUIDs for linking friends, orders, etc.
 existing_uuids = {
     "users": set(),
     "payment_cards": set(),
@@ -316,35 +456,24 @@ existing_uuids = {
     "returns": set()
 }
 
-# --- Add initial users (Alice and Bob) and ensure their IDs are tracked ---
 alice_info, alice_id = generate_user(existing_uuids, "Alice", "Smith", "alice.smith@gmail.com", 125.75)
 bob_info, bob_id = generate_user(existing_uuids, "Bob", "Johnson", "bob.johnson@gmail.com", 50.25)
 DEFAULT_STATE["users"].update(alice_info)
 DEFAULT_STATE["users"].update(bob_info)
 
-# Manually ensure Alice and Bob can be friends
-if bob_id not in DEFAULT_STATE["users"][alice_id]["friends"]:
-    DEFAULT_STATE["users"][alice_id]["friends"].append(bob_id)
-if alice_id not in DEFAULT_STATE["users"][bob_id]["friends"]:
-    DEFAULT_STATE["users"][bob_id]["friends"].append(alice_id)
-
-# --- Generate 48 more diverse users ---
 for _ in range(48):
     new_user_info, new_user_id = generate_user(existing_uuids)
     DEFAULT_STATE["users"].update(new_user_info)
 
-# --- Add more products (totaling around 15-20) ---
 num_initial_products = len(DEFAULT_STATE["products"])
-# Add a few more sellers first
-for i in range(3, 6): # Add sellers 3, 4, 5
+for i in range(3, 6):
     DEFAULT_STATE["sellers"][i] = generate_seller(i)
 
 existing_seller_ids = list(DEFAULT_STATE["sellers"].keys())
 
-for i in range(num_initial_products + 1, num_initial_products + 16): # Add 15 more products
-    DEFAULT_STATE["products"][i] = generate_product(i, existing_seller_ids)
+for i in range(num_initial_products + 1, num_initial_products + 101):
+    DEFAULT_STATE["products"][str(uuid.uuid4())] = generate_product(i, existing_seller_ids)
 
-# --- Generate more product reviews and questions ---
 all_product_ids = list(DEFAULT_STATE["products"].keys())
 all_user_ids = list(DEFAULT_STATE["users"].keys())
 
@@ -362,7 +491,6 @@ for product_id in all_product_ids:
     for _ in range(num_questions):
         DEFAULT_STATE["product_questions"][product_id].append(generate_question(product_id, all_user_ids))
 
-# --- Link customer service tickets to actual user IDs ---
 if all_user_ids:
     for ticket_id in DEFAULT_STATE["customer_service_tickets"]:
         DEFAULT_STATE["customer_service_tickets"][ticket_id]["user_id"] = random.choice(all_user_ids)
@@ -371,6 +499,5 @@ print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 print(f"Total number of products generated: {len(DEFAULT_STATE['products'])}")
 print(f"Total number of sellers generated: {len(DEFAULT_STATE['sellers'])}")
 
-# You would save DEFAULT_STATE to a JSON file or similar for your application
-# with open('diverse_amazon_state.json', 'w') as f:
-#     json.dump(DEFAULT_STATE, f, indent=2)
+with open('diverse_amazon_state.json', 'w') as f:
+    json.dump(DEFAULT_STATE, f, indent=2)
