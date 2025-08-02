@@ -1,9 +1,10 @@
 import datetime
 import copy
 import uuid
-import random
-import json
 from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("GmailApis")
 
 class GmailApis:
     """

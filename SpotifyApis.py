@@ -1,10 +1,10 @@
 import datetime
 import copy
 import uuid
-import random
-import json
-from typing import Dict, List, Any, Optional, Union, Literal
+from typing import Dict, Any, Optional, Literal
+from state_loader import load_default_state
 
+DEFAULT_STATE = load_default_state("SpotifyApis")
 class SpotifyApis:
     """
     A dummy API class for simulating Spotify operations.
@@ -28,7 +28,6 @@ class SpotifyApis:
         self._load_scenario(DEFAULT_STATE)
         if DEFAULT_STATE.get("username"):
             self.username = DEFAULT_STATE["username"]
-
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
@@ -689,8 +688,6 @@ class SpotifyApis:
             return {"status": "success", "message": f"Now playing {content_type}: {content.get('title') or content.get('name')} (ID: {content_id})."}
         return {"status": "error", "message": f"{content_type.capitalize()} with ID {content_id} not found."}
 
-
-    def reset_data(self) -> Dict[str, bool]:
         """
         Resets all simulated data in the dummy backend to its default state.
         This is a utility function for testing and not a standard API endpoint.

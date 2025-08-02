@@ -1,15 +1,30 @@
 {
   "MultiStep_Prompts": [
     {
-      "prompt": "Order a new smartwatch from Amazon and add the delivery date to my Google Calendar",
+      "prompt": "Order a new 4K inch TV from Amazon and add the delivery date to my Google Calendar",
       "tools": ["AmazonApis", "GoogleCalendarApis"],
       "context": {
         "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06",
         "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
       },
       "ground_truth": {
-        "Amazon": ["orderProduct(user: str, productId: str, quantity: int)", "trackOrder(user: str, orderId: str)"],
-        "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)"]
+      "Amazon": [
+        "searchProducts(user: str, query: str)", 
+        "orderProduct(user: str, productId: str, quantity: int)",  
+        "trackOrder(user: str, orderId: str)"],
+      "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)" ]
+    }
+    },
+    {
+      "prompt": "Send an email to Alice about the project status and then create a note in Simple Notes with the project details",
+      "tools": ["GmailApis", "SimpleNotesApis"],
+      "context": {
+        "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548",
+        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+      },
+      "ground_truth": {
+        "Gmail": ["sendEmail(user: str, to: str, subject: str, body: str)"],
+        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
       }
     },
     {
@@ -295,11 +310,10 @@
       }
     },
     {
-      "prompt": "I want to schedule a meeting with my team next week.",
-      "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
+      "prompt": "Schedule a meeting with my team next week",
+      "tools": ["GoogleCalendarApis"],
       "context": {
-        "googlecalendar_current_user": "6ab6ab8-0ddd-4050-a707-d9c2985adcd1",
-        "communilink_current_user": "h3e2r1t4-y5u6-7i8o-9p0a-s1d2f3g4h5j6"
+        "googlecalendar_current_user": "6ab6ab8-0ddd-4050-a707-d9c2985adcd1"
       },
       "ground_truth": {
         "turn1": {

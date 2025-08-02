@@ -3,10 +3,11 @@ import copy
 import time
 import copy
 import uuid
-import random
-import json
 from typing import Dict, Union, Any, Optional, List
-from datetime import datetime, timedelta
+from datetime import datetime
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("GoogleCalendarApis")
 
 class GoogleDriveApis:
     """

@@ -1,9 +1,10 @@
 import datetime
 import copy
 import uuid
-import random
-import re # Import the re module for regular expressions
-from typing import Dict, List, Any, Optional, Union, Literal
+from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("VenmoApis")
 
 class EmailStr(str):
     pass
@@ -28,9 +29,6 @@ class VenmoApis:
         self.transactions: Dict[str, Any] = {} # Keyed by transaction UUID
         self.notifications: Dict[str, Any] = {} # Keyed by notification UUID
         self.current_user: Optional[str] = None # Stores the UUID of the current user
-
-        # Internal map for efficient lookup of original string card IDs to new UUIDs per user
-        # {(user_uuid, original_card_id_string): card_uuid}
         self._payment_card_lookup_map: Dict[tuple[str, str], str] = {}
         
         self._load_scenario(DEFAULT_STATE)
@@ -538,18 +536,3 @@ class VenmoApis:
                 notif["read"] = read_status
         
         return {"mark_status": True}
-
-    def reset_data(self) -> Dict[str, bool]:
-        """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
-        """
-        # Re-run the initial data conversion to reset maps and UUIDs
-        global DEFAULT_STATE
-        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
-        self._load_scenario(DEFAULT_STATE)
-        print("VenmoApis: All dummy data reset to default state.")
-        return {"reset_status": True}
