@@ -1,8 +1,9 @@
 import datetime
+import json
 import copy
 import uuid
 import random
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, Any
 
 # Define a placeholder for EmailStr if not already defined globally
 class EmailStr(str):
@@ -158,14 +159,6 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         new_direct_messages[dm_conv_uuid] = dm_conv_data
     converted_data["direct_messages"] = new_direct_messages
 
-    # Convert current_user to UUID if it exists and is in the map
-    if converted_data.get("current_user") and converted_data["current_user"] in _initial_user_id_map:
-        converted_data["current_user"] = _initial_user_id_map[converted_data["current_user"]]
-    elif converted_data["users"]: # If current_user wasn't mapped, pick a random one
-        converted_data["current_user"] = random.choice(list(converted_data["users"].keys()))
-    else: # If no users exist, set to None
-        converted_data["current_user"] = None
-
     return converted_data
 
 # --- Helper functions for data generation ---
@@ -269,7 +262,6 @@ dm_messages = [
 
 # Define the initial raw state with string/integer IDs and emails for conversion
 RAW_DEFAULT_STATE = {
-    "current_user": "usr_alice_smith", # This will be converted to UUID
     "users": {
         "usr_alice_smith": {
             "id": "usr_alice_smith", # This will be replaced by a UUID
@@ -316,7 +308,7 @@ RAW_DEFAULT_STATE = {
             "api_usage": {"posts_created": 1, "dms_sent": 1, "profile_views": 8},
             "is_verified": False
         },
-        "usr_bob_johnson": { # Added to ensure all referenced users exist
+        "usr_bob_johnson": { 
             "id": "usr_bob_johnson",
             "username": "bob_johnson",
             "name": "Bob Johnson",
@@ -589,21 +581,12 @@ for i in range(num_dm_convs_to_add):
         else:
             DEFAULT_STATE["users"][sender_uuid]["api_usage"] = {"dms_sent": 1}
 
-# --- Final Adjustments ---
-# Ensure current_user is a valid UUID after all additions
-if DEFAULT_STATE.get("current_user") not in all_user_uuids:
-    if all_user_uuids:
-        DEFAULT_STATE["current_user"] = random.choice(all_user_uuids)
-    else:
-        DEFAULT_STATE["current_user"] = None # Should not happen with 50 users
-
 # Output the generated state to a JSON file
-# import json
-# output_filename = 'diverse_x_state.json'
-# with open(output_filename, 'w') as f:
-#     json.dump(DEFAULT_STATE, f, indent=2)
+output_filename = 'diverse_x_state.json'
+with open(output_filename, 'w') as f:
+    json.dump(DEFAULT_STATE, f, indent=2)
 
-# print(f"Total number of users: {len(DEFAULT_STATE['users'])}")
-# print(f"Total number of posts: {len(DEFAULT_STATE['posts'])}")
-# print(f"Total number of direct message conversations: {len(DEFAULT_STATE['direct_messages'])}")
-# print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
+print(f"Total number of users: {len(DEFAULT_STATE['users'])}")
+print(f"Total number of posts: {len(DEFAULT_STATE['posts'])}")
+print(f"Total number of direct message conversations: {len(DEFAULT_STATE['direct_messages'])}")
+print(f"Generated DEFAULT_STATE saved to '{output_filename}'")

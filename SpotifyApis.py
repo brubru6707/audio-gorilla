@@ -54,25 +54,51 @@ class SpotifyApis:
         return str(uuid.uuid4())
 
     def _get_user_id_by_email(self, email: str) -> Optional[str]:
-        """Helper to get user_id (UUID) from email (string)."""
+        """
+        Helper to get user_id (UUID) from email (string).
+
+        Args:
+            email (str): User's email address.
+        Returns:
+            Optional[str]: User ID if found, None otherwise.
+        """
         for user_id, user_data in self.users.items():
             if user_data.get("email") == email:
                 return user_id
         return None
 
     def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
-        """Helper to get user email (string) from user_id (UUID)."""
+        """
+        Helper to get user email (string) from user_id (UUID).
+
+        Args:
+            user_id (str): User's ID.
+        Returns:
+            Optional[str]: User email if found, None otherwise.
+        """
         user_data = self.users.get(user_id)
         return user_data.get("email") if user_data else None
 
     def _get_current_user_data(self) -> Optional[Dict]:
-        """Helper to get the data of the currently logged-in user (identified by self.username UUID)."""
+        """
+        Helper to get the data of the currently logged-in user (identified by self.username UUID).
+
+        Returns:
+            Optional[Dict]: Current user's data if authenticated, None otherwise.
+        """
         if not self.username:
             return None
         return self.users.get(self.username)
 
     def _get_user_payment_cards(self, user_id: str) -> Dict[str, Any]:
-        """Helper to get a user's payment cards, keyed by UUID."""
+        """
+        Helper to get a user's payment cards, keyed by UUID.
+
+        Args:
+            user_id (str): User's ID.
+        Returns:
+            Dict[str, Any]: Dictionary of payment cards belonging to the user.
+        """
         cards = {}
         for card_id, card_data in self.payment_cards.items():
             if card_data.get("user_id") == user_id:
@@ -85,7 +111,6 @@ class SpotifyApis:
 
         Args:
             user_email (str): The email address of the user to set as current.
-
         Returns:
             Dict[str, bool]: A dictionary with 'status' indicating success or failure.
         """
@@ -95,10 +120,12 @@ class SpotifyApis:
             return {"status": True, "message": f"User set to {user_email} (ID: {user_id})."}
         return {"status": False, "message": f"User with email {user_email} not found."}
 
-
     def show_account(self) -> Dict[str, Any]:
         """
         Shows the account information for the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing user profile information or error message.
         """
         user_data = self._get_current_user_data()
         if user_data:
@@ -118,6 +145,16 @@ class SpotifyApis:
     ) -> Dict[str, Any]:
         """
         Adds a new payment method for the current user.
+
+        Args:
+            card_name (str): Name on the card.
+            card_number (str): Card number.
+            expiry_year (int): Expiration year.
+            expiry_month (int): Expiration month.
+            cvv_number (str): CVV security code.
+            is_default (bool): Whether to set as default payment method.
+        Returns:
+            Dict[str, Any]: Dictionary containing new payment method details or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -148,6 +185,9 @@ class SpotifyApis:
     def show_payment_methods(self) -> Dict[str, Any]:
         """
         Shows all payment methods associated with the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of payment methods or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -164,6 +204,7 @@ class SpotifyApis:
     def set_default_payment_method(self, payment_method_id: str) -> Dict[str, bool]:
         """
         Set a specific payment method as the default for the current user.
+
         Args:
             payment_method_id (str): The ID (UUID) of the payment method to set as default.
         Returns:
@@ -190,6 +231,9 @@ class SpotifyApis:
     def get_user_liked_songs(self) -> Dict[str, Any]:
         """
         Retrieves the list of songs liked by the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of liked songs or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -202,6 +246,11 @@ class SpotifyApis:
     def like_song(self, song_id: str) -> Dict[str, bool]:
         """
         Adds a song to the current user's liked songs.
+
+        Args:
+            song_id (str): ID of the song to like.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -217,6 +266,11 @@ class SpotifyApis:
     def unlike_song(self, song_id: str) -> Dict[str, bool]:
         """
         Removes a song from the current user's liked songs.
+
+        Args:
+            song_id (str): ID of the song to unlike.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -232,6 +286,9 @@ class SpotifyApis:
     def get_user_library_songs(self) -> Dict[str, Any]:
         """
         Retrieves the list of songs in the current user's library.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of library songs or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -244,6 +301,11 @@ class SpotifyApis:
     def add_song_to_library(self, song_id: str) -> Dict[str, bool]:
         """
         Adds a song to the current user's library.
+
+        Args:
+            song_id (str): ID of the song to add.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -259,6 +321,11 @@ class SpotifyApis:
     def remove_song_from_library(self, song_id: str) -> Dict[str, bool]:
         """
         Removes a song from the current user's library.
+
+        Args:
+            song_id (str): ID of the song to remove.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -274,6 +341,9 @@ class SpotifyApis:
     def get_user_downloaded_songs(self) -> Dict[str, Any]:
         """
         Retrieves the list of songs downloaded by the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of downloaded songs or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -283,10 +353,12 @@ class SpotifyApis:
         downloaded_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in downloaded_songs_ids if s_id in self.songs]
         return {"status": "success", "downloaded_songs": downloaded_songs_details}
 
-
     def get_user_liked_albums(self) -> Dict[str, Any]:
         """
         Retrieves the list of albums liked by the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of liked albums or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -299,6 +371,11 @@ class SpotifyApis:
     def like_album(self, album_id: str) -> Dict[str, bool]:
         """
         Adds an album to the current user's liked albums.
+
+        Args:
+            album_id (str): ID of the album to like.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -314,6 +391,11 @@ class SpotifyApis:
     def unlike_album(self, album_id: str) -> Dict[str, bool]:
         """
         Removes an album from the current user's liked albums.
+
+        Args:
+            album_id (str): ID of the album to unlike.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -329,6 +411,9 @@ class SpotifyApis:
     def get_user_library_albums(self) -> Dict[str, Any]:
         """
         Retrieves the list of albums in the current user's library.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of library albums or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -341,6 +426,11 @@ class SpotifyApis:
     def add_album_to_library(self, album_id: str) -> Dict[str, bool]:
         """
         Adds an album to the current user's library.
+
+        Args:
+            album_id (str): ID of the album to add.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -356,6 +446,11 @@ class SpotifyApis:
     def remove_album_from_library(self, album_id: str) -> Dict[str, bool]:
         """
         Removes an album from the current user's library.
+
+        Args:
+            album_id (str): ID of the album to remove.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -371,6 +466,9 @@ class SpotifyApis:
     def get_user_liked_playlists(self) -> Dict[str, Any]:
         """
         Retrieves the list of playlists liked by the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of liked playlists or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -383,6 +481,11 @@ class SpotifyApis:
     def like_playlist(self, playlist_id: str) -> Dict[str, bool]:
         """
         Adds a playlist to the current user's liked playlists.
+
+        Args:
+            playlist_id (str): ID of the playlist to like.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -398,6 +501,11 @@ class SpotifyApis:
     def unlike_playlist(self, playlist_id: str) -> Dict[str, bool]:
         """
         Removes a playlist from the current user's liked playlists.
+
+        Args:
+            playlist_id (str): ID of the playlist to unlike.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -410,10 +518,12 @@ class SpotifyApis:
             return {"status": True, "message": f"Playlist {playlist_id} unliked."}
         return {"status": False, "message": f"Playlist {playlist_id} not in liked playlists."}
 
-
     def get_user_following_artists(self) -> Dict[str, Any]:
         """
         Retrieves the list of artists followed by the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of followed artists or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -426,6 +536,11 @@ class SpotifyApis:
     def follow_artist(self, artist_id: str) -> Dict[str, bool]:
         """
         Adds an artist to the current user's followed artists.
+
+        Args:
+            artist_id (str): ID of the artist to follow.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -441,6 +556,11 @@ class SpotifyApis:
     def unfollow_artist(self, artist_id: str) -> Dict[str, bool]:
         """
         Removes an artist from the current user's followed artists.
+
+        Args:
+            artist_id (str): ID of the artist to unfollow.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -461,6 +581,13 @@ class SpotifyApis:
     ) -> Dict[str, Any]:
         """
         Creates a new playlist for the current user.
+
+        Args:
+            name (str): Name of the playlist.
+            description (Optional[str]): Description of the playlist.
+            public (bool): Whether the playlist is public.
+        Returns:
+            Dict[str, Any]: Dictionary containing new playlist details or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -488,6 +615,11 @@ class SpotifyApis:
     def delete_playlist(self, playlist_id: str) -> Dict[str, bool]:
         """
         Deletes a playlist owned by the current user.
+
+        Args:
+            playlist_id (str): ID of the playlist to delete.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -503,6 +635,12 @@ class SpotifyApis:
     def add_song_to_playlist(self, playlist_id: str, song_id: str) -> Dict[str, bool]:
         """
         Adds a song to a specific playlist owned by the current user.
+
+        Args:
+            playlist_id (str): ID of the playlist.
+            song_id (str): ID of the song to add.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -525,6 +663,12 @@ class SpotifyApis:
     def remove_song_from_playlist(self, playlist_id: str, song_id: str) -> Dict[str, bool]:
         """
         Removes a song from a specific playlist owned by the current user.
+
+        Args:
+            playlist_id (str): ID of the playlist.
+            song_id (str): ID of the song to remove.
+        Returns:
+            Dict[str, bool]: Dictionary indicating success status and message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -553,6 +697,14 @@ class SpotifyApis:
     ) -> Dict[str, Any]:
         """
         Updates details of a playlist owned by the current user.
+
+        Args:
+            playlist_id (str): ID of the playlist to update.
+            name (Optional[str]): New name for the playlist.
+            description (Optional[str]): New description for the playlist.
+            public (Optional[bool]): New visibility setting for the playlist.
+        Returns:
+            Dict[str, Any]: Dictionary containing updated playlist details or error message.
         """
         user_data = self._get_current_user_data()
         if not user_data:
@@ -577,12 +729,20 @@ class SpotifyApis:
     def get_all_songs(self) -> Dict[str, Any]:
         """
         Retrieves a list of all songs available on the platform.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of all songs.
         """
         return {"status": "success", "songs": [copy.deepcopy(s) for s in self.songs.values()]}
 
     def get_song_details(self, song_id: str) -> Dict[str, Any]:
         """
         Retrieves details for a specific song.
+
+        Args:
+            song_id (str): ID of the song to retrieve.
+        Returns:
+            Dict[str, Any]: Dictionary containing song details or error message.
         """
         song = self.songs.get(song_id)
         if song:
@@ -592,12 +752,20 @@ class SpotifyApis:
     def get_all_albums(self) -> Dict[str, Any]:
         """
         Retrieves a list of all albums available on the platform.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of all albums.
         """
         return {"status": "success", "albums": [copy.deepcopy(a) for a in self.albums.values()]}
 
     def get_album_details(self, album_id: str) -> Dict[str, Any]:
         """
         Retrieves details for a specific album.
+
+        Args:
+            album_id (str): ID of the album to retrieve.
+        Returns:
+            Dict[str, Any]: Dictionary containing album details or error message.
         """
         album = self.albums.get(album_id)
         if album:
@@ -607,6 +775,9 @@ class SpotifyApis:
     def get_all_playlists(self) -> Dict[str, Any]:
         """
         Retrieves a list of all public playlists available on the platform.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of public playlists.
         """
         public_playlists = [copy.deepcopy(p) for p in self.playlists.values() if p.get("public")]
         return {"status": "success", "playlists": public_playlists}
@@ -614,6 +785,11 @@ class SpotifyApis:
     def get_playlist_details(self, playlist_id: str) -> Dict[str, Any]:
         """
         Retrieves details for a specific playlist.
+
+        Args:
+            playlist_id (str): ID of the playlist to retrieve.
+        Returns:
+            Dict[str, Any]: Dictionary containing playlist details or error message.
         """
         playlist = self.playlists.get(playlist_id)
         user_data = self._get_current_user_data()
@@ -624,16 +800,23 @@ class SpotifyApis:
             return {"status": "error", "message": "Access denied to private playlist."}
         return {"status": "error", "message": f"Playlist {playlist_id} not found."}
 
-
     def get_all_artists(self) -> Dict[str, Any]:
         """
         Retrieves a list of all artists available on the platform.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing list of all artists.
         """
         return {"status": "success", "artists": [copy.deepcopy(a) for a in self.artists.values()]}
 
     def get_artist_details(self, artist_id: str) -> Dict[str, Any]:
         """
         Retrieves details for a specific artist.
+
+        Args:
+            artist_id (str): ID of the artist to retrieve.
+        Returns:
+            Dict[str, Any]: Dictionary containing artist details or error message.
         """
         artist = self.artists.get(artist_id)
         if artist:
@@ -643,6 +826,12 @@ class SpotifyApis:
     def search_content(self, query: str, content_type: Literal["song", "album", "playlist", "artist", "all"] = "all") -> Dict[str, Any]:
         """
         Searches for content (songs, albums, playlists, artists) by a given query.
+
+        Args:
+            query (str): Search query string.
+            content_type (Literal): Type of content to search for ("song", "album", "playlist", "artist", "all").
+        Returns:
+            Dict[str, Any]: Dictionary containing search results.
         """
         results = {}
 
@@ -672,6 +861,12 @@ class SpotifyApis:
     def play_content(self, content_type: Literal["song", "album", "playlist"], content_id: str) -> Dict[str, Any]:
         """
         Simulates playing a song, album, or playlist.
+
+        Args:
+            content_type (Literal): Type of content to play ("song", "album", "playlist").
+            content_id (str): ID of the content to play.
+        Returns:
+            Dict[str, Any]: Dictionary containing play status or error message.
         """
         content = None
         if content_type == "song":
@@ -687,16 +882,3 @@ class SpotifyApis:
         if content:
             return {"status": "success", "message": f"Now playing {content_type}: {content.get('title') or content.get('name')} (ID: {content_id})."}
         return {"status": "error", "message": f"{content_type.capitalize()} with ID {content_id} not found."}
-
-        """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
-        """
-        global DEFAULT_STATE
-        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
-        self._load_scenario(DEFAULT_STATE)
-        print("SpotifyApis: All dummy data reset to default state.")
-        return {"reset_status": True}

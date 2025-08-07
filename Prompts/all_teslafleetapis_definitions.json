@@ -1,0 +1,320 @@
+{
+    "api_name": "TeslaFleetApis",
+    "functions": [
+        {
+            "function_name": "flash_lights",
+            "description": "Flash the lights of the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "honk_horn",
+            "description": "Honk the horn of the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "open_close_charge_port",
+            "description": "Open or close the charge port of the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    command (Literal[\"open\", \"close\"]): The command to issue ('open' or 'close').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['open', 'close']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "open_close_trunk",
+            "description": "Open or close the front or rear trunk of the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    trunk_part (Literal[\"front\", \"rear\"]): Which part of the trunk to control ('front' or 'rear').\n    command (Literal[\"open\", \"close\"]): The command to issue ('open' or 'close').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "trunk_part",
+                    "type": "typing.Literal['front', 'rear']"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['open', 'close']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_bioweapon_mode",
+            "description": "Turn the Bioweapon Defense Mode of the specified vehicle on or off.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    command (Literal[\"on\", \"off\"]): The command to issue ('on' or 'off').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['on', 'off']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_charge_limit",
+            "description": "Set the charge limit percentage for the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    limit (int): The desired charge limit percentage (0-100).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_climate_keeper_mode",
+            "description": "Set the Climate Keeper Mode of the specified vehicle (e.g., \"dog\", \"camp\", \"off\").\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    mode (Literal[\"off\", \"dog\", \"camp\"]): The Climate Keeper Mode to set.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "mode",
+                    "type": "typing.Literal['off', 'dog', 'camp']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_climate_temp",
+            "description": "Set the driver and passenger cabin temperatures for the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    driver_temp (int): Desired temperature for the driver's side (in Celsius).\n    cop_temp (int): Desired temperature for the co-pilot's side (in Celsius).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "driver_temp",
+                    "type": "int"
+                },
+                {
+                    "name": "cop_temp",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_current_user",
+            "description": "Sets the current authenticated user for the API session.\n\nArgs:\n    user_email (str): The email address of the user to set as current.\n\nReturns:\n    Dict[str, bool]: A dictionary with 'status' indicating success or failure.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_volume",
+            "description": "Set the media volume level in the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    volume_level (int): The desired volume level (0-100).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "volume_level",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "show_vehicle_info",
+            "description": "Retrieve comprehensive information about a specific vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier (e.g., model name or VIN) of the vehicle.\n\nReturns:\n    Dict[str, Any]: A dictionary containing vehicle details if successful,\n                    or an error message if the vehicle or user is not found.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "skip_media_track",
+            "description": "Skip to the next or previous media track in the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    direction (Literal[\"next\", \"previous\"]): The direction to skip ('next' or 'previous').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "direction",
+                    "type": "typing.Literal['next', 'previous']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "start_stop_charge",
+            "description": "Start or stop charging for the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    command (Literal[\"start\", \"stop\"]): The command to issue ('start' or 'stop').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['start', 'stop']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "start_stop_climate",
+            "description": "Turn the climate control system of the specified vehicle on or off.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    command (Literal[\"on\", \"off\"]): The command to issue ('on' or 'off').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['on', 'off']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "start_stop_media",
+            "description": "Start or stop media playback in the specified vehicle.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    command (Literal[\"start\", \"stop\"]): The command to issue ('start' or 'stop').\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['start', 'stop']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "wake_up",
+            "description": "Wake up the specified vehicle from sleep mode.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "window_control",
+            "description": "Control the windows of the specified vehicle (e.g., \"vent\", \"close\").\nThe latitude and longitude might be used to confirm a safe location for window operations.\n\nArgs:\n    user (User): The current user object.\n    vehicle_tag (str): The unique identifier of the vehicle.\n    command (Literal[\"vent\", \"close\"]): The window control command (e.g., \"vent\", \"close\").\n    lat (float): The latitude coordinate of the vehicle.\n    lon (float): The longitude coordinate of the vehicle.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating\n                     if the command was successful (True).",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "TeslaFleetApis.User"
+                },
+                {
+                    "name": "vehicle_tag",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "typing.Literal['vent', 'close']"
+                },
+                {
+                    "name": "lat",
+                    "type": "float"
+                },
+                {
+                    "name": "lon",
+                    "type": "float"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        }
+    ]
+}

@@ -1,3 +1,11 @@
+import random
+import uuid
+import json
+import datetime
+from datetime import datetime, timedelta
+from typing import Dict, Any
+import copy
+
 # Current time for realistic date generation
 current_datetime = datetime.now()
 
@@ -281,22 +289,15 @@ for i in range(48): # Generate 48 additional users (2 existing + 48 new = 50 tot
     DEFAULT_STATE["users"][user_id] = user_data
     current_user_emails.append(email) # Add new user to possible attendees for subsequent users
 
-# --- Output the generated DEFAULT_STATE ---
-# This part is crucial: we are printing the full, static DEFAULT_STATE
-# to a JSON file so you can load it consistently.
-import json
-
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 
-# Save the generated DEFAULT_STATE to a JSON file
-# output_filename = 'diverse_google_calendar_state.json'
-# with open(output_filename, 'w') as f:
-#     json.dump(DEFAULT_STATE, f, indent=2)
+output_filename = 'diverse_google_calendar_state.json'
+with open(output_filename, 'w') as f:
+    json.dump(DEFAULT_STATE, f, indent=2)
 
-# print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
+print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
 
-# Optionally, print a sample user's data for review
-# if DEFAULT_STATE["users"]:
-#     sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
-#     print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
-#     print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))
+if DEFAULT_STATE["users"]:
+    sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
+    print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
+    print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))

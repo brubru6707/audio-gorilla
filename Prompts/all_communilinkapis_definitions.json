@@ -1,0 +1,155 @@
+{
+    "api_name": "CommuniLinkApis",
+    "functions": [
+        {
+            "function_name": "create_support_ticket",
+            "description": "Creates a new support ticket for a user.\n\nArgs:\n    user_email (str): The email of the user creating the ticket.\n    subject (str): The subject of the support ticket.\n    description (str): A detailed description of the issue.\n\nReturns:\n    Dict: A dictionary representing the created support ticket,\n          or an error dictionary if user not found.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "str"
+                },
+                {
+                    "name": "subject",
+                    "type": "str"
+                },
+                {
+                    "name": "description",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        },
+        {
+            "function_name": "get_all_sms_messages",
+            "description": "Retrieves all simulated SMS messages stored in the dummy backend,\noptionally filtered by user email.\n\nArgs:\n    user_email (Optional[str]): If provided, only SMS messages for this user will be returned.\n\nReturns:\n    Dict: A dictionary containing a list of all SMS messages,\n          or an error dictionary if user not found.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.List[typing.Dict], str]]"
+        },
+        {
+            "function_name": "get_all_voice_calls",
+            "description": "Retrieves all simulated voice calls stored in the dummy backend,\noptionally filtered by user email.\n\nArgs:\n    user_email (Optional[str]): If provided, only voice calls for this user will be returned.\n\nReturns:\n    Dict: A dictionary containing a list of all voice calls,\n          or an error dictionary if user not found.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.List[typing.Dict], str]]"
+        },
+        {
+            "function_name": "get_billing_history",
+            "description": "Retrieves the billing history for all users or a specific user.\n\nArgs:\n    user_email (Optional[str]): If provided, filters billing history for this user.\n\nReturns:\n    Dict: A dictionary containing a list of billing records,\n          or an error dictionary if user not found.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.List[typing.Dict], str]]"
+        },
+        {
+            "function_name": "get_network_status",
+            "description": "Retrieves the current network operational status of the CommuniLink service.\n\nReturns:\n    Dict: A dictionary indicating the network status.",
+            "parameters": [],
+            "return": "typing.Dict[str, str]"
+        },
+        {
+            "function_name": "get_sms_status",
+            "description": "Retrieves the current status of a previously sent SMS message.\n\nArgs:\n    message_id (str): The unique ID of the SMS message to check.\n\nReturns:\n    Dict: A dictionary representing the SMS message object if found,\n          or an error dictionary if not found.",
+            "parameters": [
+                {
+                    "name": "message_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[str, int]]"
+        },
+        {
+            "function_name": "get_user_info",
+            "description": "Retrieves detailed information for a specific user.\n\nArgs:\n    user_email (str): The email of the user to retrieve information for.\n\nReturns:\n    Dict: A dictionary containing the user's information,\n          or an error dictionary if user not found.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        },
+        {
+            "function_name": "get_voice_call_status",
+            "description": "Retrieves the current status of a previously initiated voice call.\n\nArgs:\n    call_id (str): The unique ID of the voice call to check.\n\nReturns:\n    Dict: A dictionary representing the voice call object if found,\n          or an error dictionary if not found.",
+            "parameters": [
+                {
+                    "name": "call_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[str, int, float]]"
+        },
+        {
+            "function_name": "make_voice_call",
+            "description": "Simulates initiating an outbound voice call. The call status progresses\nfrom 'initiated' to 'ringing', 'in-progress', and then 'completed'\nover a simulated time.\n\nArgs:\n    from_number (str): The caller's phone number (E.164 format).\n    to_number (str): The recipient's phone number (E.164 format).\n    audio_url (Optional[str]): Optional URL for audio to play to the recipient\n                               upon connection (e.g., \"https://example.com/welcome.mp3\").\n\nReturns:\n    Dict: A dictionary representing the simulated voice call object,\n          including 'id', 'from', 'to', 'audioUrl', 'status', 'timestamp',\n          and 'duration' (if completed). Returns an error dictionary\n          if parameters are missing.",
+            "parameters": [
+                {
+                    "name": "from_number",
+                    "type": "str"
+                },
+                {
+                    "name": "to_number",
+                    "type": "str"
+                },
+                {
+                    "name": "audio_url",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[str, int, float]]"
+        },
+        {
+            "function_name": "reset_data",
+            "description": "Resets all simulated data in the dummy backend to its default state.\nThis is a utility function for testing and not a standard API endpoint.\n\nReturns:\n    Dict: A dictionary indicating the success of the reset operation.",
+            "parameters": [],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "send_sms",
+            "description": "Simulates sending an SMS message. The message status progresses\nfrom 'queued' to 'sent' and then 'delivered' over a short simulated time.\n\nArgs:\n    from_number (str): The sender's phone number (E.164 format, e.g., \"+15551234567\").\n    to_number (str): The recipient's phone number (E.164 format, e.g., \"+15559876543\").\n    message (str): The text content of the SMS.\n\nReturns:\n    Dict: A dictionary representing the simulated SMS message object,\n          including 'id', 'from', 'to', 'message', 'status', and 'timestamp'.\n          Returns an error dictionary if parameters are missing.",
+            "parameters": [
+                {
+                    "name": "from_number",
+                    "type": "str"
+                },
+                {
+                    "name": "to_number",
+                    "type": "str"
+                },
+                {
+                    "name": "message",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[str, int]]"
+        },
+        {
+            "function_name": "update_user_settings",
+            "description": "Updates the settings for a specific user.\n\nArgs:\n    user_email (str): The email of the user whose settings are to be updated.\n    settings (Dict): A dictionary containing the settings to update (e.g., {\"sms_notifications\": False}).\n\nReturns:\n    Dict: A dictionary containing the updated user's settings,\n          or an error dictionary if user not found.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "str"
+                },
+                {
+                    "name": "settings",
+                    "type": "typing.Dict"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        }
+    ]
+}

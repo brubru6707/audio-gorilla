@@ -1,0 +1,152 @@
+{
+    "api_name": "SimpleNoteApis",
+    "functions": [
+        {
+            "function_name": "append_or_prepend_note_content",
+            "description": "Appends or prepends content to an existing note.\n\nArgs:\n    note_id (str): ID of the note to modify.\n    user (str): The user identifier.\n    added_content (str): Content to add.\n    append_or_prepend (Literal[\"append\", \"prepend\"]): Whether to append or prepend.\n\nReturns:\n    Dict[str, bool]: A dictionary containing 'status' (bool) indicating success or failure.",
+            "parameters": [
+                {
+                    "name": "note_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user",
+                    "type": "str"
+                },
+                {
+                    "name": "added_content",
+                    "type": "str"
+                },
+                {
+                    "name": "append_or_prepend",
+                    "type": "typing.Literal['append', 'prepend']"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "create_note",
+            "description": "Creates a new note for a specific user.\n\nArgs:\n    user (str): The user identifier.\n    title (str): The title of the new note.\n    content (str): The content of the new note.\n    tags (Optional[List[str]]): A list of tags for the note.\n    pinned (bool): Whether the note should be pinned.\n\nReturns:\n    Dict: A dictionary containing 'status' (bool) and 'note' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "str"
+                },
+                {
+                    "name": "title",
+                    "type": "str"
+                },
+                {
+                    "name": "content",
+                    "type": "str"
+                },
+                {
+                    "name": "tags",
+                    "type": "typing.Optional[typing.List[str]]"
+                },
+                {
+                    "name": "pinned",
+                    "type": "bool"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "delete_note",
+            "description": "Delete a note.\n\nArgs:\n    note_id (str): ID of the note to delete.\n    user (str): The user identifier. Only notes belonging to this user can be deleted.\n\nReturns:\n    Dict[str, bool]: A dictionary containing:\n                     - \"status\" (bool): True if the note was deleted successfully,\n                                        False if the note was not found or does not\n                                        belong to the specified user.",
+            "parameters": [
+                {
+                    "name": "note_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "get_note",
+            "description": "Retrieves a single note by its ID for a specific user.\n\nArgs:\n    note_id (str): The ID of the note to retrieve.\n    user (str): The user identifier.\n\nReturns:\n    Dict: A dictionary containing 'status' (bool) and 'note' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "note_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "list_notes",
+            "description": "Lists all notes for a specific user, with optional filtering by tag or pinned status.\n\nArgs:\n    user (str): The user identifier.\n    tag (Optional[str]): If provided, only notes with this tag will be returned.\n    pinned (Optional[bool]): If True, only pinned notes; if False, only unpinned notes.\n\nReturns:\n    Dict: A dictionary containing 'status' (bool) and 'notes' (List[Dict]) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "str"
+                },
+                {
+                    "name": "tag",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "pinned",
+                    "type": "typing.Optional[bool]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "reset_data",
+            "description": "Resets all simulated data in the dummy backend to its default state.\nThis is a utility function for testing and not a standard API endpoint.\n\nReturns:\n    Dict: A dictionary indicating the success of the reset operation.",
+            "parameters": [],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "show_account",
+            "description": "Shows the account information for the current user.\n\nArgs:\n    user (str): The user identifier.\n\nReturns:\n    Dict: A dictionary containing 'status' (bool) and 'profile_data' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "update_note_content",
+            "description": "Updates the content, title, tags, or pinned status of an existing note.\n\nArgs:\n    note_id (str): ID of the note to update.\n    user (str): The user identifier.\n    new_content (str): The new content for the note.\n    new_title (Optional[str]): The new title for the note.\n    new_tags (Optional[List[str]]): The new list of tags for the note.\n    new_pinned_status (Optional[bool]): The new pinned status for the note.\n\nReturns:\n    Dict[str, bool]: A dictionary containing 'status' (bool) indicating success or failure.",
+            "parameters": [
+                {
+                    "name": "note_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user",
+                    "type": "str"
+                },
+                {
+                    "name": "new_content",
+                    "type": "str"
+                },
+                {
+                    "name": "new_title",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "new_tags",
+                    "type": "typing.Optional[typing.List[str]]"
+                },
+                {
+                    "name": "new_pinned_status",
+                    "type": "typing.Optional[bool]"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        }
+    ]
+}

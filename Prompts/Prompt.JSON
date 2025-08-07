@@ -213,10 +213,10 @@
           "action": ["searchProducts(user: str, query: str)"],
           "response_to_user": "What kind of laptop are you looking for (e.g., brand, screen size, specifications)?"
         },
-        "user1": "A Dell XPS 15.",
+        "user1": "A Dell XPS 15 16 GB RAM laptop.",
         "turn2": {
           "action": ["orderProduct(user: str, productId: str, quantity: int)"],
-          "response_to_user": "Dell XPS 15 ordered. What date should I add to your calendar for delivery?"
+          "response_to_user": "Dell XPS 15 16 GB RAM laptop ordered. What date should I add to your calendar for delivery?"
         },
         "user2": "Please add it for next Tuesday.",
         "turn3": {

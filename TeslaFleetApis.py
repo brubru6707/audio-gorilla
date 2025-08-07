@@ -24,19 +24,15 @@ class TeslaFleetApis:
         data stores and loading the default scenario.
         """
         self._api_description = "This tool simulates a Tesla Fleet management system, allowing interaction with various vehicle functionalities."
-        self.users: Dict[str, Any] = {} # Keyed by user UUID
-        self._current_user_uuid: Optional[str] = None # Stores the UUID of the current user
+        self.users: Dict[str, Any] = {}
+        self._current_user_uuid: Optional[str] = None
 
-        # Internal map for efficient lookup of vehicle UUIDs by original_vehicle_tag for a user
-        # {(user_uuid, original_vehicle_tag_string): vehicle_uuid}
         self._vehicle_tag_lookup_map: Dict[tuple[str, str], str] = {}
 
         self._load_scenario(DEFAULT_STATE)
 
-        # Populate the vehicle tag lookup map after loading the scenario
         self._populate_vehicle_tag_lookup_map()
         
-        # Set the current user to the first user in the default state, or None
         if self.users:
             self._current_user_uuid = next(iter(self.users))
 
@@ -61,7 +57,6 @@ class TeslaFleetApis:
             scenario (Dict): A dictionary representing the state to load.
                              It should contain "users" with their tesla_data.
         """
-        # Create deep copy to ensure the original DEFAULT_STATE is not modified
         self.users = copy.deepcopy(scenario.get("users", {}))
         self._populate_vehicle_tag_lookup_map() 
         print("TeslaFleetApis: Loaded scenario with UUIDs for users and vehicles.")
@@ -104,15 +99,14 @@ class TeslaFleetApis:
         """
         user_uuid = self._get_user_id_by_email(user.email)
         if not user_uuid:
-            return None # User not found
+            return None
 
         vehicle_uuid = self._vehicle_tag_lookup_map.get((user_uuid, vehicle_tag))
         if not vehicle_uuid:
-            return None # Vehicle not found for this user and tag
+            return None
 
         vehicles = self._get_user_vehicles(user)
         return vehicles.get(vehicle_uuid) if vehicles else None
-
 
     def set_current_user(self, user_email: str) -> Dict[str, bool]:
         """
@@ -129,11 +123,6 @@ class TeslaFleetApis:
             self._current_user_uuid = user_id
             return {"status": True, "message": f"Current user set to {user_email} (ID: {user_id})."}
         return {"status": False, "message": f"User with email {user_email} not found."}
-
-
-    # ================
-    # Vehicle General Operations
-    # ================
 
     def show_vehicle_info(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
@@ -191,10 +180,6 @@ class TeslaFleetApis:
         vehicle["lights"]["on"] = True
         print(f"Vehicle {vehicle_tag}: Lights flashed.")
         return {"success": True}
-
-    # ================
-    # Media Controls
-    # ================
 
     def start_stop_media(self, user: User, vehicle_tag: str, command: Literal["start", "stop"]) -> Dict[str, bool]:
         """
@@ -258,19 +243,14 @@ class TeslaFleetApis:
         if vehicle is None:
             return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
         
-        # This is a dummy implementation; a real system would interact with a playlist
         current_track = vehicle["media"]["current_track"]
         if direction == "next":
             vehicle["media"]["current_track"] = current_track + 1
-        else: # previous
+        else: 
             vehicle["media"]["current_track"] = max(0, current_track - 1)
         
         print(f"Vehicle {vehicle_tag}: Skipped to {direction} track.")
         return {"success": True}
-
-    # ================
-    # Trunk Control
-    # ================
 
     def open_close_trunk(self, user: User, vehicle_tag: str, trunk_part: Literal["front", "rear"], command: Literal["open", "close"]) -> Dict[str, bool]:
         """
@@ -293,10 +273,6 @@ class TeslaFleetApis:
         vehicle["trunk"][trunk_part] = command
         print(f"Vehicle {vehicle_tag}: {trunk_part.capitalize()} trunk {command}ed.")
         return {"success": True}
-
-    # ================
-    # Charge Control
-    # ================
 
     def set_charge_limit(self, user: User, vehicle_tag: str, limit: int) -> Dict[str, bool]:
         """
@@ -364,10 +340,6 @@ class TeslaFleetApis:
         print(f"Vehicle {vehicle_tag}: Charging {command}ed.")
         return {"success": True}
 
-    # ================
-    # Climate Control
-    # ================
-
     def start_stop_climate(self, user: User, vehicle_tag: str, command: Literal["on", "off"]) -> Dict[str, bool]:
         """
         Turn the climate control system of the specified vehicle on or off.
@@ -407,7 +379,6 @@ class TeslaFleetApis:
         if vehicle is None:
             return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
 
-        # Assuming a reasonable range for temperatures, e.g., 15-30 Celsius
         if not (15 <= driver_temp <= 30) or not (15 <= cop_temp <= 30):
             return {"success": False, "message": "Temperatures must be between 15 and 30 Celsius."}
 
@@ -458,10 +429,6 @@ class TeslaFleetApis:
         print(f"Vehicle {vehicle_tag}: Climate Keeper Mode set to '{mode}'.")
         return {"success": True}
     
-    # ================
-    # Remote Commands
-    # ================
-
     def wake_up(self, user: User, vehicle_tag: str) -> Dict[str, bool]:
         """
         Wake up the specified vehicle from sleep mode.

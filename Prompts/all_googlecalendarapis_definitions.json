@@ -1,0 +1,298 @@
+{
+    "api_name": "GoogleCalendarApis",
+    "functions": [
+        {
+            "function_name": "check_free_busy",
+            "description": "Check free/busy status for multiple calendars within a time range.\n\nArgs:\n    time_min (str): Start of time range to check (ISO format).\n    time_max (str): End of time range to check (ISO format).\n    items (List[Dict]): List of calendars to check (each with 'id' field).\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and free/busy data.",
+            "parameters": [
+                {
+                    "name": "time_min",
+                    "type": "str"
+                },
+                {
+                    "name": "time_max",
+                    "type": "str"
+                },
+                {
+                    "name": "items",
+                    "type": "typing.List[typing.Dict]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "create_calendar",
+            "description": "Create a new calendar for a user.\n\nArgs:\n    summary (str): Name/description of the new calendar.\n    time_zone (str): Time zone for the calendar.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, Dict]]: Dictionary with creation status and new calendar data.",
+            "parameters": [
+                {
+                    "name": "summary",
+                    "type": "str"
+                },
+                {
+                    "name": "time_zone",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "create_event",
+            "description": "Create a new event in a calendar.\n\nArgs:\n    calendar_id (str): ID of the calendar to add the event to.\n    summary (str): Title/description of the event.\n    start_time (str): Start time of the event (ISO format).\n    end_time (str): End time of the event (ISO format).\n    time_zone (str): Time zone for the event.\n    description (Optional[str]): Additional description for the event.\n    attendees (Optional[List[Dict[str, str]]]): List of attendees for the event.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, Dict]]: Dictionary with creation status and event data.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "summary",
+                    "type": "str"
+                },
+                {
+                    "name": "start_time",
+                    "type": "str"
+                },
+                {
+                    "name": "end_time",
+                    "type": "str"
+                },
+                {
+                    "name": "time_zone",
+                    "type": "str"
+                },
+                {
+                    "name": "description",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "attendees",
+                    "type": "typing.Optional[typing.List[typing.Dict[str, str]]]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "delete_calendar",
+            "description": "Delete a calendar and all its events.\n\nArgs:\n    calendar_id (str): ID of the calendar to delete.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary with deletion status and message.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "delete_event",
+            "description": "Delete an event from a calendar.\n\nArgs:\n    calendar_id (str): ID of the calendar containing the event.\n    event_id (str): ID of the event to delete.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary with deletion status and message.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "event_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "get_calendar",
+            "description": "Get details for a specific calendar.\n\nArgs:\n    calendar_id (str): ID of the calendar to retrieve.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and calendar data.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "get_event",
+            "description": "Get details for a specific event.\n\nArgs:\n    calendar_id (str): ID of the calendar containing the event.\n    event_id (str): ID of the event to retrieve.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and event data.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "event_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "get_user_profile",
+            "description": "Get profile information for a user.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and profile data.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "list_calendars",
+            "description": "List all calendars for a user.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, List[Dict]]]: Dictionary with retrieval status and list of calendars.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "list_events",
+            "description": "List events in a calendar with optional filters and pagination.\n\nArgs:\n    calendar_id (str): ID of the calendar to list events from.\n    user_id (str): User's email address or 'me' for the authenticated user.\n    time_min (Optional[str]): Minimum start time for events (ISO format).\n    time_max (Optional[str]): Maximum end time for events (ISO format).\n    max_results (int): Maximum number of events to return.\n    page_token (Optional[str]): Token for pagination.\n\nReturns:\n    Dict[str, Union[bool, List[Dict], str]]: Dictionary with retrieval status, events list, and next page token.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "time_min",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "time_max",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "max_results",
+                    "type": "int"
+                },
+                {
+                    "name": "page_token",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict], str]]"
+        },
+        {
+            "function_name": "move_event",
+            "description": "Move an event from one calendar to another.\n\nArgs:\n    calendar_id (str): ID of the source calendar.\n    event_id (str): ID of the event to move.\n    destination_calendar_id (str): ID of the destination calendar.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary with move status and message.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "event_id",
+                    "type": "str"
+                },
+                {
+                    "name": "destination_calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "reset_data",
+            "description": "Reset all data to default state.\n\nReturns:\n    Dict[str, bool]: Dictionary with reset status.",
+            "parameters": [],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "update_calendar",
+            "description": "Update a calendar's summary/name.\n\nArgs:\n    calendar_id (str): ID of the calendar to update.\n    new_summary (str): New name/description for the calendar.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary with update status and message.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "new_summary",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "update_event",
+            "description": "Update an existing event.\n\nArgs:\n    calendar_id (str): ID of the calendar containing the event.\n    event_id (str): ID of the event to update.\n    summary (Optional[str]): New title/description for the event.\n    start_time (Optional[str]): New start time for the event (ISO format).\n    end_time (Optional[str]): New end time for the event (ISO format).\n    time_zone (Optional[str]): New time zone for the event.\n    description (Optional[str]): New description for the event.\n    attendees (Optional[List[Dict[str, str]]]): Updated list of attendees.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary with update status and message.",
+            "parameters": [
+                {
+                    "name": "calendar_id",
+                    "type": "str"
+                },
+                {
+                    "name": "event_id",
+                    "type": "str"
+                },
+                {
+                    "name": "summary",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "start_time",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "end_time",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "time_zone",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "description",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "attendees",
+                    "type": "typing.Optional[typing.List[typing.Dict[str, str]]]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        }
+    ]
+}

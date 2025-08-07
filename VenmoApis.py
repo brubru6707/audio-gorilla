@@ -135,10 +135,6 @@ class VenmoApis:
             return {"status": True, "message": f"Current user set to {user_email} (ID: {user_uuid})."}
         return {"status": False, "message": f"User with email {user_email} not found."}
 
-    # ================
-    # Account & Profile
-    # ================
-
     def show_account(self, user: User) -> Dict[str, Any]:
         """
         Shows the current user's account details.
@@ -180,10 +176,6 @@ class VenmoApis:
                     "last_name": friend_data["last_name"]
                 })
         return {"friends_status": True, "friends": friends_list}
-
-    # ================
-    # Money Transfers
-    # ================
 
     def send_money(self, sender_user: User, receiver_email: str, amount: float, note: str) -> Dict[str, Union[bool, str]]:
         """
@@ -304,7 +296,6 @@ class VenmoApis:
         print(f"Transaction {transaction_id}: {sender_user.email} requested ${amount} from {receiver_email}")
         return {"request_status": True, "transaction_id": transaction_id}
     
-    # Signature change: transaction_id from int to str (UUID) for realism
     def get_transaction_details(self, transaction_id: str) -> Dict[str, Union[bool, Dict]]:
         """
         Retrieves details of a specific transaction.
@@ -341,19 +332,15 @@ class VenmoApis:
         user_transactions.sort(key=lambda x: x.get("timestamp", ""), reverse=True) # Sort by timestamp
         return {"transactions_status": True, "transactions": user_transactions}
 
-    # ================
-    # Payment Methods
-    # ================
-
     def add_payment_card(
         self,
         user: User,
         card_name: str,
         owner_name: str,
-        card_number: str, # Assume this can be full number for input, then masked
+        card_number: str, 
         expiry_year: int,
         expiry_month: int,
-        cvv_number: str, # Will not store, just for input validation (dummy)
+        cvv_number: str,
         is_default: bool = False,
     ) -> Dict[str, Union[bool, str]]:
         """
@@ -410,7 +397,6 @@ class VenmoApis:
         self._update_user_data(user, "payment_cards", user_payment_cards)
 
         return {"add_status": True, "card_id": new_card_uuid}
-
 
     def list_payment_methods(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
         """

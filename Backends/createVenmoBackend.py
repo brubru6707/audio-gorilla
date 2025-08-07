@@ -1,9 +1,10 @@
 import datetime
+import json
 import copy
 import uuid
 import random
-import re # Import the re module for regular expressions
-from typing import Dict, List, Any, Optional, Union, Literal
+import re
+from typing import Dict, Any
 
 _initial_user_email_to_uuid_map = {}
 _initial_payment_card_id_map = {}
@@ -50,8 +51,8 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
             _initial_payment_card_id_map[(user_uuid, old_card_id)] = new_card_uuid
 
             card_data["id"] = new_card_uuid
-            original_card_num = str(card_data.get("card_number", "0000"))
-            card_data["card_number"] = f"**** **** **** {original_card_num[-4:]}"
+            original_card_num = str(card_data.get("card_number", "2343"))
+            card_data["card_number"] = f"4542 3453 2343 {original_card_num[-4:]}"
             if "cvv_number" in card_data:
                 del card_data["cvv_number"]
             
@@ -117,13 +118,9 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         new_notifications[new_notification_uuid] = notification_data
     converted_data["notifications"] = new_notifications
 
-    if converted_data.get("current_user") and converted_data["current_user"] in _initial_user_email_to_uuid_map:
-        converted_data["current_user"] = _initial_user_email_to_uuid_map[converted_data["current_user"]]
-
     return converted_data
 
 RAW_DEFAULT_STATE = {
-    "current_user": "alice.smith@gmail.com",
     "users": {
         "alice.smith@gmail.com": {
             "first_name": "Alice",
@@ -282,17 +279,41 @@ for i in range(num_users_to_add):
         card_type = random.choice(["Visa", "Mastercard", "Amex", "Discover"])
         expiry_year = random.randint(2026, 2035)
         expiry_month = random.randint(1, 12)
-        last_four = ''.join(random.choices('0123456789', k=4))
-        full_card_number_prefix = {
-            "Visa": "4", "Mastercard": "5", "Amex": "34", "Discover": "6011"
-        }.get(card_type, "9")
-        card_number_masked = f"{full_card_number_prefix}{'X'*(15 - len(full_card_number_prefix))}{last_four}"
+        def generate_fake_card_number(card_type):
+            if card_type == "Visa":
+                
+                prefix = "4"
+                remaining_digits = 15
+            elif card_type == "Mastercard":
+                
+                prefix = "5"
+                remaining_digits = 15
+            elif card_type == "Amex":
+                
+                prefix = random.choice(["34", "37"])
+                remaining_digits = 13
+            elif card_type == "Discover":
+                
+                prefix = "6011"
+                remaining_digits = 12
+            else:
+                prefix = "9"
+                remaining_digits = 15
+            
+            
+            card_digits = prefix + ''.join(random.choices('0123456789', k=remaining_digits))
+            
+            
+            formatted_card = ' '.join([card_digits[i:i+4] for i in range(0, len(card_digits), 4)])
+            return formatted_card
+        
+        card_number_fake = generate_fake_card_number(card_type)
 
         user_payment_cards[card_uuid] = {
             "id": card_uuid,
             "card_name": f"{random.choice(card_names)} ({card_type})",
             "owner_name": f"{first} {last}",
-            "card_number": card_number_masked,
+            "card_number": card_number_fake,
             "expiry_year": expiry_year,
             "expiry_month": expiry_month,
             "is_default": (c_idx == 0),
@@ -350,8 +371,6 @@ for i in range(num_notifications_to_add):
     
     message_template = random.choice(notification_messages[notification_type])
     
-    # Extract all placeholder names from the message_template
-    # This uses a regular expression to find all {key} patterns
     placeholders = re.findall(r'{(\w+)(?::\.2f)?}', message_template)
     message_params = {}
 
@@ -366,7 +385,6 @@ for i in range(num_notifications_to_add):
             message_params["receiver_name"] = receiver_info["first_name"] if receiver_info else "Someone"
         elif placeholder == "balance":
             message_params["balance"] = round(random.uniform(10.00, 600.00), 2)
-        # Add more conditions here if you introduce new placeholders in the future
     
     message = message_template.format(**message_params)
 
@@ -392,14 +410,6 @@ for user_id, user_data in DEFAULT_STATE["users"].items():
                 updated_friends.append(friend_identifier)
         user_data["friends"] = list(set(updated_friends))
 
-if DEFAULT_STATE.get("current_user") and DEFAULT_STATE["current_user"] in _initial_user_email_to_uuid_map:
-    DEFAULT_STATE["current_user"] = _initial_user_email_to_uuid_map[RAW_DEFAULT_STATE["current_user"]]
-elif DEFAULT_STATE["users"]:
-    DEFAULT_STATE["current_user"] = random.choice(list(DEFAULT_STATE["users"].keys()))
-else:
-    DEFAULT_STATE["current_user"] = None
-
-import json
 output_filename = 'diverse_venmo_state.json'
 with open(output_filename, 'w') as f:
     json.dump(DEFAULT_STATE, f, indent=2)

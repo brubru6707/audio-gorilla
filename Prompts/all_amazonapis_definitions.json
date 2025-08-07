@@ -1,0 +1,648 @@
+{
+    "api_name": "AmazonApis",
+    "functions": [
+        {
+            "function_name": "add_address",
+            "description": "Adds a new address with a UUID as ID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "street_address",
+                    "type": "str"
+                },
+                {
+                    "name": "city",
+                    "type": "str"
+                },
+                {
+                    "name": "state",
+                    "type": "str"
+                },
+                {
+                    "name": "country",
+                    "type": "str"
+                },
+                {
+                    "name": "zip_code",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str, int]]"
+        },
+        {
+            "function_name": "add_friend",
+            "description": "Adds a friend by their email, converting it to user_id.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "friend_email",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "add_payment_card",
+            "description": "Adds a new payment card with a UUID as ID.\nCVV is not stored for realism.\nCard number stored as last 4 digits.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "card_name",
+                    "type": "str"
+                },
+                {
+                    "name": "owner_name",
+                    "type": "str"
+                },
+                {
+                    "name": "card_number",
+                    "type": "int"
+                },
+                {
+                    "name": "expiry_year",
+                    "type": "int"
+                },
+                {
+                    "name": "expiry_month",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str, int]]"
+        },
+        {
+            "function_name": "add_to_cart",
+            "description": "Adds a product to the user's cart.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "quantity",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "add_to_wish_list",
+            "description": "Adds a product to the user's wish list.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "answer_product_question",
+            "description": "Answers a product question with a UUID for the answer ID and user ID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "question_id",
+                    "type": "str"
+                },
+                {
+                    "name": "answer",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "apply_promo_code_to_cart",
+            "description": "Applies a promo code to the current user's cart.",
+            "parameters": [
+                {
+                    "name": "promo_code",
+                    "type": "str"
+                },
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str, float]]"
+        },
+        {
+            "function_name": "ask_product_question",
+            "description": "Asks a question about a product with a UUID for the question ID and user ID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "question",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "checkout",
+            "description": "Processes the checkout, creates an order with a UUID, updates stock and balance.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "delivery_address_id",
+                    "type": "str"
+                },
+                {
+                    "name": "payment_card_id",
+                    "type": "str"
+                },
+                {
+                    "name": "promo_code",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str, typing.Dict]]"
+        },
+        {
+            "function_name": "delete_account",
+            "description": "Deletes the user's account using user_id.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "get_seller_info",
+            "description": "Retrieves information about a specific seller.",
+            "parameters": [
+                {
+                    "name": "seller_id",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "login_user",
+            "description": "Logs in a user and sets current_user to their user_id.\nIn a real app, password verification would happen here.",
+            "parameters": [
+                {
+                    "name": "email",
+                    "type": "str"
+                },
+                {
+                    "name": "password",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "register_user",
+            "description": "Registers a new user with a unique user_id.",
+            "parameters": [
+                {
+                    "name": "first_name",
+                    "type": "str"
+                },
+                {
+                    "name": "last_name",
+                    "type": "str"
+                },
+                {
+                    "name": "email",
+                    "type": "str"
+                },
+                {
+                    "name": "password",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "remove_address",
+            "description": "Removes an address using its UUID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "address_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "remove_friend",
+            "description": "Removes a friend by their email, converting it to user_id.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "friend_email",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "remove_from_cart",
+            "description": "Removes a product from the user's cart.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "remove_from_wish_list",
+            "description": "Removes a product from the user's wish list.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "remove_payment_card",
+            "description": "Removes a payment card using its UUID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "card_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "remove_promo_code_from_cart",
+            "description": "Removes any applied promo code from the user's cart.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "request_return",
+            "description": "Initiates a return request with a UUID for the return ID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "order_id",
+                    "type": "str"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "reason",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "search_products",
+            "description": "Searches for products based on query, category, and price range.",
+            "parameters": [
+                {
+                    "name": "query",
+                    "type": "str"
+                },
+                {
+                    "name": "category",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "min_price",
+                    "type": "float"
+                },
+                {
+                    "name": "max_price",
+                    "type": "float"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_account",
+            "description": "Shows account details for the current user, using user_id.\nFunction signature remains the same, but now `user` object internally holds `user_id`.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str, typing.Dict]]"
+        },
+        {
+            "function_name": "show_addresses",
+            "description": "Shows the current user's addresses.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_cart",
+            "description": "Shows the current user's cart content.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_friends",
+            "description": "Shows the list of friends (emails) for the current user.\nConverts friend user_ids back to emails for display.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[str]]]"
+        },
+        {
+            "function_name": "show_orders",
+            "description": "Shows the current user's orders.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_payment_cards",
+            "description": "Shows the current user's payment cards.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_prime_subscriptions",
+            "description": "Shows the current user's Amazon Prime subscriptions.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_product_details",
+            "description": "Shows details of a specific product.",
+            "parameters": [
+                {
+                    "name": "product_id",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "show_product_questions",
+            "description": "Shows questions and answers for a specific product.\nConverts user_ids back to emails for display.",
+            "parameters": [
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_product_reviews",
+            "description": "Shows reviews for a specific product.\nConverts user_id back to email for display in reviews.",
+            "parameters": [
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_profile",
+            "description": "Shows the profile of the specified user using their user_id.\nFunction signature updated to take User object which holds user_id.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "show_returns",
+            "description": "Shows the current user's return requests.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "page_index",
+                    "type": "int"
+                },
+                {
+                    "name": "page_limit",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "show_wish_list",
+            "description": "Shows the current user's wish list content.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "submit_product_review",
+            "description": "Submits a product review with a UUID for the review ID and user ID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "rating",
+                    "type": "int"
+                },
+                {
+                    "name": "comment",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "subscribe_prime",
+            "description": "Subscribes the user to Amazon Prime with a UUID for the subscription ID.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "duration",
+                    "type": "typing.Literal['monthly', 'yearly']"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "update_cart_item_quantity",
+            "description": "Updates the quantity of a product in the user's cart.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "AmazonApis.User"
+                },
+                {
+                    "name": "product_id",
+                    "type": "int"
+                },
+                {
+                    "name": "quantity",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        }
+    ]
+}

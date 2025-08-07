@@ -1,0 +1,425 @@
+{
+    "api_name": "SpotifyApis",
+    "functions": [
+        {
+            "function_name": "add_album_to_library",
+            "description": "Adds an album to the current user's library.\n\nArgs:\n    album_id (str): ID of the album to add.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "album_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "add_payment_method",
+            "description": "Adds a new payment method for the current user.\n\nArgs:\n    card_name (str): Name on the card.\n    card_number (str): Card number.\n    expiry_year (int): Expiration year.\n    expiry_month (int): Expiration month.\n    cvv_number (str): CVV security code.\n    is_default (bool): Whether to set as default payment method.\nReturns:\n    Dict[str, Any]: Dictionary containing new payment method details or error message.",
+            "parameters": [
+                {
+                    "name": "card_name",
+                    "type": "str"
+                },
+                {
+                    "name": "card_number",
+                    "type": "str"
+                },
+                {
+                    "name": "expiry_year",
+                    "type": "int"
+                },
+                {
+                    "name": "expiry_month",
+                    "type": "int"
+                },
+                {
+                    "name": "cvv_number",
+                    "type": "str"
+                },
+                {
+                    "name": "is_default",
+                    "type": "bool"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "add_song_to_library",
+            "description": "Adds a song to the current user's library.\n\nArgs:\n    song_id (str): ID of the song to add.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "add_song_to_playlist",
+            "description": "Adds a song to a specific playlist owned by the current user.\n\nArgs:\n    playlist_id (str): ID of the playlist.\n    song_id (str): ID of the song to add.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                },
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "create_playlist",
+            "description": "Creates a new playlist for the current user.\n\nArgs:\n    name (str): Name of the playlist.\n    description (Optional[str]): Description of the playlist.\n    public (bool): Whether the playlist is public.\nReturns:\n    Dict[str, Any]: Dictionary containing new playlist details or error message.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "description",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "public",
+                    "type": "bool"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "delete_playlist",
+            "description": "Deletes a playlist owned by the current user.\n\nArgs:\n    playlist_id (str): ID of the playlist to delete.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "follow_artist",
+            "description": "Adds an artist to the current user's followed artists.\n\nArgs:\n    artist_id (str): ID of the artist to follow.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "artist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "get_album_details",
+            "description": "Retrieves details for a specific album.\n\nArgs:\n    album_id (str): ID of the album to retrieve.\nReturns:\n    Dict[str, Any]: Dictionary containing album details or error message.",
+            "parameters": [
+                {
+                    "name": "album_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_all_albums",
+            "description": "Retrieves a list of all albums available on the platform.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of all albums.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_all_artists",
+            "description": "Retrieves a list of all artists available on the platform.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of all artists.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_all_playlists",
+            "description": "Retrieves a list of all public playlists available on the platform.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of public playlists.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_all_songs",
+            "description": "Retrieves a list of all songs available on the platform.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of all songs.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_artist_details",
+            "description": "Retrieves details for a specific artist.\n\nArgs:\n    artist_id (str): ID of the artist to retrieve.\nReturns:\n    Dict[str, Any]: Dictionary containing artist details or error message.",
+            "parameters": [
+                {
+                    "name": "artist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_playlist_details",
+            "description": "Retrieves details for a specific playlist.\n\nArgs:\n    playlist_id (str): ID of the playlist to retrieve.\nReturns:\n    Dict[str, Any]: Dictionary containing playlist details or error message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_song_details",
+            "description": "Retrieves details for a specific song.\n\nArgs:\n    song_id (str): ID of the song to retrieve.\nReturns:\n    Dict[str, Any]: Dictionary containing song details or error message.",
+            "parameters": [
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_downloaded_songs",
+            "description": "Retrieves the list of songs downloaded by the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of downloaded songs or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_following_artists",
+            "description": "Retrieves the list of artists followed by the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of followed artists or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_library_albums",
+            "description": "Retrieves the list of albums in the current user's library.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of library albums or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_library_songs",
+            "description": "Retrieves the list of songs in the current user's library.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of library songs or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_liked_albums",
+            "description": "Retrieves the list of albums liked by the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of liked albums or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_liked_playlists",
+            "description": "Retrieves the list of playlists liked by the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of liked playlists or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_liked_songs",
+            "description": "Retrieves the list of songs liked by the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of liked songs or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "like_album",
+            "description": "Adds an album to the current user's liked albums.\n\nArgs:\n    album_id (str): ID of the album to like.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "album_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "like_playlist",
+            "description": "Adds a playlist to the current user's liked playlists.\n\nArgs:\n    playlist_id (str): ID of the playlist to like.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "like_song",
+            "description": "Adds a song to the current user's liked songs.\n\nArgs:\n    song_id (str): ID of the song to like.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "play_content",
+            "description": "Simulates playing a song, album, or playlist.\n\nArgs:\n    content_type (Literal): Type of content to play (\"song\", \"album\", \"playlist\").\n    content_id (str): ID of the content to play.\nReturns:\n    Dict[str, Any]: Dictionary containing play status or error message.",
+            "parameters": [
+                {
+                    "name": "content_type",
+                    "type": "typing.Literal['song', 'album', 'playlist']"
+                },
+                {
+                    "name": "content_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "remove_album_from_library",
+            "description": "Removes an album from the current user's library.\n\nArgs:\n    album_id (str): ID of the album to remove.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "album_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "remove_song_from_library",
+            "description": "Removes a song from the current user's library.\n\nArgs:\n    song_id (str): ID of the song to remove.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "remove_song_from_playlist",
+            "description": "Removes a song from a specific playlist owned by the current user.\n\nArgs:\n    playlist_id (str): ID of the playlist.\n    song_id (str): ID of the song to remove.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                },
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "search_content",
+            "description": "Searches for content (songs, albums, playlists, artists) by a given query.\n\nArgs:\n    query (str): Search query string.\n    content_type (Literal): Type of content to search for (\"song\", \"album\", \"playlist\", \"artist\", \"all\").\nReturns:\n    Dict[str, Any]: Dictionary containing search results.",
+            "parameters": [
+                {
+                    "name": "query",
+                    "type": "str"
+                },
+                {
+                    "name": "content_type",
+                    "type": "typing.Literal['song', 'album', 'playlist', 'artist', 'all']"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "set_current_user",
+            "description": "Sets the current authenticated user for the API session.\n\nArgs:\n    user_email (str): The email address of the user to set as current.\nReturns:\n    Dict[str, bool]: A dictionary with 'status' indicating success or failure.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_default_payment_method",
+            "description": "Set a specific payment method as the default for the current user.\n\nArgs:\n    payment_method_id (str): The ID (UUID) of the payment method to set as default.\nReturns:\n    Dict[str, bool]: {\"set_default_status\": True} if successful, {\"set_default_status\": False} otherwise.",
+            "parameters": [
+                {
+                    "name": "payment_method_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "show_account",
+            "description": "Shows the account information for the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing user profile information or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "show_payment_methods",
+            "description": "Shows all payment methods associated with the current user.\n\nReturns:\n    Dict[str, Any]: Dictionary containing list of payment methods or error message.",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "unfollow_artist",
+            "description": "Removes an artist from the current user's followed artists.\n\nArgs:\n    artist_id (str): ID of the artist to unfollow.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "artist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "unlike_album",
+            "description": "Removes an album from the current user's liked albums.\n\nArgs:\n    album_id (str): ID of the album to unlike.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "album_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "unlike_playlist",
+            "description": "Removes a playlist from the current user's liked playlists.\n\nArgs:\n    playlist_id (str): ID of the playlist to unlike.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "unlike_song",
+            "description": "Removes a song from the current user's liked songs.\n\nArgs:\n    song_id (str): ID of the song to unlike.\nReturns:\n    Dict[str, bool]: Dictionary indicating success status and message.",
+            "parameters": [
+                {
+                    "name": "song_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "update_playlist_details",
+            "description": "Updates details of a playlist owned by the current user.\n\nArgs:\n    playlist_id (str): ID of the playlist to update.\n    name (Optional[str]): New name for the playlist.\n    description (Optional[str]): New description for the playlist.\n    public (Optional[bool]): New visibility setting for the playlist.\nReturns:\n    Dict[str, Any]: Dictionary containing updated playlist details or error message.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                },
+                {
+                    "name": "name",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "description",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "public",
+                    "type": "typing.Optional[bool]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        }
+    ]
+}

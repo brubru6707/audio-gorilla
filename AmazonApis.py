@@ -11,7 +11,7 @@ class User:
         self.user_id = user_id
         self.email = email
 
-class AmazonAPI:
+class AmazonApis:
     def __init__(self):
         self.state = deepcopy(DEFAULT_STATE)
 
