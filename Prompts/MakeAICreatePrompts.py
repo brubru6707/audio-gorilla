@@ -13,6 +13,61 @@ api_key = os.getenv("ANTHROPIC_API_KEY")
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+def get_random_api_name():
+    api_names = [
+        "Amazon",
+        "Venmo",
+        "CommuniLink",
+        "Gmail",
+        "GoogleCalendar",
+        "GoogleDrive",
+        "SimpleNote",
+        "SmartThings",
+        "Spotify",
+        "TeslaFleet",
+        "X",
+        "YouTube"
+    ]
+    return random.choice(api_names)
+
+# def get_api_definition(api_name):
+#     api_name = api_name.lower()
+#     api_definitions = load_all_api_definitions()
+#     return api_definitions.get(api_name, None)
+
+def get_other_context_info(api_name):
+    api_name = api_name.lower()
+    file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Backends', f"diverse_{api_name}_state.json"))
+    
+    if not os.path.exists(file_path):
+        return {}
+    
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    
+    context_info = {}
+    
+    excluded_keys = [
+        'comments', 
+        'direct_messages', 
+        'notifications', 
+        'transactions', 
+        'service_plans', 
+        'promotions'
+    ]
+    
+    for key in data.keys():
+        if key not in excluded_keys and isinstance(data[key], (dict, list)):
+            samples = []
+            if isinstance(data[key], dict):
+                sample_keys = random.sample(list(data[key].keys()), min(3, len(data[key])))
+                samples = [data[key][k] for k in sample_keys]
+            elif isinstance(data[key], list):
+                samples = random.sample(data[key], min(3, len(data[key])))
+            context_info[key] = samples
+            
+    return context_info
+
 def load_all_api_definitions():
     api_definitions = {}
     prompts_dir = os.path.abspath(os.path.dirname(__file__))
@@ -23,21 +78,15 @@ def load_all_api_definitions():
                 api_definitions[data['api_name']] = data
     return api_definitions
 
-def get_random_user_id(backend_path):
-    with open(backend_path, 'r') as f:
-        backend_data = json.load(f)
-    users = backend_data.get('users', {})
-    if users:
-        return random.choice(list(users.keys()))
-    return None
-
-def generate_full_training_data():
+def generate_training_data():
     client = anthropic.Anthropic(
         api_key = os.getenv("ANTHROPIC_API_KEY")
     )
     
     api_definitions = load_all_api_definitions()
     api_names = list(api_definitions.keys())
+    random_api_name = random.choice(api_names)
+    random_api_definition = api_definitions[random_api_name]
 
     type_mapping = {
         "str": "string",
@@ -50,7 +99,7 @@ def generate_full_training_data():
     }
 
     all_tools = []
-    for api_name, api_info in api_definitions.items():
+    for api_name, api_info in random_api_definition.items():
         for func in api_info['functions']:
             tool_schema = {
                 "name": f"{api_name}.{func['function_name']}",
@@ -100,6 +149,8 @@ def generate_full_training_data():
         f"{json.dumps(example_output, indent=2)}"
     )
 
+    extra_context = get_other_context_info(random_api_name)
+
     try:
         response = client.messages.create(
             model="claude-3-5-sonnet-20240620",
@@ -117,7 +168,7 @@ def generate_full_training_data():
             for tool_name, calls in generated_data.get('ground_truth', {}).items():
                 backend_file_name = f"diverse_{tool_name.lower().replace('apis', '')}_state.json"
                 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Backends', backend_file_name))
-                user_id = get_random_user_id(backend_path)
+                user_id = "23423432" #get_random_user_id(backend_path)
                 
                 if user_id:
                     generated_data['context'][f"{tool_name.lower().replace('apis', '')}_current_user"] = user_id
@@ -140,7 +191,7 @@ def generate_full_training_data():
         return None
 
 if __name__ == '__main__':
-    training_data_entry = generate_full_training_data()
+    training_data_entry = generate_training_data()
     if training_data_entry:
         print(json.dumps(training_data_entry, indent=4))
     else:
