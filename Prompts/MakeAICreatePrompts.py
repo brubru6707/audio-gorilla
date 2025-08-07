@@ -3,8 +3,12 @@ import json
 import os
 import sys
 import random
+from dotenv import load_dotenv
+import os
 
-os.environ['ANTHROPIC_API_KEY'] = "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"
+load_dotenv()
+
+api_key = os.getenv("ANTHROPIC_API_KEY")
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -28,7 +32,7 @@ def get_random_user_id(backend_path):
 
 def generate_full_training_data():
     client = anthropic.Anthropic(
-        api_key=os.environ.get("ANTHROPIC_API_KEY")
+        api_key = os.getenv("ANTHROPIC_API_KEY")
     )
     
     api_definitions = load_all_api_definitions()
