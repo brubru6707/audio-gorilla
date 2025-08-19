@@ -2,6 +2,7 @@ import random
 import uuid
 from datetime import datetime, timedelta
 import json
+from fake_data import first_names, last_names, domains
 
 current_datetime = datetime.now()
 
@@ -36,6 +37,11 @@ def generate_phone_number():
     prefix = random.randint(100, 999)
     line_number = random.randint(1000, 9999)
     return f"+1{area_code}{prefix}{line_number}"
+
+def generate_fake_email():
+    randomName = f"{random.choice(first_names)} {random.choice(last_names)}"
+    randomDomain = random.choice(domains)
+    return f"{randomName.replace(' ', '.').lower()}@{randomDomain}"
 
 def _create_user_data(email, first_name, last_name, phone_number, balance, contacts_emails, sms_history, call_history, settings, service_plan):
     user_id = str(uuid.uuid4())
@@ -133,9 +139,6 @@ users_initial_data = [
 for email, first_name, last_name, phone_number, balance, contacts_emails, sms_hist, call_hist, settings, service_plan in users_initial_data:
     user_id, user_data = _create_user_data(email, first_name, last_name, phone_number, balance, contacts_emails, sms_hist, call_hist, settings, service_plan)
     DEFAULT_COMMUNILINK_STATE["users"][user_id] = user_data
-
-first_names = ["Sophia", "Liam", "Olivia", "Noah", "Ava", "Jackson", "Isabella", "Aiden", "Mia", "Lucas", "Harper", "Ethan", "Evelyn", "Mason", "Abigail", "Caleb", "Charlotte", "Logan", "Amelia", "Michael", "Ella", "Jacob", "Aria", "Daniel", "Chloe", "Samuel", "Grace", "David", "Victoria", "Joseph", "Penelope", "Matthew", "Riley", "Benjamin", "Layla", "Andrew", "Lily", "Gabriel", "Natalie", "Christopher", "Hannah", "James", "Zoe", "Ryan", "Scarlett", "Nathan", "Addison", "Christian", "Aubrey", "Joshua"]
-last_names = ["Chen", "Kim", "Singh", "Lopez", "Garcia", "Nguyen", "Davis", "Jackson", "Harris", "White", "Moore", "Clark", "Lewis", "Baker", "AdAMS", "Hill", "Nelson", "Carter", "Mitchell", "Roberts", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson", "Brooks", "Kelly", "Sanders"]
 
 current_user_emails = list(_user_email_to_uuid_map.keys())
 

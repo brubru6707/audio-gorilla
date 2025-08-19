@@ -204,7 +204,7 @@ class CommuniLinkApis:
             from_number (str): The caller's phone number (E.164 format).
             to_number (str): The recipient's phone number (E.164 format).
             audio_url (Optional[str]): Optional URL for audio to play to the recipient
-                                       upon connection (e.g., "https://example.com/welcome.mp3").
+                                       upon connection (e.g., "https://CommuniLink.com/welcome.mp3").
 
         Returns:
             Dict: A dictionary representing the simulated voice call object,

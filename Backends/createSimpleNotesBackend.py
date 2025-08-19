@@ -4,17 +4,95 @@ import uuid
 import random
 import json
 from typing import Dict, Any
+from fake_data import note_title_and_content, first_names, last_names, domains
 
 _user_alias_to_uuid_map = {}
 
 def generate_random_datetime_iso(days_ago_min=0, days_ago_max=365):
     delta_days = random.randint(days_ago_min, days_ago_max)
-    time_offset = datetime.timedelta(days=delta_days, 
-                                     hours=random.randint(0, 23), 
-                                     minutes=random.randint(0, 59), 
-                                     seconds=random.randint(0, 59))
+    time_offset = datetime.timedelta(
+        days=delta_days,
+        hours=random.randint(0, 23),
+        minutes=random.randint(0, 59),
+        seconds=random.randint(0, 59)
+    )
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
+
+common_tags = [
+    {
+        "tag": "work",
+        "words": ["work", "job", "career", "office", "business", "company", "employee", "boss", "colleague", "presentation", "report", "professional", "desk", "email", "tasks"]
+    },
+    {
+        "tag": "personal",
+        "words": ["personal", "private", "family", "mom", "dad", "friend", "thoughts", "feelings", "life", "self", "mind", "soul", "journal", "diary", "hobbies", "recreation"]
+    },
+    {
+        "tag": "project",
+        "words": ["project", "task", "assignment", "report", "deadline", "milestone", "team", "client", "phase", "development", "plan", "update", "notes", "progress", "completion"]
+    },
+    {
+        "tag": "ideas",
+        "words": ["idea", "ideas", "brainstorm", "concept", "thought", "creative", "inspiration", "innovation", "design", "plan", "strategy", "app", "solution", "proposal", "invention"]
+    },
+    {
+        "tag": "urgent",
+        "words": ["urgent", "important", "critical", "immediate", "emergency", "now", "priority", "crucial", "essential", "must", "needed", "fast", "asap", "due"]
+    },
+    {
+        "tag": "todo",
+        "words": ["todo", "to-do", "list", "tasks", "errands", "chores", "schedule", "plan", "checklist", "agenda", "daily", "weekly", "monthly", "routine", "remember", "don't forget"]
+    },
+    {
+        "tag": "finance",
+        "words": ["finance", "financial", "budget", "money", "invest", "save", "expense", "income", "bill", "debt", "loan", "bank", "credit", "tax", "fund", "economy"]
+    },
+    {
+        "tag": "health",
+        "words": ["health", "healthy", "exercise", "workout", "fitness", "diet", "doctor", "dentist", "appointment", "medicine", "symptoms", "illness", "nutrition", "wellness", "mental", "physical"]
+    },
+    {
+        "tag": "travel",
+        "words": ["travel", "trip", "vacation", "journey", "flight", "hotel", "destination", "packing", "itinerary", "explore", "adventure", "tour", "hike", "roadtrip", "abroad", "getaway"]
+    },
+    {
+        "tag": "recipes",
+        "words": ["recipe", "recipes", "cook", "cooking", "bake", "ingredients", "food", "meal", "dinner", "lunch", "breakfast", "dish", "cuisine", "kitchen", "prep", "bake", "delicious"]
+    },
+    {
+        "tag": "meeting",
+        "words": ["meeting", "agenda", "discussion", "notes", "summary", "minutes", "conference", "call", "schedule", "team", "client", "attendees", "topic", "review", "presentation"]
+    },
+    {
+        "tag": "dev",
+        "words": ["dev", "development", "code", "programming", "software", "bug", "release", "test", "feature", "framework", "api", "database", "git", "repo", "script", "app"]
+    },
+    {
+        "tag": "marketing",
+        "words": ["marketing", "campaign", "ads", "social media", "promotion", "brand", "market", "strategy", "audience", "content", "analytics", "seo", "sales", "business", "pr"]
+    },
+    {
+        "tag": "learning",
+        "words": ["learning", "study", "class", "lecture", "school", "course", "notes", "homework", "education", "topic", "subject", "research", "knowledge", "skill", "understand", "read", "book"]
+    },
+    {
+        "tag": "home",
+        "words": ["home", "house", "apartment", "maintenance", "chores", "cleaning", "decor", "living", "kitchen", "room", "garden", "rent", "mortgage", "appliances", "utilities", "bills"]
+    }
+]
+note_colors = ["yellow", "blue", "green", "pink", "white", "purple"]
+note_priorities = ["low", "medium", "high"]
+
+def get_note_tags(note):
+    all_note_words = set((note['title'] + " " + note['content']).lower().split())
+    relevant_tags = []
+    
+    for tag_map in common_tags:
+        if any(keyword in all_note_words for keyword in tag_map['words']):
+            relevant_tags.append(tag_map['tag'])
+    
+    return " | ".join(relevant_tags) if relevant_tags else "untagged"
 
 def _create_user_data(alias: str, first_name: str, last_name: str, email: str, note_data: Dict[str, Any]):
     user_id = str(uuid.uuid4())
@@ -22,11 +100,9 @@ def _create_user_data(alias: str, first_name: str, last_name: str, email: str, n
 
     processed_note_data = copy.deepcopy(note_data)
     new_notes = {}
-    
     latest_note_activity = None
-    folder_count = 0
 
-    for old_note_id, note_content in processed_note_data.get("notes", {}).items():
+    for _, note_content in processed_note_data.get("notes", {}).items():
         new_note_id = str(uuid.uuid4())
         note_content_copy = copy.deepcopy(note_content)
 
@@ -142,47 +218,22 @@ for alias, first_name, last_name, email, note_data in users_initial_data:
     user_id, user_data = _create_user_data(alias, first_name, last_name, email, note_data)
     DEFAULT_STATE["users"][user_id] = user_data
 
-first_names = ["Sophia", "Liam", "Olivia", "Noah", "Ava", "Jackson", "Isabella", "Aiden", "Mia", "Lucas", "Harper", "Ethan", "Evelyn", "Mason", "Abigail", "Caleb", "Charlotte", "Logan", "Amelia", "Michael", "Ella", "Jacob", "Aria", "Daniel", "Chloe", "Samuel", "Grace", "David", "Victoria", "Joseph", "Penelope", "Matthew", "Riley", "Benjamin", "Layla", "Andrew", "Lily", "Gabriel", "Natalie", "Christopher", "Hannah", "James", "Zoe", "Ryan", "Scarlett", "Nathan", "Addison", "Christian", "Aubrey", "Joshua"]
-last_names = ["Chen", "Kim", "Singh", "Lopez", "Garcia", "Nguyen", "Davis", "Jackson", "Harris", "White", "Moore", "Clark", "Lewis", "Baker", "Adams", "Hill", "Nelson", "Carter", "Mitchell", "Roberts", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson", "Brooks", "Kelly", "Sanders"]
-email_domains = ["noted.com", "quickjot.net", "mindscribe.org", "simplenotes.app", "ideahub.co"]
-note_titles = [
-    "Meeting Recap", "Project X Updates", "To-Do List", "Daily Journal Entry",
-    "Recipe Ideas", "Book Recommendations", "Travel Plans", "Shopping List",
-    "Client Feedback", "Bug Report", "Feature Request", "Learning Notes",
-    "Fitness Goals", "Home Renovation Ideas", "Financial Reminders"
-]
-note_contents = [
-    "Discussed Q3 strategy, action items include: finalize budget, assign roles, schedule next sync.",
-    "User authentication flow revised. Need to implement OAuth2 for secure login. Test edge cases.",
-    "Buy milk, eggs, bread. Call dry cleaning. Schedule dentist appointment for next month.",
-    "Reflecting on today's challenges. Faced a difficult coding problem but eventually solved it. Feeling accomplished.",
-    "Ingredients for pasta primavera: zucchini, bell peppers, cherry tomatoes, basil, pasta, olive oil, garlic.",
-    "Recommended reading: 'Clean Code' by Robert C. Martin, 'The Pragmatic Programmer' by Andrew Hunt and David Thomas.",
-    "Trip to Japan: research flights to Tokyo, book ryokan in Kyoto, explore Hakone day trip options.",
-    "Task list for tomorrow: finish report, reply to Sarah, prepare for client demo, review pull request #123.",
-    "CSS styling issue on mobile. Elements overlapping. Consider using flexbox or grid for better responsiveness.",
-    "Learning Python generators. They allow lazy evaluation, saving memory for large datasets. 'yield' keyword is key.",
-    "Garden update: tomatoes are thriving, basil needs pruning, planted new batch of lettuce.",
-    "Dream interpretation: flying suggests freedom and ambition. Falling indicates loss of control.",
-    "Morning routine: wake up, meditate for 10 min, light stretching, healthy breakfast.",
-    "New marketing campaign: focus on visual content. Short video ads for social media platforms.",
-    "Remember to renew passport by end of year. Check expiry date and required documents."
-]
-common_tags = ["work", "personal", "project", "ideas", "urgent", "todo", "finance", "health", "travel", "recipes", "meeting", "dev", "marketing", "learning", "home"]
-note_colors = ["yellow", "blue", "green", "pink", "white", "purple"]
-note_priorities = ["low", "medium", "high"]
+note_titles = [note['title'] for note in note_title_and_content]
+note_contents = [note['content'] for note in note_title_and_content]
 
 current_user_aliases = list(_user_alias_to_uuid_map.keys())
+
+notes = note_title_and_content
 
 for i in range(48):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(1, 99)}@{random.choice(email_domains)}"
+    email = f"{first.lower()}.{last.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
     alias = f"{first.lower()}{last.lower()}{random.randint(10, 99)}"
 
     while alias in _user_alias_to_uuid_map or email in [u["email"] for u in DEFAULT_STATE["users"].values()]:
         alias = f"{first.lower()}{last.lower()}{random.randint(10, 99)}"
-        email = f"{first.lower()}.{last.lower()}{random.randint(1, 99)}@{random.choice(email_domains)}"
+        email = f"{first.lower()}.{last.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
 
     new_note_data = {
         "notes": {}
@@ -192,12 +243,12 @@ for i in range(48):
     for n_idx in range(num_notes):
         note_id_temp = n_idx
         
-        note_title = random.choice(note_titles)
-        note_content = random.choice(note_contents)
+        note_data_from_list = random.choice(notes)
+        note_title = note_data_from_list['title']
+        note_content = note_data_from_list['content']
         
-        num_tags = random.randint(1, 4)
-        tags = random.sample(common_tags, num_tags)
-        
+        tags = get_note_tags(note_data_from_list)
+
         pinned = random.random() < 0.15
         archived = random.random() < 0.10
         
@@ -208,7 +259,7 @@ for i in range(48):
 
         new_note_data["notes"][note_id_temp] = {
             "id": note_id_temp,
-            "title": f"{note_title} ({random.randint(1,99)})",
+            "title": f"{note_title}",
             "content": note_content,
             "tags": tags,
             "pinned": pinned,
@@ -227,8 +278,6 @@ for i in range(48):
     user_id, user_data = _create_user_data(alias, first, last, email, new_note_data)
     DEFAULT_STATE["users"][user_id] = user_data
     current_user_aliases.append(alias)
-
-import json
 
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 

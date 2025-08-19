@@ -99,27 +99,26 @@ def generate_training_data():
     }
 
     all_tools = []
-    for api_name, api_info in random_api_definition.items():
-        for func in api_info['functions']:
-            tool_schema = {
-                "name": f"{api_name}.{func['function_name']}",
-                "description": func['description'],
-                "input_schema": {
-                    "type": "object",
-                    "properties": {
-                        param['name']: {
-                            "type": type_mapping.get(param['type'], "string")
-                        } for param in func['parameters']
-                    },
-                    "required": [param['name'] for param in func['parameters']]
-                }
+    for func in random_api_definition['functions']:
+        tool_schema = {
+            "name": f"{random_api_name}.{func['function_name']}",
+            "description": func['description'],
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    param['name']: {
+                        "type": type_mapping.get(param['type'], "string")
+                    } for param in func['parameters']
+                },
+                "required": [param['name'] for param in func['parameters']]
             }
-            all_tools.append(tool_schema)
+        }
+        all_tools.append(tool_schema)
             
     system_prompt = (
         "You are a helpful assistant whose sole purpose is to generate high-quality training data for a function-calling model. "
         "You will be provided with a list of available tools and will perform the following steps: "
-        "1. Invent a user prompt that is a realistic and natural request for a human. "
+        "1. Invent a user prompt that is a realistic and natural request for a human and take inpsiration from the context information."
         "2. Based on the user's prompt, generate a structured ground truth that uses the available tools to fulfill the request. "
         "3. Ensure the ground truth includes valid parameter values, which you can invent based on the context of the prompt. "
         "4. Output the complete training data entry as a single JSON object. "
@@ -135,8 +134,8 @@ def generate_training_data():
         },
         "ground_truth": {
             "Amazon": [
-                "searchProducts(user: '15ca4c07-750a-476f-92c3-bd882642fb06', query: '1080P HD with Android TV')", 
-                "orderProduct(user: '15ca4c07-750a-40f6-a750-b9d18ab50b63', productId: '4ee8cb6d-aa52-40f6-a750-b9d18ab50b63', quantity: 1)"
+                "search_products(query: '1080P HD with Android TV')", 
+                "order_product(user: '15ca4c07-750a-40f6-a750-b9d18ab50b63', productId: '4ee8cb6d-aa52-40f6-a750-b9d18ab50b63', quantity: 1)"
             ]
         }
     }

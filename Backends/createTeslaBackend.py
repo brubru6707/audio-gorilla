@@ -4,6 +4,7 @@ import uuid
 import json
 import random
 from typing import Dict, Any
+from fake_data import first_names, last_names, domains
 
 _initial_user_email_to_uuid_map = {}
 _initial_vehicle_tag_to_uuid_map = {}
@@ -246,10 +247,6 @@ def generate_location():
     lon = random.uniform(-125.0, -66.0)
     return {"latitude": round(lat, 4), "longitude": round(lon, 4)}
 
-
-first_names = ["Emma", "Noah", "Olivia", "Liam", "Ava", "Isabella", "Sophia", "Jackson", "Aiden", "Charlotte", "Amelia", "Harper", "Ethan", "Mason", "Logan", "Mia", "Ella", "Avery", "Lucas", "Lily", "Grace", "Chloe", "Zoe", "Riley", "Layla", "Penelope", "Nora", "Scarlett", "Hannah", "Leo", "Mila", "Sofia", "Aria", "Eleanor", "Victoria", "Aubrey", "Ellie", "Stella", "Natalie", "Luna", "Benjamin", "Samuel", "Elijah", "James", "William", "Alexander", "Michael", "Daniel", "Matthew", "David"]
-last_names = ["Smith", "Johnson", "Williams", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson", "Clark", "Rodriguez", "Lewis", "Lee", "Walker", "Hall", "Allen", "Young", "Hernandez", "King", "Wright", "Lopez", "Hill", "Scott", "Green", "Adams", "Baker", "Nelson", "Carter", "Mitchell", "Perez", "Roberts", "Turner", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Sanchez"]
-email_domains = ["example.com", "mail.net", "web.org", "inbox.co", "domain.app"]
 favorite_playlists = [
     "Morning Commute Tunes", "Evening Drive Relax", "Weekend Adventure Mix",
     "Focus Work Beats", "Podcast Catch-up", "Family Road Trip Hits",
@@ -271,12 +268,12 @@ all_user_uuids = list(DEFAULT_STATE["users"].keys())
 for i in range(num_users_to_add):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(email_domains)}"
+    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
     
 
     existing_emails = set([DEFAULT_STATE["users"][uid].get("email") for uid in DEFAULT_STATE["users"].keys()])
     while email in existing_emails:
-        email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(email_domains)}"
+        email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
 
     user_id = str(uuid.uuid4())
     _initial_user_email_to_uuid_map[email] = user_id # Add to map for friend linking in new users
@@ -285,7 +282,7 @@ for i in range(num_users_to_add):
     num_friends = random.randint(0, min(5, len(all_user_uuids)))
     friends_list = random.sample(all_user_uuids, num_friends)
     if random.random() < 0.3 and len(all_user_uuids) > 0:
-        potential_friend_email = f"{random.choice(first_names).lower()}.{random.choice(last_names).lower()}{random.randint(1000, 9999)}@{random.choice(email_domains)}"
+        potential_friend_email = f"{random.choice(first_names).lower()}.{random.choice(last_names).lower()}{random.randint(1000, 9999)}@{random.choice(domains)}"
         if potential_friend_email not in existing_emails:
             friends_list.append(potential_friend_email)
 

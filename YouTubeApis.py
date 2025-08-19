@@ -335,7 +335,7 @@ class YouTubeApis:
             "view_count": 0,
             "subscriber_count": 0,
             "video_count": 0,
-            "banner_image_path": "https://example.com/default_banner.jpg"
+            "banner_image_path": "https://YouTube.com/default_banner.jpg"
         }
         self.channels[channel_uuid] = new_channel
         self.users[user_id]["channels"].append(channel_uuid)

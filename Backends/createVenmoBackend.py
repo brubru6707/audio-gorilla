@@ -5,6 +5,7 @@ import uuid
 import random
 import re
 from typing import Dict, Any
+from fake_data import first_names, last_names, domains
 
 _initial_user_email_to_uuid_map = {}
 _initial_payment_card_id_map = {}
@@ -227,9 +228,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
 
-first_names = ["Olivia", "Liam", "Emma", "Noah", "Charlotte", "James", "Amelia", "Oliver", "Sophia", "Elijah", "Isabella", "William", "Ava", "Lucas", "Mia", "Henry", "Evelyn", "Theodore", "Harper", "Benjamin", "Luna", "Michael", "Ella", "Alexander", "Aurora", "Daniel", "Chloe", "Jacob", "Grace", "Logan", "Penelope", "Jackson", "Riley", "Sebastian", "Lily", "Aiden", "Nora", "Matthew", "Zoey", "Samuel", "Mila", "David", "Sofia", "Joseph", "Aria", "John", "Eleanor", "Gabriel", "Scarlett", "Anthony"]
-last_names = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts"]
-email_domains = ["example.com", "mail.net", "web.org", "inbox.co", "domain.app", "email.xyz", "securemail.io", "fastmail.cc"]
 card_names = ["Personal Card", "Work Card", "Travel Card", "Savings Card", "Main Account"]
 billing_cities = ["Orlando", "Miami", "Tampa", "Jacksonville", "Atlanta", "Charlotte", "Nashville", "New Orleans"]
 billing_states = ["FL", "GA", "AL", "NC", "SC", "MS", "TN"]
@@ -259,10 +257,10 @@ existing_user_emails = set([DEFAULT_STATE["users"][uid]["email"] for uid in DEFA
 for i in range(num_users_to_add):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(email_domains)}"
+    email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(domains)}"
     
     while email in existing_user_emails:
-        email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(email_domains)}"
+        email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(domains)}"
     
     existing_user_emails.add(email)
 
@@ -345,7 +343,7 @@ for i in range(num_transactions_to_add):
     receiver_uuid = random.choice([u_id for u_id in all_user_uuids if u_id != sender_uuid])
 
     amount = round(random.uniform(1.00, 200.00), 2)
-    transaction_type = random.choice(["peer_to_peer", "bill_payment", "deposit", "withdrawal", "refund"])
+    transaction_type = random.choice(["payment", "charge"])
     status = random.choice(["completed", "pending", "failed"])
     note = random.choice(transaction_notes)
 

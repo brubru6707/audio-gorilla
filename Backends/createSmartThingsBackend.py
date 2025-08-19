@@ -4,6 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
+from fake_data import location_names, domains
 
 current_time_edt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=4)
 
@@ -12,7 +13,6 @@ _current_user_location_name_to_uuid_map: Dict[str, str] = {}
 _current_user_room_name_to_uuid_map: Dict[str, str] = {}
 
 def generate_random_email(first_name, last_name):
-    domains = ["example.com", "smarthome.net", "iotlife.org", "homecontrol.co", "connectedsystems.app"]
     return f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
 
 def generate_random_coords():
@@ -268,7 +268,6 @@ for email, first_name, last_name, smartthings_data in users_initial_data:
 first_names = ["Sophia", "Liam", "Olivia", "Noah", "Ava", "Jackson", "Isabella", "Aiden", "Mia", "Lucas", "Harper", "Ethan", "Evelyn", "Mason", "Abigail", "Caleb", "Charlotte", "Logan", "Amelia", "Michael", "Ella", "Jacob", "Aria", "Daniel", "Chloe", "Samuel", "Grace", "David", "Victoria", "Joseph", "Penelope", "Matthew", "Riley", "Benjamin", "Layla", "Andrew", "Lily", "Gabriel", "Natalie", "Christopher", "Hannah", "James", "Zoe", "Ryan", "Scarlett", "Nathan", "Addison", "Christian", "Aubrey", "Joshua"]
 last_names = ["Chen", "Kim", "Singh", "Lopez", "Garcia", "Nguyen", "Davis", "Jackson", "Harris", "White", "Moore", "Clark", "Lewis", "Baker", "Adams", "Hill", "Nelson", "Carter", "Mitchell", "Roberts", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson", "Brooks", "Kelly", "Sanders"]
 email_domains = ["smart-home.com", "iotcentral.net", "connected-living.org", "automata.co", "techtopia.app"]
-location_names = ["Main Home", "Summer House", "Small Apartment", "Cabin Getaway", "Urban Loft", "Vacation Rental"]
 room_names = ["Living Room", "Kitchen", "Bedroom", "Bathroom", "Hallway", "Garage", "Dining Room", "Kids Room", "Guest Room", "Patio", "Office"]
 device_types = ["light", "thermostat", "lock", "motionSensor", "contactSensor", "camera", "smartPlug", "speaker", "waterLeakSensor", "garageDoorOpener", "fan"]
 device_capabilities_map = {

@@ -4,9 +4,7 @@ import json
 import uuid
 import random
 from typing import Dict, Any
-
-class EmailStr(str):
-    pass
+from fake_data import first_names, last_names, channel_bios, comment_texts, video_titles_general  
 
 _initial_user_id_map = {}
 _initial_channel_id_map = {}
@@ -265,21 +263,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
 
-
-first_names = [
-    "Aisha", "Ben", "Carla", "Devin", "Elena", "Finn", "Gabriela", "Henry", "Imani", "Javier",
-    "Kira", "Liam", "Mila", "Noah", "Olivia", "Priya", "Quinn", "Riley", "Sofia", "Theo",
-    "Uma", "Victor", "Willow", "Xavier", "Yara", "Zane", "Amara", "Elias", "Fatima", "Gael",
-    "Harper", "Idris", "Jasmine", "Kai", "Lena", "Mateo", "Nia", "Omar", "Paisley", "Remy",
-    "Sarah", "Trent", "Valerie", "Wyatt", "Zoe", "Anya", "Bao", "Chloe", "Diego", "Erica"
-]
-last_names = [
-    "Ali", "Chen", "Diaz", "Edwards", "Fernandez", "Gupta", "Hamilton", "Ito", "Jackson", "Khan",
-    "Lee", "Miller", "Nguyen", "Owens", "Patel", "Ramirez", "Singh", "Taylor", "Uchida", "Vance",
-    "Wagner", "Xiao", "Young", "Zou", "Ahmad", "Brown", "Chung", "Davis", "Evans", "Foster",
-    "Green", "Hall", "Jensen", "Kim", "Li", "Moore", "Nelson", "Ortega", "Peters", "Quinn",
-    "Roberts", "Smith", "Thompson", "Usman", "Vasquez", "Walker", "White", "Xu", "Yamamoto", "Zhou"
-]
 channel_niches = [
     {"title_suffix": "Gaming", "description": "Gaming tutorials, let's plays, and reviews.", "tags": ["gaming", "esports", "walkthrough"]},
     {"title_suffix": "Cooking", "description": "Delicious recipes and culinary adventures.", "tags": ["food", "recipe", "cooking"]},
@@ -297,37 +280,6 @@ channel_niches = [
     {"title_suffix": "Science Explained", "description": "Making complex scientific concepts easy to understand.", "tags": ["science", "education", "discovery"]},
     {"title_suffix": "Comedy Skits", "description": "Short, funny skits and relatable humor.", "tags": ["comedy", "skits", "funny"]},
     {"title_suffix": "Fashion & Style", "description": "Latest trends, fashion hauls, and styling tips.", "tags": ["fashion", "style", "beauty"]}
-]
-video_titles_general = [
-    "A Day in My Life", "My Evening Routine", "What I Eat in a Day", "Trying New Things",
-    "Weekly Wrap-up", "Quick Tips for Success", "Beginner's Guide to X", "Exploring Y",
-    "Unboxing Z", "My Thoughts on [Topic]", "Behind the Scenes", "Q&A Session",
-    "Chill Vibes Playlist", "Top 5 [Category]", "Making [Something] from Scratch"
-]
-
-bios = [
-    "Join me on this journey as I share my experiences and insights.",
-    "A comprehensive guide to help you master this skill.",
-    "Dive deep into the topic with this in-depth analysis.",
-    "Watch me try out new trends and share my honest opinions.",
-    "Tips and tricks to make your life easier and more productive.",
-    "Exploring the beauty of nature and capturing its essence.",
-    "My personal take on [Topic] and why it matters.",
-    "Get ready for some exciting adventures and discoveries!",
-    "Learn the basics of [Subject] in this easy-to-follow tutorial.",
-    "A relaxed chat about current events and future possibilities.",
-    "Unleash your creativity with these simple DIY projects.",
-    "Bringing you the latest updates and breaking news in [Industry].",
-    "From beginner to expert: follow my progress and learn with me.",
-    "Discover hidden gems and explore new cultures with me.",
-    "Making complex ideas accessible and fun to learn."
-]
-comment_texts = [
-    "Great video! Very informative.", "Loved this! Subscribed!", "Can't wait for your next upload!",
-    "So helpful, thank you for sharing!", "This made my day! 😂", "What camera do you use?",
-    "Amazing content as always!", "You inspire me so much!", "Could you do a video on X next?",
-    "First!", "Just discovered your channel, instantly hooked!", "Totally agree with you.",
-    "Mind-blowing stuff!", "This is exactly what I needed.", "Thanks for the laugh!"
 ]
 
 
@@ -393,7 +345,7 @@ RAW_DEFAULT_STATE = {
             "view_count": 12000,
             "subscriber_count": 500,
             "video_count": 2,
-            "banner_image_path": "https://example.com/channel_banners/alice_vlogs_banner.jpg",
+            "banner_image_path": "https://YouTube.com/channel_banners/alice_vlogs_banner.jpg",
             "channel_type": "lifestyle",
             "is_monetized": True
         },
@@ -410,7 +362,7 @@ RAW_DEFAULT_STATE = {
             "view_count": 25000,
             "subscriber_count": 1200,
             "video_count": 2,
-            "banner_image_path": "https://example.com/channel_banners/bob_tech_banner.jpg",
+            "banner_image_path": "https://YouTube.com/channel_banners/bob_tech_banner.jpg",
             "channel_type": "technology",
             "is_monetized": True
         },
@@ -427,7 +379,7 @@ RAW_DEFAULT_STATE = {
             "view_count": 8000,
             "subscriber_count": 300,
             "video_count": 1,
-            "banner_image_path": "https://example.com/channel_banners/charlie_cooks_banner.jpg",
+            "banner_image_path": "https://YouTube.com/channel_banners/charlie_cooks_banner.jpg",
             "channel_type": "cooking",
             "is_monetized": False
         },
@@ -444,7 +396,7 @@ RAW_DEFAULT_STATE = {
             "view_count": 1500,
             "subscriber_count": 50,
             "video_count": 0,
-            "banner_image_path": "https://example.com/channel_banners/alice_gaming_banner.jpg",
+            "banner_image_path": "https://YouTube.com/channel_banners/alice_gaming_banner.jpg",
             "channel_type": "gaming",
             "is_monetized": False
         }
@@ -466,7 +418,7 @@ RAW_DEFAULT_STATE = {
             "category": "Travel & Events",
             "privacy_status": "public",
             "age_restricted": False,
-            "thumbnail_url": "https://example.com/thumbnails/vid_001.jpg",
+            "thumbnail_url": "https://YouTube.com/thumbnails/vid_001.jpg",
             "liked_by": [] 
         },
         "vid_002": {
@@ -485,7 +437,7 @@ RAW_DEFAULT_STATE = {
             "category": "Science & Technology",
             "privacy_status": "public",
             "age_restricted": False,
-            "thumbnail_url": "https://example.com/thumbnails/vid_002.jpg",
+            "thumbnail_url": "https://YouTube.com/thumbnails/vid_002.jpg",
             "liked_by": []
         },
         "vid_003": {
@@ -504,7 +456,7 @@ RAW_DEFAULT_STATE = {
             "category": "Howto & Style",
             "privacy_status": "public",
             "age_restricted": False,
-            "thumbnail_url": "https://example.com/thumbnails/vid_003.jpg",
+            "thumbnail_url": "https://YouTube.com/thumbnails/vid_003.jpg",
             "liked_by": []
         },
         "vid_004": {
@@ -523,7 +475,7 @@ RAW_DEFAULT_STATE = {
             "category": "Gaming",
             "privacy_status": "public",
             "age_restricted": False,
-            "thumbnail_url": "https://example.com/thumbnails/vid_004.jpg",
+            "thumbnail_url": "https://YouTube.com/thumbnails/vid_004.jpg",
             "liked_by": []
         },
         "vid_005": {
@@ -542,7 +494,7 @@ RAW_DEFAULT_STATE = {
             "category": "Cooking",
             "privacy_status": "public",
             "age_restricted": False,
-            "thumbnail_url": "https://example.com/thumbnails/vid_005.jpg",
+            "thumbnail_url": "https://YouTube.com/thumbnails/vid_005.jpg",
             "liked_by": []
         }
     },
@@ -624,7 +576,7 @@ for i in range(num_users_to_add):
     new_user_data = {
         "user_id": user_id,
         "display_name": f"{first} {last}",
-        "email": EmailStr(email),
+        "email": email,
         "joined_date": generate_random_iso_timestamp(days_ago_min=365*2, days_ago_max=365*5), 
         "channels": [],
         "subscriptions": [],
@@ -667,7 +619,7 @@ for user_id in all_user_uuids:
             "view_count": random.randint(100, 1000000),
             "subscriber_count": random.randint(0, 50000),
             "video_count": 0, 
-            "banner_image_path": f"https://example.com/channel_banners/{channel_id}.jpg",
+            "banner_image_path": f"https://YouTube.com/channel_banners/{channel_id}.jpg",
             "channel_type": niche["title_suffix"].lower().replace(' ', '_'),
             "is_monetized": random.random() < 0.3 
         }
@@ -710,10 +662,10 @@ for channel_id, channel_data in DEFAULT_STATE["channels"].items():
                               .replace("[Category]", random.choice(["Gadgets", "Travel Destinations", "Workout Gear"])) \
                               .replace("[Something]", random.choice(["Sushi", "Bread", "Vegan Curry"]))
 
-        
-        description_template = random.choice(bios) 
-        
-        
+
+        description_template = random.choice(channel_bios)
+
+
         num_comments_for_video = random.choices([0, 1, 2, 5], weights=[0.5, 0.2, 0.2, 0.1], k=1)[0]
         comments_for_video = []
 
@@ -733,7 +685,7 @@ for channel_id, channel_data in DEFAULT_STATE["channels"].items():
             "category": channel_data["channel_type"].replace('_', ' ').title(), 
             "privacy_status": random.choice(["public", "unlisted", "private"]),
             "age_restricted": random.random() < 0.05, 
-            "thumbnail_url": f"[https://example.com/thumbnails/](https://example.com/thumbnails/){video_uuid}.jpg",
+            "thumbnail_url": f"[https://YouTube.com/thumbnails/](https://YouTube.com/thumbnails/){video_uuid}.jpg",
             "liked_by": [] 
         }
         DEFAULT_STATE["videos"][video_uuid] = video_data

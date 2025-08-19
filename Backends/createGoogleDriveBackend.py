@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
+from fake_data import first_names, last_names, domains
 
 current_timestamp_s = int(datetime.now().timestamp())
 
@@ -14,7 +15,6 @@ DEFAULT_STATE: Dict[str, Any] = {
 _user_email_to_uuid_map = {}
 
 def generate_random_email(first_name, last_name):
-    domains = ["cloudrive.com", "syncspace.net", "datahub.org", "filevault.co", "driveplus.app"]
     return f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
 
 def generate_random_past_timestamp(max_days_ago=365):
@@ -99,91 +99,6 @@ def _create_user_data(email: str, first_name: str, last_name: str, drive_data: D
         "drive_folder_count": len([f for f in processed_drive_data["files"].values() if f.get("mimeType") == "application/vnd.google-apps.folder"])
     }
 
-users_initial_data = [
-    ("alice.smith@cloudrive.com", "Alice", "Smith", {
-        "user_info": {
-            "name": "Alice Smith",
-            "emailAddress": "alice.smith@cloudrive.com",
-            "storage_quota": {"total": 100 * 1024 * 1024 * 1024, "used": 50 * 1024 * 1024}
-        },
-        "files": {
-            "folder_finance_reports": {
-                "id": "Finance_Reports",
-                "name": "Finance Reports",
-                "mimeType": "application/vnd.google-apps.folder",
-                "createdTime": current_timestamp_s - 86400 * 60,
-                "modifiedTime": current_timestamp_s - 86400 * 10,
-                "owners": [],
-                "parents": ["root"],
-                "size": 0
-            },
-            "file_alice_project_plan.docx": {
-                "id": "file_alice_project_plan.docx",
-                "name": "Project_Plan_Q3.docx",
-                "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                "createdTime": 0,
-                "modifiedTime": 0,
-                "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
-                "parents": ["root"],
-                "size": 5 * 1024 * 1024,
-                "starred": True,
-                "shared": True,
-                "description": "Master plan for Q3 project initiatives."
-            },
-            "file_alice_budget_sheet.xlsx": {
-                "id": "file_alice_budget_sheet.xlsx",
-                "name": "Annual_Budget_2025.xlsx",
-                "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                "createdTime": 0,
-                "modifiedTime": 0,
-                "owners": [{"displayName": "Alice Smith", "emailAddress": "alice.smith@cloudrive.com"}],
-                "parents": ["Finance_Reports"],
-                "size": 2 * 1024 * 1024,
-                "trashed": False
-            }
-        }
-    }),
-    ("bob.jones@cloudrive.com", "Bob", "Jones", {
-        "user_info": {
-            "name": "Bob Jones",
-            "emailAddress": "bob.jones@cloudrive.com",
-            "storage_quota": {"total": 50 * 1024 * 1024 * 1024, "used": 10 * 1024 * 1024}
-        },
-        "files": {
-            "file_bob_presentation.pptx": {
-                "id": "file_bob_presentation.pptx",
-                "name": "Q2_Results_Presentation.pptx",
-                "mimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                "createdTime": 0,
-                "modifiedTime": 0,
-                "owners": [{"displayName": "Bob Jones", "emailAddress": "bob.jones@cloudrive.com"}],
-                "parents": ["root"],
-                "size": 10 * 1024 * 1024,
-                "shared": True
-            },
-            "file_bob_meeting_notes.txt": {
-                "id": "file_bob_meeting_notes.txt",
-                "name": "Meeting_Notes_ProjectX.txt",
-                "mimeType": "text/plain",
-                "createdTime": 0,
-                "modifiedTime": 0,
-                "owners": [{"displayName": "Bob Jones", "emailAddress": "bob.jones@cloudrive.com"}],
-                "parents": ["root"],
-                "size": 50 * 1024,
-                "trashed": True,
-                "description": "Notes from the Project X kick-off meeting."
-            }
-        }
-    })
-]
-
-# Populate initial users
-for email, first_name, last_name, drive_data in users_initial_data:
-    user_id, user_data = _create_user_data(email, first_name, last_name, drive_data)
-    DEFAULT_STATE["users"][user_id] = user_data
-
-first_names = ["Sophia", "Liam", "Olivia", "Noah", "Ava", "Jackson", "Isabella", "Aiden", "Mia", "Lucas", "Harper", "Ethan", "Evelyn", "Mason", "Abigail", "Caleb", "Charlotte", "Logan", "Amelia", "Michael", "Ella", "Jacob", "Aria", "Daniel", "Chloe", "Samuel", "Grace", "David", "Victoria", "Joseph", "Penelope", "Matthew", "Riley", "Benjamin", "Layla", "Andrew", "Lily", "Gabriel", "Natalie", "Christopher", "Hannah", "James", "Zoe", "Ryan", "Scarlett", "Nathan", "Addison", "Christian", "Aubrey", "Joshua"]
-last_names = ["Chen", "Kim", "Singh", "Lopez", "Garcia", "Nguyen", "Davis", "Jackson", "Harris", "White", "Moore", "Clark", "Lewis", "Baker", "Adams", "Hill", "Nelson", "Carter", "Mitchell", "Roberts", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson", "Brooks", "Kelly", "Sanders"]
 file_mimetypes = {
     "document": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "spreadsheet": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

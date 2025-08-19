@@ -4,6 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
+from fake_data import first_names, last_names, domains
 
 _initial_user_email_to_uuid_map = {}
 _initial_song_id_to_uuid_map = {}
@@ -21,9 +22,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
-first_names = ["Ava", "Noah", "Olivia", "Liam", "Emma", "Charlotte", "Amelia", "Sophia", "Isabella", "Mia", "Harper", "Evelyn", "Abigail", "Emily", "Elizabeth", "Mila", "Ella", "Avery", "Sofia", "Camila", "Aria", "Scarlett", "Victoria", "Madison", "Luna", "Grace", "Chloe", "Penelope", "Layla", "Riley", "Zoey", "Nora", "Lily", "Eleanor", "Hannah", "Lillian", "Addison", "Aubrey", "Ellie", "Stella", "Natalie", "Zoe", "Leah", "Hazel", "Violet", "Aurora", "Savannah", "Brooklyn", "Bella", "Skylar"]
-last_names = ["Smith", "Jones", "Williams", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson", "Clark", "Rodriguez", "Lewis", "Lee", "Walker", "Hall", "Allen", "Young", "Hernandez", "King", "Wright", "Lopez", "Hill", "Scott", "Green", "Adams", "Baker", "Nelson", "Carter", "Mitchell", "Perez", "Roberts", "Turner", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Sanchez"]
-email_domains = ["melodify.com", "tunebloom.net", "rhythmnest.org", "sonicwave.app", "audiosphere.co"]
 common_genres = ["Pop", "Electronic", "Acoustic", "Folk", "Funk", "Rock", "Hip Hop", "R&B", "Jazz", "Classical", "Country", "Indie", "Blues", "Metal", "Reggae", "Dance", "Ambient", "Soul", "Gospel", "Latin"]
 album_types = ["album", "single", "ep", "compilation", "live"]
 card_types = ["Visa", "Mastercard", "Amex", "Discover", "JCB"]
@@ -59,8 +57,6 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
     _initial_playlist_id_to_uuid_map = {}
     _initial_artist_id_to_uuid_map = {}
     _initial_payment_card_id_to_uuid_map = {}
-
-    current_time_iso = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
 
     new_songs = {}
     for old_id, song_data in converted_data.get("songs", {}).items():
@@ -132,7 +128,7 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         if "collaborative" not in playlist_data:
             playlist_data["collaborative"] = random.random() < 0.1
         if "image_url" not in playlist_data:
-            playlist_data["image_url"] = f"https://example.com/playlists/{new_id}.jpg"
+            playlist_data["image_url"] = f"https://smplenote.com/playlists/{new_id}.jpg"
         new_playlists[new_id] = playlist_data
     converted_data["playlists"] = new_playlists
 
@@ -361,7 +357,7 @@ def generate_playlist_data(user_id):
         "updated_at": updated_at,
         "follower_count": random.randint(5, 50000),
         "collaborative": random.random() < 0.05,
-        "image_url": f"https://example.com/playlists/{playlist_id}.jpg"
+        "image_url": f"https://spotify.com/playlists/{playlist_id}.jpg"
     }
     return playlist_id, playlist_data
 
@@ -385,7 +381,7 @@ def generate_payment_card_data(user_id):
         "card_number": card_number,
         "expiry_year": expiry_year,
         "expiry_month": expiry_month,
-        "cvv_number": "XXX",
+        "cvv_number": cvv_number,
         "is_default": is_default,
         "card_type": card_type,
         "billing_address": billing_address
@@ -403,11 +399,11 @@ for _ in range(num_artists_to_add):
 for i in range(num_additional_users):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(email_domains)}"
+    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
     
     all_current_emails = set([u["email"] for u in DEFAULT_STATE["users"].values()])
     while email in all_current_emails:
-        email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(email_domains)}"
+        email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
 
     user_id = str(uuid.uuid4())
     _initial_user_email_to_uuid_map[email] = user_id
