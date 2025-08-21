@@ -1,0 +1,156 @@
+{
+    "api_name": "GoogleDriveApis",
+    "functions": [
+        {
+            "function_name": "copy_file",
+            "description": "Copies an existing file in the user's Drive.\n\nArgs:\n    fileId (str): The ID of the file to copy.\n    name (str): The name for the new copied file.\n    parents (Optional[List[str]]): A list of parent folder IDs/names for the copy. Defaults to root.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict: A dictionary containing 'copy_status' (bool) and 'copied_file_data' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "fileId",
+                    "type": "str"
+                },
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "parents",
+                    "type": "typing.Optional[typing.List[str]]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "create_file",
+            "description": "Creates a new file in the user's Drive.\n\nArgs:\n    name (str): The name of the file.\n    mimeType (str): The MIME type of the file.\n    parents (Optional[List[str]]): A list of parent folder IDs/names. Defaults to root.\n    content (Optional[str]): The content of the file (for simplicity).\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict: A dictionary containing 'creation_status' (bool) and 'file_data' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "mimeType",
+                    "type": "str"
+                },
+                {
+                    "name": "parents",
+                    "type": "typing.Optional[typing.List[str]]"
+                },
+                {
+                    "name": "content",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "delete_file",
+            "description": "Deletes a file by its ID from the user's Drive.\n\nArgs:\n    fileId (str): The ID of the file to delete.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict: A dictionary indicating success or failure.",
+            "parameters": [
+                {
+                    "name": "fileId",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "get_file",
+            "description": "Retrieves a file by its ID from the user's Drive.\n\nArgs:\n    fileId (str): The ID of the file to retrieve.\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict: A dictionary containing 'retrieval_status' (bool) and 'file_data' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "fileId",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "get_user_info",
+            "description": "Retrieves information about the authenticated user's Drive.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict: A dictionary containing 'retrieval_status' (bool) and 'user_info' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "list_files",
+            "description": "Lists files in the user's Drive.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\n    query (Optional[str]): A query string to filter results (e.g., \"name contains 'report'\").\n    page_size (int): The maximum number of files to return per page.\n    page_token (Optional[str]): The token for the next page of results.\n\nReturns:\n    Dict: A dictionary containing 'retrieval_status' (bool), 'files' (List[Dict]),\n          and 'nextPageToken' (str, optional) if successful.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "query",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "page_size",
+                    "type": "int"
+                },
+                {
+                    "name": "page_token",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict], str]]"
+        },
+        {
+            "function_name": "reset_data",
+            "description": "Resets all simulated data in the dummy backend to its default state.\nThis is a utility function for testing and not a standard API endpoint.\n\nReturns:\n    Dict: A dictionary indicating the success of the reset operation.",
+            "parameters": [],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "update_file",
+            "description": "Update a file's properties in Google Drive for a specific user.\n\nArgs:\n    fileId (str): ID of the file to update.\n    addParents (str, optional): Parents to add to the file. Defaults to None.\n    removeParents (str, optional): Parents to remove from the file. Defaults to None.\n    user_id (str, optional): User's email address or 'me' for the authenticated user. Defaults to 'me'.\n    name (str, optional): New name for the file.\n    mimeType (str, optional): New MIME type for the file.\n\nReturns:\n    Dict: The updated file information if successful,\n          or an error message if the file or user is not found.",
+            "parameters": [
+                {
+                    "name": "fileId",
+                    "type": "str"
+                },
+                {
+                    "name": "addParents",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "removeParents",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "name",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "mimeType",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        }
+    ]
+}

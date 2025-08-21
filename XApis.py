@@ -2,6 +2,9 @@ import datetime
 import copy
 import uuid
 from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("XApis")
 
 class EmailStr(str):
     pass
@@ -501,18 +504,3 @@ class XApis:
             else:
                 post_metrics.append({"post_id": post_id, "error": "Post not found"})
         return {"data": post_metrics}
-
-    def reset_data(self) -> Dict[str, bool]:
-        """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
-        """
-        # Re-run the initial data conversion to reset maps and UUIDs
-        global DEFAULT_STATE
-        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
-        self._load_scenario(DEFAULT_STATE)
-        print("XApis: All dummy data reset to default state.")
-        return {"reset_status": True}

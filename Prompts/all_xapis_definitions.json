@@ -1,0 +1,224 @@
+{
+    "api_name": "XApis",
+    "functions": [
+        {
+            "function_name": "create_post",
+            "description": "Create a new post for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user creating the post.\n    text (str): The content of the post.\n\nReturns:\n    Dict: A dictionary containing the newly created post's data.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "text",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "delete_direct_message_conversation",
+            "description": "Delete a direct message conversation for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user deleting the conversation.\n    conversation_id (str): The ID (UUID) of the conversation to delete.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "conversation_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "delete_post",
+            "description": "Delete a post by its ID. Only the author can delete their post.\n\nArgs:\n    user_id (str): The ID (UUID) of the user attempting to delete the post.\n    post_id (str): The ID (UUID) of the post to delete.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "post_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "get_api_usage",
+            "description": "Get current API usage statistics for a specific user.\n\nParameters:\n    user_id (str):\n        User ID (UUID) to retrieve API usage for.\n\nReturns:\n    Dict:\n        Dictionary containing API usage metrics.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict"
+        },
+        {
+            "function_name": "get_direct_messages_conversation",
+            "description": "Get all messages within a specific direct message conversation.\n\nArgs:\n    conversation_id (str): The ID (UUID) of the conversation to retrieve.\n\nReturns:\n    Dict: A dictionary containing the conversation data, including messages.",
+            "parameters": [
+                {
+                    "name": "conversation_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_post_details",
+            "description": "Get the details of a specific post.\n\nArgs:\n    post_id (str): The ID (UUID) of the post to retrieve.\n\nReturns:\n    Dict: A dictionary containing the post's data.",
+            "parameters": [
+                {
+                    "name": "post_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_post_metrics",
+            "description": "Get metrics for specific posts.\n\nParameters:\n    post_ids (List[str]):\n        List of post IDs (UUIDs) to get metrics for.\n    metrics (Optional[List[str]]):\n        Specific metrics to retrieve.\n\nReturns:\n    Dict:\n        Dictionary containing post metrics.",
+            "parameters": [
+                {
+                    "name": "post_ids",
+                    "type": "typing.List[str]"
+                },
+                {
+                    "name": "metrics",
+                    "type": "typing.Optional[typing.List[str]]"
+                }
+            ],
+            "return": "typing.Dict"
+        },
+        {
+            "function_name": "get_user_profile",
+            "description": "Get the profile information for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose profile is to be retrieved.\n\nReturns:\n    Dict: A dictionary containing the user's profile data.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "like_post",
+            "description": "Like a specific post.\n\nArgs:\n    user_id (str): The ID (UUID) of the user liking the post.\n    post_id (str): The ID (UUID) of the post to like.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "post_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "list_direct_messages_conversations",
+            "description": "List all direct message conversations for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose conversations are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of conversation summaries.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_followers",
+            "description": "List the followers of a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose followers are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of follower IDs.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_following",
+            "description": "List the users a specific user is following.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose following list is to be retrieved.\n\nReturns:\n    Dict: A dictionary containing a list of IDs of users being followed.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_liked_posts",
+            "description": "List the posts liked by a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose liked posts are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of liked post IDs.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_user_posts",
+            "description": "List all posts created by a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose posts are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of posts.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "send_direct_message",
+            "description": "Send a direct message to another user. If no existing conversation, a new one is created.\n\nArgs:\n    sender_id (str): The ID (UUID) of the user sending the message.\n    receiver_id (str): The ID (UUID) of the user receiving the message.\n    text (str): The content of the message.\n\nReturns:\n    Dict: A dictionary containing the updated conversation data or an error.",
+            "parameters": [
+                {
+                    "name": "sender_id",
+                    "type": "str"
+                },
+                {
+                    "name": "receiver_id",
+                    "type": "str"
+                },
+                {
+                    "name": "text",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "set_current_user",
+            "description": "Sets the current authenticated user for the API session.\n\nArgs:\n    user_id (str): The ID (UUID) of the user to set as current.\n\nReturns:\n    Dict[str, Union[bool, str]]: A dictionary with 'status' indicating success or failure and a message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "unlike_post",
+            "description": "Unlike a specific post.\n\nArgs:\n    user_id (str): The ID (UUID) of the user unliking the post.\n    post_id (str): The ID (UUID) of the post to unlike.\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "post_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        }
+    ]
+}

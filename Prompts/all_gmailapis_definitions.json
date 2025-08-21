@@ -1,0 +1,341 @@
+{
+    "api_name": "GmailApis",
+    "functions": [
+        {
+            "function_name": "create_draft",
+            "description": "Create a draft.\n\nArgs:\n    user_id (str): User's email address.\n    to (str): Recipient's email address.\n    subject (str): Message subject.\n    body (str): Message body.\nReturns:\n    Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "to",
+                    "type": "str"
+                },
+                {
+                    "name": "subject",
+                    "type": "str"
+                },
+                {
+                    "name": "body",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        },
+        {
+            "function_name": "create_label",
+            "description": "Create a label.\n\nArgs:\n    user_id (str): User's email address.\n    label_name (str): Name for the new label.\nReturns:\n    Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "label_name",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        },
+        {
+            "function_name": "delete_draft",
+            "description": "Delete a draft.\n\nArgs:\n    user_id (str): User's email address.\n    draft_id (str): Draft ID to delete.\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "draft_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "delete_label",
+            "description": "Delete a label.\n\nArgs:\n    user_id (str): User's email address.\n    label_id (str): Label ID to delete.\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "label_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "delete_message",
+            "description": "Delete a message.\n\nArgs:\n    user_id (str): User's email address.\n    msg_id (str): Message ID to delete.\nReturns:\n    Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "msg_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "get_draft",
+            "description": "Get a specific draft.\n\nArgs:\n    user_id (str): User's email address.\n    draft_id (str): Draft ID.\nReturns:\n    Optional[Dict[str, Any]]: Draft data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "draft_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "get_label",
+            "description": "Get a specific label.\n\nArgs:\n    user_id (str): User's email address.\n    label_id (str): Label ID.\nReturns:\n    Optional[Dict[str, Any]]: Label data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "label_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "get_message",
+            "description": "Get a specific message.\n\nArgs:\n    user_id (str): User's email address.\n    msg_id (str): Message ID.\n    format (str): Format of the message ('minimal', 'full', or 'raw').\nReturns:\n    Optional[Dict[str, Any]]: Message data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "msg_id",
+                    "type": "str"
+                },
+                {
+                    "name": "format",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "get_profile",
+            "description": "Get the Gmail profile for a user.\n\nArgs:\n    user_id (str): User's email address.\nReturns:\n    Optional[Dict[str, Any]]: User's profile data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "get_thread",
+            "description": "Get a thread with its messages.\n\nArgs:\n    user_id (str): User's email address.\n    thread_id (str): Thread ID.\n    format (str): Format of the messages ('minimal', 'full', or 'raw').\nReturns:\n    Optional[Dict[str, Any]]: Thread data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "thread_id",
+                    "type": "str"
+                },
+                {
+                    "name": "format",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "list_drafts",
+            "description": "List drafts.\n\nArgs:\n    user_id (str): User's email address.\n    page_token (Optional[str]): Pagination token.\n    max_results (int): Maximum number of results to return.\nReturns:\n    Dict[str, Union[List[Dict], str, int]]: Dictionary containing drafts, pagination token, and result count.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "page_token",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "max_results",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.List[typing.Dict], str, int]]"
+        },
+        {
+            "function_name": "list_labels",
+            "description": "List labels.\n\nArgs:\n    user_id (str): User's email address.\nReturns:\n    Dict[str, Union[List[Dict], str]]: Dictionary containing labels.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.List[typing.Dict], str]]"
+        },
+        {
+            "function_name": "list_messages",
+            "description": "List messages matching criteria.\n\nArgs:\n    user_id (str): User's email address.\n    query (Optional[str]): Search query.\n    label_ids (Optional[List[str]]): Label IDs to filter by.\n    page_token (Optional[str]): Pagination token.\n    max_results (int): Maximum number of results to return.\nReturns:\n    Dict[str, Union[List[Dict], str, int]]: Dictionary containing messages, pagination token, and result count.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "query",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "label_ids",
+                    "type": "typing.Optional[typing.List[str]]"
+                },
+                {
+                    "name": "page_token",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "max_results",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.List[typing.Dict], str, int]]"
+        },
+        {
+            "function_name": "modify_message",
+            "description": "Modify a message (e.g., add/remove labels).\n\nArgs:\n    user_id (str): User's email address.\n    message_id (str): Message ID to modify.\n    modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.\nReturns:\n    Optional[Dict[str, Any]]: Modified message data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "message_id",
+                    "type": "str"
+                },
+                {
+                    "name": "modify_request",
+                    "type": "typing.Dict[str, typing.List[str]]"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "modify_thread",
+            "description": "Modify a thread (e.g., add/remove labels to all messages in thread).\n\nArgs:\n    user_id (str): User's email address.\n    thread_id (str): Thread ID to modify.\n    modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.\nReturns:\n    Optional[Dict[str, Any]]: Modified thread data if found, None otherwise.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "thread_id",
+                    "type": "str"
+                },
+                {
+                    "name": "modify_request",
+                    "type": "typing.Dict[str, typing.List[str]]"
+                }
+            ],
+            "return": "typing.Optional[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "reset_data",
+            "description": "Reset all data to default state.\n\nReturns:\n    Dict[str, bool]: Dictionary indicating reset status.",
+            "parameters": [],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "send_message",
+            "description": "Send a message.\n\nArgs:\n    user_id (str): Sender's email address.\n    to (str): Recipient's email address.\n    subject (str): Message subject.\n    body (str): Message body.\n    thread_id (Optional[str]): Thread ID if replying.\nReturns:\n    Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "to",
+                    "type": "str"
+                },
+                {
+                    "name": "subject",
+                    "type": "str"
+                },
+                {
+                    "name": "body",
+                    "type": "str"
+                },
+                {
+                    "name": "thread_id",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        },
+        {
+            "function_name": "update_draft",
+            "description": "Update a draft.\n\nArgs:\n    user_id (str): User's email address.\n    draft_id (str): Draft ID to update.\n    to (str): New recipient's email address.\n    subject (str): New message subject.\n    body (str): New message body.\nReturns:\n    Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "draft_id",
+                    "type": "str"
+                },
+                {
+                    "name": "to",
+                    "type": "str"
+                },
+                {
+                    "name": "subject",
+                    "type": "str"
+                },
+                {
+                    "name": "body",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        },
+        {
+            "function_name": "update_label",
+            "description": "Update a label.\n\nArgs:\n    user_id (str): User's email address.\n    label_id (str): Label ID to update.\n    new_label_name (str): New name for the label.\nReturns:\n    Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "label_id",
+                    "type": "str"
+                },
+                {
+                    "name": "new_label_name",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[typing.Dict, str]]"
+        }
+    ]
+}

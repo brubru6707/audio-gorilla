@@ -1,9 +1,11 @@
 import datetime
 import copy
 import uuid
-import random
-import json
-from typing import Dict, List, Any, Optional, Union, Literal
+from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("SmartThingsApis")
+
 
 class SmartThingsApis:
     """
@@ -664,34 +666,3 @@ class SmartThingsApis:
             if cap["id"] == capability_id and (version is None or cap.get("version") == version):
                 return copy.deepcopy(cap)
         return {"error": f"Capability {capability_id} not found."}
-
-
-    def reset_data(self) -> Dict[str, bool]:
-        """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
-        """
-        
-        global DEFAULT_STATE
-        global _user_email_to_uuid_map
-        global _location_name_to_uuid_map
-        global _room_name_to_uuid_map
-
-        
-        _user_email_to_uuid_map = {}
-        _location_name_to_uuid_map = {}
-        _room_name_to_uuid_map = {}
-
-        
-        new_default_state = {"users": {}}
-        for email, first_name, last_name, smartthings_data in users_initial_data:
-            user_id, user_data = _create_user_data(email, first_name, last_name, smartthings_data)
-            new_default_state["users"][user_id] = user_data
-        DEFAULT_STATE = new_default_state
-
-        self._load_scenario(DEFAULT_STATE)
-        print("SmartThingsApis: All dummy data reset to default state.")
-        return {"reset_status": True}

@@ -1,86 +1,336 @@
 {
-    "Prompts": {
-      "MultiStep": [
-        {
-          "prompt": "Order a new smartwatch from Amazon and add the delivery date to my Google Calendar",
-          "tools": ["AmazonApis", "GoogleCalendarApis"],
-          "context": {
-            "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06",
-            "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
-          }
-        },
-        {
-          "prompt": "Send an SMS to Bob Johnson about our meeting tomorrow and then email him the meeting agenda",
-          "tools": ["CommuniLinkApis", "GmailApis"],
-          "context": {
-            "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926",
-            "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548"
-          }
-        },
-        {
-          "prompt": "Check my Amazon order status for the coffee maker and text Charlie Brown the delivery estimate",
-          "tools": ["AmazonApis", "CommuniLinkApis"],
-          "context": {
-            "amazon_current_user": "c1270c08-b8db-4848-9249-5fd315f295ca",
-            "communilink_current_user": "4f603dd6-ebf6-4acd-9ea9-cd848215b408"
-          }
-        },
-        {
-          "prompt": "Create a calendar event for the team retreat next month and email the details to all attendees",
-          "tools": ["GoogleCalendarApis", "GmailApis"],
-          "context": {
-            "googlecalendar_current_user": "5bc9a653-c474-4865-993d-3ee3334374a5",
-            "gmail_current_user": "62e12603-9032-4a49-abf7-a60b6968e1b4"
-          }
-        },
-        {
-          "prompt": "Call customer support about my missing Amazon package and then add the replacement item to my cart",
-          "tools": ["CommuniLinkApis", "AmazonApis"],
-          "context": {
-            "communilink_current_user": "a2dcaf92-b235-47f2-bb79-92068d58e8e0",
-            "amazon_current_user": "5af6122a-e40b-43ce-92f6-b69ab6dfd0a9"
-          }
-        }
-      ],
-      "MultiTurn": [
-        {
-          "prompt": "I need to buy a birthday gift",
-          "tools": ["AmazonApis"],
-          "context": {
-            "amazon_current_user": "ff66938d-d13e-49ff-8dfd-dd44a3ef0e0b"
-          }
-        },
-        {
-          "prompt": "Let's schedule a meeting with the design team",
-          "tools": ["GoogleCalendarApis"],
-          "context": {
-            "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
-          }
-        },
-        {
-          "prompt": "I need to follow up with several clients",
-          "tools": ["CommuniLinkApis", "GmailApis"],
-          "context": {
-            "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926",
-            "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548"
-          }
-        },
-        {
-          "prompt": "Where is my recent order?",
-          "tools": ["AmazonApis"],
-          "context": {
-            "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06"
-          }
-        },
-        {
-          "prompt": "I'm organizing a company picnic",
-          "tools": ["GoogleCalendarApis", "GmailApis", "CommuniLinkApis"],
-          "context": {
-            "googlecalendar_current_user": "5bc9a653-c474-4865-993d-3ee3334374a5",
-            "gmail_current_user": "62e12603-9032-4a49-abf7-a60b6968e1b4",
-            "communilink_current_user": "23012dd0-8bb2-43fd-b311-aa3ad92bcd2a"
-          }
-        }
-      ]
+  "MultiStep_Prompts": [
+    {
+      "prompt": "Order a new 4K inch TV from Amazon and add the delivery date to my Google Calendar",
+      "tools": ["AmazonApis", "GoogleCalendarApis"],
+      "context": {
+        "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06",
+        "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+      },
+      "ground_truth": {
+      "Amazon": [
+        "searchProducts(user: str, query: str)", 
+        "orderProduct(user: str, productId: str, quantity: int)",  
+        "trackOrder(user: str, orderId: str)"],
+      "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)" ]
     }
-  }
+    },
+    {
+      "prompt": "Send an email to Alice about the project status and then create a note in Simple Notes with the project details",
+      "tools": ["GmailApis", "SimpleNotesApis"],
+      "context": {
+        "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548",
+        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+      },
+      "ground_truth": {
+        "Gmail": ["sendEmail(user: str, to: str, subject: str, body: str)"],
+        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
+      }
+    },
+    {
+      "prompt": "Send an SMS to Bob Johnson about our meeting tomorrow and then email him the meeting agenda",
+      "tools": ["CommuniLinkApis", "GmailApis"],
+      "context": {
+        "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926",
+        "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548"
+      },
+      "ground_truth": {
+        "CommuniLink": ["sendSMS(user: str, recipient: str, message: str)"],
+        "Gmail": ["sendEmail(user: str, to: str, subject: str, body: str)"]
+      }
+    },
+    {
+      "prompt": "Create a new note titled 'Project Ideas' in Simple Notes and upload a document 'ProjectPlan.pdf' to my Google Drive",
+      "tools": ["SimpleNotesApis", "GoogleDriveApis"],
+      "context": {
+        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5",
+        "googledrive_current_user": "36ab6ab8-0ddd-4050-a707-d9c2985adcd1"
+      },
+      "ground_truth": {
+        "SimpleNotes": ["createNote(user: str, title: str, content: str)"],
+        "GoogleDrive": ["uploadFile(user: str, fileName: str, content: str, parentFolderId: str = None)"]
+      }
+    },
+    {
+      "prompt": "Find any unread emails from 'support@amazon.com' and then create a calendar event for 'Call Amazon Support' tomorrow at 10 AM",
+      "tools": ["GmailApis", "GoogleCalendarApis"],
+      "context": {
+        "gmail_current_user": "ad84a89f-dbed-4a93-b471-cc24e4b8d7ec",
+        "googlecalendar_current_user": "5de18f12-81a3-4f14-8e08-4f598c874e8d"
+      },
+      "ground_truth": {
+        "Gmail": ["readEmails(user: str, query: str)"],
+        "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)"]
+      }
+    },
+    {
+      "prompt": "Search for 'Bluetooth headphones' on Amazon and add the top result to my wish list",
+      "tools": ["AmazonApis"],
+      "context": {
+        "amazon_current_user": "f2b1d3c4-8a7e-4f6c-9d0b-1e2a3b4c5d6e"
+      },
+      "ground_truth": {
+        "Amazon": ["searchProducts(user: str, query: str)", "addProductToWishlist(user: str, productId: str)"]
+      }
+    },
+    {
+      "prompt": "List my upcoming Google Calendar events for the next week and send me an SMS summary of them",
+      "tools": ["GoogleCalendarApis", "CommuniLinkApis"],
+      "context": {
+        "googlecalendar_current_user": "caleb.cooper42@filevault.co",
+        "communilink_current_user": "e8d7c6b5-a4f3-2e1d-0c9b-8a7f6e5d4c3b"
+      },
+      "ground_truth": {
+        "GoogleCalendar": ["listEvents(user: str, timeMin: str, timeMax: str)"],
+        "CommuniLink": ["sendSMS(user: str, recipient: str, message: str)"]
+      }
+    },
+    {
+      "prompt": "Create a new folder in Google Drive named 'Meeting Minutes' and then create a note in Simple Notes summarizing the last meeting",
+      "tools": ["GoogleDriveApis", "SimpleNotesApis"],
+      "context": {
+        "googledrive_current_user": "logan.lopez75@cloudrive.com",
+        "simplenotes_current_user": "b7a6c5d4-e3f2-1a0b-9c8d-7e6f5a4b3c2d"
+      },
+      "ground_truth": {
+        "GoogleDrive": ["createFolder(user: str, folderName: str, parentFolderId: str = None)"],
+        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
+      }
+    },
+    {
+      "prompt": "Email 'team@example.com' about the project deadline and then add a reminder to my Google Calendar for the deadline on Friday",
+      "tools": ["GmailApis", "GoogleCalendarApis"],
+      "context": {
+        "gmail_current_user": "0e783146-3884-460d-a1cb-c92509931b45",
+        "googlecalendar_current_user": "307bf466-c273-41f2-adc7-25a9d33ad461"
+      },
+      "ground_truth": {
+        "Gmail": ["sendEmail(user: str, to: str, subject: str, body: str)"],
+        "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)"]
+      }
+    },
+    {
+      "prompt": "Order 'The Lord of the Rings' book from Amazon and record the purchase in Simple Notes",
+      "tools": ["AmazonApis", "SimpleNotesApis"],
+      "context": {
+        "amazon_current_user": "0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+      },
+      "ground_truth": {
+        "Amazon": ["orderProduct(user: str, productId: str, quantity: int)"],
+        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
+      }
+    },
+    {
+      "prompt": "Upload the file 'MeetingNotes.txt' from my computer to Google Drive and then send an email to 'manager@example.com' with a link to the file",
+      "tools": ["GoogleDriveApis", "GmailApis"],
+      "context": {
+        "googledrive_current_user": "alice.smith@cloudrive.com",
+        "gmail_current_user": "alice.smith@cloudrive.com"
+      },
+      "ground_truth": {
+        "GoogleDrive": ["uploadFile(user: str, fileName: str, content: str, parentFolderId: str = None)", "getShareableLink(user: str, fileId: str)"],
+        "Gmail": ["sendEmail(user: str, to: str, subject: str, body: str)"]
+      }
+    }
+  ],
+  "MultiTurn_Prompts": [
+    {
+      "prompt": "I need to send an email to Sarah regarding the project.",
+      "tools": ["GmailApis"],
+      "context": { "gmail_current_user": "419c119c-64c7-411f-8ab4-b890e8ac417a" },
+      "ground_truth": {
+        "turn1": {
+          "action": ["readContacts(user: str, name: str)"],
+          "response_to_user": "What is Sarah's email address or full name?"
+        },
+        "user1": "Her email is sarah.jones@example.com",
+        "turn2": {
+          "action": ["createDraft(user: str, to: str, subject: str, body: str)"],
+          "response_to_user": "What should be the subject and body of the email?"
+        },
+        "user2": "Subject: Project Update. Body: Hi Sarah, the project is on track. Best, Alice.",
+        "turn3": {
+          "action": ["sendEmail(user: str, to: str, subject: str, body: str)"],
+          "response_to_user": "Email sent."
+        }
+      }
+    },
+    {
+      "prompt": "Can you help me set a reminder for my doctor's appointment?",
+      "tools": ["GoogleCalendarApis"],
+      "context": { "googlecalendar_current_user": "5de18f12-81a3-4f14-8e08-4f598c874e8d" },
+      "ground_truth": {
+        "turn1": {
+          "action": [],
+          "response_to_user": "What is the date and time of the appointment, and what should the reminder say?"
+        },
+        "user1": "It's tomorrow at 3 PM. The reminder should say 'Doctor's appointment'",
+        "turn2": {
+          "action": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)"],
+          "response_to_user": "Reminder set for your doctor's appointment tomorrow at 3 PM."
+        }
+      }
+    },
+    {
+      "prompt": "I want to create a note about my grocery list.",
+      "tools": ["SimpleNotesApis"],
+      "context": { "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5" },
+      "ground_truth": {
+        "turn1": {
+          "action": [],
+          "response_to_user": "What would you like to title the note and what items should I add to the list?"
+        },
+        "user1": "Title it 'Grocery List'. Add milk, eggs, and bread.",
+        "turn2": {
+          "action": ["createNote(user: str, title: str, content: str)"],
+          "response_to_user": "Note 'Grocery List' created with milk, eggs, and bread."
+        }
+      }
+    },
+    {
+      "prompt": "I need to upload a document to my Google Drive.",
+      "tools": ["GoogleDriveApis"],
+      "context": { "googledrive_current_user": "e9119f40-2b07-4edb-a239-1d7b34d3f990" },
+      "ground_truth": {
+        "turn1": {
+          "action": [],
+          "response_to_user": "What is the name of the document and what content should it have? Also, is there a specific folder you'd like to upload it to?"
+        },
+        "user1": "The document is 'MeetingMinutes_2025.txt' and contains the summary of today's meeting. Put it in the 'Meeting Minutes' folder.",
+        "turn2": {
+          "action": ["createFolder(user: str, folderName: str)", "uploadFile(user: str, fileName: str, content: str, parentFolderId: str)"],
+          "response_to_user": "Document 'MeetingMinutes_2025.txt' uploaded to 'Meeting Minutes' folder."
+        }
+      }
+    },
+    {
+      "prompt": "I want to order a new laptop from Amazon.",
+      "tools": ["AmazonApis"],
+      "context": { "amazon_current_user": "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a" },
+      "ground_truth": {
+        "turn1": {
+          "action": ["searchProducts(user: str, query: str)"],
+          "response_to_user": "What kind of laptop are you looking for (e.g., brand, screen size, specifications)?"
+        },
+        "user1": "A Dell XPS 15 16 GB RAM laptop.",
+        "turn2": {
+          "action": ["orderProduct(user: str, productId: str, quantity: int)"],
+          "response_to_user": "Dell XPS 15 16 GB RAM laptop ordered. What date should I add to your calendar for delivery?"
+        },
+        "user2": "Please add it for next Tuesday.",
+        "turn3": {
+          "action": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)"],
+          "response_to_user": "Delivery reminder added to your Google Calendar for next Tuesday."
+        }
+      }
+    },
+    {
+      "prompt": "Can you text John about the party?",
+      "tools": ["CommuniLinkApis"],
+      "context": { "communilink_current_user": "g2h3i4j5-k6l7-8m9n-0o1p-2q3r4s5t6u7v" },
+      "ground_truth": {
+        "turn1": {
+          "action": ["getContactDetails(user: str, name: str)"],
+          "response_to_user": "What is John's phone number or full name?"
+        },
+        "user1": "His number is 555-123-4567.",
+        "turn2": {
+          "action": [],
+          "response_to_user": "What message would you like to send to John?"
+        },
+        "user2": "Tell him the party is at 8 PM.",
+        "turn3": {
+          "action": ["sendSMS(user: str, recipient: str, message: str)"],
+          "response_to_user": "SMS sent to John: 'The party is at 8 PM.'"
+        }
+      }
+    },
+    {
+      "prompt": "I want to find a specific file in my Google Drive.",
+      "tools": ["GoogleDriveApis"],
+      "context": { "googledrive_current_user": "17c41b9e-5793-4c95-8ca4-08d5c830dc6a" },
+      "ground_truth": {
+        "turn1": {
+          "action": [],
+          "response_to_user": "What is the name of the file or any keywords to search for?"
+        },
+        "user1": "It's called 'FinancialReport.xlsx'.",
+        "turn2": {
+          "action": ["listFiles(user: str, query: str)"],
+          "response_to_user": "I found 'FinancialReport.xlsx'. Do you want to open it or share it?"
+        },
+        "user2": "Open it.",
+        "turn3": {
+          "action": ["openFile(user: str, fileId: str)"],
+          "response_to_user": "Opening 'FinancialReport.xlsx'."
+        }
+      }
+    },
+    {
+      "prompt": "I need to send an email to a new client.",
+      "tools": ["GmailApis"],
+      "context": { "gmail_current_user": "2958962c-547c-41f0-945a-51ef4e1b4ddd" },
+      "ground_truth": {
+        "turn1": {
+          "action": [],
+          "response_to_user": "What is the client's email address, and what should be the subject of the email?"
+        },
+        "user1": "lily.morris7@corp.org, Subject: Welcome to our services.",
+        "turn2": {
+          "action": [],
+          "response_to_user": "What content should I include in the email body?"
+        },
+        "user2": "Welcome to New Company! We look forward to working with you.",
+        "turn3": {
+          "action": ["sendEmail(user: str, to: str, subject: str, body: str)"],
+          "response_to_user": "Email sent to lily.morris7@corp.org."
+        }
+      }
+    },
+    {
+      "prompt": "Can you help me update an existing note in Simple Notes?",
+      "tools": ["SimpleNotesApis"],
+      "context": { "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5" },
+      "ground_truth": {
+        "turn1": {
+          "action": ["getNotes(user: str, query: str)"],
+          "response_to_user": "What is the title of the note you want to update?"
+        },
+        "user1": "The note is titled 'Meeting Notes'.",
+        "turn2": {
+          "action": [],
+          "response_to_user": "What updates would you like to make to the note?"
+        },
+        "user2": "Add 'Discussed Q3 results' to the content.",
+        "turn3": {
+          "action": ["updateNote(user: str, noteId: str, updates: dict)"],
+          "response_to_user": "Note 'Meeting Notes' updated."
+        }
+      }
+    },
+    {
+      "prompt": "Schedule a meeting with my team next week",
+      "tools": ["GoogleCalendarApis"],
+      "context": {
+        "googlecalendar_current_user": "6ab6ab8-0ddd-4050-a707-d9c2985adcd1"
+      },
+      "ground_truth": {
+        "turn1": {
+          "action": [],
+          "response_to_user": "What day and time should the meeting be, and who should be invited?"
+        },
+        "user1": "Next Monday at 10 AM. Invite Bob and Carol.",
+        "turn2": {
+          "action": ["scheduleMeeting(user: str, attendees: list, time: str, date: str)", "createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)"],
+          "response_to_user": "Meeting scheduled and invitations sent. What should the meeting subject be for the calendar event?"
+        },
+        "user2": "Team Sync-up",
+        "turn3": {
+          "action": ["updateEvent(user: str, eventId: str, updates: dict)"],
+          "response_to_user": "Calendar event updated with 'Team Sync-up'."
+        }
+      }
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 import datetime
 import copy
 import uuid
-import random
 from typing import Dict, List, Any, Optional, Union, Literal
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("SimpleNoteApis")
 
 class SimpleNoteApis:
     """

@@ -1,9 +1,10 @@
 import datetime
 import copy
 import uuid
-import random
-import json
 from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("GmailApis")
 
 class GmailApis:
     """
@@ -17,46 +18,122 @@ class GmailApis:
         self._load_scenario(DEFAULT_STATE)
 
     def _load_scenario(self, scenario: Dict) -> None:
+        """
+        Load a scenario with users and their data.
+
+        Args:
+            scenario (Dict): Scenario data to load.
+        """
         DEFAULT_STATE_COPY = copy.deepcopy(DEFAULT_STATE)
         self.users = scenario.get("users", DEFAULT_STATE_COPY["users"])
         print("GmailApis: Loaded scenario with users and their UUIDs.")
 
     def _generate_id(self) -> str:
+        """
+        Generate a unique ID.
+
+        Returns:
+            str: Generated UUID.
+        """
         return str(uuid.uuid4())
 
     def _get_user_id_by_email(self, email: str) -> Optional[str]:
+        """
+        Get internal user ID by email address.
+
+        Args:
+            email (str): User's email address.
+        Returns:
+            Optional[str]: Internal user ID if found, None otherwise.
+        """
         for user_id, user_data in self.users.items():
             if user_data.get("email") == email:
                 return user_id
         return None
 
     def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
+        """
+        Get user email by internal user ID.
+
+        Args:
+            user_id (str): Internal user ID.
+        Returns:
+            Optional[str]: User's email address if found, None otherwise.
+        """
         user_data = self.users.get(user_id)
         return user_data.get("email") if user_data else None
 
     def _get_user_gmail_data(self, user_id: str) -> Optional[Dict]:
+        """
+        Get Gmail data for a user.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Optional[Dict]: User's Gmail data if found, None otherwise.
+        """
         internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
             return None
         return self.users.get(internal_user_id, {}).get("gmail_data")
 
     def _get_user_threads_data(self, user_id: str) -> Optional[Dict]:
+        """
+        Get threads data for a user.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Optional[Dict]: User's threads data if found, None otherwise.
+        """
         gmail_data = self._get_user_gmail_data(user_id)
         return gmail_data.get("threads") if gmail_data else None
 
     def _get_user_messages_data(self, user_id: str) -> Optional[Dict]:
+        """
+        Get messages data for a user.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Optional[Dict]: User's messages data if found, None otherwise.
+        """
         gmail_data = self._get_user_gmail_data(user_id)
         return gmail_data.get("messages") if gmail_data else None
 
     def _get_user_drafts_data(self, user_id: str) -> Optional[Dict]:
+        """
+        Get drafts data for a user.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Optional[Dict]: User's drafts data if found, None otherwise.
+        """
         gmail_data = self._get_user_gmail_data(user_id)
         return gmail_data.get("drafts") if gmail_data else None
 
     def _get_user_labels_data(self, user_id: str) -> Optional[Dict]:
+        """
+        Get labels data for a user.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Optional[Dict]: User's labels data if found, None otherwise.
+        """
         gmail_data = self._get_user_gmail_data(user_id)
         return gmail_data.get("labels") if gmail_data else None
 
     def get_profile(self, user_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get the Gmail profile for a user.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Optional[Dict[str, Any]]: User's profile data if found, None otherwise.
+        """
         internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
             return None
@@ -72,6 +149,18 @@ class GmailApis:
         page_token: Optional[str] = None,
         max_results: int = 10,
     ) -> Dict[str, Union[List[Dict], str, int]]:
+        """
+        List messages matching criteria.
+
+        Args:
+            user_id (str): User's email address.
+            query (Optional[str]): Search query.
+            label_ids (Optional[List[str]]): Label IDs to filter by.
+            page_token (Optional[str]): Pagination token.
+            max_results (int): Maximum number of results to return.
+        Returns:
+            Dict[str, Union[List[Dict], str, int]]: Dictionary containing messages, pagination token, and result count.
+        """
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return {"messages": [], "resultSizeEstimate": 0}
@@ -114,6 +203,16 @@ class GmailApis:
     def get_message(
         self, user_id: str, msg_id: str, format: str = "full"
     ) -> Optional[Dict[str, Any]]:
+        """
+        Get a specific message.
+
+        Args:
+            user_id (str): User's email address.
+            msg_id (str): Message ID.
+            format (str): Format of the message ('minimal', 'full', or 'raw').
+        Returns:
+            Optional[Dict[str, Any]]: Message data if found, None otherwise.
+        """
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return None
@@ -130,6 +229,18 @@ class GmailApis:
     def send_message(
         self, user_id: str, to: str, subject: str, body: str, thread_id: Optional[str] = None
     ) -> Dict[str, Union[str, Dict]]:
+        """
+        Send a message.
+
+        Args:
+            user_id (str): Sender's email address.
+            to (str): Recipient's email address.
+            subject (str): Message subject.
+            body (str): Message body.
+            thread_id (Optional[str]): Thread ID if replying.
+        Returns:
+            Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
+        """
         internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
             return {"error": "User not found."}
@@ -182,6 +293,15 @@ class GmailApis:
         return {"id": new_msg_id, "threadId": thread_id}
 
     def delete_message(self, user_id: str, msg_id: str) -> Dict[str, Union[bool, str]]:
+        """
+        Delete a message.
+
+        Args:
+            user_id (str): User's email address.
+            msg_id (str): Message ID to delete.
+        Returns:
+            Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
+        """
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return {"success": False, "message": "User not found or no messages data."}
@@ -210,6 +330,16 @@ class GmailApis:
     def list_drafts(
         self, user_id: str, page_token: Optional[str] = None, max_results: int = 10
     ) -> Dict[str, Union[List[Dict], str, int]]:
+        """
+        List drafts.
+
+        Args:
+            user_id (str): User's email address.
+            page_token (Optional[str]): Pagination token.
+            max_results (int): Maximum number of results to return.
+        Returns:
+            Dict[str, Union[List[Dict], str, int]]: Dictionary containing drafts, pagination token, and result count.
+        """
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return {"drafts": [], "resultSizeEstimate": 0}
@@ -235,6 +365,15 @@ class GmailApis:
         }
 
     def get_draft(self, user_id: str, draft_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get a specific draft.
+
+        Args:
+            user_id (str): User's email address.
+            draft_id (str): Draft ID.
+        Returns:
+            Optional[Dict[str, Any]]: Draft data if found, None otherwise.
+        """
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return None
@@ -247,6 +386,17 @@ class GmailApis:
     def create_draft(
         self, user_id: str, to: str, subject: str, body: str
     ) -> Dict[str, Union[str, Dict]]:
+        """
+        Create a draft.
+
+        Args:
+            user_id (str): User's email address.
+            to (str): Recipient's email address.
+            subject (str): Message subject.
+            body (str): Message body.
+        Returns:
+            Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
+        """
         internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
             return {"error": "User not found."}
@@ -271,6 +421,18 @@ class GmailApis:
     def update_draft(
         self, user_id: str, draft_id: str, to: str, subject: str, body: str
     ) -> Dict[str, Union[str, Dict]]:
+        """
+        Update a draft.
+
+        Args:
+            user_id (str): User's email address.
+            draft_id (str): Draft ID to update.
+            to (str): New recipient's email address.
+            subject (str): New message subject.
+            body (str): New message body.
+        Returns:
+            Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
+        """
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return {"error": "User not found or no drafts data."}
@@ -284,6 +446,15 @@ class GmailApis:
         return {"error": f"Draft {draft_id} not found."}
 
     def delete_draft(self, user_id: str, draft_id: str) -> Dict[str, Union[bool, str]]:
+        """
+        Delete a draft.
+
+        Args:
+            user_id (str): User's email address.
+            draft_id (str): Draft ID to delete.
+        Returns:
+            Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
+        """
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return {"success": False, "message": "User not found or no drafts data."}
@@ -295,6 +466,14 @@ class GmailApis:
         return {"success": False, "message": f"Draft {draft_id} not found."}
 
     def list_labels(self, user_id: str) -> Dict[str, Union[List[Dict], str]]:
+        """
+        List labels.
+
+        Args:
+            user_id (str): User's email address.
+        Returns:
+            Dict[str, Union[List[Dict], str]]: Dictionary containing labels.
+        """
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return {"labels": []}
@@ -303,6 +482,15 @@ class GmailApis:
         return {"labels": formatted_labels}
 
     def get_label(self, user_id: str, label_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get a specific label.
+
+        Args:
+            user_id (str): User's email address.
+            label_id (str): Label ID.
+        Returns:
+            Optional[Dict[str, Any]]: Label data if found, None otherwise.
+        """
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return None
@@ -313,6 +501,15 @@ class GmailApis:
         return None
 
     def create_label(self, user_id: str, label_name: str) -> Dict[str, Union[str, Dict]]:
+        """
+        Create a label.
+
+        Args:
+            user_id (str): User's email address.
+            label_name (str): Name for the new label.
+        Returns:
+            Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.
+        """
         internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
             return {"error": "User not found."}
@@ -339,6 +536,16 @@ class GmailApis:
         return {"id": new_label_id, "name": label_name}
 
     def update_label(self, user_id: str, label_id: str, new_label_name: str) -> Dict[str, Union[str, Dict]]:
+        """
+        Update a label.
+
+        Args:
+            user_id (str): User's email address.
+            label_id (str): Label ID to update.
+            new_label_name (str): New name for the label.
+        Returns:
+            Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.
+        """
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return {"error": "User not found or no labels data."}
@@ -350,6 +557,15 @@ class GmailApis:
         return {"error": f"Label {label_id} not found."}
 
     def delete_label(self, user_id: str, label_id: str) -> Dict[str, Union[bool, str]]:
+        """
+        Delete a label.
+
+        Args:
+            user_id (str): User's email address.
+            label_id (str): Label ID to delete.
+        Returns:
+            Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
+        """
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return {"success": False, "message": "User not found or no labels data."}
@@ -363,6 +579,16 @@ class GmailApis:
     def modify_message(
         self, user_id: str, message_id: str, modify_request: Dict[str, List[str]]
     ) -> Optional[Dict[str, Any]]:
+        """
+        Modify a message (e.g., add/remove labels).
+
+        Args:
+            user_id (str): User's email address.
+            message_id (str): Message ID to modify.
+            modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
+        Returns:
+            Optional[Dict[str, Any]]: Modified message data if found, None otherwise.
+        """
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return None
@@ -385,6 +611,16 @@ class GmailApis:
     def get_thread(
         self, user_id: str, thread_id: str, format: str = "full"
     ) -> Optional[Dict[str, Any]]:
+        """
+        Get a thread with its messages.
+
+        Args:
+            user_id (str): User's email address.
+            thread_id (str): Thread ID.
+            format (str): Format of the messages ('minimal', 'full', or 'raw').
+        Returns:
+            Optional[Dict[str, Any]]: Thread data if found, None otherwise.
+        """
         threads = self._get_user_threads_data(user_id)
         messages_data = self._get_user_messages_data(user_id)
         if threads is None or messages_data is None:
@@ -413,6 +649,16 @@ class GmailApis:
     def modify_thread(
         self, user_id: str, thread_id: str, modify_request: Dict[str, List[str]]
     ) -> Optional[Dict[str, Any]]:
+        """
+        Modify a thread (e.g., add/remove labels to all messages in thread).
+
+        Args:
+            user_id (str): User's email address.
+            thread_id (str): Thread ID to modify.
+            modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
+        Returns:
+            Optional[Dict[str, Any]]: Modified thread data if found, None otherwise.
+        """
         threads = self._get_user_threads_data(user_id)
         messages = self._get_user_messages_data(user_id)
         if threads is None or messages is None:
@@ -436,6 +682,12 @@ class GmailApis:
         return self.get_thread(user_id, thread_id, format="full")
 
     def reset_data(self) -> Dict[str, bool]:
+        """
+        Reset all data to default state.
+
+        Returns:
+            Dict[str, bool]: Dictionary indicating reset status.
+        """
         self._load_scenario(DEFAULT_STATE)
         print("GmailApis: All dummy data reset to default state.")
         return {"reset_status": True}

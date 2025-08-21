@@ -1,0 +1,209 @@
+{
+    "api_name": "VenmoApis",
+    "functions": [
+        {
+            "function_name": "add_payment_card",
+            "description": "Adds a new payment card for the current user.\n\nArgs:\n    user (User): The current user object.\n    card_name (str): A nickname for the card (e.g., \"My Visa\").\n    owner_name (str): The name of the card owner.\n    card_number (str): The full card number.\n    expiry_year (int): The expiry year (e.g., 2028).\n    expiry_month (int): The expiry month (1-12).\n    cvv_number (str): The CVV number. (Not stored for realism)\n    is_default (bool): Whether this card should be set as default.\n\nReturns:\n    Dict: A dictionary containing 'add_status' (bool) and 'card_id' (str) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                },
+                {
+                    "name": "card_name",
+                    "type": "str"
+                },
+                {
+                    "name": "owner_name",
+                    "type": "str"
+                },
+                {
+                    "name": "card_number",
+                    "type": "str"
+                },
+                {
+                    "name": "expiry_year",
+                    "type": "int"
+                },
+                {
+                    "name": "expiry_month",
+                    "type": "int"
+                },
+                {
+                    "name": "cvv_number",
+                    "type": "str"
+                },
+                {
+                    "name": "is_default",
+                    "type": "bool"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "delete_all_my_notifications",
+            "description": "Delete all notifications for the current user.\n\nReturns:\n    Dict: A dictionary containing 'delete_status' (bool).",
+            "parameters": [],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "delete_payment_method",
+            "description": "Delete a specific payment method for the current user.\n\nArgs:\n    user (User): The current user object.\n    payment_method_id (str): The ID (UUID) of the payment method to delete.\n\nReturns:\n    Dict[str, bool]: {\"delete_status\": True} if successful, {\"delete_status\": False} otherwise.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                },
+                {
+                    "name": "payment_method_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "get_transaction_details",
+            "description": "Retrieves details of a specific transaction.\n\nArgs:\n    transaction_id (str): The ID (UUID) of the transaction.\n\nReturns:\n    Dict: A dictionary containing 'transaction_status' (bool) and 'transaction_details' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "transaction_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "get_unread_notification_count",
+            "description": "Retrieves the count of unread notifications for the current user.\n\nReturns:\n    Dict: A dictionary containing 'count_status' (bool) and 'unread_count' (int).",
+            "parameters": [],
+            "return": "typing.Dict[str, typing.Union[bool, int]]"
+        },
+        {
+            "function_name": "list_friends",
+            "description": "Lists the friends of the current user.\n\nArgs:\n    user (User): The current user object.\n\nReturns:\n    Dict: A dictionary containing 'friends_status' (bool) and 'friends' (List[Dict]) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "list_payment_methods",
+            "description": "Lists all payment methods associated with the current user.\n\nArgs:\n    user (User): The current user object.\n\nReturns:\n    Dict: A dictionary containing 'payment_methods_status' (bool) and 'payment_methods' (List[Dict]) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "list_user_transactions",
+            "description": "Lists all transactions (sent and received) for the current user.\n\nArgs:\n    user (User): The current user object.\n\nReturns:\n    Dict: A dictionary containing 'transactions_status' (bool) and 'transactions' (List[Dict]) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.List[typing.Dict]]]"
+        },
+        {
+            "function_name": "mark_my_notifications",
+            "description": "Mark all notifications for the current user as read or unread.\n\nArgs:\n    read_status (bool): Whether to mark as read (True) or unread (False).\n\nReturns:\n    Dict: A dictionary containing 'mark_status' (bool).",
+            "parameters": [
+                {
+                    "name": "read_status",
+                    "type": "bool"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "request_money",
+            "description": "Requests money from another user to the current user.\n\nArgs:\n    sender_user (User): The user requesting the money (will be the receiver of the payment).\n    receiver_email (str): The email of the user from whom money is requested (will be the sender of the payment).\n    amount (float): The amount of money to request.\n    note (str): A note for the request.\n\nReturns:\n    Dict: A dictionary containing 'request_status' (bool) and 'message' (str).",
+            "parameters": [
+                {
+                    "name": "sender_user",
+                    "type": "VenmoApis.User"
+                },
+                {
+                    "name": "receiver_email",
+                    "type": "str"
+                },
+                {
+                    "name": "amount",
+                    "type": "float"
+                },
+                {
+                    "name": "note",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "send_money",
+            "description": "Sends money from the current user to another user.\n\nArgs:\n    sender_user (User): The user sending the money.\n    receiver_email (str): The email of the receiver.\n    amount (float): The amount of money to send.\n    note (str): A note for the transaction.\n\nReturns:\n    Dict: A dictionary containing 'send_status' (bool) and 'message' (str).",
+            "parameters": [
+                {
+                    "name": "sender_user",
+                    "type": "VenmoApis.User"
+                },
+                {
+                    "name": "receiver_email",
+                    "type": "str"
+                },
+                {
+                    "name": "amount",
+                    "type": "float"
+                },
+                {
+                    "name": "note",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "set_current_user",
+            "description": "Sets the current authenticated user for the API session.\n\nArgs:\n    user_email (str): The email address of the user to set as current.\n\nReturns:\n    Dict[str, bool]: A dictionary with 'status' indicating success or failure.",
+            "parameters": [
+                {
+                    "name": "user_email",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "set_default_payment_method",
+            "description": "Set a specific payment method as the default for the current user.\n\nArgs:\n    user (User): The current user object.\n    payment_method_id (str): The ID (UUID) of the payment method to set as default.\n\nReturns:\n    Dict[str, bool]: {\"set_default_status\": True} if successful, {\"set_default_status\": False} otherwise.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                },
+                {
+                    "name": "payment_method_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "show_account",
+            "description": "Shows the current user's account details.\n\nArgs:\n    user (User): The current user object.\n\nReturns:\n    Dict: A dictionary containing 'account_status' (bool) and 'account_details' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "user",
+                    "type": "VenmoApis.User"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        }
+    ]
+}

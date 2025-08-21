@@ -1,9 +1,10 @@
 import datetime
 import copy
 import uuid
-import random
-import re # Import the re module for regular expressions
-from typing import Dict, List, Any, Optional, Union, Literal
+from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("VenmoApis")
 
 class EmailStr(str):
     pass
@@ -28,9 +29,6 @@ class VenmoApis:
         self.transactions: Dict[str, Any] = {} # Keyed by transaction UUID
         self.notifications: Dict[str, Any] = {} # Keyed by notification UUID
         self.current_user: Optional[str] = None # Stores the UUID of the current user
-
-        # Internal map for efficient lookup of original string card IDs to new UUIDs per user
-        # {(user_uuid, original_card_id_string): card_uuid}
         self._payment_card_lookup_map: Dict[tuple[str, str], str] = {}
         
         self._load_scenario(DEFAULT_STATE)
@@ -137,10 +135,6 @@ class VenmoApis:
             return {"status": True, "message": f"Current user set to {user_email} (ID: {user_uuid})."}
         return {"status": False, "message": f"User with email {user_email} not found."}
 
-    # ================
-    # Account & Profile
-    # ================
-
     def show_account(self, user: User) -> Dict[str, Any]:
         """
         Shows the current user's account details.
@@ -182,10 +176,6 @@ class VenmoApis:
                     "last_name": friend_data["last_name"]
                 })
         return {"friends_status": True, "friends": friends_list}
-
-    # ================
-    # Money Transfers
-    # ================
 
     def send_money(self, sender_user: User, receiver_email: str, amount: float, note: str) -> Dict[str, Union[bool, str]]:
         """
@@ -306,7 +296,6 @@ class VenmoApis:
         print(f"Transaction {transaction_id}: {sender_user.email} requested ${amount} from {receiver_email}")
         return {"request_status": True, "transaction_id": transaction_id}
     
-    # Signature change: transaction_id from int to str (UUID) for realism
     def get_transaction_details(self, transaction_id: str) -> Dict[str, Union[bool, Dict]]:
         """
         Retrieves details of a specific transaction.
@@ -343,19 +332,15 @@ class VenmoApis:
         user_transactions.sort(key=lambda x: x.get("timestamp", ""), reverse=True) # Sort by timestamp
         return {"transactions_status": True, "transactions": user_transactions}
 
-    # ================
-    # Payment Methods
-    # ================
-
     def add_payment_card(
         self,
         user: User,
         card_name: str,
         owner_name: str,
-        card_number: str, # Assume this can be full number for input, then masked
+        card_number: str, 
         expiry_year: int,
         expiry_month: int,
-        cvv_number: str, # Will not store, just for input validation (dummy)
+        cvv_number: str,
         is_default: bool = False,
     ) -> Dict[str, Union[bool, str]]:
         """
@@ -412,7 +397,6 @@ class VenmoApis:
         self._update_user_data(user, "payment_cards", user_payment_cards)
 
         return {"add_status": True, "card_id": new_card_uuid}
-
 
     def list_payment_methods(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
         """
@@ -538,18 +522,3 @@ class VenmoApis:
                 notif["read"] = read_status
         
         return {"mark_status": True}
-
-    def reset_data(self) -> Dict[str, bool]:
-        """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
-        """
-        # Re-run the initial data conversion to reset maps and UUIDs
-        global DEFAULT_STATE
-        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
-        self._load_scenario(DEFAULT_STATE)
-        print("VenmoApis: All dummy data reset to default state.")
-        return {"reset_status": True}

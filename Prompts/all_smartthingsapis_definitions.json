@@ -1,0 +1,358 @@
+{
+    "api_name": "SmartThingsApis",
+    "functions": [
+        {
+            "function_name": "create_device",
+            "description": "Create a new device for a user.\n\nArgs:\n    name (str): The name of the new device.\n    user_id (str): User's email address or 'me' for the authenticated user.\n    location_name (Optional[str]): The name of the location for the device. If not found, a new one will be created.\n    room_name (Optional[str]): The name of the room for the device. If not found, a new one will be created.\n    capabilities (Optional[List[str]]): List of capabilities the device supports (e.g., [\"switch\", \"level\"]).\n    initial_status (Optional[Dict]): Initial state of device components and capabilities.\n\nReturns:\n    Dict[str, Any]: Details of the created device.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "location_name",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "room_name",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "capabilities",
+                    "type": "typing.Optional[typing.List[str]]"
+                },
+                {
+                    "name": "initial_status",
+                    "type": "typing.Optional[typing.Dict]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "create_location",
+            "description": "Create a new location for a user.\n\nArgs:\n    name (str): The name of the new location.\n    user_id (str): User's email address or 'me' for the authenticated user.\n    address (Optional[str]): The address of the location.\n    latitude (Optional[float]): The latitude of the location.\n    longitude (Optional[float]): The longitude of the location.\n\nReturns:\n    Dict[str, Any]: Details of the created location.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "address",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "latitude",
+                    "type": "typing.Optional[float]"
+                },
+                {
+                    "name": "longitude",
+                    "type": "typing.Optional[float]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "create_room",
+            "description": "Create a new room for a user.\n\nArgs:\n    name (str): The name of the new room.\n    user_id (str): User's email address or 'me' for the authenticated user.\n    location_id (Optional[str]): The ID of the location this room belongs to.\n\nReturns:\n    Dict[str, Any]: Details of the created room.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "location_id",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "delete_device",
+            "description": "Delete a device.\n\nArgs:\n    device_id (str): ID of the device to delete.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, bool]: True if the device was deleted successfully, False otherwise.",
+            "parameters": [
+                {
+                    "name": "device_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "delete_location",
+            "description": "Delete a location.\n\nArgs:\n    location_id (str): ID of the location to delete.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, bool]: True if the location was deleted successfully, False otherwise.",
+            "parameters": [
+                {
+                    "name": "location_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "delete_room",
+            "description": "Delete a room.\n\nArgs:\n    room_id (str): ID of the room to delete.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, bool]: True if the room was deleted successfully, False otherwise.",
+            "parameters": [
+                {
+                    "name": "room_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "get_capability",
+            "description": "Get a specific capability for a user.\n\nArgs:\n    capability_id (str): ID of the capability.\n    version (Optional[int]): Version of the capability.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, Any]: Details of the capability.",
+            "parameters": [
+                {
+                    "name": "capability_id",
+                    "type": "str"
+                },
+                {
+                    "name": "version",
+                    "type": "typing.Optional[int]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_device",
+            "description": "Get a specific device for a user.\n\nArgs:\n    device_id (str): ID of the device.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, Any]: Details of the device.",
+            "parameters": [
+                {
+                    "name": "device_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_device_status",
+            "description": "Get the current status of a device or a specific capability.\n\nArgs:\n    device_id (str): ID of the device.\n    component_id (str): ID of the component (e.g., 'main').\n    capability_id (Optional[str]): ID of the capability (e.g., 'switch', 'level'). If None, returns all component status.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, Any]: The status of the device/capability or an error message.",
+            "parameters": [
+                {
+                    "name": "device_id",
+                    "type": "str"
+                },
+                {
+                    "name": "component_id",
+                    "type": "str"
+                },
+                {
+                    "name": "capability_id",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_location",
+            "description": "Get a specific location for a user.\n\nArgs:\n    location_id (str): ID of the location.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, Any]: Details of the location.",
+            "parameters": [
+                {
+                    "name": "location_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_room",
+            "description": "Get a specific room for a user.\n\nArgs:\n    room_id (str): ID of the room.\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, Any]: Details of the room.",
+            "parameters": [
+                {
+                    "name": "room_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_profile",
+            "description": "Retrieves the profile information for the authenticated SmartThings user.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\n\nReturns:\n    Dict: A dictionary containing 'status' (bool) and 'profile' (Dict) if successful.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, typing.Dict]]"
+        },
+        {
+            "function_name": "list_capabilities",
+            "description": "List all capabilities for a user.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    List[Dict[str, Any]]: List of all capabilities.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.List[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "list_devices",
+            "description": "List all devices for a user.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    List[Dict[str, Any]]: List of all devices.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.List[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "list_locations",
+            "description": "List all locations for a user.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    List[Dict[str, Any]]: List of all locations.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.List[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "list_rooms",
+            "description": "List all rooms for a user, optionally filtered by location.\n\nArgs:\n    user_id (str): User's email address or 'me' for the authenticated user.\n    location_id (Optional[str]): Filter rooms by this location ID.\nReturns:\n    List[Dict[str, Any]]: List of all rooms.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "location_id",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.List[typing.Dict[str, typing.Any]]"
+        },
+        {
+            "function_name": "update_device_status",
+            "description": "Update the status of a specific device's capability.\n\nArgs:\n    device_id (str): ID of the device to update.\n    component_id (str): ID of the component (e.g., 'main').\n    capability_id (str): ID of the capability (e.g., 'switch').\n    command (str): Command to send (e.g., 'on', 'off', 'setLevel').\n    args (Optional[List[Any]]): Arguments for the command (e.g., [75] for setLevel).\n    user_id (str): User's email address or 'me' for the authenticated user.\nReturns:\n    Dict[str, Any]: The updated device status or an error message.",
+            "parameters": [
+                {
+                    "name": "device_id",
+                    "type": "str"
+                },
+                {
+                    "name": "component_id",
+                    "type": "str"
+                },
+                {
+                    "name": "capability_id",
+                    "type": "str"
+                },
+                {
+                    "name": "command",
+                    "type": "str"
+                },
+                {
+                    "name": "args",
+                    "type": "typing.Optional[typing.List[typing.Any]]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "update_location",
+            "description": "Update an existing location for a user.\n\nArgs:\n    location_id (str): ID of the location to update.\n    user_id (str): User's email address or 'me' for the authenticated user.\n    name (Optional[str]): New name for the location.\n    address (Optional[str]): New address for the location.\n    latitude (Optional[float]): New latitude for the location.\n    longitude (Optional[float]): New longitude for the location.\n\nReturns:\n    Dict[str, Any]: Details of the updated location.",
+            "parameters": [
+                {
+                    "name": "location_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "name",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "address",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "latitude",
+                    "type": "typing.Optional[float]"
+                },
+                {
+                    "name": "longitude",
+                    "type": "typing.Optional[float]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "update_room",
+            "description": "Update an existing room for a user.\n\nArgs:\n    room_id (str): ID of the room to update.\n    user_id (str): User's email address or 'me' for the authenticated user.\n    name (Optional[str]): New name for the room.\n    location_id (Optional[str]): New location ID for the room.\n\nReturns:\n    Dict[str, Any]: Details of the updated room.",
+            "parameters": [
+                {
+                    "name": "room_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "name",
+                    "type": "typing.Optional[str]"
+                },
+                {
+                    "name": "location_id",
+                    "type": "typing.Optional[str]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        }
+    ]
+}

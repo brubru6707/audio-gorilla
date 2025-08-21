@@ -2,8 +2,10 @@ import datetime
 import copy
 import uuid
 from typing import Dict, List, Any, Optional, Union
+from state_loader import load_default_state
 
-# Define a placeholder for EmailStr if not already defined globally
+DEFAULT_STATE = load_default_state("YouTubeApis")
+
 class EmailStr(str):
     pass
 
@@ -333,7 +335,7 @@ class YouTubeApis:
             "view_count": 0,
             "subscriber_count": 0,
             "video_count": 0,
-            "banner_image_path": "https://example.com/default_banner.jpg"
+            "banner_image_path": "https://YouTube.com/default_banner.jpg"
         }
         self.channels[channel_uuid] = new_channel
         self.users[user_id]["channels"].append(channel_uuid)
@@ -987,21 +989,3 @@ class YouTubeApis:
                 del self.channels[channel_id]["captions"][id]
                 return {"success": True, "deleted_caption_id": id}
         return {"error": "Caption track not found.", "success": False}
-
-    # ====================
-    # Reset Data
-    # ====================
-    def reset_data(self) -> Dict[str, bool]:
-        """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
-        """
-        # Re-run the initial data conversion to reset maps and UUIDs
-        global DEFAULT_STATE
-        DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
-        self._load_scenario(DEFAULT_STATE)
-        print("YouTubeApis: All dummy data reset to default state.")
-        return {"reset_status": True}

@@ -1,0 +1,523 @@
+{
+    "api_name": "YouTubeApis",
+    "functions": [
+        {
+            "function_name": "add_comment_to_video",
+            "description": "Add a new comment to a specific video.\n\nArgs:\n    video_id (str): The ID (UUID) of the video to comment on.\n    author_id (str): The ID (UUID) of the user posting the comment.\n    text (str): The content of the comment.\n\nReturns:\n    Dict: A dictionary containing the newly created comment's data.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "author_id",
+                    "type": "str"
+                },
+                {
+                    "name": "text",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "add_video_to_playlist",
+            "description": "Add a video to a specific playlist. Only the playlist owner can modify it.\n\nArgs:\n    playlist_id (str): The ID (UUID) of the playlist to add the video to.\n    video_id (str): The ID (UUID) of the video to add.\n    user_id (str): The ID (UUID) of the user performing the action (must be playlist owner).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                },
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "create_channel",
+            "description": "Create a new channel for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user creating the channel.\n    title (str): The title of the new channel.\n    description (str, optional): The description of the new channel. Defaults to \"\".\n\nReturns:\n    Dict: A dictionary containing the newly created channel's data.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                },
+                {
+                    "name": "title",
+                    "type": "str"
+                },
+                {
+                    "name": "description",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "create_playlist",
+            "description": "Create a new playlist for a specified channel.\n\nArgs:\n    channel_id (str): The ID (UUID) of the channel creating the playlist.\n    title (str): The title of the new playlist.\n    description (str, optional): The description of the new playlist. Defaults to \"\".\n    privacy_status (str, optional): The privacy status of the playlist (\"public\", \"unlisted\", \"private\"). Defaults to \"public\".\n\nReturns:\n    Dict: A dictionary containing the newly created playlist's data.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                },
+                {
+                    "name": "title",
+                    "type": "str"
+                },
+                {
+                    "name": "description",
+                    "type": "str"
+                },
+                {
+                    "name": "privacy_status",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "delete_comment",
+            "description": "Delete a comment. Only the author of the comment or the channel owner can delete it.\n\nArgs:\n    comment_id (str): The ID (UUID) of the comment to delete.\n    user_id (str): The ID (UUID) of the user attempting to delete (must be author or channel owner).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "comment_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "delete_video",
+            "description": "Delete a video. Only the uploader (channel owner) can delete their video.\n\nArgs:\n    video_id (str): The ID (UUID) of the video to delete.\n    channel_id (str): The ID (UUID) of the channel the video belongs to.\n    user_id (str): The ID (UUID) of the user attempting to delete (must be channel owner).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "get_channel_details",
+            "description": "Get the details of a specific channel.\n\nArgs:\n    channel_id (str): The ID (UUID) of the channel to retrieve.\n\nReturns:\n    Dict: A dictionary containing the channel's data.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_playlist_details",
+            "description": "Get the details of a specific playlist, including its videos.\n\nArgs:\n    playlist_id (str): The ID (UUID) of the playlist to retrieve.\n\nReturns:\n    Dict: A dictionary containing the playlist's data.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_user_profile",
+            "description": "Get the profile information for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose profile is to be retrieved.\n\nReturns:\n    Dict: A dictionary containing the user's profile data.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_video_details",
+            "description": "Get the details of a specific video.\n\nArgs:\n    video_id (str): The ID (UUID) of the video to retrieve.\n\nReturns:\n    Dict: A dictionary containing the video's data.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "get_watch_history",
+            "description": "Get the watch history for a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose watch history is to be retrieved.\n\nReturns:\n    Dict: A dictionary containing a list of video IDs in the watch history.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "like_video",
+            "description": "Mark a video as liked by the user. This is a simplified wrapper around youtube_videos_rate.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "list_channels_for_user",
+            "description": "List all channels owned by a specific user.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose channels are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of channels.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_comments_for_video",
+            "description": "List all comments for a specific video.\n\nArgs:\n    video_id (str): The ID (UUID) of the video whose comments are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of comments.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_playlists_in_channel",
+            "description": "List all playlists belonging to a specific channel.\n\nArgs:\n    channel_id (str): The ID (UUID) of the channel whose playlists are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of playlists.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_subscriptions",
+            "description": "List the channels a specific user is subscribed to.\n\nArgs:\n    user_id (str): The ID (UUID) of the user whose subscriptions are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of subscribed channel IDs.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "list_videos_in_channel",
+            "description": "List all videos belonging to a specific channel.\n\nArgs:\n    channel_id (str): The ID (UUID) of the channel whose videos are to be listed.\n\nReturns:\n    Dict: A dictionary containing a list of videos.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "remove_video_from_playlist",
+            "description": "Remove a video from a specific playlist. Only the playlist owner can modify it.\n\nArgs:\n    playlist_id (str): The ID (UUID) of the playlist to remove the video from.\n    video_id (str): The ID (UUID) of the video to remove.\n    user_id (str): The ID (UUID) of the user performing the action (must be playlist owner).\n\nReturns:\n    Dict[str, bool]: A dictionary with a \"success\" key indicating the operation's outcome.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                },
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "search_videos",
+            "description": "Search for videos based on a query string in titles or descriptions.\n\nArgs:\n    query (str): The search query.\n    max_results (int): The maximum number of results to return.\n\nReturns:\n    Dict: A dictionary containing a list of matching video data.",
+            "parameters": [
+                {
+                    "name": "query",
+                    "type": "str"
+                },
+                {
+                    "name": "max_results",
+                    "type": "int"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "set_current_channel",
+            "description": "Sets the current active channel for the API session.\nThe current user must own this channel.\n\nArgs:\n    channel_id (str): The ID (UUID) of the channel to set as current.\n\nReturns:\n    Dict[str, Union[bool, str]]: A dictionary with 'status' indicating success or failure and a message.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "set_current_user",
+            "description": "Sets the current authenticated user for the API session.\n\nArgs:\n    user_id (str): The ID (UUID) of the user to set as current.\n\nReturns:\n    Dict[str, Union[bool, str]]: A dictionary with 'status' indicating success or failure and a message.",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Union[bool, str]]"
+        },
+        {
+            "function_name": "unlike_video",
+            "description": "Mark a video as unliked by the user (effectively a dislike in this dummy, or just removal of like).",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, bool]"
+        },
+        {
+            "function_name": "upload_video",
+            "description": "Upload a new video to a specified channel.\n\nArgs:\n    channel_id (str): The ID (UUID) of the channel to upload the video to.\n    title (str): The title of the video.\n    description (str, optional): The description of the video. Defaults to \"\".\n    duration_seconds (int, optional): The duration of the video in seconds. Defaults to 0.\n    tags (Optional[List[str]], optional): A list of tags for the video. Defaults to None.\n\nReturns:\n    Dict: A dictionary containing the newly created video's data.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                },
+                {
+                    "name": "title",
+                    "type": "str"
+                },
+                {
+                    "name": "description",
+                    "type": "str"
+                },
+                {
+                    "name": "duration_seconds",
+                    "type": "int"
+                },
+                {
+                    "name": "tags",
+                    "type": "typing.Optional[typing.List[str]]"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_captions_delete",
+            "description": "Deletes a caption track.\n\nParameters:\n    id (str): The ID (UUID) of the caption track to delete.\n\nReturns:\n    Dict[str, Any]: A dictionary indicating the success or failure of the deletion.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_captions_insert",
+            "description": "Uploads a caption track for a video.\nIn this dummy, it simulates adding a caption, but doesn't store actual files.\n\nParameters:\n    video_id (str): The ID (UUID) of the video the caption is for.\n    language (str): The language of the caption track (e.g., \"en\", \"es\").\n    track_content (str): The content of the caption track (e.g., SRT format string).\n\nReturns:\n    Dict[str, Any]: A dictionary indicating the success or failure of the upload, with a dummy ID.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "language",
+                    "type": "str"
+                },
+                {
+                    "name": "track_content",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_captions_update",
+            "description": "Updates a caption track.\nIn this dummy, it simulates updating a caption by its dummy ID.\n\nParameters:\n    id (str): The ID (UUID) of the caption track to update.\n    track_content (str): The new content of the caption track.\n\nReturns:\n    Dict[str, Any]: A dictionary indicating the success or failure of the update.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "str"
+                },
+                {
+                    "name": "track_content",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_channel_banners_insert",
+            "description": "Uploads a channel banner image to YouTube for a specific channel.\n\nParameters:\n    image_path (str): The path to the banner image file.\n    channel_id (str): The ID (UUID) of the channel to upload the banner for.\n\nReturns:\n    Dict[str, Any]: A dictionary containing information about the uploaded banner.",
+            "parameters": [
+                {
+                    "name": "image_path",
+                    "type": "str"
+                },
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_channels_update",
+            "description": "Updates a channel's properties.\n\nParameters:\n    channel_id (str): The ID (UUID) of the channel to update.\n    updates (Dict[str, Any]): A dictionary containing the fields to update (e.g., {\"title\": \"New Title\", \"description\": \"New Description\"}).\n    user_id (str): The ID (UUID) of the user requesting the update. Must be the channel owner.\n\nReturns:\n    Dict[str, Any]: The updated channel information.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                },
+                {
+                    "name": "updates",
+                    "type": "typing.Dict[str, typing.Any]"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_comments_insert",
+            "description": "Adds a comment to a video. This is a wrapper for add_comment_to_video.\n\nParameters:\n    video_id (str): The ID (UUID) of the video to comment on.\n    text (str): The content of the comment.\n    author_id (str): The ID (UUID) of the user posting the comment.\n\nReturns:\n    Dict[str, Any]: Result of the operation.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "text",
+                    "type": "str"
+                },
+                {
+                    "name": "author_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_playlistItems_delete",
+            "description": "Deletes a playlist item. Note: Dummy API treats playlist_item_id as video_id for simplicity.\n\nParameters:\n    playlist_item_id (str): The ID (UUID) of the video (which acts as the playlist item ID in this dummy).\n    user_id (str): The ID (UUID) of the user requesting the action (must be playlist owner of relevant playlist).\n\nReturns:\n    Dict[str, Any]: Result of the operation.",
+            "parameters": [
+                {
+                    "name": "playlist_item_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_playlistItems_insert",
+            "description": "Adds a video to a playlist. This is a wrapper for add_video_to_playlist.\n\nParameters:\n    playlist_id (str): The ID (UUID) of the playlist to add the video to.\n    video_id (str): The ID (UUID) of the video to add.\n    user_id (str): The ID (UUID) of the user requesting the action (must be playlist owner).\n\nReturns:\n    Dict[str, Any]: Result of the operation.",
+            "parameters": [
+                {
+                    "name": "playlist_id",
+                    "type": "str"
+                },
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_subscriptions_delete",
+            "description": "Unsubscribes a user from a channel.\n\nParameters:\n    channel_id (str): The ID (UUID) of the channel to unsubscribe from.\n    user_id (str): The ID (UUID) of the user unsubscribing.\n\nReturns:\n    Dict[str, Any]: A dictionary indicating the success or failure of the unsubscription.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_subscriptions_insert",
+            "description": "Subscribes a user to a channel.\n\nParameters:\n    channel_id (str): The ID (UUID) of the channel to subscribe to.\n    user_id (str): The ID (UUID) of the user subscribing.\n\nReturns:\n    Dict[str, Any]: A dictionary indicating the success or failure of the subscription.",
+            "parameters": [
+                {
+                    "name": "channel_id",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        },
+        {
+            "function_name": "youtube_videos_rate",
+            "description": "Rates a video (like or dislike).\n\nParameters:\n    video_id (str): The ID (UUID) of the video to rate.\n    rating (str): The rating to apply (\"like\" or \"dislike\").\n    user_id (str): The ID (UUID) of the user rating the video.\n\nReturns:\n    Dict[str, Any]: A dictionary indicating the success or failure of the rating.",
+            "parameters": [
+                {
+                    "name": "video_id",
+                    "type": "str"
+                },
+                {
+                    "name": "rating",
+                    "type": "str"
+                },
+                {
+                    "name": "user_id",
+                    "type": "str"
+                }
+            ],
+            "return": "typing.Dict[str, typing.Any]"
+        }
+    ]
+}

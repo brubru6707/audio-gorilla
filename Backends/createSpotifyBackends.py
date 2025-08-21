@@ -3,9 +3,9 @@ import copy
 import uuid
 import random
 import json
-from typing import Dict, List, Any, Optional, Union, Literal
+from typing import Dict, Any
+from fake_data import first_names, last_names, domains
 
-# Global maps to store UUIDs during processing
 _initial_user_email_to_uuid_map = {}
 _initial_song_id_to_uuid_map = {}
 _initial_album_id_to_uuid_map = {}
@@ -13,9 +13,7 @@ _initial_playlist_id_to_uuid_map = {}
 _initial_artist_id_to_uuid_map = {}
 _initial_payment_card_id_to_uuid_map = {}
 
-# Helper function for realistic timestamp generation
 def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
-    """Generates a random ISO 8601 formatted datetime string (with Z for UTC) in the past."""
     delta_days = random.randint(days_ago_min, days_ago_max)
     time_offset = datetime.timedelta(days=delta_days, 
                                      hours=random.randint(0, 23), 
@@ -24,11 +22,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
-# --- Data for generating new users, artists, songs, albums, playlists ---
-# Moved these definitions to the top so they are available when _convert_initial_data_to_uuids is called
-first_names = ["Ava", "Noah", "Olivia", "Liam", "Emma", "Charlotte", "Amelia", "Sophia", "Isabella", "Mia", "Harper", "Evelyn", "Abigail", "Emily", "Elizabeth", "Mila", "Ella", "Avery", "Sofia", "Camila", "Aria", "Scarlett", "Victoria", "Madison", "Luna", "Grace", "Chloe", "Penelope", "Layla", "Riley", "Zoey", "Nora", "Lily", "Eleanor", "Hannah", "Lillian", "Addison", "Aubrey", "Ellie", "Stella", "Natalie", "Zoe", "Leah", "Hazel", "Violet", "Aurora", "Savannah", "Brooklyn", "Bella", "Skylar"]
-last_names = ["Smith", "Jones", "Williams", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson", "Clark", "Rodriguez", "Lewis", "Lee", "Walker", "Hall", "Allen", "Young", "Hernandez", "King", "Wright", "Lopez", "Hill", "Scott", "Green", "Adams", "Baker", "Nelson", "Carter", "Mitchell", "Perez", "Roberts", "Turner", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Sanchez"]
-email_domains = ["melodify.com", "tunebloom.net", "rhythmnest.org", "sonicwave.app", "audiosphere.co"]
 common_genres = ["Pop", "Electronic", "Acoustic", "Folk", "Funk", "Rock", "Hip Hop", "R&B", "Jazz", "Classical", "Country", "Indie", "Blues", "Metal", "Reggae", "Dance", "Ambient", "Soul", "Gospel", "Latin"]
 album_types = ["album", "single", "ep", "compilation", "live"]
 card_types = ["Visa", "Mastercard", "Amex", "Discover", "JCB"]
@@ -49,11 +42,8 @@ playlist_descriptions = [
 ]
 
 def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, Any]:
-    """Converts the initial DEFAULT_STATE data to use UUIDs for all relevant IDs and adds new fields."""
-    
     converted_data = copy.deepcopy(initial_data)
 
-    # Clear global maps for each run to ensure fresh UUIDs
     global _initial_user_email_to_uuid_map
     global _initial_song_id_to_uuid_map
     global _initial_album_id_to_uuid_map
@@ -68,40 +58,35 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
     _initial_artist_id_to_uuid_map = {}
     _initial_payment_card_id_to_uuid_map = {}
 
-    current_time_iso = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
-
-    # --- Process Songs First ---
     new_songs = {}
     for old_id, song_data in converted_data.get("songs", {}).items():
         new_id = str(uuid.uuid4())
         _initial_song_id_to_uuid_map[old_id] = new_id
         song_data["id"] = new_id
         if "release_date" not in song_data or not song_data["release_date"]:
-            song_data["release_date"] = generate_random_iso_timestamp(days_ago_min=30, days_ago_max=365*3) # Last month to 3 years ago
+            song_data["release_date"] = generate_random_iso_timestamp(days_ago_min=30, days_ago_max=365*3)
         if "popularity_score" not in song_data:
             song_data["popularity_score"] = random.randint(30, 95)
         if "explicit" not in song_data:
-            song_data["explicit"] = random.random() < 0.15 # 15% chance
+            song_data["explicit"] = random.random() < 0.15
         if "language" not in song_data:
-            song_data["language"] = random.choice(languages) # Use defined list
+            song_data["language"] = random.choice(languages)
         if "stream_count" not in song_data:
-            song_data["stream_count"] = random.randint(1000, 50000000) # Wide range
+            song_data["stream_count"] = random.randint(1000, 50000000)
         new_songs[new_id] = song_data
     converted_data["songs"] = new_songs
 
-    # --- Process Albums ---
     new_albums = {}
     for old_id, album_data in converted_data.get("albums", {}).items():
         new_id = str(uuid.uuid4())
         _initial_album_id_to_uuid_map[old_id] = new_id
         album_data["id"] = new_id
         if "release_date" not in album_data or not album_data["release_date"]:
-            album_data["release_date"] = generate_random_iso_timestamp(days_ago_min=30, days_ago_max=365*4) # Last month to 4 years ago
+            album_data["release_date"] = generate_random_iso_timestamp(days_ago_min=30, days_ago_max=365*4)
         album_data["tracks"] = [_initial_song_id_to_uuid_map.get(s_id, s_id) for s_id in album_data.get("tracks", [])]
         
-        # New album fields
         if "album_type" not in album_data:
-            album_data["album_type"] = random.choice(album_types) # Use defined list
+            album_data["album_type"] = random.choice(album_types)
         if "total_tracks" not in album_data:
             album_data["total_tracks"] = len(album_data["tracks"])
         if "label" not in album_data:
@@ -109,7 +94,6 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         new_albums[new_id] = album_data
     converted_data["albums"] = new_albums
 
-    # --- Process Artists ---
     new_artists = {}
     for old_id, artist_data in converted_data.get("artists", {}).items():
         new_id = str(uuid.uuid4())
@@ -117,48 +101,43 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         artist_data["id"] = new_id
         artist_data["albums"] = [_initial_album_id_to_uuid_map.get(a_id, a_id) for a_id in artist_data.get("albums", [])]
         
-        # New artist fields
         if "bio" not in artist_data:
             artist_data["bio"] = f"A talented artist known for their unique blend of {artist_data.get('genre', 'music')}."
         if "country_origin" not in artist_data:
-            artist_data["country_origin"] = random.choice(countries) # Use defined list
+            artist_data["country_origin"] = random.choice(countries)
         if "followers_count" not in artist_data:
             artist_data["followers_count"] = random.randint(500, 10000000)
         if "is_verified" not in artist_data:
-            artist_data["is_verified"] = random.random() < 0.7 # 70% chance to be verified
+            artist_data["is_verified"] = random.random() < 0.7
         new_artists[new_id] = artist_data
     converted_data["artists"] = new_artists
 
-    # --- Process Playlists ---
     new_playlists = {}
     for old_id, playlist_data in converted_data.get("playlists", {}).items():
         new_id = str(uuid.uuid4())
         _initial_playlist_id_to_uuid_map[old_id] = new_id
         playlist_data["id"] = new_id
         if "created_at" not in playlist_data or not playlist_data["created_at"]:
-            playlist_data["created_at"] = generate_random_iso_timestamp(days_ago_min=60, days_ago_max=365*2) # 2 months to 2 years ago
+            playlist_data["created_at"] = generate_random_iso_timestamp(days_ago_min=60, days_ago_max=365*2)
         if "updated_at" not in playlist_data or not playlist_data["updated_at"]:
-            playlist_data["updated_at"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=60) # Last 60 days
+            playlist_data["updated_at"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=60)
         playlist_data["tracks"] = [_initial_song_id_to_uuid_map.get(s_id, s_id) for s_id in playlist_data.get("tracks", [])]
         
-        # New playlist fields
         if "follower_count" not in playlist_data:
             playlist_data["follower_count"] = random.randint(10, 500000)
         if "collaborative" not in playlist_data:
-            playlist_data["collaborative"] = random.random() < 0.1 # 10% chance
+            playlist_data["collaborative"] = random.random() < 0.1
         if "image_url" not in playlist_data:
-            playlist_data["image_url"] = f"https://example.com/playlists/{new_id}.jpg"
+            playlist_data["image_url"] = f"https://smplenote.com/playlists/{new_id}.jpg"
         new_playlists[new_id] = playlist_data
     converted_data["playlists"] = new_playlists
 
-    # --- Process Users ---
     new_users = {}
     for email, user_data in converted_data.get("users", {}).items():
         user_id = str(uuid.uuid4())
         _initial_user_email_to_uuid_map[email] = user_id
         user_data["id"] = user_id
         
-        # Update IDs based on global maps
         user_data["liked_songs"] = [_initial_song_id_to_uuid_map.get(s_id, s_id) for s_id in user_data.get("liked_songs", [])]
         user_data["liked_albums"] = [_initial_album_id_to_uuid_map.get(a_id, a_id) for a_id in user_data.get("liked_albums", [])]
         user_data["liked_playlists"] = [_initial_playlist_id_to_uuid_map.get(p_id, p_id) for p_id in user_data.get("liked_playlists", [])]
@@ -167,65 +146,47 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         user_data["library_albums"] = [_initial_album_id_to_uuid_map.get(a_id, a_id) for a_id in user_data.get("library_albums", [])]
         user_data["downloaded_songs"] = [_initial_song_id_to_uuid_map.get(s_id, s_id) for s_id in user_data.get("downloaded_songs", [])]
 
-        # Add new user fields
         if "registration_date" not in user_data:
-            user_data["registration_date"] = generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*5) # 1 to 5 years ago
+            user_data["registration_date"] = generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*5)
         if "last_active_date" not in user_data:
-            user_data["last_active_date"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30) # Last 30 days
+            user_data["last_active_date"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30)
         if "preferred_genre" not in user_data:
-            user_data["preferred_genre"] = random.choice(common_genres) # Use defined list
+            user_data["preferred_genre"] = random.choice(common_genres)
         if "total_play_time_ms" not in user_data:
-            user_data["total_play_time_ms"] = random.randint(1000000, 900000000) # 1M ms (16 mins) to 900M ms (15000 mins or 250 hours)
+            user_data["total_play_time_ms"] = random.randint(1000000, 900000000)
 
-        # Profile additions
         if "country" not in user_data:
-            user_data["country"] = random.choice(countries) # Use defined list
+            user_data["country"] = random.choice(countries)
         if "device_type" not in user_data:
-            user_data["device_type"] = random.choice(device_types) # Use defined list
+            user_data["device_type"] = random.choice(device_types)
         
         new_users[user_id] = user_data
     converted_data["users"] = new_users
 
-    # --- Process Payment Cards ---
     new_payment_cards = {}
     for old_id, card_data in converted_data.get("payment_cards", {}).items():
         new_id = str(uuid.uuid4())
         _initial_payment_card_id_to_uuid_map[old_id] = new_id
         card_data["id"] = new_id
-        # Ensure user_id is linked by UUID
         user_email_for_card = card_data.get("user_email")
         if user_email_for_card and user_email_for_card in _initial_user_email_to_uuid_map:
             card_data["user_id"] = _initial_user_email_to_uuid_map[user_email_for_card]
-        else: # Fallback if user_email not found (e.g., for newly created users)
-            # This should pick a user that was *just* converted or an initial one
+        else:
             card_data["user_id"] = random.choice(list(new_users.keys())) 
         
-        del card_data["user_email"] # Remove the temporary email key
+        del card_data["user_email"]
         
-        # Add new payment card fields
         if "card_type" not in card_data:
-            card_data["card_type"] = random.choice(card_types) # Use defined list
+            card_data["card_type"] = random.choice(card_types)
         if "billing_address" not in card_data:
             card_data["billing_address"] = f"{random.randint(100, 999)} {random.choice(['Elm', 'Pine', 'Oak'])} St, Anytown, {random.choice(['NY', 'CA', 'TX'])}"
 
         new_payment_cards[new_id] = card_data
     converted_data["payment_cards"] = new_payment_cards
-    
-    # Update username to the UUID of the default user
-    initial_default_email = initial_data.get("username")
-    if initial_default_email and initial_default_email in _initial_user_email_to_uuid_map:
-        converted_data["username"] = _initial_user_email_to_uuid_map[initial_default_email]
-    else:
-        # If the default user wasn't in the initial data, pick a random one
-        converted_data["username"] = list(new_users.keys())[0] if new_users else None
-
 
     return converted_data
 
-
-# --- Raw Initial Data (used as a template) ---
 RAW_DEFAULT_STATE = {
-    "username": "samantha.davis@melodify.com",
     "users": {
         "samantha.davis@melodify.com": {
             "first_name": "Samantha",
@@ -291,18 +252,8 @@ RAW_DEFAULT_STATE = {
     }
 }
 
-# Ensure DEFAULT_STATE is initialized with UUIDs from the RAW_DEFAULT_STATE
-# before we start adding new items, so that the UUID maps are populated.
-# This makes sure the existing items are converted and available for linking.
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
 
-
-# These global lists should be populated *after* DEFAULT_STATE is initialized
-# because _convert_initial_data_to_uuids already converts the initial data
-# and populates the _initial_*_id_to_uuid_map variables.
-# We then use these maps for generating new data, linking back to existing UUIDs where appropriate.
-
-# Initialize with existing UUIDs after initial conversion
 all_artists_uuid = list(_initial_artist_id_to_uuid_map.values())
 all_songs_uuid = list(_initial_song_id_to_uuid_map.values())
 all_albums_uuid = list(_initial_album_id_to_uuid_map.values())
@@ -315,9 +266,8 @@ def generate_artist_data():
     albums_count = random.randint(1, 5)
     albums = []
     for _ in range(albums_count):
-        albums.append(generate_album_data(artist_id)) # Generate albums associated with this artist
+        albums.append(generate_album_data(artist_id))
     
-    # Add generated albums to the global albums dict
     for album_uuid, album_data in albums:
         DEFAULT_STATE["albums"][album_uuid] = album_data
         all_albums_uuid.append(album_uuid)
@@ -326,7 +276,7 @@ def generate_artist_data():
         "id": artist_id,
         "name": name,
         "genre": genre,
-        "albums": [album[0] for album in albums], # Store only UUIDs
+        "albums": [album[0] for album in albums],
         "bio": f"Known for their {genre} sound, {name} has captivated audiences worldwide.",
         "country_origin": random.choice(countries),
         "followers_count": random.randint(10000, 50000000),
@@ -361,12 +311,11 @@ def generate_album_data(artist_id):
 def generate_song_data(artist_id, album_id, album_release_date):
     song_id = str(uuid.uuid4())
     title = f"{random.choice(['Fading', 'Rising', 'Silent', 'Electric'])} {random.choice(['Stars', 'Waves', 'Voices', 'Skies'])} {random.randint(1,99)}"
-    duration_ms = random.randint(150000, 300000) # 2:30 to 5:00 minutes
+    duration_ms = random.randint(150000, 300000)
     genre = random.choice(common_genres)
     
-    # Ensure song release date is on or after album release date
     album_release_dt = datetime.datetime.fromisoformat(album_release_date.replace('Z', '+00:00'))
-    song_release_dt = album_release_dt + datetime.timedelta(days=random.randint(0, 30)) # up to 30 days after album
+    song_release_dt = album_release_dt + datetime.timedelta(days=random.randint(0, 30))
     release_date = song_release_dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
     song_data = {
@@ -388,10 +337,9 @@ def generate_playlist_data(user_id):
     playlist_id = str(uuid.uuid4())
     name = f"{random.choice(first_names)}'s {random.choice(['Workout', 'Chill', 'Study', 'Party', 'Road Trip'])} Mix"
     description = random.choice(playlist_descriptions)
-    public = random.random() < 0.7 # 70% chance to be public
+    public = random.random() < 0.7
     
     num_tracks = random.randint(5, 50)
-    # Ensure we only pick from already generated songs
     tracks = random.sample(all_songs_uuid, min(num_tracks, len(all_songs_uuid))) if all_songs_uuid else []
     
     created_at = generate_random_iso_timestamp(days_ago_min=60, days_ago_max=365*2)
@@ -404,12 +352,12 @@ def generate_playlist_data(user_id):
         "description": description,
         "public": public,
         "tracks": tracks,
-        "owner_id": user_id, # Link to user UUID
+        "owner_id": user_id,
         "created_at": created_at,
         "updated_at": updated_at,
         "follower_count": random.randint(5, 50000),
         "collaborative": random.random() < 0.05,
-        "image_url": f"https://example.com/playlists/{playlist_id}.jpg"
+        "image_url": f"https://spotify.com/playlists/{playlist_id}.jpg"
     }
     return playlist_id, playlist_data
 
@@ -421,9 +369,9 @@ def generate_payment_card_data(user_id):
     expiry_year = random.randint(2026, 2032)
     expiry_month = random.randint(1, 12)
     cvv_number = ''.join(random.choices('0123456789', k=3))
-    is_default = random.random() < 0.5 # 50% chance to be default for simplicity
+    is_default = random.random() < 0.5
 
-    card_name = f"{random.choice(first_names)}'s {card_type}" # Use random first name here too for diversity
+    card_name = f"{random.choice(first_names)}'s {card_type}"
     billing_address = f"{random.randint(100, 999)} {random.choice(['Main', 'Oak', 'Maple', 'Pine'])} St, {random.choice(['Springfield', 'Rivertown', 'Metropolis'])}, {random.choice(['NY', 'CA', 'TX', 'FL'])}, {random.randint(10001, 99999)}"
 
     return card_id, {
@@ -433,42 +381,35 @@ def generate_payment_card_data(user_id):
         "card_number": card_number,
         "expiry_year": expiry_year,
         "expiry_month": expiry_month,
-        "cvv_number": "XXX", # Mask CVV for realism
+        "cvv_number": cvv_number,
         "is_default": is_default,
-        "card_type": card_type, # New field
-        "billing_address": billing_address # New field
+        "card_type": card_type,
+        "billing_address": billing_address
     }
 
-# --- Generate additional data ---
-num_additional_users = 48 # Target 50 total users (2 initial + 48 new)
-num_artists_to_add = 20 # Add more artists
-num_playlists_to_add = 30 # Add more playlists
+num_additional_users = 48
+num_artists_to_add = 20
+num_playlists_to_add = 30
 
-# Populate artists, albums, songs first globally
 for _ in range(num_artists_to_add):
     artist_uuid, artist_data = generate_artist_data()
     DEFAULT_STATE["artists"][artist_uuid] = artist_data
     all_artists_uuid.append(artist_uuid)
 
-# Now, generate new users and connect them to the content
 for i in range(num_additional_users):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(email_domains)}"
+    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
     
-    # Ensure unique email
-    # Check against values in _initial_user_email_to_uuid_map as well as current DEFAULT_STATE users
     all_current_emails = set([u["email"] for u in DEFAULT_STATE["users"].values()])
     while email in all_current_emails:
-        email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(email_domains)}"
+        email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
 
     user_id = str(uuid.uuid4())
-    _initial_user_email_to_uuid_map[email] = user_id # Add to map for payment card linking
+    _initial_user_email_to_uuid_map[email] = user_id
 
-    # Generate user preferences/library
     num_liked_songs = random.randint(5, min(50, len(all_songs_uuid)))
     num_liked_albums = random.randint(1, min(10, len(all_albums_uuid)))
-    # num_liked_playlists = random.randint(1, min(5, len(all_playlists_uuid))) # Will be filled after playlists are generated
     num_following_artists = random.randint(1, min(8, len(all_artists_uuid)))
     num_library_songs = random.randint(10, min(100, len(all_songs_uuid)))
     num_library_albums = random.randint(2, min(20, len(all_albums_uuid)))
@@ -479,30 +420,28 @@ for i in range(num_additional_users):
         "first_name": first,
         "last_name": last,
         "email": email,
-        "verified": random.random() < 0.9, # 90% chance to be verified
+        "verified": random.random() < 0.9,
         "liked_songs": random.sample(all_songs_uuid, num_liked_songs),
         "liked_albums": random.sample(all_albums_uuid, num_liked_albums),
-        "liked_playlists": [], # Will be filled after playlists are generated
+        "liked_playlists": [],
         "following_artists": random.sample(all_artists_uuid, num_following_artists),
         "library_songs": random.sample(all_songs_uuid, num_library_songs),
         "library_albums": random.sample(all_albums_uuid, num_library_albums),
         "downloaded_songs": random.sample(all_songs_uuid, num_downloaded_songs),
-        "premium": random.random() < 0.6, # 60% chance for premium
+        "premium": random.random() < 0.6,
         "registration_date": generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*5),
         "last_active_date": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30),
         "preferred_genre": random.choice(common_genres),
-        "total_play_time_ms": random.randint(5000000, 1000000000), # More significant play time
+        "total_play_time_ms": random.randint(5000000, 1000000000),
         "country": random.choice(countries),
         "device_type": random.choice(device_types)
     }
     DEFAULT_STATE["users"][user_id] = new_user_data
 
-    # Add payment card for new users, especially premium ones
-    if new_user_data["premium"] or random.random() < 0.3: # All premium users get a card, plus 30% of free users
+    if new_user_data["premium"] or random.random() < 0.3:
         card_id, card_data = generate_payment_card_data(user_id)
         DEFAULT_STATE["payment_cards"][card_id] = card_data
 
-# Now generate playlists, linking them to existing users
 user_uuids = list(DEFAULT_STATE["users"].keys())
 for _ in range(num_playlists_to_add):
     if user_uuids:
@@ -511,26 +450,15 @@ for _ in range(num_playlists_to_add):
         DEFAULT_STATE["playlists"][playlist_uuid] = playlist_data
         all_playlists_uuid.append(playlist_uuid)
 
-# Now that playlists are generated, update user's liked_playlists for new users
 for user_data in DEFAULT_STATE["users"].values():
-    if not user_data["liked_playlists"]: # Only for new users who don't have this populated yet
+    if not user_data["liked_playlists"]:
         num_liked_playlists = random.randint(1, min(5, len(all_playlists_uuid)))
-        if all_playlists_uuid: # Ensure there are playlists to pick from
+        if all_playlists_uuid:
             user_data["liked_playlists"] = random.sample(all_playlists_uuid, num_liked_playlists)
 
-
-# Ensure the "username" (current user) is set to a UUID
-if RAW_DEFAULT_STATE["username"] in _initial_user_email_to_uuid_map: # Use RAW_DEFAULT_STATE for the original email
-    DEFAULT_STATE["username"] = _initial_user_email_to_uuid_map[RAW_DEFAULT_STATE["username"]]
-else:
-    # If original username wasn't in the map (e.g., deleted), pick a random user
-    DEFAULT_STATE["username"] = random.choice(list(DEFAULT_STATE["users"].keys())) if DEFAULT_STATE["users"] else None
-
-
-# --- Output the generated DEFAULT_STATE ---
-# output_filename = 'diverse_spotify_state.json'
-# with open(output_filename, 'w') as f:
-#     json.dump(DEFAULT_STATE, f, indent=2)
+output_filename = 'diverse_spotify_state.json'
+with open(output_filename, 'w') as f:
+    json.dump(DEFAULT_STATE, f, indent=2)
 
 print(f"Total number of users: {len(DEFAULT_STATE['users'])}")
 print(f"Total number of songs: {len(DEFAULT_STATE['songs'])}")
@@ -538,4 +466,4 @@ print(f"Total number of albums: {len(DEFAULT_STATE['albums'])}")
 print(f"Total number of artists: {len(DEFAULT_STATE['artists'])}")
 print(f"Total number of playlists: {len(DEFAULT_STATE['playlists'])}")
 print(f"Total number of payment cards: {len(DEFAULT_STATE['payment_cards'])}")
-# print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
+print(f"Generated DEFAULT_STATE saved to '{output_filename}'")

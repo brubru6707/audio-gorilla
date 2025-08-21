@@ -2,13 +2,16 @@ import uuid
 from typing import Dict, List, Union, Literal, Any
 from datetime import datetime, timedelta
 from copy import deepcopy
+from state_loader import load_default_state
+
+DEFAULT_STATE = load_default_state("AmazonApis")
 
 class User:
     def __init__(self, user_id: str, email: str = None):
         self.user_id = user_id
         self.email = email
 
-class AmazonAPI:
+class AmazonApis:
     def __init__(self):
         self.state = deepcopy(DEFAULT_STATE)
 
