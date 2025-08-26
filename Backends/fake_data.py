@@ -1249,6 +1249,5175 @@ products_based_on_categories = {
     ]
 }
 
+product_qa_based_on_categories = {
+ "Electronics": {
+  "Wearables & Accessories": [
+   {
+    "product_name": "Apple Watch Series 9 GPS 45mm Midnight Aluminum Case with Midnight Sport Band",
+    "q_and_a": [
+     {
+      "question": "Can I use this watch to track my swimming laps in a pool?",
+      "answer": "Yes, the Apple Watch Series 9 is water-resistant up to 50 meters and has dedicated workout modes for pool and open water swimming."
+     },
+     {
+      "question": "Does this model have the 'Double Tap' gesture feature?",
+      "answer": "Yes, the Series 9 includes the new Double Tap gesture for answering calls, opening notifications, and more without touching the screen."
+     },
+     {
+      "question": "Is the sport band interchangeable with other bands?",
+      "answer": "Absolutely! The 45mm Apple Watch is compatible with all 45mm, 44mm, and 42mm Apple Watch bands."
+     }
+    ]
+   },
+   {
+    "product_name": "Sony WF-1000XM4 Industry Leading Noise Canceling Truly Wireless Earbud Headphones",
+    "q_and_a": [
+     {
+      "question": "How long does the battery last with noise canceling turned on?",
+      "answer": "The WF-1000XM4 earbuds offer up to 8 hours of continuous playback with noise canceling active, and the charging case provides an additional 16 hours."
+     },
+     {
+      "question": "Are these earbuds suitable for making phone calls in noisy environments?",
+      "answer": "Yes, they feature Precise Voice Pickup Technology with beamforming microphones and a bone-conduction sensor to ensure clear voice calls even in loud settings."
+     }
+    ]
+   },
+   {
+    "product_name": "JBL Charge 5 Portable Bluetooth Speaker with IP67 Waterproof and USB Charge Out",
+    "q_and_a": [
+     {
+      "question": "What does IP67 waterproof mean for this speaker?",
+      "answer": "The IP67 rating means the JBL Charge 5 is fully protected against dust and can be submerged in up to 1 meter of water for 30 minutes, making it perfect for the beach or pool."
+     },
+     {
+      "question": "Can I connect multiple JBL speakers together?",
+      "answer": "Yes, using JBL's PartyBoost feature, you can pair two compatible speakers for stereo sound or link multiple speakers to amplify the party."
+     }
+    ]
+   },
+   {
+    "product_name": "SteelSeries Arctis 7P Wireless Gaming Headset with DTS Headphone:X v2.0",
+    "q_and_a": [
+     {
+      "question": "Is this headset primarily for PlayStation consoles?",
+      "answer": "While the 'P' in 7P stands for PlayStation and it's optimized for PS5's Tempest 3D Audio, it's also fully compatible with PC, Nintendo Switch, and Android devices via the USB-C dongle."
+     },
+     {
+      "question": "How good is the microphone for team chat?",
+      "answer": "It features a Discord-Certified ClearCast bidirectional microphone, widely recognized as one of the best in gaming for its superior noise cancellation and voice clarity."
+     }
+    ]
+   },
+   {
+    "product_name": "Meta Quest 2 Advanced All-In-One Virtual Reality Headset 128GB",
+    "q_and_a": [
+     {
+      "question": "Do I need a PC to use the Meta Quest 2?",
+      "answer": "No, the Quest 2 is a standalone, all-in-one VR headset. You do not need a PC or console to play games and use apps, though you can optionally connect it to a PC for more powerful VR experiences with a Link cable."
+     },
+     {
+      "question": "Is 128GB enough storage for games?",
+      "answer": "128GB is a good starting point and can hold approximately 20-30 games, depending on their size. It's suitable for most users who play a variety of titles."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech MX Keys Advanced Wireless Illuminated Keyboard for Mac and PC",
+    "q_and_a": [
+     {
+      "question": "Can I switch between typing on my Mac and my PC with this keyboard?",
+      "answer": "Yes, the MX Keys features Easy-Switch buttons that allow you to pair with up to three devices and switch between them seamlessly with the press of a button."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech MX Master 3S Advanced Wireless Mouse with Ultra-Fast Scrolling",
+    "q_and_a": [
+     {
+      "question": "What makes the scrolling 'ultra-fast'?",
+      "answer": "The MX Master 3S uses a MagSpeed Electromagnetic scroll wheel that is precise enough to stop on a pixel and fast enough to scroll 1,000 lines in a second. It's also nearly silent."
+     }
+    ]
+   },
+   {
+    "product_name": "HP OfficeJet Pro 9015e All-in-One Wireless Color Printer with Smart Tasks",
+    "q_and_a": [
+     {
+      "question": "Does this printer support automatic two-sided scanning?",
+      "answer": "Yes, the HP OfficeJet Pro 9015e features a 35-page automatic document feeder that supports single-pass, two-sided scanning, copying, and faxing."
+     },
+     {
+      "question": "What is included with the 'e' in 9015e?",
+      "answer": "The 'e' signifies that this model is HP+ enabled, which provides 6 months of free Instant Ink (if you enroll) and an extra year of HP warranty for using genuine HP ink."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple AirPods Pro 2nd Generation with MagSafe Charging Case Active Noise Cancellation",
+    "q_and_a": [
+     {
+      "question": "What is the main improvement in noise cancellation over the first generation?",
+      "answer": "The 2nd Generation AirPods Pro offer up to two times more Active Noise Cancellation, thanks to the new H2 chip and optimized acoustic design."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech G Pro X Superlight Wireless Gaming Mouse Lightweight 63g",
+    "q_and_a": [
+     {
+      "question": "How is this mouse so lightweight?",
+      "answer": "The G Pro X Superlight was meticulously engineered to reduce weight to under 63 grams without compromising structural integrity, using a lightweight internal structure and thin outer shell."
+     }
+    ]
+   },
+   {
+    "product_name": "Bose QuietComfort 45 Bluetooth Wireless Noise Cancelling Headphones Black",
+    "q_and_a": [
+     {
+      "question": "What is the difference between Quiet Mode and Aware Mode?",
+      "answer": "Quiet Mode provides full noise cancellation to immerse you in your music, while Aware Mode uses microphones to let in ambient sound so you can hear your surroundings and your music at the same time."
+     }
+    ]
+   },
+   {
+    "product_name": "Beats Studio3 Wireless Noise Cancelling Over-Ear Headphones Matte Black",
+    "q_and_a": [
+     {
+      "question": "How does the Apple W1 chip benefit these headphones?",
+      "answer": "The Apple W1 chip provides seamless setup and switching for Apple devices, Class 1 Bluetooth for extended range, and improved power efficiency, offering up to 22 hours of battery life with noise cancelling on."
+     }
+    ]
+   },
+   {
+    "product_name": "Canon PIXMA TS9521C All-In-One Wireless Crafting Printer 12x12 Printing",
+    "q_and_a": [
+     {
+      "question": "Can this printer really handle 12x12 inch scrapbook paper?",
+      "answer": "Yes, the PIXMA TS9521C is specifically designed for crafters and supports borderless printing on 12\"x12\" cardstock, making it ideal for scrapbooking."
+     }
+    ]
+   },
+   {
+    "product_name": "Razer BlackWidow V3 Pro Mechanical Wireless Gaming Keyboard Green Switches",
+    "q_and_a": [
+     {
+      "question": "What do the 'Green Switches' feel and sound like?",
+      "answer": "Razer Green Mechanical Switches provide a satisfying clicky sound with a tactile bump, offering optimized actuation for the best in-game performance. They are popular with typists and gamers who enjoy audible feedback."
+     }
+    ]
+   },
+   {
+    "product_name": "Anova Culinary Sous Vide Precision Cooker Nano Bluetooth Enabled",
+    "q_and_a": [
+     {
+      "question": "Is this model powerful enough for cooking large cuts of meat?",
+      "answer": "The Anova Nano is perfect for everyday home use and can easily handle most common tasks. For very large water baths (over 5 gallons) or cooking large roasts, you might consider one of Anova's more powerful models."
+     }
+    ]
+   },
+   {
+    "product_name": "Tile Mate Bluetooth Tracker 2022 1-Pack with 250 ft Range",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cricut Explore Air 2 Die-Cutting Machine Mint with Bluetooth",
+    "q_and_a": [
+     {
+      "question": "What kinds of materials can the Explore Air 2 cut?",
+      "answer": "It can cut over 100 materials, including cardstock, vinyl, iron-on, glitter paper, cork, and bonded fabric."
+     }
+    ]
+   },
+   {
+    "product_name": "Xbox Series X Console 1TB SSD with Wireless Controller",
+    "q_and_a": [
+     {
+      "question": "Does the Xbox Series X support my old Xbox One games?",
+      "answer": "Yes, the Xbox Series X is backward compatible with thousands of games from all four generations of Xbox, including original Xbox, Xbox 360, and Xbox One. Many of these games will even see improvements in load times and performance."
+     }
+    ]
+   },
+   {
+    "product_name": "Meta Quest 3 Advanced All-In-One Virtual Reality Headset 128GB",
+    "q_and_a": [
+     {
+      "question": "What is the biggest difference between the Quest 2 and Quest 3?",
+      "answer": "The primary difference is the introduction of high-fidelity, full-color mixed reality (MR) on the Quest 3. It uses cameras to blend the virtual and real worlds, allowing for more immersive experiences. It also has a higher resolution display and a more powerful processor."
+     }
+    ]
+   },
+   {
+    "product_name": "Samsung Galaxy Buds2 Pro True Wireless Bluetooth Earbuds Hi-Fi Audio",
+    "q_and_a": [
+     {
+      "question": "What is 'Hi-Fi 24bit Audio' and do I need a special device to hear it?",
+      "answer": "24bit audio provides higher quality, more detailed sound than standard 16bit audio. To experience the full benefit of 24bit Hi-Fi audio with the Buds2 Pro, you will need a Samsung Galaxy device that supports it."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple AirPods 3rd Generation with MagSafe Charging Case Spatial Audio",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bose SoundLink Flex Bluetooth Portable Speaker Waterproof Wireless",
+    "q_and_a": [
+     {
+      "question": "What is PositionIQ Technology?",
+      "answer": "PositionIQ technology automatically detects the speaker's orientation—whether it's upright, hanging, or flat on its back—and optimizes the EQ to ensure natural, full sound in any position."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple AirPods Max Over-Ear Wireless Headphones Space Gray with H1 Chip",
+    "q_and_a": [
+     {
+      "question": "Do the AirPods Max come with a standard headphone jack?",
+      "answer": "No, the AirPods Max do not have a 3.5mm headphone jack. They connect wirelessly via Bluetooth or can be used in wired mode with a Lightning to 3.5mm Audio Cable, which is sold separately."
+     }
+    ]
+   },
+   {
+    "product_name": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones Silver",
+    "q_and_a": [
+     {
+      "question": "How is the noise cancellation on the XM5 different from the previous XM4 model?",
+      "answer": "The WH-1000XM5 uses two processors and eight microphones for Sony's best-ever noise cancellation. It particularly excels at cutting out mid- and high-frequency noise, like voices and city sounds, more effectively than the XM4."
+     }
+    ]
+   },
+   {
+    "product_name": "Bose QuietComfort Ultra Headphones with CustomTune Technology Black",
+    "q_and_a": [
+     {
+      "question": "How does CustomTune technology work?",
+      "answer": "CustomTune technology automatically analyzes your ears' unique shape and adapts the sound performance and noise cancellation precisely to you, ensuring an optimal and personalized listening experience."
+     }
+    ]
+   },
+   {
+    "product_name": "Belkin BoostCharge Pro 3-in-1 Wireless Charging Pad with MagSafe",
+    "q_and_a": [
+     {
+      "question": "Does this provide the fastest possible wireless charging for an iPhone?",
+      "answer": "Yes, this charging pad is officially MagSafe certified, meaning it delivers up to 15W of fast wireless charging to compatible iPhone models, which is the maximum speed available."
+     }
+    ]
+   },
+   {
+    "product_name": "Fitbit Sense 2 Health and Fitness Smartwatch with Stress Management Tools",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple Watch Ultra 2 GPS + Cellular 49mm Titanium Case with Ocean Band",
+    "q_and_a": [
+     {
+      "question": "Is the Apple Watch Ultra 2 suitable for scuba diving?",
+      "answer": "Yes, the Apple Watch Ultra 2 is designed for high-speed water sports and recreational scuba diving up to 40 meters. It's certified to EN13319, an international standard for dive accessories, and has a dedicated Oceanic+ app."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech MX Mechanical Wireless Illuminated Keyboard with Tactile Switches",
+    "q_and_a": [
+     {
+      "question": "What is the difference between Tactile, Linear, and Clicky switches on this keyboard?",
+      "answer": "Tactile switches (offered here) provide a quiet but noticeable bump for feedback. Linear switches are smooth and quiet with no bump. Clicky switches provide a satisfying audible 'click' with each keystroke."
+     }
+    ]
+   },
+   {
+    "product_name": "Razer Basilisk V3 Pro Wireless Gaming Mouse HyperScroll Tilt Wheel",
+    "q_and_a": [
+     {
+      "question": "Can the HyperScroll Tilt Wheel switch between different scroll modes?",
+      "answer": "Yes, the smart-reel mode allows it to automatically shift from a tactile, clicky scroll to a free-spinning scroll when you scroll faster, or you can manually switch between the modes."
+     }
+    ]
+   },
+   {
+    "product_name": "Epson EcoTank Pro ET-5880 Wireless All-in-One Supertank Printer",
+    "q_and_a": [
+     {
+      "question": "What is a 'Supertank' printer and how is it different from cartridge printers?",
+      "answer": "A Supertank printer uses large, refillable ink tanks instead of disposable cartridges. The ET-5880 comes with enough ink in the box to print up to 7,500 pages black/6,000 color, offering significant savings on replacement ink."
+     }
+    ]
+   },
+   {
+    "product_name": "Jabra Evolve2 65 Flex Wireless Headset with Active Noise Cancellation",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Vitamix Venturist V1200 Professional-Grade Blender with Bluetooth Connectivity",
+    "q_and_a": [
+     {
+      "question": "Why does a blender need Bluetooth?",
+      "answer": "The Bluetooth connectivity allows the blender to pair with the Vitamix Perfect Blend App, which provides step-by-step recipe instructions, unlocks program settings, and helps you track nutritional information."
+     }
+    ]
+   },
+   {
+    "product_name": "Lutron Caseta Wireless Smart Lighting Dimmer Switch Starter Kit",
+    "q_and_a": [
+     {
+      "question": "Do I need a neutral wire to install this dimmer switch?",
+      "answer": "No, one of the key advantages of the Lutron Caseta system is that most of its switches and dimmers do not require a neutral wire, making them compatible with older homes."
+     }
+    ]
+   },
+   {
+    "product_name": "Simplisafe The Essentials Wireless Home Security System 5-Piece Kit",
+    "q_and_a": [
+     {
+      "question": "Can I use this system without a monthly subscription?",
+      "answer": "Yes, you can self-monitor the system without a subscription. The alarm will sound locally, but you won't have access to professional monitoring, mobile app controls, or emergency dispatch services."
+     }
+    ]
+   },
+   {
+    "product_name": "Bose QuietComfort Ultra Noise Cancelling Wireless Headphones with Spatial Audio",
+    "q_and_a": [
+     {
+      "question": "What is Immersive Audio and how is it different from regular stereo?",
+      "answer": "Bose Immersive Audio is a form of spatial audio that makes your music feel more realistic and multi-dimensional. It places the sound 'in front' of you, so it feels like you're listening to speakers in a room rather than headphones on your head."
+     }
+    ]
+   },
+   {
+    "product_name": "Razer BlackShark V2 Pro Wireless Gaming Headset with HyperSpeed 2.4GHz Wireless",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Keychron K2 Pro QMK/VIA Wireless Mechanical Keyboard 75% Layout Gateron G Pro Switches",
+    "q_and_a": [
+     {
+      "question": "What does QMK/VIA support mean for this keyboard?",
+      "answer": "QMK/VIA support allows for complete customization of the keyboard's layout. You can remap any key, create complex macros, and change lighting effects using easy-to-use software, giving you full control over your keyboard's functionality."
+     }
+    ]
+   },
+   {
+    "product_name": "Razer DeathAdder V3 Pro Wireless Gaming Mouse with Focus Pro 30K Optical Sensor",
+    "q_and_a": [
+     {
+      "question": "How long does the battery last on a single charge?",
+      "answer": "The Razer DeathAdder V3 Pro offers up to 90 hours of battery life with constant motion at 1000 Hz polling rate, making it one of the longest-lasting wireless gaming mice available."
+     }
+    ]
+   },
+   {
+    "product_name": "Brother MFC-J4335DW INKvestment Tank All-in-One Wireless Color Printer",
+    "q_and_a": [
+     {
+      "question": "What is an 'INKvestment Tank' system?",
+      "answer": "It's a hybrid system that uses re-engineered ink cartridges that hold more ink and connect to an internal ink storage tank. This provides up to 1 year of ink in the box without the need for replacement cartridges."
+     }
+    ]
+   },
+   {
+    "product_name": "Beats Studio Buds + True Wireless Noise Cancelling Earbuds with Spatial Audio",
+    "q_and_a": [
+     {
+      "question": "Are these earbuds better for Android or Apple users?",
+      "answer": "The Beats Studio Buds + are designed to provide a great experience for both. They offer one-touch pairing and 'Find My' integration on both iOS and Android platforms."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech G Pro X Superlight Wireless Gaming Mouse with HERO 25K Sensor",
+    "q_and_a": [
+     {
+      "question": "What is the primary difference between this and the regular G Pro Wireless mouse?",
+      "answer": "The main difference is weight. The Superlight is significantly lighter at under 63g compared to the G Pro Wireless at 80g. It achieves this by removing features like RGB lighting and the modular side buttons."
+     }
+    ]
+   },
+   {
+    "product_name": "Razer DeathAdder V3 Pro Wireless Gaming Mouse 30K DPI Optical Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung Galaxy Buds2 Pro Truly Wireless Earbuds with Hi-Fi 24bit Audio",
+    "q_and_a": [
+     {
+      "question": "Do these earbuds have multipoint Bluetooth connection?",
+      "answer": "Yes, they support seamless switching between paired Bluetooth devices. For example, if you are watching a movie on your tablet and a call comes in on your phone, the earbuds will automatically switch to the phone."
+     }
+    ]
+   },
+   {
+    "product_name": "Google Pixel Buds Pro Truly Wireless Earbuds with Active Noise Cancellation",
+    "q_and_a": [
+     {
+      "question": "How well do these integrate with the Google Assistant?",
+      "answer": "They offer deep, hands-free integration. You can simply say 'Hey Google' to get directions, reply to a text, control your music, and even get real-time translations directly in your ear."
+     }
+    ]
+   },
+   {
+    "product_name": "Bose QuietComfort Earbuds II Noise Cancelling In-Ear Headphones",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sennheiser Momentum True Wireless 3 Earbuds with Adaptive Noise Cancellation",
+    "q_and_a": [
+     {
+      "question": "What does 'Adaptive' Noise Cancellation mean?",
+      "answer": "The earbuds automatically adjust the level of noise cancellation in real-time based on the noise level in your surrounding environment, ensuring optimal performance without you needing to manually change settings."
+     }
+    ]
+   },
+   {
+    "product_name": "Anker Soundcore Liberty 4 True Wireless Earbuds with Dual Dynamic Drivers",
+    "q_and_a": [
+     {
+      "question": "What is the purpose of the in-ear heart rate sensor?",
+      "answer": "The built-in heart rate sensor tracks your heart rate during the day and during workouts, providing wellness data directly to the Soundcore app without needing a separate fitness tracker."
+     }
+    ]
+   },
+   {
+    "product_name": "Marshall Emberton II Portable Bluetooth Speaker with IP67 Dust and Water Resistance",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ultimate Ears BOOM 3 Portable Bluetooth Speaker with 360° Sound",
+    "q_and_a": [
+     {
+      "question": "What is the 'Magic Button' on the top of the speaker?",
+      "answer": "The Magic Button allows you to play, pause, and skip tracks directly on the speaker. With the BOOM app, you can also set it up for one-touch access to your favorite playlists from select music services."
+     }
+    ]
+   },
+   {
+    "product_name": "Bose SoundLink Flex Portable Bluetooth Speaker with PositionIQ Technology",
+    "q_and_a": [
+     {
+      "question": "Is this speaker durable enough for outdoor adventures?",
+      "answer": "Yes, it's very durable. The SoundLink Flex has a powder-coated steel grille and a silicone exterior, making it resistant to drops, peeling, and UV light. It's also IP67 waterproof and dustproof, and it even floats."
+     }
+    ]
+   },
+   {
+    "product_name": "Anker Soundcore Motion+ Bluetooth Speaker with Hi-Res Audio and BassUp Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Klipsch The One II Tabletop Stereo Speaker with Bluetooth Connectivity",
+    "q_and_a": [
+     {
+      "question": "Besides Bluetooth, are there other ways to connect to this speaker?",
+      "answer": "Yes, The One II also includes a 3.5mm analog input, allowing you to connect wired devices like a turntable, CD player, or computer."
+     }
+    ]
+   },
+   {
+    "product_name": "Samsung Galaxy Watch6 Classic 47mm Bluetooth with Rotating Bezel",
+    "q_and_a": [
+     {
+      "question": "What is the function of the rotating bezel?",
+      "answer": "The physical rotating bezel provides a tactile and intuitive way to navigate apps, scroll through notifications, and zoom in and out on the screen without touching the display."
+     }
+    ]
+   },
+   {
+    "product_name": "Google Pixel Watch Smartwatch with Fitbit Fitness Tracking and ECG App",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Arlo Pro 4 Spotlight Camera 2K HDR Wireless Security Camera with Color Night Vision",
+    "q_and_a": [
+     {
+      "question": "Do I need a base station or hub for this camera to work?",
+      "answer": "No, the Arlo Pro 4 can connect directly to your home's Wi-Fi network, so you do not need a separate Arlo SmartHub or base station for it to function."
+     }
+    ]
+   },
+   {
+    "product_name": "Emfit QS Sleep Tracker Non-Wearable Sleep and Recovery Sensor Under Mattress",
+    "q_and_a": [
+     {
+      "question": "How can it track my sleep from under the mattress?",
+      "answer": "The Emfit QS uses ballistocardiography, a highly sensitive sensor technology that measures the micro-movements your body produces from heartbeats, respiration, and body movements, all through the mattress."
+     }
+    ]
+   },
+   {
+    "product_name": "Therabody Wave Roller Smart Vibrating Foam Roller with Bluetooth Connectivity",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple Vision Pro Mixed-Reality Headset 23 Million Pixels Micro-OLED Display",
+    "q_and_a": [
+     {
+      "question": "Can I wear my prescription glasses while using the Vision Pro?",
+      "answer": "No, the Vision Pro is designed to be used without glasses. Instead, Apple partners with ZEISS to offer custom optical inserts that magnetically attach to the lenses for users who require vision correction."
+     }
+    ]
+   },
+   {
+    "product_name": "Meta Quest 3 Advanced All-In-One Mixed Reality Headset with Snapdragon XR2 Gen 2",
+    "q_and_a": [
+     {
+      "question": "Are games from the Meta Quest 2 compatible with the Quest 3?",
+      "answer": "Yes, the Meta Quest 3 is fully backward compatible with the entire library of games and apps available for the Meta Quest 2."
+     }
+    ]
+   },
+   {
+    "product_name": "HP Reverb G2 VR Headset with 4320x2160 Combined Resolution and Inside-Out Tracking",
+    "q_and_a": []
+   },
+   {
+    "product_name": "PlayStation VR2 VR Headset for PS5 with 4K HDR Display and Eye Tracking",
+    "q_and_a": [
+     {
+      "question": "Can I play original PlayStation VR games on the PS VR2?",
+      "answer": "No, the PS VR2 is not backward compatible with games made for the original PS VR system due to its fundamentally different tracking and controller technology."
+     }
+    ]
+   },
+   {
+    "product_name": "Rift S VR Headset for PC with Improved Optics and Ergonomic Halo Headband",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony WH-1000XM5 Industry Leading Noise Canceling Wireless Headphones with 30mm Driver",
+    "q_and_a": [
+     {
+      "question": "What kind of charging port does the WH-1000XM5 use?",
+      "answer": "The headphones use a modern USB-C port for charging. They also support fast charging, providing up to 3 hours of playback from just a 3-minute charge with a compatible USB-PD adapter."
+     }
+    ]
+   },
+   {
+    "product_name": "Bose QuietComfort Headphones with World-Class Noise Cancellation and Aware Mode",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple AirPods Max Wireless Over-Ear Headphones with Spatial Audio",
+    "q_and_a": [
+     {
+      "question": "How do I turn the AirPods Max off?",
+      "answer": "The AirPods Max do not have a power button. They enter an ultra-low-power state when placed in their Smart Case to preserve battery. Outside of the case, they will enter a low power mode after 5 minutes of inactivity."
+     }
+    ]
+   },
+   {
+    "product_name": "Sennheiser HD 820 Audiophile Headphones with Closed-Back Design and Glass Transducer",
+    "q_and_a": [
+     {
+      "question": "Why do these closed-back headphones have glass on the outside?",
+      "answer": "The curved Gorilla Glass transducer covers reflect the sound waves from the rear of the driver to an absorber, minimizing resonance. This innovative design aims to create a wide, open soundstage similar to open-back headphones while providing the isolation of a closed-back design."
+     }
+    ]
+   },
+   {
+    "product_name": "Shure AONIC 50 Gen 2 Wireless Noise Cancelling Headphones with Spatialized Audio",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Audeze LCD-X Planar Magnetic Headphones Open-Back Over-Ear Design",
+    "q_and_a": [
+     {
+      "question": "What is the main advantage of planar magnetic drivers over traditional dynamic drivers?",
+      "answer": "Planar magnetic drivers use a thin, flat diaphragm with electrical conductors across its surface, which is suspended between magnets. This design allows for a faster, more accurate response with extremely low distortion, resulting in highly detailed and precise audio reproduction."
+     }
+    ]
+   },
+   {
+    "product_name": "Sony PS-LX310BT Belt-Drive Turntable with Bluetooth Connectivity",
+    "q_and_a": [
+     {
+      "question": "Does this turntable need a separate phono preamp to connect to my speakers?",
+      "answer": "No, the PS-LX310BT has a built-in, switchable phono preamp. You can connect it directly to any amplifier or powered speakers using RCA cables, or wirelessly via Bluetooth."
+     }
+    ]
+   },
+   {
+    "product_name": "Yale Assure Lock 2 Smart Lock with Wi-Fi and Bluetooth Connectivity",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Quip Smart Electric Toothbrush with Bluetooth and Connected App",
+    "q_and_a": [
+     {
+      "question": "What does the 'smart' functionality and app actually do?",
+      "answer": "The toothbrush uses Bluetooth to connect to the Quip app, which tracks your brushing duration, coverage, and intensity. It provides feedback on your technique and allows you to earn points for good habits, which can be redeemed for rewards like free brush head refills."
+     }
+    ]
+   }
+  ],
+  "Computers & Tablets": [
+   {
+    "product_name": "Patagonia Black Hole Pack 32L Recycled Polyester Daypack with Laptop Sleeve",
+    "q_and_a": [
+     {
+      "question": "What size laptop can the sleeve accommodate?",
+      "answer": "The padded laptop sleeve in the 32L Black Hole Pack can fit most 15-inch laptops."
+     },
+     {
+      "question": "Is the material waterproof?",
+      "answer": "The recycled polyester ripstop fabric has a highly weather-resistant TPU-film laminate and a DWR (durable water repellent) finish, making it very water-resistant and able to withstand heavy rain, but it is not fully submersible."
+     }
+    ]
+   },
+   {
+    "product_name": "YETI Rambler 20oz Travel Mug with Handle and MagSlider Lid Stainless Steel",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple MacBook Pro 14-inch M2 Pro Chip 16GB RAM 512GB SSD Space Gray",
+    "q_and_a": [
+     {
+      "question": "Can I upgrade the RAM or SSD in this model later on?",
+      "answer": "No, the RAM and SSD in Apple Silicon MacBooks are integrated into the M2 Pro chip for maximum performance. They cannot be upgraded after purchase, so it's important to choose the configuration you need at the time of buying."
+     },
+     {
+      "question": "What ports are available on this MacBook Pro?",
+      "answer": "It includes a MagSafe 3 charging port, three Thunderbolt 4 (USB-C) ports, an HDMI port, an SDXC card slot, and a 3.5mm headphone jack."
+     }
+    ]
+   },
+   {
+    "product_name": "Dell OptiPlex 7000 Desktop Computer Intel Core i7 16GB RAM 1TB SSD",
+    "q_and_a": [
+     {
+      "question": "Is this computer designed for gaming?",
+      "answer": "The Dell OptiPlex series is designed primarily for business and professional use. While the Core i7 processor is powerful, it uses integrated graphics, which are not suitable for demanding modern games. A dedicated gaming PC with a powerful graphics card would be needed for that."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple iPad Air 5th Generation 10.9-inch Liquid Retina Display 256GB WiFi",
+    "q_and_a": [
+     {
+      "question": "Does the iPad Air support the Apple Pencil 2nd Generation?",
+      "answer": "Yes, the 5th generation iPad Air is compatible with the Apple Pencil (2nd generation), which can attach magnetically to the side of the device for pairing, charging, and storage."
+     },
+     {
+      "question": "What is the main difference between the iPad Air and the iPad Pro?",
+      "answer": "The main differences are that the iPad Pro features a ProMotion display with a higher 120Hz refresh rate, more powerful M-series chips, a more advanced camera system with LiDAR, and Face ID instead of the Touch ID found on the iPad Air's power button."
+     }
+    ]
+   },
+   {
+    "product_name": "Samsung Odyssey G7 32 inch Curved Gaming Monitor 1440p 240Hz G-Sync Compatible",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Merrell Moab 3 Mid Waterproof Hiking Boot Men's with Vibram TC5+ Outsole",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ray-Ban Aviator Classic Sunglasses RB3025 Gold Frame Green Lens",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Osprey Farpoint 40 Travel Backpack Men's Carry-On Sized with Laptop Sleeve",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Thule Accent Laptop Bag 15.6 inch with SafeZone Compartment Black",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Incase ICON Laptop Backpack 15 inch with Woolenex and Flight Nylon",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Conair 1875 Watt Ionic Ceramic Hair Dryer with Diffuser and Concentrator",
+    "q_and_a": []
+   },
+   {
+    "product_name": "CeraVe Daily Moisturizing Lotion 12oz with Hyaluronic Acid and Ceramides",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TetraMin Tropical Flakes Fish Food 7.06oz Nutritionally Balanced",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bissell CrossWave Pet Pro All-in-One Wet Dry Vacuum 1985 Multi-Surface",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Honey-Can-Do Tabletop Ironing Board 32 inch Retractable Iron Rest",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lasko 754200 Ceramic Heater with Adjustable Thermostat Compact Design",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cuisinart 12-Piece Ceramic Coated Knives Set with Blade Guards",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Seagate Portable 2TB External Hard Drive USB 3.0 for PC and Mac",
+    "q_and_a": [
+     {
+      "question": "Do I need to reformat this drive to use it with my Mac?",
+      "answer": "Typically, these drives come pre-formatted for Windows (NTFS). To use it seamlessly for both reading and writing on a Mac, you will need to reformat it to a Mac-compatible file system like APFS or Mac OS Extended (Journaled), or install software that allows your Mac to write to NTFS drives."
+     }
+    ]
+   },
+   {
+    "product_name": "Samsung 55-Inch Class QLED 4K The Frame TV Art Mode with Slim Fit Wall Mount",
+    "q_and_a": [
+     {
+      "question": "What is 'Art Mode'?",
+      "answer": "When you're not watching TV, Art Mode turns The Frame into a work of art. You can display professional artwork and photos with a realistic, matte finish that makes it look like a real framed picture on your wall."
+     }
+    ]
+   },
+   {
+    "product_name": "LG C2 Series 65-Inch 4K OLED evo Smart TV with a9 Gen5 AI Processor",
+    "q_and_a": [
+     {
+      "question": "What is the benefit of an 'OLED evo' panel?",
+      "answer": "The 'evo' panel is LG's next generation of OLED technology. It uses a new deuterium-based element that allows the pixels to be more efficient and brighter, resulting in a more vibrant and punchy HDR image compared to previous OLED TVs."
+     }
+    ]
+   },
+   {
+    "product_name": "Canon EOS R5 Full-Frame Mirrorless Camera 45MP with 8K Video Recording",
+    "q_and_a": []
+   },
+   {
+    "product_name": "ASUS ROG Zephyrus G14 Gaming Laptop AMD Ryzen 9 16GB RAM 1TB SSD RTX 3060",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dell XPS 13 Laptop Intel Core i7 16GB RAM 512GB SSD FHD+ InfinityEdge Display",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Surface Pro 9 13 inch Tablet with Intel Core i5 8GB RAM 256GB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung Galaxy Tab S8 11 inch Android Tablet with S Pen 128GB WiFi",
+    "q_and_a": []
+   },
+   {
+    "product_name": "ASUS TUF Gaming VG27AQ Monitor 27 inch 1440p 165Hz G-Sync Compatible",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple Magic Keyboard for iPad Pro 11-inch Black with Backlit Keys",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Mr. Coffee 12-Cup Programmable Coffee Maker Black with Brew Pause",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Alienware AW3423DWF 34 inch QD-OLED Curved Gaming Monitor 165Hz",
+    "q_and_a": [
+     {
+      "question": "What is QD-OLED technology?",
+      "answer": "QD-OLED (Quantum Dot Organic Light Emitting Diode) combines the perfect blacks and infinite contrast of OLED panels with the vibrant colors and brightness of Quantum Dot technology, resulting in a superior picture quality for gaming and media."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple iPad Pro 12.9-inch M4 Chip 1TB with Liquid Retina XDR Display",
+    "q_and_a": [
+     {
+      "question": "What is the main benefit of the Tandem OLED display in this model?",
+      "answer": "The Tandem OLED technology stacks two OLED panels to deliver exceptional full-screen brightness (1000 nits) and specular highlights (1600 nits), providing extreme dynamic range and unprecedented color accuracy, especially for HDR content."
+     }
+    ]
+   },
+   {
+    "product_name": "reMarkable 2 Digital Paper Tablet for Reading and Writing",
+    "q_and_a": [
+     {
+      "question": "Does this tablet have a backlit screen like an iPad or Kindle Paperwhite?",
+      "answer": "No, the reMarkable 2 does not have a backlight. Its CANVAS display is designed to mimic the look and feel of paper and relies on ambient light, making it easy on the eyes and ideal for distraction-free work."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple MacBook Air 13-inch M3 Chip 16GB RAM 512GB SSD Midnight",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dell XPS 15 Laptop Intel Core Ultra 7 32GB RAM 1TB SSD OLED Touch Display",
+    "q_and_a": []
+   },
+   {
+    "product_name": "HP Spectre x360 14 2-in-1 Laptop Intel Core Ultra 7 16GB RAM 1TB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lenovo ThinkPad X1 Carbon Gen 12 Intel Core Ultra 7 32GB RAM 2TB SSD",
+    "q_and_a": [
+     {
+      "question": "What is the material used for the chassis of the ThinkPad X1 Carbon?",
+      "answer": "The chassis is constructed from a carbon-fiber and magnesium alloy hybrid, which makes it extremely lightweight and durable, passing military-grade specifications for toughness."
+     }
+    ]
+   },
+   {
+    "product_name": "Microsoft Surface Laptop Studio 2 14.4-inch Touchscreen Intel Core i7",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung M8 Smart Monitor 32-inch 4K UHD with Smart TV Experience",
+    "q_and_a": [
+     {
+      "question": "Can I use this monitor to watch Netflix without connecting a computer?",
+      "answer": "Yes, the M8 is a 'Smart Monitor' that runs on Samsung's Tizen OS. It has built-in Wi-Fi and apps like Netflix, YouTube, and Prime Video, allowing you to stream content directly, just like a smart TV."
+     }
+    ]
+   },
+   {
+    "product_name": "Dell UltraSharp U4021QW 40 inch Curved WUHD Monitor Thunderbolt 3",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LG UltraGear 32GP850-B 32-inch 1440p 165Hz G-Sync Compatible Gaming Monitor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "WD_BLACK 4TB SN850X NVMe Internal Gaming SSD PCIe Gen4",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung T9 Portable SSD 2TB USB 3.2 Gen 2x2 with 2000 MB/s Read Speed",
+    "q_and_a": [
+     {
+      "question": "To get the maximum 2,000 MB/s speed, what kind of port do I need on my computer?",
+      "answer": "To achieve the maximum advertised speeds, your computer must have a USB 3.2 Gen 2x2 port. If you connect it to a more common USB 3.2 Gen 2 or Gen 1 port, the speeds will be limited to 10 Gbps or 5 Gbps, respectively."
+     }
+    ]
+   },
+   {
+    "product_name": "Philips Brilliance 499P9H 49-inch SuperWide Curved Monitor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Wyze Smart Plug 2-Pack with Energy Monitoring and Voice Control",
+    "q_and_a": []
+   },
+   {
+    "product_name": "lululemon City Adventurer Backpack 17L with Laptop Sleeve",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Osmo Genius Starter Kit for iPad Educational Learning Games",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sphero BOLT App-Enabled Robot Ball with Programmable Sensors",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony Alpha 7 IV Full-Frame Mirrorless Camera 33MP",
+    "q_and_a": [
+     {
+      "question": "Is this camera good for both photography and videography?",
+      "answer": "Yes, the Alpha 7 IV is an excellent hybrid camera. It features a 33MP sensor for high-resolution photos and advanced video capabilities, including 4K recording at 60fps, 10-bit color depth, and S-Cinetone picture profiles."
+     }
+    ]
+   },
+   {
+    "product_name": "Blendtec Classic 575 Blender with Pre-Programmed Cycles and Vented Gripper Lid",
+    "q_and_a": []
+   },
+   {
+    "product_name": "The Lord of the Rings 50th Anniversary Edition by J.R.R. Tolkien Deluxe Hardcover Slipcase",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Valve Steam Deck 512GB Portable Gaming PC with 7-inch Touchscreen Display",
+    "q_and_a": [
+     {
+      "question": "Can I install Windows on the Steam Deck?",
+      "answer": "Yes, while the Steam Deck runs on the Linux-based SteamOS by default, it is a fully functional PC. You can choose to install Windows on it, which would allow you to play games from other launchers like the Epic Games Store or Xbox Game Pass."
+     }
+    ]
+   },
+   {
+    "product_name": "Sony Alpha 7 IV Full-Frame Mirrorless Camera 33MP Exmor R CMOS Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Vitruvi Stone Diffuser Ceramic Essential Oil Diffuser with Ultrasonic Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Surface Laptop Studio 14.4-inch Intel Core i7 16GB RAM 512GB SSD Platinum",
+    "q_and_a": [
+     {
+      "question": "What are the different modes I can use this laptop in?",
+      "answer": "The Surface Laptop Studio has a unique hinge that allows it to be used in three modes: Laptop Mode for traditional use, Stage Mode where the screen pulls forward for watching videos or gaming, and Studio Mode where it lies nearly flat for drawing and writing."
+     }
+    ]
+   },
+   {
+    "product_name": "Lenovo ThinkCentre Neo 50s Desktop Computer Intel Core i5 8GB RAM 256GB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Surface Pro 9 13-inch PixelSense Flow Touchscreen 256GB SSD Windows 11",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LG C2 OLED 42 inch Smart TV 4K Ultra HD with AI Processor Gen5",
+    "q_and_a": []
+   },
+   {
+    "product_name": "West Elm Mid-Century Modern Bookcase 60-inch Solid Eucalyptus Wood Frame",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TUMI Alpha Bravo Sheppard Deluxe Brief Pack Laptop Backpack with Padded Laptop Sleeve",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Aer Travel Pack 3 35L Laptop Backpack with Clamshell Opening",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Tangram Smart Rope Rookie LED Jump Rope Smart Jump Rope with App Connectivity",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Xbox Series X Console 1TB SSD with Xbox Velocity Architecture",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Valve Steam Deck 512GB NVMe SSD with 7 inch Touchscreen Display",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Asus ROG Ally Handheld Gaming Console AMD Ryzen Z1 Extreme Processor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LG C2 Series 65-inch 4K OLED Smart TV with α9 Gen5 AI Processor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung S95B Series 55-inch 4K OLED TV with Neural Quantum Processor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony BRAVIA XR A95K Series 65-inch 4K QD-OLED TV with Acoustic Surface Audio+",
+    "q_and_a": [
+     {
+      "question": "How does the sound come from the screen itself?",
+      "answer": "The Acoustic Surface Audio+ technology uses large actuators that vibrate the entire screen, turning it into a speaker. This allows the sound to perfectly match the action on the screen, creating a more immersive audio experience."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple MacBook Air M2 Chip 13.6-inch Liquid Retina Display 8GB RAM 256GB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dell XPS 15 Laptop Intel Core i9 32GB RAM 1TB SSD NVIDIA GeForce RTX 3050 Ti",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lenovo ThinkPad X1 Carbon Gen 11 Business Laptop Intel Core i7 16GB RAM 512GB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "HP Spectre x360 14 2-in-1 Laptop Intel Core i7 16GB RAM 1TB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Surface Laptop Studio Intel Core i7 16GB RAM 512GB SSD with Dynamic Woven Hinge",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung Galaxy Book3 Ultra Laptop Intel Core i9 16GB RAM 1TB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Razer Blade 15 Gaming Laptop Intel Core i7 16GB RAM NVIDIA GeForce RTX 4070",
+    "q_and_a": []
+   },
+   {
+    "product_name": "MSI GE76 Raider Gaming Laptop Intel Core i9 32GB RAM NVIDIA GeForce RTX 3080 Ti",
+    "q_and_a": []
+   },
+   {
+    "product_name": "ASUS ROG Strix G15 Gaming Laptop AMD Ryzen 9 16GB RAM NVIDIA GeForce RTX 3060",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Acer Predator Helios 300 Gaming Laptop Intel Core i7 16GB RAM NVIDIA GeForce RTX 3070 Ti",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Mac Studio M2 Ultra Chip 24-core CPU 64-core GPU 64GB RAM 1TB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "HP Z4 G4 Workstation Intel Xeon W-2223 16GB RAM 512GB SSD NVIDIA Quadro P2200",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lenovo Legion T7 Gaming Desktop Intel Core i9 32GB RAM NVIDIA GeForce RTX 4080",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Alienware Aurora R15 Gaming Desktop Intel Core i9 64GB RAM NVIDIA GeForce RTX 4090",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Corsair Vengeance i7400 Gaming PC Intel Core i7 32GB RAM NVIDIA GeForce RTX 4070 Ti",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple iPad Pro 12.9-inch M2 Chip Liquid Retina XDR Display 128GB WiFi",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung Galaxy Tab S8 Ultra 14.6-inch Super AMOLED Display 8GB RAM 128GB Storage",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Surface Pro 9 13-inch PixelSense Flow Display Intel Core i5 8GB RAM 256GB SSD",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Whoop 4.0 Fitness and Health Tracker with 24/7 Monitoring and Strain Coach",
+    "q_and_a": [
+     {
+      "question": "Is there a screen on the Whoop 4.0 band?",
+      "answer": "No, the Whoop 4.0 is a screenless wearable. All of your data, including strain, recovery, and sleep metrics, is viewed and analyzed through the companion mobile app."
+     }
+    ]
+   },
+   {
+    "product_name": "The North Face Borealis Backpack 28L with Padded Laptop Sleeve and FlexVent Suspension",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Fjällräven Kånken Laptop 15-inch Backpack with Vinylon F Fabric and Water Resistance",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony a7R V Full-Frame Mirrorless Camera 61MP with AI-based Real-time Tracking",
+    "q_and_a": [
+     {
+      "question": "How does the AI-based autofocus improve subject tracking?",
+      "answer": "The dedicated AI processing unit allows the camera to recognize and track a wider variety of subjects—including humans, animals, birds, insects, cars, and planes—with incredible precision, even when the subject's face is obscured."
+     }
+    ]
+   },
+   {
+    "product_name": "Canon EOS R5 Full-Frame Mirrorless Camera 45MP with 8K RAW Video",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Nikon Z9 Full-Frame Mirrorless Camera 45.7MP with 8K UHD Video",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Leica Q2 Monochrom Digital Camera 47.3MP Full-Frame Sensor No Color Filter",
+    "q_and_a": [
+     {
+      "question": "Why would I want a camera that only shoots in black and white?",
+      "answer": "By removing the color filter array from the sensor, the Q2 Monochrom can capture more light and detail, resulting in black-and-white images with stunning sharpness, clarity, and dynamic range that is difficult to achieve by converting a color image."
+     }
+    ]
+   },
+   {
+    "product_name": "Moondrop Aria High Performance In-Ear Monitors with LCP Diaphragm Dynamic Driver",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Logitech G29 Driving Force Racing Wheel for PS5/PS4/PC with Force Feedback",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Thrustmaster T300 RS GT Edition Racing Wheel for PS4/PS5/PC with Brushless Motor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Fanatec Gran Turismo DD Pro Wheel Base Direct Drive for PlayStation and PC",
+    "q_and_a": [
+     {
+      "question": "What is the advantage of a 'Direct Drive' wheel base?",
+      "answer": "Unlike belt- or gear-driven wheels, a Direct Drive wheel base mounts the steering wheel directly to the motor shaft. This provides much more detailed, powerful, and instantaneous force feedback, allowing you to feel the car's grip and road texture with incredible realism."
+     }
+    ]
+   },
+   {
+    "product_name": "Dell Alienware AW3423DW 34-inch QD-OLED Curved Gaming Monitor 175Hz",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung Odyssey G9 49-inch Curved Gaming Monitor 240Hz 1ms response time",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LG UltraGear 27GR95QE-B 27-inch OLED Gaming Monitor 240Hz",
+    "q_and_a": []
+   },
+   {
+    "product_name": "ASUS ROG Swift PG27AQDM 27-inch OLED Gaming Monitor 240Hz",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Corsair XENEON 27QHD240 27-inch OLED Gaming Monitor 240Hz",
+    "q_and_a": []
+   },
+   {
+    "product_name": "XP-PEN Artist 24 Pro Drawing Monitor with 2K QHD Resolution and Dual Dials",
+    "q_and_a": [
+     {
+      "question": "What are the two red dials on the side for?",
+      "answer": "The dual red dials are customizable and can be programmed to perform functions like zooming in and out, scrolling, or changing brush size in your creative software, providing a faster and more intuitive workflow."
+     }
+    ]
+   },
+   {
+    "product_name": "iPad Air 10.9-inch with Apple Pencil 2nd Generation and USB-C Charging",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Surface Go 3 10.5-inch with Surface Pen and Kickstand",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Akai Professional MPC Live II Standalone Music Production Center with Speakers",
+    "q_and_a": [
+     {
+      "question": "Can I use this device without it being plugged into a computer or power outlet?",
+      "answer": "Yes, the MPC Live II is fully standalone. It has a multi-core processor to run its own software, a built-in rechargeable battery for portability, and integrated monitor speakers, so you can create music anywhere."
+     }
+    ]
+   },
+   {
+    "product_name": "Raspberry Pi 5 Single-Board Computer 4GB RAM 2.4GHz Quad-Core CPU",
+    "q_and_a": []
+   },
+   {
+    "product_name": "NVIDIA Jetson Orin Nano Developer Kit with 4GB RAM and 64-bit Arm CPU",
+    "q_and_a": [
+     {
+      "question": "What kind of projects is the Jetson Orin Nano designed for?",
+      "answer": "It's an AI-powered single-board computer designed for entry-level AI applications, robotics, and smart vision projects. It's ideal for developers and hobbyists looking to build things like intelligent cameras, home robots, and object detection systems."
+     }
+    ]
+   },
+   {
+    "product_name": "Samsung T7 Shield 4TB Portable SSD USB 3.2 Gen 2 IP65 Dust and Water Resistance",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Crucial P5 Plus 2TB PCIe 4.0 NVMe M.2 SSD up to 6600MB/s Read Speed",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Seagate FireCuda 530 2TB Internal SSD with Heatsink PCIe Gen4 x4",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Corsair Vengeance RGB Pro 32GB (2x16GB) DDR4 3200MHz RAM White",
+    "q_and_a": []
+   },
+   {
+    "product_name": "G.Skill Trident Z5 RGB 32GB (2x16GB) DDR5 6000MHz RAM with XMP 3.0",
+    "q_and_a": []
+   },
+   {
+    "product_name": "ASUS ROG Maximus Z790 Hero Gaming Motherboard Intel Z790 LGA 1700",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Gigabyte Z790 AORUS Elite AX Motherboard Intel Z790 LGA 1700",
+    "q_and_a": []
+   },
+   {
+    "product_name": "NVIDIA GeForce RTX 4090 24GB Founders Edition Graphics Card",
+    "q_and_a": []
+   },
+   {
+    "product_name": "AMD Radeon RX 7900 XTX 24GB Graphics Card with RDNA 3 Architecture",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Intel Core i9-14900K Desktop Processor 24 Cores (8P+16E) 36MB Cache",
+    "q_and_a": []
+   },
+   {
+    "product_name": "AMD Ryzen 9 7950X Desktop Processor 16 Cores 32 Threads 80MB Cache",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Adobe Photoshop Elements 2024 Photo Editing Software for PC/Mac",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Office Home & Student 2021 One-Time Purchase for PC/Mac",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lenovo ThinkVision P27h-28 27-inch QHD Monitor with USB-C Docking",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dell UltraSharp U2723QE 27-inch 4K USB-C Hub Monitor with IPS Black",
+    "q_and_a": [
+     {
+      "question": "What is the benefit of IPS Black technology?",
+      "answer": "IPS Black technology provides a significantly deeper black level and higher contrast ratio (2000:1) compared to conventional IPS panels (typically 1000:1). This results in a more vibrant and lifelike image with greater detail in dark scenes."
+     }
+    ]
+   },
+   {
+    "product_name": "ViewSonic VP2768a-4K 27-inch 4K Professional Monitor with ColorPro Sense",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Elac Debut 2.0 B6.2 Bookshelf Speakers with Aramid Fiber Woofers",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bodum Chambord French Press Coffee Maker 34 oz with Stainless Steel Frame",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bissell CrossWave Pet Pro All-in-One Multi-Surface Wet Dry Vac",
+    "q_and_a": []
+   },
+   {
+    "product_name": "CeraVe Hydrating Facial Cleanser 16 oz with Hyaluronic Acid and Ceramides",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Kamado Joe Classic Joe III Ceramic Grill with 3-Tier Divide & Conquer Cooking System",
+    "q_and_a": []
+   }
+  ],
+  "Audio & Video": [
+   {
+    "product_name": "Amazon Kindle Paperwhite (11th Generation) 6.8 inch Display with Adjustable Warm Light",
+    "q_and_a": [
+     {
+      "question": "What is the benefit of the 'adjustable warm light'?",
+      "answer": "The adjustable warm light allows you to shift the screen color from a white daylight to a warm amber, which is easier on the eyes for nighttime reading and may help reduce sleep disruption."
+     },
+     {
+      "question": "Is this version of the Kindle Paperwhite waterproof?",
+      "answer": "Yes, it has an IPX8 rating, which means it's protected against accidental immersion in up to two meters of fresh water for up to 60 minutes."
+     }
+    ]
+   },
+   {
+    "product_name": "Breville BKE820XL Variable-Temperature 1.8L Electric Kettle with LCD Display",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DJI Mini 3 Pro Drone with 4K/60fps Video and Intelligent Flight Modes",
+    "q_and_a": [
+     {
+      "question": "Do I need to register this drone with the FAA?",
+      "answer": "The DJI Mini 3 Pro weighs under 250 grams, which means in many countries, including the United States, you are not required to register it for recreational use. However, you should always check local regulations before flying."
+     },
+     {
+      "question": "Can the camera shoot vertically for social media content?",
+      "answer": "Yes, the gimbal can rotate 90 degrees to shoot in 'True Vertical Shooting' mode, making it perfect for creating content for platforms like TikTok and Instagram Reels."
+     }
+    ]
+   },
+   {
+    "product_name": "GoPro HERO11 Black Waterproof Action Camera with 5.3K60 Ultra HD Video",
+    "q_and_a": [
+     {
+      "question": "What is the new, larger image sensor in the HERO11 good for?",
+      "answer": "The new 8:7 aspect ratio sensor captures a larger vertical field of view. This gives you more flexibility in post-production to crop your videos into different aspect ratios—like a wide 16:9 for YouTube or a tall 9:16 for social media—without losing quality."
+     }
+    ]
+   },
+   {
+    "product_name": "WEMAX Dice Mini Projector 1080P HD with Android TV 9.0 Built-in",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Logitech C920x HD Pro Webcam 1080p Video Calling with Dual Stereo Audio",
+    "q_and_a": [
+     {
+      "question": "Does this webcam have a built-in privacy shutter?",
+      "answer": "The C920x model specifically comes with an attachable privacy shutter that you can flip down to cover the lens when the webcam is not in use."
+     }
+    ]
+   },
+   {
+    "product_name": "Peak Design Everyday Messenger Bag 15 inch V2 Charcoal Camera Bag",
+    "q_and_a": []
+   },
+   {
+    "product_name": "GHD Platinum+ Professional Hair Straightener with Ultra-Zone Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ring Indoor Cam 1080p HD Security Camera with Two-Way Talk Works with Alexa",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ring Video Doorbell Pro 2 1536p HD Head-to-Toe Video Advanced Motion Detection",
+    "q_and_a": [
+     {
+      "question": "What is the benefit of 'Head-to-Toe' video?",
+      "answer": "The Head-to-Toe video provides an expanded field of view with a taller aspect ratio. This allows you to see more of your visitor and also see packages left directly at your doorstep, which might be missed by traditional wider-angle doorbells."
+     }
+    ]
+   },
+   {
+    "product_name": "First Alert Carbon Monoxide Detector Alarm 10-Year Battery Digital Display",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Kindle Oasis 10th Generation 7-inch Display with Page Turn Buttons",
+    "q_and_a": [
+     {
+      "question": "Why does the Oasis have physical page turn buttons when others are touchscreen only?",
+      "answer": "The physical buttons are an ergonomic feature preferred by many avid readers. They allow you to hold the device and turn pages comfortably with one hand without having to move your thumb to tap or swipe the screen."
+     }
+    ]
+   },
+   {
+    "product_name": "Roku Streaming Stick 4K with Dolby Vision and Long-Range Wi-Fi",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony Alpha a6400 Mirrorless Camera with 18-135mm Lens 24.2MP APS-C Sensor",
+    "q_and_a": [
+     {
+      "question": "Is this camera a good choice for vlogging?",
+      "answer": "Yes, the a6400 is very popular for vlogging due to its 180-degree flip-up screen, fast and reliable autofocus with Real-time Eye AF, and external microphone input."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple TV 4K 64GB with Siri Remote 2nd Generation A12 Bionic Chip",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Google Nest Hub (2nd Gen) Smart Display with Google Assistant Charcoal",
+    "q_and_a": [
+     {
+      "question": "How does the sleep tracking feature work without wearing anything?",
+      "answer": "The 2nd Gen Nest Hub uses Motion Sense, powered by a low-energy radar, to analyze your movement and breathing while you sleep from your bedside table. It can detect sleep disturbances like coughing and snoring, and provide personalized insights."
+     }
+    ]
+   },
+   {
+    "product_name": "Echo Dot (5th Gen) with clock and Alexa Smart Speaker Glacier White",
+    "q_and_a": []
+   },
+   {
+    "product_name": "HyperX QuadCast S USB Condenser Gaming Microphone RGB Lighting",
+    "q_and_a": [
+     {
+      "question": "Can I change the polar pattern on this microphone?",
+      "answer": "Yes, the QuadCast S is very versatile. You can switch between four polar patterns: stereo, omnidirectional, cardioid, and bidirectional, making it suitable for everything from streaming and podcasts to interviews."
+     }
+    ]
+   },
+   {
+    "product_name": "Shure MV7 USB/XLR Podcast Microphone Hybrid Output for Podcasting",
+    "q_and_a": [
+     {
+      "question": "What is the advantage of having both USB and XLR outputs?",
+      "answer": "The hybrid design offers great flexibility. You can start by connecting it directly to your computer via USB for simple recording. Later, if you upgrade to a professional setup, you can use the XLR output to connect it to an audio interface or mixer without needing to buy a new microphone."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech Brio 4K Ultra HD Webcam with HDR RightLight 3 Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsung Galaxy S22 Ultra 256GB Unlocked with S Pen 108MP Camera",
+    "q_and_a": [
+     {
+      "question": "Is the S Pen stored inside the phone?",
+      "answer": "Yes, unlike previous Note models where it was an accessory, the Galaxy S22 Ultra has a built-in silo to store and charge the S Pen, just like the classic Galaxy Note series."
+     }
+    ]
+   },
+   {
+    "product_name": "Google Pixel 7 Pro 128GB Unlocked with Tensor G2 Chip 50MP Main Camera",
+    "q_and_a": []
+   },
+   {
+    "product_name": "The Original Dash Cam Viofo A129 Pro Duo 4K Dual Dash Cam with GPS",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Garmin DriveSmart 66 GPS Navigator 6 inch High-Res Display with Alexa",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony X90K 75 inch 4K Ultra HD Smart Google TV Full Array LED",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TCL 50 inch Class 4-Series 4K UHD HDR Smart Roku TV",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hisense 55 inch Class U8H Series Quantum ULED 4K UHD Smart Google TV",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Vizio M512a-H6 5.1.2 Home Theater Sound System with Dolby Atmos",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sonos Arc Soundbar for TV Music and More with Dolby Atmos Black",
+    "q_and_a": [
+     {
+      "question": "Do I need other Sonos speakers to get surround sound?",
+      "answer": "The Sonos Arc on its own can create a virtual surround sound experience with Dolby Atmos by bouncing sound off your walls and ceiling. However, for a true surround sound system, you can wirelessly pair it with a Sonos subwoofer and two rear Sonos speakers, like the Sonos One SL."
+     }
+    ]
+   },
+   {
+    "product_name": "Samsung Galaxy S24 Ultra 512GB Unlocked with S Pen and 200MP Camera",
+    "q_and_a": [
+     {
+      "question": "What are the new 'Galaxy AI' features on this phone?",
+      "answer": "Galaxy AI includes features like Live Translate for real-time call translations, Circle to Search with Google for easy searching, and Note Assist for summarizing and formatting your notes automatically."
+     }
+    ]
+   },
+   {
+    "product_name": "Anker 737 Power Bank PowerCore 24K 24000mAh with 140W USB-C Output",
+    "q_and_a": [
+     {
+      "question": "Can this power bank charge a high-power laptop like a MacBook Pro?",
+      "answer": "Yes, with its 140W max output from a single USB-C port, the Anker 737 is powerful enough to charge even a 16-inch MacBook Pro at high speed."
+     }
+    ]
+   },
+   {
+    "product_name": "Garmin Forerunner 965 GPS Running Watch AMOLED Display and Titanium Bezel",
+    "q_and_a": [
+     {
+      "question": "Does this watch have built-in maps for navigation?",
+      "answer": "Yes, the Forerunner 965 comes with preloaded, full-color maps that you can use for navigation during your runs or rides without needing your phone."
+     }
+    ]
+   },
+   {
+    "product_name": "Amazon Kindle Scribe 10.2-inch Display with Premium Pen for Note-Taking",
+    "q_and_a": [
+     {
+      "question": "Can I convert my handwritten notes to text?",
+      "answer": "Yes, the Kindle Scribe allows you to convert your handwritten notes into text, which you can then edit and export via email."
+     }
+    ]
+   },
+   {
+    "product_name": "Elgato Wave:3 USB Condenser Microphone for Streaming and Podcasting",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Logitech StreamCam 1080p Full HD USB-C Streaming Webcam",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Google Nest Hub Max Smart Display with Google Assistant and Camera",
+    "q_and_a": [
+     {
+      "question": "Can the camera on the Nest Hub Max be used as a security camera?",
+      "answer": "Yes, the built-in Nest Cam can be used for home monitoring. You can check in on a live feed from your phone and receive motion and sound alerts through the Google Home app."
+     }
+    ]
+   },
+   {
+    "product_name": "Ring Video Doorbell Elite 1080p HD Video PoE with Two-Way Talk",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Arlo Pro 4 Spotlight Camera 3-Pack Wire-Free 2K HDR Video",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Wyze Cam v3 1080p HD Indoor/Outdoor Smart Home Camera with Color Night Vision",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Blink Mini Pan-Tilt Camera 1080p HD Indoor Plug-in Security Camera",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Peloton Bike+ with 24-inch HD Touchscreen and Auto-Follow Resistance",
+    "q_and_a": [
+     {
+      "question": "What does the 'Auto-Follow' resistance feature do?",
+      "answer": "During classes, the instructor will call out resistance levels. The Auto-Follow feature automatically adjusts the bike's resistance to match the instructor's cues, so you can focus on your workout without fiddling with the knob."
+     }
+    ]
+   },
+   {
+    "product_name": "NordicTrack Commercial 1750 Treadmill with 14-inch HD Smart Touchscreen",
+    "q_and_a": []
+   },
+   {
+    "product_name": "iFIT ProForm Carbon E7 Elliptical with 7-inch HD Touchscreen",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DJI Osmo Pocket 3 Gimbal Camera with 1-inch CMOS Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Fujifilm Instax Mini 12 Instant Film Camera Pastel Blue",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Canon EOS Rebel T8i DSLR Camera with EF-S 18-55mm Lens Kit",
+    "q_and_a": []
+   },
+   {
+    "product_name": "GoPro HERO12 Black Action Camera with HyperSmooth 6.0 Stabilization",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DJI Mavic 3 Pro Drone with Hasselblad Camera and Tri-Camera System",
+    "q_and_a": [
+     {
+      "question": "What is the benefit of having a 'Tri-Camera System'?",
+      "answer": "The Mavic 3 Pro features three cameras with different focal lengths: a main wide-angle Hasselblad camera, a medium telephoto, and a long telephoto. This allows you to switch between perspectives and get a variety of shots—from wide establishing shots to compressed, telephoto close-ups—without losing image quality."
+     }
+    ]
+   },
+   {
+    "product_name": "Anker Soundcore Motion Boom Plus Portable Speaker with Titanium Drivers and IP67 Waterproof",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Insta360 GO 3 Action Camera with Magnetic Mount and 2.7K Video",
+    "q_and_a": []
+   },
+   {
+    "product_name": "XGIMI Horizon Pro 4K Projector with Harman Kardon Speakers and Android TV",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Peak Design Everyday Backpack Zip 20L Charcoal V2 Camera and Everyday Bag",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TaylorMade Stealth 2 HD Driver 12° Right Hand Senior Flex Graphite Shaft",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sony PlayStation 5 Console Standard Edition with Ultra HD Blu-ray Disc Drive",
+    "q_and_a": []
+   },
+   {
+    "product_name": "HyperX QuadCast S USB Condenser Gaming Microphone with RGB Lighting",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Blue Yeti USB Microphone Professional Studio-Quality for Recording and Streaming",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Logitech C922 Pro Stream Webcam 1080p 30fps with Autofocus and Stereo Audio",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Rode NT-USB+ Condenser Microphone USB-C Connectivity Studio Grade",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TCL 6-Series 65-inch 4K QLED Roku Smart TV with Mini-LED Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hisense U8H Series 55-inch 4K ULED Mini-LED TV with Google TV",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sonos Arc Soundbar Premium Smart Soundbar with Dolby Atmos",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bose Smart Soundbar 900 with Dolby Atmos and Voice Assistants",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Polk Audio Signature Elite ES60 Floor Standing Speaker with Hi-Res Audio",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Klipsch RP-600M Bookshelf Speakers with Tractrix Horn Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "JBL Bar 1000 7.1.4 Channel Soundbar with Detachable Surround Speakers",
+    "q_and_a": [
+     {
+      "question": "How do the detachable surround speakers work?",
+      "answer": "The two surround speakers are completely wireless and have built-in batteries. You can detach them from the ends of the main soundbar and place them behind you for a true, immersive surround sound experience without running any speaker wires."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple HomePod mini Smart Speaker with Siri and Acoustic Waveguide",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Google Nest Audio Smart Speaker with Google Assistant and Rich Sound",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Amazon Echo Studio Smart Speaker with Dolby Atmos and Alexa",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lenovo Tab P11 Pro Gen 2 11.2-inch OLED Display with Precision Pen 3",
+    "q_and_a": []
+   },
+   {
+    "product_name": "OnePlus 11 5G 128GB Titan Black Unlocked with Hasselblad Camera for Mobile",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Wyze Cam Pan v3 1080p HD Indoor Pan and Tilt Smart Home Camera",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ring Video Doorbell Pro 2 1536p HD Head-to-Toe Video with 3D Motion Detection",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Google Nest Cam Outdoor or Indoor Battery with 1080p HD and Person Alerts",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Oral-B iO Series 9 Electric Toothbrush with Interactive Display and AI Recognition",
+    "q_and_a": [
+     {
+      "question": "What does the AI Recognition feature do?",
+      "answer": "The toothbrush uses 3D tracking and AI to recognize the 16 different zones inside your mouth, guiding you to ensure you get 100% cleaning coverage so you never miss a spot."
+     }
+    ]
+   },
+   {
+    "product_name": "GoPro HERO12 Black Waterproof Action Camera with HyperSmooth 6.0 Stabilization",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DJI Mavic 3 Pro Drone with Hasselblad Camera and Omnidirectional Obstacle Sensing",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Insta360 X3 Waterproof 360-degree Action Camera with 5.7K Video",
+    "q_and_a": [
+     {
+      "question": "If it records in 360 degrees, how do I get a normal video out of it?",
+      "answer": "That's the magic of 360 cameras. After you shoot, you use the Insta360 app or software to 'reframe' your video. You can move the camera angle around, zoom in, and create a standard, flat video, choosing the best shots after the action has already happened."
+     }
+    ]
+   },
+   {
+    "product_name": "Fujifilm X-T5 Mirrorless Camera 40.2MP with 5-Axis In-Body Image Stabilization",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Epson Home Cinema 5050UB 4K PRO-UHD 3-Chip Projector with 2600 Lumens",
+    "q_and_a": []
+   },
+   {
+    "product_name": "BenQ TK850i True 4K HDR Smart Home Projector with Android TV and 3000 Lumens",
+    "q_and_a": []
+   },
+   {
+    "product_name": "XGIMI Horizon Pro 4K Projector with Harman Kardon Speakers and Auto Screen Adjustment",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LG CineBeam HU715QW 4K UHD Ultra Short Throw Laser Projector with webOS 6.0",
+    "q_and_a": [
+     {
+      "question": "What does 'Ultra Short Throw' mean?",
+      "answer": "An Ultra Short Throw (UST) projector can be placed just inches away from the wall or screen to project a very large image (e.g., 100 inches). This eliminates the need for ceiling mounting or long cable runs and prevents people from casting shadows by walking in front of the lens."
+     }
+    ]
+   },
+   {
+    "product_name": "Anker Nebula Mars 3 Outdoor Portable Projector with 1000 ANSI Lumens and 5-hour Battery",
+    "q_and_a": []
+   },
+   {
+    "product_name": "FiiO M11 Plus Digital Audio Player with Android 10 and Dual ESS DACs",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Wacom Cintiq Pro 24 Creative Pen Display with 4K Resolution and Pro Pen 2",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Huion Kamvas Pro 16 2.5K Pen Display with Full Lamination and 160% sRGB",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DaVinci Resolve Studio Professional Video Editing Color Grading Software",
+    "q_and_a": []
+   },
+   {
+    "product_name": "FL Studio 21 Producer Edition Digital Audio Workstation Software",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Universal Audio UAD Spark Plug-ins Subscription with LUNA Recording System",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Waves Gold Plugin Bundle Audio Mixing and Mastering Tools",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Numark Mixtrack Platinum FX 4-Deck DJ Controller with Jog Wheel Displays",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Shure SM7B Vocal Microphone Dynamic Microphone for Broadcasting and Podcasting",
+    "q_and_a": [
+     {
+      "question": "Do I need a special audio interface to use this microphone?",
+      "answer": "The Shure SM7B has a very low output level, so it performs best when paired with an audio interface that has a high-quality preamp with plenty of clean gain (around 60dB). Many users also pair it with an inline preamp like a Cloudlifter for optimal results."
+     }
+    ]
+   },
+   {
+    "product_name": "Aston Microphones Origin Large Diaphragm Condenser Microphone",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Neumann TLM 103 Large Diaphragm Condenser Microphone Cardioid Pattern",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Universal Audio Apollo Twin X Duo Heritage Edition Audio Interface",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Focusrite Scarlett 2i2 3rd Gen USB Audio Interface with Air Mode",
+    "q_and_a": []
+   },
+   {
+    "product_name": "PreSonus AudioBox USB 96 USB Audio Interface with Studio One Artist Software",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Tonies Starter Set with Toniebox and Creative Tonie Interactive Audio Player",
+    "q_and_a": [
+     {
+      "question": "How does the Toniebox play stories?",
+      "answer": "It's a screen-free audio system for kids. You place a character figurine (a 'Tonie') on top of the box, and it automatically downloads and plays the corresponding story or songs. The Creative-Tonie allows you to record your own audio."
+     }
+    ]
+   },
+   {
+    "product_name": "DJI Action 4 Waterproof Action Camera with 155° Ultra-Wide FOV",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DJI Osmo Pocket 3 Gimbal Camera with 1-inch CMOS Sensor and 4K/120fps",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Anycubic Photon Mono 2 Resin 3D Printer with 4K Resolution and 6.6-inch Screen",
+    "q_and_a": []
+   },
+   {
+    "product_name": "NZXT Kraken Z73 360mm AIO Liquid Cooler with LCD Display",
+    "q_and_a": [
+     {
+      "question": "Can I customize what is shown on the LCD display?",
+      "answer": "Yes, using NZXT's CAM software, you can customize the screen to display real-time system information like CPU or GPU temperature, or you can display your own custom images and animated GIFs."
+     }
+    ]
+   },
+   {
+    "product_name": "Apple Studio Display 27-inch 5K Retina Display with Nano-texture Glass",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Audio-Technica LP120XUSB Direct-Drive Turntable with USB Output",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cambridge Audio AXA35 Integrated Amplifier 35W per channel",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Klipsch RP-600M Reference Premiere Bookshelf Speakers with 6.5-inch Woofer",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Wharfedale Diamond 12.2 Bookshelf Speakers 6.5-inch Bass Driver",
+    "q_and_a": []
+   },
+   {
+    "product_name": "KEF Q150 Bookshelf Speakers with Uni-Q Driver Array",
+    "q_and_a": [
+     {
+      "question": "What is the Uni-Q driver array?",
+      "answer": "KEF's signature Uni-Q technology places the tweeter in the acoustic center of the midrange cone. This allows both high and midrange frequencies to originate from the same point in space, resulting in a more detailed, accurate, and integrated three-dimensional sound image."
+     }
+    ]
+   },
+   {
+    "product_name": "Astell&Kern Kann Max Portable High-Resolution Audio Player with Quad DACs",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Apple TV 4K 128GB with A15 Bionic chip and Siri Remote",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Roku Ultra 4K/HDR/Dolby Vision Streaming Player with Voice Remote Pro",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Amazon Fire TV Stick 4K Max Streaming Device with Wi-Fi 6 Support",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Google Chromecast with Google TV (4K) Streaming Media Player with Remote",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ember Temperature Control Smart Mug 2 14 oz with LED Display",
+    "q_and_a": []
+   },
+   {
+    "product_name": "GHD Helios Professional Hair Dryer with Aeroprecis Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Eufy S330 Video Smart Lock with Fingerprint Scanner and 2K Camera",
+    "q_and_a": []
+   }
+  ],
+  "Smart Devices": [
+   {
+    "product_name": "Vitamix A3500 Ascent Series Smart Blender with Touch Screen Controls",
+    "q_and_a": [
+     {
+      "question": "What makes this a 'smart' blender?",
+      "answer": "The blender base can read the size of the container you've attached and automatically adjust program settings and blending times. It also has Bluetooth to connect to the Vitamix app for recipes and additional programs."
+     },
+     {
+      "question": "Is the container dishwasher safe?",
+      "answer": "Yes, all of the Ascent Series containers, lids, and tamper are dishwasher-safe, making cleanup very easy."
+     }
+    ]
+   },
+   {
+    "product_name": "iRobot Roomba j7+ Self-Emptying Robot Vacuum with Smart Mapping",
+    "q_and_a": [
+     {
+      "question": "What kind of objects can this Roomba detect and avoid?",
+      "answer": "The Roomba j7+ uses PrecisionVision Navigation to recognize and avoid common objects like cords, headphones, shoes, and, most importantly, pet waste. iRobot is so confident, they offer the P.O.O.P. (Pet Owner Official Promise) guarantee."
+     },
+     {
+      "question": "How often do I need to empty the base?",
+      "answer": "The Clean Base Automatic Dirt Disposal can hold up to 60 days' worth of dirt and debris in an enclosed bag, so you don't have to think about vacuuming for months at a time."
+     }
+    ]
+   },
+   {
+    "product_name": "Goal Zero Lighthouse 600 Lantern and USB Power Hub 5200mAh Battery",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TP-Link Kasa Smart Plug Mini WiFi Outlet Works with Alexa 4-Pack",
+    "q_and_a": [
+     {
+      "question": "Do I need a separate hub to use these smart plugs?",
+      "answer": "No, these plugs connect directly to your home's 2.4GHz Wi-Fi network without the need for a separate hub or subscription service."
+     }
+    ]
+   },
+   {
+    "product_name": "Nest Learning Thermostat 3rd Generation Works with Alexa Stainless Steel",
+    "q_and_a": [
+     {
+      "question": "How does the thermostat 'learn' my schedule?",
+      "answer": "During the first week of use, you adjust the temperature whenever you like. The Nest Thermostat learns what temperatures you prefer at different times of the day and creates a schedule for you automatically. It also uses sensors and your phone's location to know when you're away and sets itself to an Eco Temperature to save energy."
+     }
+    ]
+   },
+   {
+    "product_name": "Philips Hue White and Color Ambiance A19 Smart Bulb 3-Pack Starter Kit",
+    "q_and_a": [
+     {
+      "question": "Is the Hue Bridge included in this starter kit required to use the bulbs?",
+      "answer": "While the bulbs can be controlled directly via Bluetooth using the Hue app, the included Hue Bridge is required to unlock the full suite of features, including out-of-home control, setting routines, and syncing lights with music and movies."
+     }
+    ]
+   },
+   {
+    "product_name": "Ziploc Storage Bags Gallon 100 Count Smart Zip Plus Seal",
+    "q_and_a": []
+   },
+   {
+    "product_name": "KeySmart Pro Key Organizer with Tile Smart Location Built-in Flashlight",
+    "q_and_a": [
+     {
+      "question": "How do I find my keys if I lose them?",
+      "answer": "The KeySmart Pro has a Tile tracker built in. You can use the Tile app on your phone to make the keys ring. If they're out of Bluetooth range, the app will show you their last known location on a map."
+     }
+    ]
+   },
+   {
+    "product_name": "Ember Temperature Control Smart Mug 2 10 oz Black with App Control",
+    "q_and_a": [
+     {
+      "question": "How long does the battery keep my drink warm?",
+      "answer": "On a full charge, the Ember Mug 2 will maintain your desired drinking temperature for up to 1.5 hours, or all day if you keep it on the included charging coaster."
+     }
+    ]
+   },
+   {
+    "product_name": "Kobo Libra 2 7-inch E-Reader with E Ink Carta 1200 Touchscreen",
+    "q_and_a": []
+   },
+   {
+    "product_name": "De'Longhi Magnifica S Smart Fully Automatic Espresso Machine",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Breville Smart Oven Air Fryer Pro Toaster Oven with Super Convection",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Instant Pot Pro Plus Smart 10-in-1 Electric Pressure Cooker 6-Quart",
+    "q_and_a": [
+     {
+      "question": "What can I do with the 'smart' features and the app?",
+      "answer": "The app allows you to wirelessly control the Instant Pot from your phone. You can start the cooking process remotely, release steam, and access over 800 guided recipes that automatically program the cooker's settings."
+     }
+    ]
+   },
+   {
+    "product_name": "Amazon Echo Show 10 (3rd Gen) with Motion Tracking and Alexa",
+    "q_and_a": [
+     {
+      "question": "Why does the screen move?",
+      "answer": "The Echo Show 10 uses its camera and microphones to detect where you are in the room and rotates the screen to face you. This keeps video calls, recipes, or shows in your view as you move around."
+     }
+    ]
+   },
+   {
+    "product_name": "Nanoleaf Shapes Triangles Smarter Kit 9 Panels with Rhythm Music Visualizer",
+    "q_and_a": [
+     {
+      "question": "How do the panels react to music?",
+      "answer": "The built-in Rhythm module has a microphone that listens to your music and ambient sounds. It then translates the sound into real-time color and light animations on the panels, creating a dynamic light show."
+     }
+    ]
+   },
+   {
+    "product_name": "August Wi-Fi Smart Lock 4th Gen Keyless Home Entry",
+    "q_and_a": []
+   },
+   {
+    "product_name": "ecobee Smart Thermostat Premium with Air Quality Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Kasa Smart Dimmer Switch HS220 3-Way with Motion Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Eero Pro 6E Mesh Wi-Fi System 3-pack Tri-Band Wi-Fi 6E",
+    "q_and_a": [
+     {
+      "question": "What is the main benefit of Wi-Fi 6E?",
+      "answer": "Wi-Fi 6E adds a new, exclusive 6 GHz band that is not shared with older Wi-Fi devices. This provides a faster, more reliable connection with lower latency, especially in congested areas, for compatible Wi-Fi 6E devices."
+     }
+    ]
+   },
+   {
+    "product_name": "TP-Link Kasa Smart WiFi Light Bulb Dimmable 2-Pack Warm White",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Traeger Pro 575 Wi-Fi Pellet Grill with Smart Grilling Technology",
+    "q_and_a": [
+     {
+      "question": "What does the 'Wi-Fi' feature let me do?",
+      "answer": "The WiFIRE technology allows you to connect the grill to your home Wi-Fi and control it using the Traeger app on your smartphone. You can monitor temperatures, adjust settings, and access a library of recipes from anywhere."
+     }
+    ]
+   },
+   {
+    "product_name": "Fujitsu ScanSnap iX1600 Document Scanner with Wi-Fi Connectivity and Touchscreen",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips Hue Play White & Color Ambiance Smart Light Bar 2-Pack with Power Supply",
+    "q_and_a": []
+   },
+   {
+    "product_name": "MSR Hubba Hubba NX 2-Person Tent Ultralight Backpacking 3-Season",
+    "q_and_a": []
+   },
+   {
+    "product_name": "T3 Lucea ID Flat Iron 1 inch with 9 Heat Settings and Smart Touch Interface",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Nanoleaf Shapes Hexagons Smarter Kit Modular Light Panels with Touch Control",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ecobee Smart Thermostat Premium with Built-in Alexa and Air Quality Sensor",
+    "q_and_a": [
+     {
+      "question": "What does the built-in air quality sensor monitor?",
+      "answer": "It monitors indoor air quality by detecting Volatile Organic Compounds (VOCs), carbon dioxide (CO2) levels, and relative humidity, providing you with alerts and tips for improving your home's air."
+     }
+    ]
+   },
+   {
+    "product_name": "Philips Sonicare DiamondClean Smart 9700 Electric Toothbrush with App Coaching",
+    "q_and_a": []
+   },
+   {
+    "product_name": "eero Pro 6E Tri-Band Mesh Wi-Fi 6E System with 2.5 Gbps Ethernet Ports",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Arris SURFboard S33 DOCSIS 3.1 Cable Modem 2.5 Gbps Port and 32x8 Channel Bonding",
+    "q_and_a": []
+   },
+   {
+    "product_name": "De'Longhi Magnifica S Smart Fully Automatic Espresso and Coffee Machine",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Blendtec Designer 725 Blender with WildSide+ Jar and SmartBlend Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Anova Culinary AN500-US00 Sous Vide Precision Cooker with Wi-Fi and App Control",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Tineco Floor ONE S5 Smart Wet/Dry Vacuum Cleaner with iLoop Smart Sensor Technology",
+    "q_and_a": [
+     {
+      "question": "What does the iLoop Smart Sensor do?",
+      "answer": "The iLoop sensor detects wet and dry messes on the floor and automatically adjusts suction power and water flow for an optimal clean. The LED ring on the display changes from red to blue to let you know when the floor is clean."
+     }
+    ]
+   },
+   {
+    "product_name": "ThermaSol ProSeries II 9kW Steam Shower Generator with Smart Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Toto Neorest NX1 Dual Flush Smart Toilet with Actilight Cleaning Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "MSR Hubba Hubba NX 2-Person Backpacking Tent with Two Doors and Vestibules",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Traeger Ironwood 885 Pellet Grill with Wi-Fi Technology and Super Smoke Mode",
+    "q_and_a": []
+   },
+   {
+    "product_name": "August Wi-Fi Smart Lock 4th Gen with DoorSense Technology",
+    "q_and_a": [
+     {
+      "question": "What is DoorSense technology?",
+      "answer": "DoorSense is a small sensor that you install on your door frame. It tells the August app whether your door is physically open or closed, so you can be sure your door is both closed and locked."
+     }
+    ]
+   },
+   {
+    "product_name": "Schlage Encode Plus Smart Wi-Fi Deadbolt with Apple Home Key",
+    "q_and_a": [
+     {
+      "question": "How does the Apple Home Key feature work?",
+      "answer": "Apple Home Key allows you to store a digital key in the Wallet app on your iPhone or Apple Watch. You can then simply tap your device to the lock to unlock your door, just like using Apple Pay."
+     }
+    ]
+   },
+   {
+    "product_name": "Wyze Lock Bolt Smart Lock with Fingerprint Reader and Keypad",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Coway Airmega 400 Air Purifier with Max2 Filter and Smart Mode",
+    "q_and_a": []
+   }
+  ],
+  "Peripherals & Components": [
+   {
+    "product_name": "Hydro Flask Standard Mouth 21oz Water Bottle with Flex Cap TempShield",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Epson Perfection V39 Color Photo and Document Scanner with 4800 DPI",
+    "q_and_a": []
+   },
+   {
+    "product_name": "UPLIFT V2 Standing Desk 48x30 Bamboo Desktop with Advanced Keypad",
+    "q_and_a": [
+     {
+      "question": "How many height presets can I save with the advanced keypad?",
+      "answer": "The advanced keypad allows you to save up to four different height presets, making it easy to switch between your preferred sitting and standing heights with a single touch."
+     }
+    ]
+   },
+   {
+    "product_name": "IKEA HEMNES Bookcase White Stain 35 3/8x77 1/2 inch with Adjustable Shelves",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Steelcase Universal Mobile File Cabinet with Lock and Full Extension Drawers",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Optimum Nutrition Gold Standard 100% Whey Protein Powder Double Rich Chocolate 5lbs",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Anker PowerCore 20100 Portable Charger Ultra High Capacity Power Bank",
+    "q_and_a": []
+   },
+   {
+    "product_name": "SanDisk 128GB Ultra MicroSDXC UHS-I Memory Card with Adapter",
+    "q_and_a": []
+   },
+   {
+    "product_name": "WD 12TB My Book Desktop External Hard Drive USB 3.0 Black",
+    "q_and_a": [
+     {
+      "question": "Does this external hard drive require its own power source?",
+      "answer": "Yes, the My Book is a desktop external hard drive and needs to be plugged into a wall outlet using the included AC adapter to function. It is not powered by the USB port."
+     }
+    ]
+   },
+   {
+    "product_name": "Corsair K70 RGB MK.2 Mechanical Gaming Keyboard Cherry MX Speed Switches",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Brita Standard Everyday Water Filter Pitcher 10 Cup White",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Pyrex 18-Piece Glass Food Storage Set with Lids BPA-Free",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Rubbermaid Brilliance Food Storage Containers 10-Piece Set Leak-Proof",
+    "q_and_a": []
+   },
+   {
+    "product_name": "KitchenAid Artisan Series 5-Quart Tilt-Head Stand Mixer Empire Red",
+    "q_and_a": []
+   },
+   {
+    "product_name": "SteelSeries Apex Pro TKL Mechanical Gaming Keyboard Adjustable Actuation Switches",
+    "q_and_a": []
+   },
+   {
+    "product_name": "PopSockets PopGrip with Expanding Kickstand and Swappable Top",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Spigen Tough Armor Case for iPhone 15 Pro Max with Kickstand",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Corsair K100 RGB Optical-Mechanical Gaming Keyboard with OPX Switches",
+    "q_and_a": [
+     {
+      "question": "What is the benefit of optical-mechanical switches over traditional mechanical switches?",
+      "answer": "Corsair OPX optical-mechanical switches use a beam of infrared light to register a keypress instead of a metal contact. This results in zero debounce delay, making them faster and more durable (rated for 150 million keystrokes) than standard mechanical switches."
+     }
+    ]
+   },
+   {
+    "product_name": "Canon imageCLASS MF753Cdw All-in-One Color Laser Printer",
+    "q_and_a": []
+   },
+   {
+    "product_name": "KitchenAid KSM150PSER Artisan 5-Quart Stand Mixer Empire Red",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Solo Stove Bonfire 2.0 Smokeless Fire Pit with Stand",
+    "q_and_a": [
+     {
+      "question": "How does the 'smokeless' technology work?",
+      "answer": "The Solo Stove's design uses a double-wall structure with air vents at the bottom and top. This allows air to be pulled in, superheated, and then injected over the top of the fire, burning off smoke particles before they can escape. This results in a highly efficient burn with very little smoke."
+     }
+    ]
+   },
+   {
+    "product_name": "Google Pixel Watch 2 with Fitbit Health Tracking 41mm Polished Silver Aluminum Case with Bay Sport Band",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Razer Kiyo Pro Streaming Webcam 1080p 60fps with Adaptive Light Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Flexispot E7 Pro Standing Desk 55x28 inch Bamboo Desktop with Dual Motor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "David Yurman Cable Classics Bracelet Sterling Silver with 7mm Garnet Stones",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Anker PowerCore Essential 20000 Portable Charger High-Capacity Power Bank",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Nintendo Switch OLED Model 7-inch OLED Screen with Wide Adjustable Stand",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Corsair K70 RGB TKL Champion Series Mechanical Gaming Keyboard Cherry MX Red",
+    "q_and_a": []
+   },
+   {
+    "product_name": "SteelSeries Apex Pro TKL Mechanical Gaming Keyboard OmniPoint Adjustable Switches",
+    "q_and_a": [
+     {
+      "question": "What does it mean that the actuation of the switches is adjustable?",
+      "answer": "OmniPoint switches use magnetic sensors to allow you to customize the actuation point—the distance a key needs to be pressed to register—from a super-light 0.4mm for fast gaming to a deeper 3.6mm for typing accuracy. You can set this on a per-key basis."
+     }
+    ]
+   },
+   {
+    "product_name": "Chord Mojo 2 Portable DAC/Headphone Amplifier with USB-C Connectivity",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Arturia KeyLab Essential 88 Keyboard Controller 88-Key Semi-Weighted",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Roland SP-404MKII Sampler and Sequencer with 16 GB Internal Storage",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Gibson Les Paul Standard 50s Electric Guitar with '50s Neck Profile",
+    "q_and_a": []
+   },
+   {
+    "product_name": "AnkerMake M5C 3D Printer with 500 mm/s High-Speed Printing and All-Metal Hotend",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bambu Lab P1S 3D Printer with Enclosed Design and High-Speed CoreXY",
+    "q_and_a": [
+     {
+      "question": "What is the main advantage of an enclosed 3D printer?",
+      "answer": "An enclosed design helps maintain a stable temperature around the print. This is crucial for printing with high-temperature materials like ABS and ASA, as it prevents warping and layer separation, leading to higher quality and more reliable prints."
+     }
+    ]
+   },
+   {
+    "product_name": "Creality Ender 3 V3 KE 3D Printer with Auto Leveling and Klipper Firmware",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Elegoo Mars 4 DLP 3D Printer with 9K Resolution and 3.4-inch LCD Screen",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Starlink Standard V2 Satellite Internet Dish for High-Speed Internet",
+    "q_and_a": [
+     {
+      "question": "Is Starlink suitable for online gaming and video calls?",
+      "answer": "Yes, Starlink provides high-speed, low-latency broadband internet, which is a significant improvement over traditional satellite internet. This makes it well-suited for activities like online gaming, video calls, and streaming that require a fast and responsive connection."
+     }
+    ]
+   },
+   {
+    "product_name": "Lian Li O11 Dynamic EVO Mid-Tower Case White with Tempered Glass",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Fractal Design Meshify 2 XL Full Tower Case Black with USB-C",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Microsoft Windows 11 Home 64-bit Operating System USB Flash Drive",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Schiit Modi 3E DAC with USB Optical and Coaxial Inputs",
+    "q_and_a": []
+   },
+   {
+    "product_name": "KitchenAid Artisan Series 5 Quart Tilt-Head Stand Mixer with 10 Speed Settings",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Kohler K-72419-BL Artifacts Freestanding Bathtub Faucet with Handshower",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Igloo ICELESS 28 Quart Electric Cooler with 12V DC Adapter",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Solo Stove Bonfire 2.0 Fire Pit with Stand and Smokeless Design",
+    "q_and_a": []
+   }
+  ],
+  "Gaming": [
+   {
+    "product_name": "Nintendo Switch OLED Model with White Joy-Con 7-inch OLED Screen",
+    "q_and_a": [
+     {
+      "question": "Is the performance of the OLED Model better than the original Switch?",
+      "answer": "No, the internal processing power, including the CPU and GPU, is the same as the original Nintendo Switch. The main upgrades are the larger, more vibrant 7-inch OLED screen, improved audio, a wider adjustable kickstand, and a built-in LAN port on the dock."
+     },
+     {
+      "question": "Can I use my old Joy-Con controllers with the OLED Model?",
+      "answer": "Yes, all existing Joy-Con controllers are compatible with the Nintendo Switch OLED Model."
+     }
+    ]
+   },
+   {
+    "product_name": "PlayStation 5 Console God of War Ragnarok Bundle Disc Version",
+    "q_and_a": [
+     {
+      "question": "Is the included copy of God of War Ragnarök a physical disc or a digital download?",
+      "answer": "This bundle includes a voucher with a code to download the full digital version of the game from the PlayStation Store. It does not come with a physical game disc."
+     }
+    ]
+   },
+   {
+    "product_name": "Logitech G29 Driving Force Racing Wheel and Pedals for PlayStation",
+    "q_and_a": [
+     {
+      "question": "Will this racing wheel also work with PC games?",
+      "answer": "Yes, the Logitech G29 is compatible with PlayStation 5, PlayStation 4, and PC. You will need to install Logitech's G HUB software on your PC to ensure full functionality and customization."
+     },
+     {
+      "question": "Does the force feedback feel realistic?",
+      "answer": "The G29 uses a dual-motor force feedback system designed to realistically simulate the feeling of your tires on every turn and type of terrain, allowing you to sense understeer, oversteer, and traction loss."
+     }
+    ]
+   },
+   {
+    "product_name": "Novation Launchpad Pro MK3 Grid Controller with Sequencer",
+    "q_and_a": [
+     {
+      "question": "Can I use this controller without a computer?",
+      "answer": "Yes, the Launchpad Pro MK3 has a powerful built-in four-track, 32-step sequencer, allowing you to control hardware synths and drum machines via its MIDI outputs, making it a capable standalone controller."
+     }
+    ]
+   },
+   {
+    "product_name": "Denon AVR-S760H 7.2 Channel 8K AV Receiver with HEOS Built-in",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Secretlab Titan Evo 2022 Series Gaming Chair Stealth Neo Hybrid Leatherette",
+    "q_and_a": [
+     {
+      "question": "How do I know which size (Small, Regular, or XL) is right for me?",
+      "answer": "Secretlab provides a detailed sizing guide on their website based on your height and weight to help you choose the perfect fit for optimal ergonomic support."
+     }
+    ]
+   },
+   {
+    "product_name": "Herman Miller x Logitech G Embody Gaming Chair Black and Cyan Ergonomic",
+    "q_and_a": [
+     {
+      "question": "What is the main ergonomic feature of the Embody chair?",
+      "answer": "The signature feature is its Dynamic Pixelated Back, which consists of a matrix of pixels that conform to your body's micro-movements. This, combined with the BackFit adjustment, ensures the chair supports your spine's natural curve and promotes healthy posture."
+     }
+    ]
+   },
+   {
+    "product_name": "DXRacer Master Series Gaming Chair Black PU Leather with Lumbar Support",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Pioneer DJ DDJ-FLX6-GT 4-channel DJ Controller for rekordbox and Serato DJ Pro",
+    "q_and_a": [
+     {
+      "question": "What is the 'Merge FX' feature on this controller?",
+      "answer": "Merge FX is a new feature that allows you to easily create dramatic transitions between different genres of music. By turning a single knob, you can apply a complex combination of effects to build tension and drop in your next track, regardless of its BPM."
+     }
+    ]
+   },
+   {
+    "product_name": "Novation Launchpad Pro MK3 Grid Controller for Ableton Live",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Arduino Uno R4 Minima Microcontroller Board with Renesas RA4M1 MCU",
+    "q_and_a": [
+     {
+      "question": "What is the main upgrade of the Uno R4 over the classic Uno R3?",
+      "answer": "The primary upgrade is the more powerful 32-bit Renesas RA4M1 processor, which offers increased processing power, more memory (RAM and Flash), and a higher clock speed compared to the 8-bit processor in the R3. It also features a native USB-C port."
+     }
+    ]
+   }
+  ]
+ },
+ "Home Appliances": {
+  "Kitchen Appliances": [
+   {
+    "product_name": "Ninja CP307 Hot and Cold Brewed System Auto-iQ Tea and Coffee Maker",
+    "q_and_a": [
+     {
+      "question": "How long does the 'cold brew' setting actually take to make coffee?",
+      "answer": "The cold brew setting uses an accelerated process and takes about 10-15 minutes to produce a smooth, cold brew-style coffee, which is much faster than traditional 12-24 hour methods."
+     },
+     {
+      "question": "Does this machine use K-Cups or coffee grounds?",
+      "answer": "This system uses loose-leaf tea or ground coffee; it is not compatible with K-Cup pods."
+     },
+     {
+      "question": "Can I brew just hot water for other drinks like instant soup?",
+      "answer": "Yes, it has a hot water setting that dispenses plain hot water, separate from the coffee and tea brewers, to prevent flavor contamination."
+     }
+    ]
+   },
+   {
+    "product_name": "COSORI Pro LE 5-Qt Air Fryer with Rapid Air Circulation Technology",
+    "q_and_a": [
+     {
+      "question": "Is the 5-quart basket large enough to cook a whole chicken?",
+      "answer": "The 5-quart capacity is ideal for 2-4 people and can typically fit a 3-4 pound whole chicken, depending on its shape."
+     },
+     {
+      "question": "Is the cooking basket and crisper plate dishwasher safe?",
+      "answer": "Yes, both the nonstick basket and the crisper plate are dishwasher safe for easy cleanup."
+     }
+    ]
+   },
+   {
+    "product_name": "Jetboil Flash Camping Stove System 1.0L Fast Boil Cooking System",
+    "q_and_a": [
+     {
+      "question": "What is the average boil time for 0.5 liters of water with this stove?",
+      "answer": "The Jetboil Flash is designed for speed and can boil 0.5 liters (16 oz) of water in as little as 100 seconds, though this can vary with ambient temperature and altitude."
+     },
+     {
+      "question": "Does the fuel canister come included with the stove system?",
+      "answer": "No, the Jetpower fuel canister is sold separately due to shipping regulations."
+     }
+    ]
+   },
+   {
+    "product_name": "Instant Pot Duo 7-in-1 Electric Pressure Cooker 6-Quart Stainless Steel",
+    "q_and_a": [
+     {
+      "question": "What are the seven functions of this Instant Pot model?",
+      "answer": "The 7-in-1 functions are: Pressure Cooker, Slow Cooker, Rice Cooker, Steamer, Sauté Pan, Yogurt Maker, and Warmer."
+     },
+     {
+      "question": "Is the inner stainless steel pot dishwasher safe?",
+      "answer": "Yes, the inner cooking pot, steam rack, and lid are all dishwasher safe for convenient cleaning."
+     }
+    ]
+   },
+   {
+    "product_name": "Keurig K-Elite Single-Serve K-Cup Pod Coffee Maker with Iced Coffee Setting",
+    "q_and_a": [
+     {
+      "question": "How does the 'Iced Coffee' setting work differently from a regular brew?",
+      "answer": "The Iced Coffee setting brews a smaller, more concentrated amount of coffee at a slightly lower temperature, which is designed to minimize ice melting and prevent a watered-down taste."
+     }
+    ]
+   },
+   {
+    "product_name": "Nespresso VertuoPlus Coffee and Espresso Maker by Breville Matte Black",
+    "q_and_a": [
+     {
+      "question": "Can I use original Nespresso pods or third-party capsules with this machine?",
+      "answer": "No, the VertuoPlus machine uses Nespresso's VertuoLine capsules, which are a different shape and use a barcode system for brewing. It is not compatible with OriginalLine capsules or other brands."
+     }
+    ]
+   },
+   {
+    "product_name": "NutriBullet Pro 900 Watt Personal Blender 9-Piece Set Champagne",
+    "q_and_a": [
+     {
+      "question": "Is this blender powerful enough to crush ice and frozen fruit?",
+      "answer": "Yes, the 900-watt motor is powerful enough to easily pulverize ice, frozen fruits, seeds, and nuts for smooth-textured drinks."
+     }
+    ]
+   },
+   {
+    "product_name": "Ninja Foodi 8-in-1 Digital Air Fry Oven Large Capacity Toaster Oven",
+    "q_and_a": [
+     {
+      "question": "What is the unique 'flip-up to store' feature?",
+      "answer": "This oven can be flipped up and stored vertically against your backsplash when not in use, saving up to 50% of counter space compared to leaving it in the cooking position."
+     }
+    ]
+   },
+   {
+    "product_name": "George Foreman 5-Serving Removable Plate Electric Grill and Panini Press",
+    "q_and_a": [
+     {
+      "question": "Are the removable grill plates dishwasher safe?",
+      "answer": "Yes, the grill plates have a non-stick coating and are fully removable and dishwasher-safe, making cleanup quick and simple."
+     }
+    ]
+   },
+   {
+    "product_name": "Hamilton Beach 2 Slice Toaster with Extra Wide Slots and Bagel Setting",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Le Creuset Signature Enameled Cast-Iron Round Dutch Oven 5.5-Quart Cerise",
+    "q_and_a": [
+     {
+      "question": "Is the enamel coating on the interior light or dark colored?",
+      "answer": "This model features a sand-colored interior enamel, which makes it easy to monitor food as it cooks to prevent burning and sticking."
+     },
+     {
+      "question": "What is the maximum oven-safe temperature for this Dutch oven?",
+      "answer": "The Dutch oven is oven-safe up to 500°F (260°C), including the lid and the stainless steel knob."
+     }
+    ]
+   },
+   {
+    "product_name": "All-Clad D3 Stainless Steel 10-Piece Cookware Set Dishwasher Safe",
+    "q_and_a": [
+     {
+      "question": "What does 'D3' or 'tri-ply' construction mean?",
+      "answer": "D3 refers to its three-ply bonded construction. It features a responsive aluminum core pressed between two layers of durable stainless steel, providing fast and even heat distribution."
+     }
+    ]
+   },
+   {
+    "product_name": "Instant Pot Pro 10-in-1 Pressure Cooker 6-Quart with Sous Vide Function",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Zojirushi NS-LGC05XB Micom Rice Cooker & Warmer 3-Cup Capacity Stainless Black",
+    "q_and_a": [
+     {
+      "question": "What is 'Micom' (microcomputer) technology in a rice cooker?",
+      "answer": "Micom technology means the rice cooker has a computer chip that allows it to 'think' and automatically adjust cooking time and temperature to ensure perfect rice every time. It can compensate for factors like water temperature and grain type."
+     }
+    ]
+   },
+   {
+    "product_name": "Breville Barista Express Impress Espresso Machine with Integrated Grinder",
+    "q_and_a": [
+     {
+      "question": "What is the 'Impress' system and how does it help with tamping?",
+      "answer": "The 'Impress Puck System' provides intelligent dosing and assisted tamping. It learns the correct dose of coffee grounds needed and the assisted tamper lever delivers a consistent 22 lbs of pressure, finishing with a 7-degree barista twist for a perfect puck."
+     }
+    ]
+   },
+   {
+    "product_name": "Ninja CREAMi Deluxe 11-in-1 Ice Cream and Frozen Treat Maker",
+    "q_and_a": [
+     {
+      "question": "Do I have to freeze the base mixture for 24 hours before processing?",
+      "answer": "Yes, for best results, the base mixture must be frozen solid in one of the CREAMi Deluxe Pints for at least 24 hours before you can process it into ice cream, sorbet, or other frozen treats."
+     }
+    ]
+   },
+   {
+    "product_name": "NutriBullet Immersion Blender 800W with 2 Attachments",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cuisinart Air Fryer Toaster Oven with 7-in-1 Functions",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ooni Koda 16 Gas Powered Pizza Oven with Cordierite Baking Stone",
+    "q_and_a": [
+     {
+      "question": "How long does it take for the Ooni Koda 16 to heat up?",
+      "answer": "The Ooni Koda 16 can reach its cooking temperature of 950°F (500°C) in about 20-25 minutes."
+     },
+     {
+      "question": "Can this pizza oven be used with natural gas?",
+      "answer": "This model comes ready to connect to a standard propane tank. To use it with natural gas, you would need to purchase a separate Natural Gas Conversion Kit from Ooni."
+     }
+    ]
+   },
+   {
+    "product_name": "Weber Genesis E-325s Gas Grill with Sear Burner",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Keurig K-Elite Single Serve Coffee Maker with Iced Coffee Setting and 75oz Reservoir",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Instant Pot Pro 10-in-1 Pressure Cooker and Air Fryer Combo with EvenCrisp Technology",
+    "q_and_a": [
+     {
+      "question": "Does this model come with one lid or two separate lids?",
+      "answer": "This model comes with two separate lids: one for pressure cooking and other wet functions, and a dedicated air fryer lid that contains the heating element and fan for crisping."
+     }
+    ]
+   },
+   {
+    "product_name": "Soto Amicus Stove with Stealth Igniter Compact Camping Stove",
+    "q_and_a": []
+   },
+   {
+    "product_name": "GoXLR Mini Online Broadcast Mixer with Midas Preamp and Motorized Faders",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Traktor Pro 3 DJ Software with Four Decks and Mixer FX",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Breville Barista Express Espresso Machine with Integrated Grinder and Steam Wand",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Nespresso VertuoPlus Coffee and Espresso Machine by Breville with Automatic Capsule Recognition",
+    "q_and_a": []
+   },
+   {
+    "product_name": "OXO Brew 9-Cup Coffee Maker with SCAA Certified Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Vitamix 5200 Professional-Grade Blender with Self-Cleaning Function",
+    "q_and_a": []
+   },
+   {
+    "product_name": "NutriBullet Pro 900 Watt Personal Blender with High-Speed Extraction",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cuisinart TOB-260N1 Chef's Convection Toaster Oven with 15 Cooking Functions",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Instant Pot Pro 10-in-1 Pressure Cooker with Sous Vide Function",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Zojirushi NS-LGC05 Micom Rice Cooker & Warmer 3-Cup Capacity with GABA Rice Menu",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Le Creuset Signature Enameled Cast-Iron Round Dutch Oven 5.5 Quart Cherry Red",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Jetboil MiniMo Camping Stove Cooking System with Regulator Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Weber Genesis E-325S Liquid Propane Grill with Searing Zone and Grill Locker",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ooni Koda 16 Gas Powered Pizza Oven with Stone Baking Board",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bosch 800 Series Dishwasher with CrystalDry Technology and InfoLight",
+    "q_and_a": [
+     {
+      "question": "What is CrystalDry technology and how does it improve drying?",
+      "answer": "CrystalDry uses natural minerals called Zeolites to absorb moisture and transform it into heat, which is then circulated to get dishes, including plastics, exceptionally dry."
+     },
+     {
+      "question": "What is the 'InfoLight' feature?",
+      "answer": "Since Bosch dishwashers are so quiet, the InfoLight projects a red light onto the floor to let you know that a cycle is currently running. The light turns off when the cycle is complete."
+     }
+    ]
+   }
+  ],
+  "Cleaning Appliances": [
+   {
+    "product_name": "Dyson V15 Detect Cordless Vacuum Cleaner with Laser Dust Detection",
+    "q_and_a": [
+     {
+      "question": "How does the laser dust detection actually work?",
+      "answer": "The fluffy cleaner head projects a precisely-angled green laser onto hard floors, revealing microscopic dust particles that are normally invisible to the naked eye, so you can see exactly where to clean."
+     },
+     {
+      "question": "What does the piezo sensor do?",
+      "answer": "The piezo sensor continuously sizes and counts dust particles. The vacuum then displays this information on the LCD screen and automatically increases suction power when it detects a high concentration of dust."
+     }
+    ]
+   },
+   {
+    "product_name": "Shark Navigator Lift-Away Professional Upright Vacuum NV356E Anti-Allergen",
+    "q_and_a": [
+     {
+      "question": "What does 'Lift-Away' mean?",
+      "answer": "The 'Lift-Away' feature allows you to detach the main canister from the vacuum's body with the press of a button. This transforms it into a portable, lightweight vacuum for cleaning stairs, furniture, and above-floor areas."
+     }
+    ]
+   },
+   {
+    "product_name": "O-Cedar EasyWring Microfiber Spin Mop & Bucket Floor Cleaning System",
+    "q_and_a": []
+   },
+   {
+    "product_name": "BLACK+DECKER Digital Advantage Professional Steam Iron D3030 Auto-Off",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lodge 10.25 Inch Cast Iron Skillet Pre-Seasoned Ready for Use",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dyson V12 Detect Slim Cordless Vacuum Cleaner with Laser Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "iRobot Roomba Combo j9+ Self-Emptying Robot Vacuum & Mop with Dirt Detect",
+    "q_and_a": [
+     {
+      "question": "How does this robot know when to lift the mop pad for carpets?",
+      "answer": "The Roomba Combo j9+ features the D.R.I. (Dry Rug Intelligence) system. It uses sensors to detect carpet and automatically lifts the mop pad all the way to the top of the robot, preventing wet messes on your rugs."
+     }
+    ]
+   },
+   {
+    "product_name": "Eufy Clean X10 Pro Omni Robot Vacuum and Mop with AI.See Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Le Creuset Enameled Cast Iron Signature Skillet 10.25 inch Cerise",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Staub Cast Iron Round Cocotte 5.5-Quart Grenadine",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Eufy HomeVac S11 Lite Cordless Stick Vacuum Cleaner with 20KPa Suction",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dyson Airwrap Multi-Styler Complete Long Nickel/Copper for All Hair Types",
+    "q_and_a": [
+     {
+      "question": "How does the Airwrap style hair without extreme heat?",
+      "answer": "It uses a phenomenon called the Coandă effect. A powerful jet of air flows out of slots in the attachments, creating a vortex that attracts and wraps the hair around the barrel, styling it with air rather than high heat."
+     }
+    ]
+   },
+   {
+    "product_name": "Shark FlexStyle Air Styling & Drying System Multi-Styler with 5 Attachments",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LEGO Technic Bugatti Chiron 42083 1:8 Scale Replica Car",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Shark AI Ultra 2-in-1 Robot Vacuum and Mop with Matrix Clean Navigation",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Shark Vertex Pro Cordless Vacuum Cleaner with DuoClean PowerFins Hair Remover",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dyson Airwrap Multi-Styler Complete Long with Coanda Airflow Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "BaBylissPRO Nano Titanium Straightening Iron 1.5 inch Professional Grade",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LEGO Technic Bugatti Chiron 42083 Building Kit with W16 Engine Model",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lodge 10.25-inch Cast Iron Skillet Pre-Seasoned with Helper Handle",
+    "q_and_a": []
+   },
+   {
+    "product_name": "iRobot Roomba i7+ (7550) Robot Vacuum with Automatic Dirt Disposal",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Eufy RoboVac 11S MAX Robot Vacuum Cleaner with Super-Slim Design and 2000Pa Suction",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Shark IZ462H Vertex DuoClean PowerFins Cordless Stick Vacuum with Self-Cleaning Brushroll",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dyson V12 Detect Slim Cordless Vacuum with Laser Illumination and Piezo Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dyson Supersonic Hair Dryer with Intelligent Heat Control and Air Multiplier Technology",
+    "q_and_a": [
+     {
+      "question": "What is 'Intelligent Heat Control'?",
+      "answer": "The Supersonic hair dryer measures the air temperature over 40 times a second to regulate the heat. This prevents extreme heat damage and helps protect your hair's natural shine."
+     }
+    ]
+   },
+   {
+    "product_name": "T3 Lucea ID Straightening and Styling Iron with 9 Heat Settings",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bio Ionic Long Barrel Curling Iron 1.25 inch with 2-inch Longer Barrel",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dyson Purifier Cool TP07 Purifying Fan with HEPA and Activated Carbon Filtration",
+    "q_and_a": []
+   },
+   {
+    "product_name": "iRobot Braava Jet m6 Ultimate Robot Mop with Precision Jet Spray",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bissell SpinWave Robot Mop and Vacuum with Two-Tank Cleaning System",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LG WashTower Single Unit Washer and Dryer with Center Control Panel",
+    "q_and_a": [
+     {
+      "question": "What is the main benefit of the center control panel?",
+      "answer": "The center control panel is positioned at an ideal height between the washer and dryer, making it easy to reach and operate both machines without needing a step stool, which is a common issue with traditional stacked units."
+     },
+     {
+      "question": "Can the washer and dryer communicate with each other?",
+      "answer": "Yes, with the Smart Pairing feature, the washer can tell the dryer to automatically select a compatible drying cycle based on the wash cycle that was just completed, simplifying your laundry routine."
+     }
+    ]
+   }
+  ],
+  "Climate Control": [
+   {
+    "product_name": "Tiffany & Co. Return to Tiffany Heart Tag Bracelet Sterling Silver",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Levoit Core 300 Air Purifier H13 True HEPA Filter Covers 219 sq ft",
+    "q_and_a": [
+     {
+      "question": "How often do I need to replace the filter?",
+      "answer": "It is recommended to replace the 3-in-1 filter every 6-8 months, depending on usage and air quality. The purifier also has a check filter indicator to remind you."
+     },
+     {
+      "question": "How quiet is this air purifier on its lowest setting?",
+      "answer": "On its lowest fan speed (Sleep Mode), the Core 300 operates at a very quiet 24 decibels, which is comparable to a whisper."
+     }
+    ]
+   },
+   {
+    "product_name": "Pure Enrichment MistAire Ultrasonic Cool Mist Humidifier 1.5L Tank",
+    "q_and_a": []
+   },
+   {
+    "product_name": "hOmeLabs 4500 Sq Ft Dehumidifier Energy Star 50 Pint Continuous Drain",
+    "q_and_a": [
+     {
+      "question": "Does this unit have a pump for the continuous drain option?",
+      "answer": "This model does not include a built-in pump. For continuous draining, you must connect a standard garden hose (not included) and route it to a floor-level drain using gravity."
+     }
+    ]
+   },
+   {
+    "product_name": "Honeywell QuietSet Whole Room Tower Fan 5-Speed Settings Remote Control",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Frigidaire 8000 BTU Window Air Conditioner FFRA0822U1 Electronic Controls",
+    "q_and_a": []
+   },
+   {
+    "product_name": "BLACK+DECKER 8000 BTU Portable Air Conditioner BPACT08WT Remote Control",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hunter Dempsey 44 inch Ceiling Fan with LED Light Remote Control",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Gloomhaven Board Game Fantasy Adventure with Legacy Elements",
+    "q_and_a": []
+   },
+   {
+    "product_name": "YETI Tundra 45 Cooler with Rotomolded Construction White",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hydro Flask 40L Carryout Soft Cooler Pack with Padded Backpack Straps",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Yeti Tundra 45 Cooler Rotomolded Construction Permafrost Insulation",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Gloomhaven Board Game Fantasy Campaign Game with Legacy Elements",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Corsair iCUE H150i ELITE CAPELLIX XT 360mm AIO Liquid CPU Cooler",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Yeti Tundra 45 Cooler Hard Cooler with PermaFrost Insulation and T-Rex Latches",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Molekule Air Mini+ Air Purifier with PECO Technology for Small Rooms",
+    "q_and_a": [
+     {
+      "question": "How is PECO technology different from a HEPA filter?",
+      "answer": "While HEPA filters capture pollutants like dust and pollen, PECO (Photo Electrochemical Oxidation) technology uses UV-A light to activate a catalyst that destroys pollutants at a molecular level, including allergens, VOCs, mold, and viruses."
+     }
+    ]
+   },
+   {
+    "product_name": "Blueair Blue Pure 211+ Auto Large Room Air Purifier with HEPASilent Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "LEVOIT Core 300 HEPA Air Purifier with VortexAir Technology",
+    "q_and_a": []
+   }
+  ],
+  "Small Appliances": [
+   {
+    "product_name": "Philips Airfryer XXL with Fat Removal Technology",
+    "q_and_a": [
+     {
+      "question": "What is the 'Fat Removal Technology'?",
+      "answer": "The bottom of the Airfryer XXL has a unique 'starfish' design that creates a swirling airflow. This helps extract and capture excess fat from food, which then collects below the fat reducer, making your meals healthier."
+     },
+     {
+      "question": "Can I cook for a whole family with this model?",
+      "answer": "Yes, the XXL has a 3lb/7.3qt capacity, which is large enough to cook a whole chicken or two bags of french fries, making it suitable for family-sized meals."
+     }
+    ]
+   }
+  ]
+ },
+ "Books": [
+  {
+   "product_name": "Watchmen: The Complete Collection by Alan Moore Deluxe Hardcover Edition",
+   "q_and_a": [
+    {
+     "question": "Does this deluxe edition include any extra content not in the original graphic novel?",
+     "answer": "Yes, this edition often includes bonus material such as character sketches, concept art, and excerpts from the original proposals by Alan Moore and Dave Gibbons."
+    }
+   ]
+  },
+  {
+   "product_name": "Dune by Frank Herbert - 50th Anniversary Deluxe Hardcover with Dust Jacket",
+   "q_and_a": [
+    {
+     "question": "Are the appendices and the 'Terminology of the Imperium' included in this edition?",
+     "answer": "Yes, the 50th Anniversary Deluxe edition is a complete version that includes all of the original appendices, the glossary, and the map of Arrakis."
+    }
+   ]
+  },
+  {
+   "product_name": "Salt, Fat, Acid, Heat by Samin Nosrat - James Beard Award Winner Cookbook",
+   "q_and_a": [
+    {
+     "question": "Is this cookbook more focused on recipes or on teaching cooking techniques?",
+     "answer": "It's primarily focused on teaching the four fundamental elements of good cooking (Salt, Fat, Acid, Heat). While it contains over 100 essential recipes, its main goal is to teach you how to become a better cook by mastering these principles."
+    }
+   ]
+  },
+  {
+   "product_name": "Sapiens: A Brief History of Humankind by Yuval Noah Harari Paperback",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Bath & Body Works 3-Wick Candle Mahogany Teakwood 14.5oz with Essential Oils",
+   "q_and_a": []
+  },
+  {
+   "product_name": "BenQ e-Reading LED Desk Lamp with Auto-Dimming and Halo Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Titleist Pro V1 Golf Balls Dozen White High Performance Urethane Cover",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Chanel No. 5 Eau de Parfum Spray 3.4oz Classic French Luxury Fragrance",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Charlotte Tilbury Matte Revolution Lipstick Pillow Talk Medium-Full Coverage",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NARS Blush Orgasm 4.8g Peachy Pink with Golden Undertones Cult Classic",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fenty Beauty Pro Filt'r Soft Matte Longwear Foundation 32ml Medium Coverage",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NARS Radiant Creamy Concealer 6ml Full Coverage Weightless Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Essie Nail Polish Ballet Slippers 0.46oz Sheer Pink Classic Shade",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Olay Regenerist Night Recovery Cream 1.7oz with Niacinamide and Amino-Peptides",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Differin Adapalene Gel 0.1% Acne Treatment 1.6oz Retinoid Prescription Strength",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Kaytee Wild Bird Food Classic Mixed Seed Blend 10lb Bag Sunflower Seeds",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Flexi New Classic Retractable Dog Leash 16ft Cord Medium Dogs up to 44lbs",
+   "q_and_a": []
+  },
+  {
+   "product_name": "KONG Classic Dog Toy Medium Red Durable Natural Rubber Mental Stimulation",
+   "q_and_a": []
+  },
+  {
+   "product_name": "LEGO Star Wars Millennium Falcon 75257 Building Kit 1351 Pieces",
+   "q_and_a": [
+    {
+     "question": "How many minifigures are included in this set?",
+     "answer": "This set includes 7 LEGO Star Wars minifigures: Finn, Chewbacca, Lando Calrissian, C-3PO, and Boolio, plus fan-favorite droids R2-D2 and D-O."
+    }
+   ]
+  },
+  {
+   "product_name": "Catan Board Game 5th Edition Strategy Game for 3-4 Players",
+   "q_and_a": []
+  },
+  {
+   "product_name": "TP-Link Deco Mesh WiFi System 3-pack Whole Home Coverage up to 5500 sq ft",
+   "q_and_a": []
+  },
+  {
+   "product_name": "TheraBox Subscription Box for Self Care Monthly Curated Items for Wellness",
+   "q_and_a": []
+  },
+  {
+   "product_name": "PUR Classic 11 Cup Water Filter Pitcher with Lead Reduction Filter",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Calphalon Premier Hard-Anodized Nonstick 11-Piece Cookware Set",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Stanley Classic Legendary Bottle 1.1 Quart Hammertone Green",
+   "q_and_a": []
+  },
+  {
+   "product_name": "LEGO Classic Medium Creative Brick Box 10696 484 Pieces",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Crayola Ultimate Crayon Collection 152 Count with Sharpener",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Galaxy Watch6 Classic 47mm LTE Black with Rotating Bezel",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Wüsthof Classic Ikon 7-Inch Santoku Knife with Hollow Edge",
+   "q_and_a": []
+  },
+  {
+   "product_name": "UGG Classic Short II Women's Boots Pretreated Against Water",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Polo Ralph Lauren Men's Classic Fit Mesh Polo Shirt",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fjällräven Kånken Classic Backpack 16L Water Resistant Vinylal Fabric",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex 1.7 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Whoop 4.0 Fitness and Health Tracker Subscription-based",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Star Wars: X-Wing Second Edition Miniature Game Core Set",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Ravensburger The World's Most Beautiful Jigsaw Puzzles 18000 Pieces",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Food Lab: Better Home Cooking Through Science by J. Kenji López-Alt Bestselling Cookbook",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fjällräven Kanken Classic Backpack Water Resistant Vinylon F Fabric Daypack",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Chaco Z/1 Classic Sandals Unisex with ChacoGrip Rubber Outsole Adjustable Straps",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Timex Expedition Scout 40mm Watch Men's with INDIGLO Night-Light Brown Leather Strap",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Adidas EPP II Training Soccer Ball Size 5 Machine Stitched TPU Cover",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Srixon Z-Star Golf Balls Dozen White Urethane Cover FastLayer Core",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Ghost Legend Pre-Workout Powder Blue Raspberry 25 Servings",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Proraso Shaving Cream Eucalyptus & Menthol 5.2oz Classic Italian Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NARS Powermatte Lipstick American Woman 5.5ml Matte Finish Full Coverage",
+   "q_and_a": []
+  },
+  {
+   "product_name": "L'Oréal Paris Voluminous Original Mascara Blackest Black Volume Building",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Milk Makeup Flex Concealer 6ml Medium Coverage Concealer with Marshmallow Root",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Autodesk AutoCAD 2024 Professional 2D and 3D CAD Software Subscription",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Boss Katana-50 MkII Guitar Amplifier 50-watt with 5 Amp Characters",
+   "q_and_a": []
+  },
+  {
+   "product_name": "LEGO Star Wars Millennium Falcon 75192 Ultimate Collector Series with 7541 Pieces",
+   "q_and_a": [
+    {
+     "question": "What are the dimensions of the fully built model?",
+     "answer": "The completed Ultimate Collector Series Millennium Falcon is a massive display piece, measuring over 8 inches (21cm) high, 33 inches (84cm) long, and 23 inches (60cm) wide."
+    }
+   ]
+  },
+  {
+   "product_name": "Dungeons & Dragons Starter Set 5th Edition Roleplaying Game",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hasbro The Black Series Boba Fett (Re-Armored) Electronic Helmet",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Melissa & Doug Food Groups Wooden Play Food Set with 21 Pieces",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Bitdefender Total Security 2024 1-Year Subscription 5 Devices",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NordVPN 2-Year Subscription for 6 Devices with Threat Protection",
+   "q_and_a": []
+  },
+  {
+   "product_name": "ExpressVPN 1-Year Subscription for 5 Devices with 256-bit AES Encryption",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Chemex Classic Series Pour-Over Glass Coffeemaker 8-Cup",
+   "q_and_a": []
+  },
+  {
+   "product_name": "All-Clad D5 Brushed Stainless 5-Ply Bonded Cookware Set 10-Piece",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Wüsthof Classic 8-inch Chef's Knife with Forged Blade and Full Tang",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Shun Classic 8-inch Chef's Knife with Damascus Cladding and D-Shaped Handle",
+   "q_and_a": []
+  },
+  {
+   "product_name": "OXO Good Grips 3-Piece POP Container Set Airtight with Push-Button Seal",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex Serum 50ml",
+   "q_and_a": []
+  },
+  {
+   "product_name": "IT Cosmetics Your Skin But Better CC+ Cream with SPF 50+ Full Coverage",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Braun Series 9 Pro Electric Shaver with ProLift Trimmer and AutoSense Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Jack Black Double-Duty Face Moisturizer SPF 20 with Blue Algae Extract",
+   "q_and_a": []
+  }
+ ],
+ "Gaming & Hobbies": [
+  {
+   "product_name": "Bowflex SelectTech 552 Adjustable Dumbbells Set 5-52.5 lbs per Dumbbell",
+   "q_and_a": [
+    {
+     "question": "How do I change the weight on these dumbbells?",
+     "answer": "You simply turn the dial on each end of the dumbbell to the weight you desire. When you lift the handle, it will only pick up the selected weight plates, leaving the rest in the base."
+    },
+    {
+     "question": "What are the weight increments I can select?",
+     "answer": "From 5 to 25 lbs, the weight can be adjusted in 2.5 lb increments. From 25 to 50 lbs, it adjusts in 5 lb increments, and the final jump is to 52.5 lbs."
+    }
+   ]
+  },
+  {
+   "product_name": "Plano 3700 Tackle Box with Adjustable Dividers Clear Lid Organization",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Spalding NBA Official Game Basketball Indoor/Outdoor Composite Leather",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Seresto Flea and Tick Collar for Dogs 8-Month Protection Adjustable",
+   "q_and_a": []
+  },
+  {
+   "product_name": "First Alert Smoke Detector Alarm 10-Year Battery Photoelectric Sensor",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Play-Doh Modeling Compound Super Color Pack 20-Pack Assortment",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Google Pixel 8 Pro 256GB Unlocked with Tensor G3 Chip and 5x Telephoto Lens",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Our Place Always Pan 2.0 with Steam Basket and Spatula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Govee RGBIC LED Strip Lights 16.4ft with Music Sync Mode",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Marvel Champions: The Card Game Core Set",
+   "q_and_a": [
+    {
+     "question": "Is this a cooperative game or a competitive game?",
+     "answer": "Marvel Champions is a fully cooperative Living Card Game (LCG). Players work together as a team of heroes to defeat a common villain controlled by the game's mechanics."
+    }
+   ]
+  },
+  {
+   "product_name": "Flybird Adjustable Dumbbells Set 5-25 lbs per Dumbbell with One-Hand Adjustment",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Autonomous ErgoChair Pro Ergonomic Office Chair with Adjustable Lumbar Support",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Patagonia Live Simply Hat Unisex Organic Cotton with Adjustable Strap",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Spalding NBA Replica Game Basketball Indoor/Outdoor Composite Leather",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Black Diamond Trail Trekking Poles with Dual FlickLock Adjustment System",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Adobe Creative Cloud Photography Plan with Photoshop and Lightroom",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Ableton Live 11 Suite Music Production and Performance Software",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Native Instruments Komplete 14 Ultimate Music Production Suite",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Spectrasonics Omnisphere 2.8 Virtual Synthesizer Software Instrument",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Serato DJ Pro Digital Vinyl System Software for DJing",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Native Instruments Maschine Mikro MK3 Production and Performance System",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Boss RC-500 Loop Station with Two Stereo Tracks and Mic/Instrument Inputs",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Wingspan Board Game with Stunning Bird Art and Engine-Building Mechanics",
+   "q_and_a": [
+    {
+     "question": "How many players can play Wingspan?",
+     "answer": "The base game supports 1 to 5 players. It includes a solo mode called 'Automa' for a single-player experience."
+    }
+   ]
+  },
+  {
+   "product_name": "Ticket to Ride Board Game European Adventure Train Game",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NVIDIA Shield TV Pro Streaming Media Player with AI-Upscaling",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Maison Francis Kurkdjian Baccarat Rouge 540 Eau de Parfum 70ml Woody Amber Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "LG Styler Steam Clothing Care System with TrueSteam and Moving Hanger",
+   "q_and_a": []
+  }
+ ],
+ "Travel & Luggage": {
+  "Bags & Luggage": [
+   {
+    "product_name": "TONYMOLY I'm Real Sheet Mask Variety Pack 11 Different Types",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Patagonia Baggies Shorts 5 inch Men's 100% Recycled Nylon with DWR Coating",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bombas Ankle Socks Men's Merino Wool Blend Cushioned Sole 4-Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Coach Signature City Zip Tote Bag Brown Canvas with Leather Trim",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsonite Winfield 3 DLX Hardside Expandable Luggage 28 inch Spinner Brushed Anthracite",
+    "q_and_a": [
+     {
+      "question": "Is this 28-inch suitcase considered a carry-on or checked bag?",
+      "answer": "A 28-inch suitcase is too large for carry-on and must be checked for airline travel."
+     }
+    ]
+   },
+   {
+    "product_name": "Patagonia Black Hole Duffel Bag 60L Recycled Polyester Weather Resistant",
+    "q_and_a": []
+   },
+   {
+    "product_name": "REI Co-op Quarter Dome SL 2 Tent Ultralight Backpacking 3-Season",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Marmot Trestles Elite Eco 20 Sleeping Bag Synthetic Fill 20°F Rating",
+    "q_and_a": []
+   },
+   {
+    "product_name": "CLIF BAR Energy Bars Variety Pack 12 Count Organic Oat Fiber",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Gatorade Thirst Quencher Sports Drink Variety Pack 20oz Bottles 12 Count",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Degree Men MotionSense Antiperspirant Deodorant Cool Rush 2.7oz 4-Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "The Face Shop Real Nature Rice Face Mask Sheet 10 Pack Brightening",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hill's Science Diet Adult Indoor Cat Food Chicken Recipe 15.5lb Bag",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Simple Houseware 2-Bag Heavy Duty Rolling Laundry Sorter Cart Chrome",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips LED A19 Light Bulb 60W Equivalent Daylight 5000K 4-Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Durex Pleasure Pack Condoms Assortment 42 Count Latex",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Lysol Disinfecting Wipes Lemon & Lime Blossom 240 Count 3 Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hefty Ultra Strong 13 Gallon Trash Bags with Febreze Odor Control 90 Count",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hot Wheels 9-Car Gift Pack Multipack Die-Cast Cars",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips Hue Play White and Color Ambiance Light Bar 2-Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Netgear Orbi WiFi 6E Mesh System 3-pack 6GHz Tri-band",
+    "q_and_a": []
+   },
+   {
+    "product_name": "TheraBreath Fresh Breath Oral Rinse Mild Mint 3-pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Big Agnes Copper Spur HV UL2 Tent Ultralight Backpacking Tent",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Osprey Atmos AG 65 Backpacking Backpack with Anti-Gravity Suspension",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Gregory Baltoro 75 Backpack Men's with Response A3 Suspension",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hydro Flask 12 L Insulated Lunch Tote with YKK Zippers",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dr. Jart+ Dermask Water Jet Vital Hydra Solution Facial Mask 5-Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Columbia Glennaker Lake Rain Jacket Men's Waterproof and Packable",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Osprey Porter 46 Travel Backpack Carry-on Sized with Zip-away Harness",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Samsonite Freeform Hardside Expandable Luggage 21 inch Spinner Carry-On Black",
+    "q_and_a": []
+   },
+   {
+    "product_name": "The North Face Base Camp Duffel Bag Medium 71L Recycled PVC with Side Handles",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Chrome Industries Barrage Cargo Backpack 22L with Waterproof Main Compartment",
+    "q_and_a": []
+   },
+   {
+    "product_name": "NEMO Forte 20 Sleeping Bag Synthetic Fill 20°F Rating for Side Sleepers",
+    "q_and_a": []
+   },
+   {
+    "product_name": "RXBAR Protein Bars Variety Pack 12 Count Whole Food Protein Bar",
+    "q_and_a": []
+   },
+   {
+    "product_name": "BodyArmor Lyte Sports Drink Variety Pack 16oz Bottles 12 Count",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Degree Women MotionSense Antiperspirant Deodorant Fresh Energy 2.6oz 4-Pack",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Osprey Talon 22 Hiking Backpack Men's with BioStretch Harness and AirScape Backpanel",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Pokemon TCG: Scarlet & Violet Elite Trainer Box with 9 Booster Packs",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Big Agnes Copper Spur HV UL2 Ultralight Backpacking Tent with Two Doors",
+    "q_and_a": []
+   },
+   {
+    "product_name": "The North Face Dolomite One Sleeping Bag Synthetic 20°F and 50°F options",
+    "q_and_a": []
+   },
+   {
+    "product_name": "NEMO Equipment Fillo Elite Ultralight Backpacking Pillow with Stuff Sack",
+    "q_and_a": []
+   }
+  ],
+  "Travel Accessories": [
+   {
+    "product_name": "CamelBak Chute Mag Water Bottle 32oz BPA-Free Magnetic Cap",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Thermos Stainless King 40 Ounce Beverage Bottle Matte Black",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Contigo Autoseal West Loop Travel Mug 16oz Stainless Steel with Lid Lock",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Google Nest Learning Thermostat 3rd Generation Polished Steel",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hydro Flask Wide Mouth 32oz Water Bottle with Flex Cap Black",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Fender Player Stratocaster Electric Guitar HSS Black with Maple Fingerboard",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Smith I/O MAG XL Snow Goggles with ChromaPop Lens Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Takeya Originals Tritan Water Bottle 24oz with Spout Lid and Silicone Bumper",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hydro Flask Wide Mouth 32oz Water Bottle with Flex Sip Lid",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Suunto Vertical Titanium Solar GPS Watch with Solar Charging and Offline Maps",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hydro Flask Wide Mouth 32 oz Water Bottle with Flex Cap and TempShield Insulation",
+    "q_and_a": []
+   }
+  ],
+  "Trip Planning": [
+   {
+    "product_name": "Gaiam Premium 6mm Print Yoga Mat with Carrying Strap Non-Slip",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Herman Miller Aeron Ergonomic Office Chair Size B Graphite Carbon",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cartier Love Ring 18k White Gold Size 6 Screw Design Luxury",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Ridge Wallet The Original Minimalist Metal Wallet RFID Blocking Carbon Fiber",
+    "q_and_a": [
+     {
+      "question": "How many cards can this wallet comfortably hold?",
+      "answer": "The Ridge Wallet can hold 1-12 cards securely between its RFID-blocking plates. The elastic expands to accommodate the number of cards you have."
+     }
+    ]
+   },
+   {
+    "product_name": "Maybelline Lash Sensational Sky High Mascara Very Black Washable Formula",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Sherpa Original Deluxe Pet Carrier Medium Airline Approved Soft-Sided",
+    "q_and_a": [
+     {
+      "question": "What is the maximum weight for a pet in the medium size carrier?",
+      "answer": "The medium size is designed for pets up to 16 pounds (7.2 kg)."
+     },
+     {
+      "question": "Is this carrier guaranteed to be allowed on all airlines?",
+      "answer": "It's part of the 'Guaranteed on Board' program, but you must check your specific flight details and airline rules, as requirements can vary. It's designed to fit under most airline seats."
+     }
+    ]
+   },
+   {
+    "product_name": "Thule Force XT L Rooftop Cargo Box 16 Cubic Feet Matte Black",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Too Faced Better Than Sex Volumizing Mascara Intense Black",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Bowflex Max Trainer M9 Cardio Machine with JRNY Digital Fitness Platform",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips Sonicare ProtectiveClean 5100 Electric Toothbrush White",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Kobo Libra 2 eReader 7-inch E Ink Carta 1200 Touchscreen with Dark Mode",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Carhartt K87 Pocket T-Shirt Men's Original Fit 6.75 oz Cotton",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Cartier Santos de Cartier Watch 40mm Stainless Steel Automatic Movement",
+    "q_and_a": []
+   },
+   {
+    "product_name": "St. Croix Mojo Bass Casting Rod 7ft 1inch Medium Heavy Action Carbon Fiber",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Specialized Rockhopper Comp 29 Mountain Bike A1 Premium Aluminum with SR Suntour Fork",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips Sonicare ProtectiveClean 5100 Electric Toothbrush with Pressure Sensor",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Listerine Total Care Mouthwash Fresh Mint 1L Antiseptic Mouthwash",
+    "q_and_a": []
+   },
+   {
+    "product_name": "DenTek Triple Clean Floss Picks 90 Count Advanced Floss Picks",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Simple Kind to Skin Cleansing Facial Wipes 25 Count Triple Purified Water",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips Hue Play Gradient Lightstrip 65-inch TV Sync with Hue Bridge",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Playmobil Ghostbusters Ecto-1 Playset 9220 with Lights and Sound",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Yu-Gi-Oh! TCG: Dark Magician Structure Deck with 40-Card Deck",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Pro-Ject Debut Carbon EVO Turntable with Ortofon 2M Red Cartridge",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Rega Planar 3 Turntable with Elys 2 Cartridge and RB330 Tonearm",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Hario V60 Drip Coffee Server with Glass Carafe and Heatproof Design",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Dior Diorshow Iconic Overcurl Mascara 090 Black with Curved Brush",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Le Labo Santal 33 Eau de Parfum 50ml with Cardamom and Cedarwood",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Philips Sonicare 9900 Prestige Electric Toothbrush with SenseIQ Technology",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Moon Oral Care Kendall Jenner Teeth Whitening Pen with Elixir",
+    "q_and_a": []
+   },
+   {
+    "product_name": "Crest 3D Whitestrips Professional Effects Teeth Whitening Kit",
+    "q_and_a": []
+   }
+  ]
+ },
+ "Fitness & Outdoors": [
+  {
+   "product_name": "Fitbit Charge 5 Advanced Fitness and Health Tracker with Built-in GPS",
+   "q_and_a": [
+    {
+     "question": "Does this Fitbit have an ECG app for heart rhythm assessment?",
+     "answer": "Yes, the Fitbit Charge 5 has an on-wrist ECG app that can assess your heart for atrial fibrillation (AFib) and share the results with your doctor."
+    },
+    {
+     "question": "Is a Fitbit Premium subscription required to use this tracker?",
+     "answer": "While the tracker works without a subscription for basic tracking, a Fitbit Premium membership is needed to access advanced features like the Daily Readiness Score, detailed sleep analysis, and guided workout programs."
+    }
+   ]
+  },
+  {
+   "product_name": "Nike Air Zoom Pegasus 39 Men's Road Running Shoes Breathable Mesh Upper",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Birkenstock Arizona Essentials EVA Sandals Unisex Waterproof Double Strap",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Adidas Ultraboost 22 Running Shoes Women's with BOOST Midsole Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Patagonia Better Sweater Fleece Jacket Women's Recycled Polyester Full-Zip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The North Face Venture 2 Jacket Men's DryVent Waterproof Rain Shell",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hanes Beefy-T Adult Short-Sleeve T-Shirt 100% Cotton Pre-Shrunk",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Trek FX 3 Disc Hybrid Bike 2023 Alpha Gold Aluminum with Disc Brakes",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Giro Register MIPS Adult Recreational Cycling Helmet Universal Adult",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Manduka PRO Yoga Block 4 inch High Density EVA Foam Studio Quality",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Bodylastics Resistance Bands Set 5 Tubes with Door Anchor and Exercise Guide",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Crossrope Get Lean Weighted Jump Rope Set Fast Clip Connection System",
+   "q_and_a": []
+  },
+  {
+   "product_name": "TriggerPoint GRID Foam Roller 13 inch Original Density Multi-Zone Massage",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Oral-B Glide Pro-Health Dental Floss Comfort Plus 40m Deep Clean",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Urban Decay 24/7 Glide-On Eye Pencil Zero Black Smudge-Proof Waterproof",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Garmin Fenix 7 Sapphire Solar Multisport GPS Watch with Power Sapphire Lens",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Moncler Bady Puffer Jacket Women's Shiny Finish with Removable Hood",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Allbirds Tree Runners Women's Lightweight Breathable Shoes",
+   "q_and_a": []
+  },
+  {
+   "product_name": "On Cloud 5 Running Shoes Men's Lightweight Comfort Cushioning",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hoka Clifton 9 Road Running Shoes Women's with Plush Cushioning",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Brooks Ghost 15 Neutral Running Shoes Men's with DNA LOFT v2 Cushioning",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Patagonia Women's Nano Puff Jacket Recycled Polyester Insulated",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The North Face Men's Denali 2 Fleece Jacket Recycled Fleece",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Drunk Elephant C-Firma Day Serum 1.0 oz with 15% L-Ascorbic Acid",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Saie Glowy Super Gel Lightweight Dewy Highlighter Starglow",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Manduka PRO Yoga Mat 6mm 71 inch Black Sage",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Liforme Original Yoga Mat with AlignForMe System Grey",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Taylor GS Mini Acoustic Guitar with Solid Spruce Top",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Helinox Chair Zero Ultralight Compact Camping Chair",
+   "q_and_a": []
+  },
+  {
+   "product_name": "REI Co-op Trailgate Vehicle Organizer with Multiple Pockets",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Garmin Fenix 7 Pro Solar Multisport GPS Watch with Power Glass Charging Lens",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Manduka PROlite Yoga Mat Lightweight and Durable Studio Mat",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Jack Black Industrial Strength Hand Healer 3oz Non-Greasy Formula with Vitamin E",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Kiehl's Ultimate Strength Hand Salve 5oz Fast-Absorbing Hand Cream",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hoka Clifton 9 Men's Road Running Shoes Max Cushioning and Early Stage Meta-Rocker",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Salomon XA Pro 3D V8 GTX Waterproof Trail Running Shoe Men's with GORE-TEX",
+   "q_and_a": []
+  },
+  {
+   "product_name": "On Cloud 5 Running Shoes Women's with Zero-Gravity Foam and Speedboard",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Arc'teryx Atom LT Hoody Women's Synthetic Insulated Jacket with Coreloft Insulation",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Outdoor Voices The Exercise Dress Women's Built-in Shorts and Pockets",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Vuori Kore Shorts 7.5 inch Men's with Liner and Drawcord",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Stance The Icon Crew Socks Men's Terry Loop Cushioning and Arch Support",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Franklin Sports CFX Pro Batting Gloves Pair Black Chrome Adult",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Gaiam Essentials Yoga Block 9 inch High Density EVA Foam Studio Quality",
+   "q_and_a": []
+  },
+  {
+   "product_name": "SPRI Resistance Bands Set 3 Tubes with Foam Handles and Door Anchor",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Glossier Cloud Paint Cream Blush Puff Pink Lightweight Gel-Cream Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Essie Gel Couture Nail Polish Top Coat 0.46oz Chip-Resistant Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Sally Hansen Miracle Gel Nail Polish Top Coat 0.5oz High Shine Finish",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Oura Ring Gen3 Health Tracker with Temperature Sensing and Sleep Analysis",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Vuori Performance Jogger Women's with Dreamknit Fabric and Tapered Fit",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Galaxy Tab S8 with S Pen and DeX Mode for Desktop Experience",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Martin D-28 Acoustic Guitar with Sitka Spruce Top and Rosewood Back/Sides",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Netgear Orbi RBK852 AX6000 Tri-Band Mesh WiFi 6 System",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fiio K7 Headphone Amp/DAC Desktop with THX AAA 788+ Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Monolith Liquid Platinum Headphone Amplifier Balanced Output",
+   "q_and_a": []
+  },
+  {
+   "product_name": "FiiO M17 Portable Desktop-Class Hi-Res Player with THX AAA-78+ Amplification",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Living Proof Perfect Hair Day Dry Shampoo 5.5 oz with Patented Healthy Hair Molecule",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fresh Soy Face Cleanser 150ml pH-Balanced Gel Cleanser with Soy Proteins",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Giorgio Armani Luminous Silk Foundation 30ml Oil-Free Lightweight Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Anastasia Beverly Hills Dipbrow Pomade Waterproof Brow Color",
+   "q_and_a": []
+  }
+ ],
+ "Home Decor": [
+  {
+   "product_name": "URPOWER Essential Oil Diffuser 300ml Ultrasonic Aromatherapy with 7 LED Colors",
+   "q_and_a": [
+    {
+     "question": "What is the maximum continuous run time for this diffuser on a full tank?",
+     "answer": "On a full 300ml tank of water, the diffuser can run continuously for up to 8 hours on the low mist setting."
+    }
+   ]
+  },
+  {
+   "product_name": "Streamlight ProTac 2L-X Tactical Flashlight 500 Lumens CR123A Battery",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Wilson Pro Staff 97 v13 Tennis Racket 16x19 String Pattern 315g",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Anastasia Beverly Hills Soft Glam Eyeshadow Palette 14 Shades Matte Shimmer",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Neutrogena Makeup Remover Cleansing Towelettes 25 Count Ultra-Soft Cloths",
+   "q_and_a": []
+  },
+  {
+   "product_name": "La Roche-Posay Effaclar Duo Dual Action Acne Spot Treatment 1.35oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "FurHaven Pet Bed Orthopedic Sofa Dog Bed Medium Faux Fleece Espresso",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Rubbermaid Step-On Wastebasket 13 Gallon White Plastic with Tight-Fitting Lid",
+   "q_and_a": []
+  },
+  {
+   "product_name": "SONGMICS Clothes Drying Rack Foldable 3-Tier Laundry Rack Stainless Steel",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Bounty Select-A-Size Paper Towels 8 Double Rolls White 2-Ply",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Yakima HoldUp EVO Bike Rack for 2-inch Receiver Holds 2 Bikes",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Casper Nova Hybrid Mattress King Size with Zoned Support",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Diptyque Baies Scented Candle 6.7 oz with Rose and Blackcurrant Leaves",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Oura Ring Gen3 Horizon Sleep and Activity Tracker Silver",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Crayola Light Up Tracing Pad with 100+ Tracing Sheets",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Marmot Limelight 3P Tent for 3 People with Footprint",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Therm-a-Rest NeoAir XLite Sleeping Pad Ultralight Air Mattress",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Black Diamond Spot 400-R Headlamp with 400 Lumens and Rechargeable Battery",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Yankee Candle Large Jar Candle Balsam & Cedar 22oz with 110-150 Hour Burn Time",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Poppin Stow 3-Drawer Filing Cabinet White Powder-Coated Steel with Pencil Tray",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Black Diamond Spot 400 Headlamp 400 Lumens PowerTap Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Babolat Pure Aero Rafa Tennis Racket 100 sq inch Head Size 300g",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Huda Beauty The New Nude Eyeshadow Palette 18 Shades Matte and Shimmer",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fenty Beauty Killawatt Freestyle Highlighter Trophy Wife Gold Shimmer",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Elektron Digitakt II 16-Track Drum Machine and Sampler with Stereo Sampling",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Teenage Engineering OP-1 Portable Synthesizer and Sampler with 4-Track Recorder",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Delta Faucet Cassidy Single-Handle Pull-Down Kitchen Faucet with Touch2O Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Moen Arbor Motionsense Two-Sensor Touchless Kitchen Faucet with Power Clean Spray",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Simplehuman 8-inch Sensor Mirror Trio with Tru-lux Light System",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Olaplex No.3 Hair Perfector 100ml Home Treatment for Damaged Hair",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dr. Dennis Gross Alpha Beta Universal Daily Peel 30-Treatment Box",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Philips Norelco Shaver 9700 with V-Track Precision Blades PRO",
+   "q_and_a": []
+  }
+ ],
+ "Health & Beauty": [
+  {
+   "product_name": "Lush Intergalactic Bath Bomb with Peppermint Oil and Popping Candy 6.3oz",
+   "q_and_a": [
+    {
+     "question": "Will the colors in this bath bomb stain my bathtub?",
+     "answer": "No, the Intergalactic bath bomb is made with water-soluble dyes that are designed to rinse away easily from a clean, non-porous bathtub without leaving any stains."
+    },
+    {
+     "question": "Is the glitter in this product biodegradable?",
+     "answer": "Yes, Lush is committed to using environmentally friendly ingredients. The glitter in the Intergalactic bath bomb is plastic-free and biodegradable."
+    }
+   ]
+  },
+  {
+   "product_name": "Olaplex No.4 Bond Maintenance Shampoo 8.5oz Sulfate-Free Color Safe",
+   "q_and_a": [
+    {
+     "question": "Is this shampoo suitable for daily use on fine hair?",
+     "answer": "Yes, Olaplex No.4 is formulated to be gentle enough for daily use on all hair types, including fine hair. It helps repair and protect without weighing hair down."
+    },
+    {
+     "question": "Can I use this shampoo even if I don't use other Olaplex treatments?",
+     "answer": "Absolutely. While it works best as part of the full Olaplex system, the Bond Maintenance Shampoo provides significant benefits like repairing, strengthening, and reducing frizz on its own."
+    }
+   ]
+  },
+  {
+   "product_name": "Olaplex No.5 Bond Maintenance Conditioner 8.5oz All Hair Types",
+   "q_and_a": [
+    {
+     "question": "How long should I leave the conditioner in my hair before rinsing?",
+     "answer": "For best results, it's recommended to leave the No.5 Bond Maintenance Conditioner on for at least 3 minutes before rinsing thoroughly."
+    }
+   ]
+  },
+  {
+   "product_name": "Dove Body Wash Deep Moisture 22oz with NutriumMoisture Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Oral-B Pro 1000 Electric Toothbrush with Pressure Sensor CrossAction Head",
+   "q_and_a": [
+    {
+     "question": "How does the pressure sensor work?",
+     "answer": "The pressure sensor detects when you are brushing too hard and automatically stops the pulsation of the brush head to protect your gums from damage."
+    },
+    {
+     "question": "How do I know when to replace the brush head?",
+     "answer": "The CrossAction brush head has indicator bristles that fade from blue to white over time, signaling that it's time for a replacement, typically every 3 months."
+    }
+   ]
+  },
+  {
+   "product_name": "Nivea Men Sensitive Post Shave Balm 3.3oz with Chamomile and Vitamin E",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Ordinary Niacinamide 10% + Zinc 1% Serum 30ml Blemish Control",
+   "q_and_a": [
+    {
+     "question": "Can I use this serum at the same time as a Vitamin C serum?",
+     "answer": "It is generally recommended to use them at alternate times (e.g., Niacinamide in the morning, Vitamin C at night) to avoid potential reduction in the efficacy of the Vitamin C. If used together, apply them at different steps allowing time in between."
+    }
+   ]
+  },
+  {
+   "product_name": "Paula's Choice SKIN PERFECTING 2% BHA Liquid Exfoliant 4oz Salicylic Acid",
+   "q_and_a": [
+    {
+     "question": "How often should I use this product when I'm first starting out?",
+     "answer": "It's best to start slowly. Apply it every other day for the first one to two weeks and observe your skin's response before increasing the frequency to once or twice daily."
+    },
+    {
+     "question": "Do I rinse this exfoliant off after applying it?",
+     "answer": "No, this is a leave-on exfoliant. Apply it after cleansing and toning, and then follow with the rest of your skincare routine, such as serums and moisturizer. Always use sunscreen during the day."
+    }
+   ]
+  },
+  {
+   "product_name": "CeraVe AM Facial Moisturizing Lotion SPF 30 3oz with Zinc Oxide",
+   "q_and_a": []
+  },
+  {
+   "product_name": "EltaMD UV Clear Broad-Spectrum SPF 46 Sunscreen 1.7oz Zinc Oxide Tinted",
+   "q_and_a": [
+    {
+     "question": "Is this a mineral or chemical sunscreen?",
+     "answer": "It's a hybrid sunscreen, containing both a mineral filter (9.0% Zinc oxide) and a chemical filter (7.5% Octinoxate) for broad-spectrum protection."
+    },
+    {
+     "question": "Does the 'tinted' version provide any coverage like a foundation?",
+     "answer": "The tint is very sheer and primarily designed to help offset any white cast from the zinc oxide. It provides a minimal amount of color correction but is not intended to offer coverage like a foundation or BB cream."
+    }
+   ]
+  },
+  {
+   "product_name": "Freeman Charcoal & Black Sugar Polishing Mask 6oz Deep Cleansing",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Neutrogena Hydra Boost Water Gel Daily Vitamin C Facial Moisturizer 1.7oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Earthbath All Natural Pet Shampoo Oatmeal & Aloe 16oz Vanilla Almond",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Scrub Daddy Texture Changing Sponges 8 Count Firm in Cold Soft in Warm",
+   "q_and_a": []
+  },
+  {
+   "product_name": "OXO Good Grips Dish Brush with Replaceable Head Non-Slip Grip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fiskars Rotary Cutter and Mat Combo Kit 45mm Blade Self-Healing Mat",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Monster Jam Official Megalodon Remote Control Truck 1:24 Scale",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Ordinary Hyaluronic Acid 2% + B5 Hydrating Serum 60ml",
+   "q_and_a": [
+    {
+     "question": "Should I apply this serum to dry or damp skin?",
+     "answer": "For best results, apply hyaluronic acid to damp skin. It's a humectant, meaning it draws moisture from its surroundings, so applying it to damp skin helps it pull that water into your skin for maximum hydration."
+    }
+   ]
+  },
+  {
+   "product_name": "Tatcha The Water Cream Oil-Free Pore-Minimizing Moisturizer 1.7 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Glossier Boy Brow Grooming Pomade Black",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Laneige Lip Sleeping Mask Berry Hydrating Lip Treatment",
+   "q_and_a": [
+    {
+     "question": "Can I use this product during the day as a regular lip balm?",
+     "answer": "Yes, while it's designed as an overnight mask, many people use a small amount during the day for intense hydration and a glossy look."
+    }
+   ]
+  },
+  {
+   "product_name": "Jo Malone London Wood Sage & Sea Salt Cologne 3.4 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hyperice Hypervolt 2 Pro Percussion Massage Gun with 5 Speeds",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Garden of Life Raw Organic Protein Powder Vanilla 22oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Myprotein Impact Whey Protein Powder Chocolate Smooth 5.5lb",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Ritual Essential for Women Multivitamin 18+ with 10 Key Nutrients",
+   "q_and_a": []
+  },
+  {
+   "product_name": "K18 Leave-In Molecular Repair Hair Mask 50ml Repairs Damage in 4 Minutes",
+   "q_and_a": [
+    {
+     "question": "Do I use conditioner before applying the K18 mask?",
+     "answer": "No. For the K18Peptide to penetrate effectively, you should shampoo your hair, towel-dry it thoroughly, and then apply the mask. Do not use conditioner before applying the K18 mask."
+    },
+    {
+     "question": "Why do I have to wait 4 minutes before styling my hair?",
+     "answer": "The 4-minute waiting period allows the K18Peptide the time it needs to penetrate the hair's cortex and work on a molecular level to repair broken polypeptide chains."
+    }
+   ]
+  },
+  {
+   "product_name": "Kérastase Nutritive Bain Satin 2 Shampoo 8.5oz Dry and Sensitized Hair",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dove Sensitive Skin Body Wash 22oz with NutriumMoisture Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "L'Occitane Shea Butter Hand Cream 5.1oz 20% Shea Butter Hydrating",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NYX Professional Makeup Jumbo Eye Pencil Milk White Multi-Use Crayon",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Ordinary Hyaluronic Acid 2% + B5 Serum 30ml Hydration Support Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Inkey List BHA Serum 30ml Salicylic Acid Exfoliant for Blemishes",
+   "q_and_a": []
+  },
+  {
+   "product_name": "La Roche-Posay Anthelios Melt-in Milk Sunscreen SPF 60 5oz Broad Spectrum",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Waterpik Sonic-Fusion 2.0 Professional Flossing Toothbrush All-in-One",
+   "q_and_a": [
+    {
+     "question": "Can I use the toothbrush and the water flosser at the same time?",
+     "answer": "Yes, the Sonic-Fusion 2.0 is designed so you can brush and floss simultaneously with the push of a button. You can also use each function separately."
+    }
+   ]
+  },
+  {
+   "product_name": "Kérastase Nutritive 8H Magic Night Serum 90ml Overnight Leave-In Serum",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Briogeo Don't Despair, Repair! Deep Conditioning Hair Mask 8 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "The Ordinary 'Buffet' Multi-Technology Peptide Serum 30ml Anti-Aging Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "La Roche-Posay Anthelios Melt-in Milk Sunscreen SPF 60 5 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "EltaMD UV Clear Broad-Spectrum SPF 46 Facial Sunscreen Oil-Free",
+   "q_and_a": []
+  },
+  {
+   "product_name": "SkinCeuticals C E Ferulic Serum 30ml Antioxidant Treatment with Vitamin C",
+   "q_and_a": [
+    {
+     "question": "The serum has changed to a darker color. Is it still safe to use?",
+     "answer": "It is normal for Vitamin C serums like C E Ferulic to darken after opening due to oxidation. According to SkinCeuticals, the product remains effective for at least 6 months after opening, even with a color change."
+    }
+   ]
+  },
+  {
+   "product_name": "Fenty Skin Fat Water Pore-Refining Toner Serum 150ml with Niacinamide",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Charlotte Tilbury Magic Cream 50ml Instant Turnaround Moisturizer with BioNymph Peptide",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NARS Orgasm X Blush 4.8g Sheer Peachy Pink with Shimmer",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Creed Aventus Eau de Parfum 100ml Men's Fruity Chypre Fragrance",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Jo Malone London Wood Sage & Sea Salt Cologne 100ml with Ambrette Seeds",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Manscaped Lawn Mower 4.0 Electric Trimmer for Groin and Body Grooming",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Nivea Men Sensitive Gel Shave with Natural Microtec and Chamomile",
+   "q_and_a": []
+  }
+ ],
+ "Office Supplies": [
+  {
+   "product_name": "OPI Nail File 7 inch Professional Salon Quality 180/240 Grit",
+   "q_and_a": []
+  },
+  {
+   "product_name": "ShedRain Auto Open & Close Compact Umbrella 45 inch Canopy Teflon Coated",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Galaxy S23 Ultra 256GB Phantom Black Unlocked with S Pen",
+   "q_and_a": [
+    {
+     "question": "Is the S Pen stylus included with the purchase of the phone?",
+     "answer": "Yes, the S Pen is included and is stored in a dedicated slot at the bottom of the Galaxy S23 Ultra."
+    }
+   ]
+  },
+  {
+   "product_name": "Hot Wheels Red Line Club '70s Van with Opening Side Door",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Miele WWH860WPS Front-Load Washer with TwinDos Automatic Detergent Dispensing",
+   "q_and_a": [
+    {
+     "question": "What is the TwinDos system and do I have to use Miele detergent?",
+     "answer": "TwinDos is a two-phase automatic detergent dispensing system that releases the right amount of detergent at the perfect time. While it's designed for Miele's UltraPhase cartridges, you can also use refillable containers (sold separately) with your own liquid detergent or softener."
+    }
+   ]
+  },
+  {
+   "product_name": "GE Profile UltraFresh Vent System Front Load Washer with OdorBlock Technology",
+   "q_and_a": []
+  }
+ ],
+ "Clothing & Accessories": [
+  {
+   "product_name": "Cole Haan Grand Crosscourt II Leather Dress Sneaker Men's Handcrafted",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Everlane Cashmere Crew Sweater Women's Grade-A Mongolian Cashmere",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Levi's 511 Slim Jeans Men's Advanced Stretch Denim Dark Stonewash",
+   "q_and_a": [
+    {
+     "question": "What is the leg opening measurement for this style?",
+     "answer": "The Levi's 511 Slim typically has a leg opening of around 14.5 inches, but this can vary slightly depending on the waist size."
+    },
+    {
+     "question": "How do these jeans fit in the thigh and seat?",
+     "answer": "The 511 is a slim fit that sits below the waist and is slim through the thigh and seat, offering a modern look without being as tight as a skinny jean."
+    }
+   ]
+  },
+  {
+   "product_name": "Reformation Petites Juliette Wrap Dress Sustainable Viscose Midi Length",
+   "q_and_a": []
+  },
+  {
+   "product_name": "J.Crew Pleated Mini Skirt in Wool Flannel Women's High-Waisted",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Patagonia P-6 Logo Trucker Hat Unisex Organic Cotton with Mesh Back",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Repel Windproof Travel Umbrella Compact 42 inch Canopy Teflon Coating",
+   "q_and_a": [
+    {
+     "question": "How much does this umbrella weigh?",
+     "answer": "The Repel Travel Umbrella is designed for portability and weighs just under 1 lb, making it easy to carry in a backpack, purse, or car."
+    }
+   ]
+  },
+  {
+   "product_name": "Casio G-Shock Digital Watch Men's Solar Powered 200M Water Resistant",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Pandora Moments Snake Chain Sterling Silver Bracelet with Heart Clasp",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Tide PODS Laundry Detergent Spring Meadow 81 Count HE Compatible",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dash Rapid Egg Cooker 6 Egg Capacity Automatic Shut-Off Aqua",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Nike Tech Fleece Full-Zip Hoodie Men's with Double-Sided Spacer Fabric",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dr. Martens 1460 Smooth Leather Lace Up Boots Unisex",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Golden Goose Superstar Sneakers Men's with Distressed Look",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Veja V-10 B-Mesh White Sneakers Women's with Recycled Material",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Everlane The Way-High Jean Women's with Organic Cotton Denim",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Good American Good Legs Ankle Jeans Women's Sculpting Fit",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Tommy Hilfiger Men's Core Flag Logo Hoodie",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Sol de Janeiro Brazilian Bum Bum Cream 8.1 oz with Guaraná",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Columbia Men's PFG Bahama II Long Sleeve Fishing Shirt",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Oakley Holbrook Sunglasses Matte Black Prizm Polarized Lenses",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Thursday Boot Company Captain Men's Leather Ankle Boot Resoleable Goodyear Welt",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Everlane The Cashmere Crew Women's Grade-A Mongolian Cashmere Sweater",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Paige Federal Slim Straight Jeans Men's Transcend Denim Medium Wash",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Warby Parker Durand Sunglasses Black with Polarized Lenses",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Mejuri Croissant Dôme Ring 18k Gold Vermeil with a Dôme Design",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Bellroy Hide & Seek Wallet RFID Blocking Slim Leather Wallet",
+   "q_and_a": [
+    {
+     "question": "How many cards is this wallet designed to hold?",
+     "answer": "The Hide & Seek wallet is designed to hold 5-12 cards comfortably, plus flat bills."
+    },
+    {
+     "question": "What is the 'hidden' pocket for?",
+     "answer": "There is a concealed flap inside the main bill section that can be used to hide large bills or extra cards for added security."
+    }
+   ]
+  },
+  {
+   "product_name": "Garmin Fenix 7X Sapphire Solar GPS Watch with Power Glass Solar Charging Lens",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Patagonia Better Sweater Fleece Vest Men's Recycled Polyester Midweight",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Magic: The Gathering Dominaria United Commander Deck Painbow",
+   "q_and_a": []
+  }
+ ],
+ "Camping & Outdoors": [
+  {
+   "product_name": "Blue Buffalo Life Protection Formula Adult Chicken & Brown Rice Dry Dog Food 30lbs",
+   "q_and_a": []
+  },
+  {
+   "product_name": "SodaStream Terra Sparkling Water Maker Kit with CO2 Cylinder and Bottle",
+   "q_and_a": [
+    {
+     "question": "How many liters of sparkling water can one CO2 cylinder make?",
+     "answer": "Each 60L CO2 cylinder can carbonate up to 60 liters of water, depending on the level of carbonation you prefer."
+    }
+   ]
+  },
+  {
+   "product_name": "Zwilling J.A. Henckels Four Star 8-Inch Chef's Knife",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Waterpik Aquarius Water Flosser Professional WP-660 Black",
+   "q_and_a": []
+  },
+  {
+   "product_name": "LEGO Creator Expert Volkswagen T1 Camper Van 10220 Building Set",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Zojirushi SM-SA48 Stainless Steel Mug 16oz with SlickSteel Finish and Safety Lock",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Garmin inReach Mini 2 Satellite Communicator with Two-Way Messaging and GPS",
+   "q_and_a": [
+    {
+     "question": "Is a subscription required to use the messaging and SOS features?",
+     "answer": "Yes, an active satellite subscription plan is required to use two-way messaging, location tracking, and the interactive SOS feature on the Iridium satellite network."
+    },
+    {
+     "question": "How long does the battery last?",
+     "answer": "The battery can last up to 14 days with the default 10-minute tracking interval, or up to 30 days in power-saving mode with 30-minute tracking."
+    }
+   ]
+  },
+  {
+   "product_name": "LEGO Creator Expert Volkswagen T1 Camper Van 10220 Building Kit with Interior Details",
+   "q_and_a": []
+  },
+  {
+   "product_name": "TP-Link Deco XE75 AXE5400 Tri-Band Mesh WiFi 6E System with AI-Driven Mesh",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Coleman 10-Person Dark Room Sundome Tent with Block the Sun Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Waterpik Aquarius Water Flosser Professional with 10 Pressure Settings",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Kiehl's Facial Fuel Energizing Face Wash for Men with Caffeine and Menthol",
+   "q_and_a": []
+  }
+ ],
+ "Sports Equipment": [
+  {
+   "product_name": "Adidas Tango España Soccer Ball Size 5 FIFA Quality Pro Machine Stitched",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Wilson NFL Official Size Football Composite Leather Traditional Shape",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Rawlings Heart of the Hide Baseball Glove 11.75 inch Pro H Web",
+   "q_and_a": [
+    {
+     "question": "Does this glove require a lot of breaking in?",
+     "answer": "Heart of the Hide gloves are made from top-grade steer hide, which is known for its durability but is also quite stiff. It will require a significant break-in period to form to your hand perfectly."
+    }
+   ]
+  },
+  {
+   "product_name": "Kiehl's Ultra Facial Cream with Squalane 4.2 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Bell Super Air R MIPS Helmet Full-Face MTB Helmet with Flex Spherical MIPS",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Wilson GST Official NCAA Football Composite Leather Traditional Shape",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Mattel Barbie Dreamhouse Dollhouse with 3 Stories 8 Rooms and Pool",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Kiehl's Ultra Facial Cream with Squalane 1.7 oz 24-hour Hydration",
+   "q_and_a": []
+  }
+ ],
+ "Personal Care": [
+  {
+   "product_name": "Crest 3D White Toothpaste Radiant Mint 4.1oz Enamel Safe Teeth Whitening",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Gillette Fusion5 Men's Razor with Precision Trimmer 5 Anti-Friction Blades",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Kiehl's Creamy Eye Treatment with Avocado 0.5oz Rich Under Eye Cream",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Colgate Optic White Renewal Toothpaste High Impact White 3oz Enamel Safe",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Gillette Mach3 Turbo Men's Razor with 3 Anti-Friction Blades",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Panasonic Arc5 Electric Razor with 5-Blade Shaving System and Active Shave Sensor",
+   "q_and_a": []
+  },
+  {
+   "product_name": "TheraBreath Fresh Breath Mouthwash with ZINC & OXYD-8 to Fight Bad Breath",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hello Activated Charcoal Epic Teeth Whitening Toothpaste with Mint Flavor",
+   "q_and_a": []
+  },
+  {
+   "product_name": "GilletteLabs Heated Razor with Stainless Steel Warming Bar",
+   "q_and_a": [
+    {
+     "question": "How quickly does the razor heat up?",
+     "answer": "The razor heats up to your chosen temperature level in less than a second, providing instant warmth for your shave."
+    },
+    {
+     "question": "Is the razor waterproof and can I use it in the shower?",
+     "answer": "Yes, the GilletteLabs Heated Razor is fully waterproof, making it safe and convenient to use at the sink or in the shower."
+    }
+   ]
+  }
+ ],
+ "Pet Supplies": [
+  {
+   "product_name": "Sunday Riley Good Genes All-in-One Lactic Acid Treatment 1.7 oz",
+   "q_and_a": [
+    {
+     "question": "Can I use this product every day?",
+     "answer": "Yes, Good Genes is gentle enough to be used daily, either in the morning or at night. However, if you have sensitive skin, you may want to start by using it every other day."
+    }
+   ]
+  },
+  {
+   "product_name": "SK-II Facial Treatment Essence 7.7 oz with Pitera",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Garmin inReach Mini 2 Satellite Communicator",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Simms Fishing Products G3 Guide Waders Stockingfoot",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Vanicream Moisturizing Cream 16oz for Sensitive Skin with Petrolatum",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Moroccanoil Treatment Original 100ml Argan Oil-Infused Hair Treatment",
+   "q_and_a": []
+  },
+  {
+   "product_name": "SK-II Facial Treatment Essence 230ml with Pitera for Radiant Skin",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Bespoke Jet AI Cordless Stick Vacuum with All-in-One Clean Station",
+   "q_and_a": []
+  }
+ ],
+ "Cleaning Supplies": [
+  {
+   "product_name": "Libman Large Precision Angle Broom with Dustpan Flagged Bristles",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dawn Ultra Dishwashing Liquid Original Scent 75oz Concentrated Formula",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Simplehuman Sensor Trash Can 45 Liter Stainless Steel with Voice Control",
+   "q_and_a": [
+    {
+     "question": "How is the trash can powered?",
+     "answer": "It can be powered either by the included AC power adapter or by 6 AA batteries (not included) for cordless operation."
+    }
+   ]
+  },
+  {
+   "product_name": "Swiffer WetJet Hardwood and Floor Spray Mop Cleaner Starter Kit",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Google Pixel Buds Pro Active Noise Cancelling Earbuds Coral",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Miele Complete C3 Calima PowerLine Canister Vacuum with Electro Plus Head",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Canada Goose Wyndham Parka Men's with Detachable Fur Trim Hood Black",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fender American Professional II Stratocaster Electric Guitar with V-Mod II Pickups",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Simplehuman Sensor Can with Voice and Motion Sensor Dual Compartment",
+   "q_and_a": []
+  }
+ ],
+ "Smart Home": [
+  {
+   "product_name": "Apple iPhone 14 128GB Blue Unlocked with A15 Bionic Chip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Lelo Sona Cruise 2 Sonic Clitoral Massager with Cruise Control",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dawn Platinum Powerwash Dish Spray Starter Kit Apple Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Apple iPhone 15 Pro Max 256GB Titanium Unlocked with A17 Bionic Chip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Goli Apple Cider Vinegar Gummies with B9 and B12 60 Count",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Elgato Stream Deck MK.2 Creative Control Interface 15 Customizable LCD Keys",
+   "q_and_a": [
+    {
+     "question": "Can I use this device for tasks other than streaming?",
+     "answer": "Yes, absolutely. The Stream Deck is highly versatile and can be programmed with custom hotkeys and macros for video editing, graphic design (e.g., Photoshop actions), music production, and general productivity tasks."
+    },
+    {
+     "question": "Are the faceplates interchangeable?",
+     "answer": "Yes, the Stream Deck MK.2 features a removable faceplate, allowing you to easily customize its look with different colors and designs."
+    }
+   ]
+  },
+  {
+   "product_name": "Apple iPhone 15 Pro Max 256GB Natural Titanium Unlocked with A17 Pro Chip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fellow Stagg EKG Electric Pour-Over Kettle Matte Black with Variable Temperature Control",
+   "q_and_a": []
+  }
+ ],
+ "Safety & Security": [
+  {
+   "product_name": "iPhone 14 Pro Max 128GB Deep Purple Unlocked with A16 Bionic Chip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Ugly Stik Elite Spinning Rod 7ft Medium Heavy Action Graphite Composite",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Theragun PRO Plus Percussive Therapy Device 6 Attachments Professional Grade",
+   "q_and_a": [
+    {
+     "question": "What is the main difference between the PRO Plus and the standard PRO model?",
+     "answer": "The PRO Plus adds several new features, including built-in LED light therapy to treat joints and reduce pain, a vibration therapy attachment, and a heat therapy attachment for a more comprehensive treatment."
+    }
+   ]
+  },
+  {
+   "product_name": "TheraBreath Fresh Breath Oral Rinse 16oz Dentist Formulated Alcohol-Free",
+   "q_and_a": []
+  },
+  {
+   "product_name": "COSRX Acne Pimple Master Patch 24 Count Hydrocolloid Healing",
+   "q_and_a": [
+    {
+     "question": "Should I apply this patch before or after my skincare routine?",
+     "answer": "For best adhesion and effectiveness, you should apply the patch to clean, dry skin before applying any toners, serums, or moisturizers."
+    }
+   ]
+  },
+  {
+   "product_name": "Elgato Stream Deck MK.2 Creative Interface 15 Customizable LCD Keys",
+   "q_and_a": []
+  },
+  {
+   "product_name": "OnePlus 12 512GB Unlocked with Snapdragon 8 Gen 3 and 100W Fast Charging",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Tom Ford Tobacco Vanille Eau de Parfum 1.7 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Shiseido Ultimune Power Infusing Concentrate 2.5 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Vital Proteins Collagen Peptides Powder Unflavored 20oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Galaxy S23 Ultra 256GB Phantom Black Unlocked with Snapdragon 8 Gen 2",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Theragun Elite Percussive Therapy Device 5 Attachments Professional Grade",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Google Pixel 8 Pro 128GB Obsidian Unlocked with Tensor G3 Chip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Motorola Edge+ 2023 256GB Interstellar Black Unlocked with Snapdragon 8 Gen 2",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Taylor GS Mini-e Koa Acoustic-Electric Guitar with ES-B Pickup",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Corsair RM850x 850 Watt 80 Plus Gold Fully Modular ATX Power Supply",
+   "q_and_a": []
+  },
+  {
+   "product_name": "AeroPress Original Coffee and Espresso Maker with Micro-Filters",
+   "q_and_a": []
+  }
+ ],
+ "Miscellaneous": [
+  {
+   "product_name": "Where the Crawdads Sing by Delia Owens #1 New York Times Bestseller",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Burt's Bees Hand Salve with Almond & Milk 3oz Deeply Moisturizing",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Callaway Rogue ST Max Driver 10.5° Right Hand Regular Flex Graphite Shaft",
+   "q_and_a": []
+  },
+  {
+   "product_name": "T3 Whirl Trio Interchangeable Styling Wand 1.25-1.75 inch Barrels",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Cremo Original Shave Cream 6oz Astonishingly Superior Smooth Shave",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dior Sauvage Eau de Toilette Men's 3.4oz Fresh Spicy Woody Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Burt's Bees Lemon Butter Cuticle Cream 0.6oz Natural Moisturizing",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Method All-Purpose Cleaner Spray French Lavender 28oz Plant-Based",
+   "q_and_a": []
+  },
+  {
+   "product_name": "OXO Good Grips 3-in-1 Avocado Slicer Ergonomic Handle",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Brother CS7000i Sewing and Quilting Machine 70 Built-in Stitches",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Sizzix Big Shot Plus Starter Kit Die-Cutting & Embossing Machine",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Melissa & Doug Wooden Dollhouse with Furniture and Family of Four",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Galaxy Tab S9 Ultra 14.6-inch Dynamic AMOLED 2x 512GB WiFi",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Synology DiskStation DS923+ 4-Bay NAS with AMD Ryzen R1600 CPU",
+   "q_and_a": [
+    {
+     "question": "Can I upgrade the RAM in this NAS model?",
+     "answer": "Yes, the DS923+ comes with 4 GB of DDR4 ECC RAM and has an additional slot allowing you to expand it up to 32 GB (4 GB + 16 GB x2)."
+    },
+    {
+     "question": "Does this model have built-in 10GbE networking?",
+     "answer": "No, it comes with dual 1GbE ports. However, it has a PCIe expansion slot where you can install a 10GbE network interface card for faster network performance."
+    }
+   ]
+  },
+  {
+   "product_name": "lululemon Align High-Rise Pant 28 inch Women's with Nulu Fabric",
+   "q_and_a": []
+  },
+  {
+   "product_name": "La Mer Crème de la Mer Moisturizing Cream 2.0 oz with Miracle Broth",
+   "q_and_a": [
+    {
+     "question": "What is the proper way to apply this cream?",
+     "answer": "To activate the Miracle Broth™, you should warm a small amount of the cream between your fingertips for a few seconds until it becomes translucent, then gently press it into your skin."
+    }
+   ]
+  },
+  {
+   "product_name": "Aesop Resurrection Aromatique Hand Wash 16.9 oz",
+   "q_and_a": []
+  },
+  {
+   "product_name": "TheraGun Elite Percussive Therapy Massager Black with QuietForce Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Stanley Quencher H2.0 FlowState Tumbler 40 oz with Handle Cream",
+   "q_and_a": [
+    {
+     "question": "Is the lid on this tumbler completely leakproof?",
+     "answer": "The advanced FlowState™ lid has a rotating cover with three positions: a straw opening, a drink opening, and a full-cover top. While it is highly splash-resistant, it is not designed to be fully leakproof if tipped over or inverted."
+    },
+    {
+     "question": "Does the 40 oz Quencher fit in a standard car cup holder?",
+     "answer": "Yes, one of its most popular features is that the base is designed to be narrower, allowing it to fit in most standard car cup holders."
+    }
+   ]
+  },
+  {
+   "product_name": "LEGO Architecture New York City Skyline 21028 Building Kit",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Korg minilogue XD Polyphonic Analog Synthesizer",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Fellow Stagg EKG Electric Pour-Over Kettle with Precision Goosneck Spout",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Aritzia The Effortless Pant High-Waisted Wide Leg Trouser Crease Resistant",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hyperice Hypervolt Go 2 Percussion Massage Device with 3 Speeds",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Le Labo Santal 33 Eau de Parfum Spray 3.4oz Unisex Woody Aromatic Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Creed Aventus Eau de Parfum Men's 3.3oz Fruity Aromatic Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Yamaha TSR-700 7.1 Channel 8K AV Receiver with CINEMA DSP 3D",
+   "q_and_a": []
+  },
+  {
+   "product_name": "SVS SB-1000 Pro Sealed Subwoofer 325 Watts RMS 12-inch Driver",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Hyperice Hypervolt Go 2 Percussion Massage Device with QuietGlide Technology",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Lululemon Align High-Rise Pant 28 inch with Nulu Fabric and Hidden Waistband Pocket",
+   "q_and_a": []
+  },
+  {
+   "product_name": "RME ADI-2 DAC FS High-Performance DAC and Headphone Amp with AK4493 DAC Chip",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Arturia MiniFreak Hybrid Digital/Analog Synthesizer with 22 Oscillators",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Korg minilogue xd Polyphonic Analog Synthesizer with Digital Multi-Engine",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Moog Subsequent 37 Paraphonic Analog Synthesizer with Duo Mode",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Roland TR-8S Rhythm Performer Drum Machine with ACB and Sample Support",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Funko Pop! Star Wars: The Mandalorian The Child Vinyl Figure",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Synology DiskStation DS923+ 4-Bay NAS with AMD Ryzen R1600 CPU",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Western Digital My Cloud EX2 Ultra 2-Bay NAS with 2TB Red Drives",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Seasonic PRIME TX-1000 1000W 80 Plus Titanium Fully Modular Power Supply",
+   "q_and_a": []
+  },
+  {
+   "product_name": "NAD C 316BEE V2 Integrated Amplifier with Phono Input",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Schiit Magni Heretic Headphone Amplifier with 2W into 16 Ohms",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Tom Ford Black Orchid Eau de Parfum 50ml Luxurious and Dark Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Stanley Quencher H2.0 FlowState Tumbler 40 oz with Advanced Lid",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Samsung Bespoke Laundry Pair with AI OptiWash and Super Speed Wash/Dry",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Tom Ford Oud Wood Eau de Parfum 50ml Warm and Smoky Scent",
+   "q_and_a": []
+  },
+  {
+   "product_name": "Dior Sauvage Elixir Parfum 60ml with Grapefruit, Spices, and Lavender",
+   "q_and_a": []
+  }
+ ]
+}
+
 product_descriptions_based_on_categories = {
     "Electronics":{
         "Wearables & Accessories":[
@@ -1458,7 +6627,7 @@ product_descriptions_based_on_categories = {
         "Audio & Video": [
         "Amazon Kindle Paperwhite (11th Generation) 6.8 inch Display with Adjustable Warm Light: The 11th Generation Kindle Paperwhite features a larger 6.8-inch display and an adjustable warm light to reduce eye strain, especially during late-night reading. Its flush-front design and 300 ppi glare-free screen make it feel like real paper, while the device is waterproof for peace of mind at the beach or in the bath. With weeks of battery life and support for a vast library of titles, it's a dedicated e-reader for book lovers.",
         "Breville BKE820XL Variable-Temperature 1.8L Electric Kettle with LCD Display: This electric kettle offers precise temperature control with five preset buttons, allowing you to brew different types of tea or coffee at their ideal heat. A clear LCD display shows the real-time temperature as it heats up, and the keep-warm function maintains the desired temperature for 20 minutes. Its soft-open lid and large 1.8L capacity make it a convenient and safe choice for any kitchen.",
-        "DJI Mini 3 Pro Drone with 4K/60fps Video and Intelligent Flight Modes: This compact and powerful drone is perfect for both beginners and experienced pilots, capturing stunning 4K/60fps video and 48MP photos. It features tri-directional obstacle sensing and advanced pilot assistance systems for safer flying. The drone’s intelligent flight modes, like ActiveTrack 4.0, make it easy to get professional-looking shots, all while weighing under 249g to bypass most regulations.",
+        "DJI Mini 3 Pro Drone with 4K/60fps Video and Intelligent Flight Modes: This compact and powerful drone is perfect for both beginners and experienced pilots, capturing stunning 4K/60fps video and 48MP photos. It features tri-directional obstacle sensing and advanced pilot assistance systems for safer flying. The drone's intelligent flight modes, like ActiveTrack 4.0, make it easy to get professional-looking shots, all while weighing under 249g to bypass most regulations.",
         "GoPro HERO11 Black Waterproof Action Camera with 5.3K60 Ultra HD Video: The GoPro HERO11 Black is an all-in-one action camera capable of capturing stunning 5.3K60 Ultra HD video and 27MP photos. Its HyperSmooth 5.0 stabilization ensures incredibly steady shots, even in the most intense action. The camera is waterproof down to 33ft, making it a rugged companion for any adventure, and its new taller sensor allows for versatile framing and easy social media sharing.",
         "WEMAX Dice Mini Projector 1080P HD with Android TV 9.0 Built-in: This portable projector delivers a crisp 1080P Full HD image with 700 ANSI lumens of brightness, perfect for movies on the go. It comes with Android TV 9.0 built-in, providing access to over 5,000 apps including Netflix, Hulu, and YouTube. The device also features a built-in battery and Harman Kardon speakers, offering a complete entertainment system in a compact design.",
         "Logitech C920x HD Pro Webcam 1080p Video Calling with Dual Stereo Audio: The Logitech C920x is a reliable webcam offering sharp 1080p video quality for clear video calls and recordings. It features dual stereo microphones for natural-sounding audio and automatic light correction, so you look your best in any lighting. The camera is a great choice for home office use, streaming, and communicating with friends and family.",
@@ -1474,7 +6643,7 @@ product_descriptions_based_on_categories = {
         "Google Nest Hub (2nd Gen) Smart Display with Google Assistant Charcoal: The Google Nest Hub (2nd Gen) is a smart display with a 7-inch screen that lets you view your daily calendar, set alarms, and control smart home devices. It features improved audio with 50% more bass than the previous model and supports Sleep Sensing to help you better understand your sleep patterns. The device can also display photos from your Google Photos library, making it a digital picture frame that doubles as a smart assistant.",
         "Echo Dot (5th Gen) with clock and Alexa Smart Speaker Glacier White: The 5th Gen Echo Dot with clock is a compact smart speaker with a vibrant LED display that shows the time, weather, or song titles. It offers improved audio quality with deeper bass and clearer vocals compared to its predecessor, and it's powered by Alexa for hands-free assistance. The built-in motion sensor can be used to turn on lights when you enter a room, making it a useful addition to any smart home.",
         "HyperX QuadCast S USB Condenser Gaming Microphone RGB Lighting: The HyperX QuadCast S is a versatile USB microphone designed for gamers, streamers, and podcasters. It features four selectable polar patterns—stereo, omnidirectional, cardioid, and bidirectional—to optimize your sound for any situation. The microphone has a built-in pop filter, a tap-to-mute sensor with an LED indicator, and dynamic RGB lighting that you can customize to match your setup.",
-        "Shure MV7 USB/XLR Podcast Microphone Hybrid Output for Podcasting: The Shure MV7 is a versatile microphone inspired by the legendary SM7B, offering both USB and XLR outputs for maximum flexibility. Its hybrid design makes it ideal for both professional setups and simple desktop recording, and the built-in touch panel allows for quick adjustments to mic gain, headphone volume, and monitoring mix. The mic’s Voice Isolation Technology helps to focus on your voice, reducing background noise for clear, professional-quality recordings.",
+        "Shure MV7 USB/XLR Podcast Microphone Hybrid Output for Podcasting: The Shure MV7 is a versatile microphone inspired by the legendary SM7B, offering both USB and XLR outputs for maximum flexibility. Its hybrid design makes it ideal for both professional setups and simple desktop recording, and the built-in touch panel allows for quick adjustments to mic gain, headphone volume, and monitoring mix. The mic's Voice Isolation Technology helps to focus on your voice, reducing background noise for clear, professional-quality recordings.",
         "Logitech Brio 4K Ultra HD Webcam with HDR RightLight 3 Technology: The Logitech Brio is a premium webcam that captures incredibly detailed video in stunning 4K Ultra HD resolution. It features HDR and RightLight 3 technology, which automatically adjusts to deliver clear video in a variety of lighting conditions, from low light to direct sunlight. The camera also supports a 5x digital zoom and multiple field of view options, making it perfect for professional video conferencing and streaming.",
         "Samsung Galaxy S22 Ultra 256GB Unlocked with S Pen 108MP Camera: The Samsung Galaxy S22 Ultra is a flagship smartphone that combines the power of the Note series with the S series, including a built-in S Pen for seamless note-taking and creativity. It features a stunning 108MP main camera and advanced nightography capabilities to capture incredible photos and videos in any lighting. The device's powerful processor and long-lasting battery make it a high-performance device for work and play.",
         "Google Pixel 7 Pro 128GB Unlocked with Tensor G2 Chip 50MP Main Camera: The Google Pixel 7 Pro is a powerful and intelligent smartphone powered by the Google Tensor G2 chip, offering a fast and efficient user experience. Its advanced camera system includes a 50MP main camera and a 5x telephoto lens, providing incredible detail and versatility for your photos. The phone also features a gorgeous display, a long-lasting battery, and exclusive software features like Magic Eraser and Photo Unblur.",
@@ -1492,7 +6661,7 @@ product_descriptions_based_on_categories = {
         "Elgato Wave:3 USB Condenser Microphone for Streaming and Podcasting: The Elgato Wave:3 is a high-quality USB microphone built specifically for content creators, featuring a digital mixer and a Clipguard technology that prevents audio from clipping even if you speak too loudly. Its companion software, Wave Link, allows you to mix up to nine audio channels and create two independent output mixes for your stream and your headphones. The microphone offers studio-quality sound and a simple plug-and-play setup for a professional audio experience.",
         "Logitech StreamCam 1080p Full HD USB-C Streaming Webcam: The Logitech StreamCam is a versatile webcam designed for content creators, offering full HD 1080p video at 60fps for smooth, professional-looking streams. It can be mounted in both landscape and portrait orientations, making it perfect for social media content. The camera also features intelligent autofocus and auto-exposure to ensure you always look your best, and it connects via USB-C for fast and reliable data transfer.",
         "Google Nest Hub Max Smart Display with Google Assistant and Camera: The Google Nest Hub Max is a smart display with a 10-inch HD screen and a built-in camera that lets you make video calls, watch movies, and monitor your home. The camera supports Face Match, which shows you personalized information when it recognizes you, and can also be used as a security camera. It has a powerful speaker for rich sound and acts as a central hub for controlling your smart home devices with voice commands or a tap.",
-        "Ring Video Doorbell Elite 1080p HD Video PoE with Two-Way Talk: The Ring Video Doorbell Elite is a professional-grade, flush-mounted video doorbell that provides a secure and reliable connection using Power over Ethernet (PoE). It records in 1080p HD and features two-way talk with noise cancellation, allowing you to speak to visitors from anywhere. The doorbell offers advanced motion detection with customizable zones and a clean, recessed look that fits seamlessly into your home’s architecture.",
+        "Ring Video Doorbell Elite 1080p HD Video PoE with Two-Way Talk: The Ring Video Doorbell Elite is a professional-grade, flush-mounted video doorbell that provides a secure and reliable connection using Power over Ethernet (PoE). It records in 1080p HD and features two-way talk with noise cancellation, allowing you to speak to visitors from anywhere. The doorbell offers advanced motion detection with customizable zones and a clean, recessed look that fits seamlessly into your home's architecture.",
         "Arlo Pro 4 Spotlight Camera 3-Pack Wire-Free 2K HDR Video: The Arlo Pro 4 is a wire-free security camera that captures video in stunning 2K HDR, giving you a clear view of your property with more detail. It features an integrated spotlight to deter unwanted guests and a wide 160-degree field of view to cover more ground. The cameras are easy to install, weatherproof, and offer two-way audio, making them a great choice for comprehensive home security.",
         "Wyze Cam v3 1080p HD Indoor/Outdoor Smart Home Camera with Color Night Vision: The Wyze Cam v3 is an affordable and versatile security camera that provides 1080p HD video and a groundbreaking color night vision feature, allowing you to see vivid details even in the dark. It is rated for both indoor and outdoor use, and its magnetic base and flexible stand make it easy to place anywhere. The camera also includes two-way audio and a built-in siren to deter intruders, all with free cloud storage for motion-triggered recordings.",
         "Blink Mini Pan-Tilt Camera 1080p HD Indoor Plug-in Security Camera: The Blink Mini Pan-Tilt is an affordable indoor security camera that offers 1080p HD video and the ability to remotely pan and tilt the camera for a complete view of a room. It's easy to set up and provides two-way audio, motion detection, and notifications to your phone. This plug-in camera is perfect for monitoring pets, children, or elderly family members, and it works seamlessly with Alexa.",
@@ -1509,7 +6678,7 @@ product_descriptions_based_on_categories = {
         "XGIMI Horizon Pro 4K Projector with Harman Kardon Speakers and Android TV: The XGIMI Horizon Pro is a high-end 4K home projector that delivers a stunningly sharp and bright image with 2200 ANSI lumens of brightness. It features built-in Harman Kardon speakers for excellent audio quality and has Android TV pre-installed, providing access to a wide range of streaming apps. The projector also uses intelligent screen adaptation technology for fast and automatic setup, including keystone correction and obstacle avoidance.",
         "Peak Design Everyday Backpack Zip 20L Charcoal V2 Camera and Everyday Bag: The Peak Design Everyday Backpack Zip is a versatile and stylish bag designed for both photographers and daily use. It offers a clean, minimalist design with a full-length zipper for easy access to all your belongings and a padded sleeve that fits a 15-inch laptop. The bag's customizable FlexFold dividers allow you to organize your camera gear or other items efficiently, while its durable, weatherproof construction protects your contents.",
         "TaylorMade Stealth 2 HD Driver 12° Right Hand Senior Flex Graphite Shaft: The TaylorMade Stealth 2 HD Driver is engineered to provide maximum forgiveness and a draw-biased flight for golfers who need help correcting a slice. It features a lightweight carbon face that increases ball speed and a larger clubhead profile for enhanced stability. The driver's senior flex graphite shaft is designed to generate more swing speed for players with a slower tempo, resulting in longer and straighter drives.",
-        "Sony PlayStation 5 Console Standard Edition with Ultra HD Blu-ray Disc Drive: The PlayStation 5 console is a next-generation gaming system that offers lightning-fast loading times, an immersive gaming experience with haptic feedback and adaptive triggers on the DualSense controller, and stunning 4K graphics. It comes with an Ultra HD Blu-ray disc drive, allowing you to play both physical and digital games. The console’s custom SSD and powerful GPU enable a new level of realism and fluidity in gaming.",
+        "Sony PlayStation 5 Console Standard Edition with Ultra HD Blu-ray Disc Drive: The PlayStation 5 console is a next-generation gaming system that offers lightning-fast loading times, an immersive gaming experience with haptic feedback and adaptive triggers on the DualSense controller, and stunning 4K graphics. It comes with an Ultra HD Blu-ray disc drive, allowing you to play both physical and digital games. The console's custom SSD and powerful GPU enable a new level of realism and fluidity in gaming.",
         "HyperX QuadCast S USB Condenser Gaming Microphone with RGB Lighting: The HyperX QuadCast S is a versatile USB microphone designed for gamers and streamers, offering four selectable polar patterns to suit different recording needs. It features a tap-to-mute sensor with an LED indicator to prevent accidental broadcasts and a built-in pop filter to reduce plosive sounds. The microphone also has dynamic RGB lighting that can be customized with HyperX's software, adding a touch of style to any setup.",
         "Blue Yeti USB Microphone Professional Studio-Quality for Recording and Streaming: The Blue Yeti is a legendary USB microphone known for its professional studio-quality sound and versatility, featuring four different pickup patterns (cardioid, bidirectional, omnidirectional, and stereo). It's a plug-and-play solution that makes it easy for anyone to start recording or streaming with a clean and clear voice. The mic also has on-board controls for headphone volume, pattern selection, and instant mute, making it a simple and powerful tool.",
         "Logitech C922 Pro Stream Webcam 1080p 30fps with Autofocus and Stereo Audio: The Logitech C922 is a webcam specifically optimized for streaming and content creation, offering 1080p video at 30fps or 720p at a super-smooth 60fps. It features reliable autofocus and two omnidirectional microphones for clear stereo sound. The camera comes with a free 3-month XSplit Premium license, making it a perfect starting point for new streamers.",
@@ -1517,7 +6686,7 @@ product_descriptions_based_on_categories = {
         "TCL 6-Series 65-inch 4K QLED Roku Smart TV with Mini-LED Technology: The TCL 6-Series is a high-performance 65-inch TV that combines 4K QLED and Mini-LED technologies to deliver a stunning picture with brilliant colors, incredible contrast, and deep blacks. It's powered by the Roku TV platform, which offers a massive library of streaming content and an intuitive interface. The TV also features a dedicated Game Mode with low input lag, making it a great choice for gaming.",
         "Hisense U8H Series 55-inch 4K ULED Mini-LED TV with Google TV: The Hisense U8H is a 55-inch 4K Smart TV that utilizes Mini-LED and Quantum ULED technology for an incredibly bright and vivid picture with precise control over local dimming zones. It's powered by Google TV, which provides a personalized viewing experience and easy access to thousands of apps and streaming services. The TV also has a fast refresh rate and gaming-specific features, making it ideal for both movies and gaming.",
         "Sonos Arc Soundbar Premium Smart Soundbar with Dolby Atmos: The Sonos Arc is a premium smart soundbar that delivers an immersive home theater experience with Dolby Atmos, creating a three-dimensional soundstage that surrounds you. Its elegant design and advanced audio processing fill the room with crisp dialogue and powerful bass. The Arc seamlessly integrates with the Sonos ecosystem and includes built-in voice assistants for hands-free control.",
-        "Bose Smart Soundbar 900 with Dolby Atmos and Voice Assistants: The Bose Smart Soundbar 900 is a sleek soundbar that uses Dolby Atmos to create an immersive audio experience with sound that feels like it’s coming from all around you. It features Bose's proprietary PhaseGuide and TrueSpace technologies for a wide soundstage and realistic spatial audio. The soundbar also has built-in Alexa and Google Assistant for voice control and is a great addition to any home entertainment system.",
+        "Bose Smart Soundbar 900 with Dolby Atmos and Voice Assistants: The Bose Smart Soundbar 900 is a sleek soundbar that uses Dolby Atmos to create an immersive audio experience with sound that feels like it's coming from all around you. It features Bose's proprietary PhaseGuide and TrueSpace technologies for a wide soundstage and realistic spatial audio. The soundbar also has built-in Alexa and Google Assistant for voice control and is a great addition to any home entertainment system.",
         "Polk Audio Signature Elite ES60 Floor Standing Speaker with Hi-Res Audio: The Polk Audio Signature Elite ES60 is a floor-standing speaker that delivers a powerful and detailed audio experience, making it perfect for both home theater and music listening. It is Hi-Res Audio certified, ensuring that you hear every nuance of your favorite tracks. The speaker's dynamic balance acoustic array and Polk's Power Port technology produce a deep, clean bass that fills the room.",
         "Klipsch RP-600M Bookshelf Speakers with Tractrix Horn Technology: The Klipsch RP-600M are high-performance bookshelf speakers that use a 1-inch titanium tweeter with a Tractrix horn to deliver a crisp and detailed high-frequency response with minimal distortion. They feature a 6.5-inch copper spun cerametallic woofer that provides a powerful and dynamic low-end. These speakers are a fantastic choice for audiophiles and cinephiles looking for a premium listening experience in a compact form factor.",
         "JBL Bar 1000 7.1.4 Channel Soundbar with Detachable Surround Speakers: The JBL Bar 1000 is a comprehensive sound system that delivers an incredibly immersive 7.1.4 channel audio experience with Dolby Atmos and DTS:X support. Its most unique feature is the two detachable, battery-powered surround speakers that you can place anywhere in the room for a truly cinematic sound. The soundbar also includes a wireless subwoofer and four up-firing drivers, creating a powerful and dynamic soundstage.",
@@ -1584,7 +6753,7 @@ product_descriptions_based_on_categories = {
             "KeySmart Pro Key Organizer with Tile Smart Location Built-in Flashlight: The KeySmart Pro is a compact key organizer that keeps your keys neatly tucked away while also including a powerful built-in flashlight and a bottle opener. Its best feature is the integrated Tile smart location, which allows you to find your keys from your phone or find your phone by pressing a button on the organizer. This device is an excellent solution for anyone who frequently misplaces their keys.",
             "Ember Temperature Control Smart Mug 2 10 oz Black with App Control: The Ember Mug 2 is a smart mug that allows you to set and maintain your perfect drinking temperature, ensuring your coffee or tea is never too hot or too cold. It can be controlled from your smartphone via an app, which also allows you to set presets and get notifications. The mug is a perfect gift for anyone who likes to savor their hot beverages at their ideal temperature for extended periods.",
             "Kobo Libra 2 7-inch E-Reader with E Ink Carta 1200 Touchscreen: The Kobo Libra 2 is an advanced e-reader featuring a 7-inch E Ink Carta 1200 touchscreen for a faster display and quicker page turns. It includes physical page-turn buttons for comfortable one-handed reading and an adjustable ComfortLight PRO to reduce blue light and eye strain. The e-reader is fully waterproof, making it a great companion for reading at the beach or in the bath, and it offers built-in audiobook support with Bluetooth wireless technology.",
-            "De'Longhi Magnifica S Smart Fully Automatic Espresso Machine: The De'Longhi Magnifica S Smart is a fully automatic espresso machine that allows you to make your favorite coffee drinks with the push of a button. It features a built-in grinder and a steaming wand to create lattes and cappuccinos. The machine’s memory function lets you customize and save your perfect espresso or long coffee, making it easy to get a consistent and delicious cup every time.",
+            "De'Longhi Magnifica S Smart Fully Automatic Espresso Machine: The De'Longhi Magnifica S Smart is a fully automatic espresso machine that allows you to make your favorite coffee drinks with the push of a button. It features a built-in grinder and a steaming wand to create lattes and cappuccinos. The machine's memory function lets you customize and save your perfect espresso or long coffee, making it easy to get a consistent and delicious cup every time.",
             "Breville Smart Oven Air Fryer Pro Toaster Oven with Super Convection: The Breville Smart Oven Air Fryer Pro is a versatile countertop oven that combines the functions of a toaster oven, air fryer, and a dehydrator in a single appliance. It features 13 smart cooking functions that automatically adjust temperature and time to ensure perfect results. The oven's Super Convection technology reduces cooking time by up to 30%, making it a fast and efficient solution for all your cooking needs.",
             "Instant Pot Pro Plus Smart 10-in-1 Electric Pressure Cooker 6-Quart: The Instant Pot Pro Plus is a versatile smart pressure cooker that connects to the Instant Brands Connect app via Wi-Fi, allowing you to access over 1,500 recipes and control the cooker from your phone. It offers 10-in-1 functionality, including pressure cooking, slow cooking, rice cooking, steaming, and sous vide. The cooker is designed for fast and easy meals with a variety of presets and a simple interface.",
             "Amazon Echo Show 10 (3rd Gen) with Motion Tracking and Alexa: The Echo Show 10 is a smart display with a 10-inch HD screen that moves automatically to keep you in frame during video calls or to follow you around the kitchen as you cook. It's powered by Alexa, giving you voice control over your smart home devices, and can be used to stream videos, play music, and display photos from your Amazon Photos library. This device is a great addition for a smart home, offering a unique and interactive user experience.",
@@ -1604,7 +6773,7 @@ product_descriptions_based_on_categories = {
             "Philips Sonicare DiamondClean Smart 9700 Electric Toothbrush with App Coaching: The Philips Sonicare DiamondClean Smart 9700 is a premium electric toothbrush that uses smart sensor technology to provide real-time feedback and coaching on your brushing technique via a companion app. It offers four cleaning modes and three intensity settings, ensuring a personalized and effective clean every time. The toothbrush also comes with a charging glass and a travel case that can charge the toothbrush via USB, making it a convenient and high-tech oral hygiene solution.",
             "eero Pro 6E Tri-Band Mesh Wi-Fi 6E System with 2.5 Gbps Ethernet Ports: The eero Pro 6E is a powerful mesh Wi-Fi system that provides fast and reliable internet coverage throughout your home with tri-band Wi-Fi 6E technology. It can cover up to 6,000 square feet and supports speeds up to 2.3 Gbps, making it ideal for streaming 4K video, online gaming, and connecting a large number of smart devices. The system is easy to set up and provides a secure and stable network for your entire home.",
             "Arris SURFboard S33 DOCSIS 3.1 Cable Modem 2.5 Gbps Port and 32x8 Channel Bonding: The Arris SURFboard S33 is a high-speed cable modem that is compatible with most major cable providers and supports DOCSIS 3.1 technology for multi-gigabit speeds. It features a 2.5 Gbps Ethernet port and 32x8 channel bonding, providing a fast and reliable internet connection for your home network. This modem is a great way to future-proof your network and ensure you get the fastest possible internet speeds.",
-            "De'Longhi Magnifica S Smart Fully Automatic Espresso and Coffee Machine: The De'Longhi Magnifica S Smart is a fully automatic espresso machine that allows you to make your favorite coffee drinks with the push of a button. It features a built-in grinder and a steaming wand to create lattes and cappuccinos. The machine’s memory function lets you customize and save your perfect espresso or long coffee, making it easy to get a consistent and delicious cup every time.",
+            "De'Longhi Magnifica S Smart Fully Automatic Espresso and Coffee Machine: The De'Longhi Magnifica S Smart is a fully automatic espresso machine that allows you to make your favorite coffee drinks with the push of a button. It features a built-in grinder and a steaming wand to create lattes and cappuccinos. The machine's memory function lets you customize and save your perfect espresso or long coffee, making it easy to get a consistent and delicious cup every time.",
             "Blendtec Designer 725 Blender with WildSide+ Jar and SmartBlend Technology: The Blendtec Designer 725 is a high-end smart blender with a sleek touch screen interface that offers pre-programmed cycles for smoothies, salsas, ice cream, and more. It features SmartBlend technology that automatically adjusts the speed and time to prevent blending errors and provides a consistent result every time. The blender is also Bluetooth-enabled and connects to an app that offers over 200 recipes and further blending options.",
             "Anova Culinary AN500-US00 Sous Vide Precision Cooker with Wi-Fi and App Control: The Anova Precision Cooker is a smart sous vide device that allows you to cook food to a precise temperature for perfect, restaurant-quality results every time. It connects to your smartphone via Wi-Fi and the Anova app, which provides thousands of recipes and allows you to control the cooker from anywhere. The device is a great tool for anyone who wants to take their cooking to the next level with a simple and hands-off approach.",
             "Tineco Floor ONE S5 Smart Wet/Dry Vacuum Cleaner with iLoop Smart Sensor Technology: The Tineco Floor ONE S5 is a versatile smart wet/dry vacuum cleaner that can vacuum and mop your floors at the same time, saving you time and effort. It features iLoop Smart Sensor Technology, which detects the level of dirt on the floor and automatically adjusts the suction power and water flow for an optimal clean. The vacuum also has a clean and dirty water tank, ensuring that you're always cleaning with fresh water.",
@@ -1628,7 +6797,7 @@ product_descriptions_based_on_categories = {
             "SanDisk 128GB Ultra MicroSDXC UHS-I Memory Card with Adapter: This SanDisk memory card offers a massive 128GB of storage, providing plenty of space for photos, videos, and apps on your smartphone, tablet, or camera. Its UHS-I speed rating ensures fast data transfer and smooth performance when recording Full HD video. The included adapter allows you to use the card with devices that support a standard SD card slot, adding to its versatility.",
             "WD 12TB My Book Desktop External Hard Drive USB 3.0 Black: The WD 12TB My Book is a desktop external hard drive that offers a massive amount of storage for backing up all your important files, photos, and videos. It connects via a fast USB 3.0 interface and includes backup software to simplify the process of protecting your data. The drive is a reliable and high-capacity solution for anyone who needs to store a large volume of digital content.",
             "Corsair K70 RGB MK.2 Mechanical Gaming Keyboard Cherry MX Speed Switches: The Corsair K70 RGB MK.2 is a premium mechanical gaming keyboard designed for competitive gamers. It features ultra-fast Cherry MX Speed mechanical switches, which offer lightning-quick response times with a linear feel. The keyboard is also equipped with vibrant RGB backlighting that can be customized with Corsair's iCUE software, allowing for per-key lighting and dynamic effects.",
-            "Brita Standard Everyday Water Filter Pitcher 10 Cup White: The Brita Standard Everyday Water Filter Pitcher is a convenient and easy way to get great-tasting filtered water. The filter reduces chlorine taste and odor, as well as copper, mercury, and cadmium, for cleaner water. The pitcher holds 10 cups of water, which is enough for a small family, and a handy electronic indicator reminds you when it’s time to change the filter.",
+            "Brita Standard Everyday Water Filter Pitcher 10 Cup White: The Brita Standard Everyday Water Filter Pitcher is a convenient and easy way to get great-tasting filtered water. The filter reduces chlorine taste and odor, as well as copper, mercury, and cadmium, for cleaner water. The pitcher holds 10 cups of water, which is enough for a small family, and a handy electronic indicator reminds you when it's time to change the filter.",
             "Pyrex 18-Piece Glass Food Storage Set with Lids BPA-Free: The Pyrex 18-piece food storage set is a versatile collection of glass containers with secure-fitting lids that are perfect for storing, reheating, and transporting food. The containers are made from durable, non-porous glass that won't absorb food odors, stains, or flavors. The set is also safe for use in the oven, microwave, freezer, and dishwasher, making it a highly practical addition to any kitchen.",
             "Rubbermaid Brilliance Food Storage Containers 10-Piece Set Leak-Proof: The Rubbermaid Brilliance 10-piece food storage set is designed with a 100% airtight and leak-proof seal, so you can confidently store and transport liquids without any spills. The containers are made with a crystal-clear material that allows you to easily see the contents, and they feature built-in vents for splatter-free microwaving. These containers are a great way to keep your food fresh and organized.",
             "KitchenAid Artisan Series 5-Quart Tilt-Head Stand Mixer Empire Red: The KitchenAid Artisan Series Stand Mixer is an iconic kitchen appliance that is a favorite among home bakers. It features a powerful motor and a 5-quart stainless steel bowl, capable of handling large batches of dough and batter. The tilt-head design provides easy access to the bowl and beaters, and with over 10 different attachments available, it can do everything from making pasta to grinding meat.",
@@ -2994,7 +8163,7 @@ note_title_and_content = [
     },
     {
         "title": "car repair shop",
-        "content": "the check engine light came on again. get a quote for a diagnostic. also ask about the tire rotation, it’s been a while."
+        "content": "the check engine light came on again. get a quote for a diagnostic. also ask about the tire rotation, it's been a while."
     },
     {
         "title": "ideas for new book",
@@ -3010,15 +8179,15 @@ note_title_and_content = [
     },
     {
         "title": "to-do list for saturday",
-        "content": "clean the garage, mow the lawn, do laundry, and organize the pantry. it’s going to be a long day."
+        "content": "clean the garage, mow the lawn, do laundry, and organize the pantry. it's going to be a long day."
     },
     {
         "title": "Call Bob about the party",
-        "content": "confirm if he’s bringing the grill. also ask what drinks he wants. maybe tell him to bring some ice."
+        "content": "confirm if he's bringing the grill. also ask what drinks he wants. maybe tell him to bring some ice."
     },
     {
         "title": "My personal philosophy",
-        "content": "Be kind to everyone you meet, you never know what they’re going through. Find joy in the small things. Never stop learning."
+        "content": "Be kind to everyone you meet, you never know what they're going through. Find joy in the small things. Never stop learning."
     },
     {
         "title": "poem i'm working on",
@@ -3042,7 +8211,7 @@ note_title_and_content = [
     },
     {
         "title": "Remember to water the plants.",
-        "content": "The basil plant on the windowsill looks a little droopy. The succulents are fine, they don’t need much. The ferns need misting too."
+        "content": "The basil plant on the windowsill looks a little droopy. The succulents are fine, they don't need much. The ferns need misting too."
     },
     {
         "title": "ideas for gift for Sarah",
@@ -3105,7 +8274,7 @@ note_title_and_content = [
         "content": "monday-tuesday: chicken and roasted veggies. wednesday-thursday: turkey chili. friday: pizza night. this should save a lot of time."
     },
     {
-        "title": "important password I can’t remember",
+        "title": "important password I can't remember",
         "content": "it was something like 'p@ssw0rd123' but with a few changes. i need to reset it. but i should write it down somewhere safe this time."
     },
     {
@@ -3142,7 +8311,7 @@ note_title_and_content = [
     },
     {
         "title": "don't forget to pay the electric bill",
-        "content": "it's due on the 25th. i should set up an automatic payment so I don’t forget again. it's a hassle."
+        "content": "it's due on the 25th. i should set up an automatic payment so I don't forget again. it's a hassle."
     },
     {
         "title": "ideas for new art project",
@@ -4497,12 +9666,5003 @@ channel_bios = [
     "Making complex ideas accessible and fun to learn."
 ]
 
-video_titles_general = [
-    "A Day in My Life", "My Evening Routine", "What I Eat in a Day", "Trying New Things",
-    "Weekly Wrap-up", "Quick Tips for Success", "Beginner's Guide to X", "Exploring Y",
-    "Unboxing Z", "My Thoughts on [Topic]", "Behind the Scenes", "Q&A Session",
-    "Chill Vibes Playlist", "Top 5 [Category]", "Making [Something] from Scratch"
-]
+youtube_titles = {
+    "Vlogging": [
+        "A DAY IN MY LIFE (the chaos is real)",
+        "we're moving...",
+        "I finally did it!",
+        "spend a cozy rainy day with me 🌧️",
+        "My Morning Routine (2025 Edition)",
+        "An Honest Conversation About My Mental Health.",
+        "WEEKLY VLOG: coffee dates, new puppy & a little breakdown",
+        "My Boyfriend Rates My Outfits (he was BRUTAL)",
+        "Come Grocery Shopping With Me!",
+        "Re-Organizing My Entire Apartment",
+        "I Didn't Expect This To Happen.",
+        "Surprising my Mom for her Birthday!",
+        "LA vlog | work events, trying new food & seeing friends",
+        "The truth about being an influencer.",
+        "Answering Your Assumptions About Me",
+        "a productive day in my life",
+        "what i eat in a day (realistic)",
+        "SILENT VLOG - just vibes, no talking",
+        "spontaneous road trip!",
+        "My Night Routine to Wind Down",
+        "Trying to be 'that girl' for a day",
+        "I got a tattoo...",
+        "My first time trying...",
+        "Come with me to get my hair done",
+        "making some big life changes.",
+        "Q&A | Your juiciest questions answered!",
+        "Apartment Tour 2025",
+        "Decorating for Fall 🍂",
+        "meet my new roommate!",
+        "A very normal, boring day.",
+        "unboxing PR packages",
+        "I let my followers control my day",
+        "This week was rough.",
+        "Baking my favorite cookies",
+        "Reacting to my old cringey videos",
+        "A much needed self care day",
+        "What's in my bag?",
+        "Going to a concert alone",
+        "Sunday Reset Routine",
+        "I have some news.",
+        "Learning a new skill in 24 hours",
+        "I tried waking up at 5am for a week",
+        "Our weekend trip to the mountains 🏔️",
+        "How much I spend in a week in NYC",
+        "Thrift with me for new home decor",
+        "this is my last video.",
+        "GRWM for a fancy dinner party",
+        "Why I'm taking a break from YouTube.",
+        "daily vlog.",
+        "I think I made a mistake."
+    ],
+    "Gaming": [
+        "The SECRET to Ranking Up FAST in Valorant",
+        "My Funniest Moments of 2025 (So Far)",
+        "Can you beat Elden Ring with ONLY a torch?",
+        "This new indie horror game is TERRIFYING",
+        "I let a pro player coach me for a day... here's what happened",
+        "Reacting to the new Grand Theft Auto 7 Trailer",
+        "The RAGE is UNREAL",
+        "building my dream house in The Sims 5",
+        "Is this the best weapon in Warzone 3?",
+        "He didn't see that coming... (INSANE CLUTCH)",
+        "This game is perfectly balanced with no exploits.",
+        "Trying to beat Minecraft without walking",
+        "Ranking Every Legend in Apex Legends (Season 25)",
+        "The most UNDERRATED game on Steam",
+        "My 10/10 Games of All Time",
+        "this boss is IMPOSSIBLE",
+        "Gaming's BIGGEST controversies.",
+        "I played this game for 100 hours and here is my review.",
+        "The story of this game is a masterpiece.",
+        "Gaming Setup Tour 2025!",
+        "The ending of this game broke me.",
+        "We tried the HARDEST raid in Destiny 3",
+        "Funny moments with the squad",
+        "Is the new Call of Duty worth it?",
+        "Why I quit Fortnite.",
+        "A casual stream.",
+        "This bug is GAME-BREAKING 🤣",
+        "I unboxed the RAREST knife skin...",
+        "Pro vs. Noob",
+        "This puzzle took me 5 hours.",
+        "The graphics in this game are UNREAL (4K 120FPS)",
+        "Every gamer needs to play this.",
+        "My predictions for the next Nintendo Direct",
+        "Beating the game with 1 HP",
+        "The Evolution of the Zelda Series",
+        "Why 2025 was the best year for gaming.",
+        "Let's Play: [New Game Name] - Part 1",
+        "He was hacking... right?",
+        "This is my new favorite game.",
+        "The saddest moments in video games.",
+        "Top 10 upcoming games I'm excited for",
+        "We broke the game's physics engine.",
+        "Trying a viewer-recommended horror game",
+        "How to get a tactical nuke",
+        "If you play this game, we can't be friends.",
+        "I regret playing this.",
+        "The lore behind this game is deeper than you think.",
+        "My honest, no-spoiler review.",
+        "Is this game a masterpiece or a disaster?",
+        "We got the WORLD FIRST completion!"
+    ],
+    "Comedy Skits": [
+        "When you lie on your resume and still get the job",
+        "Types of People on the First Day of School",
+        "Every Mom on Christmas Morning",
+        "If People Acted Like They Do in Video Games",
+        "My Brain During an Exam",
+        "Trying to explain a meme to your parents",
+        "When the meeting could have been an email",
+        "How it feels to be an introvert at a party",
+        "First Date vs. 1 Year Into the Relationship",
+        "POV: you're trying to cancel a gym membership",
+        "The one friend who's always late",
+        "If inanimate objects could talk",
+        "Every retail worker's nightmare",
+        "When you accidentally open the front-facing camera",
+        "Trying to follow a cooking tutorial",
+        "What your coffee order says about you",
+        "A conversation with my anxiety",
+        "When the GPS says 'You have arrived'",
+        "If companies were brutally honest",
+        "The friend group's therapist",
+        "Forgetting someone's name right after they said it",
+        "When you're the only one who didn't get the memo",
+        "What cats are probably thinking",
+        "Trying to be productive on a Monday morning",
+        "If I had my own reality TV show",
+        "The different types of gamers",
+        "That one person who takes everything literally",
+        "Trying to assemble IKEA furniture",
+        "When your food order is wrong but you're too shy to say anything",
+        "An awkward elevator ride",
+        "If my dog had a YouTube channel",
+        "The struggles of online classes",
+        "What your favorite emoji says about you",
+        "Every group project ever",
+        "Trying to wake up in the morning",
+        "A dramatic reading of my spam emails",
+        "If horror movie characters were smart",
+        "When you get home from a social event",
+        "The guy who knows everything about everything",
+        "Trying to be healthy for one day",
+        "If my inner child made my decisions",
+        "What happens in the group chat",
+        "The five stages of grief over a dead phone battery",
+        "Trying to parallel park",
+        "When the wifi goes out",
+        "A tour of my imaginary mansion",
+        "If I was a supervillain",
+        "The unspoken rules of the internet",
+        "The different ways people laugh",
+        "When you realize you're the problem"
+    ],
+    "Educational Explainers": [
+        "The Science of Why We Dream",
+        "What is Quantum Entanglement, really?",
+        "The Entire History of Ancient Rome in 20 Minutes",
+        "How Does a Nuclear Reactor Work?",
+        "The Fermi Paradox: Where Are All The Aliens?",
+        "The Philosophy of Nihilism Explained",
+        "Why is Blue So Rare in Nature?",
+        "A Deep Dive into the Human Immune System",
+        "The Economics of a Universal Basic Income",
+        "What is Dark Matter and Dark Energy?",
+        "How Machine Learning Actually Works",
+        "The surprisingly complex world of ants.",
+        "Why do we get Deja Vu?",
+        "The rise and fall of the Maya civilization.",
+        "Can You Solve This Famous Paradox?",
+        "How GPS works. It's more complicated than you think.",
+        "The Neuroscience of Memory",
+        "What was the Cambrian Explosion?",
+        "A Brief History of the Internet",
+        "Understanding Stoicism: A Guide for Modern Life",
+        "The physics of black holes for beginners.",
+        "How do vaccines work?",
+        "Why do we have different blood types?",
+        "The fascinating life of Marie Curie.",
+        "What is Blockchain? (Simple Explanation)",
+        "The Psychology Behind Procrastination",
+        "How are stars born and how do they die?",
+        "The ethical dilemma of self-driving cars.",
+        "What is Chaos Theory?",
+        "The real story of the Trojan War.",
+        "Why time seems to speed up as we get older.",
+        "How skyscrapers are built.",
+        "The science of addiction.",
+        "What did the dinosaurs actually sound like?",
+        "An introduction to String Theory.",
+        "How your brain is lying to you (Cognitive Biases)",
+        "The Great Filter: A Terrifying Possibility",
+        "What is CRISPR and how can it change the world?",
+        "The history and science of fermentation.",
+        "Why do we need to sleep?",
+        "The Carrington Event: The Solar Storm That Almost Ended Civilization",
+        "How do nuclear submarines work?",
+        "Understanding the Stock Market for Absolute Beginners",
+        "The complex geometry of snowflakes.",
+        "Why does music make us feel emotions?",
+        "What is consciousness?",
+        "The incredible biology of the Octopus.",
+        "How the pyramids were (probably) built.",
+        "The concept of infinity.",
+        "Why are we the only human species left?"
+    ],
+    "How-To & DIY": [
+        "How to Build a Bookshelf with Basic Tools",
+        "You're Cleaning Your Cast Iron Skillet WRONG",
+        "DIY Desk Organizer from Cardboard",
+        "How to Change Your Own Car Oil (and Save Money!)",
+        "The Only Bread Recipe You'll Ever Need",
+        "How to Properly Sharpen a Kitchen Knife",
+        "DIY Tie-Dye T-Shirts! (Easy Method)",
+        "Building a PC for the First Time - A Step-by-Step Guide",
+        "How to fix a running toilet in 5 minutes",
+        "The Easiest Way to Grow Tomatoes in a Pot",
+        "How to learn any new skill in 20 hours",
+        "DIY Rustic Coffee Table (Budget Friendly!)",
+        "How to Paint a Room Like a Pro",
+        "Making a raised garden bed from pallet wood",
+        "How to start a conversation with anyone",
+        "The ultimate guide to soldering for beginners",
+        "DIY Concrete Planters",
+        "How to make the perfect cup of coffee at home",
+        "Restoring an old piece of furniture",
+        "How to create a website in 10 minutes",
+        "DIY Natural All-Purpose Cleaner",
+        "How to unclog a drain without chemicals",
+        "Making a custom neon sign",
+        "How to tie the 5 most useful knots",
+        "The right way to jump start a car",
+        "DIY Macrame Plant Hanger",
+        "How to make gourmet ramen at home",
+        "Building a simple birdhouse",
+        "How to take better photos with your phone",
+        "DIY Fire Pit for Under $50",
+        "The best way to organize your closet",
+        "How to create a budget and actually stick to it",
+        "DIY Bath Bombs",
+        "How to change a flat tire - The Definitive Guide",
+        "Making a leather wallet from scratch",
+        "How to edit videos for YouTube (Beginner's Guide)",
+        "DIY floating shelves",
+        "How to make sourdough starter from scratch",
+        "Restoring old, rusty tools",
+        "How to write a perfect resume",
+        "DIY Beeswax Food Wraps",
+        "How to compost for beginners",
+        "The secret to perfect scrambled eggs",
+        "DIY Phone Projector",
+        "How to negotiate a higher salary",
+        "Making a terrarium in a jar",
+        "How to brew your own beer",
+        "DIY Cat Tree",
+        "The best way to pack a suitcase to maximize space",
+        "How to finally get a good night's sleep"
+    ],
+    "Tech Reviews": [
+        "iPhone 20 Review: Is it ACTUALLY better?",
+        "I used the new Samsung Galaxy Fold for a month. Here's the truth.",
+        "DON'T BUY the new MacBook Pro until you watch this.",
+        "The Perfect Laptop for Students in 2025?",
+        "Testing the CHEAPEST smartphone on Amazon.",
+        "Google Pixel 12 Review: The AI King!",
+        "This gadget is a gimmick. (and I love it)",
+        "My HONEST review of the new Sony WH-1000XM6 headphones",
+        "Is this $3000 TV worth the money?",
+        "The Most Overrated Tech of 2025",
+        "Why I'm switching back to the iPhone.",
+        "This AI gadget will change your life.",
+        "Razer Blade 16 (2025) Review: A Gamer's Dream?",
+        "Nothing Phone (4) Review: Still a contender?",
+        "The Ultimate Desk Setup Tour - 2025 Edition",
+        "These earbuds are better than AirPods. Here's why.",
+        "I regret buying this.",
+        "A review of the Framework Laptop after 1 year.",
+        "The Best Camera for YouTube in 2025",
+        "This tiny drone is shockingly good.",
+        "I bought a knockoff Apple Watch... was it a mistake?",
+        "Reviewing tech I found at a garage sale",
+        "The new iPad Pro is powerful, but who is it for?",
+        "This keyboard changed how I type.",
+        "Why mechanical keyboards are worth it.",
+        "The worst tech fails of the year.",
+        "This smart home gadget is actually useful.",
+        "A Brutally Honest Review of the Insta360 X5",
+        "Can this tiny PC replace my gaming rig?",
+        "The problem with modern smartphones.",
+        "A long-term review of the Tesla Model Z",
+        "Should you buy a 4K monitor or an Ultrawide?",
+        "The Best Budget Tech under $50",
+        "Is the Apple Vision Pro 2 finally ready for the masses?",
+        "This E-Ink tablet is a game changer for students.",
+        "My Favorite Tech of 2025",
+        "This robot vacuum is smarter than me.",
+        "A deep dive into the new M5 Pro chip.",
+        "Is this the end of DSLR cameras?",
+        "This portable monitor is surprisingly good.",
+        "The best smart watch for Android users.",
+        "I built a custom NAS server. Here's how.",
+        "Why foldable phones are the future (or not).",
+        "The weirdest tech I could find on AliExpress.",
+        "This gaming mouse has a secret feature.",
+        "Does a $500 HDMI cable actually make a difference?",
+        "My thoughts on the new Rabbit R2.",
+        "This is the most innovative product I've seen all year.",
+        "Why I sold my Apple Watch.",
+        "A realistic look at living with an electric car."
+    ],
+    "Unboxing": [
+        "Unboxing the NEW PlayStation 6!",
+        "I Bought a $10,000 Mystery Box from the Dark Web...",
+        "Unboxing the iPhone 20 - First Impressions",
+        "This box was filled with... snakes?",
+        "Unboxing Every Product Apple Released in 2025",
+        "A GIANT tech unboxing from Amazon",
+        "Unboxing a 20 year old, sealed iPod.",
+        "What's in the YouTube Black Diamond Play Button Box?",
+        "My new camera setup! (Unboxing)",
+        "The weirdest subscription box I could find.",
+        "Unboxing the Collector's Edition of [New Game]",
+        "I bought a pallet of returned Amazon packages.",
+        "Unboxing the Samsung Galaxy Z Fold 7",
+        "This mystery box was a SCAM.",
+        "Unboxing the new LEGO Star Destroyer",
+        "ASMR Unboxing - No Talking",
+        "The packaging on this is incredible.",
+        "Unboxing sneakers that are worth more than my car",
+        "This is the smallest gaming PC I've ever seen.",
+        "Unboxing the new Nintendo Switch 2",
+        "A HUGE unboxing of clothes for fall",
+        "Unboxing a lightsaber from a galaxy far, far away.",
+        "This thing is way bigger than I thought.",
+        "Unboxing a monthly Japanese snack box!",
+        "Is the new Kindle Scribe 2 worth it? (Unboxing & First Look)",
+        "Unboxing my new custom keyboard",
+        "This was a terrible idea.",
+        "Unboxing a piece of history.",
+        "I can't believe what was inside.",
+        "Unboxing the world's most expensive coffee maker",
+        "This is so cool.",
+        "My first impression of the Google Pixel 12",
+        "Unboxing a surprise gift from a subscriber!",
+        "This package has been lost in the mail for 2 years.",
+        "I bought lost luggage at an auction.",
+        "The unboxing experience is 10/10.",
+        "Unboxing a vintage computer from the 90s",
+        "What's in the Box?!",
+        "The new MacBook Pro M5 Max - Unboxing & Setup",
+        "This is heavy.",
+        "I finally got my hands on this.",
+        "Unboxing a limited edition something-or-other",
+        "The smell that came out of this box...",
+        "I have no words.",
+        "Unboxing a custom-built gaming controller",
+        "This is definitely not what I ordered.",
+        "Unboxing a new drone!",
+        "Let's see what's inside.",
+        "The knife they give you to open the box is a work of art.",
+        "Unboxing. That's it. That's the video."
+    ],
+    "Beauty Tutorials": [
+        "My 5-Minute Everyday Makeup Routine",
+        "GRWM: Storytime about my worst date ever",
+        "Testing VIRAL TikTok Makeup Hacks... do they work?",
+        "The Ultimate Beginner's Guide to Eyeshadow",
+        "How to do a perfect winged eyeliner every time!",
+        "Full Face of Drugstore Makeup (Affordable!)",
+        "My Updated Skincare Routine for Glowing Skin (2025)",
+        "Recreating a celebrity's red carpet look",
+        "Glass Skin Makeup Tutorial",
+        "'Clean Girl' Makeup Look",
+        "How to find your perfect foundation shade",
+        "Testing the most expensive foundation in the world",
+        "My boyfriend does my makeup... (disaster)",
+        "Ranking all of my Fenty Beauty products",
+        "The secret to long-lasting lipstick",
+        "Hooded Eyes? Watch this!",
+        "GRWM for a chill day at home",
+        "A complete guide to makeup brushes",
+        "Sun-kissed bronzy makeup look for summer",
+        "How to cover acne and dark spots without looking cakey",
+        "Is the new Charlotte Tilbury product worth it?",
+        "Trying the 100-layer makeup challenge",
+        "My go-to glam look for a night out",
+        "How to apply false lashes for beginners",
+        "The truth about the new Dyson Airwrap.",
+        "My morning skincare routine",
+        "Trying on every lipstick I own",
+        "Makeup mistakes to avoid!",
+        "Natural, fluffy brow tutorial",
+        "Testing out 'e-girl' makeup trends",
+        "My wedding makeup tutorial",
+        "How to contour for your face shape",
+        "The best skincare for oily skin",
+        "Recreating my high school makeup... yikes.",
+        "I let my followers pick my makeup",
+        "This one product saved my skin.",
+        "GRWM for my birthday!",
+        "Testing weird makeup products from Amazon",
+        "Full face using only cream products",
+        "My honest review of Rare Beauty",
+        "The best SPFs that don't leave a white cast",
+        "How to fix common makeup mistakes",
+        "A very glittery holiday makeup look",
+        "Is luxury makeup better than drugstore?",
+        "My anti-aging skincare secrets",
+        "Trying the 'unapproachable makeup' trend",
+        "Decluttering my massive makeup collection",
+        "What's in my makeup bag?",
+        "The history of makeup.",
+        "My top 5 holy grail makeup products I can't live without."
+    ],
+    "Fashion Hauls": [
+        "HUGE $1000 ZARA HAUL & TRY-ON (Fall 2025)",
+        "I spent $500 on SHEIN... was it worth it?",
+        "COME THRIFTING WITH ME! (hidden gems found)",
+        "Building a Capsule Wardrobe from scratch",
+        "Rating My Subscribers' Outfits! (you guys have style)",
+        "What I wore for a week in Paris",
+        "Recreating Pinterest outfits",
+        "Is high-end designer clothing worth the money?",
+        "The best and worst fashion trends of 2025",
+        "Trying on weird clothes I found online",
+        "I dressed like my favorite TV show characters for a week",
+        "The Ultimate Guide to finding your personal style",
+        "Come shopping with me at the mall",
+        "First impressions of the new Skims collection",
+        "A very cozy and oversized clothing haul",
+        "I let my boyfriend style me for a week",
+        "The best jeans for every body type",
+        "Styling one dress 10 different ways",
+        "Everything you need for your summer vacation wardrobe",
+        "I bought knockoff designer items... let's compare.",
+        "Massive closet cleanout! (decluttering)",
+        "My shoe collection tour",
+        "How to look expensive on a budget",
+        "Trying on my mom's vintage clothes from the 90s",
+        "What people are wearing in Tokyo right now",
+        "The problem with fast fashion.",
+        "My favorite sustainable fashion brands",
+        "A haul of things I will probably return.",
+        "Back to school outfits ideas!",
+        "The best basics every wardrobe needs",
+        "Trying on the ugliest clothes I could find",
+        "Is Temu a scam? A massive clothing haul.",
+        "My dream designer handbag collection",
+        "What to wear when you have nothing to wear",
+        "Styling the color of the year: [Color]",
+        "A formal dress haul for wedding season",
+        "My honest thoughts on celebrity fashion lines",
+        "The truth about online thrift stores like ThredUp",
+        "How to style baggy jeans",
+        "Come vintage shopping with me in London",
+        "This haul was a disaster.",
+        "Unboxing a Stitch Fix box... are they good?",
+        "My most and least worn items in my closet",
+        "Fall lookbook 2025",
+        "I bought the same outfit from 5 different stores",
+        "The best sneakers of the year",
+        "Letting a random number generator pick my outfits",
+        "A huge activewear haul",
+        "Rating fashion trends from the 2000s",
+        "How to upcycle your old clothes"
+    ],
+    "Cooking & Recipes": [
+        "The Easiest Pasta Recipe You Will Ever Make (15 minutes!)",
+        "I Tried Making My Grandma's Secret Cookie Recipe",
+        "Cooking a 3-Course Meal with ONLY a Microwave",
+        "The Perfect Steak: A Foolproof Guide",
+        "Making Sourdough Bread From Scratch (for beginners)",
+        "5 Healthy Dinner Ideas for Busy Weeknights",
+        "The Viral Feta Pasta... is it actually good?",
+        "I Tried to Recreate the Krabby Patty",
+        "Making ramen from the movie Ponyo",
+        "The only chocolate cake recipe you'll ever need",
+        "A week of easy meal prep ideas",
+        "How to Make Perfect Sushi at Home",
+        "I tried to follow a Gordon Ramsay recipe...",
+        "Cooking with ingredients I've never used before",
+        "The best homemade pizza recipe",
+        "What a professional chef cooks at home",
+        "3 levels of pasta: amateur, home cook, pro",
+        "The science of making the perfect cookie",
+        "My favorite comfort food recipe for a bad day",
+        "Making cheese from scratch",
+        "The history of the chocolate chip cookie.",
+        "Let's make some soup.",
+        "My go-to lazy dinner recipe",
+        "Trying to make fancy cocktails at home",
+        "The ultimate guide to grilling",
+        "How to use an air fryer (what I wish I knew)",
+        "Baking my own birthday cake",
+        "5 Easy Breakfast Ideas",
+        "I made everything from the Stardew Valley cookbook",
+        "This kitchen gadget is a game-changer.",
+        "Trying to make a gingerbread house from scratch",
+        "The best way to cook chicken breast",
+        "Letting my followers choose what I cook for dinner",
+        "A simple, delicious curry recipe",
+        "Recreating the cake from Matilda",
+        "How to properly season a cast iron pan",
+        "Making fresh pasta is easier than you think",
+        "The secret to crispy roasted potatoes",
+        "I tried a recipe from a 100-year-old cookbook",
+        "The fluffiest pancake recipe",
+        "Cooking on a budget: $3 dinner challenge",
+        "The world's spiciest ramen",
+        "My favorite vegan dinner recipe",
+        "Let's make some jam.",
+        "How to host the perfect dinner party",
+        "This one ingredient will elevate your cooking.",
+        "Trying to make croissants is a nightmare.",
+        "The most delicious brownies ever.",
+        "I cooked a meal using only ingredients from the dollar store",
+        "The ultimate chocolate chip cookie shootout."
+    ],
+    "Food Reviews": [
+        "I Tried the WORST Rated Restaurant in My City",
+        "Eating at a 3-Star Michelin Restaurant ($1000 meal)",
+        "Ranking Every Fast Food Burger",
+        "What can you get for $10 in New York City?",
+        "Trying the viral croissant cube",
+        "I ate nothing but gas station food for 24 hours",
+        "The best pizza in Chicago? (A Deep Dish Investigation)",
+        "Trying weird food combinations that shouldn't work (but do)",
+        "A professional chef reviews frozen pizzas",
+        "I tried every item on the Taco Bell menu",
+        "Is this the best BBQ in Texas?",
+        "Trying snacks from a different country every month",
+        "The most expensive vs. cheapest steak in my city",
+        "A brutally honest review of a tourist trap restaurant",
+        "My followers recommended the best local restaurants...",
+        "I tried food from an army MRE pack.",
+        "The best street food in Mexico City",
+        "I ate at a restaurant with no menu",
+        "This food trend needs to stop.",
+        "Trying the spiciest dish in the world",
+        "Is the Cheesecake Factory actually good?",
+        "A review of every Girl Scout cookie",
+        "This hole-in-the-wall has the best food I've ever eaten.",
+        "Trying the viral Pink Sauce...",
+        "I ordered food from the restaurant with the funniest bad reviews",
+        "The best donuts in America.",
+        "Why is airplane food so bad? An investigation.",
+        "Trying weird Pringles flavors from around the world",
+        "Is this All-You-Can-Eat buffet worth it?",
+        "A blind taste test of popular soda brands",
+        "This dessert shop is a hidden gem.",
+        "I ate at a restaurant that's completely in the dark",
+        "The best and worst Trader Joe's frozen foods",
+        "This place has been open for 100 years. Is it still good?",
+        "Trying food from famous movie scenes",
+        "A food tour of my hometown",
+        "This coffee is $100 a cup. Let's see if it's worth it.",
+        "The weirdest things people put on pizza",
+        "I tried the military diet for a week.",
+        "This restaurant has a 5-star rating. Is it legit?",
+        "Can you taste the difference between cheap and expensive wine?",
+        "I tried every hot dog from Costco's food court",
+        "The history of ketchup.",
+        "This food is overrated.",
+        "My Top 5 Favorite Restaurants of All Time",
+        "Trying the 'best sandwich in the world' in Italy",
+        "This is not food.",
+        "Is this bougie LA restaurant worth the hype?",
+        "Trying a vending machine that serves hot meals",
+        "My honest review of Gordon Ramsay's restaurant"
+    ],
+    "Health & Fitness": [
+        "My 30-Day Body Transformation (shocking results)",
+        "What I Eat in a Day to Stay Lean (High Protein)",
+        "10-Minute AB WORKOUT (no equipment needed!)",
+        "I Debunked The Biggest Fitness Myths",
+        "I tried the Rock's daily routine for 24 hours",
+        "The truth about cardio: are you doing it wrong?",
+        "My Full Workout Routine (Split, Exercises, Sets & Reps)",
+        "How to lose fat and build muscle at the same time",
+        "I ran a marathon with no training.",
+        "The best supplements (and which ones are a waste of money)",
+        "What 100g of protein actually looks like",
+        "A realistic guide to starting your fitness journey",
+        "I stopped eating sugar for 30 days. This is what happened.",
+        "The most common workout mistakes I see in the gym",
+        "How to stay motivated to work out",
+        "My healthy morning routine for a productive day",
+        "Rating different protein powders",
+        "A full day of eating for muscle gain",
+        "The science of building a bigger chest",
+        "I tried cryotherapy and this is what it felt like.",
+        "Do you really need 10,000 steps a day?",
+        "The ultimate guide to meal prepping for the week",
+        "Yoga for beginners - 20 minute morning routine",
+        "The truth about 'getting toned'.",
+        "How to improve your posture (5 easy exercises)",
+        "I tried the '75 Hard' challenge and failed.",
+        "Why I don't do sit-ups anymore.",
+        "The best exercises for a bigger back",
+        "A simple guide to understanding macros",
+        "I drank a gallon of water every day for a month",
+        "A home workout that's actually effective",
+        "How to get your first pull-up",
+        "The problem with fitness influencers.",
+        "Is pre-workout actually bad for you?",
+        "What I eat before and after a workout",
+        "My fitness journey: How I lost 50 lbs",
+        "How to stretch properly to avoid injury",
+        "The benefits of cold showers (scientifically proven)",
+        "A dietitian reviews my full day of eating",
+        "This one exercise transformed my legs.",
+        "The best and worst foods for fat loss",
+        "I tried the Wim Hof method for a week",
+        "Stop making these mistakes when you squat.",
+        "How to deal with gym anxiety",
+        "My honest review of the Oura Ring 4",
+        "The most effective way to train your abs",
+        "Why you're not seeing results in the gym",
+        "A calming 10-minute meditation for stress and anxiety",
+        "My fitness essentials from Amazon",
+        "How much sleep do you actually need to build muscle?"
+    ],
+    "Commentary": [
+        "The Problem With 'Hustle Culture'",
+        "My Thoughts on the Latest YouTube Drama",
+        "Why are we all so tired?",
+        "The Rise and Fall of the Girlboss",
+        "This Movie is a Mess, and I Loved It.",
+        "A Critical Look at Fast Fashion Influencers",
+        "Let's talk about the parasocial relationship epidemic.",
+        "The strange world of family vloggers.",
+        "Is Nostalgia Ruining Modern Media?",
+        "The quiet quitting phenomenon isn't what you think it is.",
+        "An honest conversation about loneliness.",
+        "This TV show finale was a slap in the face.",
+        "The strange, sad world of AI influencers.",
+        "Why every company's logo looks the same now.",
+        "Reacting to the most unhinged reality TV show",
+        "The dark side of the 'that girl' aesthetic.",
+        "A deep dive into the latest celebrity scandal.",
+        "Why I'm leaving Twitter.",
+        "This trend needs to end. Immediately.",
+        "The internet is getting boring.",
+        "A defense of the 'unlikeable' female character.",
+        "What happened to movie stars?",
+        "The algorithm is radicalizing us.",
+        "This is not an apology video.",
+        "Let's discuss the ethics of true crime content.",
+        "The cringe-to-sincerity pipeline.",
+        "Why are video games so expensive?",
+        "A deep dive into the world of MLMs.",
+        "The strange nostalgia for the 2010s.",
+        "Why your favorite creator is probably burnt out.",
+        "This is the worst advice I've ever heard.",
+        "Are we losing the ability to be bored?",
+        "The subtle art of the soft launch.",
+        "This company is evil.",
+        "The gentrification of thrift stores.",
+        "Why do we love villains?",
+        "The bizarre world of kidfluencers.",
+        "This marketing campaign is a disaster.",
+        "Let's talk about the beige-ification of the world.",
+        "The internet used to be fun.",
+        "Why are we all trying to optimize our lives?",
+        "This celebrity needs to be stopped.",
+        "An autopsy of a failed TV show.",
+        "The concept of 'selling out' is dead.",
+        "This is why you're unhappy.",
+        "The monetization of every single hobby.",
+        "Let's have a chat.",
+        "The weird, wonderful world of fanfiction.",
+        "Are movie trailers spoiling movies?",
+        "I have some thoughts on this."
+    ],
+    "Product Reviews": [
+        "Testing Viral 5-Star Products from Amazon",
+        "Is This Gadget a SCAM? (A Brutally Honest Review)",
+        "My Honest Review of the Always Pan after 2 Years",
+        "I Bought the 5 Highest Rated Air Fryers. Only One Was Good.",
+        "Is this $500 coffee maker actually better than a $20 one?",
+        "Testing weird kitchen gadgets from TikTok",
+        "This product changed my life. No, seriously.",
+        "The best noise-cancelling headphones of 2025",
+        "A review of the Stanley Cup... what's the big deal?",
+        "My top 5 Amazon purchases of the year",
+        "I tested 10 different pillows to find the best one for sleep.",
+        "This is a piece of junk. Do not buy it.",
+        "Reviewing the Ember Mug: Is it worth it?",
+        "The best office chair for working from home",
+        "I tried the smart mattress that costs $4000.",
+        "Testing products from 'As Seen on TV'",
+        "This robot vacuum actually works.",
+        "The ultimate backpack review for travel and school",
+        "My honest, unsponsored review of the new Dyson vacuum",
+        "Are these expensive candles worth the money?",
+        "The best and worst products I tried this month",
+        "This portable blender is a game-changer.",
+        "Testing 5 different weighted blankets",
+        "I regret this purchase so much.",
+        "This product is genius.",
+        "Reviewing a smart water bottle that tracks your intake",
+        "The only luggage you should buy in 2025",
+        "I bought the cheapest version of a popular product.",
+        "This is the best purchase I've made all year.",
+        "A review of my electric standing desk after one year of use",
+        "This air purifier actually made a difference.",
+        "The best travel pillow for long flights",
+        "I tried the sunrise alarm clock.",
+        "Is the Caraway cookware set worth the hype?",
+        "This is the best water filter, according to science.",
+        "Testing the weirdest products from Sharper Image",
+        "My favorite kitchen tools I use every day",
+        "This product is built to last a lifetime.",
+        "Don't waste your money on this.",
+        "A review of the LARQ self-cleaning water bottle",
+        "This is the quietest fan I've ever owned.",
+        "The best pocket knife for everyday carry (EDC)",
+        "I tested 5 different coffee grinders.",
+        "This smart notebook feels like the future.",
+        "Why I returned the new [product name].",
+        "This product has a 4.9 star rating. Is it legit?",
+        "Testing the kitchen gadget that claims to do everything",
+        "The ultimate review of the best reusable water bottles",
+        "This product is over-engineered in the best way possible.",
+        "I bought this based on an Instagram ad. Was it a mistake?"
+    ],
+    "ASMR": [
+        "ASMR Tapping on 100 Different Items for Sleep",
+        "Unintelligible Whispers & Inaudible Triggers",
+        "ASMR Fast and Aggressive Triggers to DESTROY Your Tingles",
+        "ASMR Librarian Roleplay (Shushing, Page Turning, Stamping)",
+        "Deep Ear Cleaning ASMR (No Talking)",
+        "ASMR for People Who Don't Get Tingles",
+        "Relaxing Scalp Massage and Hair Brushing ASMR",
+        "ASMR | Fixing You After a Long Day (Personal Attention)",
+        "Tapping on my microphone for 1 hour straight.",
+        "The Most Relaxing Keyboard Typing Sounds",
+        "ASMR | Unboxing a Mysterious Package (Crinkles, Tapping)",
+        "ASMR Unpopular Triggers (You'll either love or hate these)",
+        "POV: You're at the most calming doctor's appointment ever",
+        "ASMR Soap Carving and Crushing",
+        "Whispering a Wikipedia article to you",
+        "ASMR | Layered sounds for intense brain tingles",
+        "Rain sounds on a tin roof for sleeping",
+        "ASMR | A very sleepy makeup application roleplay",
+        "The Tingle Gauntlet (Can you last all 30 minutes?)",
+        "ASMR Mic Brushing with different brushes",
+        "Eating honeycomb ASMR (sticky sounds!)",
+        "ASMR doing my friend's makeup (whispering)",
+        "Close up mouth sounds and whispering",
+        "ASMR | Tattoo Shop Roleplay (buzzing, wiping sounds)",
+        "Kinetic Sand Cutting and Scooping",
+        "ASMR | Gently Tracing Your Face",
+        "Reading you a bedtime story (soft spoken)",
+        "ASMR | Follow my instructions (light triggers, hand movements)",
+        "The most satisfying sounds in the world.",
+        "ASMR | Cat Purring for 2 Hours for Sleep and Relaxation",
+        "Tapping and scratching on a wooden box",
+        "ASMR | A Cozy Antique Shop Roleplay",
+        "Liquid sounds and bubble noises",
+        "ASMR | Measuring you for a suit (tape measure sounds, whispering)",
+        "Cranial Nerve Exam Roleplay",
+        "ASMR Page Turning of an Old Book",
+        "ASMR | Extremely close up whispering in your ear",
+        "Water globes and squishy sounds",
+        "ASMR | A very thorough eye exam",
+        "Let me pluck the negativity away (plucking triggers)",
+        "ASMR | Playing with LEGOs",
+        "The sound of a crackling fireplace for 10 hours.",
+        "ASMR | Re-organizing my makeup collection (tapping, clicking)",
+        "Gentle hand sounds and finger flutters",
+        "ASMR | You are a painting and I am the artist",
+        "No talking, just triggers.",
+        "ASMR | A very caring friend takes care of you",
+        "Ice globes and cooling sounds for your face",
+        "Tapping on my phone screen",
+        "Let's just relax together."
+    ],
+    "Documentaries": [
+        "The Dark Side of the Pet Food Industry",
+        "What Really Happened to the Lost Colony of Roanoke?",
+        "The Rise and Fall of BlackBerry",
+        "The Man Who Tried to Build a Utopia in the Desert",
+        "Inside the World of Competitive Puzzle Solving",
+        "The Unsolved Mystery of the Dyatlov Pass Incident",
+        "The Secret Life of Crows: The World's Smartest Birds",
+        "The story of the first video game.",
+        "The Engineering Marvel of the Panama Canal",
+        "The Cult of Crossfit: A Deep Dive",
+        "The Day the Internet Died: A Hypothetical Scenario",
+        "The forgotten story of the real-life Moby Dick.",
+        "The bizarre and tragic story of the inventor of Tetris.",
+        "The Woman Who Fooled the World",
+        "Inside the dangerous world of deep sea cave diving.",
+        "The Great Emu War: Australia's Strangest Conflict",
+        "The life and legacy of Nikola Tesla.",
+        "The search for the lost city of Atlantis.",
+        "The Chernobyl disaster: what the HBO series left out.",
+        "The fascinating history of artificial intelligence.",
+        "The race to the South Pole: a story of tragedy and triumph.",
+        "The complex ecosystem of a single oak tree.",
+        "The story of the world's largest art heist.",
+        "The Battle for the Internet's Soul",
+        "The secret history of the CIA's mind control experiments.",
+        "The incredible journey of the Voyager probes.",
+        "The real pirates of the Caribbean.",
+        "The rise of the fast fashion empire.",
+        "The science behind the world's most impressive magic tricks.",
+        "The psychology of cult leaders.",
+        "The fall of the Roman Empire.",
+        "The hidden world of mycelial networks.",
+        "The man who sold the Eiffel Tower. Twice.",
+        "The surprising history of the color blue.",
+        "The race to break the sound barrier.",
+        "The story of the most successful female pirate in history.",
+        "The ethical debate over gene editing.",
+        "The mystery of the Wow! signal.",
+        "The life of a professional storm chaser.",
+        "The creation of the atomic bomb: The Manhattan Project.",
+        "The forgotten kingdom of Aksum.",
+        "The story of the first person to summit Everest.",
+        "The lost art of celestial navigation.",
+        "The world's most remote inhabited island.",
+        "The Tunguska Event: The mystery of the 1908 explosion.",
+        "The fight to save the Amazon rainforest.",
+        "The incredible story of the discovery of penicillin.",
+        "The secret world of underground bunkers.",
+        "The history of the Rubik's Cube.",
+        "The quietest place on Earth."
+    ],
+    "Reaction Videos": [
+        "My Jaw DROPPED.. Reacting to the new movie trailer",
+        "Reacting to the Funniest TikToks of the Week",
+        "First Time Hearing [Classic Song]... I'm Speechless",
+        "A Professional Chef Reacts to Terrible Cooking Videos",
+        "Reacting to My Old Cringey Videos (I'm so sorry)",
+        "A Doctor Reacts to Medical Scenes in TV Shows",
+        "My Mom Reacts to Modern Music (she hates it)",
+        "Reacting to the Most INSANE Magic Tricks on Penn & Teller",
+        "My followers sent me their favorite videos...",
+        "I can't believe this actually happened.",
+        "A Physicist Reacts to Sci-Fi Movie Scenes",
+        "Reacting to the saddest animations on YouTube",
+        "This is the greatest thing I've ever seen.",
+        "A Military Veteran Reacts to Call of Duty Scenes",
+        "Reacting to the new Game of Thrones prequel trailer",
+        "This is why I have trust issues.",
+        "My Dad Reacts to Spicy Memes",
+        "A Lawyer Reacts to courtroom scenes in movies",
+        "Reacting to 'Try Not to Laugh' challenge (IMPOSSIBLE)",
+        "This video restored my faith in humanity.",
+        "An Animator Reacts to bad CGI in movies",
+        "Reacting to the craziest moments in reality TV history",
+        "First time watching the original Star Wars trilogy",
+        "This video made me cry.",
+        "A historian reacts to the movie '300'",
+        "Reacting to luxury apartment tours I can't afford",
+        "This is the most creative thing I've ever witnessed.",
+        "My non-gamer girlfriend reacts to video game trailers",
+        "A Pilot Reacts to airplane scenes in movies",
+        "Reacting to the top posts on Reddit this week",
+        "This kid is a genius.",
+        "A Linguist Reacts to aliens speaking in movies",
+        "I am so confused.",
+        "Reacting to 'Scariest Ghost Encounters Caught on Camera'",
+        "A Graphic Designer Reacts to terrible logos",
+        "This is pure chaos.",
+        "Reacting to my subscribers' gaming setups",
+        "I was not expecting that ending.",
+        "A Classical Musician Reacts to Heavy Metal",
+        "Reacting to the most satisfying videos on the internet",
+        "This is the cutest thing ever.",
+        "An Architect Reacts to houses in The Sims",
+        "My brain can't comprehend this.",
+        "Reacting to my assumptions video from 5 years ago",
+        "A Marine Biologist Reacts to 'Finding Nemo'",
+        "This is peak internet.",
+        "Reacting to the latest episode of [Popular TV Show]",
+        "I have so many questions.",
+        "A Detective Reacts to crime scenes in TV shows",
+        "I can't stop laughing."
+    ],
+    "Challenges": [
+        "LAST TO LEAVE THE CIRCLE WINS $10,000!",
+        "I Ate Nothing But Vending Machine Food for 24 Hours",
+        "SPICY Noodle Challenge (I Regret Everything)",
+        "Trying to Survive 24 Hours in a Forest with No Gear",
+        "I Said 'Yes' to Everything My Subscribers Told Me To Do For a Day",
+        "Building a LEGO masterpiece in under 1 hour",
+        "Try Not to Laugh Challenge (Water in Mouth Edition)",
+        "Reading a book in one sitting challenge",
+        "I lived without my phone for a week.",
+        "The Whisper Challenge with my best friend",
+        "Recreating a famous movie scene with a $0 budget",
+        "The 10,000 Calorie Challenge",
+        "I tried to follow a Bob Ross painting tutorial",
+        "Guess the song challenge",
+        "Living on a $1 a day budget for a week",
+        "My friends and I tried the 'hell week' workout challenge",
+        "The 'no mirror' makeup challenge",
+        "I tried learning a new language in 7 days.",
+        "Building a boat that actually floats using only cardboard",
+        "The 'don't look away' challenge",
+        "I went a whole day without speaking.",
+        "The Blindfolded Baking Challenge",
+        "Eating only one color of food for 24 hours (Blue Edition)",
+        "I spent 24 hours in my bathroom.",
+        "The ultimate geography challenge - can you name these countries?",
+        "I let my dog choose what we did all day.",
+        "The thrift store challenge: find a full outfit for $10",
+        "I tried every item on a fast food menu.",
+        "The 'don't get scared' horror game challenge",
+        "I tried to learn how to skateboard in 24 hours",
+        "The smoothie challenge (weird ingredients!)",
+        "I spent 24 hours handcuffed to my best friend.",
+        "The impossible riddle challenge",
+        "I tried to write a novel in a month (NaNoWriMo)",
+        "The 'no electricity' for 24 hours challenge",
+        "I tried the '75 Hard' challenge.",
+        "The pancake art challenge",
+        "I learned how to solve a Rubik's cube in a day",
+        "The 'guess the price' challenge",
+        "I spent 24 hours in a tiny house.",
+        "The 'no thumbs' challenge",
+        "I tried to beat a world record.",
+        "The 'eat it or wear it' challenge",
+        "I tried to cook a gourmet meal using only kids' toys",
+        "The 'no complaining' for 24 hours challenge",
+        "I built the tallest card tower I could.",
+        "The 'draw with your eyes closed' challenge",
+        "I tried to meditate for an hour straight.",
+        "The 'make a song in 1 hour' challenge",
+        "I only spoke in questions for an entire day."
+    ],
+    "Pranks": [
+        "I Filled My Friend's Room with 100,000 Ball Pit Balls",
+        "Fake Winning Lottery Ticket Prank on my Dad! (He cried)",
+        "I Put a 'For Sale' Sign in Front of My Parents' House",
+        "Replacing My Brother's Shampoo with Hair Dye... (Gone Wrong)",
+        "I hired an actor to pretend to be my new boyfriend",
+        "I pretended I forgot my own birthday to see how my friends would react",
+        "The 'ghost in the house' prank",
+        "I changed all the clocks in the house forward by an hour",
+        "Wrapping my roommate's entire room in wrapping paper",
+        "I put googly eyes on everything in the fridge",
+        "The fake spider prank (she screamed so loud)",
+        "I changed my contact name in my mom's phone to 'The Boss'",
+        "I filled our shower head with chicken bouillon",
+        "The 'end of the world' radio broadcast prank",
+        "I replaced all our family photos with pictures of a random celebrity",
+        "The fake parking ticket prank",
+        "I hid alarm clocks all over my sister's room set for 3am",
+        "I put a mannequin in my friend's bed",
+        "The 'I'm joining the circus' prank on my parents",
+        "I put clear plastic wrap over the doorway",
+        "The disappearing food prank",
+        "I convinced my friend he was invisible.",
+        "I pretended to be a statue in public",
+        "The 'your car has been towed' prank",
+        "I put salt in the sugar bowl",
+        "I covered my friend's car in sticky notes",
+        "The fake proposal prank in public",
+        "I pretended I didn't know who my best friend was for a day",
+        "I replaced the cream in Oreos with toothpaste",
+        "The 'I shaved my eyebrows off' prank",
+        "I hired a mariachi band to follow my friend around",
+        "I put a scary mask on and waited behind the door",
+        "The auto-correct prank on my dad's phone",
+        "I filled my roommate's shoes with pudding",
+        "The 'your celebrity crush is here' prank",
+        "I convinced my little brother that vegetables were candy",
+        "I put a fake snake in the mailbox",
+        "The 'I won the lottery and I'm quitting' prank on my boss",
+        "I changed the language on my friend's phone",
+        "I made a jello mold of my friend's stapler",
+        "The 'I got a terrible tattoo' prank",
+        "I put a baby monitor in my friend's car and whispered creepy things",
+        "I put a sign on my friend's back that said 'Free Hugs'",
+        "The 'I'm moving to another country' prank",
+        "I filled the office with balloons",
+        "The 'I'm speaking in a different accent all day' prank",
+        "I replaced my roommate's soap with a block of cheese",
+        "I set up a fake crime scene in the living room",
+        "The 'I dropped my phone in the toilet' prank (it was a fake phone)",
+        "This prank went too far."
+    ]
+}
+
+youtube_comments = {
+    "Vlogging": [
+        "OMG your life is so cool!",
+        "Love the editing style in this one.",
+        "Where did you get that sweater? I need it!",
+        "This really makes me want to visit [Location]!",
+        "So aesthetic ✨",
+        "lol the way you handled that awkward situation was hilarious",
+        "It feels like I'm just hanging out with a friend. Keep it up!",
+        "This vlog was so relaxing to watch after a long day.",
+        "First!",
+        "Can you do a 'what's in my bag' video next?",
+        "Your personality really shines through in your vlogs. Never change!",
+        "Been here since the beginning! So proud of how far you've come.",
+        "Honestly, this seems kind of boring. Why do people watch this?",
+        "The audio is a bit off in this one, just fyi!",
+        "❤️",
+        "🔥🔥🔥",
+        "That drone shot at 4:32 was breathtaking!",
+        "I have the same coffee machine lol",
+        "This is the motivation I needed to clean my apartment. Thank you!",
+        "Are you and [Friend's Name] dating?",
+        "Please do more daily vlogs!",
+        "The music choice is always on point.",
+        "Subscribed!",
+        "Looks so fun",
+        "I've been watching your vlogs for years and they always brighten my day.",
+        "I wish I was as productive as you are in a single morning.",
+        "That meal looked delicious! Can you link the recipe?",
+        "This is so much better than reality TV.",
+        "Just a heads up, the stabilization on some of the walking shots is a little shaky. Maybe a gimbal would help?",
+        "You inspired me to start my own channel!",
+        "Greetings from Brazil! 🇧🇷",
+        "The relationship you have with your dog is the cutest thing ever.",
+        "This is giving me main character energy.",
+        "😂",
+        "Nice",
+        "Is this sponsored? You should disclose that.",
+        "Love the authenticity. It's so refreshing.",
+        "I appreciate you showing the not-so-perfect parts of your day too.",
+        "The color grading in this is *chef's kiss*",
+        "This video feels like a warm hug.",
+        "Can we get a house tour?",
+        "Literally just binge-watched all your videos.",
+        "How do you stay so motivated?",
+        "I think the pacing was a little slow in the middle part.",
+        "This is the content I signed up for.",
+        "What camera do you use?",
+        "I'm living vicariously through you.",
+        "The jump cut at 7:15 made me laugh so hard.",
+        "Sending positive vibes your way!",
+        "meh."
+    ],
+    "Gaming": [
+        "GG!",
+        "That clutch at the end was insane!",
+        "POGGERS",
+        "What are your PC specs?",
+        "You should play 'The Witcher 3' next!",
+        "This game looks so fun but I'm too scared to play it lol",
+        "The final boss looks impossible, good luck!",
+        "F",
+        "lol u suck",
+        "Can you do a tutorial on that move at 12:45?",
+        "This stream was hilarious, I was dying laughing.",
+        "The jump scare at 22:10 almost gave me a heart attack.",
+        "This brings back so many memories!",
+        "I rage-quit this game so many times.",
+        "You have the best reactions 😂",
+        "That was a 200 IQ play.",
+        "I've been stuck on this level for weeks. Thanks for showing the strategy!",
+        "Is this game worth the price?",
+        "The graphics on this are unreal.",
+        "Who else is watching this in 2025?",
+        "The developer really needs to patch that bug.",
+        "Can you play with a fan one day?",
+        "Get rekt, noob!",
+        "The lore in this game is surprisingly deep.",
+        "I prefer the first game in the series, tbh.",
+        "That was a calculated risk, and it paid off beautifully.",
+        "Your commentary makes the gameplay 10x better.",
+        "🔥",
+        "Skill issue.",
+        "I didn't know you could do that! Mind blown.",
+        "This game's soundtrack is a banger.",
+        "I bought this game because of you!",
+        "Why are you using that weapon? It's literally the worst one in the game.",
+        "That enemy AI is so dumb lol.",
+        "My heart was pounding during that whole sequence.",
+        "I think you missed a secret area back at the beginning.",
+        "Nice shot!",
+        "This game is so underrated.",
+        "The voice acting is so cringe.",
+        "Let's goooooo!",
+        "I've been waiting for this playthrough!",
+        "Check out my channel for more cool clips!",
+        "This needs to be a series.",
+        "You make it look so easy.",
+        "I fell asleep watching this.",
+        "The reaction time is god-tier.",
+        "Can you show your settings?",
+        "I hate this map.",
+        "The nostalgia is real.",
+        "W"
+    ],
+    "Comedy Skits": [
+        "LMAOOOO I'M CRYING 😂😂😂",
+        "This is SO relatable.",
+        "The accuracy is painful.",
+        "I'm sending this to my mom right now.",
+        "The way you played both characters was flawless.",
+        "I didn't see that ending coming!",
+        "This is literally me.",
+        "You guys are hilarious! Never stop making these.",
+        "The small details in the background are perfect.",
+        "My abs hurt from laughing so much.",
+        "How is this so true?!",
+        "This deserved to go viral.",
+        "The quiet kid character is my favorite.",
+        "I've watched this 10 times already.",
+        "The timing was impeccable.",
+        "This should be on TV.",
+        "Underrated channel right here.",
+        "I don't get it.",
+        "The bloopers at the end were the best part!",
+        "That one friend who always does this... lol",
+        "This is comedic genius.",
+        "Please make a part 2!",
+        "So clever.",
+        "Your facial expressions are everything.",
+        "This is my new favorite video on the internet.",
+        "I actually thought this was real for a second.",
+        "The production quality is amazing for a skit.",
+        "Who else is here from TikTok?",
+        "The wig just sends me 💀",
+        "I'm dead.",
+        "This brightened my whole day, thank you.",
+        "The dialogue is so well written.",
+        "I can't breathe 🤣",
+        "This wasn't funny.",
+        "I felt that on a spiritual level.",
+        "The awkward silence was perfectly timed.",
+        "You captured the essence of every retail worker's pain.",
+        "Genius.",
+        "The subtle shade is hilarious.",
+        "I love your sense of humor.",
+        "This is better than most Netflix specials.",
+        "How do you come up with this stuff?",
+        "The costume changes must have taken forever.",
+        "This is exactly what my brain sounds like 24/7.",
+        "Cringe.",
+        "The moment I saw the title I knew it was gonna be good.",
+        "This is the type of content the world needs.",
+        "You won the internet today.",
+        "Perfectly executed.",
+        "The punchline was a little weak imo."
+    ],
+    "Educational Explainers": [
+        "Wow, you explained that so clearly! I finally get it.",
+        "This is fascinating. I had no idea.",
+        "Thank you for breaking down such a complex topic.",
+        "The animations really helped me visualize the concept.",
+        "I have a degree in this field, and this is an excellent summary.",
+        "Could you do a video on quantum entanglement next?",
+        "I think you oversimplified the part about cellular mitosis. The process is more nuanced with stages like prometaphase which you skipped.",
+        "This should be required watching for high school students.",
+        "Source? I'd love to read the original paper.",
+        "I'm using this to study for my exam. You're a lifesaver!",
+        "Your voice is so calm and easy to listen to.",
+        "Mind. Blown. 🤯",
+        "This is actually incorrect. Recent studies from [University] have shown that...",
+        "How does this relate to General Relativity?",
+        "I appreciate that you cited your sources in the description.",
+        "You have a real gift for teaching.",
+        "This answered a question I've had for years.",
+        "I love falling down a rabbit hole with your videos.",
+        "The analogy you used at 5:18 was perfect.",
+        "This is way better than my professor's lecture.",
+        "The production quality of your videos is top-notch.",
+        "I'm a little confused about the conclusion. Are you saying that...?",
+        "It's amazing to think about the scale of the universe.",
+        "I'm going to share this with my science class.",
+        "This is great, but the music is a little distracting.",
+        "The practical implications of this are staggering.",
+        "I disagree with your interpretation of the data.",
+        "Can you explain it like I'm 5?",
+        "This is the best channel on the platform.",
+        "You just earned a new subscriber.",
+        "I went to the Wikipedia page after this and got even more confused lol.",
+        "The way you connect different ideas is brilliant.",
+        "This is some serious brain food.",
+        "I wish I had you as a teacher.",
+        "Is there a name for this phenomenon?",
+        "According to string theory, this would be impossible.",
+        "The graphics are incredible. What software do you use?",
+        "I think there's a small mistake in your calculation at 8:02.",
+        "This makes me feel both insignificant and amazed at the same time.",
+        "Awesome content. Keep up the great work!",
+        "This feels like a pseudoscience explanation.",
+        "It's so cool how interconnected everything is.",
+        "I've been binging your channel all week.",
+        "This topic is so important. Thank you for covering it.",
+        "I'm constantly learning from your videos.",
+        "How long does it take you to research and animate one of these?",
+        "This is why I love science.",
+        "I never thought I'd be interested in astrophysics, but here I am.",
+        "This channel makes me smarter.",
+        "tl;dr?"
+    ],
+    "How-To & DIY": [
+        "This was so helpful! Thank you!",
+        "I tried it and it worked perfectly!",
+        "Mine didn't turn out like yours... what did I do wrong? 😭",
+        "Can I substitute [Material A] for [Material B]?",
+        "You make it look so easy!",
+        "This is a great project for a beginner.",
+        "Genius idea! I never would have thought of that.",
+        "Where did you get that specific tool you used at 3:14?",
+        "Saved for my next weekend project.",
+        "I'm so excited to try this.",
+        "This is a game-changer.",
+        "My attempt was a complete disaster, but it was fun to try lol.",
+        "Thanks for including the common mistakes to avoid!",
+        "Could you do a video on how to properly sharpen chisels?",
+        "The step-by-step instructions are super clear.",
+        "I paused and re-watched the part about the wiring like 15 times.",
+        "This looks way cheaper than buying it from a store.",
+        "Is this safe to do indoors? The fumes look intense.",
+        "I love how you repurpose old materials.",
+        "This is the exact video I was looking for. You're a lifesaver.",
+        "The final result is stunning!",
+        "I think you forgot to mention that you need to let the glue cure for 24 hours.",
+        "What kind of paint did you use for the finish?",
+        "This seems like a lot of work for a pencil holder.",
+        "I'm inspired to start my own DIY project now.",
+        "Great video! Very straightforward and no fluff.",
+        "I wish I had your skills.",
+        "This is such a clever storage solution.",
+        "Pro tip: wear safety glasses for this step!",
+        "You saved me a ton of money. A plumber quoted me $300 for this!",
+        "The finished product looks so professional.",
+        "Can you link the materials in the description?",
+        "I appreciate how you show the whole process, not just the highlights.",
+        "This would make a great gift.",
+        "I'm going to the hardware store tomorrow!",
+        "This is so satisfying to watch.",
+        "Your workshop is amazing. So organized!",
+        "I'm a visual learner, so this was perfect.",
+        "Seems dangerous. I'd rather just buy one.",
+        "I've been wanting to learn how to do this for ages.",
+        "What's the song in the background?",
+        "I made one and painted it blue! It looks awesome.",
+        "The fast-forwarding during the sanding part was a good choice.",
+        "This is a fantastic way to upcycle.",
+        "My hands are not steady enough for this.",
+        "This is my new favorite channel.",
+        "The level of detail is incredible.",
+        "Is this wood glue food-safe?",
+        "You should sell these on Etsy!",
+        "Looks simple enough."
+    ],
+    "Tech Reviews": [
+        "Great review! Very thorough and unbiased.",
+        "How is the battery life after a few weeks of use?",
+        "I'm torn between this and the [Competitor Product]. Which one would you recommend?",
+        "Thanks for not just reading the spec sheet. The real-world tests are what matter.",
+        "Is it worth the upgrade from the previous model?",
+        "The camera test was super helpful. The low-light performance is impressive.",
+        "That price tag is insane. No thank you.",
+        "You just sold me on this. Ordering one now.",
+        "I've had this for a month and I completely agree with your points.",
+        "Can you do a long-term review in 6 months?",
+        "That design is so ugly. What were they thinking?",
+        "I wish they had kept the headphone jack.",
+        "The unboxing experience looks so premium.",
+        "Finally, an honest review that isn't just a giant ad.",
+        "I'm waiting for the price to drop.",
+        "How does it handle gaming? Can you test Genshin Impact on it?",
+        "That's a deal-breaker for me. Thanks for pointing that out.",
+        "The bloatware on this thing is a joke.",
+        "Your production quality is always on another level.",
+        "I'm concerned about the durability. Does it feel cheap?",
+        "This seems like a solution in search of a problem.",
+        "I completely disagree. My experience has been terrible with this product.",
+        "This is the video I was waiting for before making a purchase decision.",
+        "What's that wallpaper on the phone? It's sick.",
+        "The benchmark scores are interesting, but how does it feel in day-to-day use?",
+        "Apple/Samsung/Google fanboys are coming...",
+        "I appreciate the detailed comparison shots with the other phones.",
+        "This is just an incremental update. Not worth it.",
+        "That feature seems like a gimmick that I'll never use.",
+        "Is the screen bright enough for outdoor use?",
+        "I love the nerdy deep-dive into the specs. Keep it up!",
+        "I returned mine after a week. The software was too buggy.",
+        "This is the king of budget phones for sure.",
+        "I trust your reviews more than any other channel.",
+        "That charging speed is a game-changer.",
+        "No wireless charging in 2025? Seriously?",
+        "How's the haptic feedback?",
+        "This is innovation. This is what we've been waiting for.",
+        "I'm just here for the B-roll. So crispy.",
+        "You should have tested the microphone quality.",
+        "I'm glad you mentioned the repairability aspect. It's so important.",
+        "This feels like they copied [Other Brand] completely.",
+        "I think I'll stick with my current phone for another year.",
+        "The ecosystem lock-in is the real killer.",
+        "My wallet is crying right now.",
+        "Can you review the new [Product Name] laptop next?",
+        "The form factor is perfect for me.",
+        "This is a niche product for a very specific user.",
+        "Overpriced.",
+        "This review is sponsored by my wallet's tears."
+    ],
+    "Unboxing": [
+        "That packaging is beautiful!",
+        "I'm so jealous right now.",
+        "The sound of the plastic peeling off is so satisfying. ✨",
+        "It's smaller/bigger than I thought it would be.",
+        "I can't wait for mine to arrive!",
+        "What was the first thing you did with it?",
+        "The unboxing experience is half the fun.",
+        "It looks even better in person than in the product photos.",
+        "Did it come with a charger in the box?",
+        "I'm living vicariously through this video.",
+        "That's a lot of plastic waste.",
+        "The presentation is on another level.",
+        "I would have torn that box to shreds in excitement lol.",
+        "Congratulations on the new gadget!",
+        "I'm just here for the ASMR.",
+        "My delivery is still 3 days away, the wait is killing me.",
+        "It's beautiful. 🥺",
+        "How much did it cost with taxes and shipping?",
+        "I love that new product smell.",
+        "The box is so minimalist and clean.",
+        "I was hoping it would come with more accessories.",
+        "Is the setup process easy?",
+        "That color is gorgeous.",
+        "This is my dream product.",
+        "I'm happy for you! Enjoy it!",
+        "The box looks like it got a little beat up in shipping.",
+        "I wish I could afford this.",
+        "Let us know your first impressions!",
+        "This is the content I've been waiting for.",
+        "The little details they put into the packaging are amazing.",
+        "It's like Christmas morning!",
+        "That's a fingerprint magnet for sure.",
+        "Why would anyone film themselves opening a box?",
+        "They really make you feel like you bought something special.",
+        "The hype is real.",
+        "I love how carefully you're opening it.",
+        "Did you get the extended warranty?",
+        "It looks so sleek.",
+        "I've been debating getting one of these for months.",
+        "So happy for you!",
+        "What are you going to do with the old one?",
+        "That reveal was so satisfying.",
+        "The anticipation was killing me!",
+        "The unboxing itself is an art form.",
+        "They included stickers! I love stickers.",
+        "It looks so premium.",
+        "Now the real fun begins.",
+        "Thanks for sharing this moment with us!",
+        "I've watched 5 unboxings of this today and I'm not stopping.",
+        "Does it feel heavy?"
+    ],
+    "Beauty Tutorials": [
+        "This look is stunning! You are so talented.",
+        "What's the name of the lipstick you're wearing? It's gorgeous.",
+        "This is perfect for my friend's wedding this weekend!",
+        "Could you do a tutorial for hooded eyes?",
+        "You make blending look so effortless.",
+        "Your skin is glowing! What's your skincare routine?",
+        "I tried this and looked like a raccoon. 😂",
+        "This is such a wearable, everyday look. Love it.",
+        "That foundation looks a little too orange for your skin tone.",
+        "I love that you use affordable drugstore products!",
+        "Where can I get that eyeshadow palette?",
+        "Your eyeliner is so sharp it could cut glass. Teach me your ways!",
+        "This is so creative and artistic.",
+        "I would have never thought to pair those colors together.",
+        "You have such a calming voice.",
+        "This is my new go-to look.",
+        "Subscribed! Your tutorials are the best.",
+        "Can you do a tutorial using only cruelty-free products?",
+        "That glitter is everything! ✨",
+        "I appreciate that you showed the look in different lighting.",
+        "I'm a beginner and this was so easy to follow.",
+        "That's way too much makeup for me.",
+        "Your brush collection is insane!",
+        "I'm running to the store to buy that concealer right now.",
+        "You are an artist.",
+        "My hands are too shaky for winged liner.",
+        "This look really makes your eye color pop.",
+        "Is that primer good for oily skin?",
+        "Thank you for this! I have a similar face shape and this was so helpful.",
+        "You are so beautiful with and without makeup.",
+        "I'm so bad at applying false lashes.",
+        "This is so satisfying to watch.",
+        "The transformation is incredible.",
+        "I love the music you chose for this video.",
+        "This is giving me major Euphoria vibes.",
+        "I think you applied too much blush.",
+        "Do you have a discount code for that brand?",
+        "I'm always learning new techniques from you.",
+        "Flawless!",
+        "The way the highlighter hits the light is perfect.",
+        "This look would be great for prom.",
+        "I appreciate you listing all the products in the description.",
+        "Your confidence is inspiring.",
+        "I wish I had your skills.",
+        "The final look is breathtaking.",
+        "That eyeshadow fallout would drive me crazy.",
+        "You've inspired me to play with more color.",
+        "Can you do a 'no-makeup' makeup look?",
+        "Queen!",
+        "This is pure talent."
+    ],
+    "Fashion Hauls": [
+        "I love everything you got! You have such great taste.",
+        "Where did you get the first dress? I need it for my vacation!",
+        "Can you link the items in the description box?",
+        "The try-on portion is so helpful!",
+        "This haul is making me want to go shopping right now.",
+        "Those jeans look amazing on you.",
+        "I'm obsessed with your style.",
+        "This is giving me so much inspiration for my fall wardrobe.",
+        "How is the quality of the fabric?",
+        "That's a great deal for that jacket!",
+        "I'm not a fan of the last piece, but everything else is so cute.",
+        "This is all fast fashion and terrible for the environment.",
+        "You should do a 'styling these pieces' video next!",
+        "I love that you included some basics and not just trendy items.",
+        "The color of that top is perfect for your skin tone.",
+        "Is the sizing true to size or should I size up?",
+        "This is the best haul I've seen in a while.",
+        "My bank account is not happy with you right now.",
+        "You convinced me. I'm placing an order.",
+        "The way you describe the clothes makes me feel like I'm there.",
+        "I love that you're honest about what you might return.",
+        "This is a 'haul' of clothes you'll wear once and throw away.",
+        "Those shoes are to die for!",
+        "I appreciate you including pieces for different occasions.",
+        "I have the same sweater in a different color!",
+        "This is all so chic and put-together.",
+        "Do you have a discount code?",
+        "The back of that top is so pretty.",
+        "I've been looking for a good pair of black pants. Thanks for the recommendation!",
+        "You could be a professional stylist.",
+        "I love your confidence!",
+        "This style doesn't really suit you in my opinion.",
+        "This is my favorite time of the year for fashion.",
+        "I wish I had your wardrobe.",
+        "This makes me want to clean out my closet and start fresh.",
+        "Can you do a thrift haul next?",
+        "The accessories you paired with the outfits are perfect.",
+        "This is such a great mix of high-end and affordable pieces.",
+        "I'm so picky with clothes, but I loved almost everything here.",
+        "That print is a little loud for me, but you rock it.",
+        "The video quality is so crisp.",
+        "Thanks for showing us what's new in stores!",
+        "I love how you describe the fit and feel of each item.",
+        "This haul feels very sponsored and not genuine.",
+        "The lighting in your try-on space is so flattering.",
+        "I'm taking notes for my next shopping trip.",
+        "I would have never picked that out, but it looks amazing on you.",
+        "So many cute finds!",
+        "Fashion icon!",
+        "That's it, I'm going to the mall."
+    ],
+    "Cooking & Recipes": [
+        "This looks delicious! I'm making this tonight.",
+        "I just made this and it was a huge hit with my family! Thank you!",
+        "Can I use almond milk instead of regular milk?",
+        "You make it look so simple.",
+        "The way you chopped those onions was so professional.",
+        "Is there a substitute for cilantro? I have the gene that makes it taste like soap.",
+        "This is my new favorite recipe. I've made it three times this week!",
+        "Mine came out a little dry. Any suggestions for next time?",
+        "The ASMR of the sizzling pan is my favorite part.",
+        "This recipe is a keeper. Saved!",
+        "What brand of cookware are you using?",
+        "That's an interesting technique. I've never seen it done that way before.",
+        "This seems way too complicated. There has to be an easier way.",
+        "The presentation at the end was beautiful.",
+        "I'm a college student and this is perfect for my budget.",
+        "Could I make this in an air fryer?",
+        "I added a little bit of paprika and it was amazing.",
+        "Your kitchen is so clean and organized!",
+        "I'm drooling. 🤤",
+        "Thank you for including the exact measurements in the description.",
+        "This is the ultimate comfort food.",
+        "I didn't have any of the ingredients so I just ordered a pizza.",
+        "The cinematography of your cooking videos is incredible.",
+        "I'm a vegetarian, can I substitute the chicken with tofu?",
+        "This looks so much better than the restaurant version.",
+        "I followed the recipe exactly and it was a disaster.",
+        "My kids are picky eaters but they loved this.",
+        "This is such a healthy and tasty meal idea.",
+        "The way the cheese melted was so satisfying.",
+        "I love your calming presence in the kitchen.",
+        "How long does this last in the fridge?",
+        "This is a perfect weeknight dinner.",
+        "That's way too much butter.",
+        "I never thought of combining those ingredients. So creative!",
+        "This recipe brings back childhood memories.",
+        "Can I freeze the leftovers?",
+        "I'm always looking for new dinner ideas. Thanks for sharing!",
+        "The smells from my kitchen right now are heavenly.",
+        "This would be great for meal prepping.",
+        "I appreciate that you explain the 'why' behind each step.",
+        "The final shot with the garnish was *chef's kiss*.",
+        "I'm so intimidated by baking, but you make me want to try.",
+        "I'm hungry again just watching this.",
+        "The music is so relaxing.",
+        "That's an obscene amount of salt.",
+        "This is the perfect recipe for a date night.",
+        "I learned so much from this video.",
+        "Your passion for food really shows.",
+        "Looks good!",
+        "I'm going to the grocery store right now."
+    ],
+    "Food Reviews": [
+        "I've been wanting to try this place! Thanks for the review.",
+        "I completely agree with your rating. That place is amazing.",
+        "I have to disagree. I went there last week and the service was terrible.",
+        "That looks so good! My mouth is watering.",
+        "You should try the [Dish Name] next time you go. It's their best dish.",
+        "Is it expensive? I'm on a budget.",
+        "This review is so detailed and honest. I appreciate that.",
+        "That restaurant is so overrated.",
+        "I trust your taste. I'm adding this to my list.",
+        "The way you describe the flavors is so vivid.",
+        "I love this series! Please keep exploring local spots.",
+        "That food looks so greasy and unhealthy.",
+        "The cheese pull was insane!",
+        "I value your opinion, but I think you were too harsh on them.",
+        "I had the exact same experience! The food was great but the wait was too long.",
+        "This is my favorite spot in the city.",
+        "This video made me so hungry.",
+        "You have the best job in the world.",
+        "The ambiance of the restaurant looks really cool.",
+        "Is it family-friendly?",
+        "That portion size is huge!",
+        "I feel like you just order the same type of food everywhere you go.",
+        "Thanks to you, I know where I'm going for dinner tonight.",
+        "The crunch sound was so satisfying.",
+        "I've been following your recommendations and they never disappoint.",
+        "This place has gone downhill since it got popular.",
+        "The parking situation there is a nightmare.",
+        "I love the way you interact with the staff.",
+        "This review seems biased. Did they pay you for this?",
+        "A 9.2/10? That's a bold score!",
+        "I love your rating system. It's very clear.",
+        "That drink looks so refreshing.",
+        "I live on the other side of the country, but I want to go there now.",
+        "You should review the new taco truck on 5th street.",
+        "The close-up shots of the food are making me drool.",
+        "I'm a vegetarian, do they have good options for me?",
+        "This place is a hidden gem.",
+        "You can tell how passionate you are about food.",
+        "I think you got a bad batch. It's usually much better than that.",
+        "The background music is perfect for this vibe.",
+        "It's just a burger. Calm down.",
+        "The honesty in your reviews is what keeps me coming back.",
+        "I'm so glad you enjoyed it!",
+        "I've driven past this place a million times and never stopped. Now I will.",
+        "That's a solid review.",
+        "Their dessert menu is the best part.",
+        "I've never been so invested in someone eating a sandwich.",
+        "You have a great camera presence.",
+        "This is my comfort channel.",
+        "Looks mid."
+    ],
+    "Health & Fitness": [
+        "This was such a great workout! I'm sweating so much.",
+        "Thank you for this! I'm going to add it to my routine.",
+        "Do you have any modifications for beginners? I can't do a real push-up yet.",
+        "This is the motivation I needed to get off the couch.",
+        "Your form is perfect. I need to work on mine.",
+        "Is this workout good for weight loss?",
+        "I've been following your videos for a month and I can already see a difference!",
+        "My legs feel like jelly now. Thanks! 😂",
+        "This is a great apartment-friendly workout with no jumping.",
+        "This seems dangerous for your back. You should be careful with that exercise.",
+        "Your positive energy is so contagious!",
+        "Can you do a video on nutrition and what to eat before a workout?",
+        "This was short, sweet, and effective. Perfect for a busy day.",
+        "I'm exhausted just watching this.",
+        "The music really helped me push through the last few reps.",
+        "Saved! I'm doing this tomorrow morning.",
+        "This is so much better than going to the gym.",
+        "I have a knee injury. Are there any alternative exercises you'd recommend?",
+        "I love that you don't use any equipment for this workout.",
+        "You are so strong and inspiring.",
+        "This is pseudoscience. You can't 'spot reduce' fat from your belly.",
+        "I paused the video like 5 times to catch my breath.",
+        "Thank you for reminding us to listen to our bodies.",
+        "This is the best fitness channel on this platform.",
+        "I'm so sore, but in a good way.",
+        "What kind of yoga mat are you using?",
+        "Your explanations of each movement are really helpful.",
+        "I love that your workouts are challenging but also fun.",
+        "That stretch at the end felt amazing.",
+        "I'm on a fitness journey and your channel has been a lifesaver.",
+        "This is just another 'get skinny quick' scam.",
+        "The timer on the screen is a great feature.",
+        "I always feel so accomplished after one of your workouts.",
+        "You have such a calming voice, perfect for the cool-down.",
+        "Can you do a full-body stretching routine?",
+        "I've lost 10 pounds thanks to you!",
+        "I think you're promoting an unhealthy body image.",
+        "This is a great way to start the day.",
+        "I hate burpees with a passion.",
+        "Your consistency inspires me to stay on track.",
+        "Is it okay to do this workout every day?",
+        "I love the variety in your videos.",
+        "This kicked my butt.",
+        "I'm going to be feeling this tomorrow.",
+        "The scenery is beautiful! Where are you filming?",
+        "This is more than just fitness, it's about wellness. Thank you.",
+        "Let's go! 💪",
+        "I'm dead.",
+        "This is the real deal.",
+        "Thanks for the encouragement!"
+    ],
+    "Commentary": [
+        "You said exactly what I was thinking! Thank you for making this video.",
+        "This is a really interesting take. I never thought about it from that perspective.",
+        "I have to completely disagree with your main point here.",
+        "The research you put into this is incredible. Well done.",
+        "This topic is so important and I'm glad you're talking about it.",
+        "You are so articulate and well-spoken.",
+        "This is a very nuanced issue and you handled it perfectly.",
+        "You're just stirring up drama for views.",
+        "I've been following this situation for a while and you covered all the key details.",
+        "This is a brave video to make. I respect you for it.",
+        "I think you're missing a lot of context here.",
+        "The editing really adds to the impact of your arguments.",
+        "You changed my mind on this topic.",
+        "This is the kind of content that makes this platform great.",
+        "This is a long video, but it's worth every minute.",
+        "I've been waiting for you to cover this!",
+        "You're being way too one-sided and biased.",
+        "The examples you used were perfect for illustrating your point.",
+        "This is just your opinion, not facts.",
+        "I'm sending this to all my friends.",
+        "The comment section is about to be a warzone.",
+        "Your analysis is spot-on.",
+        "I appreciate your calm and rational approach to a controversial topic.",
+        "You're just jumping on the bandwagon.",
+        "This is a masterclass in how to build a compelling argument.",
+        "I think you're making a mountain out of a molehill.",
+        "This needed to be said.",
+        "I love your critical thinking skills.",
+        "This is just a 30-minute video of you complaining.",
+        "You have a new subscriber. This is excellent content.",
+        "The background music creates the perfect mood.",
+        "I learned so much from this. Thank you.",
+        "You're taking their comments completely out of context to fit your narrative.",
+        "This is a really well-structured and logical video.",
+        "I'm looking forward to the follow-up video.",
+        "This is some next-level insight.",
+        "Get a real job.",
+        "The sources you linked are not credible.",
+        "You've articulated my thoughts better than I ever could.",
+        "This is a very important conversation to have.",
+        "I feel like this video was made just for me.",
+        "The way you connect different events is brilliant.",
+        "This is nothing but clickbait.",
+        "You're my favorite commentary channel for a reason.",
+        "I've been thinking about this all day since I watched it.",
+        "Your voice is so nice to listen to.",
+        "This is a very dangerous and irresponsible take.",
+        "Preach!",
+        "You should do a video on the history of this issue.",
+        "This is just common sense."
+    ],
+    "Product Reviews": [
+        "This is the most honest and in-depth review I've seen. Thank you!",
+        "Is it worth the money?",
+        "I bought this and returned it a week later. It's not as good as they claim.",
+        "You just saved me from wasting my money. Thanks!",
+        "I've had this for over a year and it's still going strong. I highly recommend it.",
+        "How does it compare to the [Competitor's Name] version?",
+        "I'm glad you mentioned the downside. Most reviews just focus on the positives.",
+        "This seems like a gimmick.",
+        "I love this product! It's a game-changer.",
+        "Does it come in other colors?",
+        "Your testing methodology is so thorough.",
+        "This product is a classic for a reason.",
+        "I think you got a defective unit. Mine works perfectly.",
+        "This is clearly a sponsored video. #ad",
+        "The demonstration was really helpful. I understand how it works now.",
+        "I'm sold. Adding it to my cart.",
+        "The design is so sleek and modern.",
+        "It's good, but it's not worth the premium price.",
+        "I appreciate that you bought this with your own money. It makes the review more trustworthy.",
+        "I was on the fence about this, but your review helped me make a decision.",
+        "This product completely fell apart on me.",
+        "Where can I buy this?",
+        "The long-term durability is my main concern.",
+        "This is a great gift idea.",
+        "I like the concept, but the execution is poor.",
+        "This has been on my wishlist forever.",
+        "I love your brutally honest reviews.",
+        "The packaging looks really cheap.",
+        "This is a must-have for anyone who [does a specific activity].",
+        "It's a bit too bulky for my liking.",
+        "I completely disagree with this review. This is the best thing I've ever bought.",
+        "Can you review the new model when it comes out?",
+        "The customer service for this company is terrible.",
+        "This is an affordable alternative to the more expensive brands.",
+        "You can find the same thing on AliExpress for a fraction of the price.",
+        "I love that you show it in action.",
+        "The setup seems a little complicated.",
+        "This product changed my life.",
+        "It's a bit of a niche product, but for the right person, it's perfect.",
+        "I wish I had seen this review before I bought it.",
+        "The features are impressive for the price point.",
+        "This seems over-engineered.",
+        "I'm always looking for quality products. Thanks for the recommendation.",
+        "This brand is so reliable.",
+        "It has a few flaws, but overall, it's a solid product.",
+        "This is a 10/10 for me.",
+        "I've been using this for years.",
+        "I don't understand the hype around this.",
+        "This is an honest review. Refreshing.",
+        "Is it easy to clean?"
+    ],
+    "ASMR": [
+        "This is so relaxing. I'm getting tingles all over.",
+        "Your whispering voice is perfect for ASMR.",
+        "I'm falling asleep... 😴",
+        "The tapping sounds are my favorite.",
+        "Thank you for this. I have a lot of anxiety and this helps me calm down.",
+        "Can you do an ASMR video with crinkly sounds next?",
+        "The microphone quality is amazing. I can hear every little detail.",
+        "This is my go-to video for studying.",
+        "I don't get ASMR but this is still very calming.",
+        "This is weird. Why are you whispering?",
+        "The hand movements are so mesmerizing.",
+        "You have such a gentle and soothing presence.",
+        "This is giving me major brain tingles.",
+        "I put this on every night to help me sleep.",
+        "The sound of the rain in the background is a nice touch.",
+        "I love the personal attention triggers.",
+        "This is better than meditation.",
+        "I think the lighting is a little too bright.",
+        "Please do a 3-hour version of this!",
+        "Your content is a gift. Thank you.",
+        "I don't understand the appeal of this at all.",
+        "The scratching sounds are incredible.",
+        "This is pure relaxation.",
+        "I feel so safe and comfortable watching your videos.",
+        "My cat is loving these sounds too lol.",
+        "The slow, deliberate movements are perfect.",
+        "This is art.",
+        "I wish I had discovered your channel sooner.",
+        "I can't stand mouth sounds, so I had to skip that part.",
+        "You are the queen/king of ASMR.",
+        "This is my escape from the chaos of the world.",
+        "The triggers are so creative.",
+        "This is so cringe.",
+        "I feel like my brain is being massaged.",
+        "I've had a stressful day and this is exactly what I needed.",
+        "The visuals are just as important as the sounds. Well done.",
+        "Can you do a roleplay video?",
+        "The sound is only coming out of my left earphone.",
+        "I'm getting tingles from head to toe.",
+        "This helps with my insomnia so much.",
+        "This is so weird and I'm totally here for it.",
+        "The attention to detail is amazing.",
+        "I feel so sleepy now.",
+        "My anxiety has gone from 100 to 0.",
+        "I've been waiting for a new video from you!",
+        "This is a masterpiece.",
+        "You have a magical voice.",
+        "I need more of this in my life.",
+        "Zzzzzzz...",
+        "I'm so glad I found your channel."
+    ],
+    "Documentaries": [
+        "This was incredibly well-researched and presented. I'm speechless.",
+        "I had no idea this was happening. Thank you for shedding light on this important issue.",
+        "This is a story that needed to be told.",
+        "The archival footage you found is incredible.",
+        "This is better than anything I've seen on Netflix.",
+        "I'm so emotional after watching this. It's truly heartbreaking.",
+        "The cinematography is stunning. It felt like watching a feature film.",
+        "This is a very biased and one-sided portrayal of the events.",
+        "I've been following this case for years, and you still managed to show me new information.",
+        "This documentary should win an award.",
+        "The interviews with the experts were so insightful.",
+        "I'm going to be thinking about this for a long time.",
+        "This is an absolute masterpiece. You are a brilliant filmmaker.",
+        "The pacing was perfect. I was engaged from start to finish.",
+        "This is a powerful and moving film.",
+        "I think you left out some crucial details that would change the whole narrative.",
+        "The score was beautiful and added so much to the atmosphere.",
+        "This is essential viewing for everyone.",
+        "I have so many questions now.",
+        "This has completely changed my perspective on the topic.",
+        "I was on the edge of my seat the entire time.",
+        "This is a heavy topic, but you handled it with such care and respect.",
+        "This is just conspiracy-level propaganda.",
+        "I cried multiple times during this.",
+        "The amount of work that must have gone into this is mind-boggling.",
+        "I'm sharing this with everyone I know.",
+        "The personal stories were the most impactful part for me.",
+        "This is a vital piece of journalism.",
+        "Some of the graphic images were hard to watch, but necessary.",
+        "You've created something truly special here.",
+        "This is a very shallow analysis of a complex issue.",
+        "The narrative structure was so compelling.",
+        "I'm so angry and motivated to do something now.",
+        "This is why independent media is so important.",
+        "The way you connected the dots was brilliant.",
+        "I'm left with a sense of hope at the end.",
+        "This documentary is a call to action.",
+        "The lack of counter-arguments makes this feel like propaganda.",
+        "I'm in awe of the bravery of the people featured in this film.",
+        "This is a chilling and unforgettable story.",
+        "The visual storytelling was phenomenal.",
+        "I think this documentary will have a real impact.",
+        "I'm going to do my own research on this now.",
+        "The editing was seamless.",
+        "This is a dark chapter in our history that we can't forget.",
+        "This is a must-watch.",
+        "I'm so glad this story is finally being told.",
+        "This is journalism at its finest.",
+        "I feel like I just took a college course, but in the best way possible.",
+        "Powerful."
+    ],
+    "Reaction Videos": [
+        "I was waiting for you to react to this! 😂",
+        "Your reaction at 8:22 was my exact reaction!",
+        "I love watching this through your eyes.",
+        "OMG your face when that part happened! Priceless.",
+        "You should react to the new [Artist] music video next!",
+        "I'm glad you paused to talk about it. I had the same thoughts.",
+        "This is the first time I've seen this, and reacting along with you was so fun.",
+        "This is lazy content. You're just stealing someone else's video.",
+        "You noticed a detail that I completely missed!",
+        "The commentary you add makes it so much better.",
+        "I've been refreshing your page all day waiting for this.",
+        "I'm laughing so hard at your reactions.",
+        "This video is so much more emotional when you see someone else's genuine reaction.",
+        "I love that you don't talk over the important parts.",
+        "This is like watching it with a friend.",
+        "I think you were a little too over-the-top. Seemed fake.",
+        "I'm so glad you liked it! This is my favorite show.",
+        "Your predictions for what's going to happen next are so good.",
+        "Can you react to the entire series?",
+        "This is how I discover new music and shows now.",
+        "You have such a great personality. It makes the reactions so entertaining.",
+        "Why would I watch you watch a video when I can just watch the video?",
+        "I got chills at the same time you did.",
+        "The way your jaw dropped! 😂",
+        "This is my favorite series on your channel.",
+        "Please react to the trailer for the new [Movie]!",
+        "You're not even paying attention to the video.",
+        "I love how invested you get in the story.",
+        "I've watched the original video a dozen times, but your reaction makes it feel new again.",
+        "Your laugh is contagious.",
+        "Welcome to the fandom!",
+        "This is the best reaction I've seen so far.",
+        "I think you missed the point of that scene.",
+        "You have such a positive and fun energy.",
+        "I was smiling the whole time watching you smile.",
+        "The way you analyze the cinematography is so interesting.",
+        "This is just a cheap way to get views.",
+        "I'm so happy you're finally watching this!",
+        "The gasp was so real.",
+        "I'm living for these reactions.",
+        "This is my comfort content.",
+        "I think the original creator should get a cut of your revenue.",
+        "You're so expressive! It's hilarious.",
+        "Let's goooooo!",
+        "I love seeing your genuine emotions.",
+        "The cat jumping on your lap in the middle was a highlight.",
+        "I'm so excited for you to see the next episode.",
+        "You have great taste.",
+        "This is the content I'm here for.",
+        "So glad you enjoyed it."
+    ],
+    "Challenges": [
+        "OMG I can't believe you actually did it! That's insane.",
+        "This was hilarious! I was laughing the entire time.",
+        "Please be careful! This looks so dangerous.",
+        "You guys are friendship goals.",
+        "I nominate [Another Creator] to do this challenge next!",
+        "I could never do this. I'm too scared.",
+        "The bloopers at the end were the best part.",
+        "This is so fake. It's obviously staged.",
+        "My anxiety was through the roof watching this.",
+        "The forfeit for the loser was brutal. 😂",
+        "This looks so fun! I want to try it with my friends.",
+        "You are so brave!",
+        "This is the dumbest challenge I've ever seen.",
+        "I was on the edge of my seat the whole time.",
+        "The editing on this was so good. It made it even more intense.",
+        "I knew you were going to win from the start.",
+        "This is such a creative and original challenge idea.",
+        "I can't believe you ate that.",
+        "You guys have such great chemistry.",
+        "I'm so glad nobody got hurt.",
+        "This is not a good example to set for your younger viewers.",
+        "The slow-motion replay of the fail was perfect.",
+        "My stomach hurts from laughing.",
+        "This is the best video you've ever made.",
+        "I'm so competitive, I would have taken this way too seriously.",
+        "You guys are crazy!",
+        "This seems like a huge waste of food.",
+        "The determination on your face was real.",
+        "I love this series! Keep the challenges coming.",
+        "That was an epic victory.",
+        "I was so nervous for you.",
+        "This is why I'm subscribed to you.",
+        "I think the rules were a little unfair.",
+        "The consequences are getting out of hand lol.",
+        "This is pure entertainment.",
+        "I'm so impressed by your teamwork.",
+        "Don't try this at home, kids!",
+        "The tension was unbearable.",
+        "That plot twist at the end!",
+        "You guys are legends.",
+        "This is irresponsible content.",
+        "I'm sweating just watching this.",
+        "The trash talk between you guys is hilarious.",
+        "What a rollercoaster of emotions.",
+        "This is going to go viral.",
+        "I love how you always go all out for your videos.",
+        "That was a close one!",
+        "I'm still shook.",
+        "This was epic.",
+        "You guys are so funny together."
+    ],
+    "Pranks": [
+        "LMAO his reaction was priceless!",
+        "This is so fake, the acting is terrible.",
+        "I would have had a heart attack.",
+        "You guys are so mean to each other! 😂",
+        "This is the best prank I've seen in a long time.",
+        "You took that way too far. That's not funny.",
+        "The setup for this prank was genius.",
+        "I felt so bad for him, but I couldn't stop laughing.",
+        "I can't believe he fell for that.",
+        "This is going to end your friendship.",
+        "The commitment to the prank is incredible.",
+        "I was crying laughing when the reveal happened.",
+        "This is why I have trust issues.",
+        "Please do a revenge prank on her!",
+        "This is so obviously staged for views.",
+        "My heart was pounding for him.",
+        "The way he just stood there in confusion was hilarious.",
+        "This is just bullying, not a prank.",
+        "The attention to detail is what makes this so good.",
+        "I'm sending this to my boyfriend to give him ideas.",
+        "You guys are relationship goals.",
+        "I was so stressed out watching this.",
+        "This is harmless fun. People need to lighten up.",
+        "The camera placement was perfect. You caught everything.",
+        "I would have been so angry.",
+        "This is pure comedy gold.",
+        "This is a lawsuit waiting to happen.",
+        "I knew it was a prank from the beginning.",
+        "The way her face changed from fear to anger was amazing.",
+        "You guys are so creative with your pranks.",
+        "This is just not funny. It's cruel.",
+        "I love this series! You guys are the best pranksters.",
+        "The build-up was so intense.",
+        "I can't believe you kept a straight face the whole time.",
+        "This is so messed up, but I can't stop watching.",
+        "The prank war continues!",
+        "This is a classic. Well done.",
+        "I think you need to apologize for this one.",
+        "The planning that went into this must have been insane.",
+        "He's going to get you back so bad.",
+        "This is the content I'm here for.",
+        "I feel like this crosses a line.",
+        "The look of pure betrayal on his face.",
+        "I'm dead. This is too funny.",
+        "You guys are evil geniuses.",
+        "This is so wholesome and funny.",
+        "I don't find this entertaining at all.",
+        "The final reveal was everything.",
+        "I'm still laughing.",
+        "You got him so good!"
+    ],
+    "Music Videos": [
+        "This is a masterpiece. The visuals, the music, the message. Everything is perfect.",
+        "This song has been on repeat all day.",
+        "The cinematography is breathtaking. Every frame is a work of art.",
+        "I don't understand the meaning of the video, but I love it.",
+        "This is the best song you've ever released.",
+        "The choreography is insane!",
+        "This song saved my life. Thank you.",
+        "The visuals are so creative and symbolic.",
+        "I'm getting major [Another Artist] vibes from this.",
+        "This is a bop! I can't stop dancing.",
+        "The story this video tells is so powerful.",
+        "I'm not a huge fan of the song, but the music video is stunning.",
+        "The fashion and styling in this video are on another level.",
+        "This is going straight to my playlist.",
+        "The visuals don't match the vibe of the song at all.",
+        "I got chills watching this.",
+        "The color grading is beautiful.",
+        "This is so different from your previous work. I love this new direction.",
+        "Who else is watching this in 2025?",
+        "This deserves a Grammy.",
+        "The dancers are so talented.",
+        "This song makes me feel so many emotions.",
+        "I think I've figured out the hidden meaning...",
+        "This is art in its purest form.",
+        "I've been a fan since day one, and I'm so proud of how far you've come.",
+        "This is so overrated. I don't get the hype.",
+        "The practical effects are so cool.",
+        "This is going to be the song of the summer.",
+        "The transitions between scenes are seamless.",
+        "This is a certified banger.",
+        "I cried. This is so beautiful.",
+        "The artist's charisma is off the charts.",
+        "I miss your old sound.",
+        "This video is a cinematic experience.",
+        "I've had this song stuck in my head since the first listen.",
+        "The location they filmed this in is gorgeous.",
+        "This is the anthem of my life right now.",
+        "The director of this video is a genius.",
+        "This is so catchy!",
+        "The symbolism of the [Object] is so deep.",
+        "This is a cultural reset.",
+        "The music is okay, but the lyrics are kind of weak.",
+        "I'm obsessed.",
+        "The way they use light and shadow is incredible.",
+        "This is going to be number one on the charts for sure.",
+        "This is legendary.",
+        "I love the nostalgic feel of this video.",
+        "This is so powerful.",
+        "The final shot gave me goosebumps.",
+        "This is a whole vibe."
+    ],
+    "Song Covers": [
+        "This is better than the original!",
+        "Wow, you have an incredible voice.",
+        "I love your version of this song. You made it your own.",
+        "The stripped-down acoustic version is so beautiful.",
+        "You hit that high note perfectly!",
+        "I got goosebumps listening to this.",
+        "The emotion you put into your singing is so raw and real.",
+        "This is my favorite song, and you did it justice. Thank you.",
+        "The guitar playing is amazing.",
+        "You have such a unique and beautiful tone.",
+        "I like the original better, but this is a nice cover.",
+        "This gave me chills.",
+        "You should audition for The Voice!",
+        "The harmony you added is gorgeous.",
+        "I've been waiting for you to cover this song!",
+        "This is so soothing and relaxing to listen to.",
+        "Your voice is like an angel's.",
+        "This is my new favorite cover of this song.",
+        "The passion you have for music is so evident.",
+        "I'm in tears. This is so moving.",
+        "The microphone quality is really good. What mic are you using?",
+        "You should release this on Spotify!",
+        "You're so talented. I'm subscribing right now.",
+        "I think you're a little off-key in the chorus.",
+        "The arrangement is so creative.",
+        "I could listen to you sing all day.",
+        "This is the perfect song for your voice.",
+        "Can you cover [Song Name] by [Artist] next?",
+        "This is pure talent.",
+        "I love the little smile you have when you're singing.",
+        "This is so much more soulful than the original pop version.",
+        "You have a gift.",
+        "This cover healed a part of me I didn't know was broken.",
+        "The way you control your voice is incredible.",
+        "I've listened to this 10 times already.",
+        "Stick to your day job.",
+        "This is so beautiful and heartfelt.",
+        "Your vocal range is insane.",
+        "I'm so impressed.",
+        "This made my day so much better.",
+        "The simple background really lets your voice shine.",
+        "You have so much potential. Keep going!",
+        "This is amazing. I'm sharing this with my friends.",
+        "I'm speechless.",
+        "The piano accompaniment is lovely.",
+        "You have a future in music.",
+        "This is a whole mood.",
+        "Absolutely stunning.",
+        "I felt every word you sang.",
+        "Bravo!"
+    ],
+    "Animation": [
+        "This is incredible! The animation is so smooth and fluid.",
+        "I can't believe this was made by one person. You are so talented.",
+        "The art style is so unique and beautiful.",
+        "How long did this take to make? The amount of detail is insane.",
+        "The story was so touching. I'm crying.",
+        "This is better than most of the cartoons on TV right now.",
+        "The character designs are amazing!",
+        "The lip-syncing is on point.",
+        "This is so creative and original.",
+        "I'm studying animation and this is so inspiring.",
+        "The background art is gorgeous.",
+        "This had me on the edge of my seat. The storytelling is fantastic.",
+        "The action sequence at 3:45 was epic.",
+        "The sound design and music are perfect.",
+        "This deserves to be a full series!",
+        "The subtle facial expressions convey so much emotion.",
+        "I've watched this five times and I keep noticing new little details.",
+        "The physics of the movement is so realistic.",
+        "This is a masterpiece.",
+        "What software do you use to animate?",
+        "The pacing is perfect.",
+        "This is hilarious! The comedic timing is brilliant.",
+        "I'm in awe of your skills.",
+        "The color palette you chose is so beautiful.",
+        "This is so wholesome and heartwarming.",
+        "The voice acting is great too!",
+        "I'm so invested in these characters already.",
+        "This has so much potential. I hope you continue it.",
+        "The world-building is so interesting.",
+        "This is a work of art.",
+        "The animation style reminds me a bit of [Famous Animator/Studio].",
+        "This is so professional. You should be working for Disney or Pixar.",
+        "The way you use light and shadow is amazing.",
+        "I can't wait to see what you create next.",
+        "This is so relatable.",
+        "I'm so impressed by the creativity.",
+        "This short film has more heart than most Hollywood movies.",
+        "The ending was so powerful.",
+        "This is why I love independent animation.",
+        "Subscribed! I need more of this in my life.",
+        "The transitions are so clever.",
+        "This is just so good.",
+        "I'm speechless.",
+        "The amount of passion and effort is so clear.",
+        "This made my day.",
+        "I'm sharing this with everyone.",
+        "Keep up the amazing work!",
+        "The character animation is so expressive.",
+        "This is genius.",
+        "I'm a huge fan of your work."
+    ],
+    "Family & Kids Content": [
+        "This is so cute! Your kids are adorable.",
+        "I love your family! You guys seem so happy together.",
+        "This gives me so many good ideas for activities to do with my own kids.",
+        "The way he looks at his new baby sister is the sweetest thing ever.",
+        "You guys are such great parents.",
+        "This is so wholesome. I love it.",
+        "The bond you all share is beautiful.",
+        "My kids love watching your videos!",
+        "This is so funny! Kids say the darndest things.",
+        "I'm not sure you should be putting your children on the internet like this.",
+        "This brings back so many memories of when my kids were that age.",
+        "You are living my dream life.",
+        "Thank you for being so real and honest about the struggles of parenthood.",
+        "This is the cutest thing I've seen all day.",
+        "Your family is beautiful.",
+        "I love the traditions you have as a family.",
+        "This made me smile so much.",
+        "These children are being exploited for views and money.",
+        "That was a great learning moment. Good job, mom and dad.",
+        "Your home is so lovely and full of warmth.",
+        "This is what life is all about.",
+        "I love how you encourage their creativity.",
+        "This is such a happy video.",
+        "I hope you are saving some of this money for the kids' future.",
+        "The laughter is contagious.",
+        "You have such well-behaved children.",
+        "This is the kind of content the world needs more of.",
+        "I'm a new parent and your videos have been so helpful.",
+        "This is so relatable. The chaos is real!",
+        "You guys are parenting goals.",
+        "This seems very scripted and unnatural.",
+        "The love in this family is so palpable.",
+        "This is so heartwarming.",
+        "What happens when your kids grow up and don't want to be on camera anymore?",
+        "These are memories you will cherish forever.",
+        "You are raising such kind and thoughtful little humans.",
+        "This made my heart happy.",
+        "This is so pure and innocent.",
+        "I'm so glad I found your channel.",
+        "This is just a perfect family moment.",
+        "I feel like a part of your family.",
+        "This is a huge invasion of your children's privacy.",
+        "The matching outfits are so cute!",
+        "I admire your patience so much.",
+        "This is so much fun to watch.",
+        "This is what happiness looks like.",
+        "I'm not crying, you're crying.",
+        "Such a beautiful family.",
+        "This is so sweet.",
+        "Thank you for sharing your family with us."
+    ],
+    "Automotive": [
+        "That sounds incredible! The exhaust note is perfect.",
+        "What a beautiful car. My dream car right here.",
+        "Can you do a video on the new [Car Model]?",
+        "How much horsepower is it making now with the new mods?",
+        "That color is insane. I love it.",
+        "I'm not a big car guy, but this was really interesting.",
+        "The cinematic shots in this video are amazing.",
+        "You should take it to the track and see what it can do.",
+        "I prefer the previous generation, but this one is growing on me.",
+        "That's a lot of money for a car.",
+        "Thanks for the detailed walkaround. You covered everything.",
+        "The sound of that turbo flutter is addictive.",
+        "This is my favorite build on the platform right now.",
+        "I think you should have gone with different wheels.",
+        "The engineering that goes into these machines is incredible.",
+        "I'm saving up for one of these.",
+        "That pull on the highway was insane.",
+        "Great review. Very honest and in-depth.",
+        "Be careful driving like that on public roads.",
+        "I love how passionate you are about cars.",
+        "What are your future plans for the build?",
+        "The interior is just as impressive as the exterior.",
+        "This is a work of art on wheels.",
+        "I've always been a [Brand] guy, but you're making me reconsider.",
+        "The attention to detail on this build is next level.",
+        "This is just a rich guy showing off.",
+        "That cold start sounds so mean.",
+        "I learned so much about car maintenance from this video.",
+        "The step-by-step installation guide was super helpful.",
+        "This is car porn.",
+        "That is one clean engine bay.",
+        "I love the story behind this car.",
+        "This is so satisfying to watch.",
+        "You're living the dream.",
+        "The handling on that car looks amazing.",
+        "This is why I love car culture.",
+        "I think you ruined a perfectly good car with those mods.",
+        "The amount of work you've put into this is inspiring.",
+        "This car is a beast.",
+        "I'm so jealous.",
+        "Can you do a video on the total cost of the build?",
+        "The driving POV shots are awesome.",
+        "This is a future classic.",
+        "I appreciate the honest review of the parts you used.",
+        "This is a masterpiece.",
+        "The sound of that supercharger whine is music to my ears.",
+        "This car has so much character.",
+        "You have great taste in cars.",
+        "What a machine!",
+        "Keep up the great content."
+    ],
+    "Sports Highlights & Commentary": [
+        "WHAT A GOAL! Unbelievable!",
+        "That was the greatest catch I have ever seen.",
+        "The referee is blind! That was a clear foul.",
+        "This team is on fire this season.",
+        "I can't believe they lost that game. They completely choked.",
+        "This is why he's the GOAT.",
+        "The comeback was legendary. I was on the edge of my seat.",
+        "Your analysis is spot-on. I agree with everything you said.",
+        "This is a classic rivalry for a reason.",
+        "I've watched this highlight 20 times and it never gets old.",
+        "The commentator's reaction makes it even better.",
+        "He is so overrated. He gets lucky.",
+        "The sportsmanship shown by both teams was incredible.",
+        "This is the most dominant performance I've seen in years.",
+        "I'm a fan of the other team, but I have to admit that was an amazing play.",
+        "The passion and emotion in this sport is what makes it so great.",
+        "That was a dirty play. He should be suspended.",
+        "The athleticism is just on another level.",
+        "I was at this game! The atmosphere was electric.",
+        "I think the coach made a terrible decision.",
+        "This is what happens when you never give up.",
+        "I'm so proud of my team.",
+        "This sport is so boring to watch.",
+        "The slow-motion replay shows just how incredible that was.",
+        "This is going to be in highlight reels for years to come.",
+        "He's a future Hall of Famer, no doubt.",
+        "I can't wait for the next game.",
+        "Your breakdown of the play was excellent.",
+        "The underdog story is always the best.",
+        "This is what legends are made of.",
+        "That was a heartbreaking loss.",
+        "This team has no chemistry.",
+        "The clutch gene is real.",
+        "I'm so nervous for the championship game.",
+        "This is why I love sports.",
+        "They got robbed by the judges.",
+        "That was a once-in-a-lifetime shot.",
+        "The teamwork was flawless.",
+        "He's past his prime. He needs to retire.",
+        "This is the highlight of the year.",
+        "The crowd's reaction says it all.",
+        "I still can't believe that happened.",
+        "That was an absolute nail-biter.",
+        "This is the best sports channel on this platform.",
+        "They were completely outplayed.",
+        "This is prime-time entertainment.",
+        "What a player.",
+        "History was made tonight.",
+        "Let's gooooo!",
+        "An unforgettable moment."
+    ],
+    "Podcasts & Interviews": [
+        "This was such a great conversation. I could listen to you guys talk for hours.",
+        "Incredible guest! I've been a fan of their work for years.",
+        "I love the dynamic between the host and the guest.",
+        "The point they made at 45:12 really made me think.",
+        "This is my favorite podcast. I listen to it every week on my commute.",
+        "I have to disagree with the guest on their point about [topic].",
+        "The host is great at asking thought-provoking questions.",
+        "This was so inspiring. I feel motivated to pursue my own goals now.",
+        "I'm not a fan of this guest. They seem very arrogant.",
+        "Thank you for having this person on. Their story is so powerful.",
+        "I learned so much from this episode.",
+        "The audio quality is excellent.",
+        "I love the long-form format. It allows for such deep and meaningful conversations.",
+        "The host kept interrupting the guest. It was so annoying.",
+        "This is the best podcast for [niche topic].",
+        "I was hooked from the very beginning.",
+        "This episode was a little boring compared to your usual ones.",
+        "I appreciate the honesty and vulnerability shared in this conversation.",
+        "Can you have [Person's Name] on the podcast next?",
+        "This changed my perspective on so many things.",
+        "I love listening to this while I work out.",
+        "The host needs to do more research on their guests beforehand.",
+        "This was a fascinating and insightful discussion.",
+        "I'm so glad I stumbled upon this podcast.",
+        "The ad reads are a little long.",
+        "This is the kind of content that makes you a better person.",
+        "I took so many notes during this episode.",
+        "I wish this was longer!",
+        "The host is a fantastic interviewer.",
+        "This guest is not a credible source of information.",
+        "This conversation felt so genuine and authentic.",
+        "I'm sharing this with my friends. They need to hear this.",
+        "The chemistry between everyone is amazing.",
+        "I've been binge-listening to all your past episodes.",
+        "This is my comfort podcast.",
+        "The host is very biased and it shows.",
+        "This was a masterclass in storytelling.",
+        "I love the variety of guests you have on.",
+        "This episode felt like a therapy session in the best way.",
+        "This is just two people talking about nothing for two hours.",
+        "The production value is top-notch.",
+        "This episode was a game-changer for me.",
+        "I appreciate that you don't shy away from difficult topics.",
+        "The guest's laugh is so infectious.",
+        "I feel like I grew as a person after listening to this.",
+        "This is a must-listen for anyone interested in [topic].",
+        "The host lets the guest shine, which is a rare skill.",
+        "This was a waste of time.",
+        "I'm a new subscriber and I'm hooked.",
+        "Great episode as always."
+    ],
+    "Video Essays": [
+        "This is a brilliant analysis. I've never thought about this film in this way before.",
+        "The amount of research and effort that went into this is astounding. Bravo.",
+        "You are so articulate. You have a way of explaining complex ideas so clearly.",
+        "This is a masterpiece of a video essay. The editing, narration, and script are all perfect.",
+        "I completely disagree with your thesis, but I respect the well-constructed argument.",
+        "This video has given me a whole new appreciation for this piece of media.",
+        "This is the kind of deep, thoughtful content I crave. Thank you.",
+        "The way you connect this to broader cultural themes is fascinating.",
+        "I'm a professor of film studies, and this is on par with academic work.",
+        "You've put into words what I've always felt about this but could never articulate.",
+        "This is a very important and timely piece of criticism.",
+        "This is just a pretentious and over-intellectualized take on a simple movie.",
+        "I've been waiting for you to make a video on this topic!",
+        "The visual examples you used to support your points were perfectly chosen.",
+        "This is why you're my favorite essayist on this platform.",
+        "This has inspired me to re-watch the movie with a new perspective.",
+        "The script is so beautifully written. It's like poetry.",
+        "I think you're reading way too much into it.",
+        "Your voice is so calming and perfect for narration.",
+        "This is an incredibly well-structured and persuasive essay.",
+        "This video is a work of art in itself.",
+        "I learned so much from this. You've given me a lot to think about.",
+        "This is a very shallow and surface-level analysis.",
+        "The editing is so slick and professional.",
+        "You have a real talent for cultural analysis.",
+        "This is the definitive video on this topic.",
+        "I'm so glad I found your channel. I'm going to binge-watch everything.",
+        "I think you missed a key piece of evidence that contradicts your argument.",
+        "The music choices in the background were perfect for setting the tone.",
+        "This is a powerful and insightful video.",
+        "This is just a long, boring lecture.",
+        "You've changed my mind completely.",
+        "This is a love letter to the art of filmmaking.",
+        "Your passion for the subject matter is so clear and infectious.",
+        "This is a very important perspective that needs to be heard.",
+        "I appreciate the nuance and complexity you bring to your analyses.",
+        "You're just trying to sound smart.",
+        "This is thought-provoking and engaging from start to finish.",
+        "I'm going to be pondering this for days.",
+        "This is a really fresh and original take.",
+        "I wish my university lectures were this interesting.",
+        "This is a very well-defended argument.",
+        "The way you deconstruct the narrative is brilliant.",
+        "This is a very important contribution to the discussion.",
+        "This is why I love video essays as a medium.",
+        "You've opened my eyes to so much.",
+        "I have a new favorite channel.",
+        "This is an excellent piece of work.",
+        "I'm sharing this with my film club.",
+        "Outstanding."
+    ],
+    "BookTube": [
+        "I totally agree with your review! I had the exact same thoughts on this book.",
+        "You just convinced me to add this to my TBR. It sounds amazing.",
+        "I have to disagree, I really loved this book. It's one of my favorites.",
+        "Your bookshelf tour is my dream! So many amazing books.",
+        "This is a great reading wrap-up. We have such similar taste in books.",
+        "I'm so glad you're talking about this book. It's so underrated.",
+        "That book has been in my TBR pile for ages. I need to finally read it.",
+        "I DNF'd this book too. I just couldn't get into it.",
+        "The way you analyze the themes and characters is so insightful.",
+        "No spoilers, please! I haven't read it yet.",
+        "This is the most aesthetic BookTube channel I've ever seen.",
+        "I think you were a little too harsh. It wasn't that bad.",
+        "Your passion for reading is so inspiring. It makes me want to read more.",
+        "I love your reading vlogs! They're so cozy.",
+        "That plot twist shocked me too!",
+        "I'm not a big reader, but your videos are making me want to start.",
+        "The ending of that book was so disappointing.",
+        "Can you do a video on your favorite classic novels?",
+        "This book sounds so heartbreaking. I don't know if my heart can take it.",
+        "This is my most anticipated release of the year!",
+        "You're just reading the book summary. Where's the actual review?",
+        "I love the way you tab your books. It's so organized.",
+        "This author is an auto-buy for me.",
+        "I think the movie adaptation was better than the book.",
+        "I'm in a reading slump and this video gave me some great recommendations.",
+        "That cover is gorgeous!",
+        "I've been waiting for you to review this book.",
+        "Your reviews are always so honest and well-thought-out.",
+        "I didn't like the main character at all. They were so annoying.",
+        "This series is my Roman Empire.",
+        "This is a very unpopular opinion, but I'm here for it.",
+        "This is a great video for people looking to get into the fantasy genre.",
+        "I'm running to the bookstore right now.",
+        "This sounds like the perfect book to read on a rainy day.",
+        "The writing style in that book was beautiful.",
+        "I cried so much at the end.",
+        "This book has been getting so much hype. I'm glad to hear an honest opinion.",
+        "I love your rating system.",
+        "The world-building was incredible.",
+        "This is a hot take, but I respect it.",
+        "I'm so happy you loved it as much as I did.",
+        "I feel like I'm the only person who didn't like this book.",
+        "The character development was amazing.",
+        "This is a great list of recommendations.",
+        "I'm so glad I found this channel.",
+        "The hype is real. This book is a masterpiece.",
+        "I'm adding all of these to my Goodreads.",
+        "This is my favorite book of all time.",
+        "Happy reading!",
+        "This review was so eloquent."
+    ],
+    "Gardening & Homesteading": [
+        "Your garden is absolutely beautiful! It's my dream to have one like this.",
+        "This is so inspiring. I'm going to start my own little vegetable garden now.",
+        "What gardening zone are you in? I'm wondering if I can grow this in my climate.",
+        "Thank you for the tip about companion planting! I had no idea.",
+        "The harvest is incredible! So much amazing produce.",
+        "I'm having a problem with aphids on my tomatoes. Do you have any organic pest control advice?",
+        "This is so relaxing to watch. It's like therapy.",
+        "Your lifestyle is so amazing. I'm so jealous.",
+        "This must be so much hard work, but it looks so rewarding.",
+        "The taste of a homegrown tomato is unbeatable.",
+        "I love your 'garden tour' videos. It's so nice to see the progress.",
+        "That is a massive zucchini!",
+        "This is the simple life I dream of.",
+        "I'm a beginner gardener and your videos have taught me so much.",
+        "The way you preserve your harvest is so smart.",
+        "This is so much more sustainable and better for the environment.",
+        "My garden was a complete failure this year. What am I doing wrong?",
+        "The flowers are stunning. What variety of rose is that?",
+        "I love the sounds of nature in the background of your videos.",
+        "You have such a green thumb.",
+        "This is a lot of work. I'd rather just go to the grocery store.",
+        "The chickens are so cute!",
+        "This is so wholesome and peaceful.",
+        "I'm learning to be more self-sufficient because of your channel.",
+        "The satisfaction of growing your own food is immense.",
+        "That tool you're using looks really useful. What is it called?",
+        "I love the way you've laid out your garden beds.",
+        "This is the content that makes me feel good about the world.",
+        "Do you have any tips for growing in containers on a balcony?",
+        "This is a beautiful way of life.",
+        "Your soil looks so rich and healthy.",
+        "I'm so impressed by your knowledge and skills.",
+        "This is a little slice of paradise.",
+        "The transformation of your garden from spring to summer is amazing.",
+        "This is a dying art. Thank you for keeping it alive.",
+        "I could watch you work in the garden all day.",
+        "This is hard work, but it's good for the soul.",
+        "I love your passion for nature.",
+        "The Canning Day video was so satisfying.",
+        "I'm so glad I found your channel.",
+        "This is goals.",
+        "I've always wanted to start a compost bin. You make it look so easy.",
+        "There's nothing better than fresh-picked berries.",
+        "Your homestead is so well-managed.",
+        "This is so beautiful and inspiring.",
+        "I'm saving this video for when I have my own land.",
+        "Thank you for sharing your journey with us.",
+        "This is the definition of living off the land.",
+        "Your hard work has really paid off.",
+        "This is the good life."
+    ],
+    "Financial Education": [
+        "This is the best explanation of compound interest I've ever heard. Thank you!",
+        "I'm 25 and just starting to invest. This video was so helpful.",
+        "This is the kind of financial literacy that should be taught in schools.",
+        "You've inspired me to create a budget and stick to it.",
+        "I have a lot of student loan debt. Do you have any advice for tackling that?",
+        "This seems like a 'get rich quick' scheme. Be careful, people.",
+        "Your advice on retirement savings has completely changed my financial outlook.",
+        "This is a great video for beginners who are intimidated by the stock market.",
+        "I wish I had seen this 10 years ago.",
+        "You break down complex financial topics into easy-to-understand concepts.",
+        "I disagree with your advice on crypto. It's way too volatile for a beginner.",
+        "I've been following your advice for a year and my net worth has grown significantly.",
+        "This is a very conservative approach. You'll never get rich playing it this safe.",
+        "The spreadsheet you provided in the description is a game-changer.",
+        "I'm finally opening a Roth IRA because of this video.",
+        "Your channel is providing so much value. Thank you for what you do.",
+        "This is not financial advice. Everyone's situation is different.",
+        "I've made so many financial mistakes in my life. It's time to get serious.",
+        "This is so empowering. Taking control of my finances feels amazing.",
+        "I'm a financial advisor and I approve this message. Solid advice.",
+        "This is great, but what about people who are living paycheck to paycheck and can't afford to invest?",
+        "The step-by-step guide was so easy to follow.",
+        "This is a really important message for young people to hear.",
+        "I've been scared of investing, but you make it seem so accessible.",
+        "This is a great explanation of the different types of investment accounts.",
+        "You have a great no-nonsense approach to personal finance.",
+        "I think you're underestimating the risks involved.",
+        "This is the motivation I needed to start saving for a down payment on a house.",
+        "Your content is life-changing.",
+        "I'm sharing this with my kids. They need to learn this stuff early.",
+        "This is just common sense. I don't see what's so revolutionary about this.",
+        "The analogies you use are so helpful for understanding difficult concepts.",
+        "I love your focus on long-term, sustainable wealth-building.",
+        "This is a very privileged perspective. Not everyone has disposable income.",
+        "I'm so glad I found your channel. It's a goldmine of information.",
+        "This is the first time I've ever felt hopeful about my financial future.",
+        "The psychology of money is just as important as the numbers. Great point.",
+        "This is very risky advice. People could lose a lot of money.",
+        "You've given me the confidence to start investing on my own.",
+        "This is a great breakdown of how to build an emergency fund.",
+        "Your calm and rational delivery is so refreshing in the finance space.",
+        "This seems too good to be true.",
+        "I'm finally going to pay off my credit card debt. Thank you for the plan.",
+        "This should be mandatory viewing.",
+        "I've been binging your videos all week and I've learned so much.",
+        "This is practical, actionable advice.",
+        "You're doing a great service to the community.",
+        "This is a great starting point for anyone who wants to improve their finances.",
+        "Thank you, thank you, thank you!",
+        "This is life-changing information."
+    ],
+    "Urban Exploration (Urbex)": [
+        "This place is incredible! It's like a time capsule.",
+        "Be careful in there! That building looks like it's about to collapse.",
+        "The history of this place is so fascinating. Thanks for sharing.",
+        "The graffiti art is amazing.",
+        "I can't believe this place is just sitting here, abandoned.",
+        "This is so eerie and beautiful at the same time.",
+        "Did you hear that noise at 15:32? I would have run out of there so fast.",
+        "This gives me major 'The Last of Us' vibes.",
+        "Please be respectful of these locations and don't vandalize them.",
+        "The architecture is stunning. It's a shame it's been left to decay.",
+        "I wonder what stories these walls could tell.",
+        "This is so much more interesting than a regular museum.",
+        "You are so brave for going in there alone.",
+        "This is illegal and you're promoting trespassing.",
+        "The natural decay is so beautiful.",
+        "I would love to explore a place like this.",
+        "The atmosphere in here is so heavy.",
+        "That was a close call with the security guard.",
+        "The things people leave behind are so interesting.",
+        "This is a photographer's dream.",
+        "I feel like I'm exploring it with you.",
+        "This is so cool, but also so sad.",
+        "The cinematic shots you got are amazing.",
+        "You have nerves of steel.",
+        "This is my favorite urbex channel. You always find the best spots.",
+        "That basement is terrifying. Nope.",
+        "This is a piece of history that should be preserved.",
+        "I love the thrill of not knowing what's around the next corner.",
+        "The soundtrack you chose for this video is perfect.",
+        "This is so much more than just an abandoned building.",
+        "The view from the roof was worth the climb.",
+        "This is dangerous. You could get seriously hurt or sick from the asbestos.",
+        "The personal belongings left behind make it so much more personal.",
+        "It's like stepping into another world.",
+        "I love the way nature is reclaiming the space.",
+        "The silence in these places must be deafening.",
+        "This is art.",
+        "You have a real eye for capturing the beauty in decay.",
+        "I got goosebumps watching this.",
+        "This is so fascinating.",
+        "I hope this place doesn't get demolished.",
+        "The adrenaline rush must be insane.",
+        "This is a beautiful and haunting video.",
+        "You're a modern-day archaeologist.",
+        "Please don't share the location, so it doesn't get destroyed.",
+        "This is so surreal.",
+        "Stay safe out there!",
+        "The discovery of the [specific object] was so cool.",
+        "What a find.",
+        "This is my favorite kind of content."
+    ],
+    "Paranormal & Conspiracy": [
+        "I've had a similar experience in my house. I'm a believer.",
+        "The orb you caught on camera at 12:05 is undeniable proof.",
+        "This is so fake. The 'ghost' is clearly just dust.",
+        "The government is definitely hiding the truth about aliens.",
+        "This is a very interesting theory. You've given me a lot to think about.",
+        "This is just fear-mongering and misinformation.",
+        "The EVP you captured is chilling. It sounds like it's saying 'get out'.",
+        "There's a logical explanation for everything you showed. It's called confirmation bias.",
+        "I've been down this rabbit hole for years. You're on the right track.",
+        "This is so scary! I'm watching this with all the lights on.",
+        "You need to be careful when you mess with this stuff. You could attract something negative.",
+        "This is so obviously staged. The acting is terrible.",
+        "The historical background of the haunting makes it so much creepier.",
+        "This is an insult to people's intelligence.",
+        "I'm a skeptic, but this video has me questioning things.",
+        "The shadow figure in the doorway was terrifying.",
+        "You're connecting dots that aren't there. This is a classic conspiracy theorist tactic.",
+        "I got chills when the door slammed shut on its own.",
+        "This is the content I live for. Keep digging for the truth!",
+        "This is dangerous and irresponsible. You're spreading lies.",
+        "I've seen things I can't explain. The paranormal is real.",
+        "You guys are so brave for spending the night there.",
+        "This is more entertaining than most horror movies.",
+        "The evidence is compelling, but I'm still not 100% convinced.",
+        "You can debunk this whole video in five minutes with a simple Google search.",
+        "The energy in that place must be insane.",
+        "I'm so glad you're talking about this. People need to wake up.",
+        "I think you were just scaring yourselves. It was the power of suggestion.",
+        "This is fascinating. I'm going to do my own research now.",
+        "This is a mockery of real paranormal investigation.",
+        "The world is not what it seems. Thank you for opening my eyes.",
+        "The electronic voice phenomena gave me goosebumps.",
+        "This is just a bunch of coincidences strung together to create a narrative.",
+        "I've always been drawn to the mysterious and unexplained.",
+        "This is an interesting thought experiment, but I don't believe it's real.",
+        "You can literally see the fishing line moving the object.",
+        "The truth is out there.",
+        "This is so disrespectful to the history of the location.",
+        "My heart was pounding during the whole investigation.",
+        "This is a classic case of pareidolia.",
+        "I love the way you approach these topics with an open mind.",
+        "This is so far-fetched, it's laughable.",
+        "I'm a paranormal investigator myself, and you guys did a great job.",
+        "This is the kind of stuff they don't want you to know.",
+        "I think it was just the wind.",
+        "This is a very well-researched and presented theory.",
+        "I'm officially spooked.",
+        "This is the best evidence I've seen yet.",
+        "Seek help.",
+        "Mind-blowing."
+    ],
+    "Collecting": [
+        "What an incredible find! I've been looking for that one for years.",
+        "Your collection is amazing! I'm so jealous.",
+        "This is my holy grail. One day I'll own one.",
+        "I have that one too! It's one of my favorites in my collection.",
+        "The thrill of the hunt is the best part of collecting.",
+        "This is a great video for people who are new to the hobby.",
+        "I can't believe you found that at a garage sale for only $5!",
+        "The condition of that is pristine. You've taken great care of it.",
+        "I'm not a collector, but this is really fascinating to watch.",
+        "This is just a bunch of old junk. I don't get the appeal.",
+        "The nostalgia is hitting me so hard right now. I had that as a kid.",
+        "You have a museum in your house!",
+        "I love the stories behind each piece in your collection.",
+        "How do you store and display everything? I'm running out of room.",
+        "This is a great investment. It's only going to go up in value.",
+        "This is a huge waste of money.",
+        "The unboxing of a new addition to the collection is always so exciting.",
+        "You have a real eye for finding rare items.",
+        "This is such a cool and unique hobby.",
+        "I just started collecting and your videos have been so helpful.",
+        "The packaging is just as cool as the item itself.",
+        "I think you overpaid for that one.",
+        "This is a beautiful piece of history.",
+        "I love how passionate you are about your collection.",
+        "My wife/husband would kill me if I had this much stuff.",
+        "This is a complete set? That's so impressive.",
+        "I'm trying to downsize my collection, but it's so hard to let go.",
+        "This is my comfort content. It's so relaxing to watch.",
+        "I don't think that's an authentic one. It looks like a fake.",
+        "The artwork on this is stunning.",
+        "This is what happiness looks like.",
+        "I learn so much about history from your videos.",
+        "I'm so glad these are being preserved and appreciated.",
+        "This is just consumerism at its worst.",
+        "The level of detail is incredible.",
+        "This is a very niche but dedicated community.",
+        "I love seeing your collection grow over time.",
+        "That's a rare one! I've only ever seen pictures of it.",
+        "The sentimental value is more important than the monetary value.",
+        "This is so satisfying to watch.",
+        "I have a few of these myself. Maybe I should get them appraised.",
+        "This is just hoarding with a fancy name.",
+        "You have a great organization system.",
+        "This brings back so many happy memories.",
+        "I'm so happy for you! Congratulations on the new addition.",
+        "This is a collector's dream.",
+        "I love that you share your knowledge with the community.",
+        "This is an obsession.",
+        "What a treasure.",
+        "This is awesome."
+    ],
+    "Q&A Sessions": [
+        "Thanks for answering my question! This was so helpful.",
+        "I love these Q&A videos! It's so nice to get to know you better.",
+        "This was a great mix of fun and serious questions.",
+        "My question for the next Q&A is: [Asks question]?",
+        "I love how open and honest you are with your audience.",
+        "This feels like we're just having a chat with a friend.",
+        "I've been wondering about that for a long time. Thanks for clearing it up.",
+        "Your answer to the question about [topic] was so insightful.",
+        "This is just a lazy video format. You couldn't think of a real idea?",
+        "You have such a great personality. You're so down-to-earth.",
+        "I can't believe you shared that personal story. Thank you for your vulnerability.",
+        "We have the same favorite movie!",
+        "This was so much fun to watch.",
+        "I feel like you dodged my question.",
+        "Your advice is always so thoughtful and well-reasoned.",
+        "I love the 'get to know me' style of this video.",
+        "It's so cool to hear about your journey and how you got started.",
+        "The lighting in this video is so good.",
+        "I'm so glad I'm not the only one who struggles with that.",
+        "This was a really interesting set of questions.",
+        "I think that's a very diplomatic answer.",
+        "You are so funny! I was cracking up the whole time.",
+        "I appreciate you taking the time to connect with your subscribers.",
+        "This is just you talking about yourself for 20 minutes.",
+        "You have a new subscriber! I love your energy.",
+        "This was a very candid and refreshing Q&A.",
+        "I've been a longtime subscriber and I still learned new things about you.",
+        "The way you handled that controversial question was very professional.",
+        "This is a great way to build community.",
+        "Your confidence is so inspiring.",
+        "This is just a way to stroke your own ego.",
+        "I love that you're not afraid to be yourself.",
+        "This was a very chill and relaxing video.",
+        "I'm so glad you answered the question about your setup.",
+        "You have such a positive outlook on life.",
+        "This is the content I'm here for.",
+        "I wish you had answered more questions.",
+        "The background is so aesthetic.",
+        "You've given me a lot of good advice. Thank you.",
+        "I feel so much more connected to you after this video.",
+        "I think you need to be more transparent with your audience.",
+        "This was a great way to celebrate a subscriber milestone.",
+        "You are so genuine.",
+        "I love this format. Please do more Q&As!",
+        "This was so interesting.",
+        "I could listen to you talk all day.",
+        "It's nice to see the person behind the channel.",
+        "This was a really positive and uplifting video.",
+        "You're an inspiration.",
+        "Thanks for being you."
+    ],
+    "Live Streaming": [
+        "Hi from the Philippines! 🇵🇭",
+        "FIRST!",
+        "OMG you noticed my comment! Hi! ❤️",
+        "Can you say hi to me?",
+        "🔥🔥🔥🔥",
+        "This is hilarious 😂",
+        "What game are you playing?",
+        "I'm late, what did I miss?",
+        "The stream quality is so good!",
+        "Check out my channel!",
+        "This is the best part of my day.",
+        "The chat is moving so fast lol.",
+        "I love this community.",
+        "The lag is really bad right now.",
+        "You're so good at this game!",
+        "This is so chill. I'm just vibing.",
+        "When are you doing a face reveal?",
+        "I've been waiting all day for this stream.",
+        "The audio is a little low.",
+        "I just subscribed!",
+        "Who else is watching this at 3 am?",
+        "Can we get a shoutout?",
+        "The mods are doing a great job.",
+        "This is so cringe.",
+        "I love the energy of a live stream.",
+        "Don't forget to like and subscribe!",
+        "I just donated! Keep up the great work!",
+        "This is so much fun.",
+        "The connection just dropped.",
+        "This is my favorite streamer.",
+        "I'm supposed to be working right now lol.",
+        "The inside jokes in this community are the best.",
+        "This is so boring.",
+        "Let's gooooo!",
+        "The interaction with the chat is what makes this so good.",
+        "I'm having such a good time.",
+        "Why are you ignoring my question?",
+        "This is so much better than watching TV.",
+        "The vibes are immaculate.",
+        "I'm watching this on my TV.",
+        "This is my comfort stream.",
+        "The trolls in the chat are so annoying.",
+        "Thanks for the great content.",
+        "You should play with your fans sometime.",
+        "This is my first time watching you live. I'm hooked.",
+        "You guys are hilarious together.",
+        "I love how chaotic this is.",
+        "This is what I look forward to every week.",
+        "GG",
+        "This is a great stream."
+    ],
+    "Fan Edits & Tributes": [
+        "This is incredible! You are so talented.",
+        "The song choice is perfect for this character.",
+        "I've watched this 100 times. It's so addicting.",
+        "The transitions are so smooth! How did you do that?",
+        "This edit made me cry. It's so beautiful.",
+        "You captured their dynamic perfectly.",
+        "I hope [the celebrity] sees this!",
+        "This is the best fan edit I've ever seen for this fandom.",
+        "The talent in this community is insane.",
+        "This is art.",
+        "The way the clips sync with the beat of the music is so satisfying.",
+        "This is my new favorite video on the internet.",
+        "You did an amazing job. This is a beautiful tribute.",
+        "This edit gives me chills every time I watch it.",
+        "The voiceovers you included are so powerful.",
+        "I'm obsessed with this.",
+        "What software do you use to edit?",
+        "This is so much better than the official trailers.",
+        "This edit tells a whole story.",
+        "I'm so emotional right now.",
+        "This is a masterpiece.",
+        "The color grading is gorgeous.",
+        "You deserve so much more recognition for your work.",
+        "This is the content that keeps the fandom alive.",
+        "I'm in awe of your skills.",
+        "This is so creative.",
+        "The amount of effort that must have gone into this is mind-boggling.",
+        "This edit understands the character better than the writers do.",
+        "I'm sharing this with everyone I know.",
+        "This is pure talent.",
+        "The timing is impeccable.",
+        "This is so powerful.",
+        "I can't stop watching this.",
+        "This is why I love fan edits.",
+        "You've inspired me to start editing.",
+        "This is so beautiful and heartbreaking.",
+        "The parallels you drew between the scenes are brilliant.",
+        "This is so well done.",
+        "I'm speechless.",
+        "This is the definitive edit for this ship.",
+        "You are an amazing editor.",
+        "The effects you used are so cool.",
+        "This is a perfect summary of their journey.",
+        "I felt that in my soul.",
+        "This is so epic.",
+        "I love this so much.",
+        "This is why this character is my favorite.",
+        "This is a work of art.",
+        "Absolutely stunning.",
+        "Bravo."
+    ],
+    "Cleaning & Organization": [
+        "This is so satisfying to watch. I'm inspired to clean my own house now.",
+        "The transformation is incredible! It looks like a whole new room.",
+        "Where did you get those clear storage containers? I need them in my life.",
+        "This is my motivation for today. Thank you!",
+        "I love your cleaning routine. It's so efficient.",
+        "This is so relaxing. It's my favorite kind of ASMR.",
+        "You have such a beautiful and tidy home.",
+        "I wish I had the energy to do this.",
+        "This is so much better than watching a movie.",
+        "The before and after is shocking.",
+        "I'm taking notes. So many good tips and tricks.",
+        "This is so wholesome. A clean space equals a clear mind.",
+        "The sound of the vacuum is so satisfying.",
+        "I'm a messy person, but your videos make me want to be organized.",
+        "This is my comfort content. It helps with my anxiety.",
+        "This is unrealistic. My house would be messy again in five minutes.",
+        "I love the products you use. Can you link them in the description?",
+        "The feeling of a freshly cleaned house is the best.",
+        "This is so impressive. You are a cleaning machine.",
+        "I could watch this all day.",
+        "The way you organize your pantry is goals.",
+        "This is so much work. I'd rather just hire a cleaner.",
+        "I'm putting this on in the background while I clean along with you.",
+        "You have such a good system.",
+        "This is so aesthetically pleasing.",
+        "I love that you use natural cleaning products.",
+        "This is a great way to de-stress.",
+        "The satisfaction is real.",
+        "I love a good decluttering video.",
+        "You've given me so many good ideas for my own home.",
+        "This must have taken you all day.",
+        "I find this so calming and therapeutic.",
+        "My apartment is tiny. I wish I had this much storage space.",
+        "This is what I call a productive day.",
+        "I'm so glad I'm not the only one who finds cleaning videos satisfying.",
+        "You've created such a peaceful and beautiful environment.",
+        "This is so much more than just cleaning. It's about creating a home.",
+        "I'm a minimalist, so this much stuff gives me anxiety.",
+        "The music you chose is so perfect and relaxing.",
+        "This is a true deep clean.",
+        "I'm in awe of your dedication.",
+        "This is so satisfying on a spiritual level.",
+        "You have a place for everything.",
+        "This is the content I need in my life.",
+        "I'm going to tackle my junk drawer now.",
+        "You are the queen/king of cleaning.",
+        "This is so beautiful.",
+        "The final result is so worth it.",
+        "This is so inspiring.",
+        "I love your channel."
+    ],
+    "Minimalism & Simple Living": [
+        "This is so inspiring. I'm on my own minimalism journey and this was so motivating.",
+        "Your home is so peaceful and calming. I love the aesthetic.",
+        "I love the idea of living with less, but I don't know where to start.",
+        "This is a great reminder that we don't need so much stuff to be happy.",
+        "The way you talk about intentional living is so beautiful.",
+        "This seems so boring and sterile. I like having my things around me.",
+        "You've given me the courage to finally declutter my closet.",
+        "This is a powerful message against consumerism.",
+        "I've been practicing minimalism for years and it has changed my life.",
+        "I love that minimalism looks different for everyone. Thank you for sharing your version.",
+        "This is just a trend for rich people who can afford to get rid of things.",
+        "The mental clarity that comes with having less stuff is priceless.",
+        "This is a very privileged lifestyle. Not everyone has the choice to live this way.",
+        "I love your philosophy on mindful consumption.",
+        "This is so much more than just having a tidy house. It's a mindset.",
+        "I'm trying to be more conscious of my purchases because of your videos.",
+        "This is the kind of content that makes you re-evaluate your life.",
+        "This seems so extreme. I could never get rid of my books.",
+        "I love the focus on experiences over possessions.",
+        "Your space is so serene. I feel calmer just watching this.",
+        "This is a great video for anyone who feels overwhelmed by their clutter.",
+        "I'm a maximalist at heart, but I appreciate the beauty in this.",
+        "The financial benefits of minimalism are a huge plus.",
+        "This is so pretentious.",
+        "You've articulated the benefits of simple living so well.",
+        "I love how your values are reflected in your home and lifestyle.",
+        "This is a beautiful and intentional way to live.",
+        "I'm so tired of the constant pressure to buy more. This is a refreshing perspective.",
+        "This is not practical for a family with children.",
+        "I love the way you've created a home that supports your well-being.",
+        "This is so aesthetically pleasing.",
+        "This is a journey, not a destination. Great reminder.",
+        "I'm so glad I found your channel. It's a little oasis of calm on the internet.",
+        "This is just poverty with better branding.",
+        "The freedom that comes with letting go of stuff is liberating.",
+        "This is a great introduction to the concept of minimalism.",
+        "I love your capsule wardrobe video. It gave me so many ideas.",
+        "This is so inspiring.",
+        "This is a beautiful and meaningful way to live.",
+        "You've given me so much to think about.",
+        "This is the direction I want my life to go in.",
+        "I love your intentional approach to everything.",
+        "This is so peaceful.",
+        "I don't think I could ever be a minimalist, but I'm definitely going to declutter.",
+        "This is a powerful antidote to our materialistic culture.",
+        "I love this. It's so calming.",
+        "This is the good life.",
+        "Thank you for sharing your journey.",
+        "This is beautiful.",
+        "I love your content."
+    ],
+    "Iceberg Explanations": [
+        "This is fascinating. I only knew about the stuff on the top tier.",
+        "I'm officially going down the rabbit hole on this topic now.",
+        "The deeper we go, the weirder it gets. I love it.",
+        "This is the best iceberg explanation I've seen. So well-researched.",
+        "I can't believe I've never heard of some of these things before.",
+        "This is so creepy and unsettling, especially the bottom tiers.",
+        "The lore behind this is so deep and complex.",
+        "You have such a great voice for narrating these. It's so captivating.",
+        "I'm a long-time fan of this topic, and you still managed to teach me something new.",
+        "This is just a bunch of unsourced rumors and speculation.",
+        "The mystery at the very bottom is going to keep me up at night.",
+        "This is the perfect video to watch late at night with the lights off.",
+        "Can you do an iceberg video on [another topic] next?",
+        "The amount of information in this video is insane.",
+        "This is so well-structured. The progression from well-known to obscure is perfect.",
+        "This is my favorite type of content. I love deep dives into niche subjects.",
+        "Some of this stuff is genuinely disturbing.",
+        "I think you should have put [entry] lower on the iceberg.",
+        "The editing is great. The visuals really add to the atmosphere.",
+        "This is so much more interesting than what I'm supposed to be doing right now.",
+        "This is just a glorified Wikipedia reading.",
+        "The way you explain everything is so clear and concise.",
+        "I've been waiting for someone to make an iceberg video on this!",
+        "This is a masterclass in how to make an engaging educational video.",
+        "I'm so glad I'm not the only one who is obsessed with this.",
+        "This is some real internet archaeology.",
+        "The music is so perfect for the eerie vibe.",
+        "I'm both fascinated and terrified.",
+        "This is a very comprehensive and thorough explanation.",
+        "This is all just a big conspiracy theory.",
+        "You've created the definitive iceberg video on this topic.",
+        "I'm going to have nightmares tonight. Thanks.",
+        "This is so interesting, I wish it was longer.",
+        "The fact that we'll never know the full story is the craziest part.",
+        "This is why I love the internet.",
+        "This is a great format for exploring complex and layered topics.",
+        "I'm going to be thinking about this for a week.",
+        "You have a real talent for storytelling.",
+        "This is the content I subscribe for.",
+        "I've fallen into the abyss and I can't get out.",
+        "This is so well done.",
+        "I'm amazed by the amount of research this must have taken.",
+        "This is so addicting to watch.",
+        "I'm a little bit scared now.",
+        "This is the content that makes my brain happy.",
+        "You've opened my eyes to a whole new world of weirdness.",
+        "This is peak internet.",
+        "I'm speechless.",
+        "This is amazing.",
+        "Mind blown."
+    ],
+    "Pet & Animal Videos": [
+        "OMG so cute! I can't handle it.",
+        "This is the purest thing I've seen all day.",
+        "What a little goofball! 😂",
+        "My heart just melted.",
+        "Animals are so much better than people.",
+        "I've watched this 10 times. It gets funnier every time.",
+        "This is the content that will save the world.",
+        "He's so fluffy I'm gonna die!",
+        "The bond between you and your pet is so beautiful.",
+        "I wish my pet was this well-behaved.",
+        "This is so wholesome.",
+        "The way he looks at you with so much love.",
+        "This made my bad day so much better. Thank you.",
+        "What breed is he/she? So beautiful!",
+        "I'm not crying, you're crying.",
+        "This is the content I signed up for.",
+        "The intelligence of animals never ceases to amaze me.",
+        "I love the little personality quirks they have.",
+        "I could watch this all day.",
+        "This is so funny! I'm dying laughing.",
+        "That's a weird-looking dog.",
+        "I want one! So adorable.",
+        "This is so relatable. My cat does the exact same thing.",
+        "The music choice is perfect.",
+        "I love the little happy dance he does.",
+        "This is my new favorite video.",
+        "Animals are such a gift.",
+        "The zoomies are real!",
+        "That's one smart cookie.",
+        "I love the updates on your pets. It's like they're a part of my life too.",
+        "The friendship between the cat and the dog is so cute.",
+        "This is animal abuse. You shouldn't be making your pet do this.",
+        "This is so heartwarming.",
+        "I'm sending this to everyone I know.",
+        "The derpy face is the best.",
+        "I'm so glad you rescued him. He looks so happy now.",
+        "I needed this today.",
+        "This is just pure joy in a video.",
+        "I love the little noises they make.",
+        "This is the cutest thing on the internet.",
+        "He's a little troublemaker, but a cute one.",
+        "I think your pet might be broken lol.",
+        "The unconditional love of a pet is the best thing in the world.",
+        "This is so sweet.",
+        "I'm obsessed.",
+        "Look at that little face!",
+        "This is so precious.",
+        "My heart can't take the cuteness.",
+        "I love them.",
+        "This is amazing."
+    ],
+    "Language Learning": [
+        "This was so helpful! I'm finally starting to understand the subjunctive mood.",
+        "Thank you for this lesson! Your explanations are so clear and easy to follow.",
+        "I'm a beginner and this was a great starting point.",
+        "Could you do a video on the difference between 'por' and 'para' next?",
+        "I've been struggling with this concept for so long. You're a lifesaver.",
+        "The way you break down the grammar is so logical.",
+        "I'm using your videos to supplement my language classes. They're so much better than my textbook.",
+        "I love the examples you use. They're so practical and memorable.",
+        "This is a great resource for anyone who is self-studying a language.",
+        "I think your pronunciation of [word] is a little off. It should be more like...",
+        "Your passion for the language is so infectious. It makes learning fun.",
+        "I'm a native speaker, and I think you did a great job explaining this.",
+        "The mnemonics you shared are so clever!",
+        "This is a very difficult topic, but you made it seem so simple.",
+        "I love the cultural context you provide along with the language lesson.",
+        "This is a much better way to learn than just memorizing vocabulary lists.",
+        "I've been learning for a year and I still make this mistake.",
+        "The repetition and practice exercises are so helpful.",
+        "This is a great confidence booster.",
+        "I love your teaching style. It's so engaging.",
+        "This is too advanced for me. Do you have any videos for absolute beginners?",
+        "The visuals and on-screen text are a great learning aid.",
+        "I'm so glad I found your channel. It's going to be a huge help on my language journey.",
+        "You have a great accent!",
+        "This is a very common point of confusion for learners. Thanks for clearing it up.",
+        "I'm going to practice this right now.",
+        "This is a great way to review what I've already learned.",
+        "Your videos are so well-structured.",
+        "I'm one step closer to fluency because of you.",
+        "This is a very niche but important grammar point.",
+        "I wish my language teacher in school was as good as you.",
+        "This is a very comprehensive lesson.",
+        "The pace is perfect. Not too fast, not too slow.",
+        "You've motivated me to keep going, even when it gets tough.",
+        "This is a great explanation of the different verb tenses.",
+        "I'm going to try speaking with a native speaker this week.",
+        "Your tips for improving listening comprehension are so useful.",
+        "This is the best language learning channel on the platform.",
+        "I'm starting to see progress in my own speaking skills.",
+        "¡Muchas gracias!",
+        "This is a great overview of the basics.",
+        "I'm so impressed by your fluency.",
+        "This is so much more than just a language lesson. It's about connecting with another culture.",
+        "This is a great challenge.",
+        "Keep up the amazing work!",
+        "This is so helpful.",
+        "I'm finally getting it!",
+        "Thank you!",
+        "This is a fantastic resource.",
+        "I've learned so much."
+    ],
+    "Magic & Illusions": [
+        "What?! How did you do that? My mind is blown.",
+        "You are a real-life wizard. This is incredible.",
+        "I've watched this three times in slow motion and I still can't figure it out.",
+        "This is the best magic trick I've ever seen.",
+        "The sleight of hand is flawless. You are so skilled.",
+        "I know how it's done, but you still performed it beautifully.",
+        "This is not magic, it's just a clever trick.",
+        "You have a real gift for showmanship. You're so entertaining to watch.",
+        "I'm convinced you have supernatural powers.",
+        "This is so much fun! I love being amazed.",
+        "The misdirection is perfect. I was looking at the wrong hand the whole time.",
+        "My brain hurts trying to figure this out.",
+        "This is a classic trick, but you put your own unique spin on it.",
+        "I think I saw the secret move at 1:23.",
+        "This is pure talent and dedication. I'm so impressed.",
+        "You should be on Penn & Teller: Fool Us!",
+        "This is the kind of magic that makes you feel like a kid again.",
+        "This is just camera tricks and editing.",
+        "The way you interact with the audience is great.",
+        "This is so creative.",
+        "I'm a magician myself, and your technique is impeccable.",
+        "This is so much more than just a trick. It's a piece of art.",
+        "You fooled me completely. Well done.",
+        "The reveal was so unexpected.",
+        "I'm speechless.",
+        "This is so smooth. You make it look effortless.",
+        "This is fake. You're using stooges.",
+        "The psychology behind magic is so fascinating.",
+        "This is a beautiful and elegant illusion.",
+        "I love the story you tell with your magic.",
+        "This is a great trick to perform for friends and family.",
+        "My jaw literally dropped.",
+        "This is so well-practiced.",
+        "I love the mystery and wonder of magic.",
+        "You have a real stage presence.",
+        "This is impossible!",
+        "I think there's a magnet in your sleeve.",
+        "This is a master at work.",
+        "I'm so confused and I love it.",
+        "This is the best magic channel on the platform.",
+        "The performance was flawless.",
+        "You're an inspiration to aspiring magicians.",
+        "This is so much fun.",
+        "I'm going to show this to all my friends.",
+        "This is so cool!",
+        "You are amazing.",
+        "This is magic.",
+        "Bravo!",
+        "How?!",
+        "Incredible."
+    ],
+    "Coding & Programming": [
+        "This was so helpful! I've been stuck on this problem for days.",
+        "Thank you for this tutorial. Your explanation was so clear and concise.",
+        "I'm a beginner and this was a great introduction to the topic.",
+        "This is a much more elegant solution than what I came up with.",
+        "Could you do a video on how to use the [Library/Framework] next?",
+        "I'm getting an error on line 42. Can anyone help me debug it?",
+        "This is a great project for practicing my skills.",
+        "I love the way you walk through your thought process. It's so helpful for learning.",
+        "This is a very practical and useful tutorial.",
+        "I think you could have used a switch statement instead of all those if-else blocks. It would be cleaner.",
+        "This is the best channel for learning how to code.",
+        "I'm using this for a project right now. You're a lifesaver.",
+        "The code is on your GitHub? Awesome, thank you!",
+        "This is a very common interview question. Thanks for the breakdown.",
+        "I love that you explain the 'why' behind the code, not just the 'how'.",
+        "This is a great way to refactor the code for better performance.",
+        "I'm a senior developer, and this is a solid tutorial.",
+        "This is too advanced for me. I'm completely lost.",
+        "The dark mode on your IDE is so easy on the eyes.",
+        "This is a great real-world example of how to use this concept.",
+        "You have a real talent for teaching complex technical subjects.",
+        "I think there's a bug in your code. It doesn't handle the edge case where...",
+        "I'm so glad I found your channel. I'm learning so much.",
+        "The pace is perfect. I can follow along without having to pause too much.",
+        "This is a great deep dive into the fundamentals.",
+        "This is a very opinionated way of doing things. There are other valid approaches.",
+        "I've been a programmer for 10 years and I still learned something new.",
+        "This is a great way to visualize the data structure.",
+        "I'm finally starting to feel confident in my coding abilities.",
+        "This is the kind of practical knowledge you don't get in a computer science degree.",
+        "You type so fast!",
+        "This is a very clean and well-commented code.",
+        "This is a great challenge to test my understanding.",
+        "You've saved me hours of frustration.",
+        "This is a very powerful feature that I didn't know existed.",
+        "This is a great way to stay up-to-date with the latest technologies.",
+        "I think you should have used TypeScript for this project to avoid potential bugs.",
+        "This is a great resource for anyone who is preparing for a coding bootcamp.",
+        "This is so much more than just a tutorial. It's about problem-solving.",
+        "This is the best explanation of recursion I've ever seen.",
+        "I'm going to try this on my own project now.",
+        "This is a very well-produced video. The audio and video quality are excellent.",
+        "You're a great mentor to the developer community.",
+        "This is a great way to build a portfolio.",
+        "This is a very powerful tool.",
+        "This is the content I need.",
+        "Thanks for sharing your knowledge.",
+        "This is awesome.",
+        "This is so helpful.",
+        "Thank you!"
+    ],
+    "Time-lapses": [
+        "This is mesmerizing. I could watch this for hours.",
+        "The amount of patience this must have taken is incredible.",
+        "This is so beautiful and satisfying to watch.",
+        "The way the clouds move is like a painting in motion.",
+        "This is a work of art.",
+        "What camera and settings did you use for this? It's so crisp.",
+        "This is so cool to see the entire process sped up.",
+        "The music choice is perfect. It adds so much to the atmosphere.",
+        "This gives you such a different perspective on the world.",
+        "This is so calming and meditative.",
+        "I love seeing the city come to life at night.",
+        "The transition from day to night is seamless.",
+        "This is so much more than just a video. It's a story.",
+        "The 'holy grail' of time-lapses! Well done.",
+        "This is so inspiring. I want to try making my own time-lapse now.",
+        "The colors are so vibrant and beautiful.",
+        "This is so much hard work for a one-minute video.",
+        "The stars moving across the night sky is breathtaking.",
+        "This is so satisfying on a cosmic level.",
+        "The way nature reclaims the decaying object is so powerful.",
+        "This is a masterpiece.",
+        "I love the way you captured the changing of the seasons.",
+        "This is so well-executed. The framing and composition are perfect.",
+        "I've never seen anything like this before.",
+        "This is so much dedication for a short video.",
+        "This is so beautiful it makes me emotional.",
+        "The scale of this is mind-boggling.",
+        "This is a great way to appreciate the beauty of the world around us.",
+        "The plant growing from a seed is magical.",
+        "This is a testament to the power of perseverance.",
+        "This is so smooth. There's no flickering at all.",
+        "This is a visual symphony.",
+        "I'm in awe of your talent and dedication.",
+        "This is so much more interesting than a regular video.",
+        "The construction of the building from the ground up is amazing.",
+        "This is a beautiful reminder of the passage of time.",
+        "This is so peaceful to watch.",
+        "The way the light changes throughout the day is so subtle and beautiful.",
+        "This is just so cool.",
+        "I'm speechless.",
+        "This is a beautiful piece of art.",
+        "This is so much more than just pressing a button. There's so much planning involved.",
+        "This is a great way to document a long process.",
+        "This is so creative.",
+        "The final result is so worth the effort.",
+        "This is incredible.",
+        "I love this.",
+        "Stunning.",
+        "Wow.",
+        "Beautiful."
+    ],
+    "Drone & Aerial Videography": [
+        "These shots are absolutely breathtaking. It's like seeing the world from a bird's eye view.",
+        "The cinematography is stunning. This could be in a movie.",
+        "What drone are you flying? The quality is incredible.",
+        "This is so peaceful and majestic to watch.",
+        "You are so skilled at flying. The movements are so smooth and cinematic.",
+        "This location is beautiful. Where is this?",
+        "This is a work of art. The editing and color grading are perfect.",
+        "I'm so jealous of your drone skills. I'm too scared to fly mine over water.",
+        "This is a whole new perspective on a familiar place.",
+        "The music you chose fits the visuals perfectly.",
+        "This is so much more than just a drone video. It's a story.",
+        "The shot where you fly through the narrow gap was insane!",
+        "This is so inspiring. I need to get out and fly more.",
+        "I hope you had the proper permits to fly here.",
+        "The FPV shots are so immersive. It feels like I'm flying.",
+        "This is the best drone video I've ever seen.",
+        "The way you follow the subject is so professional.",
+        "This is so beautiful it makes me want to travel.",
+        "The golden hour light is perfect.",
+        "This is so much more than just a hobby. It's an art form.",
+        "I could watch this on a loop all day.",
+        "This is a beautiful tribute to the beauty of nature.",
+        "The top-down shots are so satisfying.",
+        "This is so well-composed. You have a great eye.",
+        "This is so much dedication to get the perfect shot.",
+        "This is a masterpiece.",
+        "I'm in awe of the beauty of our planet.",
+        "The scale of the landscape is incredible from this high up.",
+        "This is so much better than being stuck in an office.",
+        "This is a visual poem.",
+        "The transitions between shots are seamless.",
+        "This is so much talent.",
+        "I'm learning so much about framing and composition from your videos.",
+        "This is a dream job.",
+        "The raw beauty of this place is captured so well.",
+        "This is a great way to explore the world without leaving my house.",
+        "I'm speechless.",
+        "This is a cinematic experience.",
+        "The way you reveal the landscape is so dramatic.",
+        "This is so much more than just flying a drone. It's about seeing the world differently.",
+        "This is so beautiful and epic.",
+        "This is a great example of how technology can be used to create art.",
+        "I love the sense of freedom and adventure in this video.",
+        "This is so serene.",
+        "This is a beautiful piece of filmmaking.",
+        "Incredible work.",
+        "Stunning.",
+        "Wow.",
+        "Amazing.",
+        "Beautiful."
+    ],
+    "3D Printing & Making": [
+        "This is so cool! I can't believe you can just print that.",
+        "The time-lapse of the print is so satisfying to watch.",
+        "What 3D printer and filament are you using?",
+        "This is the future of manufacturing. It's amazing.",
+        "Can you share the STL file? I'd love to print this myself.",
+        "This is such a clever and practical design. You're a great engineer.",
+        "My print failed halfway through. Do you have any tips for troubleshooting?",
+        "The level of detail on that print is incredible.",
+        "This is so much more than just a hobby. You're creating useful things.",
+        "I'm a beginner and your videos have been so helpful for getting started.",
+        "The post-processing work you did to finish the model is amazing.",
+        "This seems like a huge waste of plastic.",
+        "This is a great example of how 3D printing can be used to solve real-world problems.",
+        "The sound of the 3D printer is my favorite kind of ASMR.",
+        "I've been wanting to get into 3D printing. You've convinced me.",
+        "The possibilities with this technology are endless.",
+        "This is a great tutorial for beginners.",
+        "I love the painting and finishing process. It really brings the model to life.",
+        "This is so much dedication for one project.",
+        "This is a masterpiece of making.",
+        "I'm in awe of your creativity and skills.",
+        "The design process is just as interesting as the printing part.",
+        "This is a great way to make custom parts and prototypes.",
+        "I think you need to calibrate your printer. I see some stringing.",
+        "The support removal process is so satisfying.",
+        "This is a great community of makers and creators.",
+        "I love that you're sharing your knowledge and passion with others.",
+        "This is so inspiring.",
+        "This is a beautiful piece of art.",
+        "The engineering behind this is brilliant.",
+        "I'm so impressed by what you can do with a 3D printer.",
+        "This is so much more than just a plastic toy.",
+        "This is a great example of functional printing.",
+        "I've been looking for a solution to this problem. You've solved it.",
+        "The way you combine 3D printing with other making skills is so cool.",
+        "This is a great way to bring digital designs into the real world.",
+        "I'm so glad I found your channel.",
+        "This is so cool!",
+        "I love this.",
+        "Awesome.",
+        "This is amazing.",
+        "I need a 3D printer.",
+        "The quality is insane.",
+        "This is so satisfying.",
+        "Great job.",
+        "This is the best thing I've seen today.",
+        "I'm printing this right now.",
+        "This is incredible.",
+        "So cool!"
+    ],
+    "Virtual & Augmented Reality": [
+        "This is the future! I can't wait until this technology is mainstream.",
+        "The level of immersion is incredible. It feels like you're really there.",
+        "What headset are you using? The tracking looks so smooth.",
+        "This game looks so fun! I need to get a VR headset.",
+        "This is a great showcase of the potential of VR.",
+        "I get motion sick just watching this.",
+        "The social aspect of VR is so cool. It's like hanging out with friends in a different world.",
+        "This is a great workout! I'm sweating just watching you play.",
+        "The graphics are amazing for a VR game.",
+        "This is so much more than just a game. It's an experience.",
+        "The AR application for [industry] is a game-changer.",
+        "This is the metaverse everyone is talking about.",
+        "This technology is still in its early days, but the potential is huge.",
+        "I think this is just a gimmick. It will never replace traditional gaming.",
+        "The creative possibilities with VR are endless.",
+        "This is a great review of the new headset. Very thorough.",
+        "The feeling of presence is something you can't get from a flat screen.",
+        "This is so trippy and surreal.",
+        "I'm so excited for the future of VR/AR.",
+        "This is a great way to explore new places and have new experiences.",
+        "I tried VR once and it was amazing.",
+        "The haptic feedback must make it feel so real.",
+        "This is a great way to train for real-world tasks in a safe environment.",
+        "The user interface looks very intuitive.",
+        "This is a great way to connect with people from all over the world.",
+        "This is a very expensive hobby.",
+        "The learning curve for VR development seems steep.",
+        "This is a great example of how VR can be used for education.",
+        "The sense of scale in VR is mind-blowing.",
+        "This is a beautiful and artistic VR experience.",
+        "I'm so impressed by how far the technology has come.",
+        "This is a great way to escape from reality for a while.",
+        "The sound design is so immersive.",
+        "I'm not convinced this is the future. It's too isolating.",
+        "The physics in this game are so realistic.",
+        "This is a great way to experience things that are impossible in real life.",
+        "The mixed reality view is so cool. It's great for showing people what you're seeing.",
+        "This is the ultimate form of entertainment.",
+        "I'm so hyped for this game to come out.",
+        "This is a great community.",
+        "I've been following the development of this for a while.",
+        "This is a dream come true for sci-fi fans.",
+        "The potential for creativity is limitless.",
+        "This is so much more than just technology. It's a new medium for art and expression.",
+        "This is the next big thing.",
+        "I want to live in this world.",
+        "This is so cool.",
+        "Amazing.",
+        "Wow.",
+        "This is the future."
+    ],
+    "Storytime": [
+        "This is a crazy story! I was on the edge of my seat the whole time.",
+        "I can't believe that actually happened to you.",
+        "You are such a great storyteller. I was completely captivated.",
+        "This is hilarious! I was laughing so hard.",
+        "I'm so glad you're okay! That sounds so scary.",
+        "This is so relatable. I had a similar experience once.",
+        "The way you describe everything makes me feel like I was there with you.",
+        "This sounds fake. I don't believe this happened.",
+        "This is the best storytime I've ever heard.",
+        "You should write a book! You have a real talent for storytelling.",
+        "The lesson you learned from this experience is so powerful.",
+        "This is so much better than a fictional story because it's real.",
+        "My jaw was on the floor the entire time.",
+        "This is a great cautionary tale.",
+        "I love your animated storytime videos. They're so creative.",
+        "This is so embarrassing! I would have died.",
+        "You have such a great personality. It makes your stories so much more entertaining.",
+        "This is a rollercoaster of emotions.",
+        "I'm so invested in this story.",
+        "What happened next?! You can't leave us hanging like that.",
+        "This is so much drama. I love it.",
+        "This is a very personal story. Thank you for sharing it with us.",
+        "This is just you talking for 20 minutes. So boring.",
+        "The way you do the different voices is so funny.",
+        "This is a story that will stick with me for a long time.",
+        "You are so brave for sharing this.",
+        "This is the kind of story you tell your grandkids.",
+        "I'm so glad everything worked out in the end.",
+        "This is a great reminder to always trust your gut.",
+        "This is so wholesome and heartwarming.",
+        "This is so much tea. I'm living for it.",
+        "You have the best stories.",
+        "This is so well-told.",
+        "I was hooked from the first sentence.",
+        "This is a great life lesson.",
+        "I'm so sorry you had to go through that.",
+        "This is so interesting.",
+        "I love the way you build suspense.",
+        "This is a great channel.",
+        "I can't wait for the next storytime.",
+        "This is so inspiring.",
+        "You're a natural entertainer.",
+        "This is a great way to connect with your audience.",
+        "I love your honesty and authenticity.",
+        "This is a story of resilience.",
+        "This is a great message.",
+        "This is so much more than just a story.",
+        "You're amazing.",
+        "This is a great story.",
+        "Wow."
+    ],
+    "News & Current Events": [
+        "Thank you for this breakdown of the situation. It's so much clearer now.",
+        "This is a very important story that more people need to be aware of.",
+        "I appreciate your unbiased and fact-based reporting. It's so rare these days.",
+        "This is just mainstream media propaganda. Do your own research, people.",
+        "The implications of this are huge. This is going to change everything.",
+        "I'm so angry and sad about what's happening.",
+        "This is a very complex issue with no easy answers. You handled it well.",
+        "You're completely ignoring the other side of the story. This is very biased.",
+        "I live in the country where this is happening, and your report is very accurate.",
+        "This is just fear-mongering for clicks.",
+        "Thank you for providing the historical context. It helps to understand the current situation.",
+        "The comment section is about to be a dumpster fire.",
+        "This is a great example of investigative journalism.",
+        "This is not news. This is opinion.",
+        "I've been following this story closely, and you've provided some new insights.",
+        "The world is a scary place right now.",
+        "I'm so tired of all the political division.",
+        "This is a very well-researched and sourced report.",
+        "You're just repeating the official narrative. Wake up, sheeple.",
+        "This is a great way to stay informed without all the sensationalism of cable news.",
+        "This is a very difficult topic to talk about. Thank you for your courage.",
+        "This is a human rights issue. We can't stay silent.",
+        "This is just another example of the corrupt system we live in.",
+        "I appreciate that you present multiple perspectives on the issue.",
+        "This is fake news.",
+        "The way you connect the dots between different events is brilliant.",
+        "This is a very powerful and moving report.",
+        "I'm so disappointed in our leaders.",
+        "This is a very complex geopolitical issue.",
+        "This is a call to action. We need to do something.",
+        "You're just trying to divide us.",
+        "This is a great way to understand the nuance of the situation.",
+        "I feel so helpless.",
+        "This is a very important conversation to have.",
+        "This is just speculation. There's no proof.",
+        "Thank you for your dedication to telling the truth.",
+        "This is a very dark time in our history.",
+        "I'm hopeful that things will get better.",
+        "This is a very comprehensive overview.",
+        "This is just propaganda.",
+        "I'm so glad I found a news source I can trust.",
+        "This is a very disturbing development.",
+        "This is a great analysis of the economic impact.",
+        "This is just another distraction from the real issues.",
+        "This is journalism at its best.",
+        "The world is watching.",
+        "This is a very important story.",
+        "We need to hold them accountable.",
+        "This is a tragedy.",
+        "Stay safe."
+    ],
+    "Gaming Speedruns": [
+        "WR PACE! LET'S GO!",
+        "That new strat is insane! It saves so much time.",
+        "The movement is so optimized. It's like watching a robot play.",
+        "I can't believe you pulled off that difficult trick on the first try.",
+        "This is the most clutch performance I've ever seen.",
+        "The grind has finally paid off. Congratulations on the new PB!",
+        "I've been running this game for years and I've never seen that before.",
+        "The RNG was on your side today.",
+        "This is a masterclass in speedrunning. The execution is flawless.",
+        "This is not a legitimate run. You're using a tool-assisted script.",
+        "The dedication and practice that goes into this is mind-boggling.",
+        "This is so intense to watch. My heart is pounding.",
+        "The commentary explaining the glitches and strats is so helpful.",
+        "This game is so broken. I love it.",
+        "This is the pinnacle of human achievement.",
+        "I could never have the patience for this.",
+        "The race was so close! It came down to the wire.",
+        "This run is dead. Time to reset.",
+        "You make it look so easy, but I know it's incredibly difficult.",
+        "This is art.",
+        "The routing for this category is so optimized.",
+        "This is so much more exciting than regular gameplay.",
+        "I've been following this community for a while and it's so great to see the record being pushed further.",
+        "That one little mistake cost you the world record.",
+        "The muscle memory is insane.",
+        "This is a great showcase of the skill and dedication of the speedrunning community.",
+        "This is just exploiting glitches. It's not how the game is meant to be played.",
+        "The frame-perfect inputs are incredible.",
+        "This is the best run I've ever seen of this game.",
+        "The hype is real.",
+        "I was here for the world record!",
+        "This is a very technical and difficult speedgame.",
+        "The consistency is what's most impressive.",
+        "This is so much dedication for a video game.",
+        "The adrenaline rush must be insane.",
+        "I'm learning so much about the inner workings of this game.",
+        "This is a perfect run.",
+        "The amount of resets this must have taken is unimaginable.",
+        "This is why I love speedrunning.",
+        "This is the content I'm here for.",
+        "The final split was so good.",
+        "This is a great way to experience a game in a whole new way.",
+        "The community that has built up around this is amazing.",
+        "This is the definition of peak performance.",
+        "The precision is inhuman.",
+        "This is so satisfying to watch.",
+        "GG!",
+        "This is legendary.",
+        "Incredible.",
+        "Wow."
+    ],
+    "Movie & TV Show Compilations": [
+        "This is the best compilation I've seen! It has all the best moments.",
+        "The nostalgia is so real. This was my favorite show growing up.",
+        "I forgot how funny this show was. I'm dying laughing.",
+        "This is the perfect video to show someone to convince them to watch the show.",
+        "The editing is great. The transitions between clips are seamless.",
+        "This character is an icon. This is a great tribute to them.",
+        "This is just a bunch of copyrighted clips stitched together. This is not original content.",
+        "I'm going to re-watch the entire series now. Thanks for the inspiration.",
+        "This is the perfect video to have on in the background.",
+        "The music you chose for this compilation is perfect.",
+        "This scene always makes me cry. It's so emotional.",
+        "This is a great summary of the entire series.",
+        "I love this show so much. It's a masterpiece.",
+        "The one-liners in this show are legendary.",
+        "This is a great compilation of all the best action scenes.",
+        "This is my comfort show.",
+        "This is a great way to relive all the best moments without having to watch the whole thing.",
+        "The bloopers are the best part.",
+        "This is a great compilation of all the most romantic moments.",
+        "This show was ahead of its time.",
+        "The chemistry between the actors is incredible.",
+        "I miss this show so much.",
+        "This is a great way to celebrate the anniversary of the show.",
+        "The writing is so clever.",
+        "This is a great compilation of all the saddest moments. I'm not crying, you're crying.",
+        "This is the content I'm here for.",
+        "This show has so much heart.",
+        "The character development is amazing.",
+        "This is a great way to introduce someone to the fandom.",
+        "This is so much more than just a TV show. It's a cultural phenomenon.",
+        "The acting is superb.",
+        "This is a great way to waste an hour. I have no regrets.",
+        "This show is so quotable.",
+        "This is a great compilation of all the most iconic outfits.",
+        "This is a timeless classic.",
+        "The soundtrack is amazing.",
+        "This is a great way to see the evolution of the characters.",
+        "This show has aged so well.",
+        "This is a great way to get hyped for the new season.",
+        "This is a great way to remember a show that was canceled too soon.",
+        "This is a great tribute to a legendary show.",
+        "I love this so much.",
+        "This is so well done.",
+        "I'm so glad I found this.",
+        "This is awesome.",
+        "This is the best.",
+        "This is everything.",
+        "I love this show.",
+        "This is iconic.",
+        "This is my childhood."
+    ],
+    "Day in the Life": [
+        "This was so interesting to watch! Your job is so cool.",
+        "I love these 'day in the life' videos. It's so cool to see how other people live.",
+        "You are so productive! I wish I could get this much done in a day.",
+        "This is so relatable. The struggle is real.",
+        "Your life seems so glamorous and exciting.",
+        "This seems so boring. Why would anyone want to watch this?",
+        "This is so inspiring. You've motivated me to be more organized.",
+        "I love your morning routine. It's so peaceful and intentional.",
+        "This is a very realistic portrayal of a day in the life. Thank you for not sugarcoating it.",
+        "This is a great way to get a behind-the-scenes look at your life.",
+        "I'm a student in the same field, and this was so helpful to see what a real day is like.",
+        "Your apartment is so beautiful and aesthetic.",
+        "This is so much work. I'm exhausted just watching this.",
+        "This is my dream job.",
+        "I love how you balance work and personal life.",
+        "This is just you showing off your perfect life.",
+        "The a-roll and b-roll in this video are so well done.",
+        "This is a great way to connect with your audience on a more personal level.",
+        "I love the little moments of joy you captured throughout the day.",
+        "This is so much more than just a video. It's a slice of life.",
+        "This is a great way to document your life.",
+        "I love the way you edit your videos. The pacing is perfect.",
+        "This is so much dedication to film your entire day.",
+        "This is a great way to show people what it's really like to be a [profession].",
+        "This is so much pressure to be productive all the time.",
+        "This is so wholesome and calming.",
+        "I love your positive attitude and energy.",
+        "This is a great way to see the world from a different perspective.",
+        "This is so much more interesting than a staged vlog.",
+        "I love your work ethic.",
+        "This is a great way to build your personal brand.",
+        "This is so much more than just a job. It's a passion.",
+        "This is a great way to stay accountable to your goals.",
+        "This is so much more than just a routine. It's a lifestyle.",
+        "This is a great way to share your knowledge and experience with others.",
+        "This is so inspiring to watch.",
+        "I love your authenticity.",
+        "This is a great way to show the reality of remote work.",
+        "This is a great way to build a community.",
+        "I love your content.",
+        "This is so well made.",
+        "I'm so glad I found your channel.",
+        "This is great.",
+        "I love this.",
+        "This is so cool.",
+        "This is amazing.",
+        "This is so interesting.",
+        "This is my new favorite channel.",
+        "This is so inspiring.",
+        "This is so motivating."
+    ],
+    "Role-playing": [
+        "This is the best role-playing series on the platform! The story is so immersive.",
+        "You are such a talented voice actor. You bring the characters to life.",
+        "The world-building is incredible. I'm so invested in this world.",
+        "The character you're playing is so well-developed and complex.",
+        "This is so much more than just a game. It's a collaborative storytelling experience.",
+        "The chemistry between all the players is amazing. You guys are so good at improvising.",
+        "This is hilarious! The comedic timing is perfect.",
+        "I'm on the edge of my seat. The suspense is killing me.",
+        "The DM is a master storyteller. The plot twists are insane.",
+        "This is my favorite D&D campaign to watch.",
+        "The character art and animations are so cool. It adds so much to the experience.",
+        "This is so much more than just rolling dice. It's about making choices and living with the consequences.",
+        "I'm so emotional right now. The character moments are so powerful.",
+        "This is a great way to escape from reality for a while.",
+        "I've been inspired to start my own role-playing group because of this series.",
+        "This is so much better than watching a scripted show.",
+        "The creativity of everyone involved is off the charts.",
+        "This is so much fun to watch. It's like being a part of the adventure.",
+        "The rules are a little confusing, but the story is so good I don't care.",
+        "This is a great example of how role-playing games can be a powerful tool for creativity and self-expression.",
+        "I'm so attached to these characters. I hope nothing bad happens to them.",
+        "The battle sequences are so epic.",
+        "This is so much more than just a hobby. It's a passion.",
+        "The production quality is so high. It's like watching a professional show.",
+        "This is a great community. Everyone is so supportive and creative.",
+        "This is a great way to learn about different role-playing systems.",
+        "I'm so glad I found this channel.",
+        "This is the content I'm here for.",
+        "This is so much fun.",
+        "I love this so much.",
+        "This is amazing.",
+        "This is epic.",
+        "I'm hooked.",
+        "This is the best.",
+        "I can't wait for the next episode.",
+        "This is so cool.",
+        "This is so creative.",
+        "This is so inspiring.",
+        "This is so much more than just a game.",
+        "This is a great story.",
+        "This is a great show.",
+        "This is a great campaign.",
+        "This is a great group.",
+        "This is a great DM.",
+        "This is a great player.",
+        "This is a great character.",
+        "This is a great world.",
+        "This is a great adventure.",
+        "This is a great experience."
+    ],
+    "Machinima": [
+        "I can't believe this was made entirely in a video game. The cinematography is incredible.",
+        "The storytelling is better than most Hollywood movies.",
+        "The voice acting is so professional. It really brings the characters to life.",
+        "This is a masterpiece of machinima. The technical skill is insane.",
+        "The way you use the game engine to create your own unique world is so creative.",
+        "This is so much more than just a fan film. It's a work of art.",
+        "The action sequences are so well-choreographed.",
+        "This is so funny! The comedic timing is perfect.",
+        "The emotional depth of this story is surprising for a machinima.",
+        "This is a great example of how video games can be used as a medium for artistic expression.",
+        "The amount of time and dedication this must have taken is mind-boggling.",
+        "The script is so well-written.",
+        "This is the best machinima series I've ever seen.",
+        "The editing is so slick and professional.",
+        "The custom animations are so impressive.",
+        "This is a love letter to the game and its community.",
+        "The lighting and camera work are on another level.",
+        "This is so much more than just playing a game. It's filmmaking.",
+        "The world you've built is so immersive.",
+        "This is a testament to the creativity and passion of the gaming community.",
+        "I'm so invested in these characters.",
+        "The sound design is so good.",
+        "This is a great way to tell a story without a huge budget.",
+        "The set design is so detailed.",
+        "This is a great way to explore the lore of the game in a new way.",
+        "This is a great example of emergent storytelling.",
+        "The possibilities with machinima are endless.",
+        "This is a great way to showcase your creativity and technical skills.",
+        "I'm so impressed by the quality of this production.",
+        "This is a great way to build a community around a shared passion.",
+        "I'm so glad I found this channel.",
+        "This is the content I'm here for.",
+        "This is so much fun.",
+        "I love this so much.",
+        "This is amazing.",
+        "This is epic.",
+        "I'm hooked.",
+        "This is the best.",
+        "I can't wait for the next episode.",
+        "This is so cool.",
+        "This is so creative.",
+        "This is so inspiring.",
+        "This is so much more than just a game.",
+        "This is a great story.",
+        "This is a great show.",
+        "This is a great film.",
+        "This is a great series.",
+        "This is a great world.",
+        "This is a great adventure.",
+        "This is a great experience."
+    ],
+    "Lyric Videos": [
+        "This is my favorite song right now. Thanks for making this lyric video.",
+        "The aesthetics of this video are so beautiful. It fits the song perfectly.",
+        "I always misheard that one lyric. Thanks for clearing it up!",
+        "This song is so deep. The lyrics are pure poetry.",
+        "This is the perfect video for singing along in the car.",
+        "The font you used is so pretty.",
+        "This song makes me feel so many emotions.",
+        "This is so much better than the official music video.",
+        "This song is a masterpiece. It deserves so much more recognition.",
+        "I'm so glad I found this song. It's been on repeat all day.",
+        "The background visuals are so calming.",
+        "This is a great way to learn the lyrics to a new song.",
+        "This is my anthem.",
+        "This song saved my life.",
+        "The way the lyrics fade in and out with the music is so satisfying.",
+        "This is a banger.",
+        "I'm crying. This song is so beautiful and heartbreaking.",
+        "This is a great way to appreciate the songwriting.",
+        "This is a timeless classic.",
+        "The translation of the lyrics is so helpful. Thank you.",
+        "This is the perfect song for a late-night drive.",
+        "This song has so much meaning to me.",
+        "I'm obsessed with this artist.",
+        "This is a great way to discover new music.",
+        "The production quality of this lyric video is so high.",
+        "This is so much more than just a song. It's a story.",
+        "This is a great song to work out to.",
+        "This song is so underrated.",
+        "This is a great song to listen to when you're sad.",
+        "This is a great song to listen to when you're happy.",
+        "This is a great song to listen to when you're in love.",
+        "This is a great song to listen to when you're heartbroken.",
+        "This is a great song to listen to when you're feeling nostalgic.",
+        "This is a great song to listen to when you're feeling hopeful.",
+        "This is a great song to listen to when you're feeling lost.",
+        "This is a great song to listen to when you're feeling inspired.",
+        "This is a great song to listen to when you're feeling rebellious.",
+        "This is a great song to listen to when you're feeling peaceful.",
+        "This is a great song to listen to when you're feeling powerful.",
+        "This is a great song to listen to when you're feeling vulnerable.",
+        "This is a great song.",
+        "I love this song.",
+        "This is my favorite song.",
+        "This is a beautiful song.",
+        "This is a powerful song.",
+        "This is a catchy song.",
+        "This is an emotional song.",
+        "This is an inspiring song.",
+        "This is a relatable song.",
+        "This is a masterpiece."
+    ],
+    "Mukbang": [
+        "This looks so delicious! I'm so hungry now.",
+        "The crunching sounds are the best part. So satisfying.",
+        "I love watching you eat. You have such a good appetite.",
+        "I'm not a fan of the chewing sounds, but I love the conversation.",
+        "This is my favorite mukbang channel. You always eat the best food.",
+        "I could never eat that much food in one sitting.",
+        "This is a great way to discover new restaurants and foods to try.",
+        "This is so wasteful. There are people starving in the world.",
+        "I love the storytime mukbangs. It's like having dinner with a friend.",
+        "The ASMR is so relaxing.",
+        "This is a very unhealthy lifestyle. I'm concerned for your health.",
+        "You're making me crave [food name] so bad right now.",
+        "This is my comfort content. I love watching it after a long day.",
+        "The way you describe the food makes me feel like I can taste it.",
+        "This is so much more than just eating. It's about sharing a meal and a conversation.",
+        "This is so gross. I can't watch people eat.",
+        "I love the variety of food you try.",
+        "The spicy challenge mukbangs are my favorite. You're so brave.",
+        "This is a great way to experience different cultures through their food.",
+        "This is just gluttony for views.",
+        "I love the way you interact with your subscribers in the comments.",
+        "This is a great way to combat loneliness.",
+        "I'm eating along with you right now.",
+        "The cheese pull was insane!",
+        "This is so much fun to watch.",
+        "I'm so glad I found your channel.",
+        "This is the content I'm here for.",
+        "I love this so much.",
+        "This is amazing.",
+        "This is delicious.",
+        "I'm so jealous.",
+        "This is my favorite.",
+        "I want some.",
+        "This looks so good.",
+        "I'm drooling.",
+        "This is a feast.",
+        "This is a treat.",
+        "This is a vibe.",
+        "This is a mood.",
+        "This is a lifestyle.",
+        "This is a community.",
+        "This is a family.",
+        "This is a home.",
+        "This is a safe space.",
+        "This is a happy place.",
+        "This is a good time.",
+        "This is a fun time.",
+        "This is a great time.",
+        "This is a party."
+    ],
+    "True Crime": [
+        "This is such a tragic and heartbreaking case. My thoughts are with the victim's family.",
+        "The details of this case are so disturbing. I can't believe someone is capable of this.",
+        "You did an amazing job researching and presenting the facts of the case. Very respectful.",
+        "This is just sensationalizing a tragedy for entertainment. It's disgusting.",
+        "I have a theory about what really happened...",
+        "I've been following this case for years. I'm so glad it's finally getting more attention.",
+        "The police work in this case was so incompetent.",
+        "This is why I'm so paranoid. The world is a scary place.",
+        "I hope they catch the person who did this. They deserve to rot in prison.",
+        "This is a great deep dive into a case I've never heard of before.",
+        "The psychological profile of the killer is fascinating.",
+        "This is so disrespectful to the victims. They're not characters in your story.",
+        "I think the husband is guilty. He's so suspicious.",
+        "The way you handle these sensitive topics is so professional and compassionate.",
+        "This is so much better than a sensationalized TV show.",
+        "The unsolved mysteries are the ones that haunt me the most.",
+        "This is a great way to raise awareness about cold cases.",
+        "I'm so glad there's a new episode. I've been waiting all week.",
+        "This is my favorite true crime channel. Your storytelling is captivating.",
+        "This is just profiting off of other people's pain.",
+        "The legal aspect of this case is so complex and interesting.",
+        "I can't believe there was a miscarriage of justice in this case.",
+        "This is a great reminder to always be aware of your surroundings.",
+        "The forensic evidence is so compelling.",
+        "I'm so invested in this case now. I need to know what happens.",
+        "This is a great community for discussing and analyzing cases.",
+        "I'm so glad I found your channel.",
+        "This is the content I'm here for.",
+        "This is so much fun to watch.",
+        "I love this so much.",
+        "This is amazing.",
+        "This is fascinating.",
+        "This is chilling.",
+        "This is heartbreaking.",
+        "This is enraging.",
+        "This is captivating.",
+        "This is addicting.",
+        "This is a masterpiece.",
+        "This is a must-watch.",
+        "This is a classic.",
+        "This is a gem.",
+        "This is a treasure.",
+        "This is a gift.",
+        "This is a blessing.",
+        "This is a miracle.",
+        "This is a revelation.",
+        "This is an epiphany.",
+        "This is a journey.",
+        "This is an experience.",
+        "This is a lifestyle."
+    ],
+    "Travel Vlogs": [
+        "This is breathtaking! I'm adding this to my bucket list right now.",
+        "You've captured the beauty and culture of this place so perfectly.",
+        "I'm so jealous! I wish I could travel the world like you.",
+        "This is so inspiring. You've motivated me to book a trip.",
+        "Thanks for all the travel tips! This is so helpful for planning my own trip.",
+        "This is just a rich person showing off their privileged life.",
+        "The drone shots are incredible. It gives such a great sense of scale.",
+        "I've been to this city before, and your vlog brought back so many good memories.",
+        "The food looks amazing! I'm so hungry now.",
+        "This is so much more than just a travel video. It's a story about human connection.",
+        "I love how you interact with the locals and learn about their culture.",
+        "This is a great way to see the world without leaving my house.",
+        "The editing and music in your vlogs are always on point.",
+        "This is a very authentic and realistic portrayal of travel. It's not always glamorous.",
+        "I love that you travel solo. It's so empowering.",
+        "This is just contributing to overtourism and destroying local communities.",
+        "This is a great guide for anyone who is planning a trip to [destination].",
+        "The hidden gems you found are amazing. I would have never known about them.",
+        "This is my favorite travel channel. Your adventures are always so exciting.",
+        "This is just a long advertisement for hotels and airlines.",
+        "The way you immerse yourself in the local culture is so respectful and admirable.",
+        "This is a great way to learn about different cultures and perspectives.",
+        "I'm living vicariously through you.",
+        "The nature and wildlife are so beautiful.",
+        "This is so much more than just a vacation. It's a life-changing experience.",
+        "This is a great way to document your memories.",
+        "I'm so glad I found your channel.",
+        "This is the content I'm here for.",
+        "This is so much fun to watch.",
+        "I love this so much.",
+        "This is amazing.",
+        "This is beautiful.",
+        "This is stunning.",
+        "This is incredible.",
+        "This is breathtaking.",
+        "This is magical.",
+        "This is a dream.",
+        "This is paradise.",
+        "This is heaven.",
+        "This is life.",
+        "This is freedom.",
+        "This is happiness.",
+        "This is joy.",
+        "This is love.",
+        "This is peace.",
+        "This is a vibe.",
+        "This is a mood.",
+        "This is a lifestyle.",
+        "This is a journey.",
+        "This is an adventure."
+    ]
+}
+
+youtube_video_descriptions = {
+    "Vlogging": [
+        "Just another chaotic day in my life! We did some work, some errands, and had a little bit of a breakdown lol. Hope you enjoy!!",
+        "The day is finally here... It's so bittersweet to leave this place with so many memories, but I'm so excited for the next chapter. Thanks for coming along with me. 🤍",
+        "I FINALLY DID THE THING I'VE BEEN TALKING ABOUT FOR MONTHS!!!",
+        "There's nothing better than a rainy day spent inside. Grab a blanket and a warm drink and let's get cozy together. We're baking, reading, and watching movies. 🌧️☕",
+        "My updated 2025 morning routine! Trying to be more intentional with my mornings to set myself up for a productive day. Let me know what your non-negotiable morning habits are!\n\nMy Matcha: [link]\nMy Skincare: [link]",
+        "wanted to sit down and have a real, unfiltered chat about my mental health journey lately. it's not always easy but thank you for providing such a safe space. if you're struggling, you are not alone.",
+        "This week was a busy one! Come along for some coffee dates with friends, getting our new puppy settled in, and a very necessary cry session. Life be like that sometimes.",
+        "I let my bf rate my outfits... I think he thought he was a judge on Project Runway or something because he did NOT hold back. Do you guys agree with his ratings??",
+        "come grocery shopping with me! just a casual weekly haul from Trader Joe's to stock up the fridge. what are your must-have items?",
+        "It was time for a major reset. We're tackling the whole apartment, from the junk drawer to the closet. So satisfying! ✨\n\nMy organizers: [link]",
+        "Well, that took a turn. The day started out so normal and then THIS happened. You have to see it to believe it.",
+        "She had NO idea I was coming!!! Flew across the country to surprise my amazing mom for her birthday. Her reaction was everything. ❤️",
+        "A few days in LA! It was a whirlwind of work events, trying some amazing restaurants, and finally catching up with some old friends. So good to be back!",
+        "Let's talk about the reality of being a full-time content creator. It's not all glamorous events and free stuff. Here's an honest look at the highs and lows of my job.",
+        "I asked you guys for your assumptions about me on Instagram and you did not disappoint! Answering some of the juiciest (and wildest) ones today.",
+        "Trying to have a super productive day and get my life together. We're talking to-do lists, deep work sessions, and finally tackling that one task I've been avoiding.",
+        "A realistic 'what I eat in a day.' No salads for every meal here lol. Just simple, easy, and delicious food that makes me feel good!",
+        "no talking, just vibes. a silent vlog for when you just want to chill and not listen to someone ramble. enjoy the sounds of a quiet day. 🎧",
+        "We woke up and decided to just go! A spontaneous road trip to a place we've never been before. Sometimes the best plans are no plans at all.",
+        "How I wind down after a long day. My cozy night routine featuring skincare, journaling, and a good book to help me relax and get ready for a good night's sleep.",
+        "i attempted to be 'that girl' for 24 hours... waking up at 5 am, green juice, pilates, the whole thing. was it worth it? lets find out",
+        "i did a thing....... eek!",
+        "My first time trying the viral food from that one place everyone is talking about. Let's see if it lives up to the hype.",
+        "Come with me to the salon! It was time for a little refresh. So happy with how my hair turned out!",
+        "Life is all about change, and I'm making some pretty big ones right now. Wanted to update you all on what's been going on behind the scenes.",
+        "You asked, I answered! Your juiciest questions from my IG stories. We talk relationships, youtube drama, and future plans!",
+        "WELCOME TO MY CRIB! So excited to finally show you a full tour of my apartment. It's been a labor of love to get it to this point. Hope you love it as much as I do!\n\nLINKS:\nCouch: [link]\nRug: [link]\nCoffee Table: [link]",
+        "it's the most wonderful time of the year!! 🍂🎃 decorating my apartment for fall and making it super cozy.",
+        "",
+        "Just a very average day in my life. Nothing crazy happened. Sometimes it's nice to just have a normal, boring day. you know?",
+        "SO MANY PACKAGES. A huge unboxing of PR packages that have been piling up. Thank you so much to all the amazing brands!",
+        "This was a terrible/great idea. I let my Instagram followers make all my decisions for 24 hours. The results were... interesting.",
+        "Not every week can be a good one. This one was pretty rough, to be honest. Just a raw, honest vlog about navigating a tough time.",
+        "Is there anything better than the smell of freshly baked cookies? Baking my all-time favorite chocolate chip cookie recipe today. Recipe below!\n\n[Recipe]",
+        "oh no. we're reacting to my old cringey videos from when i first started youtube. this is going to be painful.",
+        "Today was all about me. A much-needed self-care day to reset and recharge. Face masks, bubble baths, and my favorite comfort movie.",
+        "what's in my bag? probably a lot of junk. let's see.",
+        "I've always been too scared to go to a concert by myself, but I did it! Here's my experience of going to see my favorite band alone.",
+        "My Sunday reset routine to get ready for the week ahead. Cleaning, planning, and getting my life organized.",
+        "So... I have some news to share with you all. Please be kind.",
+        "Is it possible to learn a new skill in just 24 hours? I tried to learn how to juggle. It did not go well.",
+        "I tried waking up at 5am every day for a week. Here's how it affected my productivity, mood, and overall life. Am I a morning person now?",
+        "A little weekend getaway to the mountains! We went hiking, sat by the fire, and disconnected from the world for a bit. So refreshing. 🏔️",
+        "new york city is expensive... but how expensive? i tracked all of my spending for a week to see where my money actually goes. the results are shocking.",
+        "Thrift with me! Trying to find some unique home decor pieces at my local thrift stores to give my apartment some character on a budget.",
+        "i'm not sure how to say this.",
+        "Get Ready With Me! Doing my hair and makeup for a fancy dinner party with friends. Also spilling some tea while I'm at it.",
+        "This is a really hard video to make. I need to take a step back for a little while. I explain everything in here. Thank you for understanding.",
+        "vlog",
+        "i think i made a huge mistake and i dont know what to do."
+    ],
+    "Gaming": [
+        "These 3 simple tricks are the ONLY things you need to do to rank up fast in Valorant. I went from Iron to Ascendant in one season using this method. #valorant #gaming",
+        "A compilation of my funniest gaming moments from this year so far. If you need a laugh, this is the video for you. Get ready for fails, glitches, and pure chaos.",
+        "The ultimate challenge run. Can you beat Elden Ring using only a torch as a weapon? No shields, no magic, just pure fire. This is pain.",
+        "I found a new indie horror game on Steam and it is genuinely one of the scariest games I have ever played. DO NOT watch this alone.",
+        "What happens when a total noob gets coached by a pro player? I teamed up with a Radiant-level player to see if they could fix my terrible gameplay in one day.",
+        "IT'S HERE! The first trailer for GTA 7 just dropped and we're breaking it down frame by frame. My reaction and analysis of what we can expect from the next Grand Theft Auto.",
+        "I have never been so angry at a video game in my entire life. This game is designed to make you rage.",
+        "building my dream modern mansion in The Sims 5! using all the new build mode features. what do you think?\n\nfind it on the gallery! ID: MySimsChannel",
+        "I think I found the new meta weapon in Warzone 3. This loadout has zero recoil and deletes enemies instantly. You need to try this setup before it gets nerfed.",
+        "he thought he had me... but he was wrong. an absolutely insane 1v5 clutch to win the game. my heart is still pounding.",
+        "This game is a flawless masterpiece. I have played for over 500 hours and have not found a single bug, glitch, or exploit. The balance is perfect and the developers are geniuses. (This is a joke)",
+        "i beat minecraft... without walking. i could only jump, crawl, swim, and fly. this was one of the weirdest challenges i've ever done.",
+        "My official Apex Legends Season 25 tier list. Ranking every single legend from S-tier to F-tier based on the current meta. Do you agree with my list?",
+        "You've probably never heard of this game, but it's one of the best I've played all year. This is why you need to play this underrated gem on Steam.",
+        "These are my personal 10/10 games. The masterpieces of gaming that I think everyone should experience at least once.",
+        "this boss is actually impossible. i've been stuck here for 8 hours. please send help.",
+        "From the Hot Coffee mod to the Cyberpunk 2077 launch, we're looking at some of the biggest and most infamous controversies in the history of video games.",
+        "My full, in-depth review of [Game Name] after 100 hours of gameplay. We'll cover the story, gameplay, graphics, and my final verdict on whether it's worth your money.",
+        "The storytelling in this game is on another level. This is a narrative masterpiece that will stick with me for a long time. (No spoilers!)",
+        "Welcome to my new and improved gaming setup for 2025! Here's a full tour of my PC, peripherals, and the whole battlestation. All links in the description!\n\nPC Specs:\nCPU: [CPU]\nGPU: [GPU]\nRAM: [RAM]",
+        "I just finished this game and I am emotionally destroyed. The ending completely broke me. Let's talk about it. (MAJOR SPOILERS AHEAD)",
+        "We assembled a fireteam to take on the brand new, super difficult raid in Destiny 3 on day one. Can we get the world first clear?",
+        "just some funny moments with the boys. enjoy.",
+        "The new Call of Duty is here, but is it any good? Here's my honest review of the campaign, multiplayer, and zombies. Is it worth buying?",
+        "I've been playing Fortnite since Chapter 1, but it's time to move on. Here's why I'm quitting the game for good.",
+        "chillin",
+        "This bug is so game-breaking that it's actually hilarious. The developers definitely didn't test this.",
+        "I unboxed the rarest, most expensive knife skin in CS:GO 3... my reaction is unreal. I CAN'T BELIEVE IT.",
+        "What happens when a pro player goes up against a complete noob? We found out.",
+        "This single puzzle took me FIVE HOURS to solve. My brain is completely fried.",
+        "The graphics in this game are next-level. Just a showcase of what the Unreal Engine 6 can do in 4K at 120FPS on the new RTX 6090. Pure eye candy.",
+        "Stop what you're doing and play this game. It's an absolute must-play for every gamer.",
+        "A new Nintendo Direct has been announced! Here are my predictions and what I'm hoping to see, from a new Mario game to the reveal of the Switch 2.",
+        "I tried to beat the entire game with only 1 HP. One hit and I'm dead. This is the ultimate challenge.",
+        "From the 8-bit original to Tears of the Kingdom, we're taking a look at the evolution of The Legend of Zelda series and what makes it so timeless.",
+        "Why 2025 was the greatest year in the history of gaming. We got so many masterpieces!",
+        "A brand new adventure begins! This is Part 1 of my blind Let's Play of [New Game Name]. I know nothing about this game, so let's experience it together!",
+        "There's no way he hit that shot. He has to be hacking... right? Let me know what you think in the comments.",
+        "i love this game.",
+        "Get the tissues ready. We're counting down the most heartbreaking and saddest moments in video game history.",
+        "Here are the top 10 upcoming games that I am most excited for. The future of gaming looks bright!",
+        "We found a way to break the game's physics engine and the results were hilarious. I don't think we were supposed to be able to do this.",
+        "A viewer recommended I play this indie horror game. I regret everything. This was a terrible idea.",
+        "",
+        "If you play this game, I'm sorry, but we can't be friends. This game is a dealbreaker.",
+        "I wish I never played this game.",
+        "The lore behind this game is so much deeper and darker than you could ever imagine. Let's take a deep dive into the story.",
+        "My honest, no-spoiler review of the biggest game of the year. Should you buy it?",
+        "Is this new open-world RPG a 10/10 masterpiece or a buggy, unfinished disaster? Let's find out.",
+        "WE DID IT! WORLD FIRST COMPLETION OF THE NEW RAID! LET'S GOOOOOOOO!"
+    ],
+    "Comedy Skits": [
+        "It really do be like that sometimes. #comedy #skit #relatable",
+        "Which one are you? Let me know in the comments!",
+        "The accuracy is painful. Shoutout to all the moms out there.",
+        "If real life had video game logic, things would be a lot weirder.",
+        "My brain cells working overtime during a test to remember what mitochondria is.",
+        "And then they ask 'who's Steve Jobs?' and you just have to walk away.",
+        "I'm paying you, let me leave. Please.\n\nStarring:\nMe\nAlso Me",
+        "My social battery after 30 minutes of small talk: 📉",
+        "It's called efficiency, look it up.",
+        "The panic is real. The horror. The betrayal.",
+        "Tag that friend. We all have one.",
+        "What if chairs had feelings?",
+        "Based on a true story that happened to me 5 minutes ago.",
+        "The single most terrifying experience a human can endure.",
+        "Theirs: A perfect gourmet meal. Mine: A fire alarm and a call to the fire department.",
+        "I'm a 'large black coffee' what are you?",
+        "A conversation with my anxiety. He's not very nice.",
+        "But... where do I go now?!",
+        "Finally, some truth in advertising.",
+        "",
+        "It's a tough job but someone has to do it.",
+        "I swear they said their name was Bort.",
+        "so we're not wearing the matching outfits?",
+        "My cat's daily routine: sleep, eat, chaos, sleep.",
+        "This is my formal request for a four-day work week.",
+        "If I was a streamer.",
+        "He's not wrong tho.",
+        "The instructions were in Swedish what did you expect from me??",
+        "The fear of being a minor inconvenience is a powerful one.",
+        "This is my life now.",
+        "What if my dog was a famous YouTuber? I think it would go something like this.",
+        "Can you see my screen?",
+        "What does the 🤔 emoji even mean???",
+        "There's always that one person who does nothing and still gets an A.",
+        "Just 5 more minutes...",
+        "A dramatic reading of the latest scam email I received. This prince needs my help.",
+        "The horror movie would be 5 minutes long if the characters had common sense.",
+        "The sacred ritual of recharging your social battery.",
+        "Actually, according to my calculations...",
+        "My diet starts tomorrow. For real this time.",
+        "My inner child wants chicken nuggets for dinner. My adult self also wants chicken nuggets for dinner.",
+        "The group chat knows all.",
+        "Denial, anger, bargaining, depression, acceptance. The 5 stages of a dead phone.",
+        "I am a danger to myself and others behind the wheel.",
+        "The darkest time in human history.",
+        "Welcome to my crib.",
+        "My evil plan is flawless.",
+        "Rule #1 of the internet: don't read the comments.",
+        "lol",
+        "i am the problem it's me"
+    ],
+    "Educational Explainers": [
+        "Have you ever woken up from a bizarre dream and wondered... why? In this video, we explore the leading scientific theories behind why we dream, from memory consolidation to threat simulation. \n\nSources:\n[Link to study]\n[Link to article]",
+        "Quantum entanglement, famously described by Einstein as 'spooky action at a distance,' is one of the most bizarre and fascinating concepts in physics. But what is it, really? Let's break down this mind-bending idea in simple terms.",
+        "From the founding of Rome to the fall of the Western Roman Empire, we're covering the entire, epic history of Ancient Rome in just 20 minutes. This is a crash course in one of history's greatest civilizations.",
+        "How do we get massive amounts of clean energy from a nuclear reactor? And how does it work without, you know, exploding? We'll dive into the physics of nuclear fission and the engineering of a power plant.",
+        "The universe is vast and old, so where is everyone? This is the question at the heart of the Fermi Paradox. Let's explore the chilling and mind-boggling potential answers to this cosmic mystery.",
+        "Nihilism is often misunderstood as a purely negative or depressing philosophy. In this video, we'll explore the different types of nihilism, from existential to moral, and discuss the ideas of its most famous thinkers, like Friedrich Nietzsche.",
+        "From peacock feathers to the wings of a butterfly, the color blue is surprisingly rare in the natural world. Why is that? The answer lies in the fascinating physics of light and the chemistry of pigments.",
+        "Your immune system is an incredibly complex army of cells, tissues, and organs that work together to protect you from disease. Let's take a deep dive into how this amazing biological defense system works.",
+        "Could a Universal Basic Income (UBI) solve poverty and inequality? Or would it lead to economic disaster? We'll look at the arguments for and against UBI, examine real-world experiments, and explore the potential economic impacts.",
+        "The universe is made of more than just the stuff we can see. In fact, most of it is composed of mysterious substances called dark matter and dark energy. What are they, and how do we know they exist?",
+        "Machine learning and AI are changing the world, but how do they actually work? We'll explain the basic concepts of machine learning, like neural networks and training data, in a way that anyone can understand.",
+        "They are farmers, soldiers, and engineers. The world of ants is surprisingly complex and fascinating. Let's explore their incredible social structures and behaviors.",
+        "That weird feeling that you've experienced something before... what is it? We explore the neuroscience and psychology behind the phenomenon of deja vu.",
+        "The Maya civilization was one of the most advanced in the ancient world, known for its incredible cities, complex writing system, and astronomical knowledge. So why did it collapse? Let's investigate the rise and fall of this amazing culture.",
+        "Can you solve the famous Trolley Problem? Let's explore this classic ethical paradox and what it reveals about our moral intuitions.",
+        "How does your phone know exactly where you are? The Global Positioning System (GPS) is a marvel of modern technology that relies on a network of satellites and the principles of Einstein's theory of relativity. Here's how it works.",
+        "How do we form memories, and why do we forget things? This video explores the neuroscience of memory, from short-term to long-term storage, and the different parts of the brain involved.",
+        "About 541 million years ago, life on Earth suddenly became much more complex and diverse. This event, known as the Cambrian Explosion, is one of the most important moments in the history of life. What caused it?",
+        "From its origins as a military project to the global network we use every day, here is a brief history of the internet.",
+        "In a world of chaos and anxiety, the ancient philosophy of Stoicism offers a path to resilience and tranquility. This is a practical guide to applying Stoic principles to your modern life.",
+        "What is a black hole? What happens if you fall into one? Let's explore the mind-bending physics of black holes in a way that's easy to understand for beginners.",
+        "Vaccines are one of the most important medical inventions in history. But how do they work to protect us from disease? We'll explain the science behind how vaccines train your immune system.",
+        "A, B, AB, O... why do we have different blood types? We'll explore the science and genetics behind blood groups and why they matter.",
+        "Marie Curie was a pioneering physicist and chemist who changed the world. This is the story of her incredible life, her groundbreaking scientific discoveries, and her lasting legacy.",
+        "You've probably heard of Bitcoin and blockchain, but what is it, really? Here's a simple, no-hype explanation of blockchain technology and how it works.",
+        "",
+        "Stars are the building blocks of the cosmos. But how are they born from clouds of gas and dust, and how do they eventually die, sometimes in spectacular explosions called supernovae?",
+        "The Trolley Problem 2.0. How should a self-driving car be programmed to act in a crash scenario? This video explores the complex ethical dilemmas of artificial intelligence.",
+        "Chaos Theory is the science of surprises, of the nonlinear and the unpredictable. It teaches us to expect the unexpected. Let's explore the famous butterfly effect and the beautiful, complex patterns of chaos.",
+        "Was the Trojan War a real historical event, or just a myth? We'll examine the archaeological and historical evidence to uncover the real story behind Homer's epic tale.",
+        "Why does a summer vacation feel so short now compared to when you were a kid? Let's explore the psychology and neuroscience behind why our perception of time seems to speed up as we get older.",
+        "How do we build structures that touch the sky? From foundation to spire, this is how modern skyscrapers are designed and constructed.",
+        "The science of addiction and its effect on the brain.",
+        "what did dinosaurs actually sound like? probably not like they do in the movies.",
+        "A simple introduction to the mind-bending concepts of String Theory, which suggests that the universe is made up of tiny, vibrating strings.",
+        "Your brain takes shortcuts to help you make sense of the world, but sometimes these shortcuts lead to errors in judgment. These are cognitive biases, and here's how they are lying to you.",
+        "Could there be a 'Great Filter' that prevents intelligent life from becoming interstellar? This is a terrifying but plausible explanation for the Fermi Paradox.",
+        "CRISPR is a revolutionary gene-editing technology that has the potential to cure genetic diseases, but it also raises profound ethical questions. Here's what it is and how it could change our world.",
+        "From bread to beer, fermentation is an ancient process that has shaped human civilization. Let's explore the history and science of this amazing biochemical process.",
+        "We spend about a third of our lives sleeping, but why is it so essential for our survival? Let's explore the many vital functions of sleep, from memory consolidation to cellular repair.",
+        "In 1859, a massive solar storm known as the Carrington Event knocked out telegraph systems across the globe. If an event of that magnitude happened today, it could send our modern, tech-dependent civilization back to the dark ages.",
+        "",
+        "An introduction to the stock market for absolute beginners. We'll cover basic concepts like stocks, bonds, and indexes, and how to get started with investing.",
+        "The beautiful and complex six-sided symmetry of a snowflake is a perfect example of mathematical patterns in nature. But how do they form?",
+        "Why does a sad song make us cry, and a happy song make us dance? This video explores the neuroscience and psychology behind why music has such a powerful effect on our emotions.",
+        "What is consciousness? This is one of the biggest and most profound mysteries in science and philosophy. Let's explore the leading theories.",
+        "The octopus is one of the most intelligent and bizarre creatures on the planet. With three hearts, blue blood, and the ability to change color and shape, its biology is truly alien.",
+        "The Great Pyramids of Giza are one of the wonders of the ancient world. But how were they built with the technology of the time? We'll explore the most likely theories.",
+        "The concept of infinity has fascinated mathematicians and philosophers for centuries. Let's try to wrap our heads around this mind-bending idea.",
+        "We are the last human species left. But once upon a time, we shared the planet with other hominins like Neanderthals and Denisovans. So what happened to them? Why are we the only ones who survived?"
+    ],
+    "How-To & DIY": [
+        "In this video, I'll show you how to build a simple, beautiful bookshelf using only basic tools. This is a perfect weekend project for any beginner woodworker!\n\nTools:\n- Drill\n- Saw\n- Tape Measure",
+        "STOP using soap on your cast iron skillet! Here's the right way to clean and season your cast iron so it will last a lifetime.",
+        "Let's make a cute and functional desk organizer using only cardboard and hot glue. A great way to upcycle and get your desk tidy!",
+        "Don't pay a mechanic to do this! Changing your own car oil is easy and can save you a ton of money. I'll walk you through it step-by-step.",
+        "This is the only no-knead bread recipe you'll ever need. It's so simple and the result is a perfect, crusty loaf every time.",
+        "",
+        "Let's make some awesome tie-dye t-shirts! I'll show you the easiest method for beginners to get vibrant, cool patterns.",
+        "Building a PC can seem intimidating, but it's easier than you think! This is a complete, step-by-step guide for first-time builders. All parts linked below!\n\nPart List:\n[link]",
+        "Is your toilet constantly running? Here's how to fix it in under 5 minutes with a very cheap part. No plumber needed!",
+        "You don't need a big yard to grow your own food. Here's the easiest way to grow delicious tomatoes in a pot on your balcony or patio.",
+        "The first 20 hours of practice are the most important. I'll show you the method for how to learn any new skill, from coding to cooking, as quickly as possible.",
+        "I'll show you how to make this beautiful, rustic coffee table for under $100. It's a simple DIY project that will make a huge statement in your living room.",
+        "Painting a room is one of the easiest ways to transform a space. I'll show you all the tips and tricks to get a professional-looking finish.",
+        "let's make a raised garden bed for free using reclaimed pallet wood!",
+        "Small talk doesn't have to be awkward. Here are 5 easy tips on how to start a conversation with anyone, anywhere.",
+        "Soldering is a fundamental skill for anyone getting into electronics. This is the ultimate guide for beginners to get started with soldering.",
+        "DIY concrete planters. they look great.",
+        "Stop drinking bad coffee. I'll show you how to make the perfect cup of coffee at home using a French press.",
+        "I found this old, ugly dresser on the side of the road and decided to give it a new life. Watch the transformation!",
+        "yes, you can create a website in just 10 minutes. i'll show you how.",
+        "Make your own natural, non-toxic all-purpose cleaner using just a few simple ingredients you probably already have at home.",
+        "Got a clogged drain? Before you reach for those harsh chemicals, try this simple, effective method to unclog it.",
+        "I've always wanted a neon sign, so I decided to make my own! Here's how I did it.",
+        "These are the 5 knots everyone should know. They are incredibly useful in a variety of situations.",
+        "Here's the right (and safe) way to jump start a car. Every driver should know this.",
+        "Let's make a beautiful macrame plant hanger! This is a simple and relaxing DIY project for beginners.",
+        "You can make ramen at home that's just as good as a restaurant. I'll show you how.",
+        "A simple woodworking project for beginners. Let's build a classic birdhouse.",
+        "You don't need a fancy camera to take amazing pictures. Here are my top tips for taking better photos with your smartphone.",
+        "Build this awesome DIY fire pit in your backyard for under $50. Perfect for summer nights!",
+        "Is your closet a mess? I'll show you the best way to organize it to maximize space and make getting dressed so much easier.",
+        "Creating a budget is the first step to financial freedom. I'll show you how to make a budget that you can actually stick to.",
+        "Making your own bath bombs is easy, fun, and so much cheaper than buying them! A perfect DIY gift idea.",
+        "Don't get stranded! This is the definitive, step-by-step guide on how to change a flat tire.",
+        "I'll show you how to make a minimalist leather wallet from a single piece of leather. No sewing required!",
+        "Want to start a YouTube channel? Here's my beginner's guide on how to edit videos using free software.",
+        "DIY floating shelves are a great way to add storage and style to any room. Here's how to make them.",
+        "Sourdough starter is the heart of any good sourdough bread. I'll show you how to make your own from scratch.",
+        "Don't throw away those old, rusty tools! I'll show you how to restore them to their former glory.",
+        "How to write the perfect resume that will get you noticed by recruiters.",
+        "A great eco-friendly alternative to plastic wrap. Here's how to make your own reusable beeswax food wraps.",
+        "Composting is a great way to reduce waste and create amazing fertilizer for your garden. Here's how to get started.",
+        "Gordon Ramsay's scrambled eggs are famous for a reason. Here's the secret to making them perfectly every time.",
+        "DIY phone projector from a shoebox.",
+        "Knowing how to negotiate your salary can earn you thousands of dollars over your career. Here's how to do it effectively.",
+        "Let's make a beautiful, self-sustaining terrarium in a glass jar. A perfect little ecosystem for your desk.",
+        "A step-by-step guide on how to brew your own beer at home. It's a fun and rewarding hobby!",
+        "Why buy a cat tree when you can build a better one for cheaper? Here's my DIY cat tree project.",
+        "The best way to pack a suitcase to maximize space and avoid wrinkles. These are my go-to travel hacks.",
+        "Struggling with sleep? Here are some science-backed tips on how to finally get a good night's rest."
+    ],
+    "Tech Reviews": [
+        "The iPhone 20 is here. But is it really that much better than the iPhone 19? I've been using it for a week, and here's my full, honest review. We'll cover the camera, battery life, performance, and whether you should upgrade.",
+        "I've been using the new Samsung Galaxy Z Fold 7 as my main phone for a month. Here's the good, the bad, and the truth about living with a foldable phone. #samsung #techreview\n\nBuy it here: [affiliate link]",
+        "The new M5 MacBook Pro is incredibly powerful, but you should NOT buy it until you watch this video. There's one major flaw that nobody is talking about.",
+        "Is the new Microsoft Surface Laptop Go 4 the perfect laptop for students? It's affordable, lightweight, and has great battery life. Let's find out if it's the best option for school and college in 2025.",
+        "I bought the cheapest, no-name smartphone on Amazon for $50. Is it a usable phone or just a piece of electronic waste? The results are surprising.",
+        "The Google Pixel 12 is all about AI. With its new Tensor G6 chip, it can do some incredible things with photos and the Google Assistant. Is this the smartest smartphone ever made? This is my review.",
+        "This gadget is a complete gimmick. It serves no real purpose. And I absolutely love it.",
+        "The Sony WH-1000XM6 headphones are here. Are they still the kings of noise-cancelling? Here's my honest review and comparison with the Bose QC Ultra and AirPods Max.",
+        "This 85-inch 8K OLED TV costs $3000. Is it worth the money? We'll test the picture quality, gaming performance, and smart features to find out.",
+        "From AI pins to smart toasters, this is the most overrated and disappointing tech of 2025.",
+        "I've been an Android user for 5 years, but I'm switching back to the iPhone. Here's why.",
+        "This new AI gadget promises to change the way we interact with technology. Is it the future, or just another failed startup? I've been testing it for a week.",
+        "The 2025 Razer Blade 16 with its new RTX 6080 GPU is a beast of a gaming laptop. But is it worth the hefty price tag? Let's review the performance, design, and thermals.",
+        "The Nothing Phone (4) is here, with its unique design and glyph interface. But in a crowded market, is it still a good choice? Let's find out.",
+        "Welcome to my ultimate minimalist and productive desk setup for 2025! Here's a full tour of all the tech I use every day to get my work done. All products linked below!",
+        "These new earbuds from [Brand] are half the price of AirPods Pro but sound even better. Here's my full review.",
+        "I really regret buying this.",
+        "The Framework Laptop is a repairable, upgradeable, and sustainable laptop. I've been using it for a year, and here's my long-term review of this revolutionary piece of tech.",
+        "What's the best camera for YouTube in 2025? We're comparing the top mirrorless cameras from Sony, Canon, and Panasonic to help you decide.",
+        "this drone is tiny but the camera is insane.",
+        "I bought a $50 knockoff Apple Watch from Wish. Was it a huge mistake, or a surprising bargain?",
+        "I went to a garage sale and bought a box of old, random tech. Let's see if any of it still works.",
+        "The new iPad Pro with the M5 chip is more powerful than most laptops. But who is it actually for? A review for the creative professional.",
+        "This ergonomic keyboard looks weird, but it completely changed the way I type and eliminated my wrist pain.",
+        "Why mechanical keyboards are so much better than the cheap one that came with your computer. A beginner's guide.",
+        "Let's take a look at the worst tech fails and flops of the year. What were these companies thinking?",
+        "Most smart home gadgets are useless. But this one is actually smart and has made my life so much easier.",
+        "A brutally honest review of the new Insta360 X5 360-degree camera. Is it the best action camera you can buy?",
+        "Can this tiny mini PC with an integrated GPU replace my giant gaming desktop? I tested it with Cyberpunk 2077 and other demanding games.",
+        "Smartphones are boring now. Here's the problem with the modern smartphone industry and its lack of innovation.",
+        "a long term review of the tesla model z",
+        "Should you buy a 4K monitor for productivity or an ultrawide monitor for immersive gaming? Let's break down the pros and cons of each.",
+        "The best budget tech you can buy for under $50. These are some of my favorite affordable gadgets.",
+        "The Apple Vision Pro 2 is here. It's lighter, cheaper, and more powerful. Is this the spatial computing device that will finally go mainstream?",
+        "This E-Ink tablet is a game changer for students and anyone who takes a lot of notes. It feels just like writing on paper.",
+        "These are my favorite and most-used tech products of 2025.",
+        "this robot vacuum is smarter than me. it can mop, avoid obstacles, and even empties itself. living in the future.",
+        "A deep dive into the architecture and performance of Apple's new M5 Pro chip. The benchmarks are insane.",
+        "With mirrorless cameras getting so good, is there any reason to still buy a DSLR camera? Let's discuss.",
+        "This portable monitor has been a game-changer for my productivity when I'm traveling or working from a coffee shop.",
+        "The best smart watch for Android users in 2025. A comparison of the latest from Samsung, Google, and Garmin.",
+        "I was tired of paying for cloud storage, so I built my own custom NAS (Network Attached Storage) server. Here's a step-by-step guide.",
+        "Are foldable phones the future of mobile technology, or are they a fragile gimmick that will never catch on? Let's debate.",
+        "I bought the 5 weirdest and most wonderful pieces of tech I could find on AliExpress. Let's see what I got.",
+        "This gaming mouse has a secret feature that will give you an unfair advantage. (Just kidding, it's a fidget spinner).",
+        "Can a $500 gold-plated HDMI cable really improve your picture quality? We tested it to find out.",
+        "My initial thoughts on the new Rabbit R2 AI device. Is it a smartphone killer?",
+        "This is the most innovative and exciting product I've seen all year. It's a true game-changer.",
+        "I sold my Apple Watch. Here's why I'm going back to a traditional watch.",
+        "A realistic look at what it's like to live with an electric car. We'll cover charging, range anxiety, and the real cost of ownership."
+    ],
+    "Unboxing": [
+        "IT'S FINALLY HERE! UNBOXING THE BRAND NEW SONY PLAYSTATION 6! This is my first impression and setup of the next-gen console.",
+        "I bought a $10,000 mystery box from a seller on the dark web. This was a terrible idea. What is inside this box?",
+        "Unboxing the new iPhone 20 in the new Titanium Blue color. Let's see what's in the box (spoiler: not much) and get my first impressions.",
+        "um. this box was filled with snakes. this is not what i ordered.",
+        "I bought every single product Apple released in 2025, from the new iPhone to the MacBook Pro and Apple Watch. This is one giant unboxing.",
+        "a huge tech unboxing! lots of new gadgets from amazon to upgrade my setup.",
+        "Unboxing a 20-year-old, factory-sealed iPod Classic from 2005. Will it still work? Let's find out!",
+        "After 10 years on YouTube, I finally got it. The Black Diamond Play Button for 100 million subscribers. Let's unbox it and see what's inside.",
+        "My new camera setup for 2025! Unboxing the Sony A7S IV and the new G Master lens.",
+        "I found the weirdest subscription box on the internet. It's a monthly box of... taxidermy insects? Let's unbox it.",
+        "Unboxing the massive collector's edition of [New Game]. It comes with a statue, art book, and more!",
+        "I bought a whole pallet of returned Amazon packages for $500. Will I find a hidden treasure or just a bunch of junk? Let's find out!",
+        "Unboxing the new Samsung Galaxy Z Fold 7. The folding screen technology is still so futuristic!",
+        "This mystery box was a complete SCAM. I paid $100 and got a box of garbage.",
+        "Unboxing the new UCS LEGO Star Destroyer. This thing has over 7,000 pieces and is massive!",
+        "ASMR unboxing. No talking, just the satisfying sounds of opening a new product. Crinkles, taps, and peeling plastic. 😴",
+        "The packaging on this product is a work of art. The unboxing experience itself is worth the price.",
+        "Unboxing the new Travis Scott x Nike shoes. These are worth more than my car. The hype is real.",
+        "this is the smallest gaming pc i have ever seen. how is it so powerful?",
+        "NINTENDO SWITCH 2 UNBOXING! First look at the new console, the controllers, and the new games.",
+        "a HUGE clothing haul unboxing to get ready for fall. so many cozy sweaters and boots!",
+        "Unboxing a realistic, custom-built lightsaber from Saberforge. It feels like the real thing!",
+        "This thing is way bigger than I thought it would be from the pictures online.",
+        "Unboxing a monthly Japanese snack box from TokyoTreat! So many weird and delicious snacks and candy to try.",
+        "Is the new Kindle Scribe 2 the ultimate e-reader and digital notebook? Here's my unboxing and first look.",
+        "unboxing my new custom mechanical keyboard. the sound is so satisfying.",
+        "this was a terrible idea.",
+        "Unboxing a piece of history. A newspaper from the day the Titanic sank.",
+        "I can't believe what was inside this box. I'm speechless.",
+        "Unboxing the world's most expensive coffee maker. Does it make better coffee? Let's find out.",
+        "so cool.",
+        "My first impression and setup of the new Google Pixel 12.",
+        "A subscriber sent me a surprise gift! I have no idea what's inside. Thank you so much!",
+        "This package has been lost in the mail for 2 years. I finally got it. Let's see what's inside.",
+        "I bought lost luggage at an auction. What kind of treasures (or junk) will I find inside?",
+        "The unboxing experience of this phone is 10/10. Apple is still the king of packaging.",
+        "Unboxing a vintage Apple Macintosh computer from the 90s. Will it still boot up?",
+        "WHAT'S IN THE BOX?!",
+        "Unboxing the brand new MacBook Pro with the M5 Max chip. This thing is a beast.",
+        "heavy.",
+        "I've been waiting for this for so long.",
+        "Unboxing a limited edition something-or-other that I definitely paid too much for.",
+        "The smell that came out of this box... I'm not okay.",
+        "i have no words",
+        "Unboxing a custom-built, pro-level gaming controller from Battle Beaver.",
+        "This is definitely not what I ordered from Amazon.",
+        "Unboxing the new DJI Mini 5 Pro drone!",
+        "let's see what we got.",
+        "The knife they give you to open the box is a work of art in itself.",
+        "unboxing."
+    ],
+    "Beauty Tutorials": [
+        "This is my quick and easy 5-minute makeup routine for every day. Perfect for when you're in a hurry but still want to look put together!",
+        "Get ready with me while I tell you the story of my worst date ever. It's a long story, so get comfortable.",
+        "I tested the most viral TikTok makeup hacks to see if they actually work or if they're a total scam. The results are... interesting.",
+        "The ultimate beginner's guide to eyeshadow! We'll cover everything from brushes and priming to a simple, easy blending technique that works every time.",
+        "I'll show you my foolproof trick for how to do a perfect winged eyeliner every single time. It's easier than you think!",
+        "A full face of my favorite affordable makeup from the drugstore! You don't need to spend a lot of money to look amazing.\n\nPRODUCTS USED:\n[List of products]",
+        "My updated skincare routine for 2025! These are the products that have completely transformed my skin and given me that healthy glow.",
+        "Recreating Zendaya's stunning red carpet look from the Oscars. Can I pull it off?",
+        "The glass skin makeup trend is all about dewy, luminous, and healthy-looking skin. I'll show you how to get the look.",
+        "The 'clean girl' makeup look is my go-to for a natural, effortless vibe. It's all about minimal products and fresh-looking skin.",
+        "Finding your perfect foundation shade can be tricky. I'll show you how to determine your undertone and test shades like a pro.",
+        "I tested the most expensive foundation in the world. It costs $250. Is it made of gold? Is it worth the money? Let's find out.",
+        "i let my boyfriend do my makeup. this was a mistake.",
+        "Ranking all of my Fenty Beauty products from best to worst. What's worth your money and what should you skip?",
+        "The secret to long-lasting lipstick that will survive anything, from eating to wearing a mask. No more smudging!",
+        "If you have hooded eyes, this eyeshadow tutorial is for you! I'll show you some tips and tricks to make your eyes look bigger and more defined.",
+        "grwm for a chill day at home. not going anywhere but still want to feel cute.",
+        "A complete guide to makeup brushes. What do they all do? Which ones do you actually need? I'll break it all down for you.",
+        "My go-to sun-kissed, bronzy makeup look for summer. It's all about looking glowy and warm.",
+        "How to cover acne, scars, and dark spots without looking cakey or heavy. My best tips for a flawless, natural-looking base.",
+        "The new Charlotte Tilbury blush wand is all over my TikTok. Is it worth the hype and the price tag? Let's test it out.",
+        "the 100 layer makeup challenge. why did i do this.",
+        "This is my go-to glam makeup look for a night out, a special event, or whenever I want to feel extra fancy.",
+        "How to apply false lashes for beginners! It's not as scary as it looks. I'll show you my simple, foolproof method.",
+        "My honest thoughts on the new Dyson Airwrap. Is it a revolutionary hair tool or an overpriced gimmick?",
+        "My simple and effective morning skincare routine to prep my skin for the day.",
+        "trying on every single lipstick i own. this is going to take a while.",
+        "Are you making these common makeup mistakes? I'll show you what to avoid and how to fix them for a more polished look.",
+        "A tutorial on how to get natural, fluffy, laminated-looking brows at home.",
+        "Testing out the popular 'e-girl' makeup trends. Can I pull off the heavy blush and winged liner?",
+        "This is the makeup look I wore on my wedding day. It's timeless, classic, and elegant.",
+        "How to contour for your specific face shape. It's not one-size-fits-all! I'll show you how to enhance your features.",
+        "If you have oily or acne-prone skin, these are the best skincare products that have helped me control my oil and breakouts.",
+        "I'm recreating my cringey high school makeup from the 2010s... it's not a good look.",
+        "I let my Instagram followers pick my makeup look, from the foundation to the lipstick. Let's see what you guys chose for me!",
+        "This one product completely saved my damaged skin barrier. My holy grail.",
+        "GRWM for my birthday dinner! Going for a fun and glittery look.",
+        "I bought the weirdest makeup products I could find on Amazon. Let's test them out and see if they're any good.",
+        "A full face using only cream blushes, bronzers, and highlighters. The key to a dewy, natural look.",
+        "My brutally honest review of Selena Gomez's makeup line, Rare Beauty.",
+        "The best sunscreens for dark skin tones that won't leave a white or gray cast. I've tested them all!",
+        "made a mistake? heres how to fix it",
+        "A very glittery and festive holiday makeup look. Perfect for Christmas parties!",
+        "Is luxury makeup actually better than drugstore makeup? Let's do a side-by-side comparison.",
+        "My anti-aging skincare secrets. These are the ingredients and products I use to keep my skin looking youthful.",
+        "Trying the viral 'unapproachable makeup' trend. It's all about sharp, dark, and intimidating features.",
+        "My makeup collection has gotten out of control. It's time for a massive declutter.",
+        "What's in my makeup bag? The essentials I carry with me for touch-ups throughout the day.",
+        "the history of makeup is actually wild",
+        "These are my top 5 holy grail makeup products that I've repurchased over and over again. I can't live without them."
+    ],
+    "Fashion Hauls": [
+        "A HUGE $1000 Zara haul and try-on to get ready for fall 2025! So many cozy sweaters, jackets, and boots. All items linked below!\n\nItem 1 (size M): [link]\nItem 2 (size 28): [link]",
+        "I spent $500 on SHEIN. The prices are insane, but is the quality any good? A massive, brutally honest try-on haul.",
+        "COME THRIFTING WITH ME! I went to my favorite Goodwill and found some amazing hidden gems. Let's see what I got!",
+        "Let's build a capsule wardrobe from scratch. These are the timeless, essential pieces you need to create endless outfits.",
+        "I asked my subscribers to send me pictures of their outfits, and I'm rating them! You guys have some serious style.",
+        "What I wore for a week in Paris. All my outfit details for a stylish and comfortable trip.",
+        "Recreating iconic outfits from my Pinterest board using clothes I already have in my closet.",
+        "Is a $2000 Gucci handbag really worth the money? Let's talk about the pros and cons of investing in high-end designer clothing.",
+        "The best and worst fashion trends of 2025. What's in, what's out, and what needs to go away forever.",
+        "i bought the weirdest clothes i could find on aliexpress",
+        "I dressed like my favorite TV show characters for a week, from Rachel Green to Wednesday Addams.",
+        "The ultimate guide to finding your personal style. It's not about following trends, it's about discovering what makes you feel confident and happy.",
+        "Come shopping with me at the mall! I haven't done this in forever.",
+        "My first impressions of the new Skims collection. Is it worth the hype? A try-on and review.",
+        "A very cozy and oversized clothing haul. Perfect for those days when you just want to be comfortable.",
+        "I let my boyfriend style me for a week. He has... interesting taste. This was an experience.",
+        "The best jeans for every body type! From skinny to wide-leg, I'm trying on and reviewing the most popular styles.",
+        "Styling one little black dress 10 different ways, from casual to formal.",
+        "Everything you need to pack for your summer vacation wardrobe. A complete guide and haul.",
+        "I bought knockoff designer items from DHGate to compare them to the real thing. Can you tell the difference?",
+        "My closet is overflowing. It's time for a massive closet cleanout and declutter!",
+        "My complete shoe collection tour! From sneakers to heels.",
+        "You don't need a lot of money to look stylish. Here are my tips and tricks on how to look expensive on a budget.",
+        "I raided my mom's closet and I'm trying on her vintage clothes from the 90s. Some of this stuff is back in style!",
+        "What are people wearing on the streets of Harajuku, Tokyo right now? A look at the latest Japanese street style.",
+        "Let's have an honest conversation about the problem with fast fashion and its impact on the environment and garment workers.",
+        "My favorite sustainable and ethical fashion brands that are making a difference.",
+        "A haul of things I will probably return. Not every purchase is a winner.",
+        "Back to school outfits ideas that are cute, comfortable, and affordable!",
+        "The best basic t-shirts, jeans, and jackets that every wardrobe needs as a foundation.",
+        "I tried on the ugliest clothes I could find at the thrift store.",
+        "Is Temu a legitimate site or a scam? I spent $300 on clothes to find out. A massive try-on haul.",
+        "",
+        "What to wear when you feel like you have nothing to wear. Simple outfit formulas that always work.",
+        "Styling the Pantone color of the year: [Color]. Here are some ideas on how to incorporate it into your wardrobe.",
+        "A formal dress haul for wedding season! So many beautiful options for any dress code.",
+        "My honest thoughts on celebrity fashion lines. Are any of them actually good?",
+        "The truth about online thrift stores like ThredUp and Poshmark. Are they worth it?",
+        "How to style baggy jeans without looking sloppy.",
+        "Come vintage shopping with me on Portobello Road in London! Found some amazing pieces.",
+        "This haul was a complete disaster. Nothing fit and the quality was terrible.",
+        "Unboxing my first Stitch Fix box. Is a personal styling service worth the money?",
+        "A look at the most and least worn items in my closet. What I'm loving and what I'm getting rid of.",
+        "My fall lookbook for 2025! 10 outfit ideas for the cozy season.",
+        "I bought the same white t-shirt from 5 different stores, from Target to a designer brand. Let's compare them.",
+        "The best and most comfortable sneakers of the year.",
+        "I let a random number generator from Google pick my outfits for a week.",
+        "a huge activewear haul. new workout sets motivate me to go to the gym lol",
+        "Rating iconic (and questionable) fashion trends from the 2000s. Low-rise jeans, anyone?",
+        "How to upcycle your old, boring clothes into something new and stylish! A few easy DIY ideas."
+    ],
+    "Cooking & Recipes": [
+        "This is the easiest and most delicious pasta recipe you will ever make. It comes together in just 15 minutes and is perfect for a busy weeknight. Recipe in the description!\n\nIngredients:\n- Pasta\n- Garlic\n- Olive Oil\n- Chili Flakes\n- Parsley",
+        "My grandma passed down her secret chocolate chip cookie recipe to me, and today I'm trying to make it for the first time. I hope I can do it justice!",
+        "Can you cook a 3-course gourmet meal using ONLY a microwave? I tried. The results were... surprising.",
+        "The perfect steak is not as hard as you think. This is my foolproof guide to getting a perfect sear and a juicy, tender interior every time.",
+        "Let's make sourdough bread from scratch! This is a detailed guide for beginners, from making your own starter to baking the perfect loaf.",
+        "5 healthy and delicious dinner ideas for those busy weeknights when you have no time to cook.",
+        "I tried the viral baked feta pasta that was all over TikTok. Is it actually good, or just hype? Let's find out.",
+        "I tried to recreate the legendary Krabby Patty from Spongebob Squarepants. What is the secret formula?!",
+        "Making the delicious-looking ham ramen from the Studio Ghibli movie 'Ponyo'. It's the ultimate comfort food!",
+        "The only chocolate cake recipe you will ever need. It's so moist, rich, and easy to make.",
+        "A week of easy and healthy meal prep ideas to save you time and money. Breakfast, lunch, and dinner are all covered!",
+        "How to make perfect sushi at home! It's easier than you think and so much fun. I'll show you how to make the rice, roll the sushi, and what fillings to use.",
+        "I tried to follow a Gordon Ramsay recipe. There was a lot of yelling (from me).",
+        "Cooking with ingredients I've never used before, like dragon fruit and celeriac. This should be interesting.",
+        "This is the best homemade pizza recipe. The crust is perfect and it's so much better than takeout.",
+        "What does a professional chef with access to the best ingredients cook at home on a Tuesday night? Let's find out.",
+        "3 levels of pasta, from a beginner amateur to a home cook to a professional chef. What's the difference?",
+        "The science of making the perfect chocolate chip cookie, from creaming the butter and sugar to the Maillard reaction.",
+        "This is my favorite comfort food recipe for a bad day. It's like a warm hug in a bowl.",
+        "Can you make cheese from scratch at home? I tried to make mozzarella.",
+        "The fascinating history of the chocolate chip cookie, an accidental invention that became an American classic.",
+        "let's make some soup.",
+        "My go-to lazy dinner recipe for when I have zero energy to cook.",
+        "I'm not a bartender, but I'm trying to make fancy, complicated cocktails at home.",
+        "The ultimate guide to grilling, from burgers to ribs. Everything you need to know to become a backyard BBQ master.",
+        "So you got an air fryer... now what? Here are the tips and tricks I wish I knew when I first got mine.",
+        "Baking my own birthday cake this year!",
+        "5 easy and healthy breakfast ideas that aren't boring.",
+        "I bought the official Stardew Valley cookbook and I'm going to try to make everything in it.",
+        "this one kitchen gadget is a complete game-changer. i use it every single day.",
+        "Trying to make a gingerbread house from scratch for Christmas. This is going to be a disaster.",
+        "The best and juiciest way to cook chicken breast so it's never dry and boring again.",
+        "I let my Instagram followers vote on the ingredients I had to use to cook my dinner. This is what they chose...",
+        "A simple, delicious, and authentic chicken tikka masala recipe.",
+        "Recreating the iconic, gigantic chocolate cake from the movie 'Matilda'.",
+        "How to properly season a new cast iron pan so it becomes non-stick and lasts forever.",
+        "Making fresh pasta from scratch is so much easier than you think, and the taste is incredible. You only need two ingredients!",
+        "The secret to getting perfectly crispy roasted potatoes every single time.",
+        "I found a cookbook from 1925 and I'm going to try to make a recipe from it. The ingredients are... weird.",
+        "The fluffiest pancake recipe you will ever try.",
+        "The $3 dinner challenge. Can I cook a delicious and filling meal on a tight budget?",
+        "I'm trying the world's spiciest ramen. I'm scared.",
+        "This is my favorite vegan dinner recipe. It's so flavorful and satisfying, you won't even miss the meat.",
+        "let's make some strawberry jam.",
+        "How to host the perfect, stress-free dinner party. My tips and a full menu.",
+        "This one simple ingredient will elevate your cooking and make you seem like a professional chef.",
+        "I tried to make croissants from scratch. It's a 3-day process and it's a nightmare.",
+        "The most fudgy, delicious brownies ever. This recipe is dangerous.",
+        "I cooked a three-course meal using only ingredients I bought from the dollar store.",
+        "The ultimate chocolate chip cookie shootout. We're testing recipes from Toll House, the New York Times, and more to find the best one."
+    ],
+    "Food Reviews": [
+        "I went to the WORST rated restaurant in my city on Yelp (1.5 stars). Was it as bad as the reviews say? Let's find out.",
+        "I ate at a 3-Star Michelin restaurant where the tasting menu costs $1000 per person. This is what the most expensive food in the world tastes like.",
+        "Ranking every fast food burger, from McDonald's and Burger King to In-N-Out and Shake Shack. There can only be one winner.",
+        "What can you get for $10 in New York City? I went on a food tour to find the best cheap eats.",
+        "I tried the viral croissant cube from that one bakery with the huge lines. Is it worth the hype?",
+        "I ate nothing but gas station food for 24 hours. From hot dogs to taquitos, this was a journey.",
+        "I'm on a mission to find the best pizza in Chicago. A deep dish investigation into the most iconic spots.",
+        "Trying weird food combinations that shouldn't work, but people swear by them. Peanut butter and pickle sandwich, anyone?",
+        "A professional chef reviews frozen pizzas from the grocery store. Are any of them actually good?",
+        "I tried every single item on the Taco Bell menu. This was a mistake.",
+        "Is Franklin BBQ in Austin really the best barbecue in Texas? I waited in line for 5 hours to find out.",
+        "Trying snacks from a different country every month. This month, we're trying snacks from Japan!",
+        "I went to two restaurants and ordered the most expensive steak and the cheapest steak in my city to see if you can taste the difference.",
+        "A brutally honest review of a tourist trap restaurant in Times Square. Don't eat here.",
+        "I asked my followers to recommend the best local, hidden gem restaurants in my city. You guys did not disappoint!",
+        "I tried eating food from a military MRE (Meal, Ready-to-Eat) pack. How does it taste?",
+        "The best street food in Mexico City. A food tour of the most delicious tacos, elotes, and more.",
+        "i ate at a restaurant with no menu. you just tell the chef what you like and he cooks for you.",
+        "This food trend needs to stop. Immediately.",
+        "I tried the Paqui One Chip Challenge, made with the world's spiciest pepper. I regret everything.",
+        "Is the Cheesecake Factory actually good? Or is it just a restaurant with a ridiculously long menu?",
+        "A review and ranking of every single Girl Scout cookie.",
+        "This hole-in-the-wall restaurant in a strip mall has the best food I have ever eaten in my entire life.",
+        "I tried the viral Pink Sauce from TikTok so you don't have to.",
+        "I found a restaurant with the funniest bad reviews online, so I had to go try it for myself.",
+        "The best donuts in America. I went on a cross-country road trip to find them.",
+        "Why is airplane food so notoriously bad? An investigation into the science and economics of airline catering.",
+        "Trying weird Pringles flavors from around the world, like seaweed, soft-shell crab, and pickle.",
+        "Is this $50 all-you-can-eat seafood buffet worth it? Let's see how much I can eat.",
+        "a blind taste test of coke vs pepsi and other popular soda brands",
+        "This dessert shop is a hidden gem. They have the most amazing cakes and pastries.",
+        "I ate at a 'dining in the dark' restaurant where you eat in complete darkness. It was a weird experience.",
+        "The best and worst frozen foods from Trader Joe's. A definitive ranking.",
+        "This restaurant has been open for 100 years. Is it still good, or is it living on nostalgia?",
+        "Trying iconic food from famous movie scenes, like the ratatouille from 'Ratatouille' and the cheeseburger from 'Pulp Fiction'.",
+        "a food tour of my hometown.",
+        "This is Kopi Luwak, a coffee that costs $100 a cup and is made from beans that have been eaten and... processed by a civet cat. Let's see if it's worth it.",
+        "The weirdest things people put on pizza. From peas and mayo to strawberries.",
+        "i tried the military diet for a week. it was not fun.",
+        "This restaurant has a perfect 5-star rating on Google. Is it legit, or are the reviews fake?",
+        "Can you taste the difference between a $10 bottle of wine and a $100 bottle? A blind taste test.",
+        "I tried every single hot dog from the Costco food court menu.",
+        "The history of ketchup is weirder than you think.",
+        "this food is so overrated.",
+        "My Top 5 Favorite Restaurants of All Time. These are the places I dream about.",
+        "I went to Florence, Italy to try the sandwich from All'antico Vinaio, which some call the 'best sandwich in the world.'",
+        "This is not food.",
+        "Is this trendy, bougie Los Angeles restaurant with a month-long waitlist actually worth the hype?",
+        "I found a vending machine in Japan that serves hot, fresh meals like ramen and curry. I had to try it.",
+        "My brutally honest review of Gordon Ramsay's Hell's Kitchen restaurant in Las Vegas."
+    ],
+    "Health & Fitness": [
+        "This is my 30-day body transformation. I completely changed my diet and workout routine, and the results are shocking. Here's exactly what I did.",
+        "What I eat in a day to stay lean and build muscle. A full day of high-protein, healthy, and delicious meals.",
+        "A quick and effective 10-minute ab workout that you can do at home with no equipment needed! Perfect for a busy schedule.",
+        "I debunked the biggest and most common fitness myths. No, crunches won't give you a six-pack, and no, you don't need to do hours of cardio to lose weight.",
+        "I tried Dwayne 'The Rock' Johnson's insane daily routine for 24 hours, from his 4 am workout to his massive 6,000 calorie diet.",
+        "The truth about cardio. Are you doing it wrong? I'll explain the difference between LISS and HIIT and which one is better for fat loss.",
+        "My full workout routine and split for the week. I'll show you all the exercises, sets, and reps I do to build muscle.",
+        "Is it possible to lose fat and build muscle at the same time? Yes, it's called body recomposition, and here's the science-based guide on how to do it.",
+        "I ran a marathon with zero training. This was one of the dumbest and most painful experiences of my life. Do not try this.",
+        "The best supplements for muscle growth and fat loss, and which ones are a complete waste of your money.",
+        "What does 100g of protein actually look like? I'll show you some examples of meals and foods to help you hit your daily protein goal.",
+        "A realistic and sustainable guide to starting your fitness journey. No quick fixes, just practical advice for beginners.",
+        "i stopped eating sugar for 30 days. this is what happened to my body and my brain.",
+        "The most common workout mistakes I see people making in the gym. Are you guilty of any of these?",
+        "How to stay motivated to work out, even on the days you don't feel like it. These are the mental tricks that I use.",
+        "My healthy morning routine for a productive and energetic day.",
+        "rating different whey protein powders based on taste, mixability, and ingredients.",
+        "A full day of eating for muscle gain. This is how you eat to get bigger and stronger.",
+        "The science of building a bigger chest. The best exercises and techniques based on anatomy.",
+        "I tried cryotherapy, where you stand in a chamber that's -200°F. This is what it felt like.",
+        "Do you really need to walk 10,000 steps a day? Let's look at the science behind this popular fitness goal.",
+        "The ultimate guide to meal prepping for the week. Save time, save money, and stay on track with your diet.",
+        "A 20-minute morning yoga routine for beginners to help you stretch, wake up, and start your day right.",
+        "The truth about 'getting toned'. You can't 'tone' a muscle. I'll explain what's really happening.",
+        "How to improve your posture with 5 easy exercises you can do at your desk. Stop slouching!",
+        "I tried the '75 Hard' mental toughness challenge... and I failed. Here's what happened.",
+        "Why I don't do sit-ups or crunches anymore. There are much better and safer exercises for your core.",
+        "The best exercises for a bigger, stronger back. Essential for good posture and a balanced physique.",
+        "A simple guide to understanding macros (protein, carbs, and fat) for weight loss or muscle gain.",
+        "I drank a gallon of water every day for a month. This is what happened to my skin and my health.",
+        "A home workout that's actually effective and challenging. No equipment needed.",
+        "How to get your first pull-up. A step-by-step progression for beginners.",
+        "the problem with fitness influencers and their fake, unrealistic standards.",
+        "Is pre-workout actually bad for you? A look at the ingredients and the potential side effects.",
+        "What I eat before and after a workout to maximize performance and recovery.",
+        "My fitness journey: How I lost 50 lbs and changed my life. Before and after.",
+        "How to stretch properly to improve flexibility and avoid injury. A full-body stretching routine.",
+        "The scientifically proven benefits of taking cold showers. It's not just a trend.",
+        "I had a registered dietitian review and critique my full day of eating. Was it as healthy as I thought?",
+        "This one exercise completely transformed my legs.",
+        "The best and worst foods for fat loss. Some of these might surprise you.",
+        "I tried the Wim Hof method (cold exposure and breathing techniques) for a week. Here's my experience.",
+        "Stop making these common mistakes when you squat. A guide to perfect form.",
+        "How to deal with gym anxiety and feel more confident working out.",
+        "My honest review of the Oura Ring 4. Is this the best sleep and fitness tracker you can buy?",
+        "The most effective way to train your abs, based on science.",
+        "The real reasons why you're not seeing results in the gym.",
+        "A calming 10-minute guided meditation for stress and anxiety relief.",
+        "my fitness essentials i buy from amazon",
+        "How much sleep do you actually need to build muscle and recover from your workouts? The science might surprise you."
+    ],
+    "Commentary": [
+        "The glorification of overworking and 'the grind' has become toxic. Let's talk about the problem with hustle culture and why rest is productive.",
+        "So... we need to talk about the latest YouTube drama. Here are my thoughts on the situation.",
+        "Why are we all so burnt out and exhausted? A look at the societal and cultural factors that are contributing to our collective fatigue.",
+        "The rise and fall of the 'Girlboss' era. A look back at the corporate feminist movement of the 2010s and why it ultimately failed.",
+        "This movie is an absolute mess. The plot is nonsensical, the dialogue is terrible, and the CGI is awful. And I had the time of my life watching it.",
+        "A critical look at the role of fast fashion influencers in promoting overconsumption and unsustainable practices.",
+        "Let's talk about parasocial relationships and why we feel so connected to creators we've never met. Is it harmless, or is it becoming a problem?",
+        "The strange and ethically questionable world of family vloggers and the children whose lives are broadcast for profit.",
+        "Is our obsession with nostalgia ruining modern movies, music, and television? Are reboots and remakes killing creativity?",
+        "The 'quiet quitting' phenomenon isn't about being lazy. It's about workers setting boundaries and rejecting the expectation to go above and beyond without extra compensation.",
+        "An honest and vulnerable conversation about the loneliness epidemic in the digital age.",
+        "That TV show finale was a complete betrayal to the characters and the fans who invested years in the story. Let's break down everything that went wrong.",
+        "The strange, sad, and dystopian world of AI influencers who have millions of followers but don't actually exist.",
+        "Why does every company's logo look the same now? A look at the trend of 'blanding' and the death of unique corporate design.",
+        "Reacting to the most unhinged and chaotic reality TV show on the air right now. I can't look away.",
+        "The dark side of the 'that girl' aesthetic. The pressure to be perfect, productive, and aesthetically pleasing at all times is taking a toll.",
+        "a deep dive into the latest celebrity scandal",
+        "i'm leaving twitter. here's why.",
+        "This trend needs to end. Immediately. It's not funny, it's not cool, it's just cringe.",
+        "The internet is getting boring. The algorithms are pushing the same content, the same creators, and the same ideas. What happened to the weird, creative internet of the past?",
+        "A defense of the 'unlikeable' female character in film and literature. Why are we so afraid of complex and flawed women?",
+        "What happened to movie stars? Why don't we have the same level of star power as we used to?",
+        "The algorithm is radicalizing us. How social media platforms are designed to push users to more extreme content.",
+        "this is not an apology video.",
+        "Let's discuss the ethics of the true crime genre. Is it a way to seek justice for victims, or is it just trauma tourism for entertainment?",
+        "The cringe-to-sincerity pipeline. How irony and detachment are giving way to a new era of online earnestness.",
+        "Why are new video games $70? A look at the economics of the gaming industry.",
+        "A deep dive into the world of Multi-Level Marketing (MLMs) and why they are so predatory.",
+        "The strange nostalgia for the 2010s is starting. Get ready.",
+        "Why your favorite content creator is probably burnt out. The relentless pressure of the algorithm is unsustainable.",
+        "This is the worst advice I've ever heard. Let's talk about the toxic self-help trends on TikTok.",
+        "Are we losing the ability to be bored? The constant stimulation of our phones is changing our brains.",
+        "The subtle art of the 'soft launch' on Instagram. A modern dating ritual.",
+        "This company is evil. Here's why.",
+        "The gentrification of thrift stores. Why are second-hand clothes so expensive now?",
+        "Why do we love villains so much? A look at the psychology behind our fascination with the bad guys.",
+        "The bizarre and unsettling world of 'kidfluencers'.",
+        "This marketing campaign is a complete disaster. What were they thinking?",
+        "Let's talk about the beige-ification of the world. Why is everything, from our homes to our clothes, so neutral and boring now?",
+        "The internet used to be fun. What happened?",
+        "Why are we all trying to optimize every single second of our lives? The problem with productivity culture.",
+        "This celebrity needs to be stopped.",
+        "An autopsy of a failed TV show. What went wrong?",
+        "The concept of 'selling out' is dead, and that's a good thing.",
+        "This is why you're unhappy.",
+        "The monetization of every single hobby. Can't we just do things for fun anymore?",
+        "let's have a chat.",
+        "The weird, wonderful, and often misunderstood world of fanfiction.",
+        "Are movie trailers spoiling the entire movie? Yes. Yes, they are.",
+        "i have some thoughts."
+    ],
+    "Product Reviews": [
+        "I bought and tested the 5 most viral, 5-star products from Amazon to see if they live up to the hype. Are they actually good, or are the reviews fake?",
+        "Is this viral gadget from TikTok a total SCAM? This is my brutally honest, unsponsored review.",
+        "My honest review of the Always Pan after using it for 2 years. Is it still worth the money?",
+        "I bought the 5 highest-rated air fryers on Amazon. I tested them all to find out which one is actually the best.",
+        "Is this $500 smart coffee maker actually better than a $20 French press? Let's do a side-by-side comparison.",
+        "Testing weird kitchen gadgets from TikTok. Do any of these actually work?",
+        "This product completely changed my life. No, I'm not being dramatic.",
+        "The best noise-cancelling headphones of 2025. A review and comparison of the latest from Sony, Bose, and Apple.",
+        "A review of the Stanley Cup. What's the big deal with this water bottle? Why is everyone so obsessed with it?",
+        "my top 5 amazon purchases of the year. these are the things i use every single day.",
+        "I tested 10 different pillows, from memory foam to down, to find the absolute best one for a good night's sleep.",
+        "This is a piece of junk. Do not buy it. This is my 1-star review.",
+        "Reviewing the Ember Mug, a smart mug that keeps your coffee at the perfect temperature. Is it a luxury you need, or a waste of money?",
+        "The best office chair for working from home. I tested 5 popular ergonomic chairs to find the winner.",
+        "I tried the Eight Sleep smart mattress that costs $4000 and has climate control. Did it improve my sleep?",
+        "Testing classic products from 'As Seen on TV'. Do any of them actually work as advertised?",
+        "this robot vacuum actually works. it has never been so clean.",
+        "The ultimate backpack review. I'm comparing the top backpacks for travel, school, and everyday carry.",
+        "My honest, unsponsored review of the new Dyson V15s Submarine vacuum. Is the mopping feature a gimmick?",
+        "Are expensive candles from brands like Diptyque and Le Labo actually worth the money?",
+        "The best and worst products I tried this month. What I loved and what I'm returning.",
+        "This portable blender is a game-changer for making smoothies on the go.",
+        "Testing 5 different weighted blankets to see if they actually help with anxiety and sleep.",
+        "I regret this purchase so much. A cautionary tale.",
+        "This product is so simple, but so genius. Why didn't I think of this?",
+        "Reviewing a smart water bottle that glows to remind you to drink water and tracks your intake. Is it a helpful tool or just another gadget?",
+        "The only luggage you should buy in 2025. A review of the best carry-on suitcases.",
+        "I bought the cheapest version of a popular, expensive product from a knockoff brand. Let's compare them.",
+        "This is the best purchase I have made all year. 10/10, would recommend.",
+        "A review of my electric standing desk after one year of daily use.",
+        "This air purifier actually made a noticeable difference in my allergies and the air quality in my home.",
+        "The best travel pillow for long flights. I tested the most popular ones on a 12-hour flight.",
+        "i tried the sunrise alarm clock that wakes you up with light. did it work?",
+        "Is the beautiful and expensive Caraway cookware set worth the hype? An honest, long-term review.",
+        "This is the best water filter you can buy, according to scientific tests. A review of the Berkey water filter.",
+        "Testing the weirdest products from the Sharper Image catalog.",
+        "My favorite kitchen tools and gadgets that I use every single day.",
+        "This product is built to last a lifetime. A review of a buy-it-for-life item.",
+        "Don't waste your money on this. It broke after one week.",
+        "A review of the LARQ self-cleaning water bottle. Does it actually work?",
+        "This is the quietest and most powerful fan I've ever owned.",
+        "The best pocket knife for everyday carry (EDC). A review of the Benchmade Bugout.",
+        "I tested 5 different coffee grinders, from blade to burr, to find the best one for the perfect cup of coffee.",
+        "This smart notebook from Rocketbook feels like the future. You can write, scan, and then erase the pages.",
+        "Why I returned the new [product name]. My honest thoughts.",
+        "This product has a 4.9-star rating on Amazon with thousands of reviews. Is it legit, or are the reviews fake?",
+        "Testing the kitchen gadget that claims it can replace 8 other appliances.",
+        "The ultimate review of the best reusable water bottles on the market.",
+        "This product is over-engineered in the best way possible. The attention to detail is insane.",
+        "I bought this based on an Instagram ad. Was it a mistake? Let's find out."
+    ],
+    "ASMR": [
+        "ASMR tapping on 100 different items for sleep, including wood, glass, and plastic. 😴",
+        "ASMR unintelligible whispers and inaudible triggers to help you relax and fall asleep. No talking, just sounds.",
+        "ASMR fast and aggressive triggers to destroy your tingles. This is not for the faint of heart.",
+        "ASMR librarian roleplay. I'll be shushing you, turning pages, and stamping books. Please be quiet in the library.",
+        "Deep ear cleaning ASMR with various tools. No talking, just intense sounds for your relaxation. Use headphones! 🎧",
+        "ASMR for people who don't get tingles. A very relaxing and calming video to help you de-stress.",
+        "Relaxing scalp massage and hair brushing ASMR with lots of personal attention.",
+        "ASMR | Fixing you and taking care of you after a long, stressful day. Let me help you relax.",
+        "tapping on my microphone for 1 hour straight.",
+        "The most relaxing keyboard typing sounds for studying, working, or sleeping. No talking.",
+        "ASMR | Unboxing a mysterious package I received. Lots of crinkly, tapping, and peeling sounds.",
+        "ASMR unpopular triggers. You will either love or hate these sounds. Let me know which ones are your favorite (or least favorite).",
+        "POV: You're at the most calming and relaxing doctor's appointment ever. I'll be checking your vitals and making sure you're okay.",
+        "ASMR soap carving and crushing. Very satisfying and crunchy sounds.",
+        "I will be whispering a random Wikipedia article to you to help you fall asleep.",
+        "ASMR | Intense layered sounds for maximum brain tingles. Headphones are highly recommended for this one.",
+        "The sound of rain on a tin roof for sleeping, studying, or just relaxing.",
+        "ASMR | A very sleepy makeup application roleplay. I'll be doing your makeup very slowly and gently.",
+        "The Tingle Gauntlet. Can you last all 30 minutes without getting overwhelmed by tingles? A challenge for true ASMR fans.",
+        "ASMR mic brushing with 10 different makeup brushes. Very soft and gentle sounds.",
+        "eating honeycomb asmr. very sticky and sweet sounds.",
+        "ASMR doing my friend's makeup while she sleeps (not really). Just lots of whispering and gentle sounds.",
+        "Close up mouth sounds and whispering. If you don't like mouth sounds, this video is not for you.",
+        "ASMR | Tattoo Shop Roleplay. I'll be your tattoo artist today. Lots of buzzing, wiping, and crinkling sounds.",
+        "Kinetic sand cutting and scooping. The most satisfying sounds and visuals.",
+        "ASMR | Gently tracing your face with my fingers and a soft brush. Very close personal attention.",
+        "Reading you a classic bedtime story in a soft spoken voice to help you drift off to sleep.",
+        "ASMR | Follow my instructions. A tingly game with light triggers, hand movements, and whispering.",
+        "the most satisfying sounds in the world.",
+        "ASMR | Your cat is purring on your lap for 2 hours straight. The ultimate sound for sleep and relaxation.",
+        "Tapping and scratching on a wooden box with long nails.",
+        "ASMR | Welcome to my cozy antique shop. Let me show you some of the interesting items I have. (Roleplay)",
+        "Liquid sounds, water globes, and bubble noises for a very tingly experience.",
+        "ASMR | Measuring you for a custom suit. Lots of tape measure sounds and soft-spoken whispering.",
+        "A very thorough and relaxing cranial nerve exam roleplay.",
+        "asmr page turning of a very old book. smells like vanilla.",
+        "ASMR | Extremely close up whispering directly into your ear. Intense tingles ahead.",
+        "Playing with water globes and other squishy, stress-relieving toys.",
+        "ASMR | A very thorough and calming eye exam roleplay. Just follow the light.",
+        "Let me pluck all the negativity away. An ASMR video with plucking triggers.",
+        "ASMR | Playing with LEGOs. The clicking sounds are so satisfying.",
+        "The sound of a crackling fireplace for 10 hours. Perfect for sleeping, studying, or creating a cozy atmosphere.",
+        "ASMR | Re-organizing my makeup collection. Lots of tapping, clicking, and sorting sounds.",
+        "gentle hand sounds and finger flutters for relaxation.",
+        "ASMR | You are a blank canvas, and I am the artist. I'll be painting you. (Roleplay)",
+        "no talking. just triggers.",
+        "ASMR | Your very caring friend is here to take care of you. You seem stressed, let me help.",
+        "Using ice globes and other cooling tools on your face for a refreshing ASMR experience.",
+        "Tapping on my phone screen with different nails and objects.",
+        "Let's just relax together for a little while. You deserve a break."
+    ],
+    "Documentaries": [
+        "The pet food industry is a multi-billion dollar business, but what are we really feeding our pets? This documentary exposes the dark side of the commercial pet food industry.",
+        "In 1587, 115 English colonists vanished from Roanoke Island without a trace. What really happened to the Lost Colony? This film explores the leading theories.",
+        "The story of the rise and fall of BlackBerry, the company that created the smartphone and then lost it all.",
+        "The strange and forgotten story of a man who tried to build a utopian city called 'California City' in the middle of the Mojave Desert.",
+        "Inside the surprisingly intense and competitive world of professional puzzle solving.",
+        "The Dyatlov Pass Incident is one of the most chilling and unsolved mysteries of the 20th century. Nine hikers died under bizarre circumstances in the Ural Mountains. What happened to them?",
+        "Crows are not just birds. They are some of the most intelligent animals on the planet. This documentary explores the secret life of crows and their incredible abilities.",
+        "The story of 'Pong' and the birth of the video game industry.",
+        "The Panama Canal is one of the greatest engineering marvels in human history. This is the story of its incredible and often tragic construction.",
+        "A deep dive into the world of Crossfit, from its origins as a fitness regimen to its modern-day status as a global 'cult'.",
+        "What would happen if the internet suddenly died? A hypothetical scenario exploring the catastrophic consequences for our modern world.",
+        "The forgotten true story of the 'Mocha Dick,' the real-life white whale that inspired Herman Melville's classic novel, 'Moby Dick.'",
+        "The bizarre and tragic story of Alexey Pajitnov, the Soviet programmer who invented the game Tetris but didn't make a single dollar from it for over a decade.",
+        "The story of Cassie Chadwick, one of the most audacious con artists in history, who fooled the banks of America into believing she was Andrew Carnegie's illegitimate daughter.",
+        "Inside the dangerous and claustrophobic world of deep sea cave diving, one of the most extreme sports on Earth.",
+        "The Great Emu War of 1932, when the Australian military went to war against emus... and lost. This is one of the strangest conflicts in history.",
+        "The life and legacy of Nikola Tesla, the brilliant but eccentric inventor who dreamed of a world with free wireless energy.",
+        "The search for the lost city of Atlantis. Was it a real place, or just a myth created by Plato?",
+        "The acclaimed HBO series 'Chernobyl' was a masterpiece, but what did it leave out? This documentary explores the full story of the nuclear disaster.",
+        "The fascinating history of artificial intelligence, from its theoretical origins to the large language models of today.",
+        "The epic and brutal race to the South Pole between Robert Falcon Scott and Roald Amundsen. A story of tragedy and triumph at the ends of the Earth.",
+        "A documentary exploring the complex and interconnected ecosystem of a single, ancient oak tree.",
+        "The story of the Isabella Stewart Gardner Museum heist in 1990, the largest art heist in world history. The paintings are still missing.",
+        "A documentary about the ongoing battle for the future of the internet, between the forces of openness and the walled gardens of big tech.",
+        "The secret history of the CIA's MKUltra project, a series of unethical mind control experiments conducted on unwitting citizens.",
+        "The incredible journey of the Voyager 1 and 2 probes, humanity's farthest-flung messengers, now traveling through interstellar space.",
+        "the real pirates of the caribbean were nothing like jack sparrow.",
+        "The rise of the fast fashion empire and the devastating human and environmental cost of our obsession with cheap clothes.",
+        "The science behind the world's most impressive magic tricks and illusions.",
+        "The psychology of cult leaders and how they are able to manipulate their followers.",
+        "The complex and multifaceted reasons for the fall of the Western Roman Empire.",
+        "The hidden world of mycelial networks, the vast underground fungal networks that connect trees and plants in a forest.",
+        "The man who sold the Eiffel Tower. Twice. The story of one of history's greatest con men, Victor Lustig.",
+        "The surprising history of the color blue, from its origins as a rare and expensive pigment to its modern-day ubiquity.",
+        "The story of the pilots who risked their lives to be the first to break the sound barrier.",
+        "The story of Ching Shih, a prostitute who became the most successful and powerful pirate in history, commanding a fleet of over 1,500 ships.",
+        "The ethical debate over CRISPR gene editing technology. Should we be editing the human genome?",
+        "The mystery of the 'Wow!' signal, a powerful and unexplained radio signal detected from space in 1977. Was it a message from aliens?",
+        "The thrilling and dangerous life of a professional storm chaser in Tornado Alley.",
+        "The creation of the atomic bomb. A look at the science and the scientists behind the Manhattan Project.",
+        "The forgotten kingdom of Aksum, a powerful ancient civilization in what is now Ethiopia.",
+        "The story of Sir Edmund Hillary and Tenzing Norgay, the first people to successfully summit Mount Everest.",
+        "The lost art of celestial navigation, how ancient sailors navigated the world using only the stars.",
+        "A look at life on Tristan da Cunha, the world's most remote inhabited island.",
+        "The Tunguska Event. The mystery of the massive 1908 explosion in Siberia that flattened 80 million trees.",
+        "A look at the fight to save the Amazon rainforest from deforestation and climate change.",
+        "The incredible and serendipitous story of the discovery of penicillin by Alexander Fleming.",
+        "The secret world of underground bunkers and the people who are preparing for the end of the world.",
+        "The history of the Rubik's Cube, the world's best-selling toy.",
+        "The anechoic chamber at Orfield Laboratories in Minneapolis is the quietest place on Earth, with a background noise level of -9.4 decibels."
+    ],
+    "Reaction Videos": [
+        "I'm reacting to the new trailer for [Movie Name] and my jaw is ON THE FLOOR. This looks incredible!",
+        "Reacting to the funniest TikToks of the week. Try not to laugh challenge!",
+        "I'm a huge fan of this artist, but I've somehow never heard their most famous song. This is my first time hearing [Classic Song]. I'm speechless.",
+        "A professional chef with 20 years of experience reacts to terrible and cursed cooking videos from TikTok. This is painful to watch.",
+        "Reacting to my old, cringey videos from when I first started YouTube. I am so sorry for what you are about to see.",
+        "A real doctor reacts to and debunks medical scenes from shows like Grey's Anatomy and House. Do they get anything right?",
+        "I showed my mom some of the most popular songs of today, from artists like [Artist Name]. She hates all of it.",
+        "Reacting to the most insane and impossible magic tricks from the show Penn & Teller: Fool Us. How did they do that?!",
+        "I asked my followers to send me their favorite videos on the internet right now, and I'm reacting to them. You guys sent me some weird stuff.",
+        "i can't believe this actually happened. reacting to a viral video.",
+        "A real physicist reacts to sci-fi movie scenes and breaks down what they get right and what they get hilariously wrong. (Feat. Interstellar, Gravity, The Martian)",
+        "Reacting to the saddest and most heartbreaking short animations on YouTube. I'm not crying, you're crying.",
+        "This is the greatest thing I have ever seen on the internet. My faith in humanity is restored.",
+        "A military veteran who served in the Marines reacts to combat scenes in Call of Duty. How realistic is it?",
+        "Reacting to the new trailer for the Game of Thrones prequel, House of the Dragon Season 3. I am so hyped!",
+        "This is why I have trust issues. Reacting to videos with the most unexpected plot twists.",
+        "My dad has no idea what a meme is, so I showed him some of the spiciest memes from Reddit. His reactions are priceless.",
+        "A real lawyer reacts to and fact-checks courtroom scenes from movies like A Few Good Men and Legally Blonde.",
+        "Reacting to a 'Try Not to Laugh' challenge. This is impossible. I have a terrible sense of humor.",
+        "This video restored my faith in humanity. Reacting to wholesome and heartwarming moments.",
+        "An animator from a major studio reacts to and critiques bad CGI in movies. Some of these are just awful.",
+        "Reacting to the craziest and most dramatic moments in reality TV history.",
+        "I've never seen Star Wars before. This is my first time watching the original trilogy, starting with 'A New Hope.'",
+        "This video made me cry. Reacting to a very emotional story.",
+        "A historian reacts to the movie '300' and explains the historical inaccuracies.",
+        "Reacting to luxury apartment tours in New York City that I will never be able to afford.",
+        "This is the most creative and brilliant thing I have ever witnessed. My mind is blown.",
+        "My non-gamer girlfriend reacts to video game trailers for games like Elden Ring and God of War.",
+        "A real airline pilot reacts to airplane scenes in movies, from Sully to Snakes on a Plane.",
+        "Reacting to the top posts on Reddit this week from subreddits like r/funny and r/nextf***inglevel.",
+        "this kid is a genius. reacting to a child prodigy.",
+        "A linguist reacts to how aliens speak in movies. Do any of them make sense?",
+        "i am so confused.",
+        "Reacting to 'Scariest Ghost Encounters Caught on Camera' videos. Are they real or fake?",
+        "A professional graphic designer reacts to and critiques some of the most terrible logos ever created.",
+        "This is pure chaos.",
+        "I asked my subscribers to send me pictures of their gaming setups, and I'm reacting to them! Some of these are insane.",
+        "I was not expecting that ending.",
+        "A classical musician who has played violin for 20 years reacts to heavy metal for the first time.",
+        "Reacting to the most satisfying videos on the internet, from soap cutting to power washing.",
+        "This is the cutest thing I have ever seen in my entire life.",
+        "An architect reacts to the houses people build in The Sims.",
+        "My brain can't comprehend what is happening in this video.",
+        "Reacting to the assumptions video I made about myself 5 years ago. Was I right?",
+        "A marine biologist reacts to and fact-checks the movie 'Finding Nemo'.",
+        "This is peak internet.",
+        "Reacting to the latest episode of [Popular TV Show]. (SPOILER WARNING!)",
+        "I have so many questions.",
+        "A real detective reacts to crime scenes in TV shows like CSI and Law & Order.",
+        "i can't stop laughing at this"
+    ],
+    "Challenges": [
+        "LAST TO LEAVE THE CIRCLE WINS $10,000! A brutal 24-hour challenge with my friends.",
+        "I ate nothing but vending machine food for 24 hours. This was a terrible idea.",
+        "The 2x Spicy Korean Noodle Challenge. I regret everything. This is pure pain.",
+        "Trying to survive 24 hours in a forest with no gear, no food, and no water. A real survival challenge.",
+        "I said 'yes' to everything my subscribers told me to do for a day through an Instagram poll. This was a chaotic mistake.",
+        "The LEGO challenge! My friends and I try to build a masterpiece in under 1 hour.",
+        "Try Not to Laugh Challenge with water in our mouths. The loser has to do a forfeit.",
+        "Can I read a 500-page book in one sitting? A 24-hour reading challenge.",
+        "I lived without my phone for a week. A digital detox challenge to see how it would affect my life.",
+        "The Whisper Challenge with my best friend. This was hilarious and we failed miserably.",
+        "We tried to recreate a famous movie scene from The Avengers with a $0 budget. The results are... something.",
+        "THE 10,000 CALORIE CHALLENGE. I have to eat 10,000 calories in a single day. This is so much food.",
+        "I tried to follow a Bob Ross painting tutorial. It's harder than it looks.",
+        "Guess the song challenge with my sister!",
+        "Living on a $1 a day budget for a week. Can it be done?",
+        "My friends and I tried the 'hell week' workout challenge from the Navy SEALs.",
+        "The 'no mirror' makeup challenge. I have to do a full face of glam makeup without looking in a mirror.",
+        "I tried to learn a new language (Japanese) in 7 days using Duolingo. How much could I actually learn?",
+        "Building a boat that actually floats using only cardboard and duct tape. Then we have to race them.",
+        "the 'don't look away' challenge. this was unsettling.",
+        "I went a whole day without speaking. A silent challenge.",
+        "The Blindfolded Baking Challenge. My friend and I try to bake a cake while blindfolded.",
+        "Eating only one color of food for 24 hours. Today's color is BLUE.",
+        "i spent 24 hours in my bathroom. i have no idea why.",
+        "The ultimate geography challenge. Can you name these countries just from their shape?",
+        "I let my dog choose what we did all day, from what we ate to where we went.",
+        "The thrift store challenge! We have to find a full, stylish outfit for only $10.",
+        "I tried every single item on the McDonald's menu in one sitting.",
+        "The 'don't get scared' horror game challenge. If you scream, you lose.",
+        "I tried to learn how to skateboard in 24 hours. I fell. A lot.",
+        "The smoothie challenge! We have to blend and drink smoothies made from weird, secret ingredients.",
+        "I spent 24 hours handcuffed to my best friend. This was a test of our friendship.",
+        "The impossible riddle challenge. Can you solve these brain teasers?",
+        "I tried to write a 50,000-word novel in one month for NaNoWriMo (National Novel Writing Month).",
+        "The 'no electricity' for 24 hours challenge. No lights, no phone, no internet.",
+        "I tried the '75 Hard' mental toughness challenge. 75 days, no excuses.",
+        "The pancake art challenge. We try to make artistic pancakes. Most of them just look like blobs.",
+        "I learned how to solve a Rubik's cube in a day.",
+        "the 'guess the price' challenge, luxury edition.",
+        "I spent 24 hours in a tiny house to see if I could handle minimalist living.",
+        "The 'no thumbs' challenge. We have to go about our day without using our thumbs.",
+        "I tried to beat a Guinness World Record.",
+        "The 'eat it or wear it' challenge. You either have to eat the gross food item, or wear it.",
+        "I tried to cook a gourmet meal using only a kid's toy easy-bake oven.",
+        "The 'no complaining' for 24 hours challenge. It's harder than it sounds.",
+        "I built the tallest card tower I could without it collapsing.",
+        "the 'draw with your eyes closed' challenge.",
+        "I tried to meditate for an hour straight without getting distracted. My brain did not cooperate.",
+        "The 'make a song in 1 hour' challenge. We have to write, record, and produce a song from scratch.",
+        "I only spoke in questions for an entire day. It was very annoying for everyone around me."
+    ],
+    "Pranks": [
+        "I filled my best friend's entire room with 100,000 ball pit balls while he was on vacation. His reaction is priceless!",
+        "Fake winning lottery ticket prank on my dad! He thought he won $1 million. He cried. I feel terrible.",
+        "I put a 'For Sale' sign in front of my parents' house as a prank. The neighbors were very confused.",
+        "I replaced my brother's shampoo with red hair dye... This went horribly wrong.",
+        "I hired an actor from Craigslist to pretend to be my new, very strange boyfriend to introduce to my family.",
+        "I pretended I forgot my own birthday to see how my friends would react. Did any of them remember?",
+        "The 'ghost in the house' prank on my roommate. I used hidden speakers and fishing line to make it look like our apartment was haunted.",
+        "I changed all the clocks in the house forward by an hour so my family would wake up for work and school in the middle of the night.",
+        "Wrapping my roommate's entire room, including his bed and computer, in Christmas wrapping paper.",
+        "I put googly eyes on every single item in our refrigerator.",
+        "the classic fake spider prank. she screamed so loud i think the whole neighborhood heard her.",
+        "I changed my contact name in my mom's phone to 'The Boss' and sent her texts telling her to clean her room.",
+        "I emptied a shower head and filled it with chicken bouillon powder. My sister's morning shower smelled like soup.",
+        "I hacked my friend's smart speaker and played a fake 'end of the world' emergency radio broadcast.",
+        "I replaced all of our family photos in the house with pictures of Nicolas Cage.",
+        "The fake parking ticket prank on my friend's brand new car. He was so mad.",
+        "I hid 10 different alarm clocks all over my sister's room and set them to go off at 3 am.",
+        "I put a terrifying mannequin in my friend's bed for him to find when he got home late at night.",
+        "The 'I'm dropping out of college to join the circus' prank on my parents. Their reaction was not what I expected.",
+        "i put clear plastic wrap over the doorway. a classic for a reason.",
+        "The disappearing food prank. I kept secretly eating food off my boyfriend's plate when he wasn't looking. He thought he was going crazy.",
+        "I convinced my friend he was invisible for a day. I even got our other friends to play along.",
+        "I dressed up as a bronze statue and stood perfectly still in a public park to scare people.",
+        "The 'your car has been towed' prank. I just hid it around the corner.",
+        "i put salt in the sugar bowl right before my dad made his morning coffee",
+        "I covered my friend's entire car in thousands of sticky notes.",
+        "The fake proposal prank in the middle of a crowded restaurant. So awkward.",
+        "I pretended I had amnesia and didn't know who my best friend was for a whole day.",
+        "I replaced the cream filling in a box of Oreos with white toothpaste.",
+        "The 'I shaved my eyebrows off' prank on my girlfriend. (They were just covered with makeup).",
+        "I hired a mariachi band to follow my friend around for an entire day.",
+        "I put on a scary mask and waited in the closet for my roommate to get home.",
+        "I changed the auto-correct on my dad's phone so that every time he typed 'no' it would change to 'heck yeah'.",
+        "i filled my roommate's shoes with chocolate pudding",
+        "The 'your celebrity crush is at this coffee shop' prank. She freaked out.",
+        "I convinced my little brother that broccoli were 'power trees' that would give him superpowers.",
+        "I put a very realistic-looking fake snake in our mailbox for the mailman to find.",
+        "The 'I won the lottery and I'm quitting' prank on my boss. (I was already planning on quitting).",
+        "I changed the language on my friend's phone to one he doesn't speak.",
+        "The Jello prank from The Office. I made a jello mold of my friend's stapler.",
+        "The 'I got a terrible tattoo of your name' prank on my mom.",
+        "I put a baby monitor in my friend's car and whispered creepy things to him while he was driving.",
+        "I put a sign on my friend's back that said 'I'm a little teapot'.",
+        "The 'I'm moving to another country tomorrow' prank on my best friend. Her reaction was so sad I felt bad.",
+        "i filled the entire office with balloons for my coworker's birthday",
+        "The 'I'm only going to speak in a terrible British accent all day' prank.",
+        "I replaced my roommate's bar of soap with a block of cream cheese.",
+        "I set up a fake crime scene in our living room with caution tape and a chalk outline.",
+        "The 'I dropped my phone in the toilet' prank. Don't worry, it was a fake phone.",
+        "this prank went too far and i think i ruined my friendship."
+    ]
+}
 
 comment_texts = [
     "Great video! Very informative.", "Loved this! Subscribed!", "Can't wait for your next upload!",
@@ -4510,4 +14670,3897 @@ comment_texts = [
     "Amazing content as always!", "You inspire me so much!", "Could you do a video on X next?",
     "First!", "Just discovered your channel, instantly hooked!", "Totally agree with you.",
     "Mind-blowing stuff!", "This is exactly what I needed.", "Thanks for the laugh!"
+]
+
+x_conversations = {
+    "conversation_1": [
+        ("user_1", "yo u free friday?"),
+        ("user_2", "I think so! What's up?"),
+        ("user_1", "wanna grab dinner at that new taco place downtown? 🌮"),
+        ("user_2", "omg YES i've been wanting to try it. what time?"),
+        ("user_1", "like 7?"),
+        ("user_2", "perfect see u then!")
+    ],
+    "conversation_2": [
+        ("user_1", "Hi Sarah, do you have a moment? I had a question about the Q3 report."),
+        ("user_2", "Hi Mark. Yes, I'm free now. What do you need?"),
+        ("user_1", "I'm having trouble locating the finalized sales figures for the EMEA region. I checked the shared drive but only see the preliminary data."),
+        ("user_2", "Ah, I just uploaded the final version about 10 minutes ago. It should be in the 'Q3 Final Reports' folder now. File name is 'EMEA_Sales_Q3_FINAL.xlsx'."),
+        ("user_1", "Found it. Thank you so much!"),
+        ("user_2", "No problem at all. Let me know if you need anything else.")
+    ],
+    "conversation_3": [
+        ("user_1", "Did you leave all the dishes in the sink again?"),
+        ("user_2", "I was going to do them."),
+        ("user_1", "You said that yesterday."),
+        ("user_2", "k.")
+    ],
+    "conversation_4": [
+        ("user_1", "Hi, is the bookshelf still available?"),
+        ("user_2", "Yes it is!"),
+        ("user_1", "Great! Would you take $40 for it?"),
+        ("user_2", "Sorry, the price is firm at $50."),
+        ("user_1", "Okay, I can do $50. When would be a good time to pick it up?"),
+        ("user_2", "I'm available anytime after 5 PM this evening in Providence."),
+        ("user_1", "Perfect, I'll be there around 6. Can you send the address?")
+    ],
+    "conversation_5": [
+        ("user_1", "Hey stranger! It's been forever. How have you been?"),
+        ("user_2", "Oh my god, Alex! So good to hear from you. I'm doing well, just crazy busy with the new job. How about you? Still in the city?"),
+        ("user_1", "Yeah, still here for now, but thinking about making a move next year. The new job sounds exciting! What are you doing?"),
+        ("user_2", "I'm a junior designer at a small marketing firm. It's a lot of work but I'm learning a ton. You should totally move! Any ideas where?"),
+        ("user_1", "That's amazing, congrats! And I was thinking maybe somewhere on the west coast. Need a change of scenery, you know? We should seriously catch up properly soon, maybe a call next week?"),
+        ("user_2", "Definitely! I'd love that. My schedule is pretty open next Tuesday or Wednesday evening. Just let me know what works for you!")
+    ],
+    "conversation_6": [
+        ("user_1", "dude you will NOT believe what just happened"),
+        ("user_2", "what???"),
+        ("user_1", "I GOT THE PROMOTION!!!!"),
+        ("user_2", "NO WAY DUDE!!!! LETS GOOOOOO 🍾 CONGRATS!! we have to celebrate this weekend")
+    ],
+    "conversation_7": [
+        ("user_1", "Hey, I'm really sorry to bother you, but would you be able to look over my resume? I'm applying for a new position and would love your feedback."),
+        ("user_2", "Of course, I'd be happy to. Send it over whenever you have a chance."),
+        ("user_1", "Thank you so much, that means a lot. Sending it now.")
+    ],
+    "conversation_8": [
+        ("user_1", "https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
+        ("user_2", "I can't believe I fell for that in 2025.")
+    ],
+    "conversation_9": [
+        ("user_1", "Hey man, my PC is making a weird clicking sound. You know anything about that?"),
+        ("user_2", "Oof, clicking is usually not good. Could be the hard drive failing. Have you backed everything up recently?"),
+        ("user_1", "no..."),
+        ("user_2", "You should do that immediately. Then run a disk check utility.")
+    ],
+    "conversation_10": [
+        ("user_1", "I feel like I'm just stuck in a rut, you know? Like every day is the same and I'm not really going anywhere."),
+        ("user_2", "I get that. I've definitely felt that way before. It's tough when you feel like you're just spinning your wheels. Have you thought about picking up a new hobby or something to shake things up?"),
+        ("user_1", "I've tried, but I lose motivation so quickly. It's just easier to come home and watch TV."),
+        ("user_2", "That's fair. Maybe start with something really small? Like, so small it feels stupid. Like a 5-minute walk or learning one new word in another language. No pressure, just something different.")
+    ],
+    "conversation_11": [
+        ("user_1", "hey, how's it going? love your profile pic, that dog is adorable!"),
+        ("user_2", "Haha thanks! He's a menace but I love him. I'm doing good, just relaxing after work. How about you?"),
+        ("user_1", "Same here. Your profile says you're into hiking? Me too! We should go sometime if you're up for it."),
+        ("user_2", "I'd like that :)")
+    ],
+    "conversation_12": [
+        ("user_1", "Hi honey, just checking in. How was your day?"),
+        ("user_2", "Hey Mom! It was good, pretty busy. Just finished up my last class. How are you?"),
+        ("user_1", "I'm well. Don't forget to eat something healthy for dinner! Love you!"),
+        ("user_2", "I will, love you too!")
+    ],
+    "conversation_13": [
+        ("user_1", "hey have you guys started on the history presentation yet? it's due friday"),
+        ("user_2", "I did some research for my slides but haven't put them together."),
+        ("user_1", "ok cool. i finished my part. can you send me yours when you're done so I can merge everything together?"),
+        ("user_2", "Will do, I should have it done by tomorrow night.")
+    ],
+    "conversation_14": [
+        ("user_1", "GGs tonight dude"),
+        ("user_2", "ggs. that last match was insane tho, i cant believe we pulled that off"),
+        ("user_1", "I know! My heart is still racing lol. We gotta play again tomorrow."),
+        ("user_2", "for sure. im down.")
+    ],
+    "conversation_15": [
+        ("user_1", "Did you book your flight for the trip yet?"),
+        ("user_2", "Not yet, I was waiting to see which one you got so we could try to land around the same time."),
+        ("user_1", "Smart. I just booked mine, landing at 2:30 PM on the 5th. JetBlue flight 821."),
+        ("user_2", "Perfect, I see a flight that lands at 3:15. Booking it now!")
+    ],
+    "conversation_16": [
+        ("user_1", "I'm so sorry for what I said earlier. It was out of line."),
+        ("user_2", "Thank you. I appreciate you saying that."),
+        ("user_1", "I was just stressed out and took it out on you, which isn't fair. Can we talk later?"),
+        ("user_2", "Yeah, I'd like that.")
+    ],
+    "conversation_17": [
+        ("user_1", "Hey! So excited for the concert tonight! 🎶"),
+        ("user_2", "Me too! Are you driving or should we get an Uber?"),
+        ("user_1", "I can drive, parking is just gonna be a nightmare."),
+        ("user_2", "True. I'll throw in for gas and parking. See you at 6?"),
+        ("user_1", "Sounds like a plan!")
+    ],
+    "conversation_18": [
+        ("user_1", "Can you send me that picture of us from the beach last summer?"),
+        ("user_2", "omg yeah let me find it"),
+        ("user_2", "[Image Attachment]"),
+        ("user_2", "we were so tan lol"),
+        ("user_1", "haha I know! thanks!")
+    ],
+    "conversation_19": [
+        ("user_1", "Dear Mr. Davison, I am writing to confirm our scheduled interview for the Senior Analyst position on Tuesday, August 26th, at 10:00 AM EST. Please let me know if there are any changes. I look forward to speaking with you."),
+        ("user_2", "Dear Jessica, thank you for your confirmation. The time is correct. We look forward to our discussion as well. Best regards, Thomas Davison.")
+    ],
+    "conversation_20": [
+        ("user_1", "i miss you"),
+        ("user_2", "I miss you too. So much."),
+        ("user_1", "Only 17 more days."),
+        ("user_2", "Counting down every second. ❤️")
+    ],
+    "conversation_21": [
+        ("user_1", "What's the wifi password again?"),
+        ("user_2", "ItsSummer2025!"),
+        ("user_1", "thx")
+    ],
+    "conversation_22": [
+        ("user_1", "Hey, I'm thinking of starting a YouTube channel. Any advice?"),
+        ("user_2", "Oh cool! Biggest advice is just to start. Your first videos won't be great, but you learn by doing. Also, audio is more important than video quality at first."),
+        ("user_1", "That's actually super helpful. Thanks, man.")
+    ],
+    "conversation_23": [
+        ("user_1", "I can't believe it's almost September."),
+        ("user_2", "Don't remind me. Summer went by way too fast."),
+        ("user_1", "For real.")
+    ],
+    "conversation_24": [
+        ("user_1", "Hi, I'm the DoorDash driver. I'm having trouble finding your apartment, my GPS is taking me to the wrong building."),
+        ("user_2", "Oh sorry about that! I'm in the building at the back of the complex, number 12. Top floor."),
+        ("user_1", "Okay, I see it now. Be there in a minute!"),
+        ("user_2", "Thanks!")
+    ],
+    "conversation_25": [
+        ("user_1", "The way they ended that season finale... I am unwell."),
+        ("user_2", "RIGHT?! I have so many theories. We have to wait a whole year to find out what happens."),
+        ("user_1", "It's actual torture.")
+    ],
+    "conversation_26": [
+        ("user_1", "You're not going to like this."),
+        ("user_2", "What did you do."),
+        ("user_1", "I might have accidentally shrunk your favorite sweater in the wash."),
+        ("user_2", "...")
+    ],
+    "conversation_27": [
+        ("user_1", "Happy birthday!!! Hope you have the best day! 🎉🎂"),
+        ("user_2", "Thank you so much!! 😊")
+    ],
+    "conversation_28": [
+        ("user_1", "Hi there, your dog is adorable! Is he friendly?"),
+        ("user_2", "Thank you! Yes, he's very friendly, loves people."),
+        ("user_1", "Can I pet him?"),
+        ("user_2", "Of course!")
+    ],
+    "conversation_29": [
+        ("user_1", "Do we need anything from the store?"),
+        ("user_2", "Milk and bread please!")
+    ],
+    "conversation_30": [
+        ("user_1", "The project deadline has been moved up to this Friday."),
+        ("user_2", "You're joking. That's impossible."),
+        ("user_1", "I wish I was. Management just sent out the email. We need to re-prioritize immediately."),
+        ("user_2", "Okay. Let's schedule an emergency meeting for this afternoon.")
+    ],
+    "conversation_31": [
+        ("user_1", "Just finished the book you recommended."),
+        ("user_2", "And...???"),
+        ("user_1", "It was incredible. The ending completely shocked me."),
+        ("user_2", "I TOLD YOU! So glad you liked it.")
+    ],
+    "conversation_32": [
+        ("user_1", "I'm so tired."),
+        ("user_2", "Same.")
+    ],
+    "conversation_33": [
+        ("user_1", "Can you do me a huge favor and water my plants while I'm gone this weekend?"),
+        ("user_2", "Yeah no problem! Just leave the key under the mat."),
+        ("user_1", "You're the best, thank you!")
+    ],
+    "conversation_34": [
+        ("user_1", "Reminder: Your dental appointment is tomorrow, August 20th, at 2:00 PM."),
+        ("user_2", "Confirm")
+    ],
+    "conversation_35": [
+        ("user_1", "that was the worst date of my entire life"),
+        ("user_2", "omg you have to tell me everything right now")
+    ],
+    "conversation_36": [
+        ("user_1", "Is this your charger? You left it at my place."),
+        ("user_2", "Oh yeah, it is! Thanks for grabbing it. Can I get it from you next time I see you?"),
+        ("user_1", "For sure.")
+    ],
+    "conversation_37": [
+        ("user_1", "I think I'm in love with this song."),
+        ("user_2", "It's been on repeat for me all day.")
+    ],
+    "conversation_38": [
+        ("user_1", "Are you watching the game?"),
+        ("user_2", "Of course! That last play was insane!"),
+        ("user_1", "Total robbery by the refs.")
+    ],
+    "conversation_39": [
+        ("user_1", "Hey! We're grabbing a drink at The Eddy on South Water St, you should come join!"),
+        ("user_2", "Oh nice! I'm nearby, I can be there in 15."),
+        ("user_1", "Awesome, see you soon!")
+    ],
+    "conversation_40": [
+        ("user_1", "I have a weird question."),
+        ("user_2", "Shoot."),
+        ("user_1", "Is a hotdog a sandwich?"),
+        ("user_2", "We are not having this conversation again.")
+    ],
+    "conversation_41": [
+        ("user_1", "I'm running about 10 minutes late, sorry!"),
+        ("user_2", "No worries, I just got here myself. Grab a table when you get here.")
+    ],
+    "conversation_42": [
+        ("user_1", "what should I wear tonight?"),
+        ("user_2", "the black dress!"),
+        ("user_1", "with the boots?"),
+        ("user_2", "yesss")
+    ],
+    "conversation_43": [
+        ("user_1", "Hi, I'm looking for a used copy of 'The Midnight Library'. Does your store have any in stock?"),
+        ("user_2", "Hi there. Let me check for you. Yes, it looks like we have one copy in paperback. I can hold it for you at the front counter if you'd like."),
+        ("user_1", "That would be wonderful, thank you! I'll be by this afternoon.")
+    ],
+    "conversation_44": [
+        ("user_1", "Just saw your story, are you okay??"),
+        ("user_2", "Yeah, I'm fine. Just a fender bender, but super annoying. No one was hurt though."),
+        ("user_1", "Oh good, that's what matters. Let me know if you need anything.")
+    ],
+    "conversation_45": [
+        ("user_1", "lol look at this idiot"),
+        ("user_1", "[Video Attachment]"),
+        ("user_2", "LMAO")
+    ],
+    "conversation_46": [
+        ("user_1", "The landlord said they're fixing the water heater tomorrow between 9 AM and 1 PM."),
+        ("user_2", "Ugh, okay. I have a meeting at 10, but I can work from home."),
+        ("user_1", "Cool, thanks for being there for it.")
+    ],
+    "conversation_47": [
+        ("user_1", "I finally booked my ticket to Japan!"),
+        ("user_2", "OMG that's amazing! I'm so jealous. You're going to have the best time."),
+        ("user_1", "I'm so excited I can barely sleep!")
+    ],
+    "conversation_48": [
+        ("user_1", "We need to talk."),
+        ("user_2", "About what?"),
+        ("user_1", "About last night."),
+        ("user_2", "Can this wait until I get home?")
+    ],
+    "conversation_49": [
+        ("user_1", "Is your Venmo still @[username]?"),
+        ("user_2", "Yep!")
+    ],
+    "conversation_50": [
+        ("user_1", "Please find attached the signed contract for your review. We are very excited to begin this partnership."),
+        ("user_2", "Thank you, David. I have received the document and will review it with our legal team this afternoon. I will be in touch with any feedback by end of day tomorrow."),
+        ("user_1", "Excellent. I look forward to hearing from you.")
+    ],
+    "conversation_51": [
+        ("user_1", "thinking about getting bangs"),
+        ("user_2", "dont do it"),
+        ("user_1", "why not!"),
+        ("user_2", "you do this every year. you'll regret it in a week lol"),
+        ("user_1", "but this time is different")
+    ],
+    "conversation_52": [
+        ("user_1", "Just got back from my run. The weather is perfect today."),
+        ("user_2", "Nice! I need to get outside, I've been stuck at my desk all day.")
+    ],
+    "conversation_53": [
+        ("user_1", "On my way!"),
+        ("user_2", "👍")
+    ],
+    "conversation_54": [
+        ("user_1", "Hi, this is a message from the Providence Public Library. Your hold item, 'Klara and the Sun', is ready for pickup."),
+        ("user_2", "Thank you!")
+    ],
+    "conversation_55": [
+        ("user_1", "i cant find my keys"),
+        ("user_2", "did you check your coat pocket?"),
+        ("user_1", "omg. yes. thank you.")
+    ],
+    "conversation_56": [
+        ("user_1", "I just feel like you haven't been listening to me lately."),
+        ("user_2", "What do you mean? Of course I listen to you."),
+        ("user_1", "It just doesn't feel like it. When I was telling you about my problem at work, you were just on your phone the whole time."),
+        ("user_2", "I'm sorry. You're right. I can be better about that. Can you tell me again? I'm listening now.")
+    ],
+    "conversation_57": [
+        ("user_1", "The power just went out."),
+        ("user_2", "Here too. Must be the whole neighborhood."),
+        ("user_1", "Found the candles.")
+    ],
+    "conversation_58": [
+        ("user_1", "Could you please provide an update on ticket #58291? The customer is asking for a status report."),
+        ("user_2", "Checking on it now. The engineering team is actively investigating the bug. I will follow up with them for an ETA on the fix."),
+        ("user_1", "Thank you, please keep me posted.")
+    ],
+    "conversation_59": [
+        ("user_1", "bruh"),
+        ("user_2", "bruh")
+    ],
+    "conversation_60": [
+        ("user_1", "I'm so proud of you."),
+        ("user_2", "That means so much coming from you. Thank you.")
+    ],
+    "conversation_61": [
+        ("user_1", "Hi, is this Jake? This is Maria from apartment 4B. I think your music is a little loud, would you mind turning it down?"),
+        ("user_2", "Oh my gosh, I am so sorry! I didn't realize how loud it was. Turning it down right now."),
+        ("user_1", "Thank you, I appreciate it!")
+    ],
+    "conversation_62": [
+        ("user_1", "Can I borrow your drill this weekend?"),
+        ("user_2", "Yeah, for sure. It's in the garage, just swing by whenever.")
+    ],
+    "conversation_63": [
+        ("user_1", "I'm bored."),
+        ("user_2", "Me too. Wanna do something stupid?"),
+        ("user_1", "Always.")
+    ],
+    "conversation_64": [
+        ("user_1", "Have you seen the news today? It's wild."),
+        ("user_2", "I'm actively avoiding it for my own sanity.")
+    ],
+    "conversation_65": [
+        ("user_1", "Do you remember the name of that professor we had for philosophy?"),
+        ("user_2", "Dr. Albright? The one with the crazy hair?"),
+        ("user_1", "Yes! That's him. Thank you, it was driving me crazy.")
+    ],
+    "conversation_66": [
+        ("user_1", "It's a girl! 🎀"),
+        ("user_2", "AHHH CONGRATULATIONS!!! I am so incredibly happy for you both!")
+    ],
+    "conversation_67": [
+        ("user_1", "Your food has been delivered."),
+        ("user_2", "Thanks!")
+    ],
+    "conversation_68": [
+        ("user_1", "Hey, I got the job! Thank you again so much for being a reference for me."),
+        ("user_2", "That's fantastic news! You earned it. I was happy to help.")
+    ],
+    "conversation_69": [
+        ("user_1", "It's so hot today."),
+        ("user_2", "I know, I'm melting. 🥵")
+    ],
+    "conversation_70": [
+        ("user_1", "I'm not feeling well, I don't think I can make it tonight."),
+        ("user_2", "Oh no! Feel better! We can always reschedule."),
+        ("user_1", "Thanks for understanding.")
+    ],
+    "conversation_71": [
+        ("user_1", "Did you take the trash out?"),
+        ("user_2", "Shoot, I forgot. I'll get it now.")
+    ],
+    "conversation_72": [
+        ("user_1", "I've attached the first draft of the manuscript. Please provide any high-level feedback when you have a moment. No need to focus on grammar or line edits at this stage."),
+        ("user_2", "Received. I will have a look and send my thoughts by Friday."),
+        ("user_1", "Much appreciated.")
+    ],
+    "conversation_73": [
+        ("user_1", "I'm craving pizza."),
+        ("user_2", "Say less. Ordering now.")
+    ],
+    "conversation_74": [
+        ("user_1", "I really value our friendship."),
+        ("user_2", "Me too :)")
+    ],
+    "conversation_75": [
+        ("user_1", "Hey Prof. Miller, I was sick last week and missed Thursday's lecture. I was wondering if you had recorded it or if I could get the notes from you?"),
+        ("user_2", "Hi Sam. The recording is available on the course Canvas page. The slide deck is also posted in the 'Files' section."),
+        ("user_1", "Great, thank you!")
+    ],
+    "conversation_76": [
+        ("user_1", "Where are you?"),
+        ("user_2", "Stuck in traffic on 95, it's a parking lot. I'm going to be late."),
+        ("user_1", "Ok, no worries. Drive safe.")
+    ],
+    "conversation_77": [
+        ("user_1", "I had a really weird dream last night."),
+        ("user_2", "Oh yeah? Do tell."),
+        ("user_1", "We were all llamas. And we had to solve a crime."),
+        ("user_2", "That's amazing.")
+    ],
+    "conversation_78": [
+        ("user_1", "Let's go to the beach this weekend."),
+        ("user_2", "YES. I need some sun.")
+    ],
+    "conversation_79": [
+        ("user_1", "Your package from Amazon has been delayed. New expected delivery: August 21."),
+        ("user_2", "")
+    ],
+    "conversation_80": [
+        ("user_1", "He broke up with me."),
+        ("user_2", "I'm on my way over with ice cream."),
+        ("user_1", "you're the best"),
+        ("user_2", "I know.")
+    ],
+    "conversation_81": [
+        ("user_1", "We're out of coffee."),
+        ("user_2", "This is a state of emergency.")
+    ],
+    "conversation_82": [
+        ("user_1", "Hi, I purchased a lamp from your store last week (Order #8831) and it arrived broken. How do I go about getting a replacement?"),
+        ("user_2", "We are so sorry to hear that! Please reply with a photo of the damage and we will ship a replacement to you immediately. No need to return the broken item."),
+        ("user_1", "[Image Attachment] Thank you for the quick response!")
+    ],
+    "conversation_83": [
+        ("user_1", "Happy anniversary ❤️"),
+        ("user_2", "Happy anniversary, my love. I can't believe it's been 5 years."),
+        ("user_1", "Time flies when you're having fun. Can't wait for dinner tonight."),
+        ("user_2", "Me too.")
+    ],
+    "conversation_84": [
+        ("user_1", "Do you think aliens exist?"),
+        ("user_2", "Statistically, it's almost impossible that they don't."),
+        ("user_1", "🤯")
+    ],
+    "conversation_85": [
+        ("user_1", "i need your honest opinion"),
+        ("user_2", "ok...?"),
+        ("user_1", "[Image Attachment]"),
+        ("user_1", "is this shirt too much?"),
+        ("user_2", "there is no such thing as too much.")
+    ],
+    "conversation_86": [
+        ("user_1", "I'm so sorry for your loss. Thinking of you and your family during this time."),
+        ("user_2", "Thank you, that means a lot.")
+    ],
+    "conversation_87": [
+        ("user_1", "Please confirm that you have received the updated wireframes for the user dashboard."),
+        ("user_2", "Confirmed. The team will begin implementation this sprint.")
+    ],
+    "conversation_88": [
+        ("user_1", "Just woke up from a nap that felt like a coma"),
+        ("user_2", "what year is it lmao")
+    ],
+    "conversation_89": [
+        ("user_1", "The dog just threw up on the new rug."),
+        ("user_2", "of course he did.")
+    ],
+    "conversation_90": [
+        ("user_1", "I'm thinking of joining your gym. Do you like it there?"),
+        ("user_2", "Yeah, it's great! It gets a little crowded after work, but otherwise the equipment is good and it's always clean. You should do a trial!"),
+        ("user_1", "Cool, I think I will. Thanks!")
+    ],
+    "conversation_91": [
+        ("user_1", "Merry Christmas! 🎄"),
+        ("user_2", "Merry Christmas to you too!")
+    ],
+    "conversation_92": [
+        ("user_1", "I'm starting to think this was a bad idea."),
+        ("user_2", "You're just now realizing this? We're halfway up the mountain."),
+        ("user_1", "I'm very tired.")
+    ],
+    "conversation_93": [
+        ("user_1", "Just watched that new horror movie."),
+        ("user_2", "how was it?"),
+        ("user_1", "i am never sleeping again."),
+        ("user_2", "lol nice")
+    ],
+    "conversation_94": [
+        ("user_1", "Could you add toilet paper to the shopping list?"),
+        ("user_2", "Done.")
+    ],
+    "conversation_95": [
+        ("user_1", "That meeting was so pointless."),
+        ("user_2", "could have been an email fr"),
+        ("user_1", "literally.")
+    ],
+    "conversation_96": [
+        ("user_1", "I'm so stressed about this exam."),
+        ("user_2", "You're going to do great! You've been studying so hard. Just take a deep breath, you got this."),
+        ("user_1", "thanks, i needed to hear that.")
+    ],
+    "conversation_97": [
+        ("user_1", "Hi, I have a reservation for two under the name 'Chen' at 7:30 PM tonight. I was wondering if we could move it to 8:00 PM?"),
+        ("user_2", "Good evening. Yes, that shouldn't be a problem. I've updated your reservation to 8:00 PM."),
+        ("user_1", "Thank you very much!")
+    ],
+    "conversation_98": [
+        ("user_1", "Just saw a dog on a skateboard."),
+        ("user_2", "as he should be.")
+    ],
+    "conversation_99": [
+        ("user_1", "Did you see who's playing at the festival this year?!"),
+        ("user_2", "I KNOW! The lineup is stacked. We have to go."),
+        ("user_1", "Already looking at tickets.")
+    ],
+    "conversation_100": [
+        ("user_1", "What a long week."),
+        ("user_2", "You can say that again. Thank God it's Friday."),
+        ("user_1", "Amen to that. Any plans for the weekend?"),
+        ("user_2", "Absolutely nothing. It's going to be glorious."),
+        ("user_1", "That sounds like heaven.")
+    ],
+    "conversation_101": [
+        ("user_1", "This is going to sound random, but I had a dream we were both astronauts and we discovered a planet made entirely of jello."),
+        ("user_2", "That's not random that's a prophecy. I'll start building the rocket.")
+    ],
+    "conversation_102": [
+        ("user_1", "Do you have a minute to review the Q4 marketing deck? I've shared the link in your Slack."),
+        ("user_2", "Taking a look now. The ROI projections on slide 12 seem a bit optimistic. Can you double-check the source data?"),
+        ("user_1", "Good catch. Let me sync with the analytics team and revert.")
+    ],
+    "conversation_103": [
+        ("user_1", "i am once again asking for your Netflix password"),
+        ("user_2", "it has not changed in five years"),
+        ("user_1", "and i have not remembered it in five years")
+    ],
+    "conversation_104": [
+        ("user_1", "We're engaged!!! 💍"),
+        ("user_2", "OMG OMG OMG CONGRATULATIONS!!!! I am so happy for you guys! Tell me everything!")
+    ],
+    "conversation_105": [
+        ("user_1", "Your Uber is arriving now."),
+        ("user_2", "")
+    ],
+    "conversation_106": [
+        ("user_1", "I think I left my glasses at your place."),
+        ("user_2", "The blue ones? Yeah, they're on the coffee table."),
+        ("user_1", "Phew. I'm blind without them. Can I grab them tomorrow?"),
+        ("user_2", "Yep!")
+    ],
+    "conversation_107": [
+        ("user_1", "Hi! I saw on Craigslist you're looking for a roommate? I'm a 28-year-old grad student, clean, quiet, and have a very well-behaved cat."),
+        ("user_2", "Hi! Thanks for reaching out. The room is still available. When would you be free to come see the place and chat?"),
+        ("user_1", "I'm free most evenings this week after 6 PM.")
+    ],
+    "conversation_108": [
+        ("user_1", "the sheer audacity of this squirrel in my backyard. it's taunting me."),
+        ("user_2", "what did it do"),
+        ("user_1", "it just made eye contact with me while stealing an entire tomato from my garden. the disrespect.")
+    ],
+    "conversation_109": [
+        ("user_1", "Hey, I'm at the grocery store. Do you want anything?"),
+        ("user_2", "Ooh yes please! Can you get some of that mint chip ice cream?")
+    ],
+    "conversation_110": [
+        ("user_1", "So, how did it go?"),
+        ("user_2", "I got the job."),
+        ("user_1", "I KNEW IT! YES! Congratulations, that is amazing news!")
+    ],
+    "conversation_111": [
+        ("user_1", "This Wordle is impossible today."),
+        ("user_2", "I know, I'm on my last guess.")
+    ],
+    "conversation_112": [
+        ("user_1", "Hey Dad, just landed. The flight was fine. I'll call you when I get my bags."),
+        ("user_2", "Glad you made it safely. We're on our way to the cell phone lot now.")
+    ],
+    "conversation_113": [
+        ("user_1", "I'm so sorry, I totally forgot to call you back yesterday."),
+        ("user_2", "It's okay, I figured you were busy. Everything alright?"),
+        ("user_1", "Yeah, just one of those days. But I'm free now if you still want to chat!")
+    ],
+    "conversation_114": [
+        ("user_1", "ok the new Taylor Swift album is her best yet i think"),
+        ("user_2", "it's a no-skip album for sure. track 5 destroyed me."),
+        ("user_1", "RIGHT?! I've had it on a loop for 3 hours.")
+    ],
+    "conversation_115": [
+        ("user_1", "Hi, this is a friendly reminder that your payment of $89.99 for your internet service is due on September 1st, 2025."),
+        ("user_2", "")
+    ],
+    "conversation_116": [
+        ("user_1", "Our D&D session is still on for Saturday, right?"),
+        ("user_2", "You know it. I've got a whole new dungeon planned for you guys. 😈"),
+        ("user_1", "My body is ready.")
+    ],
+    "conversation_117": [
+        ("user_1", "Can you believe we've been friends for 10 years?"),
+        ("user_2", "That's insane. We're so old."),
+        ("user_1", "Speak for yourself. But seriously, love you dude."),
+        ("user_2", "Love you too, man.")
+    ],
+    "conversation_118": [
+        ("user_1", "What's our ETA?"),
+        ("user_2", "Google says 20 minutes but there's a lot of traffic ahead.")
+    ],
+    "conversation_119": [
+        ("user_1", "Hey, I'm not going to be able to make it to class today, I'm feeling really under the weather. Can you send me the notes?"),
+        ("user_2", "For sure, feel better!")
+    ],
+    "conversation_120": [
+        ("user_1", "That thing you said in the meeting today was brilliant."),
+        ("user_2", "Haha thanks, I was just winging it.")
+    ],
+    "conversation_121": [
+        ("user_1", "It's official. I'm never drinking again."),
+        ("user_2", "See you next Friday?")
+    ],
+    "conversation_122": [
+        ("user_1", "Please stop leaving your wet towel on the bed."),
+        ("user_2", "My bad.")
+    ],
+    "conversation_123": [
+        ("user_1", "Did you get my email?"),
+        ("user_2", "Checking now.")
+    ],
+    "conversation_124": [
+        ("user_1", "Just saw a guy walking a ferret on a leash."),
+        ("user_2", "Providence is a magical place.")
+    ],
+    "conversation_125": [
+        ("user_1", "I'm having one of those days where I question all my life choices."),
+        ("user_2", "Been there. Want to talk about it?"),
+        ("user_1", "Nah, I just need to wallow for a bit. Thanks though."),
+        ("user_2", "Okay. Well, I'm here if you change your mind.")
+    ],
+    "conversation_126": [
+        ("user_1", "Happy New Year!"),
+        ("user_2", "Happy New Year! Hope 2026 is a good one.")
+    ],
+    "conversation_127": [
+        ("user_1", "The printer is jammed again."),
+        ("user_2", "I am going to throw it out the window.")
+    ],
+    "conversation_128": [
+        ("user_1", "Hey! I'll be in your city next month for a work conference. Are you free to grab dinner on the 15th?"),
+        ("user_2", "No way! That's awesome. Yes, I'm totally free. Can't wait to catch up!")
+    ],
+    "conversation_129": [
+        ("user_1", "bro i'm spiraling"),
+        ("user_2", "what's up talk to me")
+    ],
+    "conversation_130": [
+        ("user_1", "Hi, I'm a freelance writer and I'm interested in pitching an article to your publication. Who would be the best person to contact?"),
+        ("user_2", "Hello. You can send all pitches to our editor, Jane Smith, at editor@publication.com.")
+    ],
+    "conversation_131": [
+        ("user_1", "I need a new podcast recommendation."),
+        ("user_2", "Have you listened to 'The Midnight Gospel'? It's wild.")
+    ],
+    "conversation_132": [
+        ("user_1", "Just booked my first ever solo trip!"),
+        ("user_2", "That's so exciting! Where are you going?"),
+        ("user_1", "Portugal! I'm equal parts thrilled and terrified."),
+        ("user_2", "You're going to have an amazing time.")
+    ],
+    "conversation_133": [
+        ("user_1", "Are we still on for the fantasy football draft tonight?"),
+        ("user_2", "8 PM sharp. Don't be late.")
+    ],
+    "conversation_134": [
+        ("user_1", "Are you home? I'm locked out."),
+        ("user_2", "Yeah I'm here. Coming.")
+    ],
+    "conversation_135": [
+        ("user_1", "I can't stop thinking about that pizza we had last night."),
+        ("user_2", "It was life-changing.")
+    ],
+    "conversation_136": [
+        ("user_1", "Thank you again for house-sitting. The cats seem happy and the plants are alive. You're a lifesaver."),
+        ("user_2", "Anytime! They were a pleasure.")
+    ],
+    "conversation_137": [
+        ("user_1", "I hate parallel parking."),
+        ("user_2", "You live in a city. It's a required life skill.")
+    ],
+    "conversation_138": [
+        ("user_1", "It's your turn in Words With Friends."),
+        ("user_2", "I'm thinking!")
+    ],
+    "conversation_139": [
+        ("user_1", "Hey, I'm so sorry, I have to cancel our date tonight. A work thing came up that I can't get out of."),
+        ("user_2", "Oh, bummer. No worries, I understand. Rain check?"),
+        ("user_1", "Definitely. How about Saturday?")
+    ],
+    "conversation_140": [
+        ("user_1", "You up?"),
+        ("user_2", "Yeah, can't sleep.")
+    ],
+    "conversation_141": [
+        ("user_1", "Just bought a ridiculous amount of books."),
+        ("user_2", "As one does.")
+    ],
+    "conversation_142": [
+        ("user_1", "This is your daily reminder to drink water. 💧"),
+        ("user_2", "lol thank you")
+    ],
+    "conversation_143": [
+        ("user_1", "That new episode of House of the Dragon was INSANE."),
+        ("user_2", "I'm still processing it. We need to debrief tomorrow.")
+    ],
+    "conversation_144": [
+        ("user_1", "Just a heads up, the monthly team meeting has been rescheduled to 3 PM on Thursday."),
+        ("user_2", "Got it, thanks for the update.")
+    ],
+    "conversation_145": [
+        ("user_1", "I think I'm getting sick."),
+        ("user_2", "Oh no! Get some rest.")
+    ],
+    "conversation_146": [
+        ("user_1", "Remember that time we tried to bake that cake and almost burned down the kitchen?"),
+        ("user_2", "How could I forget? It was the best worst cake I've ever had.")
+    ],
+    "conversation_147": [
+        ("user_1", "Can you please take your shoes off the coffee table."),
+        ("user_2", "sry")
+    ],
+    "conversation_148": [
+        ("user_1", "The fall foliage is really starting to pop off."),
+        ("user_2", "We should go for a hike this weekend!")
+    ],
+    "conversation_149": [
+        ("user_1", "Ok I'm here where are you?"),
+        ("user_2", "By the stage, left side.")
+    ],
+    "conversation_150": [
+        ("user_1", "Thinking of you. ❤️"),
+        ("user_2", "Thinking of you too.")
+    ],
+    "conversation_151": [
+        ("user_1", "omg this meme is literally us"),
+        ("user_1", "[Image Attachment]"),
+        ("user_2", "LMAOOOO it's so true it hurts")
+    ],
+    "conversation_152": [
+        ("user_1", "What's the address for the party tonight?"),
+        ("user_2", "123 Main St, Apt 4. See you there!")
+    ],
+    "conversation_153": [
+        ("user_1", "That was a really tough loss."),
+        ("user_2", "Yeah. They'll get 'em next time.")
+    ],
+    "conversation_154": [
+        ("user_1", "Have you started watching the new season of 'The Bear' yet?"),
+        ("user_2", "Yes, Chef! Binged the whole thing yesterday. It's so good."),
+        ("user_1", "Corner!")
+    ],
+    "conversation_155": [
+        ("user_1", "I don't think I can do this."),
+        ("user_2", "Yes, you can. You are the most capable person I know. You've got this.")
+    ],
+    "conversation_156": [
+        ("user_1", "Your laundry is done."),
+        ("user_2", "thx mom")
+    ],
+    "conversation_157": [
+        ("user_1", "I'm going to be a dad!"),
+        ("user_2", "DUDE! That's incredible! Congratulations!")
+    ],
+    "conversation_158": [
+        ("user_1", "Flight's delayed by an hour."),
+        ("user_2", "Ugh, classic."),
+        ("user_1", "At least there's a bar.")
+    ],
+    "conversation_159": [
+        ("user_1", "Hello, my name is David and I'll be your technician today. I am currently en route to your location and expect to arrive in approximately 15 minutes."),
+        ("user_2", "Thank you for the update!")
+    ],
+    "conversation_160": [
+        ("user_1", "Just finished my last final exam ever."),
+        ("user_2", "Congrats on graduating! So proud of you!")
+    ],
+    "conversation_161": [
+        ("user_1", "Just adopted a cat!"),
+        ("user_2", "OMG show me!"),
+        ("user_1", "[Image Attachment]"),
+        ("user_2", "I would die for him.")
+    ],
+    "conversation_162": [
+        ("user_1", "Do you have any jumper cables? My car won't start."),
+        ("user_2", "Yeah, I've got a set. I can come give you a jump.")
+    ],
+    "conversation_163": [
+        ("user_1", "This is so cringe"),
+        ("user_2", "Agreed.")
+    ],
+    "conversation_164": [
+        ("user_1", "The new hire seems really cool."),
+        ("user_2", "Yeah, I like her. She's got good energy.")
+    ],
+    "conversation_165": [
+        ("user_1", "Can't wait to see you this weekend!"),
+        ("user_2", "Me too! It's been too long.")
+    ],
+    "conversation_166": [
+        ("user_1", "There's a spider in the bathroom. A big one."),
+        ("user_2", "I'm not home. You have to deal with it."),
+        ("user_1", "I'm just going to burn the house down.")
+    ],
+    "conversation_167": [
+        ("user_1", "Did you get my invoice? Just a friendly reminder that it's due today."),
+        ("user_2", "Hi, yes! So sorry for the delay. Just sent the payment.")
+    ],
+    "conversation_168": [
+        ("user_1", "I'm so full, I can't move."),
+        ("user_2", "Same. That was the best Thanksgiving ever.")
+    ],
+    "conversation_169": [
+        ("user_1", "lol"),
+        ("user_2", "lol")
+    ],
+    "conversation_170": [
+        ("user_1", "Hi, I'm at the front door. The code isn't working."),
+        ("user_2", "Oh, try 1482#. Sometimes it's sticky.")
+    ],
+    "conversation_171": [
+        ("user_1", "I just want to say I really appreciate you."),
+        ("user_2", "Aw, I appreciate you too.")
+    ],
+    "conversation_172": [
+        ("user_1", "Hey, I'm putting together a team for a charity 5k next month. Are you interested?"),
+        ("user_2", "That sounds fun! I'm in.")
+    ],
+    "conversation_173": [
+        ("user_1", "Is it Friday yet?"),
+        ("user_2", "It's Tuesday, my dude.")
+    ],
+    "conversation_174": [
+        ("user_1", "Just got my test results back. I'm cancer-free."),
+        ("user_2", "Oh my god. That's the best news I've ever heard. I'm crying.")
+    ],
+    "conversation_175": [
+        ("user_1", "The audacity to schedule a meeting at 4:30 PM on a Friday..."),
+        ("user_2", "pure evil.")
+    ],
+    "conversation_176": [
+        ("user_1", "What's the move tonight?"),
+        ("user_2", "Idk, I'm kinda feeling a chill night in.")
+    ],
+    "conversation_177": [
+        ("user_1", "You're my emergency contact."),
+        ("user_2", "I feel so honored.")
+    ],
+    "conversation_178": [
+        ("user_1", "I finally finished cleaning out the garage."),
+        ("user_2", "No way. I'll believe it when I see it.")
+    ],
+    "conversation_179": [
+        ("user_1", "It was good to see you today."),
+        ("user_2", "You too! Let's not wait so long next time.")
+    ],
+    "conversation_180": [
+        ("user_1", "Per our conversation, I've looped in the legal team to review the updated terms of the agreement."),
+        ("user_2", "Thank you. Please advise on the expected timeline for their feedback.")
+    ],
+    "conversation_181": [
+        ("user_1", "I'm pretty sure my upstairs neighbors are bowling."),
+        ("user_2", "Or they have a pet elephant.")
+    ],
+    "conversation_182": [
+        ("user_1", "Should I text him?"),
+        ("user_2", "NO."),
+        ("user_1", "ok ok you're right")
+    ],
+    "conversation_183": [
+        ("user_1", "This weather is giving me major seasonal depression."),
+        ("user_2", "I feel that. It's been grey for a week.")
+    ],
+    "conversation_184": [
+        ("user_1", "My phone is about to die."),
+        ("user_2", "Ttyl")
+    ],
+    "conversation_185": [
+        ("user_1", "Hey, I know this is last minute, but are you free to babysit tonight?"),
+        ("user_2", "I am actually! What time?"),
+        ("user_1", "You are a lifesaver! Around 7?")
+    ],
+    "conversation_186": [
+        ("user_1", "Good morning ☀️"),
+        ("user_2", "Morning!")
+    ],
+    "conversation_187": [
+        ("user_1", "Your DoorDash order is on its way. Your Dasher, Mike, is on a bike."),
+        ("user_2", "")
+    ],
+    "conversation_188": [
+        ("user_1", "I can't believe we have to go back to work tomorrow."),
+        ("user_2", "The sunday scaries are hitting hard.")
+    ],
+    "conversation_189": [
+        ("user_1", "My back hurts."),
+        ("user_2", "Welcome to your 30s.")
+    ],
+    "conversation_190": [
+        ("user_1", "Can I vent for a second?"),
+        ("user_2", "Always.")
+    ],
+    "conversation_191": [
+        ("user_1", "I'm at the concert, the opening band is surprisingly good."),
+        ("user_2", "Nice! I'm almost there, just parking.")
+    ],
+    "conversation_192": [
+        ("user_1", "Did you remember to lock the back door?"),
+        ("user_2", "Yes, I did.")
+    ],
+    "conversation_193": [
+        ("user_1", "I'm running for city council."),
+        ("user_2", "Whoa, really? That's awesome! You have my vote.")
+    ],
+    "conversation_194": [
+        ("user_1", "The password for the WiFi is on the fridge."),
+        ("user_2", "Kk thanks")
+    ],
+    "conversation_195": [
+        ("user_1", "That was a great first date. I had a really nice time."),
+        ("user_2", "Me too! We should definitely do it again soon.")
+    ],
+    "conversation_196": [
+        ("user_1", "I'm never going to financially recover from this."),
+        ("user_2", "What did you buy now?")
+    ],
+    "conversation_197": [
+        ("user_1", "Hi, my name is Sarah. I'm calling to follow up on my application for the graphic designer position."),
+        ("user_2", "Hi Sarah. Thanks for checking in. We're still in the review process, but we expect to reach out to candidates for interviews next week.")
+    ],
+    "conversation_198": [
+        ("user_1", "I think my cat is plotting to kill me."),
+        ("user_2", "Mine too. We should form a support group.")
+    ],
+    "conversation_199": [
+        ("user_1", "ok but for real what are we doing for your birthday"),
+        ("user_2", "I have no idea. I don't want to plan anything."),
+        ("user_1", "Leave it to me.")
+    ],
+    "conversation_200": [
+        ("user_1", "Be safe."),
+        ("user_2", "Always.")
+    ]
+}
+
+communilink_conversations = {
+    "conversation_1": [
+        ("user_1", "Hey! Are you busy this weekend?"),
+        ("user_2", "Not really, I don't have any solid plans yet. Why?"),
+        ("user_1", "I was thinking we could go for a hike. The weather is supposed to be amazing."),
+        ("user_2", "Oh, that sounds fun! Where were you thinking of going?"),
+        ("user_1", "Maybe up to Blue Hills? The skyline trail has some great views."),
+        ("user_2", "I've always wanted to do that one. What time should we meet?"),
+        ("user_1", "How about Saturday morning? We could meet at the trailhead around 9 AM."),
+        ("user_2", "9 AM works for me. Should I bring snacks?"),
+        ("user_1", "Yeah, that would be great. I'll pack some water and sandwiches."),
+        ("user_2", "Perfect. I'm already looking forward to it! See you Saturday."),
+        ("user_1", "Awesome! It's a date. 🌳"),
+        ("user_2", "See ya!"),
+    ],
+    "conversation_2": [
+        ("user_1", "Did you see the final draft of the marketing report?"),
+        ("user_2", "Not yet, I was just about to pull it up. Did Johnson approve the new metrics?"),
+        ("user_1", "He did, but he added a note asking for a more detailed competitor analysis."),
+        ("user_2", "Ugh, of course. That's going to take a while. The deadline is tomorrow."),
+        ("user_1", "I know. I can start gathering the data for our top three competitors if you can handle the next two."),
+        ("user_2", "Okay, deal. That should speed things up. Send me the list you're working on so we don't overlap."),
+        ("user_1", "Will do. I'll create a shared doc and ping you when it's ready."),
+        ("user_2", "Thanks. This is going to be a late night, isn't it?"),
+        ("user_1", "Looks like it. I'll order some pizza for us later."),
+        ("user_2", "You're a lifesaver. Let's get this done. 🍕"),
+    ],
+    "conversation_3": [
+        ("user_1", "You will not BELIEVE what just happened."),
+        ("user_2", "What?? Don't leave me hanging!"),
+        ("user_1", "So, I was at the grocery store, and I saw a dog that looked exactly like Winston."),
+        ("user_2", "No way! A little corgi with one floppy ear?"),
+        ("user_1", "Exactly! So I went up to the owner and said, 'Your dog is so cute! He looks just like my friend's dog.'"),
+        ("user_2", "And?"),
+        ("user_1", "It WAS Winston! Your mom was dog-sitting and decided to run errands."),
+        ("user_2", "OMG! That's hilarious. What are the odds?"),
+        ("user_1", "I know, right? We chatted for a bit. Your mom says hi, by the way."),
+        ("user_2", "That's so random and amazing. My mom didn't even tell me she had him today!"),
+    ],
+    "conversation_4": [
+        ("user_1", "I'm having a problem with the new software update."),
+        ("user_2", "Oh no, what's going on?"),
+        ("user_1", "Every time I try to export a file, the program crashes."),
+        ("user_2", "Hmm, that's not good. Have you tried restarting your computer?"),
+        ("user_1", "Yep, first thing I did. No luck."),
+        ("user_2", "Okay, what about clearing the cache? Sometimes that helps with export issues."),
+        ("user_1", "How do I do that again?"),
+        ("user_2", "Go to Settings, then Application Data, and you should see an option to 'Clear Cache.'"),
+        ("user_1", "Okay, trying it now... It worked! Thank you so much!"),
+        ("user_2", "No problem at all! Glad I could help. Let me know if it happens again."),
+        ("user_1", "You're the best!"),
+    ],
+    "conversation_5": [
+        ("user_1", "Hey, can I ask you a question about the 'Dune' book?"),
+        ("user_2", "Sure, I just finished it last month. What's up?"),
+        ("user_1", "I'm a little confused about the Bene Gesserit's motivations. What's their ultimate goal?"),
+        ("user_2", "It's complex, but they're basically playing the long game with politics and genetics to guide humanity."),
+        ("user_1", "So they're trying to breed a superbeing, the Kwisatz Haderach?"),
+        ("user_2", "Exactly. They want to create someone who can see into the future and control it, ensuring humanity's survival."),
+        ("user_1", "That makes more sense now. I was getting lost in all the political maneuvering."),
+        ("user_2", "It's a lot to take in! The world-building is incredibly dense."),
+        ("user_1", "For sure. I'm loving it though. Thanks for clearing that up."),
+        ("user_2", "Anytime! Let me know what you think when you finish it."),
+    ],
+    "conversation_6": [
+        ("user_1", "I can't decide what to make for dinner."),
+        ("user_2", "Same here. I'm tired of all my usual recipes."),
+        ("user_1", "What about that creamy tomato pasta we made that one time?"),
+        ("user_2", "Ooh, that's a great idea! I think I have all the ingredients too."),
+        ("user_1", "Do we have heavy cream? I feel like we used it all last week."),
+        ("user_2", "Let me check... Nope, you're right, we're out."),
+        ("user_1", "Darn. I could run to the store real quick."),
+        ("user_2", "Or we could just order takeout. I'm feeling lazy."),
+        ("user_1", "Haha, sold. Thai food?"),
+        ("user_2", "You read my mind. I'll text you the menu."),
+    ],
+    "conversation_7": [
+        ("user_1", "Can you please not leave your wet towel on the bed?"),
+        ("user_2", "Oh, sorry. I was in a rush this morning."),
+        ("user_1", "I know, but you do it almost every day. It makes the sheets damp."),
+        ("user_2", "I don't mean to. I'll try to remember to hang it up."),
+        ("user_1", "I'd really appreciate it. It's a small thing, but it's one of my biggest pet peeves."),
+        ("user_2", "Okay, okay, I get it. I'll put a sticky note on the mirror or something."),
+        ("user_1", "Thank you. I'm not trying to nag."),
+        ("user_2", "I know. It's my bad. I'll be better about it."),
+        ("user_1", "Appreciate it. ❤️"),
+        ("user_2", "No problem."),
+    ],
+    "conversation_8": [
+        ("user_1", "We need to plan Mom's birthday dinner."),
+        ("user_2", "You're right, it's next Friday! I totally forgot."),
+        ("user_1", "I was thinking we could take her to that new Italian place downtown."),
+        ("user_2", "La Stella? I heard it's impossible to get a reservation."),
+        ("user_1", "I already checked. They have an opening at 7 PM."),
+        ("user_2", "Wow, you're on top of it! Should I call Dad and invite him?"),
+        ("user_1", "Yep, and can you handle getting the cake? She loves the chocolate one from The Sweetery."),
+        ("user_2", "Consider it done. What about a gift?"),
+        ("user_1", "Let's go in on that gardening set she wanted."),
+        ("user_2", "Perfect idea. This is going to be great!"),
+    ],
+    "conversation_9": [
+        ("user_1", "The Wi-Fi is down again."),
+        ("user_2", "Are you serious? I'm in the middle of a movie."),
+        ("user_1", "I tried restarting the router, but the light is still red."),
+        ("user_2", "Did you unplug it and wait 30 seconds before plugging it back in?"),
+        ("user_1", "Yes, I did the whole routine. Nothing."),
+        ("user_2", "Great. I guess I'll have to call the internet company tomorrow."),
+        ("user_1", "Can you check if there's an outage in our area on their website? Using your phone data?"),
+        ("user_2", "Good idea. One sec... Yep, there's a major outage. They're working on it."),
+        ("user_1", "Well, at least it's not our router. So much for my evening plans."),
+        ("user_2", "Board game night?"),
+        ("user_1", "Sure, why not. Grab the Scrabble."),
+    ],
+    "conversation_10": [
+        ("user_1", "Remember that time we tried to build a bookshelf from IKEA?"),
+        ("user_2", "How could I forget? The 'five-hour-project-that-should-have-taken-one.'"),
+        ("user_1", "I still don't understand how we ended up with so many extra screws."),
+        ("user_2", "And the shelf was still wobbly!"),
+        ("user_1", "My favorite part was when you put one of the main panels on backwards and we had to take the whole thing apart."),
+        ("user_2", "Hey! In my defense, those instructions were just pictures. No words!"),
+        ("user_1", "It was like a terrible, frustrating puzzle."),
+        ("user_2", "But we did it. And it only collapsed once."),
+        ("user_1", "Haha, true. We should never attempt that again."),
+        ("user_2", "Agreed. From now on, we pay for assembly."),
+    ],
+    "conversation_11": [
+        ("user_1", "I got the job!"),
+        ("user_2", "NO WAY! The one at the design firm?"),
+        ("user_1", "YES! They called me this morning with the offer!"),
+        ("user_2", "AHHHH I'M SO PROUD OF YOU! This is incredible news!"),
+        ("user_1", "Thank you! I'm so excited I can barely sit still."),
+        ("user_2", "We have to celebrate. Dinner and drinks on me this weekend."),
+        ("user_1", "You don't have to do that!"),
+        ("user_2", "I absolutely do. This is a huge deal!"),
+        ("user_1", "Okay, okay, you win. I can't wait to tell you all about it."),
+        ("user_2", "Seriously, congratulations. You earned this."),
+    ],
+    "conversation_12": [
+        ("user_1", "What's the name of that song that goes 'doo-doo-dah-dah-dee-dah'?"),
+        ("user_2", "You're going to have to be way more specific than that."),
+        ("user_1", "It's like an indie pop song, kind of upbeat. A female singer."),
+        ("user_2", "Is it new? Old?"),
+        ("user_1", "I think from the 2010s? It was in a commercial recently."),
+        ("user_2", "Okay, I might have an idea. Is it 'Walking on a Dream' by Empire of the Sun?"),
+        ("user_1", "No, that's not it. The singer has a higher voice."),
+        ("user_2", "Hmm... '1234' by Feist?"),
+        ("user_1", "Let me look it up... YES! That's it! You're a genius."),
+        ("user_2", "Haha, I have my moments. Glad I could solve the mystery."),
+    ],
+    "conversation_13": [
+        ("user_1", "The landlord just emailed. They're raising the rent."),
+        ("user_2", "Again? By how much this time?"),
+        ("user_1", "Another $150 a month, starting in October."),
+        ("user_2", "That's insane. We can't afford that."),
+        ("user_1", "I know. I think... I think it's time we start looking for a new place."),
+        ("user_2", "I was afraid you were going to say that. I hate moving."),
+        ("user_1", "Me too, but this is getting ridiculous. We can probably find something bigger for what they're asking."),
+        ("user_2", "You're probably right. It's just so stressful."),
+        ("user_1", "We can do it together. I'll start looking at listings tonight."),
+        ("user_2", "Okay. Let me know if you find anything promising."),
+    ],
+    "conversation_14": [
+        ("user_1", "I just booked our flights to Costa Rica!"),
+        ("user_2", "YES! It's officially happening! Which dates did you get?"),
+        ("user_1", "We leave March 5th and come back on the 15th."),
+        ("user_2", "Ten whole days! That's perfect. Did you book the rental car too?"),
+        ("user_1", "Not yet, I wanted to check with you first. Should we get a 4x4?"),
+        ("user_2", "Definitely. A lot of the roads to the cool spots are unpaved."),
+        ("user_1", "Good call. I'll add that to the booking."),
+        ("user_2", "This is going to be the best trip ever. I'm already dreaming of the rainforest."),
+        ("user_1", "Me too! Now we just need to find some cool Airbnbs."),
+        ("user_2", "Let's look together tonight!"),
+    ],
+    "conversation_15": [
+        ("user_1", "Did you water my plants while I was gone?"),
+        ("user_2", "Umm... about that."),
+        ("user_1", "Oh no. Don't tell me you forgot."),
+        ("user_2", "I watered them! Just... maybe not as often as I should have."),
+        ("user_1", "My fern looks so sad. It's all brown and crispy."),
+        ("user_2", "I am so, so sorry. I got really busy with work and it completely slipped my mind for a few days."),
+        ("user_1", "This is why I left you detailed instructions!"),
+        ("user_2", "I know, I'm an idiot. Is there anything I can do? I can buy you a new one."),
+        ("user_1", "It's fine. I'll see if I can revive it. Just please, next time, set a reminder."),
+        ("user_2", "I will. I promise. I feel terrible."),
+    ],
+    "conversation_16": [
+        ("user_1", "I'm thinking of adopting a cat."),
+        ("user_2", "Really? That's exciting! Have you been to the local shelter?"),
+        ("user_1", "I'm going this weekend. I'm just a little nervous. It's a big commitment."),
+        ("user_2", "It is, but it's so worth it. My cat is the best thing that ever happened to me."),
+        ("user_1", "What's the hardest part about being a cat owner?"),
+        ("user_2", "Honestly, probably the vet bills. And cleaning the litter box. But the cuddles make up for it."),
+        ("user_1", "That's what I'm hoping for. I want a little lap cat."),
+        ("user_2", "Just spend some time with them at the shelter. You'll know when you find the right one."),
+        ("user_1", "Thanks for the advice. Wish me luck!"),
+        ("user_2", "Good luck! Send me pictures of all the cute kitties! 😻"),
+    ],
+    "conversation_17": [
+        ("user_1", "I need to return this sweater I bought online, but I can't find the return label."),
+        ("user_2", "Did you check your email? They usually send it as a PDF attachment."),
+        ("user_1", "I did, I searched my whole inbox. Nothing."),
+        ("user_2", "What about the company's website? You can probably log into your account and print a new one."),
+        ("user_1", "Oh, I didn't think of that. Let me check."),
+        ("user_2", "Go to your order history and there should be a 'Start a Return' button."),
+        ("user_1", "Found it! You're a genius. It's letting me print it now."),
+        ("user_2", "Awesome! Glad it was an easy fix."),
+        ("user_1", "You just saved me a very long and annoying call to customer service."),
+        ("user_2", "That's what friends are for!"),
+    ],
+    "conversation_18": [
+        ("user_1", "Are we still on for the gym tonight?"),
+        ("user_2", "I don't know, I'm feeling really drained from work."),
+        ("user_1", "Come on, you'll feel better after we work out. It'll be a good stress reliever."),
+        ("user_2", "I know you're right, but my couch is calling my name."),
+        ("user_1", "I'll tell you what, we can do a shorter workout. Just 45 minutes."),
+        ("user_2", "And we can get smoothies after?"),
+        ("user_1", "Deal. It's better than skipping it altogether."),
+        ("user_2", "Okay, fine, you've convinced me. I'll start getting ready."),
+        ("user_1", "Yes! Victory is mine. See you there in 30."),
+        ("user_2", "Haha, see you soon."),
+    ],
+    "conversation_19": [
+        ("user_1", "I think my car is making a weird noise."),
+        ("user_2", "What kind of noise?"),
+        ("user_1", "It's like a high-pitched squealing sound when I press the brakes."),
+        ("user_2", "Ooh, that's not good. It probably means you need new brake pads."),
+        ("user_1", "Is that expensive to fix?"),
+        ("user_2", "It can be, depending on the car. You should take it to a mechanic ASAP."),
+        ("user_1", "I was afraid you'd say that. I don't have time to deal with this right now."),
+        ("user_2", "You can't mess around with brakes. It's a huge safety issue."),
+        ("user_1", "You're right. I'll call my mechanic in the morning."),
+        ("user_2", "Good. Let me know if you need a ride anywhere while it's in the shop."),
+    ],
+    "conversation_20": [
+        ("user_1", "What did you think of the season finale?"),
+        ("user_2", "I have SO MANY THOUGHTS. I can't believe they killed off the main character!"),
+        ("user_1", "I know! I literally screamed at my TV. It was so unexpected."),
+        ("user_2", "And that cliffhanger! How are we supposed to wait a whole year for the next season?"),
+        ("user_1", "It's torture. I've been reading fan theories all morning to cope."),
+        ("user_2", "Any good ones?"),
+        ("user_1", "A lot of people think he's not really dead. That it was some kind of trick."),
+        ("user_2", "I hope so. The show wouldn't be the same without him."),
+        ("user_1", "Exactly. I'm emotionally invested at this point."),
+        ("user_2", "Me too. We'll have to get through this together. 😭"),
+    ],
+    "conversation_21": [
+        ("user_1", "How do I get red wine out of a white shirt?"),
+        ("user_2", "Oh no! Did you have a spill?"),
+        ("user_1", "Yes, at dinner last night. It's my favorite shirt too."),
+        ("user_2", "Okay, don't panic. Did you put anything on it yet?"),
+        ("user_1", "No, it's just been sitting there."),
+        ("user_2", "First, blot it with a clean cloth. Then, pour some salt or baking soda on the stain to absorb the wine."),
+        ("user_1", "Okay, doing that now. Then what?"),
+        ("user_2", "Let it sit for a bit, then rinse it with cold water from the back of the stain. After that, you can treat it with a stain remover and wash it."),
+        ("user_1", "You're a laundry wizard. Thank you!"),
+        ("user_2", "Haha, I've had my fair share of wine stains. Let me know if it works!"),
+    ],
+    "conversation_22": [
+        ("user_1", "Can you cover my shift on Saturday?"),
+        ("user_2", "This Saturday? I think I might have plans."),
+        ("user_1", "Please? It's my anniversary and I completely forgot to ask for the day off."),
+        ("user_2", "Oh, that's important. What time is the shift?"),
+        ("user_1", "It's the closing shift, from 4 PM to 11 PM."),
+        ("user_2", "Let me check my calendar... Okay, I can do it. My plans aren't until later in the evening."),
+        ("user_1", "You are a lifesaver! I owe you big time."),
+        ("user_2", "No worries. You can just cover my next closing shift."),
+        ("user_1", "Deal. Thank you, thank you, thank you!"),
+        ("user_2", "You're welcome. Have a happy anniversary!"),
+    ],
+    "conversation_23": [
+        ("user_1", "I can't believe we've known each other for 10 years."),
+        ("user_2", "I know, right? It feels like just yesterday we were freshmen in college."),
+        ("user_1", "Remember trying to navigate the campus on the first day? We were so lost."),
+        ("user_2", "And we both ended up in the wrong lecture hall!"),
+        ("user_1", "That's how we met! In that boring philosophy class we weren't even enrolled in."),
+        ("user_2", "It's crazy how much has changed since then."),
+        ("user_1", "And how much hasn't. We're still just as ridiculous."),
+        ("user_2", "Hey, speak for yourself! But yeah, you're right."),
+        ("user_1", "To ten years of friendship! 🍻"),
+        ("user_2", "And hopefully many more to come."),
+    ],
+    "conversation_24": [
+        ("user_1", "I'm trying to be healthier. Any tips for easy lunches?"),
+        ("user_2", "Salads are always a good option. You can prep a bunch of ingredients at the start of the week."),
+        ("user_1", "I get so bored of salads though."),
+        ("user_2", "Then you're not making them right! You need to add lots of different textures and flavors. Nuts, seeds, cheese, a good dressing."),
+        ("user_1", "That sounds like a lot of work."),
+        ("user_2", "What about quinoa bowls? Or wraps with hummus and veggies?"),
+        ("user_1", "Wraps could work. That seems manageable."),
+        ("user_2", "Yeah, they're super easy and you can switch up the fillings so you don't get bored."),
+        ("user_1", "Okay, I'll give that a try this week. Thanks for the ideas!"),
+        ("user_2", "No problem! Healthy eating doesn't have to be boring."),
+    ],
+    "conversation_25": [
+        ("user_1", "Could you turn your music down? I'm trying to work."),
+        ("user_2", "Oh, sorry. Is it too loud?"),
+        ("user_1", "Yeah, I can hear it through my headphones. I have a big deadline."),
+        ("user_2", "My bad. I'll put my own headphones on."),
+        ("user_1", "Thanks, I appreciate it."),
+        ("user_2", "Is that better?"),
+        ("user_1", "Much better. Thank you."),
+        ("user_2", "No worries. Let me know when you're done with your work."),
+        ("user_1", "Will do. Shouldn't be more than another hour or so."),
+        ("user_2", "Cool. Good luck with the deadline."),
+    ],
+    "conversation_26": [
+        ("user_1", "Let's have a movie marathon this weekend."),
+        ("user_2", "I'm so in. What genre are we thinking?"),
+        ("user_1", "I was in the mood for some classic 80s teen movies."),
+        ("user_2", "Like John Hughes stuff? 'The Breakfast Club', 'Ferris Bueller's Day Off'?"),
+        ("user_1", "Exactly! And we have to watch 'Heathers' too."),
+        ("user_2", "Oh, 'Heathers' is a must. It's so dark and hilarious."),
+        ("user_1", "I'll be in charge of the movies if you handle the snacks."),
+        ("user_2", "Deal. I'm talking popcorn, candy, maybe even some pizza bagels."),
+        ("user_1", "You are speaking my language. This is going to be the perfect lazy weekend."),
+        ("user_2", "I can't wait. See you Friday night!"),
+    ],
+    "conversation_27": [
+        ("user_1", "I'm so nervous about my presentation tomorrow."),
+        ("user_2", "You're going to be great! You know this stuff inside and out."),
+        ("user_1", "I know, but public speaking just terrifies me."),
+        ("user_2", "Do you want to practice it with me? I can be your audience."),
+        ("user_1", "Would you really do that? That would be so helpful."),
+        ("user_2", "Of course! Let's hop on a video call in a bit."),
+        ("user_1", "Okay. Just let me run through it one more time by myself first."),
+        ("user_2", "Take your time. Just remember to breathe and speak slowly. You've got this."),
+        ("user_1", "Thank you for the support. It really means a lot."),
+        ("user_2", "Anytime. That's what I'm here for."),
+    ],
+    "conversation_28": [
+        ("user_1", "Why are there dirty dishes in the sink? I just cleaned the kitchen."),
+        ("user_2", "That was me. I just finished lunch."),
+        ("user_1", "Can you please wash them? I'm trying to keep the kitchen clean."),
+        ("user_2", "I was going to. I just sat down for a second."),
+        ("user_1", "It only takes a minute to wash a plate and a fork."),
+        ("user_2", "I know. I'll get to it. You don't have to micromanage me."),
+        ("user_1", "I'm not micromanaging, I'm just asking you to clean up after yourself."),
+        ("user_2", "Fine. I'm going to do it right now. Are you happy?"),
+        ("user_1", "I'll be happy when the kitchen is clean, like we agreed."),
+        ("user_2", "Okay."),
+    ],
+    "conversation_29": [
+        ("user_1", "Do you have a portable phone charger I can borrow?"),
+        ("user_2", "I do, but I think it might be dead."),
+        ("user_1", "My phone is at 2% and I'm waiting for an important call."),
+        ("user_2", "Let me check... Yeah, it's got no juice. Sorry."),
+        ("user_1", "Ugh, this is a disaster."),
+        ("user_2", "Wait, I have the wall plug and a cable in my bag. You could find an outlet."),
+        ("user_1", "That would be amazing. Where is it?"),
+        ("user_2", "In the front pocket of my backpack. Help yourself."),
+        ("user_1", "You're the best! I found an outlet by the cafe."),
+        ("user_2", "Perfect! Crisis averted."),
+    ],
+    "conversation_30": [
+        ("user_1", "I can't stop thinking about that documentary we watched last night."),
+        ("user_2", "Me neither. 'Seaspiracy'? It was so eye-opening."),
+        ("user_1", "I had no idea how destructive the fishing industry is."),
+        ("user_2", "Right? It's made me seriously reconsider eating fish."),
+        ("user_1", "Same here. I think I'm going to try to cut it out of my diet."),
+        ("user_2", "It's a tough one, because I do love sushi."),
+        ("user_1", "I know, but after seeing all that, I don't think I can enjoy it anymore."),
+        ("user_2", "You're right. The environmental impact is just too huge."),
+        ("user_1", "It's motivated me to look for more ways to be sustainable."),
+        ("user_2", "Let's do it together. We can share tips and recipes."),
+    ],
+    "conversation_31": [
+        ("user_1", "I'm so sore from our workout yesterday."),
+        ("user_2", "Tell me about it. I can barely walk up the stairs."),
+        ("user_1", "Whose idea was it to do so many squats?"),
+        ("user_2", "That would be yours, my friend."),
+        ("user_1", "Oh. Right. Well, it seemed like a good idea at the time."),
+        ("user_2", "It's the good kind of sore, though. It means we worked hard."),
+        ("user_1", "I guess. Right now it just feels like the painful kind of sore."),
+        ("user_2", "We should do some stretching later. It'll help."),
+        ("user_1", "Good idea. And maybe an Epsom salt bath."),
+        ("user_2", "Now you're talking. Let's plan on a recovery day."),
+    ],
+    "conversation_32": [
+        ("user_1", "We need to figure out a gift for Sarah's baby shower."),
+        ("user_2", "I was just thinking about that. Did she have a registry?"),
+        ("user_1", "Yeah, she sent me the link. But all the big stuff is already bought."),
+        ("user_2", "What's left on it?"),
+        ("user_1", "Mostly small things, like diapers, wipes, and some clothes."),
+        ("user_2", "We could put together a big gift basket with all of that stuff."),
+        ("user_1", "That's a cute idea! And we could add in some things that aren't on the registry, like books or a nice blanket."),
+        ("user_2", "Perfect. Let's go shopping for it this weekend."),
+        ("user_1", "Sounds like a plan. I'll make a list."),
+        ("user_2", "Great. She's going to love it."),
+    ],
+    "conversation_33": [
+        ("user_1", "I just finished the last episode of 'The Office' for the fifth time."),
+        ("user_2", "And did you cry at the finale again?"),
+        ("user_1", "Like a baby. Every single time."),
+        ("user_2", "It's just such a perfect ending to the show."),
+        ("user_1", "It really is. 'I wish there was a way to know you're in the good old days before you've actually left them.' That line gets me."),
+        ("user_2", "Stop, you're going to make me emotional just thinking about it."),
+        ("user_1", "What's your favorite episode of all time?"),
+        ("user_2", "Oh, that's tough. But I think it has to be 'Dinner Party.' It's so cringe-y and hilarious."),
+        ("user_1", "An excellent choice. Mine is 'Stress Relief.' The fire drill cold open is comedy gold."),
+        ("user_2", "Okay, now I have to go re-watch that."),
+    ],
+    "conversation_34": [
+        ("user_1", "I'm thinking of painting the living room."),
+        ("user_2", "Oh yeah? What color?"),
+        ("user_1", "I was thinking a dark green. Like a forest green."),
+        ("user_2", "Wow, that's a bold choice. Don't you think it will make the room feel smaller?"),
+        ("user_1", "Maybe, but I think it could also make it feel really cozy and dramatic."),
+        ("user_2", "I don't know. Our couch is dark gray. Will that even match?"),
+        ("user_1", "I think it will! With some gold accents? It could look really chic."),
+        ("user_2", "I'm having a hard time picturing it. Can you find some inspiration photos?"),
+        ("user_1", "Yeah, of course. I'll make a Pinterest board and send it to you."),
+        ("user_2", "Okay. I'm not saying no, I'm just saying I need to be convinced."),
+    ],
+    "conversation_35": [
+        ("user_1", "My flight got delayed by three hours."),
+        ("user_2", "No! Are you stuck at the airport?"),
+        ("user_1", "Yep. And it's packed in here. I can't even find a place to sit."),
+        ("user_2", "That's the worst. Did they say why it was delayed?"),
+        ("user_1", "Something about a mechanical issue with the plane."),
+        ("user_2", "Well, I'm glad they caught it on the ground, at least."),
+        ("user_1", "True. But now I'm going to miss my connecting flight."),
+        ("user_2", "Are they rebooking you?"),
+        ("user_1", "They said they'll have more information soon. For now, I'm just waiting in a huge line."),
+        ("user_2", "Hang in there. Let me know what happens."),
+    ],
+    "conversation_36": [
+        ("user_1", "I'm trying to learn how to play the guitar."),
+        ("user_2", "That's so cool! How's it going?"),
+        ("user_1", "It's... hard. My fingers hurt and I can't seem to make the chords sound right."),
+        ("user_2", "That's totally normal at the beginning. You have to build up calluses on your fingertips."),
+        ("user_1", "How long does that take?"),
+        ("user_2", "A few weeks of consistent practice. Don't give up!"),
+        ("user_1", "Any tips for a beginner?"),
+        ("user_2", "Start with simple songs that only use a few basic chords. And use a YouTube tutorial, they're super helpful."),
+        ("user_1", "Okay, I'll try that. Thanks for the encouragement."),
+        ("user_2", "You'll be a rockstar in no time. 🎸"),
+    ],
+    "conversation_37": [
+        ("user_1", "Did you get my email about the team meeting on Friday?"),
+        ("user_2", "Yes, I saw it. Do we really need another meeting?"),
+        ("user_1", "I think so. We need to get aligned on the Q4 goals."),
+        ("user_2", "Couldn't this have been an email? My week is already so packed."),
+        ("user_1", "I considered that, but there are a few points I think we need to discuss in real time."),
+        ("user_2", "Fine. But can we try to keep it to 30 minutes?"),
+        ("user_1", "That's the plan. I'll send out a clear agenda tomorrow to keep us on track."),
+        ("user_2", "Okay, I appreciate that."),
+        ("user_1", "No problem. I don't want to waste anyone's time."),
+        ("user_2", "Thanks. See you then."),
+    ],
+    "conversation_38": [
+        ("user_1", "I have a weird question. How do you fold a fitted sheet?"),
+        ("user_2", "Ah, the age-old mystery. It's impossible."),
+        ("user_1", "No, for real! I always just end up rolling it into a crumpled ball."),
+        ("user_2", "Okay, there is a trick to it. You have to tuck the corners into each other."),
+        ("user_1", "I've tried that! It never works. It's like a magic trick."),
+        ("user_2", "You lay it out, take two corners in your hands, and fold one over the other. Then you do the same with the other side."),
+        ("user_1", "You're making it sound so simple."),
+        ("user_2", "It takes practice. There are videos online that show you how to do it."),
+        ("user_1", "I'm going to look it up right now. This is the day I conquer the fitted sheet."),
+        ("user_2", "Godspeed, brave soldier."),
+    ],
+    "conversation_39": [
+        ("user_1", "What are you doing for Thanksgiving this year?"),
+        ("user_2", "I think I'm just going to stay here. Flying home is so expensive."),
+        ("user_1", "You should come to my family's dinner!"),
+        ("user_2", "Are you sure? I don't want to impose."),
+        ("user_1", "Don't be silly! We'd love to have you. My mom always makes way too much food."),
+        ("user_2", "That's so nice of you to offer. I might take you up on that."),
+        ("user_1", "Please do! It will be fun. And my grandma makes the best pie."),
+        ("user_2", "Okay, you've convinced me. What can I bring?"),
+        ("user_1", "Just bring yourself! I'm so glad you're coming."),
+        ("user_2", "Me too. Thank you so much."),
+    ],
+    "conversation_40": [
+        ("user_1", "My back is killing me."),
+        ("user_2", "Did you do something to it?"),
+        ("user_1", "I think I just slept on it wrong. I woke up and it was all stiff."),
+        ("user_2", "You should try using a heating pad. That always helps me."),
+        ("user_1", "Good idea. I think we have one somewhere."),
+        ("user_2", "And do some gentle stretching. Cat-cow pose is great for your back."),
+        ("user_1", "I feel like an old man."),
+        ("user_2", "It happens to the best of us. Getting old is fun, isn't it?"),
+        ("user_1", "Hilarious. I'm going to go find that heating pad now."),
+        ("user_2", "Feel better!"),
+    ],
+    "conversation_41": [
+        ("user_1", "Did you hear that they're making a sequel to our favorite movie?"),
+        ("user_2", "No! Are you serious? The original is a masterpiece, they can't touch it."),
+        ("user_1", "I know, I'm really nervous about it. Sequels are rarely as good."),
+        ("user_2", "Who is directing it? Is the original cast coming back?"),
+        ("user_1", "The same director is on board, and the two main actors have signed on."),
+        ("user_2", "Okay, that gives me a little bit of hope. But I'm still skeptical."),
+        ("user_1", "Me too. The story ended so perfectly. Where could they even go from there?"),
+        ("user_2", "I have no idea. But I guess we're going to see it on opening night regardless, right?"),
+        ("user_1", "Oh, absolutely. I have to know if they ruin it or not."),
+        ("user_2", "It's our duty as fans."),
+    ],
+    "conversation_42": [
+        ("user_1", "Can you help me move a couch on Saturday?"),
+        ("user_2", "Sure, what time?"),
+        ("user_1", "Around noon? It shouldn't take long. I'm just swapping my old one for a new one."),
+        ("user_2", "No problem. Do you need my truck?"),
+        ("user_1", "That would be a huge help, actually. I was just going to try to rent one."),
+        ("user_2", "Don't do that, you can just use mine."),
+        ("user_1", "You're the best. I'll buy you lunch and beer as a thank you."),
+        ("user_2", "It's a deal. Just text me the address."),
+        ("user_1", "Will do. Thanks again, man. I really appreciate it."),
+        ("user_2", "Anytime."),
+    ],
+    "conversation_43": [
+        ("user_1", "I think I'm addicted to TikTok."),
+        ("user_2", "Welcome to the club. What side of TikTok are you on?"),
+        ("user_1", "Right now, it's a weird mix of cats, home renovation, and historical facts."),
+        ("user_2", "The algorithm knows you better than you know yourself."),
+        ("user_1", "It's scary accurate. I'll just open it for a second and then an hour has gone by."),
+        ("user_2", "That's how they get you. It's an endless scroll."),
+        ("user_1", "I need to set a timer or something. It's starting to affect my productivity."),
+        ("user_2", "I tried that. I just ignore the timer."),
+        ("user_1", "Well, at least I'm not alone in my struggle."),
+        ("user_2", "Nope. We're all just wasting our lives one 15-second video at a time."),
+    ],
+    "conversation_44": [
+        ("user_1", "I'm trying to find a good book to read. Any recommendations?"),
+        ("user_2", "What kind of books do you usually like?"),
+        ("user_1", "I'm a big fan of fantasy and sci-fi."),
+        ("user_2", "Have you read 'Project Hail Mary' by Andy Weir?"),
+        ("user_1", "No, I've only read 'The Martian' by him."),
+        ("user_2", "Oh, you have to read it. It's even better, in my opinion."),
+        ("user_1", "Really? That's high praise. What's it about?"),
+        ("user_2", "It's about an astronaut who wakes up on a spaceship with amnesia, and he's the only one who can save humanity. I don't want to spoil anything else."),
+        ("user_1", "Okay, you've sold me. I'm going to order it right now."),
+        ("user_2", "You won't regret it! Let me know what you think."),
+    ],
+    "conversation_45": [
+        ("user_1", "I have to go to the DMV tomorrow and I'm dreading it."),
+        ("user_2", "Oh, good luck. Pack a lunch. You'll be there all day."),
+        ("user_1", "That's what I'm afraid of. I'm just trying to renew my license."),
+        ("user_2", "Did you make an appointment online?"),
+        ("user_1", "Yeah, I did. Hopefully that makes it a little faster."),
+        ("user_2", "It should. Just make sure you have all the right documents. They're so picky about that."),
+        ("user_1", "I have my passport, a utility bill, and my old license. Is that enough?"),
+        ("user_2", "You should probably bring your birth certificate too, just in case."),
+        ("user_1", "Good call. I would not have thought of that."),
+        ("user_2", "May the odds be ever in your favor."),
+    ],
+    "conversation_46": [
+        ("user_1", "What's the best way to make coffee at home?"),
+        ("user_2", "It depends on how much effort you want to put in."),
+        ("user_1", "I'm currently just using a basic drip coffee maker, but I want to step up my game."),
+        ("user_2", "You should try a French press. It's easy to use and makes a really rich, flavorful cup of coffee."),
+        ("user_1", "Is it hard to clean?"),
+        ("user_2", "Not really. You just have to rinse out the grounds. It's a little more work than a drip machine, but it's worth it."),
+        ("user_1", "Okay, I'm intrigued. What about an AeroPress? I've heard good things about those too."),
+        ("user_2", "AeroPress is also great! It's faster than a French press and makes a smoother, less acidic coffee."),
+        ("user_1", "Decisions, decisions. I think I'll start with a French press."),
+        ("user_2", "Good choice. Welcome to the world of good coffee. ☕"),
+    ],
+    "conversation_47": [
+        ("user_1", "I'm so bored. We should do something spontaneous."),
+        ("user_2", "I'm listening. What do you have in mind?"),
+        ("user_1", "Let's drive to the beach and watch the sunset."),
+        ("user_2", "Tonight? It's a two-hour drive."),
+        ("user_1", "Exactly! It's an adventure. We can grab dinner on the way."),
+        ("user_2", "I have to work in the morning."),
+        ("user_1", "We'll be back before midnight. Come on, live a little!"),
+        ("user_2", "You're going to get me fired one of these days."),
+        ("user_1", "But you'll have a great story to tell. So, are you in?"),
+        ("user_2", "Fine. But you're driving. I'll get the snacks."),
+    ],
+    "conversation_48": [
+        ("user_1", "I think I saw a mouse in the kitchen."),
+        ("user_2", "A what? Don't joke about that."),
+        ("user_1", "I'm not joking. Something small and gray just scurried under the fridge."),
+        ("user_2", "Oh my god. I'm going to have a heart attack. We have to call an exterminator."),
+        ("user_1", "Let's not overreact. It might have just been one that snuck in."),
+        ("user_2", "Where there's one, there are more! That's how it works!"),
+        ("user_1", "Okay, okay. Let's go get some traps from the hardware store first and see if that works."),
+        ("user_2", "I'm not sleeping here until this is resolved."),
+        ("user_1", "It'll be fine. We'll handle it."),
+        ("user_2", "I'm standing on a chair until you get back."),
+    ],
+    "conversation_49": [
+        ("user_1", "Do you remember your first concert?"),
+        ("user_2", "Vaguely. I think it was some local band at a fair."),
+        ("user_1", "My first real concert was Green Day in 2005."),
+        ("user_2", "No way! The 'American Idiot' tour? I'm so jealous."),
+        ("user_1", "Yes! It was amazing. My ears were ringing for days afterwards."),
+        ("user_2", "That must have been such a great show."),
+        ("user_1", "It was life-changing for 15-year-old me. What was the first big concert you went to?"),
+        ("user_2", "I think it was The Killers, around 2008. They were incredible live."),
+        ("user_1", "Oh, I bet they were. Brandon Flowers has so much energy."),
+        ("user_2", "He really does. It's fun to think about how much our music taste has changed since then."),
+    ],
+    "conversation_50": [
+        ("user_1", "I have a job interview on Friday and I don't know what to wear."),
+        ("user_2", "What kind of company is it? Is it corporate or more casual?"),
+        ("user_1", "It's a tech startup, so I think it's pretty casual."),
+        ("user_2", "Okay, so a full suit is probably overkill."),
+        ("user_1", "That's what I was thinking. But I don't want to look too casual."),
+        ("user_2", "You can't go wrong with a nice pair of dark pants, a button-down shirt, and a blazer."),
+        ("user_1", "That sounds like a good plan. It's professional but not stuffy."),
+        ("user_2", "Exactly. It shows you're taking it seriously without looking like you're going to a board meeting."),
+        ("user_1", "Thanks, that's really helpful. I was stressing about it."),
+        ("user_2", "No problem! You're going to do great. Good luck!"),
+    ],
+    "conversation_51": [
+        ("user_1", "I just checked our joint account. Where did $300 go?"),
+        ("user_2", "Oh, about that... I had to buy the new graphics card."),
+        ("user_1", "Are you kidding me? The 'had to'? We agreed to talk about any purchase over $100."),
+        ("user_2", "I know, I know, but it was a flash sale and it was the last one in stock!"),
+        ("user_1", "That's the excuse every single time. It's like you think money just grows on trees."),
+        ("user_2", "It was a really good deal! I'll make it up, I swear."),
+        ("user_1", "How? By magically finding another 'good deal' on something else we don't need? This is bullshit."),
+        ("user_2", "Look, I messed up. I'm sorry. I got caught up in the moment."),
+        ("user_1", "I'm just so tired of this. We have a budget for a reason."),
+        ("user_2", "I know. I'll return it first thing tomorrow."),
+        ("user_1", "You better."),
+    ],
+    "conversation_52": [
+        ("user_1", "Yo, are we still on for D&D this Friday? 🐉"),
+        ("user_2", "Bet. But we need to talk about your character's alignment."),
+        ("user_1", "What about it? Gnorman is a chaotic good gnome. He's a free spirit!"),
+        ("user_2", "Dude, you tried to pickpocket the king. In front of his royal guards. That's not chaotic good, that's chaotic stupid."),
+        ("user_1", "It was for the thrill of it! He was gonna give the gold back... probably."),
+        ("user_2", "My Paladin is having an existential crisis because of you. He can't smite his own party member."),
+        ("user_1", "😂 Okay fine, I'll tone it down. No more regicide attempts."),
+        ("user_2", "Thank you. I'm trying to run a serious campaign here, not a blooper reel."),
+        ("user_1", "Lies. You love my shenanigans. Who's bringing snacks?"),
+        ("user_2", "I'll grab the chips if you bring the soda. And don't forget your dice this time."),
+        ("user_1", "No cap, I'll remember. My new set just came in the mail. They're so shiny. ✨"),
+    ],
+    "conversation_53": [
+        ("user_1", "Okay, the recipe says to 'fold in the cheese.' How do you FOLD cheese?"),
+        ("user_2", "It's a gentle mixing motion. Like, you scoop from the bottom and fold it over the top."),
+        ("user_1", "I'm doing it but it just looks like a lumpy mess."),
+        ("user_2", "Did you pre-heat the oven to 400°F?"),
+        ("user_1", "Uhhh... I set it to 350. Is that bad?"),
+        ("user_2", "🤦‍♀️ Yes, that's bad! The puff pastry won't rise properly. Crank it up!"),
+        ("user_1", "Okay okay, fixing it now! This is more stressful than my actual job."),
+        ("user_2", "Cooking is a science! Now, does it say to score the top?"),
+        ("user_1", "It says 'create a decorative lattice.' I don't know how to do that!"),
+        ("user_2", "Just cut some strips and lay them on top. It doesn't have to be perfect."),
+        ("user_1", "This is going to look like a culinary disaster. 🍳"),
+        ("user_2", "It'll still taste good. Probably."),
+    ],
+    "conversation_54": [
+        ("user_1", "Do you ever feel like you're just... floating? Not really anchored to anything?"),
+        ("user_2", "All the time. Like I'm just going through the motions waiting for my life to actually start."),
+        ("user_1", "Exactly! I have a good job, good friends... but it feels hollow sometimes."),
+        ("user_2", "I get that. It's like I'm a ship without a rudder, just being pushed around by the current."),
+        ("user_1", "That's a perfect way to put it. I keep thinking I should make a big change, but I don't even know what that would be."),
+        ("user_2", "Maybe it's not about a big change. Maybe it's about finding small things that feel real."),
+        ("user_1", "Like what?"),
+        ("user_2", "I don't know... a hobby? Volunteering? Something that's just for you, not for your career or anyone else."),
+        ("user_1", "That's... actually really good advice. It feels less daunting than 'find your purpose.'"),
+        ("user_2", "We're all just figuring it out. One day at a time."),
+    ],
+    "conversation_55": [
+        ("user_1", "Okay, spill the tea. Did you hear about Mark and Jess?"),
+        ("user_2", "NO! What happened?! I saw on Insta they weren't in each other's stories this weekend."),
+        ("user_1", "They're done. Finished. Kaput."),
+        ("user_2", "SHUT UP. Why?? They seemed so perfect."),
+        ("user_1", "Apparently, he's a total snake in the grass. He was texting his ex the whole time."),
+        ("user_2", "I KNEW there was something shady about him! He was always too smooth."),
+        ("user_1", "Jess is heartbroken, obviously. She's just been at home eating ice cream and watching sad movies."),
+        ("user_2", "Ugh, poor thing. We should go over there and bring her more ice cream."),
+        ("user_1", "Already on it. I'm putting together a care package. Face masks, wine, junk food... the works."),
+        ("user_2", "You're a good friend. Let me know what time. I am so ready to talk smack about Mark."),
+        ("user_1", "🤫 He'll get his karma."),
+    ],
+    "conversation_56": [
+        ("user_1", "Psst. We need to organize a leaving gift for Brenda."),
+        ("user_2", "Oh yeah, her last day is next Friday. What are we thinking?"),
+        ("user_1", "I was thinking we could all chip in for a nice gift card to that spa she likes."),
+        ("user_2", "Good call. How much should we ask people for? $20?"),
+        ("user_1", "Yeah, that seems fair. I can send out a discreet email to the team."),
+        ("user_2", "Okay, and I'll get one of those giant cards that everyone can sign."),
+        ("user_1", "Perfect. Should we get a cake too?"),
+        ("user_2", "Duh. Is that even a question? I'll order one from the good bakery."),
+        ("user_1", "This is coming together nicely. Teamwork makes the dream work."),
+        ("user_2", "For sure. It'll be a nice send-off. Brenda deserves it."),
+    ],
+    "conversation_57": [
+        ("user_1", "I swear, my boss is a vampire. He just sucks the life out of every room he enters."),
+        ("user_2", "LMAO. What did he do now?"),
+        ("user_1", "He scheduled a mandatory meeting for 5 PM on a Friday to 'circle back' on an email thread."),
+        ("user_2", "That should be illegal. That's a crime against humanity."),
+        ("user_1", "And the whole time he was just talking in circles, a complete fog of corporate jargon."),
+        ("user_2", "Let me guess: 'synergize,' 'paradigm shift,' 'low-hanging fruit'?"),
+        ("user_1", "Bingo. My soul literally tried to leave my body."),
+        ("user_2", "You need to get out of there. That place is a prison of mediocrity."),
+        ("user_1", "I'm working on it. Polishing up the ol' resume as we speak."),
+        ("user_2", "Good. Fly, you fool!  Gandalf"),
+    ],
+    "conversation_58": [
+        ("user_1", "DID YOU SEE THE GAMEPLAY TRAILER FOR 'CYBERVOID 2'???"),
+        ("user_2", "BRO. I'VE WATCHED IT SIX TIMES. The graphics are insane!"),
+        ("user_1", "The ray tracing is on another level. And the new companion AI looks sick."),
+        ("user_2", "I'm so hyped. I already put in my request for the day off when it releases."),
+        ("user_1", "Same! My body is ready. I'm going to stock up on snacks and energy drinks."),
+        ("user_2", "It's gonna be a glorious 48-hour gaming session."),
+        ("user_1", "Did you see the character customization? We can finally have robot arms!"),
+        ("user_2", "I'm definitely doing a stealth netrunner build this time."),
+        ("user_1", "Nice. I'm going full-on tank. Smash everything."),
+        ("user_2", "This is going to be the best game of the year, no contest. 🎮🔥"),
+    ],
+    "conversation_59": [
+        ("user_1", "I need to ask you a serious question."),
+        ("user_2", "Okay...? Shoot."),
+        ("user_1", "Is a hot dog a sandwich?"),
+        ("user_2", "Oh my god, not this again. Absolutely not."),
+        ("user_1", "But think about it! It's meat between two connected pieces of bread. It fits the definition!"),
+        ("user_2", "The bread is a single hinged bun. A sandwich requires two separate slices."),
+        ("user_1", "What about a sub? That's a hinged bun. Is a sub not a sandwich?"),
+        ("user_2", "That's... that's a false equivalency. A sub is a sub. A hot dog is a hot dog."),
+        ("user_1", "You're just living in denial. Open your mind, sheeple!"),
+        ("user_2", "This is the dumbest argument and I will die on this hill. It is NOT a sandwich."),
+        ("user_1", "Fine. We'll agree to disagree. For now."),
+    ],
+    "conversation_60": [
+        ("user_1", "So, how was your date last night? 👀"),
+        ("user_2", "It was... a journey."),
+        ("user_1", "Uh oh. That doesn't sound good."),
+        ("user_2", "He spent the first twenty minutes telling me about his crypto investments."),
+        ("user_1", "Red flag. 🚩"),
+        ("user_2", "Then he showed me a picture of his mom and said I looked just like her."),
+        ("user_1", "NO. ABORT MISSION. I REPEAT, ABORT."),
+        ("user_2", "It gets worse. He ate his spaghetti with a spoon."),
+        ("user_1", "I'm calling the police. That's a certified psychopath."),
+        ("user_2", "Needless to say, there will not be a second date."),
+        ("user_1", "Good. You dodged a cannonball, not just a bullet."),
+    ],
+    "conversation_61": [
+        ("user_1", "My landlord is a ghost. I swear he doesn't exist."),
+        ("user_2", "What do you mean? You've never met him?"),
+        ("user_1", "Nope. I send my rent check to a P.O. box and any time I email about a repair, I get a one-sentence reply from 'Management'."),
+        ("user_2", "That's so weird. What if you have an emergency?"),
+        ("user_1", "Exactly! The faucet has been dripping for three weeks. It's driving me insane."),
+        ("user_2", "You should just stop paying rent. That'll get his attention."),
+        ("user_1", "Haha, I wish. I'd probably just get an automated eviction notice."),
+        ("user_2", "You live in a haunted apartment building run by a robot. Congrats."),
+        ("user_1", "It feels like it. The drip... drip... drip... is my ghost landlord's heartbeat."),
+        ("user_2", "That's dark. You should probably call a plumber... and an exorcist."),
+    ],
+    "conversation_62": [
+        ("user_1", "I think I'm gonna try that intermittent fasting thing."),
+        ("user_2", "Oh yeah? Which schedule are you doing?"),
+        ("user_1", "The 16:8 one. Stop eating at 8 PM and don't eat again until noon the next day."),
+        ("user_2", "I could never. I wake up starving. I'd be a monster by 10 AM."),
+        ("user_1", "I'm hoping it'll give me more energy. Right now I'm powered by coffee and spite."),
+        ("user_2", "That's a mood. Are you still allowed to drink coffee in the morning?"),
+        ("user_1", "Yes, black coffee or tea. Thank god. That's the only way I'll survive."),
+        ("user_2", "Well, let me know how it goes. I'm curious to see if it actually works."),
+        ("user_1", "I'll keep you posted. Wish me luck."),
+        ("user_2", "Good luck, soldier. Don't get too hangry."),
+    ],
+    "conversation_63": [
+        ("user_1", "The cat threw up on the rug again."),
+        ("user_2", "Which one? The new one in the living room?"),
+        ("user_1", "The very same. The expensive one."),
+        ("user_2", "Of course. It's like he has a sixth sense for things we value."),
+        ("user_1", "I cleaned it up but there's a stain. Can you grab the special carpet cleaner on your way home?"),
+        ("user_2", "Yeah, no problem. Is he acting okay otherwise?"),
+        ("user_1", "He's fine. He's currently purring on my lap like a little furry agent of chaos."),
+        ("user_2", "Typical. He knows he's too cute to stay mad at."),
+        ("user_1", "It's his superpower. That and projectile vomiting."),
+        ("user_2", "What a talented boy. I'll be home soon."),
+    ],
+    "conversation_64": [
+        ("user_1", "Hey, random question. Do you know how to jump-start a car?"),
+        ("user_2", "Yeah, I've done it a few times. Why? Are you stranded?"),
+        ("user_1", "My car won't start. It's just making a sad clicking noise."),
+        ("user_2", "Classic dead battery. Do you have jumper cables?"),
+        ("user_1", "I think so? Let me check the trunk... Yes! I have them."),
+        ("user_2", "Okay, stay put. I can drive over and give you a jump. Where are you?"),
+        ("user_1", "You're a lifesaver! I'm in the parking lot at the grocery store."),
+        ("user_2", "Be there in 10. Just pop your hood for me."),
+        ("user_1", "Thank you so, so much. I owe you one."),
+        ("user_2", "Don't worry about it. That's what friends are for."),
+    ],
+    "conversation_65": [
+        ("user_1", "I'm at a crossroads. Should I get bangs?"),
+        ("user_2", "Whoa. That's a crisis-level decision. Are you okay?"),
+        ("user_1", "I'm just bored of my hair! I need a change."),
+        ("user_2", "Bangs are such a commitment though. The growing-out phase is brutal."),
+        ("user_1", "But they look so cute and effortless on other people!"),
+        ("user_2", "That's a lie. It takes them 30 minutes and a flat iron to look that 'effortless'."),
+        ("user_1", "You're not helping! You're supposed to be my hype man."),
+        ("user_2", "I'm your voice of reason! What about curtain bangs? They're less intense."),
+        ("user_1", "Hmm. That's a good compromise. Let me google some pictures."),
+        ("user_2", "Yes! Do your research. This isn't a decision to be made lightly."),
+        ("user_1", "This is why I ask you first. You stop me from making rash, fringed mistakes."),
+    ],
+    "conversation_66": [
+        ("user_1", "Our neighbors are fighting again."),
+        ("user_2", "Loudly? Can you make out what they're saying?"),
+        ("user_1", "Oh yeah. The walls are paper thin. This time it's about a decorative plate."),
+        ("user_2", "A decorative plate? This sounds juicy."),
+        ("user_1", "Apparently, he broke one that her grandmother gave her."),
+        ("user_2", "Oof. That's a rookie mistake. You never mess with the grandma china."),
+        ("user_1", "Now she's throwing his video games out the window."),
+        ("user_2", "NO WAY. This is better than reality TV."),
+        ("user_1", "I know. Should I make popcorn?"),
+        ("user_2", "Absolutely. I'm invested now. Keep me updated."),
+    ],
+    "conversation_67": [
+        ("user_1", "I just spent an hour trying to assemble a new chair and I'm convinced the instructions were written by a sadist."),
+        ("user_2", "Haha, the IKEA effect? What's the problem?"),
+        ("user_1", "Part F is supposed to screw into Slot G, but the holes don't line up!"),
+        ("user_2", "Did you put the legs on backwards? I did that once."),
+        ("user_1", "I don't think so... wait. Oh my god. You're a genius."),
+        ("user_2", "It's always the legs. Every single time."),
+        ("user_1", "I am a fool. A fool with a half-built chair."),
+        ("user_2", "You can do it! The finish line is in sight."),
+        ("user_1", "I'm going in for round two. This chair will not defeat me."),
+        ("user_2", "That's the spirit! Show that inanimate object who's boss."),
+    ],
+    "conversation_68": [
+        ("user_1", "My allergies are trying to kill me today. 🤧"),
+        ("user_2", "The pollen count is insane. My eyes are so itchy."),
+        ("user_1", "I feel like my head is in a vice. I took my allergy pill but it's not doing anything."),
+        ("user_2", "You need the good stuff from behind the counter. The one you have to show your ID for."),
+        ("user_1", "Is it that much better?"),
+        ("user_2", "It's a game-changer. It's the only thing that works for me when it's this bad."),
+        ("user_1", "Okay, I'm desperate enough to try it. I'll stop at the pharmacy on my way home."),
+        ("user_2", "You won't regret it. You'll be able to breathe through your nose again."),
+        ("user_1", "What a beautiful dream. I've forgotten what that feels like."),
+        ("user_2", "The simple pleasures in life."),
+    ],
+    "conversation_69": [
+        ("user_1", "Can you proofread this email for me before I send it to my boss?"),
+        ("user_2", "Sure, send it over."),
+        ("user_1", "Okay, it's in your inbox."),
+        ("user_2", "Reading it now... Hmm. It's good, but this one sentence sounds a little passive-aggressive."),
+        ("user_1", "Which one?"),
+        ("user_2", "'As per my last email, the data is attached.' It sounds a little snarky."),
+        ("user_1", "Well, I AM being snarky. This is the third time he's asked for it."),
+        ("user_2", "I know, but you can't let him know that. Try something like, 'Just re-attaching the data here for your convenience!'"),
+        ("user_1", "Ugh. The corporate dance. You're right, that's better."),
+        ("user_2", "Kill 'em with kindness. And excessive exclamation points."),
+        ("user_1", "Thanks. You just saved me from a trip to HR. 😂"),
+    ],
+    "conversation_70": [
+        ("user_1", "I have two tickets to that new sci-fi movie on Saturday. Wanna come?"),
+        ("user_2", "The one with the aliens and the time travel? Heck yeah!"),
+        ("user_1", "Great! It's the 7:30 PM show."),
+        ("user_2", "Perfect. Should we grab dinner before?"),
+        ("user_1", "Definitely. What are you in the mood for?"),
+        ("user_2", "There's that new burger place near the theater we could try."),
+        ("user_1", "I'm so down for that. Let's meet there at 6?"),
+        ("user_2", "Sounds like a plan. I'm so excited! I've been avoiding spoilers like the plague."),
+        ("user_1", "Me too. I'm going in totally blind."),
+        ("user_2", "It's gonna be awesome. See you Saturday!"),
+    ],
+    "conversation_71": [
+        ("user_1", "Okay, I'm in a podcast rut. I need something new to listen to."),
+        ("user_2", "What are you looking for? True crime? Comedy?"),
+        ("user_1", "Something funny. I need a laugh on my commute."),
+        ("user_2", "Have you listened to 'My Dad Wrote a Porno'?"),
+        ("user_1", "I've heard of it! Is it as hilarious as people say?"),
+        ("user_2", "It's even better. I've had to pull my car over because I was laughing so hard I couldn't see."),
+        ("user_1", "That's a strong endorsement. I'll download the first episode."),
+        ("user_2", "You have to start from the very beginning. It's a journey."),
+        ("user_1", "I'm ready for it. Thanks for the recommendation!"),
+        ("user_2", "No problem! Let me know what you think of Belinda."),
+    ],
+    "conversation_72": [
+        ("user_1", "My computer is so slow, I think a sloth could outrun it."),
+        ("user_2", "When was the last time you restarted it?"),
+        ("user_1", "Umm... last week? Maybe?"),
+        ("user_2", "Dude. You have to restart it every day. That's rule number one."),
+        ("user_1", "I know, I just have too many tabs open that I 'need'."),
+        ("user_2", "You're a tab hoarder. Close some of them. Your computer's RAM is crying for help."),
+        ("user_1", "Fine, fine. I'm restarting it now. I'm sorry, little computer."),
+        ("user_2", "Also, check how much storage space you have left. If it's almost full, that'll slow it down too."),
+        ("user_1", "Okay, it's back on and it's already so much faster. You're a wizard."),
+        ("user_2", "I'm not a wizard, I just listen to the IT department."),
+    ],
+    "conversation_73": [
+        ("user_1", "I think I'm officially old."),
+        ("user_2", "Why? What happened?"),
+        ("user_1", "I hurt my back sleeping."),
+        ("user_2", "Ah, yes. The 'I did absolutely nothing and now I'm in pain' injury. Welcome to the club."),
+        ("user_1", "It's so embarrassing! I literally just woke up and couldn't stand up straight."),
+        ("user_2", "Did you try putting a heating pad on it?"),
+        ("user_1", "Yep. I'm currently lying on the floor with a heating pad, questioning all my life choices."),
+        ("user_2", "We need to start doing yoga or something. We're too young to be this decrepit."),
+        ("user_1", "Agreed. As soon as I can move again, we're signing up for a class."),
+        ("user_2", "Sounds good. Feel better, old man."),
+    ],
+    "conversation_74": [
+        ("user_1", "The audacity of this squirrel in my backyard."),
+        ("user_2", "What's he doing?"),
+        ("user_1", "He's sitting on the fence, eating one of my tomatoes from the garden, and staring directly at me through the window."),
+        ("user_2", "He's asserting his dominance."),
+        ("user_1", "It's a power move. He's taunting me."),
+        ("user_2", "You have to respect the hustle. That's a bold little dude."),
+        ("user_1", "I work so hard on those tomatoes! And he's just up there, living his best life at my expense."),
+        ("user_2", "You've created a monster. He's the king of the garden now."),
+        ("user_1", "I'm going to go out there and clap at him."),
+        ("user_2", "Good luck. He'll probably just throw the tomato at you."),
+    ],
+    "conversation_75": [
+        ("user_1", "So, I tried to make sourdough bread from scratch."),
+        ("user_2", "Oh no. How did it go?"),
+        ("user_1", "I have created a brick. A dense, sad, glutenous brick."),
+        ("user_2", "Was your starter active enough? That's usually the problem."),
+        ("user_1", "I think so? It had bubbles! I named him Clint Yeastwood."),
+        ("user_2", "That's an amazing name. Clint must have failed you."),
+        ("user_1", "He did. The recipe was like a chemistry experiment that I failed miserably."),
+        ("user_2", "Baking is hard! Don't feel bad. At least you tried."),
+        ("user_1", "I'm just going to buy my bread from now on. This was too much emotional damage."),
+        ("user_2", "Probably a wise choice. RIP Clint Yeastwood."),
+    ],
+    "conversation_76": [
+        ("user_1", "Are you watching the game?"),
+        ("user_2", "Of course! This is so stressful. We can't lose this."),
+        ("user_1", "That last call by the ref was absolute garbage."),
+        ("user_2", "I was screaming at the TV! He was clearly in bounds!"),
+        ("user_1", "This is going to come down to the last second, I can feel it."),
+        ("user_2", "My heart can't take it. I'm pacing around my living room."),
+        ("user_1", "COME ON! INTERCEPTION! LET'S GOOOOO!"),
+        ("user_2", "YESSSS! I CAN'T BELIEVE HE CAUGHT THAT!"),
+        ("user_1", "WE'RE GOING TO WIN! THIS IS IT!"),
+        ("user_2", "I'm losing my voice! This is the best game all season! 🏈"),
+    ],
+    "conversation_77": [
+        ("user_1", "I have a confession to make."),
+        ("user_2", "This sounds ominous."),
+        ("user_1", "I still don't know the difference between 'your' and 'you're' without thinking really hard about it."),
+        ("user_2", "Haha! It's okay. You're not alone."),
+        ("user_1", "I know 'you're' is 'you are,' but in the heat of a text, my brain just short-circuits."),
+        ("user_2", "It's one of those things that's easy to mix up. Don't sweat it."),
+        ("user_1", "I feel like I should have mastered this in third grade."),
+        ("user_2", "Hey, at least you know there's a difference. Some people don't even get that far."),
+        ("user_1", "That's true. I'll take my small victories."),
+        ("user_2", "Exactly. Your secret is safe with me."),
+    ],
+    "conversation_78": [
+        ("user_1", "Can you come look at this weird bug in my bathroom?"),
+        ("user_2", "Uhh, what kind of weird?"),
+        ("user_1", "It's long and has way too many legs. Like a centipede on steroids."),
+        ("user_2", "That sounds like a house centipede. They're terrifying but harmless."),
+        ("user_1", "Harmless or not, it needs to leave. I can't shower while he's watching me."),
+        ("user_2", "Okay, get a cup and a piece of paper. The classic trap-and-release."),
+        ("user_1", "I can't get that close! He's so fast!"),
+        ("user_2", "Fine, I'm coming. But if it jumps on me, I'm burning the house down."),
+        ("user_1", "A reasonable response. Hurry!"),
+        ("user_2", "On my way, you big baby."),
+    ],
+    "conversation_79": [
+        ("user_1", "I just found a box of my old Pokémon cards."),
+        ("user_2", "No way! Is there anything good in there?"),
+        ("user_1", "I have a holographic Charizard! Is that still a big deal?"),
+        ("user_2", "Dude. Yes. Depending on the condition, that could be worth a lot of money."),
+        ("user_1", "For real? I used to trade these for stickers in elementary school."),
+        ("user_2", "You need to get that thing in a protective sleeve, like, yesterday."),
+        ("user_1", "I'm looking it up online... wow. You were not kidding."),
+        ("user_2", "See? You're sitting on a gold mine."),
+        ("user_1", "This is insane. I feel like I just won the lottery."),
+        ("user_2", "You gotta catch 'em all... and then sell 'em for a down payment on a house."),
+    ],
+    "conversation_80": [
+        ("user_1", "That meeting was a black hole of time."),
+        ("user_2", "Tell me about it. An hour of my life I'll never get back."),
+        ("user_1", "It 100% could have been an email. No, a one-sentence text message."),
+        ("user_2", "We spent twenty minutes debating the color of a button on the website."),
+        ("user_1", "A button that no one is ever going to click!"),
+        ("user_2", "My will to live was slowly draining away with every mention of 'brand identity.'"),
+        ("user_1", "I was just doodling in my notebook, trying to look engaged."),
+        ("user_2", "I was playing chess against myself in my head."),
+        ("user_1", "We need a secret signal for when a meeting has gone off the rails."),
+        ("user_2", "Agreed. How about we both just start barking?"),
+        ("user_1", "Perfect. No one would question it."),
+    ],
+    "conversation_81": [
+        ("user_1", "Let's learn a new skill together."),
+        ("user_2", "Okay, I'm intrigued. What are you thinking?"),
+        ("user_1", "Like, pottery? Or ballroom dancing?"),
+        ("user_2", "Ballroom dancing? Do you see us doing the tango?"),
+        ("user_1", "It would be hilarious! We'd be so bad at it."),
+        ("user_2", "Pottery could be cool. We could make a bunch of lopsided mugs."),
+        ("user_1", "I just want to do something that's totally out of our comfort zone."),
+        ("user_2", "What about rock climbing?"),
+        ("user_1", "Ooh, I like that! That's a good mix of scary and cool."),
+        ("user_2", "There's that new climbing gym downtown. We could check it out this weekend."),
+        ("user_1", "It's a date. Let's go be adventurous."),
+    ],
+    "conversation_82": [
+        ("user_1", "Do you think plants have feelings?"),
+        ("user_2", "What? No. They don't have central nervous systems."),
+        ("user_1", "I know, but I was just talking to my fern and I swear it perked up."),
+        ("user_2", "You were talking to your fern."),
+        ("user_1", "Yeah, telling it how nice its leaves are looking. Positive reinforcement."),
+        ("user_2", "It probably perked up because the carbon dioxide from your breath is good for it."),
+        ("user_1", "You and your science. I think it likes the attention."),
+        ("user_2", "Okay, well, don't let me stand in the way of your plant friendships."),
+        ("user_1", "I won't. Frank the fern and I are very happy together."),
+        ("user_2", "You named it Frank. Of course you did."),
+    ],
+    "conversation_83": [
+        ("user_1", "I'm trying to cut back on coffee. This is my first day."),
+        ("user_2", "How's that going for you?"),
+        ("user_1", "I have a headache that could shatter glass and I've snapped at three different coworkers."),
+        ("user_2", "Sounds about right. The caffeine withdrawal is no joke."),
+        ("user_1", "Why am I doing this to myself? Coffee is my lifeblood."),
+        ("user_2", "Maybe just cut back instead of quitting cold turkey? Like, one cup instead of four."),
+        ("user_1", "That's a much more reasonable idea. Quitting is for quitters."),
+        ("user_2", "There you go. Baby steps."),
+        ("user_1", "I'm going to go make a cup right now. Thank you for talking me off that ledge."),
+        ("user_2", "Anytime. I didn't want to have to deal with you being a monster all week."),
+    ],
+    "conversation_84": [
+        ("user_1", "I think I'm ready to get a dog."),
+        ("user_2", "OMG really?! That's huge!"),
+        ("user_1", "I know! I've been thinking about it for years and I finally have the time and space."),
+        ("user_2", "What kind are you thinking of getting?"),
+        ("user_1", "I definitely want to adopt from a shelter. Maybe a medium-sized mutt with a goofy personality."),
+        ("user_2", "Aww, that's the best kind! The shelter dogs are always so grateful."),
+        ("user_1", "I'm going to go look at some this weekend. I'm so excited and nervous."),
+        ("user_2", "Do you want me to come with you for moral support?"),
+        ("user_1", "Would you? That would be amazing! I need someone to stop me from adopting all of them."),
+        ("user_2", "Haha, I'll be your voice of reason. It's a date!"),
+    ],
+    "conversation_85": [
+        ("user_1", "Remember when we thought frosted tips were the peak of fashion?"),
+        ("user_2", "Don't remind me. I have photo evidence of me with that haircut."),
+        ("user_1", "And the super baggy jeans that were always wet at the bottom from dragging on the ground."),
+        ("user_2", "Paired with a puka shell necklace, of course."),
+        ("user_1", "It was a dark time for fashion. We were so confident, too."),
+        ("user_2", "We thought we were so cool."),
+        ("user_1", "What were we thinking?"),
+        ("user_2", "We weren't. That was the problem. Our brains were just full of dial-up internet noises."),
+        ("user_1", "That's probably accurate. I'm going to go burn those old photos now."),
+        ("user_2", "Too late. I already have them saved."),
+    ],
+    "conversation_86": [
+        ("user_1", "My phone keeps autocorrecting 'well' to 'we'll' and it's making me sound like a communist."),
+        ("user_2", "We'll, that's unfortunate for you comrade."),
+        ("user_1", "😂 It's so annoying! I have to go back and fix it every time."),
+        ("user_2", "You can add a shortcut in your settings to fix it."),
+        ("user_1", "You can? How?"),
+        ("user_2", "Go to Settings > General > Keyboard > Text Replacement. You can make it so when you type 'welll' it changes to 'well.'"),
+        ("user_1", "This changes everything. You are a tech guru."),
+        ("user_2", "I just spend way too much time on my phone."),
+        ("user_1", "We'll, I appreciate you sharing your knowledge."),
+        ("user_2", "I see what you did there."),
+    ],
+    "conversation_87": [
+        ("user_1", "I can't believe summer is almost over."),
+        ("user_2", "I know. It flew by in the blink of an eye."),
+        ("user_1", "I feel like I didn't do enough summery things."),
+        ("user_2", "We still have a few weeks! We need to make a bucket list."),
+        ("user_1", "Okay, what's on it? Beach trip is a must."),
+        ("user_2", "Bonfire with s'mores."),
+        ("user_1", "Go to an outdoor concert."),
+        ("user_2", "Eat way too much ice cream."),
+        ("user_1", "This is a solid list. Let's start this weekend."),
+        ("user_2", "Deal. We're going to squeeze every last drop out of this summer."),
+    ],
+    "conversation_88": [
+        ("user_1", "I just found out that whales have belly buttons."),
+        ("user_2", "Wait, what? For real?"),
+        ("user_1", "Yeah! I mean, it makes sense, they're mammals. But I'd just never thought about it before."),
+        ("user_2", "My mind is blown. I'm picturing a giant whale with a little 'innie' belly button."),
+        ("user_1", "Right? It's so weirdly humanizing."),
+        ("user_2", "What other weird animal facts do you have for me?"),
+        ("user_1", "A snail can sleep for three years."),
+        ("user_2", "Okay, now I'm jealous of a snail."),
+        ("user_1", "The world is a weird and wonderful place."),
+        ("user_2", "And now I'm going to be thinking about whale belly buttons all day."),
+    ],
+    "conversation_89": [
+        ("user_1", "What's the most adult thing you've done recently?"),
+        ("user_2", "I got really excited about a new vacuum cleaner."),
+        ("user_1", "Ooh, that's a good one. Was it cordless?"),
+        ("user_2", "It was. And it has a laser that shows you where the dust is."),
+        ("user_1", "Okay, that's legitimately cool. I'm excited for you."),
+        ("user_2", "See? This is what our lives have become."),
+        ("user_1", "Mine was making a dentist appointment without my mom having to remind me."),
+        ("user_2", "That's a major milestone. I'm proud of you."),
+        ("user_1", "It only took me 30 years to get here."),
+        ("user_2", "We're crushing this whole adulting thing."),
+    ],
+    "conversation_90": [
+        ("user_1", "I'm officially on the Wordle struggle bus today."),
+        ("user_2", "Oh no! How many guesses do you have left?"),
+        ("user_1", "I'm on my last guess. I have _OUND and I can't figure it out."),
+        ("user_2", "Is it FOUND?"),
+        ("user_1", "Nope, already tried that. And ROUND, and SOUND."),
+        ("user_2", "What about MOUND? Or POUND?"),
+        ("user_1", "Tried those too! This is impossible."),
+        ("user_2", "Okay, think of weirder letters. HOUND? WOUND?"),
+        ("user_1", "WOUND! Let me try... YES! That was it!"),
+        ("user_2", "Phew! Streak saved. That was a close one."),
+        ("user_1", "You're my hero. I was about to throw my phone."),
+    ],
+    "conversation_91": [
+        ("user_1", "Can I vent for a second?"),
+        ("user_2", "Always. What's up?"),
+        ("user_1", "My brother just announced he's getting married... on the same weekend as my birthday."),
+        ("user_2", "Ouch. That's rough. Did he know?"),
+        ("user_1", "I think he just forgot. But still! It feels like he's stealing my thunder."),
+        ("user_2", "I get why you'd be upset. That's a pretty big oversight."),
+        ("user_1", "Now my whole family is going to be focused on the wedding and my birthday will just be an afterthought."),
+        ("user_2", "Have you talked to him about it?"),
+        ("user_1", "Not yet. I don't want to seem selfish."),
+        ("user_2", "You're not being selfish, you're just hurt. Your feelings are valid."),
+        ("user_1", "Thanks for saying that. I just needed someone to tell me I wasn't crazy."),
+    ],
+    "conversation_92": [
+        ("user_1", "I'm making a playlist. Give me a song that makes you feel nostalgic."),
+        ("user_2", "'Mr. Brightside' by The Killers."),
+        ("user_1", "A classic. That's a universal high school experience in a song."),
+        ("user_2", "It's impossible not to scream the lyrics when it comes on."),
+        ("user_1", "Okay, what about a song that makes you want to drive with the windows down?"),
+        ("user_2", "Easy. 'Golden' by Harry Styles."),
+        ("user_1", "Perfect choice. Adding it now."),
+        ("user_2", "What's the vibe of this playlist? What are you calling it?"),
+        ("user_1", "It's called 'Main Character Energy.' For when you need to romanticize your life."),
+        ("user_2", "I love it. Send me the link when you're done."),
+    ],
+    "conversation_93": [
+        ("user_1", "I just had the weirdest dream."),
+        ("user_2", "Do tell."),
+        ("user_1", "I was in a grocery store, but all the food was replaced with office supplies."),
+        ("user_2", "So you were shopping for staplers and paper clips?"),
+        ("user_1", "Yeah, and I was trying to find ripe avocados but they were just green highlighters."),
+        ("user_2", "Your brain is a weird place. What does that even mean?"),
+        ("user_1", "I think it means I'm stressed about work and I'm also hungry."),
+        ("user_2", "Sounds about right. The subconscious is not subtle."),
+        ("user_1", "Now I really want some guacamole."),
+        ("user_2", "Just make sure you don't use highlighters."),
+    ],
+    "conversation_94": [
+        ("user_1", "I need to cancel my gym membership but I'm too scared to call them."),
+        ("user_2", "Why? They're always so aggressive with the sales pitch to get you to stay."),
+        ("user_1", "Exactly! I have no spine. I'll end up signing up for another year and a personal trainer."),
+        ("user_2", "You have to be firm. Just say 'I want to cancel my membership' and repeat it like a broken record."),
+        ("user_1", "Can't I just email them?"),
+        ("user_2", "You know they make it impossible. They want you to have to talk to a person."),
+        ("user_1", "It's a trap. A very well-designed trap."),
+        ("user_2", "I'll do it for you if you want. I have no problem being a jerk to a salesperson."),
+        ("user_1", "Would you really? You're the best friend a spineless person could ask for."),
+        ("user_2", "I got you. Send me your membership info."),
+    ],
+    "conversation_95": [
+        ("user_1", "What's the stupidest thing you've ever done for money?"),
+        ("user_2", "In college, I participated in a paid medical study where I had to eat nothing but potatoes for a week."),
+        ("user_1", "No way. Just potatoes?"),
+        ("user_2", "Boiled, baked, mashed... as long as it was a potato. It was awful."),
+        ("user_1", "How much did you get paid for that torture?"),
+        ("user_2", "$200. It seemed like a fortune at the time."),
+        ("user_1", "That's wild. Mine was probably trying to fix my friend's plumbing based on a YouTube video."),
+        ("user_2", "How did that go?"),
+        ("user_1", "I flooded his bathroom. Ended up costing me more than if I had just called a plumber."),
+        ("user_2", "We've all been there. Young, dumb, and broke."),
+    ],
+    "conversation_96": [
+        ("user_1", "I think I have a new favorite word."),
+        ("user_2", "Okay, what is it?"),
+        ("user_1", "Petrichor."),
+        ("user_2", "What does that mean?"),
+        ("user_1", "It's the earthy smell after it rains."),
+        ("user_2", "Whoa. There's a word for that? That's awesome."),
+        ("user_1", "Right? It's so specific and poetic."),
+        ("user_2", "I love that. Mine is 'sonder.'"),
+        ("user_1", "What's sonder?"),
+        ("user_2", "The realization that every random person passing you on the street has a life as vivid and complex as your own."),
+        ("user_1", "That's deep. We're so philosophical today."),
+    ],
+    "conversation_97": [
+        ("user_1", "This weather is giving me whiplash."),
+        ("user_2", "I know. It was sunny this morning and now it's hailing."),
+        ("user_1", "I wore shorts today. I have so many regrets."),
+        ("user_2", "You have to dress in layers. It's the only way to survive."),
+        ("user_1", "I feel like Mother Nature is just messing with us at this point."),
+        ("user_2", "She's keeping us on our toes."),
+        ("user_1", "My car is getting dented by these giant hailstones."),
+        ("user_2", "Mine too. At least we'll match."),
+        ("user_1", "This is fine. Everything is fine. 🔥"),
+        ("user_2", "Just another beautiful day in paradise."),
+    ],
+    "conversation_98": [
+        ("user_1", "I'm trying to drink more water but it's so boring."),
+        ("user_2", "Have you tried infusing it with stuff?"),
+        ("user_1", "Like what?"),
+        ("user_2", "Lemon, cucumber, mint... you can get one of those special bottles for it."),
+        ("user_1", "That sounds so fancy. Does it actually make it taste better?"),
+        ("user_2", "Yeah, it gives it a little flavor. It's like spa water."),
+        ("user_1", "Ooh, I could pretend I'm at a spa instead of my desk. I like that."),
+        ("user_2", "You can also try sparkling water if you miss the fizz from soda."),
+        ("user_1", "Good idea. I'm going to go buy some lemons and cucumbers."),
+        ("user_2", "Welcome to the world of hydration. 💧"),
+    ],
+    "conversation_99": [
+        ("user_1", "I just finished a 1000-piece puzzle."),
+        ("user_2", "Nice! What was the picture of?"),
+        ("user_1", "It was just a solid red color."),
+        ("user_2", "Are you a masochist? Why would you do that to yourself?"),
+        ("user_1", "It was a challenge! And it was so satisfying when I finished."),
+        ("user_2", "I would have lost my mind. I need a puzzle with clear sections, like a sky and a building."),
+        ("user_1", "That's the easy way out. You have to embrace the chaos."),
+        ("user_2", "I'll leave the chaos puzzles to you. I'm proud of your perseverance, though."),
+        ("user_1", "Thanks. Now I have to figure out what to do with it."),
+        ("user_2", "Break it apart and do it again?"),
+        ("user_1", "Don't even joke about that."),
+    ],
+    "conversation_100": [
+        ("user_1", "If you could have any superpower, what would it be?"),
+        ("user_2", "Teleportation. No question."),
+        ("user_1", "Why that?"),
+        ("user_2", "Think about it! No more traffic. No more paying for flights. I could have lunch in Paris and be back for dinner."),
+        ("user_1", "That's a solid choice. Very practical."),
+        ("user_2", "What about you? Flying? Super strength?"),
+        ("user_1", "I think I'd want to talk to animals."),
+        ("user_2", "That's an interesting one. You could find out what my cat is really thinking."),
+        ("user_1", "I bet it's mostly about food and naps. But I could also solve mysteries with the help of squirrels."),
+        ("user_2", "Okay, Squirrel Girl, I see you."),
+        ("user_1", "It would be the best. We could be a superhero duo."),
+    ],
+}
+
+timezones = [
+    "America/New_York", "America/Los_Angeles", "America/Chicago",
+    "America/Denver", "Europe/London", "Europe/Paris", "Asia/Tokyo",
+    "Asia/Shanghai", "Australia/Sydney"
+]
+
+post_texts = [
+    "Just spent 3 hours debugging code only to realize I missed a semicolon. The life of a programmer. 😭",  
+    "Why does my cat ignore me all day but suddenly become clingy the second I open my laptop? 🐱💻",  
+    "Me: 'I'll just check Instagram for 5 minutes.' *2 hours later* Me: 'How did I get here?'",  
+    "Tried making avocado toast. Ended up with guacamole and a broken ego. 🥑💔",  
+    "Who decided that 'reply all' should exist? That person owes humanity an apology.",  
+    "The real mystery of life: Why do I always forget one item at the grocery store, no matter what?",  
+    "Me, at 2 AM: *Googles 'Can you die from sleep deprivation?'* Also me: *Continues scrolling*",  
+    "My plants are either thriving or dying—no in-between. Just like my social life. 🌱💀",  
+    "Why is it that the moment I decide to save money, everything I've ever wanted goes on sale?",  
+    "Told myself I'd wake up early to be productive. Woke up at noon. Mission failed successfully. 😴",  
+
+    # Controversial & Debates  
+    "Pineapple on pizza: Delicious or a crime against humanity? 🍍🍕 FIGHT ME.",  
+    "Hot take: 'The Notebook' is overrated. There, I said it. 🔥",  
+    "If you put milk before cereal, I respect your bravery, but I also question your sanity. 🥛",  
+    "Cold showers vs. hot showers—which side are you on? (Science says cold is better, but my soul says no.)",  
+    "Is social media making us more connected or more lonely? Discuss. 🤔",  
+    "'The customer is always right' is the biggest lie ever told. Some customers are just… wrong.",  
+    "Can we talk about how 'quiet quitting' is just… setting boundaries? Or am I missing something?",  
+    "The 4-day workweek should be the global standard. Prove me wrong. ⏳",  
+    "Why do we still normalize hustle culture? Burnout isn't a flex. 💼🔥",  
+    "If aliens visited Earth, do you think they'd be impressed or deeply disappointed? 👽",  
+
+    # Science & Tech  
+    "Just learned that octopuses have three hearts and blue blood. Nature is wild. 🐙💙",  
+    "Quantum computing is either going to save humanity or doom us all—no in-between. ⚛️",  
+    "If time is relative, does that mean my procrastination is technically Einstein-approved? ⏳",  
+    "The fact that we're all made of stardust is either poetic or terrifying. Maybe both. ✨",  
+    "Neural networks are basically just fancy guesswork. Change my mind. 🤖",  
+    "Scientists found a way to reverse aging in mice. When do human trials start? Asking for a friend. �",  
+    "The internet is both humanity's greatest invention and its downfall. Discuss. 🌐",  
+    "Why do we still not have flying cars but we *do* have TikTok dances? Priorities, people. 🚗💨",  
+    "If AI becomes self-aware, will it also procrastinate? Or is that a uniquely human flaw?",  
+    "The placebo effect is wild. Your brain can literally heal you just by believing it will. 🧠✨",  
+
+    # Deep & Philosophical  
+    "If a tree falls in the forest and no one hears it, does it make a sound? Or does it just finally get some peace?",  
+    "We're all just tiny specks on a floating rock in an infinite universe. So why do we stress so much?",  
+    "Is free will real, or are we all just following an invisible script written by physics?",  
+    "The meaning of life is probably just to enjoy it. But capitalism said 'lol no.' 💸",  
+    "What if déjà vu is just your brain buffering? Like a glitch in the simulation. 🌀",  
+    "If you could live forever, would you? Or does mortality give life meaning?",  
+    "Why do we romanticize 'the grind' but demonize rest? Sleep is a human right. 😴",  
+    "Do we shape our destiny, or is everything predetermined? (Asking while ignoring my horoscope.)",  
+    "If you could erase one memory, would you? Even if it changed who you are?",  
+    "Is happiness a choice, a chemical reaction, or just luck? 🎲",  
+
+    # Pop Culture & Entertainment  
+    "Rewatching 'The Office' for the 10th time because comfort shows are the new therapy. 🛋️",  
+    "Marvel vs. DC debates are so 2015. Can't we just agree both have good and bad movies? 🎬",  
+    "Why do I cry every time I hear 'Hallelujah'? Thanks, Shrek soundtrack. 🎶",  
+    "If 'Barbie' and 'Oppenheimer' taught us anything, it's that existential dread comes in pink *and* black-and-white.",  
+    "TikTok trends move so fast that by the time I learn one, it's already cringe. 📱",  
+    "Who decided that rebooting every 90s show was a good idea? Some things should stay nostalgic.",  
+    "K-pop stans vs. Swifties—who would win in a battle of fandoms? (Asking for science.)",  
+    "Why do we still not have a 'Harry Potter' TV series? HBO, I'm looking at you. 🧙‍♂️",  
+    "If 'Friends' was made today, it would be canceled in 3 episodes. Change my mind.",  
+    "The way we binge-watch entire seasons in one sitting is either impressive or deeply concerning. 🍿",  
+
+    # Humor & Memes  
+    "My sleep schedule is basically just 'whenever my phone dies.' 📱⚰️",  
+    "Me: *buys fancy planner* Also me: *ignores it for 6 months*",  
+    "My bank account after payday vs. my bank account 2 days later: 📈📉",  
+    "Why do I always remember random childhood memories at 3 AM? Brain, please. 🧠",  
+    "Google: *exists* Me: *still asks friends for advice I could've searched in 2 seconds*",  
+    "My diet is 90% 'I'll eat healthy tomorrow' and 10% regret. 🥗➡️🍕",  
+    "I don't always procrastinate, but when I do, I do it *efficiently*.",  
+    "My personality is 30% coffee, 20% sarcasm, and 50% 'I should've gone to bed earlier.'",  
+    "Why do I say 'I'm on my way' when I haven't even put on shoes yet? 🏃‍♂️",  
+    "Me, looking at my to-do list: *closes laptop and takes a nap* 😴",  
+
+    # Travel & Adventure  
+    "Spontaneous road trips > overplanned vacations. Change my mind. 🚗💨",  
+    "Jet lag is just your body's way of saying 'I hate fun.' ✈️",  
+    "Airport food prices should be illegal. $10 for a bottle of water? Really?",  
+    "Why do I always pack like I'm moving countries when I'm only gone for 2 days? 🧳",  
+    "The best travel memories are always the unplanned detours. 🌍",  
+    "Solo travel is either the most freeing or the loneliest experience—no in-between.",  
+    "Hotel beds hit different. Why can't my mattress at home feel this good? 🛏️",  
+    "If I could teleport anywhere right now, it'd be a beach with unlimited margaritas. 🏖️",  
+    "Travel tip: Always pack snacks. Hangry tourists are not a vibe. 🍫",  
+    "Why do vacations feel like they last a week but the workweek feels like a lifetime? ⏳",  
+
+    # Fitness & Health  
+    "Me after one salad: 'I'm basically a health guru now.' 🥗",  
+    "Why does yoga feel like a relaxing stretch for some and a near-death experience for me? 🧘‍♂️",  
+    "My gym motivation is directly proportional to how cute my workout outfit is. 💪",  
+    "Running is just… willingly suffering? Or am I missing something? 🏃‍♂️",  
+    "The post-workout endorphin rush is the only thing keeping me going. 🏋️‍♀️",  
+    "Why is water so boring but also the key to life? Hydration is a scam. 💧",  
+    "Me: *buys expensive smoothie* Also me: *eats fries immediately after*",  
+    "Sleep is the best form of self-care. Fight me. 😴",  
+    "Why do fitness influencers make burpees look easy? That's a full-body betrayal. ",  
+    "Meditation is either life-changing or just sitting there thinking about lunch. 🧘‍♀️",  
+
+    # Work & Career  
+    "The 'Sunday Scaries' should be classified as a public health crisis. 📅",  
+    "Why do we say 'TGIF' when we all know Sunday night is just pre-Monday dread? ",  
+    "Remote work is the future, but my WiFi is stuck in the past. 📶",  
+    "Me in meetings: *nods while secretly planning dinner* 🍝",  
+    "Why do job applications ask for 'years of experience' in tech that's only 2 years old?",  
+    "The 9-to-5 grind is outdated. Let me work when I'm most productive (aka 2 AM). 🕑",  
+    "Unread emails are my personal form of anxiety. 📧",  
+    "Why is 'team-building' always awkward icebreakers instead of, like, free pizza?",  
+    "My resume: *professional, polished* Me in real life: *eats cereal for dinner*",  
+    "The only thing getting me through this workweek is the thought of the weekend. 🎉",  
+
+    # Love & Relationships  
+    "Love is sharing your fries even when you really don't want to. 🍟❤️",  
+    "Why is dating in 2024 like a job interview but with more ghosting? 👻",  
+    "The 'talking stage' is just emotional limbo. Commit or leave me alone. ",  
+    "My love language is 'bringing me coffee without asking.' ☕",  
+    "Long-distance relationships are either a test of love or a test of patience. 📱",  
+    "Why do we romanticize 'the chase' when stability is where it's at? ",  
+    "If they don't text back, they're either dead or just not that into you. 💀",  
+    "Therapy should be mandatory before entering a relationship. Just saying. 🛋️",  
+    "Love is real, but so are trust issues. 🤷‍♀️",  
+    "Why does heartbreak physically hurt? Science, explain. 💔",  
+
+    # Random & Whimsical  
+    "If animals could talk, which would be the rudest? I vote geese. 🦢",  
+    "Why do we say 'tuna fish' but not 'beef cow' or 'chicken bird'?",  
+    "The moon is just a rock, but why does it feel like a friend sometimes? 🌙",  
+    "If you could have any fictional creature as a pet, what would it be? (I'm team dragon.) 🐉",  
+    "Why do we park in driveways and drive on parkways? 🤯",  
+    "If you could rename any color, what would you change? (Looking at you, 'chartreuse.')",  
+    "The fact that we can't taste or smell dreams is a missed opportunity. ",  
+    "If life had a soundtrack, what song would be playing right now for you? 🎶",  
+    "Why do we say 'bless you' when someone sneezes but not when they cough? 🤧",  
+    "The real question: Is a hot dog a sandwich? 🌭",  
+]
+
+playlist_titles = [
+    "serotonin boost", "crying in the club", "uncontrollable rage", "sad girl hours 🥀", 
+    "floaty and dreamy", "pure bliss", "angst.", "existential dread but it's a vibe", 
+    "feeling myself", "hopeless romantic shit", "melancholic nostalgia", "heart on shuffle", 
+    "quiet confidence", "emotionally unavailable", "golden hour glow", "simmering anger", 
+    "a gentle sadness", "manic pixie dream playlist", "smirking mischievously", "that gut feeling", 
+    "waves of calm", "i'm not okay (i promise)", "giddy & goofy", "pure, unadulterated joy", 
+    "heartbroken & healing", "just vibing", "a little bit of everything, all of the time", "numb", 
+    "that spark", "chaotic good", "bittersweet memories", "villain era activated", 
+    "pensive thoughts", "walking on sunshine", "tired of it all", "gentle morning", 
+    "sleepy eyes", "burning bridges", "a quiet rage", "hopeful horizons", "crushing hard", 
+    "let's get weird", "peaceful moments", "homesick", "soul food", "overthinking it", 
+    "butterflies", "content.", "detached", "gym PR motivation", "midnight drive", 
+    "shower concert", "studying with a gremlin", "kitchen dance party", "songs for watering plants", 
+    "cleaning the house like a maniac", "pregame hype", "coding session: deep focus", 
+    "late night gaming", "road trip essentials", "painting in the afternoon sun", "backyard bonfire", 
+    "Sunday morning coffee", "dissociating on the bus", "getting ready to go out", 
+    "afterparty chilldown", "background noise for reading", "building LEGOs at 3am", "a walk in the rain", 
+    "beach day bliss", "stargazing", "cooking something complicated", "writing my novel", 
+    "avoiding my responsibilities", "airport waiting room", "grocery shopping soundtrack", 
+    "trying to fall asleep", "the perfect commute", "getting lost in a new city", 
+    "morning run fuel", "train ride thoughts", "patio drinks", "deep work flow", "laundry day", 
+    "crafting corner", "people watching from a cafe", "doomscrolling tunes", "picnic in the park", 
+    "hiking anthems", "post-workout stretch", "pool day", "assembling ikea furniture", 
+    "campfire stories", "getting tattooed", "thrifting trip", "daydreaming in class", 
+    "wine night", "baking bread", "getting stoned and staring at the wall", "2000s emo trash", 
+    "90s hip hop classics", "80s synth-pop dreams", "70s rock anthems", "indie sleaze revival", 
+    "hyperpop brain melt", "classical for villains", "sad folk for sad folks", "bedroom pop haze", 
+    "punk rock riot", "future funk city", "lofi beats to relax/study to", "throwback pop-punk", 
+    "shoegaze abyss", "dark wave disco", "cosmic country", "gritty blues", "ethereal voices", 
+    "jazz club after hours", "nostalgic r&b", "2014 tumblr indie", "motown soul", 
+    "modern psychedelia", "angry girl music", "vocaloid vortex", "golden age of broadway", 
+    "underground rap gems", "cinematic orchestra", "disco inferno", 
+    "video game soundtracks to live to", "alt-rock radio forever", "french house vibes", 
+    "uk garage essentials", "dream pop clouds", "southern gothic", "math rock madness", 
+    "breakcore breakdown", "sea shanties for the soul", "city pop cruise", "eurodance energy", 
+    "grunge revival", "reggae sunshine", "glitch hop", "ambient drone zone", "midwest emo feels", 
+    "trap bangers", "nu-metal nostalgia", "vintage soul", "folk punk shenanigans", 
+    "vaporwave mall", "songs that activate my almonds", "yapping session", "the sigma grindset playlist", 
+    "i am in my delulu era", "this is so skibidi", "rizz anthems", "pov: you're the main character", 
+    "it's giving... chaos", "songs that scratch a brain itch", "audios that live in my head rent-free", 
+    "let him cook", "for the girlies", "brain not braining", "go little rockstar", "i'm just a girl", 
+    "girl dinner soundtrack", "certified bangers™", "this slaps, respectfully", "that one edit audio", 
+    "touch grass", "chronically online", "no thoughts, head empty", "we are so back", 
+    "based and redpilled tunes", "vibing and thriving", "ok boomer", "the algorithm sent me here", 
+    "lowkey fire", "it's a canon event", "do it for the plot", "i can be your angle or yuor devil", 
+    "side eye.", "npc behavior", "the roman empire", "music to gaslight gatekeep girlboss to", 
+    "✨ aesthetic ✨", "if you get it you get it", "corecore", "gen z humor in a playlist", 
+    "the feminine urge to...", "this is my joker origin story", "i had an awakening", 
+    "feral girl summer", "sending this to my therapist", "hits different", "understood the assignment", 
+    "that's the tea, sis", "big dick energy", "my entire fyp", "a collection of earworms", 
+    "this playlist is bussin'", "the vibe is immaculate", "locked in", "simp nation", 
+    "songs that make me go 'brrr'", "delulu is the solulu", "he's a 10 but...", 
+    "me and my silly little thoughts", "girl math", "hot girls have stomach problems", 
+    "songs to stare at the ceiling and contemplate every decision you've ever made to", 
+    "you're a teenager in a coming-of-age movie and this is the soundtrack", 
+    "music for when you're the last one left at the party", 
+    "driving through a tunnel at night with the windows down", 
+    "that feeling when you find an old photo of someone you miss", 
+    "slow dancing alone in your kitchen at 2 AM", 
+    "running away to start a new life in a small coastal town", 
+    "solving a mystery in a dusty old library", "the final boss fight of your life", 
+    "you just realized you're the villain of your own story", 
+    "walking home after a first date that went surprisingly well", 
+    "the bittersweet nostalgia of your hometown", 
+    "laying in a field of wildflowers without a care in the world", 
+    "songs that feel like a warm hug from a friend", 
+    "for when you need to feel like a goddamn rockstar for 45 minutes", 
+    "this is what falling in love sounds like", "music for pretending you're in a music video", 
+    "walking through a city in the pouring rain", "leaving a job you hate for the last time", 
+    "exploring an abandoned castle", "the world is ending but you're with the right person", 
+    "music to write angsty poetry to", "that feeling of déja vu", "i'm 16 again and everything hurts", 
+    "trying to convince yourself you're over them", "you're a powerful witch living in the woods", 
+    "the quiet hum of a spaceship traveling through the void", "getting revenge on your enemies", 
+    "building a pillow fort", "that moment of clarity after a long cry", 
+    "riding a bike on the first warm day of spring", 
+    "a road trip with your worst enemy (enemies to lovers arc)", 
+    "for when your spotify wrapped is embarrassing", "the soundtrack to my maladaptive daydreams", 
+    "discovering a secret society", "that first sip of coffee in the morning", 
+    "songs that sound like they were recorded in a cathedral", "you're a pirate on the high seas", 
+    "the feeling of sand between your toes", "making eye contact with a stranger across a crowded room", 
+    "that crushing weight of potential", "songs that make you want to learn an instrument", 
+    "time is a flat circle", "music for a haunted house", 
+    "you finally understand what your parents were talking about", "trying to be a morning person", 
+    "realizing you are not, in fact, built different", "songs that feel like a forgotten dream", 
+    "the smell of old books", "watching the sunrise after pulling an all-nighter", 
+    "the background music in heaven's waiting room", "you're about to do something you'll probably regret", 
+    "putting on a full face of makeup just to stay home", "for when the intrusive thoughts are winning", 
+    "songs that should be illegal to be this good", "if my anxiety had a soundtrack", 
+    "that quiet moment before the chaos", "i should have been born in a different era", 
+    "this is for the person i was in middle school", "meeting your doppelgänger", "vibes", 
+    "current", "mood.", "🎧", "untitled", "flow", "focus", "drive", "chill", "sleep", "energy", 
+    "escape", "now", "quiet", "loud", "soft", "hard", "gold", "blue", "rain", "sun", "night", "day", 
+    "4am", "✨", "🌊", "🔥", "💔", "😌", "shuffle", "repeat", "vol. 1", "a-side", "b-side", "static", 
+    "echo", "fade", "pulse", "blur", "haze", "warmth", "cool", "drift", "space", "home", "lost", 
+    "found", "good stuff", "jams", "mix", "shit that slaps", "fuck it we ball", 
+    "angry bitch anthems", "i hate everyone", "songs to commit arson to", "scream into the void", 
+    "fuck this job", "god complex", "my turn to be a problem", "emotionally constipated bangers", 
+    "crybaby shit", "hot mess express", "a playlist for the damned", "let's go get in trouble", 
+    "sad bastard music", "fuck you and your mom and your sister and your job", 
+    "music for degenerates", "eat the rich", "nihilism but make it catchy", 
+    "world's tiniest violin", "absolute garbage", "thot shit", "i'm the drama", 
+    "songs that make me feel like a bad bitch", "who the fuck is that", "sleep is for the weak", 
+    "daddy issues", "mommy issues", "i'm not mad, i'm just disappointed (and also very mad)", 
+    "welcome to the shitshow", "kill your heroes", "hedonism", "raw fucking power", 
+    "get in loser, we're having a breakdown", "zero fucks given", "my villains playlist", 
+    "bad decisions", "this is my 13th reason", "graveyard shift", "rotting in my room", 
+    "pathetic little meow meow", "i don't give a damn about my bad reputation", "unholy", 
+    "bite me", "born to die", "dead inside", "antisocial", "psycho killer", "i am the machine", 
+    "fuck feelings", "my therapist told me to make this", 
+    "songs i would sell my soul to hear for the first time again", 
+    "music for people who think they have good taste", "i am mentally ill but my playlist is fire", 
+    "the music they play in hell's waiting room", "songs to annoy your neighbors with", 
+    "i listen to everything (except country and rap)", "just a little quirky", 
+    "elevator music for a descending elevator", "pretending i'm in an edit of myself", 
+    "my taste in music is your face", "yes, i am judging your aux skills", 
+    "corporate email soundtracks", "songs that are older than me but still slap", 
+    "this song has one good part", "only god can judge me (and my spotify stats)", 
+    "the sound of my last two brain cells fighting", "aggressively caucasian music", 
+    "music my dad would like", "illegally good", "this playlist is a red flag", 
+    "music for when you've been on hold for 45 minutes", "my personality in a playlist", 
+    "music for disassociating at family gatherings", "i'm not like other girls", 
+    "songs that will get you a speeding ticket", "i found this on tiktok", 
+    "music to scare the hoes to", "music to attract the hoes to", 
+    "if i go missing, play this at my funeral", "songs that are probably problematic now", 
+    "background music for my quarter-life crisis", "for legal reasons, this is a joke", 
+    "pov: you peaked in high school", 
+    "why do they call it oven when you of in the cold food of out hot eat the food", 
+    "songs that have no business going this hard", "my brain on shuffle", "not a phase, mom", 
+    "the aux is mine.", "songs to make straight men uncomfortable", 
+    "i have the music taste of a divorced dad", "i'm fine.", 
+    "shrek soundtrack appreciation club", "unironically good", "ironically good", "a cry for help", 
+    "spotify is my only friend", "you wouldn't get it", "don't touch the aux", 
+    "please don't be cringe", "a carefully curated mess", "my life is a mess but my playlist is clean", 
+    "that one song from that one movie", "music for my plants (they're dying)", 
+    "i'm not sad i just like this music", "for when you get ghosted", "a musical lobotomy", 
+    "songs that make me feel 💅", "this is why i'm single", "tunes for tax evasion", 
+    "dark academia", "cottagecore daydreams", "light academia study session", 
+    "goblincore forest walk", "royalcore ballroom", "brutalist architecture", "space cowboy", 
+    "cyberpunk dystopia", "solar punk optimism", "dopamine dressing", "coastal grandmother", 
+    "weirdcore", "dreamcore", "liminal spaces", "gotham city rooftops", "wes anderson movie", 
+    "studio ghibli scenery", "blade runner blues", "night luxe", "grunge fairy", "y2k futurism", 
+    "old money aesthetic", "downtown girl", "angelcore", "alien superstar", "clowncore", 
+    "cryptidcore", "glowwave", "hoardercore", "kidcore nostalgia", "lovecore", "mosscore", 
+    "piratecore", "rave culture", "scenecore revival", "vaporwave plaza", "witch house", 
+    "adventurecore", "bloomcore", "honeycore", "late night thoughts", "early morning sunrise", 
+    "summer night drives", "crisp autumn walk", "cozy winter cabin", "blooming spring day", 
+    "rainy day feels", "golden hour", "blue hour", "witching hour", "august slipped away", 
+    "december gray", "july heatwave", "october vibes 🍂", "frozen tundra", "april showers", 
+    "dog days of summer", "midwinter bleakness", "summer solstice party", 
+    "a hazy shade of winter", "thunderstorms & coffee", "sunday scaries", "friday feeling", 
+    "monday morning dread", "sleepy sundays", "throwback thursday", "3:33 am", "dusk till dawn", 
+    "solstice", "equinox"
+]
+
+playlist_bios = [
+    "A carefully curated dose of upbeat anthems and feel-good grooves scientifically proven to boost your mood and get you moving.",
+    "The perfect blend of euphoric dance beats and devastatingly honest lyrics for when you need to feel it all on the dance floor.",
+    "A cathartic collection of heavy riffs, pounding drums, and furious vocals for screaming into your pillow or the void.",
+    "For those late nights spent wrapped in a blanket, staring at the ceiling, and embracing the poetic beauty of a good cry.",
+    "Ethereal soundscapes and reverb-drenched melodies that make you feel like you're drifting weightlessly through a cloud.",
+    "Unapologetically joyful music that sparks instant smiles, uncontrollable dancing, and pure, radiant happiness.",
+    "The soundtrack for clenched fists, smudged eyeliner, and screaming the words in your car because they just get it.",
+    "Thought-provoking and atmospheric tunes for pondering the universe's infinite mysteries and your tiny place within it.",
+    "A powerful set of anthems that make you walk a little taller, own your energy, and feel like the main character.",
+    "Sweeping ballads and intimate confessions for the dreamers, the pining, and the believers in grand gestures.",
+    "Songs that smell like old love letters and feel like flipping through a yearbook, bittersweet and beautiful.",
+    "An emotional rollercoaster in audio form, jumping from euphoric love to crushing heartbreak without warning.",
+    "Subtle, sophisticated grooves and low-key beats for those who know their worth and don't need to shout it.",
+    "Cool, detached, and rhythm-focused tracks for building walls and maintaining an air of mysterious composure.",
+    "Warm, radiant folk-pop and indie soul that sounds like the world is permanently dipped in a beautiful, setting sun.",
+    "Music that boils just under the surface, all tense rhythms and seething vocals for when you're biting your tongue.",
+    "A soft, tender collection for quiet reflection, featuring delicate piano and hushed, comforting vocals.",
+    "A quirky, whimsical mix of indie pop and folk that makes you want to wear floral dresses and have spontaneous adventures.",
+    "Sly, funky basslines and witty lyrics for plotting harmless pranks and scheming with a knowing grin.",
+    "A collection of intuitive, soul-stirring songs that hit a deep, inexplicable nerve right in your core.",
+    "Soothing ambient textures and calm, expansive melodies to quiet the mind and wash the stress away.",
+    "The honest, raw, and beautifully broken songs you play when someone asks if you're okay and you just can't lie.",
+    "Silly, upbeat, and slightly unhinged tunes for laughing too loud, dancing badly, and embracing pure silliness.",
+    "Explosive, celebratory music for milestone moments, overwhelming gratitude, and feeling absolutely invincible.",
+    "The painful yet necessary process of growth, featuring songs that acknowledge the hurt but focus on healing light.",
+    "No heavy thoughts, just immaculate background music for existing peacefully in your own company.",
+    "An ADHD person's audio diary, genre-hopping from classical to hyperpop in seconds to match a scattered brain.",
+    "Ambient drone and minimalist soundscapes for when feeling anything is too much and you just need to static.",
+    "That first flutter, the nervous excitement, the songs that capture the electric moment before something begins.",
+    "A beautifully unhinged mix of genres that somehow works together for productive mayhem and creative mischief.",
+    "A fond look back at moments and people you can't return to, equal parts sweet, sad, and cherished.",
+    "Dark, powerful, and seductive anthems for embracing your power, setting boundaries, and being a little selfish.",
+    "Instrumental and lyrical musings for deep contemplation, long walks, and getting lost in your own thoughts.",
+    "Inexhaustibly cheerful and vibrant tunes that make you want to skip down the street and hug a stranger.",
+    "The weary, drained, and exhausted vibe of being completely over everything, set to a slow, melancholic beat.",
+    "Soft acoustic strings, whispered vocals, and the gentle sound of rain for a slow, peaceful start to the day.",
+    "Dreamy, hazy lullabies and slow-core to help heavy eyelids finally close and drift into a deep sleep.",
+    "Defiant anthems and scorching rock for cutting ties, slamming doors, and never looking back.",
+    "The cold, calculated, and focused side of anger; less screaming, more strategic planning to a minimalist beat.",
+    "Optimistic indie and uplifting electronic music that sounds like the first light after a long, dark night.",
+    "Jittery, excited, and romantic songs full of nervous energy and imagining your future together.",
+    "Experimental beats, psychedelic twists, and bizarre samples for when normal music just won't cut it.",
+    "A serene collection of acoustic guitar and ambient sounds for finding your center and a moment of pure calm.",
+    "A wistful, longing mix of folk and Americana that aches for a place, a person, or a time that feels like home.",
+    "Gospel-infused R&B, classic soul, and deep funk that feeds your spirit and moves your body.",
+    "Complex, lyrical music for spiraling down rabbit holes of your own creation and analyzing every possible outcome.",
+    "The light, airy, stomach-dropping feeling of a new crush, set to the sweetest pop and indie tunes.",
+    "A simple, satisfying mix of familiar favorites and cozy sounds for when everything is just right as it is.",
+    "Abstract electronic music and distant, filtered vocals that make you feel like you're observing life from behind glass.",
+    "Heavy, aggressive beats and motivational screams for pushing through the pain and hitting a new personal best.",
+    "Synthwave, chill hop, and moody rock for driving through neon-lit streets with no particular destination.",
+    "Powerful vocal ballads and infectious pop hooks you can't help but belt out at the top of your lungs.",
+    "A focused mix of atmospheric post-rock and intricate instrumentals for getting into a deep state of flow.",
+    "Upbeat disco, classic funk, and Motown soul to turn chores into a dance party and clean with purpose.",
+    "Folky storytelling and intricate fingerpicking for getting your hands dirty and making something beautiful.",
+    "A soundtrack for observing human nature from a safe distance, fueled by a good latte and gentle jazz.",
+    "A hypnotic, endless scroll of lo-fi and ambient tunes to match the mindless scrolling of your thumb.",
+    "Joyous, breezy pop and light acoustic music for lazy afternoons on a blanket with good friends and good food.",
+    "Stomping folk-rock and triumphant indie anthems to power you up every hill and to every breathtaking view.",
+    "Calming stretches of ambient music and peaceful piano to cool down and sit with the accomplishment.",
+    "Chill reggae, laidback surf rock, and sunny pop for lounging with a cold drink and doing absolutely nothing.",
+    "A frustrating mix of repetitive electronic and angry punk to match the frustration of interpreting those diagrams.",
+    "A crackling, warm backdrop of folk and blues for sharing stories, roasting marshmallows, and staring into the flames.",
+    "A heavy, meditative drone and dark ambient to help zone out and disassociate from the buzzing needle.",
+    "Funky grooves and vintage soul to make you feel cool while sifting through racks of forgotten treasures.",
+    "A dreamy, reverb-soaked playlist for when your body is in class but your mind is on a different planet entirely.",
+    "Smooth jazz, soulful R&B, and a bit of blues for a classy night in with a bottle of red and deep conversation.",
+    "The warm, comforting sounds of classic folk and acoustic music to accompany the smell of freshly baked bread.",
+    "A deeply psychedelic and ambient journey for when your thoughts are melting and the wall is fascinating.",
+    "A time capsule of guyliner, tight jeans, and raw emotional vulnerability set to distorted guitars.",
+    "Booming 808s, slick flows, and iconic beats from the era that defined hip-hop's golden age.",
+    "Shimmery synth pads, driving basslines, and drum machines that sound like a night drive in a retro-future.",
+    "Anthemic guitar solos, powerful vocals, and songs made for holding a lighter up in a massive crowd.",
+    "The sleazy, electro-clash, and dance-punk revival for remembering parties we're glad we survived.",
+    "A chaotic, sugary, and hyper-digital assault on the senses that is either the future or the end of music.",
+    "Dramatic, powerful classical pieces for sophisticated scheming and staring out of rain-streaked windows.",
+    "Just a person and their guitar, singing about loss, loneliness, and the beauty of the simple, sad things.",
+    "Intimate, home-recorded songs full of reverb, whispered secrets, and the sound of a ceiling fan humming.",
+    "Three-chord anthems of rebellion, frustration, and community shouted over fast and dirty guitars.",
+    "A funky, filtered, and neon-soaked throwback to French touch records that make you move without trying.",
+    "The iconic, endlessly comforting stream of chilled-out beats to pretend to study and actually relax to.",
+    "The pop-punk anthems of your youth that still hit with the same force about crushes and hating your hometown.",
+    "A wall of shimmering guitar noise, hushed vocals, and beautiful texture to get completely lost inside.",
+    "Moody, gothic synths and pulsating post-punk basslines for a dance floor in a haunted mansion.",
+    "Trippy pedal steel, reverb-drenched vocals, and stories that feel both earthy and out of this world.",
+    "Raw, gritty, and soulful tales of hardship and redemption, straight from the Mississippi Delta to Chicago.",
+    "A choir of angelic voices, layered harmonies, and compositions that feel both ancient and timeless.",
+    "The sound of a smoky room at 2 AM, a glass of whiskey, and a saxophone solo that speaks to your soul.",
+    "Buttery-smooth vocals from the 90s and 00s that defined an era of slow jams and patient seduction.",
+    "The specific strain of reverb-drenched, slightly pretentious guitar music that dominated a certain website.",
+    "Timeless, powerful soul music from the legendary Detroit label that taught the world to dance and feel.",
+    "A mind-expanding journey through kaleidoscopic sounds, warped guitars, and far-out production.",
+    "A righteous, furious, and empowering collection of anthems from women who are done being polite.",
+    "A digital wonderland of synthesized vocals, chaotic beats, and infectious J-pop energy.",
+    "The dramatic, show-stopping numbers from Broadway's best that make you want to burst into song in public.",
+    "A deep dive into the innovative, raw, and lyrically dense world of hip-hop's unsung heroes.",
+    "Sweeping, dramatic orchestral pieces that make everyday tasks feel like epic movie moments.",
+    "The funky, four-on-the-floor heartbeat of the 70s that refuses to die and still gets everyone moving.",
+    "Epic scores and subtle themes from games that have better storylines and music than most films.",
+    "The dependable, earnest, and always satisfying guitar-driven rock that never goes out of style.",
+    "Filtered French house loops and disco samples that are impossibly cool and effortlessly funky.",
+    "The skippy, rhythmic, and infectious sound of UK club culture that makes everything feel like a garage.",
+    "A soft focus lens on music; all hazy vocals, shimmering guitars, and a feeling of weightless bliss.",
+    "Gothic Americana, haunting narratives, and a sense of haunting beauty from the dusty backroads.",
+    "Complex, off-kilter time signatures and intricate guitar work for those who like their rock puzzles.",
+    "A frantic, chaotic, and digitally shredded assault of breakbeats that is pure auditory chaos.",
+    "A shanty for every occasion: for raising sails, lifting pints, or just feeling the salt spray on your face.",
+    "Smooth, city-pop grooves from 80s Japan that sound like a convertible drive along a Tokyo coastline.",
+    "The incredibly cheesy, incredibly infectious dance music from 90s Europe that is a guilty pleasure.",
+    "Flannel shirts, doc martens, and the raw, distorted sound of Seattle's early 90s explosion.",
+    "Laid-back rhythms, positive vibrations, and sunshine-soaked music to ease your mind and soul.",
+    "The weird, wonky intersection of hip-hop and electronic music where the beats stutter and glitch.",
+    "A deep, minimalist, and textural dive into soundscapes with no beat, just endless drifting atmosphere.",
+    "The sound of mathy emo riffs, overly sincere lyrics, and feeling everything all at once in the Midwest.",
+    "Hard-hitting 808s, rattling bass, and aggressive flows for when you need to turn the energy up.",
+    "A nostalgic return to the era of baggy jeans, nu-metal riffs, and angsty rap-rock fusion.",
+    "Crackling, authentic recordings from the Stax and Motown eras that are the foundation of modern music.",
+    "Raucous, acoustic-driven anthems of rebellion, community, and drinking with your friends in a basement.",
+    "A soundtrack for a mall that never existed, all smooth jazz fusion and sampled weather channel music.",
+    "Songs that inexplicably trigger a deep, almost primal sense of recognition, satisfaction, or confusion.",
+    "Background music for a long, meandering conversation that jumps from topic to topic with no resolution.",
+    "Aggressive, motivational hip-hop and intense electronic music for optimizing your life and crushing goals.",
+    "A playlist built on manifesting, ignoring red flags, and believing your own wildly optimistic narrative.",
+    "The official soundtrack for using slang that will be outdated in 3 months but feels right today.",
+    "Smooth, confident R&B and pop tracks for when your charm is at an all-time, undeniable high.",
+    "The epic, cinematic music that plays in your head when you walk down the street feeling unstoppable.",
+    "A chaotic blend of hyperpop, meme sounds, and nightcore that should not work but somehow does.",
+    "Songs with a specific production quirk, vocal run, or beat drop that provides a mental scratch.",
+    "The 8-second clips, viral sounds, and song snippets that are permanently stuck in your brain on a loop.",
+    "A funky, jazz-inspired instrumental playlist for when you're concocting something genius (or disastrous).",
+    "An empowering, celebratory mix of pop and hip-hop anthems dedicated to the power of female friendship.",
+    "A collection of songs for when you're too tired to form coherent thoughts but the music is still on.",
+    "The triumphant, inspiring song that plays when the underdog finally gets their moment in the spotlight.",
+    "The quintessential blend of pop-rock anthems and ballads that defined early 2000s femininity.",
+    "A chaotic mix of snack-related ASMR, girl group throwbacks, and one Olivia Rodrigo song.",
+    "A no-skips, all-kills selection of tracks that have been scientifically proven to be absolute bangers.",
+    "A respectful acknowledgment of a song's ability to make you involuntarily nod your head and go 'ooh'.",
+    "That one sped-up, reverb-heavy audio clip that's been used in 5 million videos about a specific aesthetic.",
+    "A gentle reminder to go outside, feel the grass, and listen to the sounds of nature (plus some folk music).",
+    "Hyper-online, niche meme music and soundboard clips that would be utterly confusing to an outsider.",
+    "A state of zen-like emptiness achieved with ambient noise, white noise, or very, very simple music.",
+    "The triumphant feeling when a streak of bad luck ends, scored with celebratory rock and hip-hop.",
+    "A polarizing mix of political rap and meme music that you either deeply understand or find deeply cringe.",
+    "The ultimate state of being: when your energy is high, your mood is good, and the music is perfect.",
+    "A collection of classic rock and dad jokes set to music, for when you need to tease your parents.",
+    "A mysterious algorithmically-generated mix that somehow understands your soul better than you do.",
+    "A fire emoji. That's the bio. It's just a bunch of really good, under-the-radar songs.",
+    "A point of no return in a story that had to happen for character development, set to a dramatic score.",
+    "Making decisions based on what would make the most interesting story later, not what is necessarily smart.",
+    "A typo that became a meme, now representing the chaotic good energy of not being able to spell 'angel'.",
+    "A playlist for the look you give when someone says something ridiculous but you're too polite to comment.",
+    "The mundane, repetitive background music for when you're just going through the motions of life.",
+    "The collection of history, facts, and ideas that occupy a man's mind for no apparent reason.",
+    "A toxic blend of hustle culture anthems, gaslighting love songs, and girlboss empowerment ballads.",
+    "A vague, aesthetically pleasing collection of songs with a cohesive vibe but no definable genre.",
+    "A playlist for the initiated. If you know, you know. If you don't, you probably wouldn't like it anyway.",
+    "A montage of rapidly edited clips and audio that somehow creates a profound sense of understanding.",
+    "A collection of meme songs, audio clips, and inside jokes that only make sense to a specific age group.",
+    "The musical equivalent of the sudden, overwhelming urge to cut your own bangs or move to another country.",
+    "The dramatic origin story music for when a minor inconvenience pushes you over the edge.",
+    "The soundtrack to a sudden, life-altering realization that changes your entire perspective.",
+    "Wild, untamed, and energetic anthems for a summer of no rules, bad decisions, and great stories.",
+    "A collection of songs you desperately need to process with a professional to understand why you like them.",
+    "The strange and wonderful phenomenon of a song hitting differently based on your current life situation.",
+    "A playlist that successfully completed its very specific, often impossible, vibe-based mission.",
+    "The musical affirmation that you are correct in your gossip-based assessment of a situation.",
+    "A towering, unshakeable confidence playlist, full of music that makes you feel like you run the world.",
+    "The endless scroll of viral sounds and trending songs that define your personal For You Page.",
+    "Those incredibly catchy songs that burrow into your brain and refuse to leave for weeks on end.",
+    "A Gen Z affirmation that this particular collection of songs is, in fact, highly enjoyable.",
+    "A rare and perfect convergence of mood, setting, and sound where everything feels just right.",
+    "A state of hyper-focus and concentration, often achieved with instrumental or lyric-less music.",
+    "The national anthem for those who dedicate a little too much time and energy to their parasocial crushes.",
+    "A selection of tracks with heavy bass or specific production effects that cause a pleasant physical reaction.",
+    "The belief that delusion is the solution; manifesting your dreams through wildly optimistic pop anthems.",
+    "A rating system for potential partners based on their qualities versus their deal-breaking flaws.",
+    "The silly, funny, and often deeply concerning thoughts that bounce around inside my head all day.",
+    "The economic principle where a $300 concert ticket is essential but a $5 shipping fee is a deal-breaker.",
+    "An anthem for those with IBS, gluten intolerance, or a generally sensitive digestive system.",
+    "The perfect soundtrack for a deep, introspective stare at the textured ceiling above your bed.",
+    "The coming-of-age film score for your life, full of hope, angst, and discovering who you are.",
+    "The lonely, echoing, slightly melancholy music that plays when the party's energy finally dips.",
+    "The ultimate sensory experience: wind in your hair, darkness, and music bouncing off the tunnel walls.",
+    "The specific ache and warmth that comes from rediscovering a memory you didn't know you'd forgotten.",
+    "A solitary, beautiful, and slightly sad moment of connection with yourself and the music.",
+    "The hopeful, adventurous soundtrack for leaving it all behind and starting again with a clean slate.",
+    "Mysterious, inquisitive music that makes research feel like a thrilling adventure full of clues.",
+    "The epic, final confrontation music for your biggest challenges, both real and metaphorical.",
+    "The chilling moment of self-realization set to a dark, atmospheric, and unsettling score.",
+    "The hopeful, bubbly, and sweet soundtrack to the beginning of something potentially wonderful.",
+    "A fond but complicated sadness for the place that shaped you but that you can never truly return to.",
+    "A carefree, peaceful, and idyllic moment of pure presence and joy in the natural world.",
+    "The audio equivalent of a warm, reassuring embrace from someone who loves you unconditionally.",
+    "A powerful, ego-boosting set of rock and hip-hop anthems that make you feel invincible for a while.",
+    "The sound of falling in love, from the first spark to the overwhelming, all-consuming feeling.",
+    "Dramatic, visually evocative songs that make you want to choreograph a dance routine in an empty warehouse.",
+    "The romantic, cinematic, and introspective mood of a cityscape under a downpour.",
+    "The ultimate feeling of liberation and closure, scored with triumphant and empowering rock.",
+    "Eerie, atmospheric music for exploring forgotten places and imagining their past lives.",
+    "A beautiful, apocalyptic love story score where the world is ending but you found your person.",
+    "The preferred background music for writing deeply emotional and slightly cringe poetry.",
+    "The uncanny, spine-tingling feeling that you've experienced this exact moment before.",
+    "A visceral return to the intense, overwhelming, and dramatic emotions of being a teenager.",
+    "The songs you play to convince yourself you're moving on, even though your heart isn't quite there yet.",
+    "A mystical, earthy, and powerful collection for embracing your inner magic and independence.",
+    "The vast, silent, and humbling sound of the cosmos for when you feel small and insignificant.",
+    "A dark, satisfying, and empowering score for your well-deserved payback against your foes.",
+    "A cozy, childish, and fun mix of indie pop and acoustic tunes for building the ultimate blanket fort.",
+    "The peaceful, clear-headed, and relieved feeling that arrives after a good, long, cathartic cry.",
+    "The ultimate feeling of freedom and joy, accompanied by upbeat indie folk and sunny pop.",
+    "A tense, will-they-won't-they soundtrack for a road trip full of arguments and sexual tension.",
+    "A collection of embarrassing but beloved songs you'd never admit to publicly loving.",
+    "The elaborate, ever-changing soundtrack to the intricate daydreams you live inside your head.",
+    "Mysterious and awe-inspiring music for finding a hidden world just beneath our own.",
+    "The simple, profound pleasure of that first hit of caffeine, set to gentle, waking-up music.",
+    "Choral, atmospheric music with huge reverb that sounds like it was recorded in a vast, holy space.",
+    "A swashbuckling adventure mix of Celtic folk and orchestral themes for life on the high seas.",
+    "The sensory memory of warm sand, cool water, and the sound of waves mixed with chill beats.",
+    "The electric, romantic tension of a fleeting connection with a stranger you'll never see again.",
+    "The overwhelming anxiety of all the things you could be or do, set to ambitious, soaring music.",
+    "Inspiring classical and intricate folk that makes you want to immediately learn guitar or piano.",
+    "A philosophical mix that explores the cyclical nature of history, life, and everything in between.",
+    "Creepy, atmospheric soundscapes and music box melodies for a house with a dark past.",
+    "The moment you finally understand your parents' advice, set to a soundtrack of nostalgic classic rock.",
+    "Upbeat, cheerful music you play in a futile attempt to trick your body into being a morning person.",
+    "The humbling realization that you are, in fact, just as fragile and human as everyone else.",
+    "Haunting, half-remembered melodies and ambient pieces that feel like trying to recall a dream.",
+    "The warm, comforting, and dusty smell of knowledge and stories, set to quiet, intellectual jazz.",
+    "The exhausted but accomplished feeling of watching the sun come up after a long night of work.",
+    "The bland, inoffensive, and slightly eerie muzak they probably play in the afterlife's waiting room.",
+    "The adrenaline-pumping, dangerous music for when you're about to make a very questionable choice.",
+    "The act of putting on makeup as a form of self-care and art, even with no one there to see it.",
+    "A chaotic soundtrack for when the weird, dark thoughts are getting a little too loud and persuasive.",
+    "Songs that are so good they feel like they should be contraband, or at least come with a warning.",
+    "The jittery, unpredictable, and often overwhelming sound of constant worry and overstimulation.",
+    "The calm, pregnant pause right before the storm hits or the party starts, full of anticipation.",
+    "A collection of music that makes you feel like you were born in the wrong decade for your soul.",
+    "A bittersweet dedication to the awkward, cringey, but hopeful person you used to be.",
+    "The unsettling and mind-bending experience of meeting someone who looks exactly like you.",
+    "A one-word bio because the mood is too complex to define and the music speaks for itself.",
+    "The playlist you have on repeat right now, constantly updating with whatever you're feeling.",
+    "The entire emotional spectrum of your present state, condensed into one word and a bunch of songs.",
+    "A simple, universal symbol for 'I have my headphones in and I'm in my own world.'",
+    "The default name for a playlist you started making at 2 AM and never got around to titling.",
+    "A state of effortless creativity and movement where the music just carries you along.",
+    "Minimalist, instrumental music designed to help you concentrate and block out distractions.",
+    "The perfect blend of energy and atmosphere for a long journey behind the wheel.",
+    "The ultimate selection of relaxed, easy-going tunes for unwinding and decompressing.",
+    "A deep, restful collection of soundscapes and lullabies designed to gently guide you to sleep.",
+    "Up-tempo, powerful music to kickstart your day, your workout, or your personal revolution.",
+    "Music to mentally check out from your surroundings and transport yourself somewhere else.",
+    "The present moment, captured in a constantly evolving mix of what you need to hear right now.",
+    "Soft-spoken, intimate songs and ambient sounds for when you need a break from the noise.",
+    "Bombastic, rebellious, and unapologetic anthems for when you need to shake the walls.",
+    "Gentle, soothing, and tender music that feels like a whisper or a gentle touch.",
+    "Aggressive, intense, and challenging music that pushes boundaries and demands attention.",
+    "A premium, flawless selection of tracks that represent the very best of your music taste.",
+    "A cool, melancholic, and introspective mix for rainy days and quiet nights of reflection.",
+    "The soothing, rhythmic sound of rain paired with cozy, introspective singer-songwriter tunes.",
+    "Bright, optimistic, and energizing music that feels like a warm sun on your face.",
+    "Moody, mysterious, and atmospheric music for the late hours when secrets are kept and told.",
+    "Productive, upbeat, and clear-headed music for tackling your to-do list in the daylight.",
+    "The witching hour: a mystical, liminal time for weird thoughts and even weirder music.",
+    "A Taylor Swift song about a summer romance that ended too soon and will never be forgotten.",
+    "The bleak, gray, and cold atmosphere of the year's end, set to sparse, haunting music.",
+    "The oppressive, sweltering heat of mid-summer, scored with lazy, hazy, psychedelic rock.",
+    "The crisp air, falling leaves, and cozy sweater weather vibe of the spookiest season.",
+    "A desolate, icy, and beautiful soundscape for the deepest and coldest part of the year.",
+    "The hopeful, renewing, and slightly muddy sound of spring's arrival and April showers.",
+    "The lazy, slow, and unbearably hot stretch of summer where even thinking is an effort.",
+    "The deep, dark, and depressing feeling of the year's lowest point, set to drone and doom.",
+    "A celebration of the longest day of the year with sun-drenched psychedelia and joyful pop.",
+    "A Simon & Garfunkel song that perfectly captures the melancholy beauty of the winter season.",
+    "The perfect pairing of a booming thunderstorm outside and the warm, quiet calm inside.",
+    "The low-grade anxiety and dread that creeps in on Sunday evening before the work week begins.",
+    "The palpable sense of relief, excitement, and possibility that arrives every Friday afternoon.",
+    "The heavy, soul-crushing feeling of the weekly cycle beginning again, set to slow, sad music.",
+    "A lazy, relaxed, and slow-moving mix for lounging in bed long after you should have gotten up.",
+    "A nostalgic throwback to the music of the past, specifically curated for a Thursday.",
+    "A specific time of night associated with weird ideas, insomnia, and spiritual awakenings.",
+    "The journey from evening to morning, from anticipation to exhaustion, and everything between.",
+    "A celestial event celebrated with ethereal, ambient, and expansive music.",
+    "A day of perfect balance, celebrated with harmonious and balanced music from all genres.",
+]
+
+states = [
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+    "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+    "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+    "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+    "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+    "New Hampshire", "New Jersey", "New Mexico", "New York",
+    "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+    "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+    "West Virginia", "Wisconsin", "Wyoming"
+]
+
+countries = [
+    "Afghanistan", "Albania", "Algeria", "Argentina", "Australia",
+    "Austria", "Bangladesh", "Belarus", "Belgium", "Bolivia", "Brazil",
+    "Bulgaria", "Cambodia", "Cameroon", "Canada", "Chile", "China",
+    "Colombia", "Costa Rica", "Croatia", "Cuba", "Czech Republic",
+    "Denmark", "Dominican Republic", "Ecuador", "Egypt", "El Salvador",
+    "Estonia", "Ethiopia", "Finland", "France", "Georgia", "Germany",
+    "Ghana", "Greece", "Guatemala", "Honduras", "Hungary", "Iceland",
+    "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
+    "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kuwait",
+    "Latvia", "Lebanon", "Libya", "Lithuania", "Luxembourg", "Malaysia",
+    "Mali", "Mexico", "Mongolia", "Morocco", "Myanmar", "Nepal",
+    "Netherlands", "New Zealand", "Nicaragua", "Nigeria", "North Korea",
+
+    "Norway", "Oman", "Pakistan", "Panama", "Paraguay", "Peru",
+    "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia",
+    "Saudi Arabia", "Senegal", "Serbia", "Singapore", "Slovakia",
+    "Somalia", "South Africa", "South Korea", "Spain", "Sudan",
+    "Sweden", "Switzerland", "Syria", "Taiwan", "Tanzania", "Thailand",
+    "Tunisia", "Turkey", "Uganda", "Ukraine", "United Arab Emirates",
+    "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+    "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+]
+
+event_descriptions = [
+    "Quarterly Business Review (QBR)",
+    "Weekly Team Sync",
+    "Daily Stand-up Meeting",
+    "Project Kickoff: Project Phoenix",
+    "Sprint Planning",
+    "Sprint Retrospective",
+    "Backlog Grooming Session",
+    "Client Demo - Alpha Version",
+    "One-on-One with Manager",
+    "Code Review for Feature X",
+    "Product Roadmap Strategy Session",
+    "Marketing Campaign Brainstorm",
+    "All-Hands Meeting",
+    "UX/UI Design Critique",
+    "Candidate Interview: Senior Developer",
+    "Hiring Committee Debrief",
+    "Sales Pipeline Review",
+    "Content Calendar Planning",
+    "Investor Update Call",
+    "Team Building Lunch",
+    "Performance Review Prep",
+    "Submit Expense Report",
+    "Deep Work: Focus Block",
+    "Technical Architecture Review",
+    "Post-Mortem: Q3 Campaign",
+    "A/B Test Results Analysis",
+    "Security Audit Meeting",
+    "Customer Feedback Session",
+    "Onboarding for New Hire",
+    "Update JIRA Tickets",
+    "Vendor Negotiation Call",
+    "Cross-Functional Sync",
+    "Prepare Board Meeting Slides",
+    "Annual Strategic Offsite",
+    "Workshop: Public Speaking",
+    "Webinar: Industry Trends",
+    "OKRs Finalization",
+    "Social Media Content Scheduling",
+    "Write Weekly Report",
+    "IT Support Check-in",
+    "Partnership Exploration Call",
+    "Budget Finalization Meeting",
+    "Legal Document Review",
+    "Town Hall Q&A Session",
+    "Peer Feedback Exchange",
+    "Data Migration Planning",
+    "API Integration Kickoff",
+    "User Acceptance Testing (UAT)",
+    "Product Launch Go/No-Go",
+    "Incident Response Drill",
+    "Dentist Appointment",
+    "Doctor's Annual Check-up",
+    "Therapy Session",
+    "Eye Exam",
+    "Physical Therapy",
+    "Pick up Prescription",
+    "Gym: Strength Training",
+    "Yoga Class",
+    "Morning Run",
+    "Meditation & Mindfulness",
+    "Grocery Shopping",
+    "Meal Prep for the Week",
+    "Haircut Appointment",
+    "Car Service/Oil Change",
+    "DMV Appointment",
+    "Post Office Run",
+    "Drop off Dry Cleaning",
+    "Go to the Bank",
+    "Pay Monthly Bills",
+    "Weekly Budget Review",
+    "Meet with Financial Advisor",
+    "Tax Preparation",
+    "Family Dinner",
+    "Call Parents",
+    "Kids' Soccer Practice",
+    "Parent-Teacher Conference",
+    "Date Night",
+    "Coffee with a Friend",
+    "Game Night",
+    "Movie Night",
+    "Book Club Meeting",
+    "Attend Wedding",
+    "Birthday Party",
+    "Housewarming Party",
+    "Volunteer at Food Bank",
+    "Community Cleanup Event",
+    "Gardening",
+    "Deep Clean the House",
+    "Organize Garage",
+    "Laundry Day",
+    "Home Repair Project",
+    "Study for Certification Exam",
+    "Online Course: Module 3",
+    "Practice a Musical Instrument",
+    "Language Lesson",
+    "Read a Book for 30 Minutes",
+    "Work on Side Project",
+    "Write Blog Post",
+    "Listen to Educational Podcast",
+    "Plan Weekend Trip",
+    "Pack for Vacation",
+    "Flight Departure",
+    "Hotel Check-in",
+    "Explore New City",
+    "Hiking Trip",
+    "Bike Ride",
+    "Visit a Museum",
+    "Attend a Concert",
+    "Go to a Live Theater Show",
+    "Watch Sports Game",
+    "Pottery Class",
+    "Cooking Class",
+    "Renew Driver's License",
+    "Sort and Organize Digital Files",
+    "Backup Computer Data",
+    "Plan Weekly Schedule",
+    "Journaling Session",
+    "Digital Detox Hour",
+    "Network with Professional Contact",
+    "Update LinkedIn Profile",
+    "Research New Tech Stacks",
+    "Review Personal Goals",
+    "Vet Appointment for Pet",
+    "Walk the Dog",
+    "Clean Pet's Area",
+    "Water the Plants",
+    "Return Library Books",
+    "Assemble New Furniture",
+    "Research Major Purchase",
+    "Cancel Unused Subscriptions",
+    "Review Investment Portfolio",
+    "Donate Old Clothes",
+    "Schedule Home Maintenance",
+    "Mow the Lawn",
+    "Clean Gutters",
+    "Attend Neighborhood Association Meeting",
+    "Blood Donation Appointment",
+    "Prepare for Presentation",
+    "Rehearse Demo Script",
+    "Clear Email Inbox",
+    "Unsubscribe from Junk Mail",
+    "Design Review: Mobile App",
+    "Leadership Sync",
+    "Skip-Level 1:1",
+    "Engineering All-Hands",
+    "Sales Kickoff (SKO)",
+    "Content Strategy Deep Dive",
+    "SEO Keyword Research",
+    "Analyze Website Analytics",
+    "Bug Triage Session",
+    "Feature Prioritization Meeting",
+    "Competitor Analysis Review",
+    "Draft Press Release",
+    "Record Podcast Episode",
+    "Edit Video Content",
+    "Finalize Ad Copy",
+    "Set up PPC Campaign",
+    "Update CRM Records",
+    "Team Morale Event Planning",
+    "Holiday Party Committee Meeting",
+    "Intern Project Showcase",
+    "Brown Bag Lunch & Learn",
+    "Code Freeze Deadline",
+    "Deployment to Production",
+    "Monitor System Health Post-Launch",
+    "Customer Support Shadowing",
+    "Write Technical Documentation",
+    "Review and Sign Contracts",
+    "Compliance Training",
+    "Fire Drill",
+    "Office Ergonomics Assessment",
+    "Benefits Enrollment",
+    "Submit Timesheet",
+    "Plan Next Sprint's Work",
+    "Breakdown Epics into Stories",
+    "Refine User Personas",
+    "Conduct User Interviews",
+    "Prototype Feedback Session",
+    "Finalize Brand Guidelines",
+    "Create Social Media Graphics",
+    "Review Affiliate Marketing Performance",
+    "Monthly Marketing Report",
+    "Quarterly Finance Audit",
+    "Inventory Check",
+    "Supply Chain Logistics Sync",
+    "Facilities Management Walk-through",
+    "New Software Training",
+    "Phishing Awareness Training",
+    "Mentorship Meeting",
+    "Career Development Planning",
+    "Explore Continuing Education",
+    "Attend Local Meetup",
+    "Virtual Conference",
+    "Industry Networking Event",
+    "Iron Clothes for the Week",
+    "Polish Shoes",
+    "Fix Leaky Faucet",
+    "Change Smoke Detector Batteries",
+    "Clean Refrigerator",
+    "Defrost Freezer",
+    "Organize Pantry",
+    "Bake Cookies",
+    "Try a New Recipe for Dinner",
+    "Family Movie Night",
+    "Build a Puzzle",
+    "Play Board Games",
+    "Visit Grandparents",
+    "Video Call with Relatives",
+    "Write Thank-You Notes",
+    "Plan a Surprise Party",
+    "Go for a Picnic",
+    "Beach Day",
+    "Stargazing",
+    "Camping Trip Planning",
+    "Fishing Trip",
+    "Go Bowling",
+    "Play Mini Golf",
+    "Attend a Local Festival",
+    "Visit a Farmers Market",
+    "Go to the Zoo or Aquarium",
+    "Take a Photography Walk",
+    "Draw or Paint",
+    "Write Poetry",
+    "Learn a Magic Trick",
+    "Practice Calligraphy",
+    "Start a DIY Project",
+    "Fix a Bike",
+    "Learn to Juggle",
+    "Research Family Tree",
+    "Organize Old Photos",
+    "Create a Photo Album",
+    "Listen to a New Music Album",
+    "Watch a Documentary",
+    "Learn First Aid",
+    "Take a Self-Defense Class",
+    "Go to a Dance Class",
+    "Join a Sports League",
+    "Team Practice",
+    "Go Swimming",
+    "Try Rock Climbing",
+    "Visit a National Park",
+    "Plan a Road Trip",
+    "Book a Spa Day",
+    "Get a Massage",
+    "Manicure/Pedicure",
+    "Chiropractor Adjustment",
+    "Acupuncture Session",
+    "Review Health Insurance Options",
+    "Set Savings Goals",
+    "Contribute to Retirement Fund",
+    "Check Credit Score",
+    "Shred Old Documents",
+    "Create or Update Will",
+    "Organize Important Paperwork",
+    "Test Emergency Supplies",
+    "Plan Evacuation Route",
+    "Take Out Trash and Recycling",
+    "Wash Windows",
+    "Clean the Car",
+    "Vacuum and Dust",
+    "Change Bed Linens",
+    "Fluff Pillows",
+    "Rotate Mattress",
+    "Sharpen Kitchen Knives",
+    "Clean Coffee Maker",
+    "Restock First-Aid Kit",
+    "Check Tire Pressure",
+    "Refill Windshield Wiper Fluid",
+    "Help Kids with Homework",
+    "Read Bedtime Story",
+    "Attend School Play",
+    "Chaperone Field Trip",
+    "Bake Sale Contribution",
+    "PTA Meeting",
+    "Brunch with Friends",
+    "Go to a Brewery/Winery",
+    "Attend a Trivia Night",
+    "Host a Dinner Party",
+    "Go to an Escape Room",
+    "Plan a Group Vacation",
+    "Catch up on TV Show",
+    "Finish Video Game Level",
+    "Build with LEGOs",
+    "Fly a Kite",
+    "Go Rollerblading",
+    "Ice Skating",
+    "Skiing/Snowboarding Trip",
+    "Build a Snowman",
+    "Have a Snowball Fight",
+    "Rake Leaves",
+    "Shovel Snow",
+    "Plant Spring Bulbs",
+    "Harvest Vegetables from Garden",
+    "Set up Holiday Decorations",
+    "Take Down Holiday Decorations",
+    "Wrap Presents",
+    "Send Holiday Cards",
+    "Pick out a Christmas Tree",
+    "Carve Pumpkins",
+    "Plan Halloween Costumes",
+    "Make Easter Eggs",
+    "Prepare for Thanksgiving Dinner",
+    "Watch Fireworks",
+    "Attend a Parade",
+    "Vote in Election",
+    "Renew Passport",
+    "Apply for Visa",
+    "Get Vaccinations for Travel",
+    "Exchange Currency",
+    "Learn Basic Phrases for Trip",
+    "Check-in for Flight",
+    "Arrange Pet Sitter",
+    "Arrange House Sitter",
+    "Water Plants Before Trip",
+    "Empty Fridge Before Trip",
+    "Charge All Electronics",
+    "Download Offline Maps and Media",
+    "Confirm Reservations",
+    "Send Itinerary to Family",
+    "Unpack from Trip",
+    "Do Post-Vacation Laundry",
+    "Share Vacation Photos",
+    "Write a Travel Blog Entry",
+    "Leave Reviews for Hotels/Restaurants",
+    "Mindful Walking",
+    "Stretching Break",
+    "Take a Power Nap",
+    "Hydration Reminder",
+    "Step Away From Screen",
+    "Practice Deep Breathing",
+    "Reflect on Achievements",
+    "Set Intentions for the Day",
+    "Tidy Up Workspace",
+    "Organize Desktop Icons",
+    "Review Calendar for Tomorrow",
+    "Prepare Outfit for Tomorrow",
+    "Pack Gym Bag",
+    "Charge Phone/Laptop",
+    "Set Alarm",
+    "Wind Down - No Screens",
+    "Read Fiction Before Bed",
+    "Brainstorm Session: New Initiatives",
+    "UX Research Synthesis",
+    "Growth Hacking Experiments Review",
+    "Content Moderation Policy Review",
+    "Accessibility Audit",
+    "CI/CD Pipeline Optimization",
+    "Database Schema Review",
+    "Load Testing Planning",
+    "Product Teardown Session",
+    "Competitive Landscape Analysis",
+    "SWOT Analysis Workshop",
+    "Finalize Q4 Budget Proposal",
+    "Review Employee Engagement Survey Results",
+    "Succession Planning Meeting",
+    "Diversity & Inclusion Committee Meeting",
+    "Crisis Communication Drill",
+    "Brand Voice & Tone Workshop",
+    "Lead Scoring Model Refinement",
+    "Sales Enablement Material Creation",
+    "Customer Journey Mapping",
+    "Churn Analysis Deep Dive",
+    "Annual Report Finalization",
+    "Office Space Planning",
+    "Return-to-Office Strategy Sync",
+    "Company Culture Initiative Meeting",
+    "New Market Entry Research",
+    "Supply Vendor Onboarding",
+    "M&A Due Diligence",
+    "IP & Trademark Filing Review",
+    "Charity Drive Planning",
+    "Corporate Social Responsibility (CSR) Report",
+    "Beta Tester Feedback Call",
+    "Early Adopter Program Kickoff",
+    "Developer Relations Sync",
+    "API Documentation Writing Block",
+    "SDK Release Planning",
+    "Hackathon Ideation",
+    "Internal Tooling Demo",
+    "Deprecation Plan Review",
+    "System Downtime Maintenance",
+    "SSL Certificate Renewal",
+    "Domain Name Registration",
+    "Cloud Cost Optimization Review",
+    "Open Source Contribution Day",
+    "Tech Talk Presentation Practice",
+    "Attend an Executive AMA (Ask Me Anything)",
+    "Shadow a Different Department",
+    "Participate in a Focus Group",
+    "Review Legal Disclaimers",
+    "GDPR Compliance Check",
+    "Draft Service Level Agreement (SLA)",
+    "Customer Success Check-in",
+    "Quarterly Performance Conversation (QPC)",
+    "360-Degree Feedback Request",
+    "Finalize Promotion Packet",
+    "Salary Negotiation Prep",
+    "Team Skills Matrix Assessment",
+    "Training Needs Analysis",
+    "Lunch Roulette",
+    "Company Book Club",
+    "Office Happy Hour",
+    "Celebrate Team Milestone",
+    "Farewell for Departing Colleague",
+    "Welcome Lunch for New Team Member",
+    "Annual Company Picnic",
+    "Year-End Gala",
+    "Client Appreciation Event",
+    "Trade Show Booth Duty",
+    "Conference Keynote Speech",
+    "Panel Discussion Participation",
+    "Host a Webinar",
+    "Guest on a Podcast",
+    "Media Interview",
+    "Write an Op-Ed",
+    "Review Influencer Marketing Contracts",
+    "A/B Test Email Subject Lines",
+    "Build a New Analytics Dashboard",
+    "Customer Segmentation Analysis",
+    "Draft a White Paper",
+    "Create an Infographic",
+    "Storyboard a Video Ad",
+    "Voiceover Recording Session",
+    "Translate Marketing Materials",
+    "Localize Website Content",
+    "Conduct a Usability Study",
+    "Card Sorting Exercise",
+    "Wireframing Session",
+    "High-Fidelity Mockup Creation",
+    "Build Interactive Prototype",
+    "Hand-off Designs to Devs",
+    "QA: Test on Staging Environment",
+    "Regression Testing",
+    "Smoke Testing New Build",
+    "Report Bugs in Tracker",
+    "Verify Bug Fixes",
+    "Write Release Notes",
+    "Communicate Release to Stakeholders",
+    "Monitor Post-Release Metrics",
+    "Rollback Plan Review",
+    "Disaster Recovery Test",
+    "Update Emergency Contact Info",
+    "Test Home Fire Alarm",
+    "Check Carbon Monoxide Detector",
+    "Clean Dryer Vent",
+    "Flush Water Heater",
+    "Replace Air Filters",
+    "Reseal Grout in Bathroom",
+    "Touch-up Paint on Walls",
+    "Fertilize Lawn",
+    "Prune Trees and Shrubs",
+    "Winterize the Sprinkler System",
+    "Prepare Guest Room for Visitors",
+    "Childproof the House",
+    "Create a Family Chore Chart",
+    "Plan a Garage Sale",
+    "Take Items to Donation Center",
+    "Schedule a Bulk Trash Pickup",
+    "Research Summer Camps for Kids",
+    "Apply for Scholarships",
+    "Fill out FAFSA",
+    "Register for Classes",
+    "Buy Textbooks",
+    "Study Group Session",
+    "Meet with Academic Advisor",
+    "Attend Office Hours",
+    "Work on Thesis/Dissertation",
+    "Prepare for Oral Defense",
+    "Attend Graduation Ceremony",
+    "Apply for Jobs",
+    "Tailor Resume and Cover Letter",
+    "Informational Interview",
+    "Networking Coffee Chat",
+    "Follow up on Job Application",
+    "Negotiate Job Offer",
+    "Give Two Weeks' Notice",
+    "Complete Exit Interview",
+    "Set up New Workstation"
+]
+
+event_locations = [
+    "The Boardroom, 15th Floor",
+    "Google Meet Link",
+    "Agile Corner, 4th Floor",
+    "Conference Room 4A (Orion)",
+    "Project War Room (3B)",
+    "Zoom Meeting Room",
+    "Conference Room 2C (Gemini)",
+    "Client's Office, 200 Main St",
+    "Manager's Office",
+    "Virtual Code Collab (VS Code Live Share)",
+    "Innovation Hub, 12th Floor",
+    "Whiteboard Alley",
+    "Auditorium",
+    "Design Studio, 7th Floor",
+    "Interview Room 1",
+    "HR Conference Room (5A)",
+    "Sales Floor Huddle Area",
+    "Marketing Dept. Pod 3",
+    "Investor Relations Secure Line",
+    "The Capital Grille, 1 Union Station",
+    "Home Office",
+    "Online Portal (Concur)",
+    "Quiet Zone, 9th Floor",
+    "Architecture Review Room (6F)",
+    "Microsoft Teams Channel",
+    "Data Analytics Lab",
+    "Security Operations Center (SOC)",
+    "Client HQ, Boston",
+    "Training Room 1",
+    "At my desk",
+    "Vendor's Virtual Meeting Room",
+    "Conference Room 8D (Nexus)",
+    "Executive Wing",
+    "Gurney's Newport Resort & Marina",
+    "Providence Convention Center, Room 201",
+    "Online Webinar Platform",
+    "Strategy Room (The Summit)",
+    "Marketing Automation Platform (HubSpot)",
+    "My Computer",
+    "IT Help Desk, 3rd Floor",
+    "Partner's Office (Virtual)",
+    "Finance Department, 14th Floor",
+    "Legal Counsel's Office",
+    "Company-wide Video Call",
+    "Breakout Room 3",
+    "Data Center, Pawtucket",
+    "Engineering Pod B",
+    "QA Lab",
+    "Launch Command Center (Room 11A)",
+    "Server Room B",
+    "Providence Dental Associates, 245 Angell St",
+    "East Side Medical Center, 153 Governor St",
+    "Telehealth Video Call",
+    "Warby Parker, Providence Place",
+    "Pro-Active Physical Therapy, Wayland Square",
+    "CVS Pharmacy, Thayer St",
+    "Planet Fitness, North Main St",
+    "Providence Power Yoga, Hope St",
+    "Blackstone Boulevard Walking Path",
+    "Living Room",
+    "Whole Foods Market, 261 Waterman St",
+    "Home Kitchen",
+    "La La Luxe Salon, 233 Wickenden St",
+    "Jiffy Lube, Branch Ave",
+    "RI DMV, Cranston",
+    "US Post Office, 24 Corliss St",
+    "Ocean State Cleaners, Atwells Ave",
+    "Bank of America, 111 Westminster St",
+    "Online Banking Portal",
+    "Home Office Desk",
+    "Fidelity Investments, Smithfield",
+    "TurboTax Online",
+    "My Dining Room",
+    "Phone Call",
+    "Hope High School Soccer Field",
+    "Classical High School, Room 212",
+    "Hemenway's Restaurant, 121 S Main St",
+    "Bolt Coffee Co., 220 W Fountain St",
+    "Friend's House",
+    "My Apartment",
+    "Ada Books, 717 Westminster St",
+    "Newport Vineyards, Middletown",
+    "Groom's House, 123 Ocean Ave",
+    "Friend's Backyard",
+    "Rhode Island Food Bank, 200 Niantic Ave",
+    "India Point Park",
+    "Backyard Garden",
+    "My House",
+    "Garage",
+    "Basement Laundry Room",
+    "Throughout the house",
+    "Study Nook",
+    "Coursera Platform",
+    "Music Room",
+    "Duolingo App",
+    "Reading Chair",
+    "Personal Workspace",
+    "My Laptop",
+    "On the Commuter Rail",
+    "Living Room Floor",
+    "My Bedroom",
+    "Rhode Island T. F. Green International Airport (PVD)",
+    "The Dean Hotel, 122 Fountain St",
+    "Downtown Providence",
+    "Lincoln Woods State Park",
+    "East Bay Bike Path",
+    "RISD Museum, 20 N Main St",
+    "Providence Performing Arts Center (PPAC)",
+    "Trinity Repertory Company",
+    "Amica Mutual Pavilion (The AMP)",
+    "The Steel Yard, 27 Sims Ave",
+    "Providence CIC, 225 Dyer St",
+    "RI Registry of Motor Vehicles",
+    "Computer Desktop",
+    "Hard Drive",
+    "Planner / Calendar App",
+    "Quiet Corner",
+    "Anywhere (Offline)",
+    "The District, 121 Orange St",
+    "LinkedIn.com",
+    "Online Documentation / Forums",
+    "Journal / Notebook",
+    "Providence Animal Rescue League, 34 Elbow St",
+    "Neighborhood Sidewalks",
+    "Backyard",
+    "Garden Shed",
+    "Providence Community Library, Rochambeau",
+    "Living Room Floor",
+    "ConsumerReports.org",
+    "Subscription Management App",
+    "Personal Capital Dashboard",
+    "Goodwill Donation Center, Cranston",
+    "Angie's List",
+    "Front Yard",
+    "Roof",
+    "Fox Point Neighborhood Association @ The Vartan Gregorian",
+    "Rhode Island Blood Center, 405 Promenade St",
+    "Podium in Conference Room A",
+    "My office mirror",
+    "Inbox (Outlook/Gmail)",
+    "Email Client",
+    "Conference Room 7B (Europa)",
+    "Executive Conference Room",
+    "Manager's Virtual Office (Teams)",
+    "Main Atrium",
+    "WaterFire Arts Center",
+    "Think Tank Room (10C)",
+    "SEO Tools (SEMrush/Ahrefs)",
+    "Google Analytics Dashboard",
+    "JIRA Board",
+    "Conference Room 3D (Triton)",
+    "Product Strategy Room",
+    "PR Agency's Office",
+    "Recording Studio / Booth",
+    "Video Editing Suite",
+    "Adobe Creative Cloud",
+    "Google Ads Platform",
+    "Salesforce CRM",
+    "The Fun Committee Room",
+    "Catering Hall",
+    "CIC Providence, Venture Cafe",
+    "Cafeteria",
+    "GitHub",
+    "AWS Console",
+    "Monitoring Dashboard (Datadog)",
+    "Customer Support Floor",
+    "Confluence / Wiki",
+    "DocuSign",
+    "HR Training Portal",
+    "Office Building Lobby",
+    "My Desk Area",
+    "HR Department, 5th Floor",
+    "Workday Portal",
+    "Agile Board Room",
+    "Ideation Lounge",
+    "User Research Lab",
+    "Focus Group Facility, Warwick",
+    "Conference Room 9A (Discovery)",
+    "Brand Team Pod",
+    "Social Media Management Tool (Sprout Social)",
+    "Tableau Dashboard",
+    "Finance Conference Room",
+    "Auditor's Office",
+    "Warehouse / Stock Room",
+    "Logistics Partner HQ",
+    "Building Manager's Office",
+    "Company Intranet",
+    "Security Briefing Room",
+    "Coffee Shop Downtown",
+    "Career Counselor's Office",
+    "University Extension Website",
+    "Venture Cafe Providence",
+    "Online",
+    "Rhode Island Convention Center",
+    "Laundry Room",
+    "Shoe Shine Station",
+    "Under the Sink",
+    "Ceiling",
+    "Kitchen",
+    "Freezer",
+    "Pantry",
+    "Oven",
+    "Kitchen Counter",
+    "Family Room",
+    "Dining Table",
+    "Living Room Couch",
+    "Grandparents' House",
+    "Skype/FaceTime",
+    "Stationery Desk",
+    "Event Venue",
+    "Roger Williams Park",
+    "Misquamicut State Beach",
+    "Back Deck",
+    "Campsite",
+    "Narragansett Bay",
+    "Lang's Bowlarama, Cranston",
+    "Monster Mini Golf, Warwick",
+    "Local Park",
+    "Lippitt Park Farmers Market",
+    "Roger Williams Park Zoo",
+    "Prospect Terrace Park",
+    "Art Studio",
+    "Poetry Slam Venue",
+    "My Mind Palace",
+    "At my desk with calligraphy pen",
+    "Workshop / Garage",
+    "Bicycle Repair Stand",
+    "The Backyard",
+    "Ancestry.com",
+    "Old Photo Boxes",
+    "Shutterfly / Photo Album Service",
+    "Spotify / Apple Music",
+    "Netflix / Hulu",
+    "American Red Cross Training Center",
+    "Martial Arts Dojo",
+    "The Rosendale, Providence",
+    "Community Rec Center",
+    "Local sports field",
+    "YMCA Pool",
+    "Rock Spot Climbing, Lincoln",
+    "Arcadia Management Area",
+    "Open Road",
+    "Butter Day Spa, 149 Wayland Ave",
+    "Massage Envy, Cranston",
+    "Star Nails, Wayland Square",
+    "The Joint Chiropractic, Seekonk",
+    "Providence Acupuncture, 335 Wickenden St",
+    "HealthCare.gov / Broker's Office",
+    "Mint.com",
+    "Retirement Plan Website (e.g., Fidelity)",
+    "Credit Karma",
+    "Paper Shredder",
+    "Lawyer's Office",
+    "Filing Cabinet",
+    "Emergency Kit Closet",
+    "Home (By the main door)",
+    "Curbside",
+    "Outside",
+    "In the driveway",
+    "Throughout the house",
+    "Bedroom",
+    "Pillows",
+    "The Bed",
+    "Kitchen Drawer",
+    "Coffee Station",
+    "Bathroom Cabinet",
+    "Tire Gauge in Glove Compartment",
+    "Under the Hood",
+    "Kitchen Table",
+    "Child's Bedroom",
+    "School Auditorium",
+    "On the school bus",
+    "School Cafeteria",
+    "School Main Office",
+    "Julian's, 312 Broadway",
+    "Narragansett Brewery, 271 Tockwotton St",
+    "Wild Colonial Tavern, 250 S Water St",
+    "My Place",
+    "The Escape Room RI, 2040 Warwick Ave",
+    "Group Chat / Planning App",
+    "My Couch",
+    "Gaming Console / PC",
+    "Playroom Floor",
+    "Park",
+    "Roller Skating Rink",
+    "The Providence Rink",
+    "Yawgoo Valley Ski Area",
+    "Front yard",
+    "The snowy park",
+    "Backyard",
+    "Driveway",
+    "Garden Bed",
+    "Vegetable Patch",
+    "Living Room / Front of House",
+    "Storage Boxes in Basement",
+    "Gift Wrapping Station",
+    "Mailbox",
+    "Christmas Tree Farm",
+    "Front Porch",
+    "Costume Shop / Online",
+    "Kitchen Dyeing Station",
+    "Family Kitchen",
+    "India Point Park for fireworks",
+    "Downtown Parade Route",
+    "Local Polling Place",
+    "USPS Office / Online Portal",
+    "Consulate / Embassy",
+    "Travel Clinic",
+    "Local Bank / Airport Kiosk",
+    "Google Translate / Language App",
+    "Airline App / Airport Kiosk",
+    "Pet Sitter's House",
+    "My house (for the sitter)",
+    "Indoor Plants",
+    "Kitchen Refrigerator",
+    "Charging Station",
+    "Phone/Tablet",
+    "Hotel/Restaurant Website",
+    "Family WhatsApp Group",
+    "Suitcase",
+    "Washing Machine",
+    "Google Photos / Social Media",
+    "Personal Blog",
+    "Yelp / Google Maps",
+    "Neighborhood Park",
+    "Desk Chair",
+    "A Comfortable Couch",
+    "Water Bottle",
+    "My Office",
+    "A quiet space",
+    "My journal",
+    "My mind",
+    "My Desk",
+    "Computer Desktop",
+    "Google Calendar",
+    "Closet",
+    "Gym Bag",
+    "Nightstand",
+    "Bedside Table",
+    "Bedroom",
+    "My Bed",
+    "Think Tank Room",
+    "User Research Viewing Room",
+    "Growth Team Huddle Space",
+    "Trust & Safety Dept. Meeting Room",
+    "Web Accessibility Platform (WAVE/Lighthouse)",
+    "DevOps Huddle Area",
+    "Data Engineering Whiteboard",
+    "Performance Testing Environment",
+    "Competitor's Product (for analysis)",
+    "Market Research Dept.",
+    "Strategic Planning Room",
+    "HR Analytics Dashboard",
+    "Employee Engagement Platform (e.g., Culture Amp)",
+    "Talent Management Suite",
+    "D&I Committee's Assigned Conference Room",
+    "Emergency Operations Center (EOC)",
+    "Brand Strategy Workshop Room",
+    "Salesforce Dashboard",
+    "Marketing Collateral Folder",
+    "Customer Journey Map Wall",
+    "BI Tool (e.g., Looker)",
+    "Accounting Office",
+    "Real Estate Broker's Office",
+    "Corporate HQ",
+    "Company Values Committee Room",
+    "Market Intelligence Platform",
+    "Procurement Department",
+    "Secure Data Room",
+    "Patent Attorney's Office",
+    "Non-Profit Partner's Location",
+    "Company's Philanthropy Office",
+    "Beta Tester Video Call",
+    "Product Marketing Office",
+    "DevRel Slack Channel",
+    "Developer Portal",
+    "SDK Repository",
+    "Company Hackathon Space",
+    "R&D Lab",
+    "Engineering Meeting Room",
+    "Production Control Room",
+    "Domain Registrar Website",
+    "GoDaddy/Namecheap Account",
+    "AWS Cost Explorer / Azure Portal",
+    "GitHub issues",
+    "Main Stage",
+    "Town Hall Auditorium",
+    "Another Department's Floor",
+    "UserTesting.com / UsabilityHub",
+    "Legal Department",
+    "Compliance Platform",
+    "Contract Management System",
+    "Customer Success Platform (e.g., Gainsight)",
+    "Lattice / Performance Management Tool",
+    "Recruiter's Office",
+    "HR Folder",
+    "Negotiation Prep Document",
+    "Skills Assessment Tool",
+    "Learning Management System (LMS)",
+    "Randomly Assigned Cafe",
+    "Library / Quiet Area",
+    "Rooftop Bar",
+    "Main Common Area",
+    "Team Member's Desk",
+    "Company Cafeteria",
+    "Company Picnic Grounds",
+    "Event Hall",
+    "Client's HQ",
+    "Exhibition Hall at Convention Center",
+    "Main Stage at Conference",
+    "Conference Breakout Room",
+    "Recording Studio",
+    "Podcast Guest's Location (Virtual)",
+    "Press Briefing Room",
+    "Newspaper's Office",
+    "Influencer's Agency Office",
+    "Email Marketing Platform (e.g., Mailchimp)",
+    "Analytics Suite",
+    "CRM System",
+    "Content Management System (CMS)",
+    "Canva / Adobe Illustrator",
+    "Figma / Sketch",
+    "Recording Booth",
+    "Translation Service's Portal",
+    "Website's Staging Environment",
+    "Usability Lab",
+    "Miro / Mural Board",
+    "Whiteboard/Digital Whiteboard",
+    "Figma",
+    "Zeplin / InVision",
+    "Developer's Local Machine",
+    "Staging Server",
+    "Test Environment",
+    "Automated Testing Suite",
+    "Bug Tracking System (JIRA/ClickUp)",
+    "Production Environment",
+    "Release Notes Document",
+    "Company Slack / Email",
+    "Live Monitoring Dashboard",
+    "Disaster Recovery Site",
+    "Backup Server Location",
+    "Emergency Contacts List (Phone/Wallet)",
+    "Throughout House",
+    "Ceiling in each room",
+    "Outside of Dryer",
+    "Basement / Utility Closet",
+    "HVAC Unit",
+    "Bathroom",
+    "Walls",
+    "Yard",
+    "Trees in Yard",
+    "Sprinkler Control Box",
+    "Guest Room",
+    "Throughout house (low-level)",
+    "Kitchen Bulletin Board",
+    "Front Yard / Driveway",
+    "Donation Drop-off Center",
+    "Curb",
+    "Summer Camp Website",
+    "Scholarship Application Portal",
+    "studentaid.gov",
+    "University Registrar's Office",
+    "Campus Bookstore",
+    "Library Study Room",
+    "Professor's Office",
+    "Advisor's Office",
+    "Home Office / Library",
+    "Defense Room",
+    "University Commencement Stage",
+    "Indeed / LinkedIn Jobs",
+    "Resume/Cover Letter Template",
+    "Company's Office / Video Call",
+    "Local Coffee Shop",
+    "Sent Mail Folder",
+    "Hiring Manager's Office (Virtual/Physical)",
+    "Current Employer's Office",
+    "HR Office",
+    "New Company Office"
+]
+
+street_names = [
+    "Aborn Street", "Academy Avenue", "Adams Street", "Angell Street",
+    "Appleton Street", "Arlington Avenue", "Ash Street", "Aspen Lane",
+    "Atwells Avenue", "Balsam Court", "Beacon Avenue", "Benefit Street",
+    "Birchwood Drive", "Blackstone Boulevard", "Bradford Street",
+    "Branch Avenue", "Bridgham Street", "Broadway", "Brook Street",
+    "Cabot Street", "Camp Street", "Carpenter Street", "Cedar Drive",
+    "Central Avenue", "Charles Street", "Chestnut Street",
+    "Church Street", "Claverick Street", "College Street",
+
+    "Colonial Road", "Columbia Avenue", "Columbus Drive",
+    "Constitution Hill", "Cottage Street", "Cranston Street",
+    "Crestwood Lane", "Cypress Court", "Dean Street", "Douglas Avenue",
+    "Dyer Street", "East Avenue", "Eddy Street", "Elm Street",
+    "Elmgrove Avenue", "Evergreen Terrace", "Exchange Street",
+    "Fairview Avenue", "Federal Street", "Fenner Street", "Forest Drive",
+    "Fountain Street", "Franklin Street", "Friendship Street",
+    "George Street", "Hamilton Street", "Harrison Street",
+    "Harvard Avenue", "Hawkins Street", "Hickory Lane", "Highland Avenue",
+    "Hillside Drive", "Hope Street", "Jackson Street", "Jefferson Boulevard",
+    "John Street", "King Street", "Laurel Hill Avenue", "Liberty Street",
+    "Lincoln Avenue", "Linden Drive", "Locust Street", "Madison Avenue",
+    "Magnolia Court", "Main Street", "Maple Avenue", "Market Square",
+    "Meadowbrook Lane", "Meeting Street", "Monroe Drive", "North Court",
+    "Oak Street", "Ocean Avenue", "Olive Street", "Orms Street",
+    "Park Avenue", "Pearl Street", "Pine Street", "Pleasant Valley Parkway",
+    "Power Street", "Prospect Street", "Randall Square", "River Road",
+
+    "School Street", "Smith Street", "South Water Street", "Springfield Street",
+    "Spruce Lane", "State Street", "Summer Street", "Summit Avenue",
+    "Thayer Street", "Union Avenue", "Vineyard Street", "Walnut Creek Drive",
+    "Washington Street", "Waterman Street", "Waverly Street",
+    "Westminster Street", "Weybosset Street", "Wickenden Street",
+    "Willow Street", "Winter Street", "Woodland Avenue"
+]
+
+city_names = [
+    "Albany", "Albuquerque", "Alexandria", "Amsterdam", "Anchorage",
+    "Ann Arbor", "Asheville", "Athens", "Atlanta", "Austin", "Baltimore",
+    "Bangkok", "Barcelona", "Beijing", "Berlin", "Boise", "Boston",
+    "Boulder", "Bridgeport", "Brussels", "Budapest", "Buenos Aires",
+    "Buffalo", "Cairo", "Cambridge", "Charleston", "Charlotte",
+    "Chattanooga", "Chicago", "Cincinnati", "Cleveland", "Copenhagen",
+    "Dallas", "Denver", "Des Moines", "Detroit", "Dover", "Dublin",
+    "Durham", "Florence", "Frankfort", "Harrisburg", "Hartford",
+    "Helsinki", "Honolulu", "Houston", "Indianapolis", "Jackson",
+    "Jerusalem", "Johannesburg", "Kansas City", "Key West", "Kyoto",
+    "Las Vegas", "Lima", "Lisbon", "Little Rock", "London", "Los Angeles",
+    "Madison", "Madrid", "Manchester", "Memphis", "Mexico City", "Miami",
+
+    "Milwaukee", "Minneapolis", "Montevideo", "Montgomery", "Montreal",
+    "Moscow", "Mumbai", "Nairobi", "Nashville", "New Orleans",
+    "New York City", "Oklahoma City", "Olympia", "Omaha", "Orlando",
+    "Oslo", "Paris", "Philadelphia", "Phoenix", "Pittsburgh", "Portland",
+    "Prague", "Raleigh", "Richmond", "Rio de Janeiro", "Rome",
+    "Sacramento", "Saint Paul", "Salem", "Salt Lake City", "San Antonio",
+    "San Diego", "San Francisco", "Santa Fe", "Santiago", "Savannah",
+    "Seattle", "Seoul", "Singapore", "Stockholm", "Sydney", "Tallahassee",
+    "Tampa", "Tokyo", "Topeka", "Toronto", "Trenton", "Tucson", "Tulsa",
+    "Vancouver", "Vienna", "Warsaw", "Washington, D.C."
+]
+
+artists = [
+    "The Velvet Echoes", "Clara Holloway", "Solace", "Faded Kites", "N.E.S.T.",
+    "Brooklyn Bloom", "Indigo Thieves", "Foxglove", "Leo and the Lost Causes", "Glassgardens",
+    "d4vd", "Wandering Suns", "22 Fields", "Icarus", "Parallels", "The Electric Ghosts",
+    "Finn Chen", "Locket", "The Lunar Tides", "S.T.R.M.", "Vienna Calling",
+    "Saffron Ghosts", "Crow Pilot", "Maya and the Midnight Sun", "KrystalKastles", "underscores",
+    "Crying Shame", "Three Winters", "The Argonauts", "Someday", "Silent Pilots",
+    "Maya Russo", "Drift", "Crystal Giants", "G.H.S.T.", "Cairo Ghosts",
+    "Cerulean Tides", "Whale Song", "Silas & The Static", "CHLDRN", "luvseat",
+    "Sleeping Giants", "Seven Sins", "Calypso's Call", "Youth", "Neon Saints",
+    "Silas Monroe", "Haze", "Ghost Vultures", "V.L.T.R.", "Lisbon Tides", "Slate Bloom",
+    "Mothlight", "Nora and the Northern Lights", "SPCESHPS", "pixelbath", "Floating Worlds",
+    "1984", "Medusa's Gaze", "The Gloom", "The Broken Mirrors", "Nora Beckett",
+    "Echo", "Crimson Comets", "W.L.V.S.", "Kyoto Dreams", "Auburn Fires", "Tiger Theory",
+    "Jude and the Junkyard Dogs", "WYLD FYRE", "cloud_nine", "Drifting Tides",
+    "Ninth Circle", "The Oracle", "Fervor", "Paper Wolves", "Jude Khan", "Prism",
+    "The Iron Witches", "A.L.P.H.A.", "Berlin Station", "Jade Vultures", "Snake River",
+    "Iris and the Aftermath", "NiteVision", "static.wav", "Falling Stars", "88 Keys",
+    "Elysian Fields", "Static Bliss", "Digital Strangers", "Iris Vega", "Static",
+    "Urban Drones", "R.V.N.N.T.", "Chelsea Cult", "Onyx Bloom", "Loon Call",
+    "Ezra and the Echoes", "Sunbather", "vcr_dreams", "Chasing Ghosts", "The First Five",
+    "Styx River", "Cold Comfort", "Feral Kids", "Ezra Sterling", "Void", "Somber Citizens",
+    "K.L.D.S.C.P.", "Avalon Kites", "Coral Kites", "Deerhart", "Luna and the Low Tides",
+    "Dreamcrusher", "null.object", "Whispering Pines", "Zero Sum", "Charon's Oar",
+    "The Slow Fade", "Lucid Dreams", "Luna Wilder", "Kin", "Arctic Fires", "F.L.R.",
+    "Arcadia Falls", "Mauve Echoes", "Hawk Shadow", "Kai and the Crimson Bloom", "Ghostwriter",
+    "glia", "Shouting Matches", "One Hundred Years", "The Titans", "Afterglow",
+    "The Western Saints", "Kai Rhodes", "Crest", "Hollow Trees", "M.N.L.T.H.",
+    "Siberian Haze", "Ochre Saints", "Lion's Teeth", "Hazel & the Haze", "Starcatcher",
+    "404error", "Burning Bridges", "Two Moons", "Valhalla", "Limbo", "Atomic Robots",
+    "Hazel Shepherd", "Grove", "The Silk Thieves", "X.O.", "Yukon Gold",
+    "Cobalt Tides", "Finch Station", "Owen and the Old Ghosts", "Loveless", "hex code",
+    "Fading Signals", "Ragnarok", "Wistful", "Royal Sinners", "Owen Kent", "Vale",
+    "Shadow Machines", "T.R.N.S.T.R.", "Mojave Bloom", "Teal Rivers", "Wasp Queen",
+    "Ivy and the Iron Keys", "Heartworn", "user_unknown", "Growing Pains", "The Druids",
+    "The Calm", "Young Giants", "Ivy Hayes", "Finch", "Old Comets", "C.R.T.X.",
+    "Caspian Tide", "Black Orchids", "Phantom Phantoms", "Felix and the Fading Light",
+    "Blackwater", "sad.jpeg", "Weeping Willows", "Joan of Arc", "Fever Dream",
+    "The Glass Spiders", "Felix Valdez", "Rune", "The Ivory Moons", "P.R.S.M.",
+    "Baltic Saints", "White Noise", "Velvet Crows", "Ruby and the Revolutions", "Goldmyth",
+    "dialup", "Sleeping Dogs", "The Alchemists", "Nostalgia", "Violet Rivers",
+    "Ruby Copeland", "Glitch", "The Crystal Keys", "Z.E.N.O.", "Tokyo Glow",
+    "Grey Gardens", "Electric Moths", "Theo and the Thieves", "Rainmaker", "ghost_in_the_machine",
+    "Wandering Echoes", "New Babylon", "Quiet Riot", "The Golden Windows", "Theo Bishop",
+    "Spire", "Faded Shards", "S.C.L.R.", "Rome in Ruins", "Pink Mirrors", "Glass Tigers",
+    "Chloe and the Crystal Ships", "Cityscpe", "offline", "Crying Wolves", "Roman Candle",
+    "Deja Vu", "Electric Saints", "Chloe Morrow", "Ember", "The Lunar Cults", "O.R.I.O.N.",
+    "London Fog", "Red Tide", "Paper Snakes", "Asher and the Ashes", "VLYS", "screen name",
+    "Floating Kites", "The Vandals", "Solitude", "Silent Thieves", "Asher Soto",
+    "Dune", "Broken Echoes", "L.X.R.", "Paris, 1981", "Blue Shift", "Crystal Loons",
+    "Mila and the Machines", "WNDWS", "vapor.ware", "Drifting Moons", "Aztec Camera",
+    "The Longing", "Young Ghosts", "Mila Parrish", "Loom", "Neon Castles", "Q.S.R.",
+    "Chicago Sleepers", "Golden Youth", "Faded Hawks", "August Vance", "MNTRS", "lost_files",
+    "Chasing Cars", "Sparta", "Panic Room", "Shadow Vultures", "Jasper Holloway",
+    "Chroma", "Royal Wolves", "CTRL.", "New Amsterdam", "Silver Tongues", "Arctic Foxes",
+    "Clara and the Veils", "RVRB", "lowercase letters", "Burning Ships", "The Visigoths",
+    "Heartache", "Fable", "Relay", "Axis", "Sonar", "Silo", "Cipher", "Kismet", "Vellum",
+    "Zenith", "Flux", "Caldera", "Meridian", "Halcyon", "Jettison", "Patina", "Umbra",
+    "Vestige", "Parallax", "Quiver", "Argent", "Gossamer", "Reverie", "Murmur",
+    "Omen", "Kindling", "Talisman", "Vignette", "Silt", "Solune", "Kasimir", "Azura",
+    "Elara", "Caelus", "Seraphina", "Orin", "Lyra", "Kaito", "Amara", "Zephyr", "Lumi",
+    "Ren", "Sora", "Fenris", "Illyria", "Rhys", "Kalypso", "Anouk", "Cygnus",
+    "City Wolves", "Ghost Whales", "Solar Moths", "Iron Tigers", "Digital Snakes",
+    "Urban Loons", "Somber Deer", "Lucid Hawks", "Feral Lions", "Young Finches",
+    "Austin Electric", "Vienna Shade", "Berlin Winter", "Lisbon Falls", "Kyoto Fires",
+    "Cairo Echoes", "Brooklyn Knights", "Chelsea Grove", "Mojave Saints", "Siberian Wolves",
+    "Veridian", "Ultraviolet", "Subtext", "The Narrative", "Golden Slumber", "Future Shock",
+    "Midnight Bloom", "Innerbloom", "Headspace", "Memory Palace", "The Shallows", "Deep End",
+    "False Start", "Idle Hands", "Young Love", "Old Soul", "First Light", "Last Call",
+    "White Flag", "Black Hole", "Phantom Limb", "Echo Chamber", "Hindsight", "The Blur",
+    "The Hum", "Soft Focus", "Dead Calm", "New Ruin", "Slow Burn", "The Void", "CTRL_ALT_DELETE",
+    "blue_screen", "wifi tears", "loading...", "buffer", "digital artifact", "cache money",
+    "last seen", "read receipt", "phone glow", "nightcore nostalgia", "username", ".gif",
+    "endless scroll", "muted", "syntax", "kern", "public_domain", "archive.zip", "low_res",
+    "rental_vhs", "glitch_in_the_system", "memory_leak", "_heaven", "sky.exe", "bloom_effect",
+    "user99", "lonely_png", "virtual plaza", "empty_inbox", "dial_tone", "no_signal",
+    "dark_mode", "light_mode", "captcha", "robot_test", "silent_notification", "doomscroll",
+    "Shadowplay", "Daybreak", "Bloodlines", "Skywriter", "Sleepwalk", "timetraveler", "earthmover",
+    "Voidwalker", "winterheart", "soulsearcher", "lightspeed", "firestarter", "kingdm",
+    "thievs", "sinrs", "strngrs", "DRMR", "FUTR", "PAST", "PRSTN", "Owen Bishop", "Ivy Morrow",
+    "Felix Soto", "Ruby Parrish", "Leo Monroe", "Clara Beckett", "Finn Khan", "Maya Vega",
+    "Silas Sterling", "Nora Wilder", "Jude Rhodes", "Iris Shepherd", "Ezra Kent",
+    "Luna Hayes", "Kai Valdez", "Hazel Copeland", "Violet Crime", "Emerald City", "Bronze Statues",
+    "Crimson Bloom", "Ivory Towers", "Saffron Skies", "Cerulean Coast", "Slate Hearts",
+    "Auburn Glow", "Jade Prophet"
 ]

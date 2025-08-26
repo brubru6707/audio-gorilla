@@ -80,72 +80,12 @@ def _create_user_data(email, first_name, last_name, phone_number, balance, conta
         "is_active": random.choice([True, True, False]),
     }
 
-users_initial_data = [
-    ("alice.smith@communi.link", "Alice", "Smith", "+12025550101", 100.00, ["bob.johnson@communi.link", "charlie.brown@communi.link"],
-     [
-         {"sender": "alice.smith@communi.link", "receiver": "bob.johnson@communi.link", "message": "Hey Bob, planning anything for the weekend?", "timestamp": (current_datetime - timedelta(days=2, hours=10)).isoformat()},
-         {"sender": "bob.johnson@communi.link", "receiver": "alice.smith@communi.link", "message": "Just chilling. Wanna grab coffee?", "timestamp": (current_datetime - timedelta(days=2, hours=9, minutes=30)).isoformat()},
-         {"sender": "alice.smith@communi.link", "receiver": "+12025550105", "message": "Reminder: Dentist appointment tomorrow at 2 PM.", "timestamp": (current_datetime - timedelta(hours=5)).isoformat(), "is_external": True},
-     ],
-     [
-         {"caller": "alice.smith@communi.link", "receiver": "charlie.brown@communi.link", "duration_minutes": 5, "timestamp": (current_datetime - timedelta(days=3)).isoformat(), "type": "outgoing"},
-         {"caller": "diana.miller@communi.link", "receiver": "alice.smith@communi.link", "duration_minutes": 2, "timestamp": (current_datetime - timedelta(days=1)).isoformat(), "type": "incoming"},
-     ],
-     {"sms_notifications": True, "call_forwarding_enabled": False, "call_forwarding_number": ""}, "premium"),
-
-    ("bob.johnson@communi.link", "Robert", "Johnson", "+12025550102", 50.00, ["alice.smith@communi.link", "charlie.brown@communi.link"],
-     [
-         {"sender": "bob.johnson@communi.link", "receiver": "alice.smith@communi.link", "message": "Just chilling. Wanna grab coffee?", "timestamp": (current_datetime - timedelta(days=2, hours=9, minutes=30)).isoformat()},
-     ],
-     [
-         {"caller": "bob.johnson@communi.link", "receiver": "+12025550103", "duration_minutes": 10, "timestamp": (current_datetime - timedelta(hours=12)).isoformat(), "type": "outgoing", "is_external": True},
-     ],
-     {"sms_notifications": False, "call_forwarding_enabled": True, "call_forwarding_number": "+12025550103"}, "basic"),
-
-    ("charlie.brown@communi.link", "Charles", "Brown", "+12025550104", 250.00, ["alice.smith@communi.link", "bob.johnson@communi.link", "diana.miller@communi.link"],
-     [
-         {"sender": "charlie.brown@communi.link", "receiver": "alice.smith@communi.link", "message": "Don't forget our meeting at 3 PM!", "timestamp": (current_datetime - timedelta(hours=2)).isoformat()},
-     ],
-     [
-         {"caller": "alice.smith@communi.link", "receiver": "charlie.brown@communi.link", "duration_minutes": 5, "timestamp": (current_datetime - timedelta(days=3)).isoformat(), "type": "incoming"},
-     ],
-     {"sms_notifications": True, "call_forwarding_enabled": False, "call_forwarding_number": ""}, "unlimited"),
-
-    ("diana.miller@communi.link", "Diana", "Miller", "+12025550105", 180.50, ["charlie.brown@communi.link"],
-     [
-         {"sender": "diana.miller@communi.link", "receiver": "charlie.brown@communi.link", "message": "Got the report ready for review.", "timestamp": (current_datetime - timedelta(hours=4)).isoformat()},
-     ],
-     [
-         {"caller": "diana.miller@communi.link", "receiver": "alice.smith@communi.link", "duration_minutes": 2, "timestamp": (current_datetime - timedelta(days=1)).isoformat(), "type": "outgoing"},
-         {"caller": "charlie.brown@communi.link", "receiver": "diana.miller@communi.link", "duration_minutes": 7, "timestamp": (current_datetime - timedelta(hours=6)).isoformat(), "type": "incoming"},
-     ],
-     {"sms_notifications": True, "call_forwarding_enabled": True, "call_forwarding_number": "+12025550106"}, "premium"),
-
-    ("eva.gonzalez@communi.link", "Eva", "Gonzalez", "+12025550107", 75.20, [],
-     [],
-     [
-         {"caller": "eva.gonzalez@communi.link", "receiver": "+12025550108", "duration_minutes": 1, "timestamp": (current_datetime - timedelta(minutes=30)).isoformat(), "type": "outgoing", "is_external": True},
-     ],
-     {"sms_notifications": False, "call_forwarding_enabled": False, "call_forwarding_number": ""}, "basic"),
-
-    ("frank.white@communi.link", "Frank", "White", "+12025550109", 300.00, ["alice.smith@communi.link"],
-     [
-         {"sender": "frank.white@communi.link", "receiver": "alice.smith@communi.link", "message": "Let's catch up soon!", "timestamp": (current_datetime - timedelta(days=7)).isoformat()},
-     ],
-     [],
-     {"sms_notifications": True, "call_forwarding_enabled": False, "call_forwarding_number": ""}, "unlimited")
-]
-
-for email, first_name, last_name, phone_number, balance, contacts_emails, sms_hist, call_hist, settings, service_plan in users_initial_data:
-    user_id, user_data = _create_user_data(email, first_name, last_name, phone_number, balance, contacts_emails, sms_hist, call_hist, settings, service_plan)
-    DEFAULT_COMMUNILINK_STATE["users"][user_id] = user_data
-
 current_user_emails = list(_user_email_to_uuid_map.keys())
 
 for i in range(44):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(1,999)}@communi.link"
+    email = f"{first.lower()}.{last.lower()}@" + random.choice(domains)
     while email in _user_email_to_uuid_map:
         email = f"{first.lower()}.{last.lower()}{random.randint(1,999)}@communi.link"
     phone = generate_phone_number()
@@ -159,7 +99,7 @@ for i in range(44):
         receiver_email = random.choice(current_user_emails + [generate_phone_number() + "@external.com"])
         sms_history.append({
             "sender": email,
-            "receiver": receiver_email,
+            "receiver": generate_fake_email,
             "message": random.choice(["Hi there!", "Are you free later?", "Got it, thanks!", "See you soon!", "On my way."]),
             "timestamp": generate_random_past_date(90),
             "is_external": "@external.com" in receiver_email or "+" in receiver_email

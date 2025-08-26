@@ -279,19 +279,15 @@ for i in range(num_users_to_add):
         expiry_month = random.randint(1, 12)
         def generate_fake_card_number(card_type):
             if card_type == "Visa":
-                
                 prefix = "4"
                 remaining_digits = 15
             elif card_type == "Mastercard":
-                
                 prefix = "5"
                 remaining_digits = 15
             elif card_type == "Amex":
-                
                 prefix = random.choice(["34", "37"])
                 remaining_digits = 13
             elif card_type == "Discover":
-                
                 prefix = "6011"
                 remaining_digits = 12
             else:

@@ -2,7 +2,7 @@ import uuid
 import random
 from datetime import datetime, timedelta
 import json
-from fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories
+from fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories, states, street_names, city_names, product_qa_based_on_categories
 
 class User:
     def __init__(self, user_id: str, email: str = None):
@@ -87,9 +87,9 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         address_type = "Home Address" if random.random() < 0.7 else "Work Address"
         addresses[address_id] = {
             "name": address_type,
-            "street_address": f"{random.randint(100, 999)} {random.choice(['Main', 'Oak', 'Elm', 'Maple', 'Pine'])} {random.choice(['Street', 'Avenue', 'Road', 'Lane'])}",
-            "city": random.choice(["Springfield", "Fairview", "Riverside", "Lakewood", "Centerville"]),
-            "state": random.choice(["CA", "NY", "TX", "FL", "IL", "GA", "WA"]),
+            "street_address": f"{random.randint(100, 999)} {random.choice(street_names)} {random.choice(['Street', 'Avenue', 'Road', 'Lane'])}",
+            "city": random.choice(city_names),
+            "state": random.choice(states),
             "country": "USA",
             "zip_code": random.randint(10000, 99999),
         }
@@ -234,17 +234,6 @@ def generate_product(product_id):
 
     return product
 
-def generate_seller(seller_id):
-    seller_names = [
-        "Global Gadgets", "Home & Hearth Emporium", "Bookworm Haven",
-        "Active Life Gear", "Beauty Oasis", "The Tech Zone", "Gourmet Kitchenware",
-        "Paperback Paradise", "Outdoor Adventures Inc.", "Wellness Wonders"
-    ]
-    return {
-        "name": random.choice(seller_names),
-        "rating": round(random.uniform(3.0, 5.0), 1),
-    }
-
 def generate_review(product_id, existing_user_ids):
     review_id = str(uuid.uuid4())
     user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
@@ -261,71 +250,25 @@ def generate_review(product_id, existing_user_ids):
         "date": generate_random_date(2023, 2025),
     }
 
-def generate_question(product_id, existing_user_ids):
+def generate_question(product_id, existing_user_ids, index):
     question_id = str(uuid.uuid4())
     user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
-    question_texts = [
-        "Is this compatible with X device?", "What's the battery life like?",
-        "Does it come with a warranty?", "Is assembly required?",
-        "What materials is this made from?", "Can it be used outdoors?",
-        "Is it waterproof?", "How long does shipping usually take?"
-    ]
-    answer_texts = [
-        "Yes, it is.", "About 8 hours.", "Yes, a 1-year warranty.",
-        "Minimal assembly.", "High-quality plastic and metal.",
-        "It's designed for indoor use.", "No, it is not.",
-        "Typically 3-5 business days."
-    ]
-    answers = []
-    if random.random() < 0.7:
-        answer_id = str(uuid.uuid4())
-        answer_user_id = random.choice(list(existing_user_ids)) if existing_user_ids else str(uuid.uuid4())
-        answers.append({
-            "answer_id": answer_id,
-            "user_id": answer_user_id,
-            "answer": random.choice(answer_texts),
-            "date": generate_random_date(2023, 2025),
+
+    q_and_as = []
+    for value in flatten_dict_values(product_qa_based_on_categories)[index]['q_and_a']:
+        q_and_as.append({
+            "id": str(uuid.uuid4()),
+            "question": value["question"],
+            "answer": value["answer"],
+            "date": generate_random_date(2020, 2025),
         })
 
     return {
-        "question_id": question_id,
+        "product_id": product_id,
+        "id": question_id,
         "user_id": user_id,
-        "question": random.choice(question_texts),
-        "date": generate_random_date(2023, 2025),
-        "answers": answers,
+        "q_and_as": q_and_as,
     }
-
-# def organize_products_by_category(product_names, category_keywords):
-#     organized = {}
-#     categorized_products = set()
-
-#     def initialize_and_categorize(keywords_dict, organized_dict):
-#         """Recursively initializes the output dictionary and categorizes products."""
-#         for key, value in keywords_dict.items():
-#             if isinstance(value, dict):
-#                 # If the value is a dictionary, recurse
-#                 organized_dict[key] = {}
-#                 initialize_and_categorize(value, organized_dict[key])
-#             else:
-#                 # If the value is a list (keywords), process products
-#                 organized_dict[key] = []
-#                 for product in product_names:
-#                     if product not in categorized_products:
-#                         for keyword in value:
-#                             if keyword.lower() in product.lower():
-#                                 organized_dict[key].append(product)
-#                                 categorized_products.add(product)
-#                                 break
-    
-#     # Start the process with the top-level dictionary
-#     initialize_and_categorize(category_keywords, organized)
-    
-#     # Add any remaining products to a "Miscellaneous" category
-#     organized["Miscellaneous"] = [
-#         product for product in product_names if product not in categorized_products
-#     ]
-
-#     print(organized)
 
 DEFAULT_STATE = {
     "users": {},
@@ -386,16 +329,16 @@ for _ in range(48):
     DEFAULT_STATE["users"].update(new_user_info)
 
 num_initial_products = len(DEFAULT_STATE["products"])
-for i in range(3, 6):
-    DEFAULT_STATE["sellers"][i] = generate_seller(i)
 
 existing_seller_ids = list(DEFAULT_STATE["sellers"].keys())
 
-for i in range(num_initial_products + 1, len(flattened_product_titles)):
-    DEFAULT_STATE["products"][str(uuid.uuid4())] = generate_product(i)
-
 all_product_ids = list(DEFAULT_STATE["products"].keys())
 all_user_ids = list(DEFAULT_STATE["users"].keys())
+
+for i in range(num_initial_products + 1, len(flattened_product_titles)):
+    product_id = str(uuid.uuid4())
+    DEFAULT_STATE["products"][product_id] = generate_product(i)
+    DEFAULT_STATE["product_questions"][product_id] = generate_question(product_id, all_user_ids, i)
 
 for product_id in all_product_ids:
     if product_id not in DEFAULT_STATE["product_reviews"]:
@@ -406,10 +349,6 @@ for product_id in all_product_ids:
     num_reviews = random.randint(0, 5)
     for _ in range(num_reviews):
         DEFAULT_STATE["product_reviews"][product_id].append(generate_review(product_id, all_user_ids))
-
-    num_questions = random.randint(0, 3)
-    for _ in range(num_questions):
-        DEFAULT_STATE["product_questions"][product_id].append(generate_question(product_id, all_user_ids))
 
 if all_user_ids:
     for ticket_id in DEFAULT_STATE["customer_service_tickets"]:

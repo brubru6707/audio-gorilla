@@ -6,7 +6,7 @@ import random
 import json
 from typing import Dict, Any
 import json
-from fake_data import first_names, last_names, email_bodies, email_subjects, email_snippets, domains
+from fake_data import first_names, last_names, email_bodies, email_subjects, email_snippets, domains, timezones
 current_datetime = datetime.datetime.now()
 
 DEFAULT_STATE: Dict[str, Any] = {
@@ -74,7 +74,7 @@ def _create_user_data(email, first_name, last_name, recipients_emails, gmail_dat
         new_draft_id = str(uuid.uuid4())
         draft_data["id"] = new_draft_id
         if "to" not in draft_data["message"]:
-             draft_data["message"]["to"] = random.choice(["colleague@hostinger.com", "client@hostinger.net"])
+             draft_data["message"]["to"] = generate_email(random.choice(first_names), random.choice(last_names))
         if "from" not in draft_data["message"]:
              draft_data["message"]["from"] = email
         new_drafts[new_draft_id] = draft_data
@@ -103,7 +103,7 @@ def _create_user_data(email, first_name, last_name, recipients_emails, gmail_dat
         "password_hash": uuid.uuid4().hex + ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=16)),
         "gmail_data": processed_gmail_data,
         "last_active": generate_random_past_timestamp(30),
-        "timezone": random.choice(["America/New_York", "America/Los_Angeles", "Europe/London", "Asia/Tokyo"]),
+        "timezone": random.choice(timezones),
     }
 
 current_user_emails = list(_user_email_to_uuid_map.keys())

@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains
+from fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artists, countries, artist_bios
 
 _initial_user_email_to_uuid_map = {}
 _initial_song_id_to_uuid_map = {}
@@ -22,24 +22,11 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
-common_genres = ["Pop", "Electronic", "Acoustic", "Folk", "Funk", "Rock", "Hip Hop", "R&B", "Jazz", "Classical", "Country", "Indie", "Blues", "Metal", "Reggae", "Dance", "Ambient", "Soul", "Gospel", "Latin"]
+music_genres = ["Pop", "Electronic", "Acoustic", "Folk", "Funk", "Rock", "Hip Hop", "R&B", "Jazz", "Classical", "Country", "Indie", "Blues", "Metal", "Reggae", "Dance", "Ambient", "Soul", "Gospel", "Latin"]
 album_types = ["album", "single", "ep", "compilation", "live"]
 card_types = ["Visa", "Mastercard", "Amex", "Discover", "JCB"]
-countries = ["US", "CA", "GB", "DE", "AU", "JP", "IN", "BR", "FR", "MX", "ES", "IT", "NL", "SE", "NO", "DK", "CH", "AT", "NZ", "IE"]
 device_types = ["mobile", "web", "desktop", "smart_speaker", "tablet", "car_audio"]
 languages = ["en", "es", "fr", "de", "jp", "ko", "zh", "pt", "it"]
-playlist_descriptions = [
-    "Tracks to get you going in the morning.",
-    "Perfect background music for studying or working.",
-    "High-energy beats for your workout session.",
-    "Chill vibes for winding down after a long day.",
-    "A collection of timeless classics.",
-    "Discover new indie gems.",
-    "Feel-good songs for a sunny day.",
-    "Deep focus music to enhance concentration.",
-    "Sing along to your favorite pop anthems.",
-    "Unwind with soothing instrumental pieces."
-]
 
 def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, Any]:
     converted_data = copy.deepcopy(initial_data)
@@ -128,7 +115,7 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         if "collaborative" not in playlist_data:
             playlist_data["collaborative"] = random.random() < 0.1
         if "image_url" not in playlist_data:
-            playlist_data["image_url"] = f"https://smplenote.com/playlists/{new_id}.jpg"
+            playlist_data["image_url"] = f"https://spotify.com/playlists/{new_id}.jpg"
         new_playlists[new_id] = playlist_data
     converted_data["playlists"] = new_playlists
 
@@ -151,7 +138,7 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
         if "last_active_date" not in user_data:
             user_data["last_active_date"] = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30)
         if "preferred_genre" not in user_data:
-            user_data["preferred_genre"] = random.choice(common_genres)
+            user_data["preferred_genre"] = random.choice(music_genres)
         if "total_play_time_ms" not in user_data:
             user_data["total_play_time_ms"] = random.randint(1000000, 900000000)
 
@@ -187,69 +174,12 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
     return converted_data
 
 RAW_DEFAULT_STATE = {
-    "users": {
-        "samantha.davis@melodify.com": {
-            "first_name": "Samantha",
-            "last_name": "Davis",
-            "email": "samantha.davis@melodify.com",
-            "verified": True,
-            "liked_songs": [101, 103, 106],
-            "liked_albums": [201, 204],
-            "liked_playlists": [301, 303],
-            "following_artists": [401, 404],
-            "library_songs": [101, 102, 103, 106, 107],
-            "library_albums": [201, 204, 205],
-            "downloaded_songs": [101, 106],
-            "premium": True
-        },
-        "liam.wilson@melodify.com": {
-            "first_name": "Liam",
-            "last_name": "Wilson",
-            "email": "liam.wilson@melodify.com",
-            "verified": True,
-            "liked_songs": [102, 104, 105],
-            "liked_albums": [202, 203],
-            "liked_playlists": [302],
-            "following_artists": [402, 403],
-            "library_songs": [102, 104, 105, 108],
-            "library_albums": [202, 203],
-            "downloaded_songs": [104],
-            "premium": False
-        }
-    },
-    "payment_cards": {
-        1: {"id": 1, "card_name": "Samantha's Visa", "user_email": "samantha.davis@melodify.com", "card_number": "4111********1111", "expiry_year": 2028, "expiry_month": 12, "cvv_number": "XXX", "is_default": True},
-        2: {"id": 2, "card_name": "Samantha's Mastercard", "user_email": "samantha.davis@melodify.com", "card_number": "5222********2222", "expiry_year": 2027, "expiry_month": 7, "cvv_number": "YYY", "is_default": False},
-        3: {"id": 3, "card_name": "Liam's Visa", "user_email": "liam.wilson@melodify.com", "card_number": "4333********3333", "expiry_year": 2026, "expiry_month": 5, "cvv_number": "ZZZ", "is_default": True}
-    },
-    "songs": {
-        101: {"id": 101, "title": "Summer Vibes", "artist_id": 401, "album_id": 201, "duration_ms": 180000, "genre": "Pop", "release_date": "2023-06-01"},
-        102: {"id": 102, "title": "Coding Flow", "artist_id": 402, "album_id": 202, "duration_ms": 240000, "genre": "Electronic", "release_date": "2022-09-15"},
-        103: {"id": 103, "title": "Acoustic Dreams", "artist_id": 403, "album_id": 203, "duration_ms": 210000, "genre": "Acoustic", "release_date": "2021-11-20"},
-        104: {"id": 104, "title": "City Lights", "artist_id": 401, "album_id": 204, "duration_ms": 200000, "genre": "Pop", "release_date": "2024-01-10"},
-        105: {"id": 105, "title": "Rainy Days", "artist_id": 402, "album_id": 202, "duration_ms": 270000, "genre": "Ambient", "release_date": "2022-10-05"},
-        106: {"id": 106, "title": "Upbeat Morning", "artist_id": 404, "album_id": 205, "duration_ms": 195000, "genre": "Folk", "release_date": "2023-03-25"},
-        107: {"id": 107, "title": "Midnight Serenade", "artist_id": 403, "album_id": 203, "duration_ms": 225000, "genre": "Classical", "release_date": "2021-12-01"},
-        108: {"id": 108, "title": "Groovy Bassline", "artist_id": 404, "album_id": 205, "duration_ms": 205000, "genre": "Funk", "release_date": "2023-04-10"}
-    },
-    "albums": {
-        201: {"id": 201, "title": "Bright Future", "artist_id": 401, "release_date": "2023-05-20", "tracks": [101]},
-        202: {"id": 202, "title": "Digital Landscapes", "artist_id": 402, "release_date": "2022-09-01", "tracks": [102, 105]},
-        203: {"id": 203, "title": "Whispering Woods", "artist_id": 403, "release_date": "2021-11-10", "tracks": [103, 107]},
-        204: {"id": 204, "title": "Urban Echoes", "artist_id": 401, "release_date": "2024-01-01", "tracks": [104]},
-        205: {"id": 205, "title": "Rustic Rhythms", "artist_id": 404, "release_date": "2023-03-15", "tracks": [106, 108]}
-    },
-    "playlists": {
-        301: {"id": 301, "name": "Morning Chill", "user_email": "samantha.davis@melodify.com", "description": "Relaxing tracks for your morning routine.", "public": True, "tracks": [101, 103, 106]},
-        302: {"id": 302, "name": "Workout Mix", "user_email": "liam.wilson@melodify.com", "description": "High energy songs for your workout.", "public": False, "tracks": [102, 104, 105]},
-        303: {"id": 303, "name": "Focus Beats", "user_email": "samantha.davis@melodify.com", "description": "Background music for deep work.", "public": False, "tracks": [107, 108]}
-    },
-    "artists": {
-        401: {"id": 401, "name": "Vocal Fusion", "genre": "Pop", "albums": [201, 204]},
-        402: {"id": 402, "name": "Synthwave Collective", "genre": "Electronic", "albums": [202]},
-        403: {"id": 403, "name": "Acoustic Soul", "genre": "Acoustic", "albums": [203]},
-        404: {"id": 404, "name": "Groove Masters", "genre": "Funk/Folk", "albums": [205]}
-    }
+    "users": {},
+    "payment_cards": {},
+    "songs": {},
+    "albums": {},
+    "playlists": {},
+    "artists": {}
 }
 
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
@@ -259,10 +189,9 @@ all_songs_uuid = list(_initial_song_id_to_uuid_map.values())
 all_albums_uuid = list(_initial_album_id_to_uuid_map.values())
 all_playlists_uuid = list(_initial_playlist_id_to_uuid_map.values())
 
-def generate_artist_data():
+def generate_artist_data(current_index):
     artist_id = str(uuid.uuid4())
-    name = f"{random.choice(['The', 'New', 'Old', 'Fresh'])} {random.choice(first_names)} {random.choice(['Band', 'Collective', 'Orchestra', 'Project'])}"
-    genre = random.choice(common_genres)
+    genre = random.choice(music_genres)
     albums_count = random.randint(1, 5)
     albums = []
     for _ in range(albums_count):
@@ -274,10 +203,10 @@ def generate_artist_data():
 
     artist_data = {
         "id": artist_id,
-        "name": name,
+        "name": artists[current_index],
         "genre": genre,
         "albums": [album[0] for album in albums],
-        "bio": f"Known for their {genre} sound, {name} has captivated audiences worldwide.",
+        "bio": artist_bios[current_index],
         "country_origin": random.choice(countries),
         "followers_count": random.randint(10000, 50000000),
         "is_verified": random.random() < 0.8
@@ -312,7 +241,7 @@ def generate_song_data(artist_id, album_id, album_release_date):
     song_id = str(uuid.uuid4())
     title = f"{random.choice(['Fading', 'Rising', 'Silent', 'Electric'])} {random.choice(['Stars', 'Waves', 'Voices', 'Skies'])} {random.randint(1,99)}"
     duration_ms = random.randint(150000, 300000)
-    genre = random.choice(common_genres)
+    genre = random.choice(music_genres)
     
     album_release_dt = datetime.datetime.fromisoformat(album_release_date.replace('Z', '+00:00'))
     song_release_dt = album_release_dt + datetime.timedelta(days=random.randint(0, 30))
@@ -333,28 +262,21 @@ def generate_song_data(artist_id, album_id, album_release_date):
     }
     return song_id, song_data
 
-def generate_playlist_data(user_id):
+def generate_playlist_data(user_id, current_index):
     playlist_id = str(uuid.uuid4())
-    name = f"{random.choice(first_names)}'s {random.choice(['Workout', 'Chill', 'Study', 'Party', 'Road Trip'])} Mix"
-    description = random.choice(playlist_descriptions)
-    public = random.random() < 0.7
-    
+
     num_tracks = random.randint(5, 50)
     tracks = random.sample(all_songs_uuid, min(num_tracks, len(all_songs_uuid))) if all_songs_uuid else []
     
-    created_at = generate_random_iso_timestamp(days_ago_min=60, days_ago_max=365*2)
-    updated_at_dt = datetime.datetime.fromisoformat(created_at.replace('Z', '+00:00')) + datetime.timedelta(days=random.randint(0, 60))
-    updated_at = updated_at_dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
-
     playlist_data = {
         "id": playlist_id,
-        "name": name,
-        "description": description,
-        "public": public,
+        "name": playlist_titles[current_index],
+        "description": playlist_bios[current_index],
+        "public": random.random() < 0.7,
         "tracks": tracks,
         "owner_id": user_id,
-        "created_at": created_at,
-        "updated_at": updated_at,
+        "created_at": generate_random_iso_timestamp(days_ago_min=60, days_ago_max=365*2),
+        "updated_at": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*15),
         "follower_count": random.randint(5, 50000),
         "collaborative": random.random() < 0.05,
         "image_url": f"https://spotify.com/playlists/{playlist_id}.jpg"
@@ -365,26 +287,21 @@ def generate_payment_card_data(user_id):
     card_id = str(uuid.uuid4())
     card_type = random.choice(card_types)
     last_four = ''.join(random.choices('0123456789', k=4))
-    card_number = f"{random.choice(['4', '5', '3'])}{random.choices('0123456789', k=3)}********{last_four}"
-    expiry_year = random.randint(2026, 2032)
-    expiry_month = random.randint(1, 12)
-    cvv_number = ''.join(random.choices('0123456789', k=3))
-    is_default = random.random() < 0.5
+    card_number = f"{random.choice(['4', '5', '3'])}{random.choices('0123456789', k=6)}{last_four}"
 
     card_name = f"{random.choice(first_names)}'s {card_type}"
-    billing_address = f"{random.randint(100, 999)} {random.choice(['Main', 'Oak', 'Maple', 'Pine'])} St, {random.choice(['Springfield', 'Rivertown', 'Metropolis'])}, {random.choice(['NY', 'CA', 'TX', 'FL'])}, {random.randint(10001, 99999)}"
-
     return card_id, {
         "id": card_id,
         "card_name": card_name,
         "user_id": user_id,
         "card_number": card_number,
-        "expiry_year": expiry_year,
-        "expiry_month": expiry_month,
-        "cvv_number": cvv_number,
-        "is_default": is_default,
+        "expiry_year": random.randint(2026, 2032),
+        "expiry_month": random.randint(1, 12),
+        "cvv_number": ''.join(random.choices('0123456789', k=3)),
+        "is_default": random.random() < 0.5,
         "card_type": card_type,
-        "billing_address": billing_address
+        "billing_address": f"{random.randint(100, 999)} {random.choice(['Main', 'Oak', 'Maple', 'Pine', 'Cedar', 'Birch', 'Elm', 'Willow', 'Cherry'])} {random.choice(['St', 'Ave', 'Blvd', 'Ln'])}, {random.choice(['Springfield', 'Rivertown', 'Metropolis'])}, {random.choice(countries)}, {random.randint(10001, 99999)}"
+
     }
 
 num_additional_users = 48
@@ -431,7 +348,7 @@ for i in range(num_additional_users):
         "premium": random.random() < 0.6,
         "registration_date": generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*5),
         "last_active_date": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30),
-        "preferred_genre": random.choice(common_genres),
+        "preferred_genre": random.choice(music_genres),
         "total_play_time_ms": random.randint(5000000, 1000000000),
         "country": random.choice(countries),
         "device_type": random.choice(device_types)
@@ -443,10 +360,11 @@ for i in range(num_additional_users):
         DEFAULT_STATE["payment_cards"][card_id] = card_data
 
 user_uuids = list(DEFAULT_STATE["users"].keys())
+current_playlist_index = 0
 for _ in range(num_playlists_to_add):
     if user_uuids:
         owner_id = random.choice(user_uuids)
-        playlist_uuid, playlist_data = generate_playlist_data(owner_id)
+        playlist_uuid, playlist_data = generate_playlist_data(owner_id, current_playlist_index)
         DEFAULT_STATE["playlists"][playlist_uuid] = playlist_data
         all_playlists_uuid.append(playlist_uuid)
 

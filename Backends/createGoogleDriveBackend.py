@@ -121,13 +121,6 @@ file_names_base = {
     "code_js": ["frontend", "backend"],
     "text": ["Notes", "Log", "Readme"]
 }
-file_descriptions = [
-    "Important internal document.", "Shared with client for review.",
-    "Draft for feedback.", "Final version, do not modify.",
-    "Contains sensitive financial data.", "Marketing collateral for new product.",
-    "Team brainstorming session notes.", "Automatically generated report.",
-    "Legal agreement terms and conditions.", "Personal notes on a project."
-]
 
 current_user_emails = list(_user_email_to_uuid_map.keys())
 
@@ -225,7 +218,6 @@ for i in range(48):
             "starred": random.random() < 0.15,
             "trashed": random.random() < 0.05,
             "shared": random.random() < 0.25,
-            "description": random.choice(file_descriptions) if random.random() < 0.6 else None,
             "version": random.randint(1, 10),
             "lastViewingUser": random.choice([email] + [e["emailAddress"] for e in owners_list if e["emailAddress"] != email]) if len(owners_list) > 1 else email,
             "viewedByMeTime": int(datetime.now().timestamp() - random.randint(60, 86400 * 5))

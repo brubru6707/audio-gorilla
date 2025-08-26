@@ -153,70 +153,9 @@ def _create_user_data(alias: str, first_name: str, last_name: str, email: str, n
         "last_note_activity": (latest_note_activity or datetime.datetime.now(datetime.timezone.utc)).isoformat().replace('+00:00', 'Z')
     }
 
-users_initial_data = [
-    ("jdoe", "John", "Doe", "john.doe@noted.com", {
-        "notes": {
-            0: {
-                "id": 0,
-                "title": "Onboarding Checklist for New Devs",
-                "content": "1. Set up dev environment. 2. Clone repositories. 3. Attend morning stand-up. 4. Review coding standards.",
-                "tags": ["work", "onboarding", "dev"],
-                "pinned": True,
-                "user": "jdoe",
-                "created_at": "",
-                "updated_at": "",
-                "color": "yellow",
-                "archived": False,
-                "priority": "high"
-            },
-            1: {
-                "id": 1,
-                "title": "Weekend Hike Gear List",
-                "content": "Backpack, water bottles, trail mix, first-aid kit, comfortable boots, rain jacket.",
-                "tags": ["personal", "hiking", "weekend"],
-                "pinned": False,
-                "user": "jdoe",
-                "created_at": "",
-                "updated_at": ""
-            },
-            2: {
-                "id": 2,
-                "title": "Q3 Marketing Campaign Brainstorm",
-                "content": "Focus on social media engagement. Explore TikTok ads. Partner with influencers in niche markets.",
-                "tags": ["work", "marketing", "ideas"],
-                "pinned": False,
-                "user": "jdoe",
-                "created_at": "",
-                "updated_at": ""
-            }
-        }
-    }),
-    ("msmith", "Maria", "Smith", "maria.smith@noted.com", {
-        "notes": {
-            3: {
-                "id": 3,
-                "title": "Grocery List",
-                "content": "Milk, Eggs, Bread, Butter, Cheese, Apples, Bananas.",
-                "tags": ["personal", "shopping"],
-                "pinned": True,
-                "user": "msmith",
-                "created_at": "",
-                "updated_at": "",
-                "color": "blue",
-                "archived": False,
-                "priority": "medium"
-            }
-        }
-    })
-]
-
 DEFAULT_STATE: Dict[str, Any] = {
     "users": {},
 }
-
-for alias, first_name, last_name, email, note_data in users_initial_data:
-    user_id, user_data = _create_user_data(alias, first_name, last_name, email, note_data)
-    DEFAULT_STATE["users"][user_id] = user_data
 
 note_titles = [note['title'] for note in note_title_and_content]
 note_contents = [note['content'] for note in note_title_and_content]
@@ -286,8 +225,3 @@ with open(output_filename, 'w') as f:
     json.dump(DEFAULT_STATE, f, indent=2)
 
 print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
-
-if DEFAULT_STATE["users"]:
-    sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
-    print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
-    print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))

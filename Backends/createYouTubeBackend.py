@@ -4,13 +4,22 @@ import json
 import uuid
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, channel_bios, comment_texts, video_titles_general  
+from fake_data import first_names, last_names, channel_bios, comment_texts, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries
 
 _initial_user_id_map = {}
 _initial_channel_id_map = {}
 _initial_video_id_map = {}
 _initial_playlist_id_map = {}
 _initial_comment_id_map = {}
+
+def flatten_dict_values(d):
+    values_list = []
+    for value in d.values():
+        if isinstance(value, dict):
+            values_list.extend(flatten_dict_values(value))
+        else:
+            values_list.extend(value)
+    return values_list
 
 def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, Any]:
     """Converts the initial RAW_DEFAULT_STATE data to use UUIDs for all relevant IDs and adds realism."""
@@ -251,8 +260,6 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
 
     return converted_data
 
-
-
 def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     """Generates a random ISO 8601 timestamp within a given range of days ago."""
     delta_days = random.randint(days_ago_min, days_ago_max)
@@ -282,278 +289,23 @@ channel_niches = [
     {"title_suffix": "Fashion & Style", "description": "Latest trends, fashion hauls, and styling tips.", "tags": ["fashion", "style", "beauty"]}
 ]
 
-
 RAW_DEFAULT_STATE = {
     "users": {
-        "alice.smith@oxytail.com": {
-            "user_id": "user_alice", 
-            "display_name": "Alice Smith",
-            "email": "alice.smith@oxytail.com", 
-            "joined_date": datetime.datetime(2023, 1, 15, 10, 0, 0, tzinfo=datetime.timezone.utc),
-            "channels": ["UC_AliceVlogs", "UC_AliceGaming"], 
-            "subscriptions": ["UC_BobTech", "UC_CharlieCooks"], 
-            "watch_history": ["vid_001", "vid_003", "vid_005"], 
-            "liked_videos": ["vid_001", "vid_004"], 
-            "watch_later_playlist": [], 
-            "notification_settings": {"comments": True, "subscriptions": True, "likes": False},
-            "channel_history": [], 
-            "language_preference": "en-US",
-            "account_status": "active"
-        },
-        "bob.jones@oxytail.com": {
-            "user_id": "user_bob", 
-            "display_name": "Bob Jones",
-            "email": "bob.jones@oxytail.com", 
-            "joined_date": datetime.datetime(2022, 11, 1, 14, 30, 0, tzinfo=datetime.timezone.utc),
-            "channels": ["UC_BobTech"], 
-            "subscriptions": ["UC_AliceVlogs"], 
-            "watch_history": ["vid_002", "vid_004"], 
-            "liked_videos": ["vid_002"], 
-            "watch_later_playlist": [],
-            "notification_settings": {"comments": False, "subscriptions": True, "likes": True},
-            "channel_history": [],
-            "language_preference": "en-CA",
-            "account_status": "active"
-        },
-        "charlie.brown@oxytail.com": {
-            "user_id": "user_charlie", 
-            "display_name": "Charlie Brown",
-            "email": "charlie.brown@oxytail.com", 
-            "joined_date": datetime.datetime(2024, 3, 20, 9, 0, 0, tzinfo=datetime.timezone.utc),
-            "channels": ["UC_CharlieCooks"], 
-            "subscriptions": ["UC_AliceVlogs", "UC_BobTech"], 
-            "watch_history": ["vid_001", "vid_002"], 
-            "liked_videos": [],
-            "watch_later_playlist": [],
-            "notification_settings": {"comments": True, "subscriptions": False, "likes": True},
-            "channel_history": [],
-            "language_preference": "en-GB",
-            "account_status": "active"
-        }
     },
     "channels": {
-        "UC_AliceVlogs": {
-            "id": "UC_AliceVlogs", 
-            "title": "Alice's Daily Vlogs",
-            "description": "Daily life vlogs and adventures.",
-            "owner_id": "alice.smith@oxytail.com", 
-            "created_at": datetime.datetime(2023, 2, 1, 12, 0, 0, tzinfo=datetime.timezone.utc),
-            "subscribers": ["bob.jones@oxytail.com", "charlie.brown@oxytail.com"], 
-            "videos": ["vid_001", "vid_003"], 
-            "playlists": ["playlist_001"], 
-            "country": "US",
-            "view_count": 12000,
-            "subscriber_count": 500,
-            "video_count": 2,
-            "banner_image_path": "https://YouTube.com/channel_banners/alice_vlogs_banner.jpg",
-            "channel_type": "lifestyle",
-            "is_monetized": True
-        },
-        "UC_BobTech": {
-            "id": "UC_BobTech", 
-            "title": "Bob's Tech Reviews",
-            "description": "Unbiased tech reviews and tutorials.",
-            "owner_id": "bob.jones@oxytail.com", 
-            "created_at": datetime.datetime(2022, 12, 10, 9, 30, 0, tzinfo=datetime.timezone.utc),
-            "subscribers": ["alice.smith@oxytail.com", "charlie.brown@oxytail.com"], 
-            "videos": ["vid_002", "vid_004"], 
-            "playlists": ["playlist_002"], 
-            "country": "CA",
-            "view_count": 25000,
-            "subscriber_count": 1200,
-            "video_count": 2,
-            "banner_image_path": "https://YouTube.com/channel_banners/bob_tech_banner.jpg",
-            "channel_type": "technology",
-            "is_monetized": True
-        },
-        "UC_CharlieCooks": {
-            "id": "UC_CharlieCooks", 
-            "title": "Charlie's Cooking Adventures",
-            "description": "Easy and delicious recipes for everyone.",
-            "owner_id": "charlie.brown@oxytail.com", 
-            "created_at": datetime.datetime(2024, 4, 1, 10, 0, 0, tzinfo=datetime.timezone.utc),
-            "subscribers": ["alice.smith@oxytail.com"], 
-            "videos": ["vid_005"], 
-            "playlists": [],
-            "country": "GB",
-            "view_count": 8000,
-            "subscriber_count": 300,
-            "video_count": 1,
-            "banner_image_path": "https://YouTube.com/channel_banners/charlie_cooks_banner.jpg",
-            "channel_type": "cooking",
-            "is_monetized": False
-        },
-        "UC_AliceGaming": { 
-            "id": "UC_AliceGaming", 
-            "title": "Alice's Gaming Zone",
-            "description": "Gameplay, streams, and gaming news.",
-            "owner_id": "alice.smith@oxytail.com", 
-            "created_at": datetime.datetime(2023, 5, 10, 16, 0, 0, tzinfo=datetime.timezone.utc),
-            "subscribers": [],
-            "videos": [],
-            "playlists": [],
-            "country": "US",
-            "view_count": 1500,
-            "subscriber_count": 50,
-            "video_count": 0,
-            "banner_image_path": "https://YouTube.com/channel_banners/alice_gaming_banner.jpg",
-            "channel_type": "gaming",
-            "is_monetized": False
-        }
     },
     "videos": {
-        "vid_001": {
-            "id": "vid_001", 
-            "title": "My First Vlog: Exploring New York",
-            "description": "A tour of New York City's landmarks.",
-            "channel_id": "UC_AliceVlogs", 
-            "uploader_id": "alice.smith@oxytail.com", 
-            "published_at": datetime.datetime(2023, 2, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
-            "duration_seconds": 600,
-            "views": 5000,
-            "likes": 250,
-            "dislikes": 10,
-            "comments": ["comment_001", "comment_002"], 
-            "tags": ["travel", "vlog", "NYC"],
-            "category": "Travel & Events",
-            "privacy_status": "public",
-            "age_restricted": False,
-            "thumbnail_url": "https://YouTube.com/thumbnails/vid_001.jpg",
-            "liked_by": [] 
-        },
-        "vid_002": {
-            "id": "vid_002", 
-            "title": "Best Budget Smartphones 2024",
-            "description": "Review of affordable smartphones.",
-            "channel_id": "UC_BobTech", 
-            "uploader_id": "bob.jones@oxytail.com", 
-            "published_at": datetime.datetime(2023, 1, 20, 11, 0, 0, tzinfo=datetime.timezone.utc),
-            "duration_seconds": 900,
-            "views": 10000,
-            "likes": 800,
-            "dislikes": 25,
-            "comments": ["comment_003"], 
-            "tags": ["tech", "review", "smartphone"],
-            "category": "Science & Technology",
-            "privacy_status": "public",
-            "age_restricted": False,
-            "thumbnail_url": "https://YouTube.com/thumbnails/vid_002.jpg",
-            "liked_by": []
-        },
-        "vid_003": {
-            "id": "vid_003", 
-            "title": "Morning Routine & Productivity Tips",
-            "description": "How I stay productive throughout the day.",
-            "channel_id": "UC_AliceVlogs", 
-            "uploader_id": "alice.smith@oxytail.com", 
-            "published_at": datetime.datetime(2023, 3, 1, 9, 0, 0, tzinfo=datetime.timezone.utc),
-            "duration_seconds": 480,
-            "views": 3000,
-            "likes": 150,
-            "dislikes": 5,
-            "comments": [],
-            "tags": ["productivity", "routine", "lifestyle"],
-            "category": "Howto & Style",
-            "privacy_status": "public",
-            "age_restricted": False,
-            "thumbnail_url": "https://YouTube.com/thumbnails/vid_003.jpg",
-            "liked_by": []
-        },
-        "vid_004": {
-            "id": "vid_004", 
-            "title": "Gaming PC Build Guide 2024",
-            "description": "Step-by-step guide to building a gaming PC.",
-            "channel_id": "UC_BobTech", 
-            "uploader_id": "bob.jones@oxytail.com", 
-            "published_at": datetime.datetime(2023, 4, 10, 18, 0, 0, tzinfo=datetime.timezone.utc),
-            "duration_seconds": 1200,
-            "views": 15000,
-            "likes": 1200,
-            "dislikes": 30,
-            "comments": [],
-            "tags": ["gaming", "PCBuild", "tutorial"],
-            "category": "Gaming",
-            "privacy_status": "public",
-            "age_restricted": False,
-            "thumbnail_url": "https://YouTube.com/thumbnails/vid_004.jpg",
-            "liked_by": []
-        },
-        "vid_005": {
-            "id": "vid_005", 
-            "title": "Easy Pasta Carbonara Recipe",
-            "description": "A quick and delicious carbonara recipe.",
-            "channel_id": "UC_CharlieCooks", 
-            "uploader_id": "charlie.brown@oxytail.com", 
-            "published_at": datetime.datetime(2024, 4, 5, 14, 0, 0, tzinfo=datetime.timezone.utc),
-            "duration_seconds": 360,
-            "views": 7000,
-            "likes": 400,
-            "dislikes": 8,
-            "comments": [],
-            "tags": ["cooking", "recipe", "pasta"],
-            "category": "Cooking",
-            "privacy_status": "public",
-            "age_restricted": False,
-            "thumbnail_url": "https://YouTube.com/thumbnails/vid_005.jpg",
-            "liked_by": []
-        }
     },
     "playlists": {
-        "playlist_001": {
-            "id": "playlist_001", 
-            "title": "My Favorite Vlogs",
-            "description": "A collection of my best vlogs.",
-            "owner_id": "alice.smith@oxytail.com", 
-            "channel_id": "UC_AliceVlogs", 
-            "video_ids": ["vid_001", "vid_003"], 
-            "created_at": datetime.datetime(2023, 2, 10, 16, 0, 0, tzinfo=datetime.timezone.utc),
-            "privacy_status": "public",
-            "item_count": 2
-        },
-        "playlist_002": {
-            "id": "playlist_002", 
-            "title": "Tech Essentials",
-            "description": "Must-watch tech videos.",
-            "owner_id": "bob.jones@oxytail.com", 
-            "channel_id": "UC_BobTech", 
-            "video_ids": ["vid_002", "vid_004"], 
-            "created_at": datetime.datetime(2023, 1, 25, 10, 0, 0, tzinfo=datetime.timezone.utc),
-            "privacy_status": "public",
-            "item_count": 2
-        }
     },
     "comments": {
-        "comment_001": {
-            "id": "comment_001", 
-            "video_id": "vid_001", 
-            "author_id": "bob.jones@oxytail.com", 
-            "text": "Great vlog, Alice! Really enjoyed the NYC tour.",
-            "created_at": datetime.datetime(2023, 2, 6, 10, 0, 0, tzinfo=datetime.timezone.utc),
-            "likes": 5
-        },
-        "comment_002": {
-            "id": "comment_002", 
-            "video_id": "vid_001", 
-            "author_id": "charlie.brown@oxytail.com", 
-            "text": "Made me want to visit NYC again!",
-            "created_at": datetime.datetime(2023, 2, 6, 11, 30, 0, tzinfo=datetime.timezone.utc),
-            "likes": 2
-        },
-        "comment_003": {
-            "id": "comment_003", 
-            "video_id": "vid_002", 
-            "author_id": "alice.smith@oxytail.com", 
-            "text": "Very informative review, Bob! Helped me decide on my next phone.",
-            "created_at": datetime.datetime(2023, 1, 21, 14, 0, 0, tzinfo=datetime.timezone.utc),
-            "likes": 8
-        }
     }
 }
 
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
 
 num_initial_users = len(DEFAULT_STATE["users"])
-num_users_to_add = 50 - num_initial_users
+num_users_to_add = 100 - num_initial_users
 
 all_user_uuids = list(DEFAULT_STATE["users"].keys())
 existing_emails = set(user_data["email"] for user_data in DEFAULT_STATE["users"].values())
@@ -562,12 +314,11 @@ for i in range(num_users_to_add):
     first = random.choice(first_names)
     last = random.choice(last_names)
     
-    
     email_suffix = random.randint(1000, 99999)
-    email = f"{first.lower()}.{last.lower()}{email_suffix}@{random.choice(['oxytail.com', 'mailservice.net', 'videozone.org'])}"
+    email = f"{first.lower()}.{last.lower()}{email_suffix}@{random.choice(domains)}"
     while email in existing_emails:
         email_suffix = random.randint(1000, 99999)
-        email = f"{first.lower()}.{last.lower()}{email_suffix}@{random.choice(['oxytail.com', 'mailservice.net', 'videozone.org'])}"
+        email = f"{first.lower()}.{last.lower()}{email_suffix}@{random.choice(domains)}"
     existing_emails.add(email)
 
     user_id = str(uuid.uuid4())
@@ -615,11 +366,11 @@ for user_id in all_user_uuids:
             "subscribers": [], 
             "videos": [], 
             "playlists": [], 
-            "country": random.choice(["US", "CA", "GB", "AU", "DE", "IN", "BR", "JP", "MX"]),
+            "country": random.choice(countries),
             "view_count": random.randint(100, 1000000),
             "subscriber_count": random.randint(0, 50000),
             "video_count": 0, 
-            "banner_image_path": f"https://YouTube.com/channel_banners/{channel_id}.jpg",
+            "banner_image_path": f"https://youtube.com/channel_banners/{channel_id}.jpg",
             "channel_type": niche["title_suffix"].lower().replace(' ', '_'),
             "is_monetized": random.random() < 0.3 
         }
@@ -631,7 +382,6 @@ for user_id in all_user_uuids:
 for user_id in all_user_uuids:
     user_data = DEFAULT_STATE["users"][user_id]
     num_subscriptions = random.randint(0, min(10, len(all_channel_uuids) - 1))
-    
     
     possible_subscriptions = [cid for cid in all_channel_uuids if cid not in user_data["channels"]]
     
@@ -653,21 +403,13 @@ for channel_id, channel_data in DEFAULT_STATE["channels"].items():
 
     for i in range(num_videos_to_add):
         video_uuid = str(uuid.uuid4())
-        
-        title_template = random.choice(video_titles_general)
-        title = title_template.replace("[Topic]", random.choice(["AI ethics", "sustainable living", "future of work"])) \
-                              .replace("X", random.choice(["Python", "Gardening", "Meditation"])) \
-                              .replace("Y", random.choice(["Japan", "Machu Picchu", "The Great Barrier Reef"])) \
-                              .replace("Z", random.choice(["new smartphone", "smartwatch", "gaming console"])) \
-                              .replace("[Category]", random.choice(["Gadgets", "Travel Destinations", "Workout Gear"])) \
-                              .replace("[Something]", random.choice(["Sushi", "Bread", "Vegan Curry"]))
-
-
-        description_template = random.choice(channel_bios)
-
-
-        num_comments_for_video = random.choices([0, 1, 2, 5], weights=[0.5, 0.2, 0.2, 0.1], k=1)[0]
-        comments_for_video = []
+        random_video_category = random.choice(list(youtube_titles.keys()))
+        title = random.choice(youtube_titles[random_video_category])
+        index_for_title = youtube_titles[random_video_category].index(title)
+        youtube_titles[random_video_category].remove(title)
+        description_template = youtube_video_descriptions[random_video_category][index_for_title]
+        youtube_video_descriptions[random_video_category].remove(description_template)
+        comments_for_video = random.sample(youtube_comments[random_video_category], random.randint(0, 5))
 
         video_data = {
             "id": video_uuid,
@@ -682,10 +424,10 @@ for channel_id, channel_data in DEFAULT_STATE["channels"].items():
             "dislikes": random.randint(0, 500),
             "comments": comments_for_video, 
             "tags": random.sample(channel_niches[random.randint(0, len(channel_niches)-1)]["tags"] + ["new", "viral", "challenge"], random.randint(1, 4)),
-            "category": channel_data["channel_type"].replace('_', ' ').title(), 
+            "category": random_video_category, 
             "privacy_status": random.choice(["public", "unlisted", "private"]),
             "age_restricted": random.random() < 0.05, 
-            "thumbnail_url": f"[https://YouTube.com/thumbnails/](https://YouTube.com/thumbnails/){video_uuid}.jpg",
+            "thumbnail_url": f"[https://youtube.com/thumbnails/](https://youtube.com/thumbnails/){video_uuid}.jpg",
             "liked_by": [] 
         }
         DEFAULT_STATE["videos"][video_uuid] = video_data
