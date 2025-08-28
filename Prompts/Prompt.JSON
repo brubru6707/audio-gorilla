@@ -15,11 +15,11 @@
       "tools": ["AmazonApis", "SimpleNotesApis"],
       "context": {
         "amazon_current_user": "5a16c235-701f-4bd5-9b6f-90f618b23442",
-        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+        "simplenotes_current_user": "87207463-8313-4278-92bc-5c37e9fc91a4"
       },
       "ground_truth": {
         "Amazon": [
-          "search_products(user: str, query: str)", 
+          "search_products(query: str)", 
           "checkout(user: str, productId: str, quantity: int)"],
         "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
       }

@@ -164,7 +164,7 @@ current_user_aliases = list(_user_alias_to_uuid_map.keys())
 
 notes = note_title_and_content
 
-for i in range(48):
+for i in range(300):
     first = random.choice(first_names)
     last = random.choice(last_names)
     email = f"{first.lower()}.{last.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
