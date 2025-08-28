@@ -4,7 +4,7 @@ import uuid
 import json
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, playlists
+from fake_data import first_names, last_names, domains, playlist_titles
 
 _initial_user_email_to_uuid_map = {}
 _initial_vehicle_tag_to_uuid_map = {}
@@ -141,7 +141,7 @@ for i in range(num_users_to_add):
                 "playing": media_playing,
                 "volume": random.randint(20, 90),
                 "current_track": random.randint(0, 5) if media_playing else 0,
-                "favorites": random.sample(playlists, random.randint(0, min(3, len(playlists))))
+                "favorites": random.sample(playlist_titles, random.randint(0, min(3, len(playlist_titles))))
             },
             "trunk": {
                 "front": random.choice(["open", "closed"]),

@@ -237,5 +237,3 @@ print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
 
 if DEFAULT_STATE["users"]:
     sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
-    print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
-    print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))

@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artists, countries, artist_bios
+from fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artist_names, countries, artist_bios
 
 _initial_user_email_to_uuid_map = {}
 _initial_song_id_to_uuid_map = {}
@@ -203,7 +203,7 @@ def generate_artist_data(current_index):
 
     artist_data = {
         "id": artist_id,
-        "name": artists[current_index],
+        "name": artist_names[current_index],
         "genre": genre,
         "albums": [album[0] for album in albums],
         "bio": artist_bios[current_index],
@@ -305,11 +305,10 @@ def generate_payment_card_data(user_id):
     }
 
 num_additional_users = 48
-num_artists_to_add = 20
 num_playlists_to_add = 30
 
-for _ in range(num_artists_to_add):
-    artist_uuid, artist_data = generate_artist_data()
+for i in range(0, len(artist_names)):
+    artist_uuid, artist_data = generate_artist_data(i)
     DEFAULT_STATE["artists"][artist_uuid] = artist_data
     all_artists_uuid.append(artist_uuid)
 

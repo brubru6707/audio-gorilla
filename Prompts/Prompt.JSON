@@ -1,6 +1,30 @@
 {
   "MultiStep_Prompts": [
     {
+      "prompt": "Send a message to Dominic asking him about how the project is going",
+      "tools": ["GmailApis"],
+      "context":{
+        "gmail_current_user": "73e6974e-34cd-4ac7-ad1d-00fc3075b2f1"
+      },
+      "ground_truth": {
+        "Gmail": ["sendEmail(user: '6b6004b1-0cda-4db5-ac7e-66a549f153bd', to: 'Dominic', subject: 'Project Inquiry', body: 'Hi Dominic, I wanted to check in on the status of the project. Could you please provide me with an update? Thanks!' )"]
+      }
+    },
+    {
+      "prompt": "Order 'The Lord of the Rings' book from Amazon and record the purchase in Simple Notes",
+      "tools": ["AmazonApis", "SimpleNotesApis"],
+      "context": {
+        "amazon_current_user": "5a16c235-701f-4bd5-9b6f-90f618b23442",
+        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+      },
+      "ground_truth": {
+        "Amazon": [
+          "search_products(user: str, query: str)", 
+          "checkout(user: str, productId: str, quantity: int)"],
+        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
+      }
+    },
+    {
       "prompt": "Order a new 4K inch TV from Amazon and add the delivery date to my Google Calendar",
       "tools": ["AmazonApis", "GoogleCalendarApis"],
       "context": {
@@ -9,9 +33,8 @@
       },
       "ground_truth": {
       "Amazon": [
-        "searchProducts(user: str, query: str)", 
-        "orderProduct(user: str, productId: str, quantity: int)",  
-        "trackOrder(user: str, orderId: str)"],
+        "search_products(user: str, query: str)", 
+        "checkout(user: str, productId: str, quantity: int)"],
       "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)" ]
     }
     },

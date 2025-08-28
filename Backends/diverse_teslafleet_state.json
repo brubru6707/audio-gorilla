@@ -1,159 +1,41 @@
 {
   "users": {
-    "6b2db2e3-c36c-4311-91b5-06c08ebfb580": {
-      "first_name": "Alice",
-      "last_name": "Smith",
-      "email": "alice.smith@mail.com",
-      "friends": [
-        "693945b2-3788-42cd-982f-c6c84b45d631"
-      ],
+    "8bed3158-7982-4ab5-94cd-e14d2a79550b": {
+      "id": "8bed3158-7982-4ab5-94cd-e14d2a79550b",
+      "first_name": "Clara",
+      "last_name": "Russell",
+      "email": "clara.russell986@pr-agency.online",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "85bf3878-700a-4f28-91bb-17c720e46dc9": {
+      "id": "85bf3878-700a-4f28-91bb-17c720e46dc9",
+      "first_name": "Charles",
+      "last_name": "Mendez",
+      "email": "charles.mendez175@data-visualization.online",
+      "friends": [],
       "tesla_data": {
         "vehicles": {
-          "95bbb043-2396-445a-b015-8840cf9ce523": {
-            "vehicle_tag": "5YJ3E1EA2PF330316",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 50,
-              "current_track": 0,
-              "favorites": [
-                "The Commute Playlist",
-                "Driving Rock Anthems",
-                "Chill Acoustic Vibes"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 80
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "off",
-              "cop_temp": 30,
-              "driver_temp": 20
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "closed",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 0,
-            "location": {
-              "latitude": 34.0522,
-              "longitude": -118.2437
-            },
-            "firmware_version": "2024.14.7",
-            "id": "95bbb043-2396-445a-b015-8840cf9ce523",
-            "createdTime": "2025-08-18T22:34:21.664Z",
-            "modifiedTime": "2025-08-18T22:34:21.664Z",
-            "original_vehicle_tag": "alice_model_3"
-          },
-          "0c6320f8-ec8d-41ed-86a6-be053d7b18fa": {
-            "vehicle_tag": "5YJYGDEE3MF123456",
+          "95f8ac5d-3c02-4c54-92cc-dfb28f946cf6": {
+            "id": "95f8ac5d-3c02-4c54-92cc-dfb28f946cf6",
+            "original_vehicle_tag": "charles_model_3_1",
+            "vehicle_tag": "LRWHG9MX9CK1ECM",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 70,
-              "current_track": 1,
+              "volume": 72,
+              "current_track": 4,
               "favorites": [
-                "Road Trip Mix",
-                "Podcast Binge"
+                "grunge revival",
+                "ethereal voices",
+                "blue hour"
               ]
             },
             "trunk": {
-              "front": "closed",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": true,
-              "limit": 90
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 25,
-              "driver_temp": 22
-            },
-            "locks": {
-              "locked": false
-            },
-            "sentry_mode": {
-              "on": true,
-              "alerts": [
-                "Motion detected near front door"
-              ]
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "closed",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 65,
-            "location": {
-              "latitude": 37.7749,
-              "longitude": -122.4194
-            },
-            "firmware_version": "2024.14.7",
-            "id": "0c6320f8-ec8d-41ed-86a6-be053d7b18fa",
-            "createdTime": "2025-08-18T22:34:21.664Z",
-            "modifiedTime": "2025-08-18T22:34:21.664Z",
-            "original_vehicle_tag": "alice_model_y"
-          }
-        }
-      },
-      "id": "6b2db2e3-c36c-4311-91b5-06c08ebfb580"
-    },
-    "693945b2-3788-42cd-982f-c6c84b45d631": {
-      "first_name": "Bob",
-      "last_name": "Johnson",
-      "email": "bob.johnson@mail.com",
-      "friends": [
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "8d9557d6-4e2c-4545-b8a1-87535da97213": {
-            "vehicle_tag": "5YJSA1CNXJF000001",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 60,
-              "current_track": 0,
-              "favorites": [
-                "Classical Chill",
-                "News Briefs"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "closed"
+              "front": "open",
+              "rear": "open"
             },
             "charge": {
               "port_open": true,
@@ -163,139 +45,8 @@
             "climate": {
               "on": false,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "off",
-              "cop_temp": 28,
-              "driver_temp": 28
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "closed",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "closed",
-            "awake": false,
-            "speed": 0,
-            "location": {
-              "latitude": 38.9072,
-              "longitude": -77.0369
-            },
-            "firmware_version": "2024.12.3",
-            "id": "8d9557d6-4e2c-4545-b8a1-87535da97213",
-            "createdTime": "2025-08-18T22:34:21.664Z",
-            "modifiedTime": "2025-08-18T22:34:21.664Z",
-            "original_vehicle_tag": "bob_model_s"
-          }
-        }
-      },
-      "id": "693945b2-3788-42cd-982f-c6c84b45d631"
-    },
-    "bdea0fef-a71e-4d49-ac5e-aed60feebbf0": {
-      "id": "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-      "first_name": "Cameron",
-      "last_name": "King",
-      "email": "cameron.king607@cloud-hosting.services",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {
-          "21512c67-288e-4cd3-b694-9007d73007d7": {
-            "id": "21512c67-288e-4cd3-b694-9007d73007d7",
-            "original_vehicle_tag": "cameron_model_y_1",
-            "vehicle_tag": "LFV2C2KCRGV7USA",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 51,
-              "current_track": 0,
-              "favorites": [
-                "Podcast Catch-up",
-                "City Driving Jazz"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": true,
-              "charging": true,
-              "limit": 90
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
               "climate_keeper_mode": "camp",
-              "cop_temp": 26,
-              "driver_temp": 21
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": true,
-              "alerts": [
-                "Motion detected near front door",
-                "Recording event - vehicle approached"
-              ]
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "open",
-              "passenger_rear": "closed"
-            },
-            "windows": "open",
-            "awake": false,
-            "speed": 0,
-            "location": {
-              "latitude": 37.4843,
-              "longitude": -91.8197
-            },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2022-06-17T03:10:44Z",
-            "modifiedTime": "2025-07-17T17:43:24Z"
-          },
-          "39ad40aa-f171-45ce-ae1a-5d8f82885ce6": {
-            "id": "39ad40aa-f171-45ce-ae1a-5d8f82885ce6",
-            "original_vehicle_tag": "cameron_model_y_2",
-            "vehicle_tag": "7SAUNC965E5R116",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 77,
-              "current_track": 0,
-              "favorites": [
-                "Morning Commute Tunes",
-                "Chill Acoustic Vibes"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": true,
-              "charging": true,
-              "limit": 90
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 25,
+              "cop_temp": 30,
               "driver_temp": 24
             },
             "locks": {
@@ -309,8 +60,8 @@
               "on": false
             },
             "doors": {
-              "driver_front": "closed",
-              "passenger_front": "open",
+              "driver_front": "open",
+              "passenger_front": "closed",
               "driver_rear": "open",
               "passenger_rear": "open"
             },
@@ -318,139 +69,35 @@
             "awake": true,
             "speed": 0,
             "location": {
-              "latitude": 44.3646,
-              "longitude": -100.4684
+              "latitude": 30.4744,
+              "longitude": -89.6901
             },
-            "firmware_version": "2023.38.10",
-            "createdTime": "2023-06-17T22:12:16Z",
-            "modifiedTime": "2025-07-29T08:38:34Z"
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2022-02-12T23:15:04Z",
+            "modifiedTime": "2025-08-06T21:09:10Z"
           }
         }
       }
     },
-    "ccb42c7e-52ed-4911-852a-0abe5f7a8ea9": {
-      "id": "ccb42c7e-52ed-4911-852a-0abe5f7a8ea9",
-      "first_name": "Owen",
-      "last_name": "Price",
-      "email": "owen.price56@astronomy-club.net",
+    "62f9101b-7889-4495-a4c8-6efb763e051d": {
+      "id": "62f9101b-7889-4495-a4c8-6efb763e051d",
+      "first_name": "Lucy",
+      "last_name": "Cervantes",
+      "email": "lucy.cervantes153@web-services.tech",
       "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "f98eff6f-ebc9-4ee5-80c3-5f89319f1725": {
-      "id": "f98eff6f-ebc9-4ee5-80c3-5f89319f1725",
-      "first_name": "Cole",
-      "last_name": "Powell",
-      "email": "cole.powell557@financial-insights.net",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "7066516f-da4c-41d0-a229-8b0024697047": {
-      "id": "7066516f-da4c-41d0-a229-8b0024697047",
-      "first_name": "Eli",
-      "last_name": "Torres",
-      "email": "eli.torres972@musicstream.site",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {
-          "e258db0c-d0f7-4b0d-b997-d878c035707e": {
-            "id": "e258db0c-d0f7-4b0d-b997-d878c035707e",
-            "original_vehicle_tag": "eli_model_3_1",
-            "vehicle_tag": "5YJEHY054KBABU5",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 65,
-              "current_track": 0,
-              "favorites": [
-                "Podcast Catch-up",
-                "City Driving Jazz"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": true,
-              "limit": 100
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "off",
-              "cop_temp": 27,
-              "driver_temp": 23
-            },
-            "locks": {
-              "locked": false
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "open",
-            "awake": false,
-            "speed": 0,
-            "location": {
-              "latitude": 29.4044,
-              "longitude": -96.8434
-            },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2021-04-25T13:20:45Z",
-            "modifiedTime": "2025-08-06T15:07:00Z"
-          }
-        }
-      }
-    },
-    "b45c0b76-10f6-46e4-8285-025deb9c5a19": {
-      "id": "b45c0b76-10f6-46e4-8285-025deb9c5a19",
-      "first_name": "Ezra",
-      "last_name": "Matthews",
-      "email": "ezra.matthews569@antique-furniture.online",
-      "friends": [
-        "7066516f-da4c-41d0-a229-8b0024697047"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "f5af0ced-e665-43a7-9199-ff46e014e2db": {
-      "id": "f5af0ced-e665-43a7-9199-ff46e014e2db",
-      "first_name": "Caroline",
-      "last_name": "Aguilar",
-      "email": "caroline.aguilar712@event-venues.online",
-      "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "7066516f-da4c-41d0-a229-8b0024697047",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580"
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b"
       ],
       "tesla_data": {
         "vehicles": {
-          "090da515-11ff-4018-870a-47c4378b5938": {
-            "id": "090da515-11ff-4018-870a-47c4378b5938",
-            "original_vehicle_tag": "caroline_model_y_1",
-            "vehicle_tag": "LRWYBZGE3E8FVGG",
+          "d739105b-12d7-456d-8e98-5cf47a12ca09": {
+            "id": "d739105b-12d7-456d-8e98-5cf47a12ca09",
+            "original_vehicle_tag": "lucy_model_x_1",
+            "vehicle_tag": "LRWMFLMD4V117NV",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 77,
+              "volume": 46,
               "current_track": 2,
               "favorites": []
             },
@@ -459,22 +106,22 @@
               "rear": "closed"
             },
             "charge": {
-              "port_open": false,
+              "port_open": true,
               "charging": false,
-              "limit": 100
+              "limit": 70
             },
             "climate": {
               "on": true,
               "bioweapon_mode": false,
               "climate_keeper_mode": "dog",
-              "cop_temp": 26,
-              "driver_temp": 20
+              "cop_temp": 29,
+              "driver_temp": 21
             },
             "locks": {
               "locked": true
             },
             "sentry_mode": {
-              "on": false,
+              "on": true,
               "alerts": []
             },
             "lights": {
@@ -482,192 +129,47 @@
             },
             "doors": {
               "driver_front": "closed",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 46,
-            "location": {
-              "latitude": 39.2725,
-              "longitude": -92.836
-            },
-            "firmware_version": "2024.8.9",
-            "createdTime": "2022-08-04T16:49:56Z",
-            "modifiedTime": "2025-08-03T03:08:17Z"
-          }
-        }
-      }
-    },
-    "06e42bb8-94c7-4472-afb9-a126630b7b7c": {
-      "id": "06e42bb8-94c7-4472-afb9-a126630b7b7c",
-      "first_name": "Bailey",
-      "last_name": "Graham",
-      "email": "bailey.graham619@planetary-exploration.net",
-      "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "f5af0ced-e665-43a7-9199-ff46e014e2db",
-        "ccb42c7e-52ed-4911-852a-0abe5f7a8ea9"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "758cb7ba-87d9-4a80-86f1-e58154162981": {
-            "id": "758cb7ba-87d9-4a80-86f1-e58154162981",
-            "original_vehicle_tag": "bailey_roadster_1",
-            "vehicle_tag": "LRWFDMYU7GF0S4X",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 40,
-              "current_track": 4,
-              "favorites": [
-                "Morning Commute Tunes",
-                "Focus Work Beats",
-                "Highway Rock Anthems"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": true,
-              "limit": 80
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "off",
-              "cop_temp": 24,
-              "driver_temp": 25
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
               "passenger_front": "closed",
-              "driver_rear": "open",
+              "driver_rear": "closed",
               "passenger_rear": "open"
             },
-            "windows": "closed",
+            "windows": "open",
             "awake": true,
-            "speed": 0,
+            "speed": 4,
             "location": {
-              "latitude": 27.3409,
-              "longitude": -90.6627
+              "latitude": 29.1944,
+              "longitude": -75.5449
             },
             "firmware_version": "2024.8.9",
-            "createdTime": "2022-09-13T01:46:14Z",
-            "modifiedTime": "2025-08-12T04:38:54Z"
-          },
-          "3122e1f2-9eb7-4c21-b73e-c1edb419f706": {
-            "id": "3122e1f2-9eb7-4c21-b73e-c1edb419f706",
-            "original_vehicle_tag": "bailey_model_y_2",
-            "vehicle_tag": "5YJN27GM8YFKVX3",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 23,
-              "current_track": 4,
-              "favorites": [
-                "Evening Drive Relax"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": true,
-              "limit": 70
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "off",
-              "cop_temp": 22,
-              "driver_temp": 20
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 120,
-            "location": {
-              "latitude": 36.2798,
-              "longitude": -70.7077
-            },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2020-10-19T14:35:22Z",
-            "modifiedTime": "2025-06-25T01:34:19Z"
+            "createdTime": "2023-08-18T18:44:40Z",
+            "modifiedTime": "2025-07-18T11:58:52Z"
           }
         }
       }
     },
-    "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5": {
-      "id": "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5",
-      "first_name": "Hazel",
-      "last_name": "Bell",
-      "email": "hazel.bell662@book-publishing.services",
+    "1c0abbb5-8b06-4898-98d5-fefed4f3767e": {
+      "id": "1c0abbb5-8b06-4898-98d5-fefed4f3767e",
+      "first_name": "Maria",
+      "last_name": "Orozco",
+      "email": "maria.orozco934@plumbing-expert.online",
       "friends": [
-        "b45c0b76-10f6-46e4-8285-025deb9c5a19",
-        "693945b2-3788-42cd-982f-c6c84b45d631",
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "9b9a41cc-c887-43a9-9a71-295132935665": {
-      "id": "9b9a41cc-c887-43a9-9a71-295132935665",
-      "first_name": "Chloe",
-      "last_name": "Hernandez",
-      "email": "chloe.hernandez807@online-education.online",
-      "friends": [
-        "f5af0ced-e665-43a7-9199-ff46e014e2db",
-        "b45c0b76-10f6-46e4-8285-025deb9c5a19",
-        "f98eff6f-ebc9-4ee5-80c3-5f89319f1725"
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "62f9101b-7889-4495-a4c8-6efb763e051d"
       ],
       "tesla_data": {
         "vehicles": {
-          "335e52f8-0a48-4cb3-9412-3b705fe75071": {
-            "id": "335e52f8-0a48-4cb3-9412-3b705fe75071",
-            "original_vehicle_tag": "chloe_model_y_1",
-            "vehicle_tag": "5YJUDLWWRA5P7WU",
+          "13357c86-15f1-417a-b4a4-37bd080f8e4d": {
+            "id": "13357c86-15f1-417a-b4a4-37bd080f8e4d",
+            "original_vehicle_tag": "maria_model_s_1",
+            "vehicle_tag": "5YJJC6ZX2AMCAUX",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 22,
-              "current_track": 1,
+              "volume": 62,
+              "current_track": 4,
               "favorites": [
-                "Chill Acoustic Vibes",
-                "Rainy Day Reflections",
-                "Focus Work Beats"
+                "this slaps, respectfully",
+                "a little bit of everything, all of the time"
               ]
             },
             "trunk": {
@@ -678,138 +180,6 @@
               "port_open": false,
               "charging": false,
               "limit": 80
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 24,
-              "driver_temp": 25
-            },
-            "locks": {
-              "locked": false
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": true
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "closed",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 0,
-            "location": {
-              "latitude": 40.0841,
-              "longitude": -74.0284
-            },
-            "firmware_version": "2024.8.9",
-            "createdTime": "2023-08-17T10:20:15Z",
-            "modifiedTime": "2025-08-06T21:48:47Z"
-          }
-        }
-      }
-    },
-    "8d049d01-c772-4d65-b708-2d8a493bef8d": {
-      "id": "8d049d01-c772-4d65-b708-2d8a493bef8d",
-      "first_name": "Paige",
-      "last_name": "Bailey",
-      "email": "paige.bailey335@financial-news.com",
-      "friends": [
-        "9b9a41cc-c887-43a9-9a71-295132935665",
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "7066516f-da4c-41d0-a229-8b0024697047",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580",
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "cb7c491d-2d3b-4975-80e9-fbf140b86c34": {
-            "id": "cb7c491d-2d3b-4975-80e9-fbf140b86c34",
-            "original_vehicle_tag": "paige_model_s_1",
-            "vehicle_tag": "LFVFYDYDRB1RRM6",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 85,
-              "current_track": 1,
-              "favorites": [
-                "City Driving Jazz",
-                "Chill Acoustic Vibes"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 100
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 21,
-              "driver_temp": 20
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": true
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "open",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 11,
-            "location": {
-              "latitude": 41.4706,
-              "longitude": -112.0421
-            },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2022-04-25T06:40:08Z",
-            "modifiedTime": "2025-08-08T19:15:52Z"
-          },
-          "28ccdc70-bf0a-450b-bc69-a8ae5b7ba565": {
-            "id": "28ccdc70-bf0a-450b-bc69-a8ae5b7ba565",
-            "original_vehicle_tag": "paige_model_3_2",
-            "vehicle_tag": "7SA13V1X4WY882F",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 32,
-              "current_track": 0,
-              "favorites": [
-                "Chill Acoustic Vibes",
-                "Country Roads Playlist",
-                "Energy Boosters"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": true,
-              "limit": 100
             },
             "climate": {
               "on": false,
@@ -822,11 +192,132 @@
               "locked": true
             },
             "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 44.0224,
+              "longitude": -120.6148
+            },
+            "firmware_version": "2024.14.7",
+            "createdTime": "2020-11-26T21:31:41Z",
+            "modifiedTime": "2025-06-29T13:29:18Z"
+          }
+        }
+      }
+    },
+    "72e014ca-5ae3-4980-81a3-46ece0691242": {
+      "id": "72e014ca-5ae3-4980-81a3-46ece0691242",
+      "first_name": "Ariana",
+      "last_name": "Medina",
+      "email": "ariana.medina325@planetary-exploration.net",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "b2593636-80ce-48ec-80dc-dfe32a9004a4": {
+            "id": "b2593636-80ce-48ec-80dc-dfe32a9004a4",
+            "original_vehicle_tag": "ariana_model_x_1",
+            "vehicle_tag": "7SA711YRYJWU5UR",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 32,
+              "current_track": 2,
+              "favorites": []
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 23,
+              "driver_temp": 24
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
               "on": true,
               "alerts": [
-                "Motion detected near front door",
-                "Alarm triggered by strange noise"
+                "Motion detected near front door"
               ]
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 38.8055,
+              "longitude": -82.8351
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2022-08-15T21:46:38Z",
+            "modifiedTime": "2025-07-24T18:18:19Z"
+          },
+          "30d63ad3-80ee-4fda-b72c-509497efb872": {
+            "id": "30d63ad3-80ee-4fda-b72c-509497efb872",
+            "original_vehicle_tag": "ariana_cybertruck_2",
+            "vehicle_tag": "7SAR48CN1C504V6",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 52,
+              "current_track": 2,
+              "favorites": [
+                "don't touch the aux",
+                "sad bastard music"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 27,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
             },
             "lights": {
               "on": false
@@ -835,55 +326,296 @@
               "driver_front": "closed",
               "passenger_front": "open",
               "driver_rear": "open",
+              "passenger_rear": "closed"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 44.3443,
+              "longitude": -78.979
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2022-08-11T00:40:01Z",
+            "modifiedTime": "2025-07-12T03:41:36Z"
+          },
+          "c503f24c-809b-401e-85ce-7b3101ebe527": {
+            "id": "c503f24c-809b-401e-85ce-7b3101ebe527",
+            "original_vehicle_tag": "ariana_model_y_3",
+            "vehicle_tag": "LRW9K20KTPAK3L1",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 76,
+              "current_track": 0,
+              "favorites": []
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 80
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": true,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 29,
+              "driver_temp": 20
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "open",
               "passenger_rear": "open"
             },
-            "windows": "closed",
+            "windows": "open",
             "awake": true,
-            "speed": 10,
+            "speed": 0,
             "location": {
-              "latitude": 44.0468,
-              "longitude": -80.3565
+              "latitude": 36.2016,
+              "longitude": -107.0399
             },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2022-07-16T01:48:31Z",
-            "modifiedTime": "2025-07-12T05:03:17Z"
+            "firmware_version": "2023.38.10",
+            "createdTime": "2021-02-02T13:44:47Z",
+            "modifiedTime": "2025-07-07T03:57:02Z"
           }
         }
       }
     },
-    "017665e0-4b41-4510-99ff-8c2d8840fce5": {
-      "id": "017665e0-4b41-4510-99ff-8c2d8840fce5",
-      "first_name": "Ivan",
-      "last_name": "Kim",
-      "email": "ivan.kim4@social-media-pro.com",
+    "3de9e2c4-f6ed-4a45-87ad-9f7cbbdfdd63": {
+      "id": "3de9e2c4-f6ed-4a45-87ad-9f7cbbdfdd63",
+      "first_name": "Alexis",
+      "last_name": "Ford",
+      "email": "alexis.ford484@getonline.site",
       "friends": [
-        "f98eff6f-ebc9-4ee5-80c3-5f89319f1725",
-        "8d049d01-c772-4d65-b708-2d8a493bef8d",
-        "7066516f-da4c-41d0-a229-8b0024697047",
-        "693945b2-3788-42cd-982f-c6c84b45d631",
-        "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5"
+        "72e014ca-5ae3-4980-81a3-46ece0691242",
+        "62f9101b-7889-4495-a4c8-6efb763e051d",
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "22cf5e5f-3f58-4f39-ad79-e3c30546ddff": {
+      "id": "22cf5e5f-3f58-4f39-ad79-e3c30546ddff",
+      "first_name": "Eli",
+      "last_name": "Pena",
+      "email": "eli.pena29@financialfreedom.info",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "833e10d1-4cfc-4764-9195-b21edf279b27": {
+      "id": "833e10d1-4cfc-4764-9195-b21edf279b27",
+      "first_name": "Jaxon",
+      "last_name": "Bailey",
+      "email": "jaxon.bailey872@bike-shop.online",
+      "friends": [
+        "3de9e2c4-f6ed-4a45-87ad-9f7cbbdfdd63",
+        "22cf5e5f-3f58-4f39-ad79-e3c30546ddff"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "f11d0f7e-8c3c-4372-acb7-566a00d23144": {
+      "id": "f11d0f7e-8c3c-4372-acb7-566a00d23144",
+      "first_name": "Ivan",
+      "last_name": "Martin",
+      "email": "ivan.martin771@motorcycle-riders.net",
+      "friends": [
+        "72e014ca-5ae3-4980-81a3-46ece0691242",
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b",
+        "62f9101b-7889-4495-a4c8-6efb763e051d",
+        "833e10d1-4cfc-4764-9195-b21edf279b27"
       ],
       "tesla_data": {
         "vehicles": {
-          "92a10318-bf0f-411a-ad82-83a489db4f42": {
-            "id": "92a10318-bf0f-411a-ad82-83a489db4f42",
-            "original_vehicle_tag": "ivan_model_y_1",
-            "vehicle_tag": "LFV294KF2YJYB1E",
+          "378a9c8a-e13e-401e-a1f4-51f6c2b9fcde": {
+            "id": "378a9c8a-e13e-401e-a1f4-51f6c2b9fcde",
+            "original_vehicle_tag": "ivan_model_x_1",
+            "vehicle_tag": "LFVW6ETX9AFT8XZ",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 81,
+              "current_track": 0,
+              "favorites": []
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": true,
+              "charging": true,
+              "limit": 90
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 28,
+              "driver_temp": 22
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 31.4861,
+              "longitude": -86.3383
+            },
+            "firmware_version": "2024.8.9",
+            "createdTime": "2021-07-10T16:38:35Z",
+            "modifiedTime": "2025-07-29T09:19:02Z"
+          }
+        }
+      }
+    },
+    "e82c7df4-a578-4ba4-9560-1b25106e2edf": {
+      "id": "e82c7df4-a578-4ba4-9560-1b25106e2edf",
+      "first_name": "Lily",
+      "last_name": "Alvarado",
+      "email": "lily.alvarado838@property-management.services",
+      "friends": [
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "8f3b8e6b-f0e9-4fa0-8f3f-7bee63757ed3": {
+      "id": "8f3b8e6b-f0e9-4fa0-8f3f-7bee63757ed3",
+      "first_name": "Luke",
+      "last_name": "Brooks",
+      "email": "luke.brooks258@solar-system-guide.com",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "1558b450-9ba9-4789-be2e-d86a18f65135": {
+            "id": "1558b450-9ba9-4789-be2e-d86a18f65135",
+            "original_vehicle_tag": "luke_model_y_1",
+            "vehicle_tag": "5YJRGZDJ9F0JMMZ",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 45,
+              "current_track": 0,
+              "favorites": [
+                "a collection of earworms",
+                "rainy day feels"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 90
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 25,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "closed"
+            },
+            "windows": "open",
+            "awake": false,
+            "speed": 0,
+            "location": {
+              "latitude": 26.9387,
+              "longitude": -112.2802
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-12-19T01:25:11Z",
+            "modifiedTime": "2025-07-21T04:41:27Z"
+          }
+        }
+      }
+    },
+    "125aaa50-a3c9-431a-94c2-5547bc77d0a2": {
+      "id": "125aaa50-a3c9-431a-94c2-5547bc77d0a2",
+      "first_name": "Hazel",
+      "last_name": "Collins",
+      "email": "hazel.collins761@marketing-automation.solutions",
+      "friends": [
+        "3de9e2c4-f6ed-4a45-87ad-9f7cbbdfdd63",
+        "e82c7df4-a578-4ba4-9560-1b25106e2edf",
+        "72e014ca-5ae3-4980-81a3-46ece0691242",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "a6b7e426-d7c5-4ca4-b105-bee37d3b21b0": {
+            "id": "a6b7e426-d7c5-4ca4-b105-bee37d3b21b0",
+            "original_vehicle_tag": "hazel_cybertruck_1",
+            "vehicle_tag": "7SAP8LYB6APGAPL",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 59,
-              "current_track": 0,
-              "favorites": [
-                "Focus Work Beats"
-              ]
+              "volume": 39,
+              "current_track": 4,
+              "favorites": []
             },
             "trunk": {
               "front": "closed",
               "rear": "closed"
             },
             "charge": {
-              "port_open": true,
+              "port_open": false,
               "charging": false,
               "limit": 100
             },
@@ -891,11 +623,83 @@
               "on": true,
               "bioweapon_mode": false,
               "climate_keeper_mode": "dog",
-              "cop_temp": 27,
-              "driver_temp": 19
+              "cop_temp": 26,
+              "driver_temp": 25
             },
             "locks": {
               "locked": false
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": [
+                "Motion detected near front door",
+                "Object too close to rear bumper"
+              ]
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 11,
+            "location": {
+              "latitude": 39.8587,
+              "longitude": -71.7574
+            },
+            "firmware_version": "2024.14.7",
+            "createdTime": "2021-02-10T09:39:10Z",
+            "modifiedTime": "2025-07-11T02:45:23Z"
+          }
+        }
+      }
+    },
+    "50cf208c-a0fd-4a98-9be9-8b5012782ac8": {
+      "id": "50cf208c-a0fd-4a98-9be9-8b5012782ac8",
+      "first_name": "Danielle",
+      "last_name": "Hernandez",
+      "email": "danielle.hernandez878@biotechnology.solutions",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "0e4c7bb2-a2e8-4e1e-89e1-b91130a2971f": {
+            "id": "0e4c7bb2-a2e8-4e1e-89e1-b91130a2971f",
+            "original_vehicle_tag": "danielle_model_y_1",
+            "vehicle_tag": "LRW7B6CFPAGPRN8",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 73,
+              "current_track": 0,
+              "favorites": [
+                "night luxe",
+                "2000s emo trash",
+                "gotham city rooftops"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 70
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 29,
+              "driver_temp": 24
+            },
+            "locks": {
+              "locked": true
             },
             "sentry_mode": {
               "on": false,
@@ -908,58 +712,185 @@
               "driver_front": "open",
               "passenger_front": "open",
               "driver_rear": "closed",
-              "passenger_rear": "open"
+              "passenger_rear": "closed"
             },
-            "windows": "closed",
+            "windows": "open",
             "awake": true,
             "speed": 0,
             "location": {
-              "latitude": 38.3398,
-              "longitude": -113.2492
+              "latitude": 29.2845,
+              "longitude": -75.7612
             },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2021-01-09T08:10:40Z",
-            "modifiedTime": "2025-07-07T05:41:07Z"
+            "firmware_version": "2024.14.7",
+            "createdTime": "2021-06-11T03:13:15Z",
+            "modifiedTime": "2025-08-06T10:31:51Z"
           }
         }
       }
     },
-    "748635e7-dc1b-47b4-ae5a-63ca37f01b87": {
-      "id": "748635e7-dc1b-47b4-ae5a-63ca37f01b87",
-      "first_name": "Jeremiah",
-      "last_name": "Lara",
-      "email": "jeremiah.lara243@motorcycle-tours.net",
+    "33365a31-92c5-4f85-acfb-870209fe2386": {
+      "id": "33365a31-92c5-4f85-acfb-870209fe2386",
+      "first_name": "Jaden",
+      "last_name": "Cruz",
+      "email": "jaden.cruz815@homedecor.store",
       "friends": [
-        "9b9a41cc-c887-43a9-9a71-295132935665",
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c"
+        "3de9e2c4-f6ed-4a45-87ad-9f7cbbdfdd63",
+        "f11d0f7e-8c3c-4372-acb7-566a00d23144"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "f32a0e5e-6183-4f42-9862-ecfa4bc390f0": {
+      "id": "f32a0e5e-6183-4f42-9862-ecfa4bc390f0",
+      "first_name": "Caroline",
+      "last_name": "Stewart",
+      "email": "caroline.stewart108@fashionforward.org",
+      "friends": [
+        "33365a31-92c5-4f85-acfb-870209fe2386",
+        "125aaa50-a3c9-431a-94c2-5547bc77d0a2",
+        "72e014ca-5ae3-4980-81a3-46ece0691242",
+        "50cf208c-a0fd-4a98-9be9-8b5012782ac8"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "a9292c24-fdcb-474c-aea7-011f6a703dd1": {
+      "id": "a9292c24-fdcb-474c-aea7-011f6a703dd1",
+      "first_name": "Bailey",
+      "last_name": "Reyes",
+      "email": "bailey.reyes19@audio-engineering.online",
+      "friends": [
+        "85bf3878-700a-4f28-91bb-17c720e46dc9"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "9703f06a-ab19-4b99-a635-0ee2e6ec6fda": {
+      "id": "9703f06a-ab19-4b99-a635-0ee2e6ec6fda",
+      "first_name": "Rebecca",
+      "last_name": "Howard",
+      "email": "rebecca.howard656@web-hosting-reviews.com",
+      "friends": [
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b",
+        "22cf5e5f-3f58-4f39-ad79-e3c30546ddff",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
       ],
       "tesla_data": {
         "vehicles": {
-          "66a781e1-1330-4f0d-8f4d-e2c4d0aa0097": {
-            "id": "66a781e1-1330-4f0d-8f4d-e2c4d0aa0097",
-            "original_vehicle_tag": "jeremiah_roadster_1",
-            "vehicle_tag": "7SAGRMY6SKK70Z4",
+          "17a63603-0b68-4ce9-9a1b-2018191ee201": {
+            "id": "17a63603-0b68-4ce9-9a1b-2018191ee201",
+            "original_vehicle_tag": "rebecca_model_x_1",
+            "vehicle_tag": "LFV0R63X4BZM31H",
             "horn": false,
             "media": {
-              "playing": false,
-              "volume": 73,
+              "playing": true,
+              "volume": 70,
               "current_track": 0,
               "favorites": []
             },
             "trunk": {
-              "front": "closed",
-              "rear": "closed"
+              "front": "open",
+              "rear": "open"
             },
             "charge": {
               "port_open": false,
               "charging": true,
-              "limit": 90
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 29,
+              "driver_temp": 18
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 0,
+            "location": {
+              "latitude": 38.2057,
+              "longitude": -122.3455
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2022-08-16T07:27:49Z",
+            "modifiedTime": "2025-07-13T13:56:20Z"
+          }
+        }
+      }
+    },
+    "fb8bf5a7-5ff4-4344-8895-9aa8f99752a2": {
+      "id": "fb8bf5a7-5ff4-4344-8895-9aa8f99752a2",
+      "first_name": "Charles",
+      "last_name": "Castillo",
+      "email": "charles.castillo69@biology-facts.net",
+      "friends": [
+        "72e014ca-5ae3-4980-81a3-46ece0691242",
+        "833e10d1-4cfc-4764-9195-b21edf279b27",
+        "8f3b8e6b-f0e9-4fa0-8f3f-7bee63757ed3",
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "a9292c24-fdcb-474c-aea7-011f6a703dd1"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "f6556a54-1c7d-45b9-acc8-3243ba5924cb": {
+      "id": "f6556a54-1c7d-45b9-acc8-3243ba5924cb",
+      "first_name": "Jaxon",
+      "last_name": "Perez",
+      "email": "jaxon.perez482@genealogy-site.info",
+      "friends": [
+        "9703f06a-ab19-4b99-a635-0ee2e6ec6fda",
+        "50cf208c-a0fd-4a98-9be9-8b5012782ac8",
+        "f32a0e5e-6183-4f42-9862-ecfa4bc390f0"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "4ce02894-661d-4a32-b083-2a0345468f68": {
+            "id": "4ce02894-661d-4a32-b083-2a0345468f68",
+            "original_vehicle_tag": "jaxon_model_y_1",
+            "vehicle_tag": "5YJD6XZLSHDSAWV",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 39,
+              "current_track": 3,
+              "favorites": []
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 70
             },
             "climate": {
               "on": true,
               "bioweapon_mode": false,
               "climate_keeper_mode": "dog",
-              "cop_temp": 27,
+              "cop_temp": 21,
               "driver_temp": 23
             },
             "locks": {
@@ -973,35 +904,125 @@
               ]
             },
             "lights": {
-              "on": false
+              "on": true
             },
             "doors": {
-              "driver_front": "closed",
+              "driver_front": "open",
               "passenger_front": "closed",
-              "driver_rear": "open",
+              "driver_rear": "closed",
               "passenger_rear": "open"
             },
             "windows": "closed",
             "awake": true,
-            "speed": 28,
+            "speed": 0,
             "location": {
-              "latitude": 31.1174,
-              "longitude": -75.9877
+              "latitude": 27.576,
+              "longitude": -67.4703
             },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2022-06-16T17:57:22Z",
-            "modifiedTime": "2025-07-03T18:37:45Z"
-          },
-          "cd7a801c-5f6a-4013-8803-06631b2afd17": {
-            "id": "cd7a801c-5f6a-4013-8803-06631b2afd17",
-            "original_vehicle_tag": "jeremiah_model_s_2",
-            "vehicle_tag": "7SAJNR836E5KNC1",
+            "firmware_version": "2024.14.7",
+            "createdTime": "2020-12-03T15:11:35Z",
+            "modifiedTime": "2025-08-27T11:07:46Z"
+          }
+        }
+      }
+    },
+    "5cc07f80-29ab-4de2-a483-97029787c5cd": {
+      "id": "5cc07f80-29ab-4de2-a483-97029787c5cd",
+      "first_name": "Liam",
+      "last_name": "Edwards",
+      "email": "liam.edwards201@future-vision.tech",
+      "friends": [
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "fb99d076-129c-4814-8894-ad91e83593da": {
+            "id": "fb99d076-129c-4814-8894-ad91e83593da",
+            "original_vehicle_tag": "liam_model_s_1",
+            "vehicle_tag": "LRW117343R81AEZ",
             "horn": false,
             "media": {
               "playing": false,
-              "volume": 62,
+              "volume": 48,
               "current_track": 0,
-              "favorites": []
+              "favorites": [
+                "a road trip with your worst enemy (enemies to lovers arc)",
+                "trying to convince yourself you're over them"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 70
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 20,
+              "driver_temp": 25
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": true
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 44.5097,
+              "longitude": -103.8967
+            },
+            "firmware_version": "2024.14.7",
+            "createdTime": "2021-07-28T00:55:08Z",
+            "modifiedTime": "2025-07-04T04:13:10Z"
+          }
+        }
+      }
+    },
+    "e9a88438-b36f-4934-a564-034352148d7e": {
+      "id": "e9a88438-b36f-4934-a564-034352148d7e",
+      "first_name": "Julia",
+      "last_name": "Lopez",
+      "email": "julia.lopez622@cybersecurity.consulting",
+      "friends": [
+        "f11d0f7e-8c3c-4372-acb7-566a00d23144",
+        "f6556a54-1c7d-45b9-acc8-3243ba5924cb",
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "50cf208c-a0fd-4a98-9be9-8b5012782ac8",
+        "f32a0e5e-6183-4f42-9862-ecfa4bc390f0"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "e26780f9-13a7-4378-ac36-12545ffa4966": {
+            "id": "e26780f9-13a7-4378-ac36-12545ffa4966",
+            "original_vehicle_tag": "julia_model_x_1",
+            "vehicle_tag": "7SAYKMTF6G1TL70",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 58,
+              "current_track": 0,
+              "favorites": [
+                "illegally good"
+              ]
             },
             "trunk": {
               "front": "open",
@@ -1015,9 +1036,76 @@
             "climate": {
               "on": false,
               "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 26,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": true
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 30,
+            "location": {
+              "latitude": 36.4674,
+              "longitude": -95.9498
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2021-09-05T11:25:17Z",
+            "modifiedTime": "2025-08-10T07:12:45Z"
+          }
+        }
+      }
+    },
+    "b3a49e87-eb6e-4f2e-b2a3-286e990c4fcd": {
+      "id": "b3a49e87-eb6e-4f2e-b2a3-286e990c4fcd",
+      "first_name": "Amir",
+      "last_name": "Burke",
+      "email": "amir.burke495@green-energy.co",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "71836fd9-e9f6-4a9e-a1d9-74c1e6e0f38e": {
+            "id": "71836fd9-e9f6-4a9e-a1d9-74c1e6e0f38e",
+            "original_vehicle_tag": "amir_cybertruck_1",
+            "vehicle_tag": "7SAKPY7E6XZGBJW",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 42,
+              "current_track": 2,
+              "favorites": [
+                "y2k futurism"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
               "climate_keeper_mode": "camp",
-              "cop_temp": 30,
-              "driver_temp": 24
+              "cop_temp": 28,
+              "driver_temp": 19
             },
             "locks": {
               "locked": false
@@ -1035,449 +1123,29 @@
               "driver_rear": "closed",
               "passenger_rear": "open"
             },
-            "windows": "closed",
+            "windows": "open",
             "awake": true,
             "speed": 0,
             "location": {
-              "latitude": 36.5234,
-              "longitude": -66.268
-            },
-            "firmware_version": "2023.38.10",
-            "createdTime": "2022-12-24T11:11:34Z",
-            "modifiedTime": "2025-06-29T22:03:53Z"
-          }
-        }
-      }
-    },
-    "bd2f3716-3304-4f50-81f6-e6cbb4f70fcb": {
-      "id": "bd2f3716-3304-4f50-81f6-e6cbb4f70fcb",
-      "first_name": "Jason",
-      "last_name": "Morris",
-      "email": "jason.morris745@car-enthusiasts.online",
-      "friends": [
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "b9666275-3610-4027-b140-830f6ef1b882": {
-            "id": "b9666275-3610-4027-b140-830f6ef1b882",
-            "original_vehicle_tag": "jason_cybertruck_1",
-            "vehicle_tag": "LFVW55GNTYHWP7V",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 38,
-              "current_track": 4,
-              "favorites": [
-                "Weekend Adventure Mix"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 100
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 20,
-              "driver_temp": 20
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "open",
-            "awake": false,
-            "speed": 0,
-            "location": {
-              "latitude": 44.4721,
-              "longitude": -66.4062
-            },
-            "firmware_version": "2023.38.10",
-            "createdTime": "2021-04-06T08:38:56Z",
-            "modifiedTime": "2025-07-07T00:57:33Z"
-          }
-        }
-      }
-    },
-    "3f4adade-aafa-4021-b463-dbfbaee225e5": {
-      "id": "3f4adade-aafa-4021-b463-dbfbaee225e5",
-      "first_name": "Zuri",
-      "last_name": "Foster",
-      "email": "zuri.foster474@electrician-services.com",
-      "friends": [
-        "8d049d01-c772-4d65-b708-2d8a493bef8d",
-        "017665e0-4b41-4510-99ff-8c2d8840fce5"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "6de805c7-6df3-4cd2-868f-ddb7c5ca0cc0": {
-      "id": "6de805c7-6df3-4cd2-868f-ddb7c5ca0cc0",
-      "first_name": "Joseph",
-      "last_name": "Ramirez",
-      "email": "joseph.ramirez68@pet-care.shop",
-      "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "f5af0ced-e665-43a7-9199-ff46e014e2db",
-        "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5",
-        "ccb42c7e-52ed-4911-852a-0abe5f7a8ea9"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "6f8db12d-bfe2-48cd-a098-847dfca0e76c": {
-            "id": "6f8db12d-bfe2-48cd-a098-847dfca0e76c",
-            "original_vehicle_tag": "joseph_model_3_1",
-            "vehicle_tag": "LFVE0UWSVE8PJVV",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 25,
-              "current_track": 0,
-              "favorites": [
-                "Country Roads Playlist",
-                "Energy Boosters",
-                "Rainy Day Reflections"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": true,
-              "charging": false,
-              "limit": 70
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 23,
-              "driver_temp": 20
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
-            },
-            "windows": "closed",
-            "awake": false,
-            "speed": 0,
-            "location": {
-              "latitude": 29.6131,
-              "longitude": -104.8096
-            },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2022-07-16T15:43:57Z",
-            "modifiedTime": "2025-06-21T07:05:01Z"
-          }
-        }
-      }
-    },
-    "404f08a9-8e6a-4616-8327-d906ad4796ee": {
-      "id": "404f08a9-8e6a-4616-8327-d906ad4796ee",
-      "first_name": "Samantha",
-      "last_name": "Garcia",
-      "email": "samantha.garcia488@diy-home-projects.online",
-      "friends": [
-        "f98eff6f-ebc9-4ee5-80c3-5f89319f1725",
-        "8d049d01-c772-4d65-b708-2d8a493bef8d",
-        "7066516f-da4c-41d0-a229-8b0024697047",
-        "ccb42c7e-52ed-4911-852a-0abe5f7a8ea9",
-        "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "a9b37af9-8f06-4c94-aa33-1b71513a2819": {
-      "id": "a9b37af9-8f06-4c94-aa33-1b71513a2819",
-      "first_name": "Benjamin",
-      "last_name": "Bennett",
-      "email": "benjamin.bennett639@server-management.net",
-      "friends": [
-        "9b9a41cc-c887-43a9-9a71-295132935665",
-        "bd2f3716-3304-4f50-81f6-e6cbb4f70fcb",
-        "8d049d01-c772-4d65-b708-2d8a493bef8d",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580",
-        "017665e0-4b41-4510-99ff-8c2d8840fce5"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "6158d626-d998-4b41-aebc-68d6e5314698": {
-            "id": "6158d626-d998-4b41-aebc-68d6e5314698",
-            "original_vehicle_tag": "benjamin_model_s_1",
-            "vehicle_tag": "LRW0HHEPRLT4E5S",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 22,
-              "current_track": 0,
-              "favorites": [
-                "Highway Rock Anthems",
-                "Country Roads Playlist"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 80
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "off",
-              "cop_temp": 24,
-              "driver_temp": 18
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "open",
-            "awake": false,
-            "speed": 114,
-            "location": {
-              "latitude": 25.9169,
-              "longitude": -114.0284
+              "latitude": 48.8985,
+              "longitude": -110.5845
             },
             "firmware_version": "2024.12.3",
-            "createdTime": "2021-11-29T11:07:43Z",
-            "modifiedTime": "2025-07-24T18:12:25Z"
-          }
-        }
-      }
-    },
-    "8b559d81-c483-4dac-a115-5a4466c3498a": {
-      "id": "8b559d81-c483-4dac-a115-5a4466c3498a",
-      "first_name": "Rebecca",
-      "last_name": "Hunter",
-      "email": "rebecca.hunter792@science-facts.info",
-      "friends": [
-        "8d049d01-c772-4d65-b708-2d8a493bef8d",
-        "6de805c7-6df3-4cd2-868f-ddb7c5ca0cc0",
-        "a9b37af9-8f06-4c94-aa33-1b71513a2819",
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "17683486-0445-4fe7-b1ac-4eddc2ca2e57": {
-      "id": "17683486-0445-4fe7-b1ac-4eddc2ca2e57",
-      "first_name": "Jonathan",
-      "last_name": "Watson",
-      "email": "jonathan.watson536@online-shop.org",
-      "friends": [
-        "748635e7-dc1b-47b4-ae5a-63ca37f01b87",
-        "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5",
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "9d1391e9-13e6-4eaa-a302-9f68b5cdca0b": {
-            "id": "9d1391e9-13e6-4eaa-a302-9f68b5cdca0b",
-            "original_vehicle_tag": "jonathan_model_y_1",
-            "vehicle_tag": "7SAU5JN5YW7YFXR",
+            "createdTime": "2020-12-19T08:52:43Z",
+            "modifiedTime": "2025-07-20T23:47:22Z"
+          },
+          "3f41f00f-bc1d-4665-9198-bd529b35a44c": {
+            "id": "3f41f00f-bc1d-4665-9198-bd529b35a44c",
+            "original_vehicle_tag": "amir_model_s_2",
+            "vehicle_tag": "5YJ2D1U4XKU0PH6",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 78,
-              "current_track": 2,
-              "favorites": [
-                "Family Road Trip Hits"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": true,
-              "charging": false,
-              "limit": 80
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 29,
-              "driver_temp": 19
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "closed",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 0,
-            "location": {
-              "latitude": 26.1108,
-              "longitude": -68.6301
-            },
-            "firmware_version": "2023.44.30.8",
-            "createdTime": "2023-03-31T18:00:21Z",
-            "modifiedTime": "2025-08-07T21:15:30Z"
-          }
-        }
-      }
-    },
-    "41c9f564-ffee-4fc7-8b47-452c70815cda": {
-      "id": "41c9f564-ffee-4fc7-8b47-452c70815cda",
-      "first_name": "Jessica",
-      "last_name": "Simmons",
-      "email": "jessica.simmons800@research-labs.dev",
-      "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580",
-        "9b9a41cc-c887-43a9-9a71-295132935665"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "77070df1-0c30-40f3-a15a-4f472b8eefe1": {
-      "id": "77070df1-0c30-40f3-a15a-4f472b8eefe1",
-      "first_name": "Connor",
-      "last_name": "Harris",
-      "email": "connor.harris787@drone-pilots.online",
-      "friends": [
-        "6de805c7-6df3-4cd2-868f-ddb7c5ca0cc0",
-        "017665e0-4b41-4510-99ff-8c2d8840fce5",
-        "f98eff6f-ebc9-4ee5-80c3-5f89319f1725"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "b77f9088-2833-4f97-b49f-6017c619ef82": {
-      "id": "b77f9088-2833-4f97-b49f-6017c619ef82",
-      "first_name": "Noah",
-      "last_name": "White",
-      "email": "noah.white921@game-reviews.online",
-      "friends": [
-        "f5af0ced-e665-43a7-9199-ff46e014e2db"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "8bf5a6f7-7d4f-4c2b-8b67-ef4d4c537528": {
-      "id": "8bf5a6f7-7d4f-4c2b-8b67-ef4d4c537528",
-      "first_name": "Valentina",
-      "last_name": "Alvarez",
-      "email": "valentina.alvarez655@research-labs.dev",
-      "friends": [
-        "748635e7-dc1b-47b4-ae5a-63ca37f01b87"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "67b0fd8e-df6d-4e00-84c8-f7d877ed720d": {
-      "id": "67b0fd8e-df6d-4e00-84c8-f7d877ed720d",
-      "first_name": "Tyler",
-      "last_name": "Perry",
-      "email": "tyler.perry652@software-engineers.dev",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "b05ea0d5-e29e-4853-bfe9-b70b47d28716": {
-      "id": "b05ea0d5-e29e-4853-bfe9-b70b47d28716",
-      "first_name": "Jade",
-      "last_name": "Chavez",
-      "email": "jade.chavez999@team-sports.club",
-      "friends": [
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580",
-        "8b559d81-c483-4dac-a115-5a4466c3498a",
-        "7066516f-da4c-41d0-a229-8b0024697047"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "802d49c9-9606-47ec-b5c5-a1f602fabc06": {
-      "id": "802d49c9-9606-47ec-b5c5-a1f602fabc06",
-      "first_name": "Morgan",
-      "last_name": "Alvarado",
-      "email": "morgan.alvarado662@cloud-computing.services",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {
-          "63982861-94c7-4f25-82bc-cbd8bf90a2f8": {
-            "id": "63982861-94c7-4f25-82bc-cbd8bf90a2f8",
-            "original_vehicle_tag": "morgan_model_y_1",
-            "vehicle_tag": "7SA7B7ZA4F7T9VN",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 22,
+              "volume": 32,
               "current_track": 0,
               "favorites": [
-                "Evening Drive Relax",
-                "Morning Commute Tunes"
+                "deep work flow",
+                "fuck feelings"
               ]
             },
             "trunk": {
@@ -1492,78 +1160,8 @@
             "climate": {
               "on": true,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 20,
-              "driver_temp": 21
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "closed",
-              "passenger_front": "open",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 0,
-            "location": {
-              "latitude": 33.7244,
-              "longitude": -87.0161
-            },
-            "firmware_version": "2024.8.9",
-            "createdTime": "2023-07-19T15:28:59Z",
-            "modifiedTime": "2025-08-14T20:55:29Z"
-          }
-        }
-      }
-    },
-    "49936604-5ef1-43ef-bab0-d3024c966294": {
-      "id": "49936604-5ef1-43ef-bab0-d3024c966294",
-      "first_name": "Mila",
-      "last_name": "Reyes",
-      "email": "mila.reyes58@cat-boarding.services",
-      "friends": [
-        "f5af0ced-e665-43a7-9199-ff46e014e2db",
-        "3f4adade-aafa-4021-b463-dbfbaee225e5",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580",
-        "8bf5a6f7-7d4f-4c2b-8b67-ef4d4c537528"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "58d83041-512f-463a-b61f-53de0000b603": {
-            "id": "58d83041-512f-463a-b61f-53de0000b603",
-            "original_vehicle_tag": "mila_model_s_1",
-            "vehicle_tag": "LFV2US54VBZ97RL",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 67,
-              "current_track": 1,
-              "favorites": []
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 70
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
               "climate_keeper_mode": "off",
-              "cop_temp": 20,
+              "cop_temp": 28,
               "driver_temp": 22
             },
             "locks": {
@@ -1577,382 +1175,8 @@
               "on": false
             },
             "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 30,
-            "location": {
-              "latitude": 35.7,
-              "longitude": -92.5731
-            },
-            "firmware_version": "2024.8.9",
-            "createdTime": "2020-11-13T08:19:11Z",
-            "modifiedTime": "2025-07-19T11:19:07Z"
-          }
-        }
-      }
-    },
-    "b523d123-ffe3-441d-a869-e13734736e4e": {
-      "id": "b523d123-ffe3-441d-a869-e13734736e4e",
-      "first_name": "Zola",
-      "last_name": "Wood",
-      "email": "zola.wood578@medical-clinic.online",
-      "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "404f08a9-8e6a-4616-8327-d906ad4796ee"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "5e4dc4a6-a365-4d1a-b79f-4c31d93948c3": {
-            "id": "5e4dc4a6-a365-4d1a-b79f-4c31d93948c3",
-            "original_vehicle_tag": "zola_roadster_1",
-            "vehicle_tag": "7SATMSY6VW9U4M9",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 46,
-              "current_track": 0,
-              "favorites": [
-                "Highway Rock Anthems",
-                "Energy Boosters",
-                "Evening Drive Relax"
-              ]
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 90
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 25,
-              "driver_temp": 18
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "open"
-            },
-            "windows": "open",
-            "awake": true,
-            "speed": 62,
-            "location": {
-              "latitude": 28.1719,
-              "longitude": -68.688
-            },
-            "firmware_version": "2024.8.9",
-            "createdTime": "2020-09-03T12:34:33Z",
-            "modifiedTime": "2025-07-15T19:01:32Z"
-          }
-        }
-      }
-    },
-    "4839747b-53e4-4294-a571-f9e9e63b93ac": {
-      "id": "4839747b-53e4-4294-a571-f9e9e63b93ac",
-      "first_name": "Taylor",
-      "last_name": "Campbell",
-      "email": "taylor.campbell682@career-counseling.online",
-      "friends": [
-        "748635e7-dc1b-47b4-ae5a-63ca37f01b87",
-        "9b9a41cc-c887-43a9-9a71-295132935665",
-        "a9b37af9-8f06-4c94-aa33-1b71513a2819",
-        "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "8f0d4b87-605c-4d55-ab45-45ddcb110a35": {
-      "id": "8f0d4b87-605c-4d55-ab45-45ddcb110a35",
-      "first_name": "Cole",
-      "last_name": "Jenkins",
-      "email": "cole.jenkins284@stock-trading.guide",
-      "friends": [
-        "17683486-0445-4fe7-b1ac-4eddc2ca2e57"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "5dd57e1a-96ae-468d-a12a-e721663289fd": {
-            "id": "5dd57e1a-96ae-468d-a12a-e721663289fd",
-            "original_vehicle_tag": "cole_model_3_1",
-            "vehicle_tag": "5YJTR28Y6WPE1PC",
-            "horn": false,
-            "media": {
-              "playing": false,
-              "volume": 30,
-              "current_track": 0,
-              "favorites": []
-            },
-            "trunk": {
-              "front": "open",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 90
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 28,
-              "driver_temp": 18
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "closed",
-              "driver_rear": "open",
-              "passenger_rear": "closed"
-            },
-            "windows": "open",
-            "awake": true,
-            "speed": 77,
-            "location": {
-              "latitude": 39.7962,
-              "longitude": -118.2513
-            },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2023-05-20T16:44:50Z",
-            "modifiedTime": "2025-07-22T02:13:44Z"
-          }
-        }
-      }
-    },
-    "afdf37c5-3b9a-42b2-9127-34540e2638bf": {
-      "id": "afdf37c5-3b9a-42b2-9127-34540e2638bf",
-      "first_name": "Wyatt",
-      "last_name": "Kelly",
-      "email": "wyatt.kelly110@travelguide.com",
-      "friends": [
-        "802d49c9-9606-47ec-b5c5-a1f602fabc06",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "a067067b-91dd-49f8-9a4c-e5407c8a47d6": {
-            "id": "a067067b-91dd-49f8-9a4c-e5407c8a47d6",
-            "original_vehicle_tag": "wyatt_model_x_1",
-            "vehicle_tag": "7SA0H041WHLMWAN",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 57,
-              "current_track": 5,
-              "favorites": [
-                "Rainy Day Reflections",
-                "Evening Drive Relax",
-                "Podcast Catch-up"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": false,
-              "limit": 100
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": true,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 21,
-              "driver_temp": 19
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": true,
-              "alerts": [
-                "Motion detected near front door"
-              ]
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "closed",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "closed",
-            "awake": true,
-            "speed": 0,
-            "location": {
-              "latitude": 34.389,
-              "longitude": -89.399
-            },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2022-06-12T08:50:57Z",
-            "modifiedTime": "2025-08-05T02:35:34Z"
-          }
-        }
-      }
-    },
-    "6f4a0ad9-68ea-4166-8ccc-2e2f8f233974": {
-      "id": "6f4a0ad9-68ea-4166-8ccc-2e2f8f233974",
-      "first_name": "Maria",
-      "last_name": "Austin",
-      "email": "maria.austin432@home-renovations.store",
-      "friends": [
-        "b77f9088-2833-4f97-b49f-6017c619ef82",
-        "6de805c7-6df3-4cd2-868f-ddb7c5ca0cc0",
-        "b45c0b76-10f6-46e4-8285-025deb9c5a19",
-        "8bf5a6f7-7d4f-4c2b-8b67-ef4d4c537528"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "c8964901-8d1a-4502-85f9-06c452e54fc2": {
-            "id": "c8964901-8d1a-4502-85f9-06c452e54fc2",
-            "original_vehicle_tag": "maria_model_x_1",
-            "vehicle_tag": "LRW2XYLERGFTWT3",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 23,
-              "current_track": 5,
-              "favorites": [
-                "Energy Boosters",
-                "Podcast Catch-up"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "closed"
-            },
-            "charge": {
-              "port_open": true,
-              "charging": false,
-              "limit": 70
-            },
-            "climate": {
-              "on": false,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 21,
-              "driver_temp": 20
-            },
-            "locks": {
-              "locked": true
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "open",
-              "passenger_rear": "open"
-            },
-            "windows": "open",
-            "awake": false,
-            "speed": 117,
-            "location": {
-              "latitude": 28.6471,
-              "longitude": -74.959
-            },
-            "firmware_version": "2023.38.10",
-            "createdTime": "2021-08-20T14:30:44Z",
-            "modifiedTime": "2025-07-23T02:54:36Z"
-          }
-        }
-      }
-    },
-    "db2e814a-d237-4c48-a694-81960fb8467b": {
-      "id": "db2e814a-d237-4c48-a694-81960fb8467b",
-      "first_name": "Cole",
-      "last_name": "Chavez",
-      "email": "cole.chavez589@serviceshub.online",
-      "friends": [
-        "802d49c9-9606-47ec-b5c5-a1f602fabc06",
-        "9b9a41cc-c887-43a9-9a71-295132935665",
-        "693945b2-3788-42cd-982f-c6c84b45d631",
-        "b523d123-ffe3-441d-a869-e13734736e4e",
-        "72e59b79-d776-4b87-a0d6-e1ab21eaa1e5"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "83768aeb-2e45-43de-b9e8-fbe508e4a58f": {
-            "id": "83768aeb-2e45-43de-b9e8-fbe508e4a58f",
-            "original_vehicle_tag": "cole_model_3_1",
-            "vehicle_tag": "LFVS3X1N1M3FSBM",
-            "horn": false,
-            "media": {
-              "playing": true,
-              "volume": 38,
-              "current_track": 4,
-              "favorites": [
-                "Energy Boosters"
-              ]
-            },
-            "trunk": {
-              "front": "closed",
-              "rear": "open"
-            },
-            "charge": {
-              "port_open": false,
-              "charging": true,
-              "limit": 70
-            },
-            "climate": {
-              "on": true,
-              "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 25,
-              "driver_temp": 25
-            },
-            "locks": {
-              "locked": false
-            },
-            "sentry_mode": {
-              "on": false,
-              "alerts": []
-            },
-            "lights": {
-              "on": false
-            },
-            "doors": {
               "driver_front": "closed",
-              "passenger_front": "closed",
+              "passenger_front": "open",
               "driver_rear": "open",
               "passenger_rear": "open"
             },
@@ -1960,45 +1184,42 @@
             "awake": true,
             "speed": 0,
             "location": {
-              "latitude": 25.9658,
-              "longitude": -100.4963
+              "latitude": 28.5964,
+              "longitude": -114.9432
             },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2022-12-28T12:59:13Z",
-            "modifiedTime": "2025-07-17T20:32:08Z"
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2023-03-30T12:07:14Z",
+            "modifiedTime": "2025-08-20T15:31:09Z"
           }
         }
       }
     },
-    "cad3ac6c-5771-40d7-8f43-315b3c4a0a3f": {
-      "id": "cad3ac6c-5771-40d7-8f43-315b3c4a0a3f",
-      "first_name": "Jeremy",
-      "last_name": "Simmons",
-      "email": "jeremy.simmons644@aquarium-supplies.store",
-      "friends": [
-        "49936604-5ef1-43ef-bab0-d3024c966294",
-        "b05ea0d5-e29e-4853-bfe9-b70b47d28716",
-        "f5af0ced-e665-43a7-9199-ff46e014e2db",
-        "404f08a9-8e6a-4616-8327-d906ad4796ee"
-      ],
+    "915c99ab-ee49-47ed-b807-e8323a89ec91": {
+      "id": "915c99ab-ee49-47ed-b807-e8323a89ec91",
+      "first_name": "Gabriel",
+      "last_name": "Lewis",
+      "email": "gabriel.lewis613@pet-adoption.online",
+      "friends": [],
       "tesla_data": {
         "vehicles": {
-          "0acc442a-5f36-4c17-855a-6a408c038d92": {
-            "id": "0acc442a-5f36-4c17-855a-6a408c038d92",
-            "original_vehicle_tag": "jeremy_cybertruck_1",
-            "vehicle_tag": "LFVV2B96WVWL2FA",
+          "9d76490a-9cf6-441c-9a4d-f5cdde8dc10d": {
+            "id": "9d76490a-9cf6-441c-9a4d-f5cdde8dc10d",
+            "original_vehicle_tag": "gabriel_model_3_1",
+            "vehicle_tag": "LRWL9AX26LH47JV",
             "horn": false,
             "media": {
-              "playing": true,
-              "volume": 70,
-              "current_track": 1,
+              "playing": false,
+              "volume": 45,
+              "current_track": 0,
               "favorites": [
-                "Evening Drive Relax"
+                "stargazing",
+                "music for degenerates",
+                "pool day"
               ]
             },
             "trunk": {
-              "front": "open",
-              "rear": "closed"
+              "front": "closed",
+              "rear": "open"
             },
             "charge": {
               "port_open": false,
@@ -2016,57 +1237,148 @@
               "locked": true
             },
             "sentry_mode": {
-              "on": false,
-              "alerts": []
+              "on": true,
+              "alerts": [
+                "Recording event - vehicle approached",
+                "Motion detected near front door"
+              ]
             },
             "lights": {
               "on": false
             },
             "doors": {
-              "driver_front": "closed",
-              "passenger_front": "closed",
-              "driver_rear": "open",
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
               "passenger_rear": "closed"
             },
-            "windows": "open",
+            "windows": "closed",
             "awake": true,
-            "speed": 81,
+            "speed": 100,
             "location": {
-              "latitude": 40.9707,
-              "longitude": -103.4293
+              "latitude": 28.2688,
+              "longitude": -87.148
             },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2023-03-23T07:48:50Z",
-            "modifiedTime": "2025-08-12T06:33:54Z"
+            "firmware_version": "2023.38.10",
+            "createdTime": "2021-01-09T23:16:57Z",
+            "modifiedTime": "2025-08-03T20:28:55Z"
+          },
+          "9a033329-f160-4d8d-9897-17c1c711978a": {
+            "id": "9a033329-f160-4d8d-9897-17c1c711978a",
+            "original_vehicle_tag": "gabriel_cybertruck_2",
+            "vehicle_tag": "5YJLZE9H6C77BY6",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 20,
+              "current_track": 0,
+              "favorites": [
+                "this is for the person i was in middle school",
+                "it's a canon event",
+                "i'm 16 again and everything hurts"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 24,
+              "driver_temp": 25
+            },
+            "locks": {
+              "locked": false
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": [
+                "Motion detected near front door"
+              ]
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "open",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 61,
+            "location": {
+              "latitude": 37.0126,
+              "longitude": -68.6477
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2023-04-13T05:59:31Z",
+            "modifiedTime": "2025-08-26T17:16:19Z"
           }
         }
       }
     },
-    "a39508c0-6a1e-48e6-949d-c7f6899c5fe5": {
-      "id": "a39508c0-6a1e-48e6-949d-c7f6899c5fe5",
-      "first_name": "Zola",
-      "last_name": "Mendez",
-      "email": "zola.mendez218@mental-health.support",
+    "d76d4842-b96a-4042-9912-c79e7fe298ab": {
+      "id": "d76d4842-b96a-4042-9912-c79e7fe298ab",
+      "first_name": "Dominic",
+      "last_name": "Smith",
+      "email": "dominic.smith883@pest-control.co",
       "friends": [
-        "f98eff6f-ebc9-4ee5-80c3-5f89319f1725",
-        "3f4adade-aafa-4021-b463-dbfbaee225e5",
-        "b05ea0d5-e29e-4853-bfe9-b70b47d28716",
-        "67b0fd8e-df6d-4e00-84c8-f7d877ed720d",
-        "017665e0-4b41-4510-99ff-8c2d8840fce5"
+        "e9a88438-b36f-4934-a564-034352148d7e",
+        "e82c7df4-a578-4ba4-9560-1b25106e2edf"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "27af062d-6d9e-4db1-96f0-8082abec2ff4": {
+      "id": "27af062d-6d9e-4db1-96f0-8082abec2ff4",
+      "first_name": "Kyle",
+      "last_name": "Pena",
+      "email": "kyle.pena633@biotechnology.solutions",
+      "friends": [
+        "33365a31-92c5-4f85-acfb-870209fe2386",
+        "e82c7df4-a578-4ba4-9560-1b25106e2edf",
+        "8f3b8e6b-f0e9-4fa0-8f3f-7bee63757ed3"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "ff259813-a23d-45a1-aeb8-0f9d24ad51d4": {
+      "id": "ff259813-a23d-45a1-aeb8-0f9d24ad51d4",
+      "first_name": "Nolan",
+      "last_name": "Aguilar",
+      "email": "nolan.aguilar646@nextgenmedia.co",
+      "friends": [
+        "9703f06a-ab19-4b99-a635-0ee2e6ec6fda",
+        "f11d0f7e-8c3c-4372-acb7-566a00d23144",
+        "62f9101b-7889-4495-a4c8-6efb763e051d",
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "125aaa50-a3c9-431a-94c2-5547bc77d0a2"
       ],
       "tesla_data": {
         "vehicles": {
-          "3f478191-fa00-4d1b-94cb-246689f75113": {
-            "id": "3f478191-fa00-4d1b-94cb-246689f75113",
-            "original_vehicle_tag": "zola_model_s_1",
-            "vehicle_tag": "LRWP533D3XS31F4",
+          "9294323d-4e65-45e4-a973-13aff89bd998": {
+            "id": "9294323d-4e65-45e4-a973-13aff89bd998",
+            "original_vehicle_tag": "nolan_roadster_1",
+            "vehicle_tag": "7SAVFUGG2GG7YFW",
             "horn": false,
             "media": {
-              "playing": false,
-              "volume": 26,
-              "current_track": 0,
+              "playing": true,
+              "volume": 38,
+              "current_track": 3,
               "favorites": [
-                "Energy Boosters"
+                "modern psychedelia",
+                "i should have been born in a different era"
               ]
             },
             "trunk": {
@@ -2079,11 +1391,246 @@
               "limit": 100
             },
             "climate": {
-              "on": false,
+              "on": true,
               "bioweapon_mode": false,
               "climate_keeper_mode": "dog",
-              "cop_temp": 28,
+              "cop_temp": 21,
               "driver_temp": 25
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 0,
+            "location": {
+              "latitude": 29.842,
+              "longitude": -96.6477
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2022-05-20T15:56:59Z",
+            "modifiedTime": "2025-08-19T01:40:49Z"
+          }
+        }
+      }
+    },
+    "03059049-b03b-498d-ad76-81ca83bb6a64": {
+      "id": "03059049-b03b-498d-ad76-81ca83bb6a64",
+      "first_name": "Ariana",
+      "last_name": "King",
+      "email": "ariana.king28@mindfulness-hub.app",
+      "friends": [
+        "5cc07f80-29ab-4de2-a483-97029787c5cd",
+        "e82c7df4-a578-4ba4-9560-1b25106e2edf",
+        "27af062d-6d9e-4db1-96f0-8082abec2ff4",
+        "a9292c24-fdcb-474c-aea7-011f6a703dd1",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "462dffe6-85e2-485c-9a1e-dfdabd3aacad": {
+      "id": "462dffe6-85e2-485c-9a1e-dfdabd3aacad",
+      "first_name": "Elias",
+      "last_name": "Bailey",
+      "email": "elias.bailey159@fitness-coaching.net",
+      "friends": [
+        "33365a31-92c5-4f85-acfb-870209fe2386",
+        "915c99ab-ee49-47ed-b807-e8323a89ec91",
+        "85bf3878-700a-4f28-91bb-17c720e46dc9",
+        "125aaa50-a3c9-431a-94c2-5547bc77d0a2"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "f8272bad-bd40-4bae-98c3-b35c63b6f5c2": {
+            "id": "f8272bad-bd40-4bae-98c3-b35c63b6f5c2",
+            "original_vehicle_tag": "elias_roadster_1",
+            "vehicle_tag": "LRWGTTRP8TGXSWH",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 60,
+              "current_track": 1,
+              "favorites": [
+                "my villains playlist",
+                "southern gothic"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 29,
+              "driver_temp": 20
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": [
+                "Motion detected near front door",
+                "Alarm triggered by strange noise"
+              ]
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 31.8239,
+              "longitude": -110.6196
+            },
+            "firmware_version": "2024.12.3",
+            "createdTime": "2023-01-30T21:10:06Z",
+            "modifiedTime": "2025-07-16T05:51:18Z"
+          },
+          "d665c3b0-acf6-4f5a-8eaa-1428f065162b": {
+            "id": "d665c3b0-acf6-4f5a-8eaa-1428f065162b",
+            "original_vehicle_tag": "elias_model_s_2",
+            "vehicle_tag": "LRWBYMB61LZ6PYS",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 39,
+              "current_track": 2,
+              "favorites": [
+                "grocery shopping soundtrack",
+                "writing my novel",
+                "songs to stare at the ceiling and contemplate every decision you've ever made to"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 30,
+              "driver_temp": 19
+            },
+            "locks": {
+              "locked": false
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 33,
+            "location": {
+              "latitude": 36.1942,
+              "longitude": -107.1786
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2021-11-15T14:03:12Z",
+            "modifiedTime": "2025-08-19T15:04:06Z"
+          }
+        }
+      }
+    },
+    "1132a388-19de-4d45-9acf-24b37ce7c949": {
+      "id": "1132a388-19de-4d45-9acf-24b37ce7c949",
+      "first_name": "Danielle",
+      "last_name": "Foster",
+      "email": "danielle.foster819@history-buffs.net",
+      "friends": [
+        "33365a31-92c5-4f85-acfb-870209fe2386",
+        "5cc07f80-29ab-4de2-a483-97029787c5cd",
+        "fb8bf5a7-5ff4-4344-8895-9aa8f99752a2"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "9b0070e2-cd0c-40ba-9433-f685da2da13f": {
+      "id": "9b0070e2-cd0c-40ba-9433-f685da2da13f",
+      "first_name": "Delilah",
+      "last_name": "Davis",
+      "email": "delilah.davis786@dog-training.com",
+      "friends": [
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "d1a6e412-9751-4a61-9468-964ff44e22e9": {
+            "id": "d1a6e412-9751-4a61-9468-964ff44e22e9",
+            "original_vehicle_tag": "delilah_roadster_1",
+            "vehicle_tag": "5YJ6JK3USTFB73L",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 38,
+              "current_track": 0,
+              "favorites": [
+                "if i go missing, play this at my funeral",
+                "video game soundtracks to live to",
+                "the aux is mine."
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 30,
+              "driver_temp": 23
             },
             "locks": {
               "locked": true
@@ -2098,88 +1645,87 @@
             "doors": {
               "driver_front": "open",
               "passenger_front": "closed",
-              "driver_rear": "open",
+              "driver_rear": "closed",
               "passenger_rear": "closed"
             },
             "windows": "open",
-            "awake": true,
+            "awake": false,
             "speed": 0,
             "location": {
-              "latitude": 31.321,
-              "longitude": -71.7827
+              "latitude": 43.2986,
+              "longitude": -92.4341
             },
-            "firmware_version": "2024.14.7",
-            "createdTime": "2022-06-07T09:33:12Z",
-            "modifiedTime": "2025-07-15T10:12:37Z"
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2022-10-25T22:42:05Z",
+            "modifiedTime": "2025-08-20T20:23:09Z"
           }
         }
       }
     },
-    "e06d5e1d-4d76-4a6f-938a-3edac4e7bf96": {
-      "id": "e06d5e1d-4d76-4a6f-938a-3edac4e7bf96",
-      "first_name": "Faith",
-      "last_name": "Chavez",
-      "email": "faith.chavez115@k-12-resources.net",
+    "3d206bf2-ae64-4aca-a233-a9c7e8edabad": {
+      "id": "3d206bf2-ae64-4aca-a233-a9c7e8edabad",
+      "first_name": "Mason",
+      "last_name": "Bell",
+      "email": "mason.bell609@app-dev.net",
       "friends": [
-        "41c9f564-ffee-4fc7-8b47-452c70815cda"
+        "5cc07f80-29ab-4de2-a483-97029787c5cd",
+        "50cf208c-a0fd-4a98-9be9-8b5012782ac8",
+        "8f3b8e6b-f0e9-4fa0-8f3f-7bee63757ed3"
       ],
       "tesla_data": {
         "vehicles": {}
       }
     },
-    "146222cf-0a94-41b8-98dc-683d79ae8bfe": {
-      "id": "146222cf-0a94-41b8-98dc-683d79ae8bfe",
-      "first_name": "Roman",
-      "last_name": "Coleman",
-      "email": "roman.coleman891@backpacking-guide.com",
+    "48a42a5e-7bf2-4a94-8083-ed3e11272e6d": {
+      "id": "48a42a5e-7bf2-4a94-8083-ed3e11272e6d",
+      "first_name": "Timothy",
+      "last_name": "Foster",
+      "email": "timothy.foster901@fitnessfirst.io",
       "friends": [
-        "77070df1-0c30-40f3-a15a-4f472b8eefe1",
-        "b05ea0d5-e29e-4853-bfe9-b70b47d28716",
-        "a9b37af9-8f06-4c94-aa33-1b71513a2819",
-        "f98eff6f-ebc9-4ee5-80c3-5f89319f1725"
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b",
+        "462dffe6-85e2-485c-9a1e-dfdabd3aacad",
+        "27af062d-6d9e-4db1-96f0-8082abec2ff4",
+        "f32a0e5e-6183-4f42-9862-ecfa4bc390f0"
       ],
       "tesla_data": {
         "vehicles": {
-          "38ed10e3-b75c-4c23-a46e-c0ba3e2685a4": {
-            "id": "38ed10e3-b75c-4c23-a46e-c0ba3e2685a4",
-            "original_vehicle_tag": "roman_model_y_1",
-            "vehicle_tag": "5YJTZR2GXP6Z2FF",
+          "8d7e816f-f9d5-489e-a9b0-1b6cab7a5ce6": {
+            "id": "8d7e816f-f9d5-489e-a9b0-1b6cab7a5ce6",
+            "original_vehicle_tag": "timothy_model_s_1",
+            "vehicle_tag": "LRWFFNERTVU0MZU",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 38,
-              "current_track": 2,
+              "volume": 36,
+              "current_track": 5,
               "favorites": [
-                "Family Road Trip Hits",
-                "Chill Acoustic Vibes",
-                "Podcast Catch-up"
+                "i am mentally ill but my playlist is fire",
+                "coastal grandmother",
+                "unironically good"
               ]
             },
             "trunk": {
-              "front": "open",
-              "rear": "closed"
+              "front": "closed",
+              "rear": "open"
             },
             "charge": {
-              "port_open": true,
-              "charging": false,
-              "limit": 80
+              "port_open": false,
+              "charging": true,
+              "limit": 90
             },
             "climate": {
-              "on": false,
+              "on": true,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "camp",
-              "cop_temp": 23,
-              "driver_temp": 25
+              "climate_keeper_mode": "off",
+              "cop_temp": 21,
+              "driver_temp": 22
             },
             "locks": {
-              "locked": true
+              "locked": false
             },
             "sentry_mode": {
-              "on": true,
-              "alerts": [
-                "Motion detected near front door",
-                "Object too close to rear bumper"
-              ]
+              "on": false,
+              "alerts": []
             },
             "lights": {
               "on": false
@@ -2187,57 +1733,32 @@
             "doors": {
               "driver_front": "open",
               "passenger_front": "open",
-              "driver_rear": "open",
+              "driver_rear": "closed",
               "passenger_rear": "closed"
             },
-            "windows": "open",
+            "windows": "closed",
             "awake": true,
-            "speed": 0,
+            "speed": 65,
             "location": {
-              "latitude": 30.0667,
-              "longitude": -71.8274
+              "latitude": 35.1852,
+              "longitude": -81.0186
             },
-            "firmware_version": "2023.38.10",
-            "createdTime": "2021-12-23T04:14:33Z",
-            "modifiedTime": "2025-06-30T18:33:25Z"
-          }
-        }
-      }
-    },
-    "2c0034f7-e628-4c76-a4e2-808359188540": {
-      "id": "2c0034f7-e628-4c76-a4e2-808359188540",
-      "first_name": "George",
-      "last_name": "Reyes",
-      "email": "george.reyes225@dog-training.school",
-      "friends": [
-        "f5af0ced-e665-43a7-9199-ff46e014e2db",
-        "41c9f564-ffee-4fc7-8b47-452c70815cda"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "72fccd04-5e4a-440a-be1e-973061b91e63": {
-      "id": "72fccd04-5e4a-440a-be1e-973061b91e63",
-      "first_name": "Aaliyah",
-      "last_name": "Gonzalez",
-      "email": "aaliyah.gonzalez3@javascript-guide.dev",
-      "friends": [
-        "b05ea0d5-e29e-4853-bfe9-b70b47d28716",
-        "4839747b-53e4-4294-a571-f9e9e63b93ac"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "85795990-7948-4396-9d31-0cf89993897f": {
-            "id": "85795990-7948-4396-9d31-0cf89993897f",
-            "original_vehicle_tag": "aaliyah_model_s_1",
-            "vehicle_tag": "5YJ5AHYARDBUDEB",
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-10-12T20:33:51Z",
+            "modifiedTime": "2025-07-17T14:49:59Z"
+          },
+          "52b9875f-1661-4476-8f27-3476e5e486b6": {
+            "id": "52b9875f-1661-4476-8f27-3476e5e486b6",
+            "original_vehicle_tag": "timothy_model_s_2",
+            "vehicle_tag": "LRWJJ4DE8NY1JLL",
             "horn": false,
             "media": {
               "playing": false,
-              "volume": 65,
+              "volume": 82,
               "current_track": 0,
-              "favorites": []
+              "favorites": [
+                "music for a haunted house"
+              ]
             },
             "trunk": {
               "front": "open",
@@ -2249,11 +1770,11 @@
               "limit": 70
             },
             "climate": {
-              "on": true,
+              "on": false,
               "bioweapon_mode": false,
               "climate_keeper_mode": "off",
-              "cop_temp": 30,
-              "driver_temp": 25
+              "cop_temp": 24,
+              "driver_temp": 21
             },
             "locks": {
               "locked": true
@@ -2271,46 +1792,29 @@
               "driver_rear": "open",
               "passenger_rear": "open"
             },
-            "windows": "closed",
+            "windows": "open",
             "awake": true,
-            "speed": 3,
+            "speed": 0,
             "location": {
-              "latitude": 48.143,
-              "longitude": -69.2659
+              "latitude": 40.4685,
+              "longitude": -83.8212
             },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2023-07-04T11:15:35Z",
-            "modifiedTime": "2025-07-13T04:12:12Z"
-          }
-        }
-      }
-    },
-    "cbcfe17b-20a4-49dc-8bfe-0ca74d61f1e7": {
-      "id": "cbcfe17b-20a4-49dc-8bfe-0ca74d61f1e7",
-      "first_name": "Alexis",
-      "last_name": "Lane",
-      "email": "alexis.lane345@chemistry-tutor.com",
-      "friends": [
-        "e06d5e1d-4d76-4a6f-938a-3edac4e7bf96",
-        "7066516f-da4c-41d0-a229-8b0024697047",
-        "06e42bb8-94c7-4472-afb9-a126630b7b7c",
-        "8bf5a6f7-7d4f-4c2b-8b67-ef4d4c537528",
-        "b05ea0d5-e29e-4853-bfe9-b70b47d28716"
-      ],
-      "tesla_data": {
-        "vehicles": {
-          "69d11782-9090-44de-a976-d210864399bf": {
-            "id": "69d11782-9090-44de-a976-d210864399bf",
-            "original_vehicle_tag": "alexis_model_y_1",
-            "vehicle_tag": "7SAUJNK29XWZVMB",
+            "firmware_version": "2024.14.7",
+            "createdTime": "2021-02-01T10:49:10Z",
+            "modifiedTime": "2025-08-25T09:59:23Z"
+          },
+          "facdd702-7472-4fb8-bdeb-095806a8ab86": {
+            "id": "facdd702-7472-4fb8-bdeb-095806a8ab86",
+            "original_vehicle_tag": "timothy_model_y_3",
+            "vehicle_tag": "5YJR1JF38G692XY",
             "horn": false,
             "media": {
-              "playing": true,
-              "volume": 64,
-              "current_track": 4,
+              "playing": false,
+              "volume": 68,
+              "current_track": 0,
               "favorites": [
-                "Family Road Trip Hits",
-                "City Driving Jazz"
+                "my turn to be a problem",
+                "time is a flat circle"
               ]
             },
             "trunk": {
@@ -2318,15 +1822,15 @@
               "rear": "closed"
             },
             "charge": {
-              "port_open": false,
-              "charging": true,
+              "port_open": true,
+              "charging": false,
               "limit": 90
             },
             "climate": {
               "on": true,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 21,
+              "climate_keeper_mode": "off",
+              "cop_temp": 28,
               "driver_temp": 23
             },
             "locks": {
@@ -2345,62 +1849,83 @@
               "driver_rear": "closed",
               "passenger_rear": "closed"
             },
-            "windows": "open",
-            "awake": false,
-            "speed": 15,
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
             "location": {
-              "latitude": 44.4394,
-              "longitude": -89.8648
+              "latitude": 40.086,
+              "longitude": -102.7995
             },
-            "firmware_version": "2023.38.10",
-            "createdTime": "2021-03-30T05:06:53Z",
-            "modifiedTime": "2025-08-06T20:56:30Z"
+            "firmware_version": "2024.14.7",
+            "createdTime": "2021-04-02T21:41:15Z",
+            "modifiedTime": "2025-08-10T03:09:53Z"
           }
         }
       }
     },
-    "ce0f5b83-f919-4656-bdbd-17b7ab83c171": {
-      "id": "ce0f5b83-f919-4656-bdbd-17b7ab83c171",
-      "first_name": "Clara",
-      "last_name": "Nelson",
-      "email": "clara.nelson898@online-courses.io",
-      "friends": [],
+    "46f00cd3-4c9a-42f5-85ea-792c743a99d5": {
+      "id": "46f00cd3-4c9a-42f5-85ea-792c743a99d5",
+      "first_name": "Charles",
+      "last_name": "Orozco",
+      "email": "charles.orozco34@eventplanners.biz",
+      "friends": [
+        "3d206bf2-ae64-4aca-a233-a9c7e8edabad",
+        "8bed3158-7982-4ab5-94cd-e14d2a79550b",
+        "462dffe6-85e2-485c-9a1e-dfdabd3aacad",
+        "33365a31-92c5-4f85-acfb-870209fe2386",
+        "125aaa50-a3c9-431a-94c2-5547bc77d0a2"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "dae6cbdc-b34a-4f35-a2d3-492cdbc9f8e2": {
+      "id": "dae6cbdc-b34a-4f35-a2d3-492cdbc9f8e2",
+      "first_name": "Taylor",
+      "last_name": "Rodriguez",
+      "email": "taylor.rodriguez759@auto-repair.co",
+      "friends": [
+        "3d206bf2-ae64-4aca-a233-a9c7e8edabad",
+        "fb8bf5a7-5ff4-4344-8895-9aa8f99752a2"
+      ],
       "tesla_data": {
         "vehicles": {
-          "7f1d13d0-fb32-436c-a8a4-de28b407ca71": {
-            "id": "7f1d13d0-fb32-436c-a8a4-de28b407ca71",
-            "original_vehicle_tag": "clara_model_3_1",
-            "vehicle_tag": "LRWUCL2J1LV2XSY",
+          "3b3be548-04c9-4da0-a095-98867f7ad3d7": {
+            "id": "3b3be548-04c9-4da0-a095-98867f7ad3d7",
+            "original_vehicle_tag": "taylor_model_3_1",
+            "vehicle_tag": "LFVVZ7RG4M7YCKD",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 89,
-              "current_track": 3,
+              "volume": 61,
+              "current_track": 4,
               "favorites": [
-                "Podcast Catch-up"
+                "thunderstorms & coffee",
+                "songs to commit arson to",
+                "golden hour"
               ]
             },
             "trunk": {
               "front": "open",
-              "rear": "open"
+              "rear": "closed"
             },
             "charge": {
               "port_open": false,
               "charging": true,
-              "limit": 70
+              "limit": 80
             },
             "climate": {
               "on": true,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 28,
-              "driver_temp": 18
+              "climate_keeper_mode": "off",
+              "cop_temp": 22,
+              "driver_temp": 25
             },
             "locks": {
               "locked": true
             },
             "sentry_mode": {
-              "on": false,
+              "on": true,
               "alerts": []
             },
             "lights": {
@@ -2408,73 +1933,49 @@
             },
             "doors": {
               "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "open"
             },
-            "windows": "closed",
+            "windows": "open",
             "awake": true,
-            "speed": 86,
+            "speed": 88,
             "location": {
-              "latitude": 34.9328,
-              "longitude": -89.4081
+              "latitude": 40.0466,
+              "longitude": -84.5813
             },
-            "firmware_version": "2024.12.3",
-            "createdTime": "2021-08-03T20:57:02Z",
-            "modifiedTime": "2025-06-27T16:13:41Z"
-          }
-        }
-      }
-    },
-    "38d5f870-edac-4a9e-85a1-be79162a39a2": {
-      "id": "38d5f870-edac-4a9e-85a1-be79162a39a2",
-      "first_name": "Zachary",
-      "last_name": "Jenkins",
-      "email": "zachary.jenkins946@content-marketing.services",
-      "friends": [
-        "cbcfe17b-20a4-49dc-8bfe-0ca74d61f1e7",
-        "2c0034f7-e628-4c76-a4e2-808359188540"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "8f44f89e-6719-4a94-8031-c6cb7201c892": {
-      "id": "8f44f89e-6719-4a94-8031-c6cb7201c892",
-      "first_name": "Savannah",
-      "last_name": "Scott",
-      "email": "savannah.scott410@ai-assistants.tech",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {
-          "672ac840-9462-4ceb-9b4c-203af649102e": {
-            "id": "672ac840-9462-4ceb-9b4c-203af649102e",
-            "original_vehicle_tag": "savannah_model_3_1",
-            "vehicle_tag": "LRW8MR3SPPFLLT0",
+            "firmware_version": "2024.8.9",
+            "createdTime": "2022-04-02T14:22:15Z",
+            "modifiedTime": "2025-06-29T12:13:10Z"
+          },
+          "77ceae64-b972-4569-a508-e39e1a13c77c": {
+            "id": "77ceae64-b972-4569-a508-e39e1a13c77c",
+            "original_vehicle_tag": "taylor_model_x_2",
+            "vehicle_tag": "LFVEMARARHPX9TJ",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 48,
-              "current_track": 0,
+              "volume": 30,
+              "current_track": 1,
               "favorites": [
-                "City Driving Jazz"
+                "jams"
               ]
             },
             "trunk": {
               "front": "open",
-              "rear": "open"
+              "rear": "closed"
             },
             "charge": {
               "port_open": false,
-              "charging": false,
-              "limit": 100
+              "charging": true,
+              "limit": 80
             },
             "climate": {
               "on": true,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 21,
-              "driver_temp": 18
+              "climate_keeper_mode": "off",
+              "cop_temp": 24,
+              "driver_temp": 24
             },
             "locks": {
               "locked": true
@@ -2489,100 +1990,129 @@
             "doors": {
               "driver_front": "open",
               "passenger_front": "closed",
-              "driver_rear": "open",
-              "passenger_rear": "closed"
+              "driver_rear": "closed",
+              "passenger_rear": "open"
             },
-            "windows": "open",
-            "awake": true,
-            "speed": 0,
+            "windows": "closed",
+            "awake": false,
+            "speed": 58,
             "location": {
-              "latitude": 34.7423,
-              "longitude": -91.46
+              "latitude": 45.5778,
+              "longitude": -103.5615
             },
             "firmware_version": "2024.8.9",
-            "createdTime": "2021-10-02T14:05:52Z",
-            "modifiedTime": "2025-08-05T03:23:15Z"
+            "createdTime": "2022-03-06T12:35:58Z",
+            "modifiedTime": "2025-07-28T19:01:49Z"
           }
         }
       }
     },
-    "79ee81b6-cede-42ba-8431-65b334603e5d": {
-      "id": "79ee81b6-cede-42ba-8431-65b334603e5d",
-      "first_name": "Fiona",
-      "last_name": "Vasquez",
-      "email": "fiona.vasquez76@archeology-online.org",
+    "b6ee4202-3286-435f-a665-1f7c92095b4b": {
+      "id": "b6ee4202-3286-435f-a665-1f7c92095b4b",
+      "first_name": "Eva",
+      "last_name": "Hamilton",
+      "email": "eva.hamilton264@home-renovations.store",
       "friends": [
-        "bdea0fef-a71e-4d49-ac5e-aed60feebbf0",
-        "404f08a9-8e6a-4616-8327-d906ad4796ee",
-        "b523d123-ffe3-441d-a869-e13734736e4e",
-        "38d5f870-edac-4a9e-85a1-be79162a39a2"
+        "50cf208c-a0fd-4a98-9be9-8b5012782ac8"
       ],
       "tesla_data": {
         "vehicles": {}
       }
     },
-    "c42e2228-0ff7-48b0-9717-c7fcbc68e4bb": {
-      "id": "c42e2228-0ff7-48b0-9717-c7fcbc68e4bb",
-      "first_name": "Elias",
-      "last_name": "Alvarado",
-      "email": "elias.alvarado415@jewelry-maker.shop",
+    "027754b6-95aa-4785-b022-f68ebc71ea15": {
+      "id": "027754b6-95aa-4785-b022-f68ebc71ea15",
+      "first_name": "Ava",
+      "last_name": "Phillips",
+      "email": "ava.phillips248@travel-experts.com",
       "friends": [
-        "b05ea0d5-e29e-4853-bfe9-b70b47d28716",
-        "7066516f-da4c-41d0-a229-8b0024697047",
-        "67b0fd8e-df6d-4e00-84c8-f7d877ed720d",
-        "4839747b-53e4-4294-a571-f9e9e63b93ac"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "a69dd6c4-4c4f-47ac-bf3d-eb752c2f4250": {
-      "id": "a69dd6c4-4c4f-47ac-bf3d-eb752c2f4250",
-      "first_name": "Allen",
-      "last_name": "Gonzalez",
-      "email": "allen.gonzalez31@wedding-planners.co",
-      "friends": [],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "6472ae76-f793-4016-a582-a1c5d79a1c82": {
-      "id": "6472ae76-f793-4016-a582-a1c5d79a1c82",
-      "first_name": "Shane",
-      "last_name": "Russell",
-      "email": "shane.russell106@enterprise-software.io",
-      "friends": [
-        "748635e7-dc1b-47b4-ae5a-63ca37f01b87",
-        "ce0f5b83-f919-4656-bdbd-17b7ab83c171",
-        "6b2db2e3-c36c-4311-91b5-06c08ebfb580",
-        "cad3ac6c-5771-40d7-8f43-315b3c4a0a3f"
-      ],
-      "tesla_data": {
-        "vehicles": {}
-      }
-    },
-    "99ecae24-b41a-4b2a-9d27-35772dd91a7a": {
-      "id": "99ecae24-b41a-4b2a-9d27-35772dd91a7a",
-      "first_name": "Elise",
-      "last_name": "Foster",
-      "email": "elise.foster793@boutique-style.online",
-      "friends": [
-        "4839747b-53e4-4294-a571-f9e9e63b93ac",
-        "8b559d81-c483-4dac-a115-5a4466c3498a"
+        "462dffe6-85e2-485c-9a1e-dfdabd3aacad",
+        "9b0070e2-cd0c-40ba-9433-f685da2da13f"
       ],
       "tesla_data": {
         "vehicles": {
-          "b6e2a92f-220c-4dde-89f9-a679d60e568f": {
-            "id": "b6e2a92f-220c-4dde-89f9-a679d60e568f",
-            "original_vehicle_tag": "elise_model_s_1",
-            "vehicle_tag": "LFVJ08A4VW3MUJ8",
+          "dded4763-54df-45d5-864b-9b2d53bfb4c2": {
+            "id": "dded4763-54df-45d5-864b-9b2d53bfb4c2",
+            "original_vehicle_tag": "ava_model_y_1",
+            "vehicle_tag": "5YJ83JRWYDJA6BM",
             "horn": false,
             "media": {
               "playing": true,
-              "volume": 27,
-              "current_track": 5,
+              "volume": 74,
+              "current_track": 4,
               "favorites": [
-                "Highway Rock Anthems"
+                "a playlist for the damned",
+                "songs that activate my almonds"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 90
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 26,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "open",
+              "driver_rear": "open",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 26,
+            "location": {
+              "latitude": 32.257,
+              "longitude": -88.2776
+            },
+            "firmware_version": "2024.12.3",
+            "createdTime": "2022-01-21T09:08:12Z",
+            "modifiedTime": "2025-07-22T03:13:08Z"
+          }
+        }
+      }
+    },
+    "903fe88a-da8e-4457-b913-406a6ccee87e": {
+      "id": "903fe88a-da8e-4457-b913-406a6ccee87e",
+      "first_name": "Jenna",
+      "last_name": "Ford",
+      "email": "jenna.ford76@enterprise-data.solutions",
+      "friends": [
+        "027754b6-95aa-4785-b022-f68ebc71ea15",
+        "462dffe6-85e2-485c-9a1e-dfdabd3aacad",
+        "48a42a5e-7bf2-4a94-8083-ed3e11272e6d"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "86e89c54-808b-46c3-9288-cfd921552d70": {
+            "id": "86e89c54-808b-46c3-9288-cfd921552d70",
+            "original_vehicle_tag": "jenna_model_x_1",
+            "vehicle_tag": "7SA6LHZX2BWC6ZT",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 60,
+              "current_track": 0,
+              "favorites": [
+                "sea shanties for the soul"
               ]
             },
             "trunk": {
@@ -2592,58 +2122,192 @@
             "charge": {
               "port_open": false,
               "charging": false,
-              "limit": 70
+              "limit": 90
             },
             "climate": {
               "on": false,
               "bioweapon_mode": false,
-              "climate_keeper_mode": "dog",
-              "cop_temp": 22,
-              "driver_temp": 19
+              "climate_keeper_mode": "camp",
+              "cop_temp": 24,
+              "driver_temp": 21
+            },
+            "locks": {
+              "locked": false
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": [
+                "Alarm triggered by strange noise",
+                "Object too close to rear bumper"
+              ]
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 47.3751,
+              "longitude": -121.8909
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-07-13T17:08:02Z",
+            "modifiedTime": "2025-08-05T18:11:33Z"
+          }
+        }
+      }
+    },
+    "03d0089c-fbc0-47bb-af69-7738013279a2": {
+      "id": "03d0089c-fbc0-47bb-af69-7738013279a2",
+      "first_name": "Joel",
+      "last_name": "Torres",
+      "email": "joel.torres24@personal-injury.attorney",
+      "friends": [
+        "027754b6-95aa-4785-b022-f68ebc71ea15",
+        "915c99ab-ee49-47ed-b807-e8323a89ec91",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "c7b0fe0f-9600-4645-84a0-7d8273096be8": {
+            "id": "c7b0fe0f-9600-4645-84a0-7d8273096be8",
+            "original_vehicle_tag": "joel_roadster_1",
+            "vehicle_tag": "5YJSC93S6BNFJE1",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 52,
+              "current_track": 0,
+              "favorites": [
+                "thunderstorms & coffee",
+                "pool day"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 100
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 23,
+              "driver_temp": 25
             },
             "locks": {
               "locked": true
             },
             "sentry_mode": {
-              "on": true,
-              "alerts": [
-                "Motion detected near front door"
-              ]
+              "on": false,
+              "alerts": []
             },
             "lights": {
-              "on": true
+              "on": false
             },
             "doors": {
-              "driver_front": "open",
-              "passenger_front": "open",
-              "driver_rear": "closed",
-              "passenger_rear": "closed"
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "open"
             },
             "windows": "closed",
-            "awake": false,
-            "speed": 0,
+            "awake": true,
+            "speed": 116,
             "location": {
-              "latitude": 31.5501,
-              "longitude": -85.3437
+              "latitude": 40.5853,
+              "longitude": -120.4644
             },
-            "firmware_version": "2024.8.9",
-            "createdTime": "2022-08-27T21:01:45Z",
-            "modifiedTime": "2025-07-15T11:17:38Z"
+            "firmware_version": "2023.38.10",
+            "createdTime": "2020-08-28T17:08:47Z",
+            "modifiedTime": "2025-08-13T16:23:37Z"
           },
-          "e0ed33b6-f7a2-4553-b428-be071aed4fa9": {
-            "id": "e0ed33b6-f7a2-4553-b428-be071aed4fa9",
-            "original_vehicle_tag": "elise_model_s_2",
-            "vehicle_tag": "LFVLL00G2VYDPTR",
+          "7c81e5bf-3511-4609-bf13-6847b113a57e": {
+            "id": "7c81e5bf-3511-4609-bf13-6847b113a57e",
+            "original_vehicle_tag": "joel_model_x_2",
+            "vehicle_tag": "7SAUG97A1JHJYRY",
             "horn": false,
             "media": {
               "playing": false,
               "volume": 20,
               "current_track": 0,
-              "favorites": []
+              "favorites": [
+                "no thoughts, head empty",
+                "walking on sunshine",
+                "girl dinner soundtrack"
+              ]
             },
             "trunk": {
               "front": "closed",
               "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 100
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 23,
+              "driver_temp": 21
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 34,
+            "location": {
+              "latitude": 42.7144,
+              "longitude": -87.3452
+            },
+            "firmware_version": "2024.12.3",
+            "createdTime": "2023-08-05T20:04:20Z",
+            "modifiedTime": "2025-07-14T07:27:27Z"
+          },
+          "daf614d9-ef7f-48fd-aab4-7647d8dc75f4": {
+            "id": "daf614d9-ef7f-48fd-aab4-7647d8dc75f4",
+            "original_vehicle_tag": "joel_model_x_3",
+            "vehicle_tag": "LRWYAA936RX2CWV",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 57,
+              "current_track": 2,
+              "favorites": [
+                "warmth",
+                "dark academia"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
             },
             "charge": {
               "port_open": false,
@@ -2655,16 +2319,220 @@
               "bioweapon_mode": false,
               "climate_keeper_mode": "camp",
               "cop_temp": 23,
-              "driver_temp": 24
+              "driver_temp": 19
+            },
+            "locks": {
+              "locked": false
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 27.7347,
+              "longitude": -91.0274
+            },
+            "firmware_version": "2024.8.9",
+            "createdTime": "2021-01-15T16:25:42Z",
+            "modifiedTime": "2025-08-22T04:51:07Z"
+          }
+        }
+      }
+    },
+    "01b7d91c-2ef1-47b0-bd48-3cdba0421428": {
+      "id": "01b7d91c-2ef1-47b0-bd48-3cdba0421428",
+      "first_name": "Kaylee",
+      "last_name": "Cooper",
+      "email": "kaylee.cooper968@find-a-doctor.com",
+      "friends": [
+        "72e014ca-5ae3-4980-81a3-46ece0691242",
+        "fb8bf5a7-5ff4-4344-8895-9aa8f99752a2"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "28f6e098-a68e-4ec0-ab69-bd1bdb28d980": {
+      "id": "28f6e098-a68e-4ec0-ab69-bd1bdb28d980",
+      "first_name": "Brianna",
+      "last_name": "Barnes",
+      "email": "brianna.barnes810@pest-control.co",
+      "friends": [
+        "e9a88438-b36f-4934-a564-034352148d7e",
+        "48a42a5e-7bf2-4a94-8083-ed3e11272e6d"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "d7caeb8a-3dcf-495d-8377-1b15cbf4bcc1": {
+            "id": "d7caeb8a-3dcf-495d-8377-1b15cbf4bcc1",
+            "original_vehicle_tag": "brianna_model_3_1",
+            "vehicle_tag": "5YJWBU7Y1HEN1MV",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 26,
+              "current_track": 4,
+              "favorites": []
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 70
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 21,
+              "driver_temp": 19
             },
             "locks": {
               "locked": true
             },
             "sentry_mode": {
-              "on": true,
-              "alerts": [
-                "Alarm triggered by strange noise"
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 12,
+            "location": {
+              "latitude": 46.9849,
+              "longitude": -99.8004
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-04-16T20:56:42Z",
+            "modifiedTime": "2025-08-15T15:57:29Z"
+          },
+          "36c3f33b-2532-4245-9a54-c05c2767333d": {
+            "id": "36c3f33b-2532-4245-9a54-c05c2767333d",
+            "original_vehicle_tag": "brianna_model_s_2",
+            "vehicle_tag": "7SARLDUKWRKUS1M",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 30,
+              "current_track": 0,
+              "favorites": [
+                "sun",
+                "that spark"
               ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 80
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 26,
+              "driver_temp": 25
+            },
+            "locks": {
+              "locked": false
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "open",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 32.1336,
+              "longitude": -123.7255
+            },
+            "firmware_version": "2024.14.7",
+            "createdTime": "2023-08-06T09:14:36Z",
+            "modifiedTime": "2025-07-31T08:41:43Z"
+          }
+        }
+      }
+    },
+    "907b5994-d436-4d33-95e6-ee36c7bb6e33": {
+      "id": "907b5994-d436-4d33-95e6-ee36c7bb6e33",
+      "first_name": "Yusuf",
+      "last_name": "Guerrero",
+      "email": "yusuf.guerrero513@enterprise-data.solutions",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "563d5c3a-069f-4669-9b6c-193d1ff640fd": {
+            "id": "563d5c3a-069f-4669-9b6c-193d1ff640fd",
+            "original_vehicle_tag": "yusuf_model_3_1",
+            "vehicle_tag": "5YJVACR83X4T64G",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 60,
+              "current_track": 3,
+              "favorites": [
+                "rave culture",
+                "let's get weird"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": true,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 30,
+              "driver_temp": 20
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
             },
             "lights": {
               "on": false
@@ -2672,19 +2540,822 @@
             "doors": {
               "driver_front": "closed",
               "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "open",
+            "awake": false,
+            "speed": 0,
+            "location": {
+              "latitude": 31.3054,
+              "longitude": -81.9565
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2023-06-28T01:23:38Z",
+            "modifiedTime": "2025-07-11T20:28:16Z"
+          },
+          "d96dfb5c-520b-46eb-93ff-ac4a044f1dcc": {
+            "id": "d96dfb5c-520b-46eb-93ff-ac4a044f1dcc",
+            "original_vehicle_tag": "yusuf_model_x_2",
+            "vehicle_tag": "LRWL2M6GSS180UE",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 85,
+              "current_track": 0,
+              "favorites": [
+                "dark wave disco",
+                "july heatwave",
+                "i am in my delulu era"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 90
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 26,
+              "driver_temp": 25
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 60,
+            "location": {
+              "latitude": 38.7426,
+              "longitude": -119.7226
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2021-01-17T00:30:44Z",
+            "modifiedTime": "2025-07-17T15:43:39Z"
+          }
+        }
+      }
+    },
+    "fbec672d-0181-4a2e-84e6-9477c4b265f3": {
+      "id": "fbec672d-0181-4a2e-84e6-9477c4b265f3",
+      "first_name": "Aria",
+      "last_name": "Brooks",
+      "email": "aria.brooks842@it-solutions.dev",
+      "friends": [
+        "28f6e098-a68e-4ec0-ab69-bd1bdb28d980",
+        "fb8bf5a7-5ff4-4344-8895-9aa8f99752a2",
+        "907b5994-d436-4d33-95e6-ee36c7bb6e33",
+        "f32a0e5e-6183-4f42-9862-ecfa4bc390f0"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "9b3d69bd-4e5a-4900-8d09-5edcc246f997": {
+            "id": "9b3d69bd-4e5a-4900-8d09-5edcc246f997",
+            "original_vehicle_tag": "aria_model_s_1",
+            "vehicle_tag": "7SATB1TJ4X5B9M6",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 64,
+              "current_track": 2,
+              "favorites": [
+                "lowkey fire",
+                "that crushing weight of potential",
+                "why do they call it oven when you of in the cold food of out hot eat the food"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": true,
+              "charging": false,
+              "limit": 100
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 20,
+              "driver_temp": 22
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": true
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 69,
+            "location": {
+              "latitude": 27.0125,
+              "longitude": -101.1996
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2021-01-30T22:23:59Z",
+            "modifiedTime": "2025-07-20T02:25:04Z"
+          }
+        }
+      }
+    },
+    "c9643c5b-c00e-4ef2-9698-e9077c55a8e6": {
+      "id": "c9643c5b-c00e-4ef2-9698-e9077c55a8e6",
+      "first_name": "Reagan",
+      "last_name": "Shaw",
+      "email": "reagan.shaw624@cyber-defense.io",
+      "friends": [
+        "9703f06a-ab19-4b99-a635-0ee2e6ec6fda",
+        "fbec672d-0181-4a2e-84e6-9477c4b265f3",
+        "1c0abbb5-8b06-4898-98d5-fefed4f3767e"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "51281c77-04c8-488d-b657-41cec83222c5": {
+            "id": "51281c77-04c8-488d-b657-41cec83222c5",
+            "original_vehicle_tag": "reagan_model_x_1",
+            "vehicle_tag": "5YJG7XE26DH4F3B",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 66,
+              "current_track": 0,
+              "favorites": [
+                "clowncore",
+                "i have the music taste of a divorced dad",
+                "motown soul"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 23,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": false
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "open",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 115,
+            "location": {
+              "latitude": 37.5519,
+              "longitude": -113.651
+            },
+            "firmware_version": "2024.14.7",
+            "createdTime": "2023-06-18T05:20:29Z",
+            "modifiedTime": "2025-08-05T16:16:42Z"
+          }
+        }
+      }
+    },
+    "465c79b1-4e02-4275-87f3-a5ddd4eccbc9": {
+      "id": "465c79b1-4e02-4275-87f3-a5ddd4eccbc9",
+      "first_name": "Tyler",
+      "last_name": "Miller",
+      "email": "tyler.miller403@event-management.biz",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "1cbecd32-d7c9-4b76-ab0b-42720b9fad17": {
+      "id": "1cbecd32-d7c9-4b76-ab0b-42720b9fad17",
+      "first_name": "Alana",
+      "last_name": "Sanchez",
+      "email": "alana.sanchez294@audio-engineering.online",
+      "friends": [
+        "33365a31-92c5-4f85-acfb-870209fe2386",
+        "125aaa50-a3c9-431a-94c2-5547bc77d0a2",
+        "03d0089c-fbc0-47bb-af69-7738013279a2"
+      ],
+      "tesla_data": {
+        "vehicles": {}
+      }
+    },
+    "cf4c16d2-6106-4ce5-93ef-c5781f503016": {
+      "id": "cf4c16d2-6106-4ce5-93ef-c5781f503016",
+      "first_name": "Nicholas",
+      "last_name": "Clark",
+      "email": "nicholas.clark664@pet-adoption.online",
+      "friends": [
+        "3d206bf2-ae64-4aca-a233-a9c7e8edabad",
+        "ff259813-a23d-45a1-aeb8-0f9d24ad51d4",
+        "27af062d-6d9e-4db1-96f0-8082abec2ff4"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "824d47d3-8b7b-4637-932f-68c5482b8fac": {
+            "id": "824d47d3-8b7b-4637-932f-68c5482b8fac",
+            "original_vehicle_tag": "nicholas_model_x_1",
+            "vehicle_tag": "7SA9S2EU7BL60VD",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 62,
+              "current_track": 5,
+              "favorites": [
+                "downtown girl"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": true,
+              "charging": true,
+              "limit": 70
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 24,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": [
+                "Object too close to rear bumper"
+              ]
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 17,
+            "location": {
+              "latitude": 47.8491,
+              "longitude": -111.4163
+            },
+            "firmware_version": "2024.12.3",
+            "createdTime": "2021-02-04T11:00:36Z",
+            "modifiedTime": "2025-08-24T14:26:58Z"
+          },
+          "8b021546-dcf7-456b-980d-17ba0352dbf2": {
+            "id": "8b021546-dcf7-456b-980d-17ba0352dbf2",
+            "original_vehicle_tag": "nicholas_cybertruck_2",
+            "vehicle_tag": "LRW2LVMC2FBD9KT",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 86,
+              "current_track": 5,
+              "favorites": []
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": true,
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 27,
+              "driver_temp": 19
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "open",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 25.1786,
+              "longitude": -121.6165
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-08-28T12:42:15Z",
+            "modifiedTime": "2025-07-27T16:46:11Z"
+          }
+        }
+      }
+    },
+    "a368a0e6-9bae-4a43-a657-be65115dfadb": {
+      "id": "a368a0e6-9bae-4a43-a657-be65115dfadb",
+      "first_name": "Kayla",
+      "last_name": "Espinoza",
+      "email": "kayla.espinoza44@foodlovers.blog",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "0d777ac7-b91a-4271-9cb6-c9ed8bf50ffd": {
+            "id": "0d777ac7-b91a-4271-9cb6-c9ed8bf50ffd",
+            "original_vehicle_tag": "kayla_roadster_1",
+            "vehicle_tag": "5YJ3B8CS3KU2GCG",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 29,
+              "current_track": 2,
+              "favorites": [
+                "shower concert",
+                "dark wave disco"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 27,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 109,
+            "location": {
+              "latitude": 45.3368,
+              "longitude": -74.7878
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-02-08T12:15:31Z",
+            "modifiedTime": "2025-07-18T21:15:45Z"
+          },
+          "1cb529fe-d676-4ca9-bf9e-639303eb9b19": {
+            "id": "1cb529fe-d676-4ca9-bf9e-639303eb9b19",
+            "original_vehicle_tag": "kayla_model_s_2",
+            "vehicle_tag": "LFV1TYVV9NENWHS",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 35,
+              "current_track": 0,
+              "favorites": [
+                "burning bridges",
+                "background noise for reading",
+                "kidcore nostalgia"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "camp",
+              "cop_temp": 28,
+              "driver_temp": 22
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "closed",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 48.7301,
+              "longitude": -96.2405
+            },
+            "firmware_version": "2023.38.10",
+            "createdTime": "2023-04-11T10:33:28Z",
+            "modifiedTime": "2025-07-01T03:06:27Z"
+          }
+        }
+      }
+    },
+    "846fc42f-c660-4100-8eeb-7c485f7b4a6a": {
+      "id": "846fc42f-c660-4100-8eeb-7c485f7b4a6a",
+      "first_name": "Nolan",
+      "last_name": "Perez",
+      "email": "nolan.perez787@science-experiments.online",
+      "friends": [
+        "1132a388-19de-4d45-9acf-24b37ce7c949"
+      ],
+      "tesla_data": {
+        "vehicles": {
+          "230f9571-0d3e-4241-83ef-3024c2d65212": {
+            "id": "230f9571-0d3e-4241-83ef-3024c2d65212",
+            "original_vehicle_tag": "nolan_model_3_1",
+            "vehicle_tag": "7SACD588VPPSVWE",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 40,
+              "current_track": 0,
+              "favorites": [
+                "that crushing weight of potential",
+                "weirdcore"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 20,
+              "driver_temp": 23
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": true,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
               "driver_rear": "open",
               "passenger_rear": "closed"
             },
             "windows": "closed",
             "awake": true,
-            "speed": 84,
+            "speed": 0,
             "location": {
-              "latitude": 32.4503,
-              "longitude": -121.4061
+              "latitude": 48.8548,
+              "longitude": -96.6881
+            },
+            "firmware_version": "2024.8.9",
+            "createdTime": "2022-05-01T18:20:24Z",
+            "modifiedTime": "2025-08-24T21:11:57Z"
+          }
+        }
+      }
+    },
+    "63a856d9-26a9-47cc-b6bd-73d148723d2a": {
+      "id": "63a856d9-26a9-47cc-b6bd-73d148723d2a",
+      "first_name": "London",
+      "last_name": "Sanders",
+      "email": "london.sanders424@user-experience.design",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "54b9b3e6-3daf-481f-9409-09884d961e9d": {
+            "id": "54b9b3e6-3daf-481f-9409-09884d961e9d",
+            "original_vehicle_tag": "london_cybertruck_1",
+            "vehicle_tag": "LFVRBT2S9JUBDSN",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 46,
+              "current_track": 2,
+              "favorites": [
+                "my personality in a playlist",
+                "throwback thursday",
+                "witch house"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 24,
+              "driver_temp": 19
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 9,
+            "location": {
+              "latitude": 44.3548,
+              "longitude": -84.1037
+            },
+            "firmware_version": "2024.14.7",
+            "createdTime": "2021-01-04T21:07:14Z",
+            "modifiedTime": "2025-08-05T01:31:50Z"
+          }
+        }
+      }
+    },
+    "ceb6d012-3933-4395-9f59-e6df482fab43": {
+      "id": "ceb6d012-3933-4395-9f59-e6df482fab43",
+      "first_name": "Natalie",
+      "last_name": "Parker",
+      "email": "natalie.parker698@home-improvement.guide",
+      "friends": [],
+      "tesla_data": {
+        "vehicles": {
+          "71c4fdf0-a9ea-4151-b3bc-de7bc6222d0e": {
+            "id": "71c4fdf0-a9ea-4151-b3bc-de7bc6222d0e",
+            "original_vehicle_tag": "natalie_model_y_1",
+            "vehicle_tag": "LRWF3N7RRRSWFKY",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 82,
+              "current_track": 0,
+              "favorites": [
+                "3:33 am",
+                "reggae sunshine"
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 20,
+              "driver_temp": 20
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "closed"
+            },
+            "windows": "closed",
+            "awake": true,
+            "speed": 0,
+            "location": {
+              "latitude": 38.5853,
+              "longitude": -108.2267
             },
             "firmware_version": "2023.38.10",
-            "createdTime": "2023-07-03T07:56:26Z",
-            "modifiedTime": "2025-08-17T08:16:24Z"
+            "createdTime": "2020-12-21T03:09:05Z",
+            "modifiedTime": "2025-06-29T02:45:02Z"
+          },
+          "58a42439-b0ac-44a7-ab40-fe771d11cd94": {
+            "id": "58a42439-b0ac-44a7-ab40-fe771d11cd94",
+            "original_vehicle_tag": "natalie_model_y_2",
+            "vehicle_tag": "7SA6GMELTKCKDFJ",
+            "horn": false,
+            "media": {
+              "playing": true,
+              "volume": 74,
+              "current_track": 3,
+              "favorites": [
+                "walking on sunshine",
+                "backyard bonfire",
+                "content."
+              ]
+            },
+            "trunk": {
+              "front": "closed",
+              "rear": "open"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 80
+            },
+            "climate": {
+              "on": false,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "dog",
+              "cop_temp": 25,
+              "driver_temp": 21
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": false
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "closed",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 0,
+            "location": {
+              "latitude": 47.6305,
+              "longitude": -80.5571
+            },
+            "firmware_version": "2024.12.3",
+            "createdTime": "2020-08-28T05:23:44Z",
+            "modifiedTime": "2025-07-26T02:28:22Z"
+          },
+          "17055e17-040f-417f-8412-ae9db6b808a2": {
+            "id": "17055e17-040f-417f-8412-ae9db6b808a2",
+            "original_vehicle_tag": "natalie_roadster_3",
+            "vehicle_tag": "LFV8DSPJTSCSWJX",
+            "horn": false,
+            "media": {
+              "playing": false,
+              "volume": 60,
+              "current_track": 0,
+              "favorites": [
+                "music to attract the hoes to"
+              ]
+            },
+            "trunk": {
+              "front": "open",
+              "rear": "closed"
+            },
+            "charge": {
+              "port_open": false,
+              "charging": false,
+              "limit": 90
+            },
+            "climate": {
+              "on": true,
+              "bioweapon_mode": false,
+              "climate_keeper_mode": "off",
+              "cop_temp": 20,
+              "driver_temp": 25
+            },
+            "locks": {
+              "locked": true
+            },
+            "sentry_mode": {
+              "on": false,
+              "alerts": []
+            },
+            "lights": {
+              "on": true
+            },
+            "doors": {
+              "driver_front": "open",
+              "passenger_front": "open",
+              "driver_rear": "closed",
+              "passenger_rear": "open"
+            },
+            "windows": "closed",
+            "awake": false,
+            "speed": 64,
+            "location": {
+              "latitude": 32.956,
+              "longitude": -70.707
+            },
+            "firmware_version": "2023.44.30.8",
+            "createdTime": "2021-11-02T21:29:21Z",
+            "modifiedTime": "2025-07-29T22:59:00Z"
           }
         }
       }

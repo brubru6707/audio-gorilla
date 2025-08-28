@@ -2,7 +2,7 @@ import random
 import uuid
 from datetime import datetime, timedelta
 import json
-from fake_data import first_names, last_names, domains
+from fake_data import first_names, last_names, domains, communilink_conversations
 
 current_datetime = datetime.now()
 
@@ -39,9 +39,10 @@ def generate_phone_number():
     return f"+1{area_code}{prefix}{line_number}"
 
 def generate_fake_email():
-    randomName = f"{random.choice(first_names)} {random.choice(last_names)}"
-    randomDomain = random.choice(domains)
-    return f"{randomName.replace(' ', '.').lower()}@{randomDomain}"
+    random_first = random.choice(first_names)
+    random_last = random.choice(last_names)
+    random_domain = random.choice(domains)
+    return f"{random_first.replace(' ', '.').lower()}.{random_last.replace(' ', '.').lower()}@{random_domain}"
 
 def _create_user_data(email, first_name, last_name, phone_number, balance, contacts_emails, sms_history, call_history, settings, service_plan):
     user_id = str(uuid.uuid4())
@@ -52,16 +53,24 @@ def _create_user_data(email, first_name, last_name, phone_number, balance, conta
     processed_sms_history = []
     for sms in sms_history:
         sms_entry = {**sms, "sms_id": str(uuid.uuid4())}
-        if not sms.get("is_external"):
-            sms_entry["sender_id"] = _user_email_to_uuid_map.get(sms.get("sender"), sms.get("sender"))
-            sms_entry["receiver_id"] = _user_email_to_uuid_map.get(sms.get("receiver"), sms.get("receiver"))
+        sender_id = _user_email_to_uuid_map.get(sms.get("sender"))
+        receiver_id = _user_email_to_uuid_map.get(sms.get("receiver"))
+        
+        if sender_id and receiver_id:
+            sms_entry["sender_id"] = sender_id
+            sms_entry["receiver_id"] = receiver_id
+        
         processed_sms_history.append(sms_entry)
     processed_call_history = []
     for call in call_history:
         call_entry = {**call, "call_id": str(uuid.uuid4())}
-        if not call.get("is_external"):
-            call_entry["caller_id"] = _user_email_to_uuid_map.get(call.get("caller"), call.get("caller"))
-            call_entry["receiver_id"] = _user_email_to_uuid_map.get(call.get("receiver"), call.get("receiver"))
+        caller_id = _user_email_to_uuid_map.get(call.get("caller"))
+        receiver_id = _user_email_to_uuid_map.get(call.get("receiver"))
+        
+        if caller_id and receiver_id:
+            call_entry["caller_id"] = caller_id
+            call_entry["receiver_id"] = receiver_id
+        
         processed_call_history.append(call_entry)
     password_hash = uuid.uuid4().hex + ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=16))
     return user_id, {
@@ -85,47 +94,62 @@ current_user_emails = list(_user_email_to_uuid_map.keys())
 for i in range(44):
     first = random.choice(first_names)
     last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}@" + random.choice(domains)
+    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
     while email in _user_email_to_uuid_map:
-        email = f"{first.lower()}.{last.lower()}{random.randint(1,999)}@communi.link"
+        email = f"{first.lower()}.{last.lower()}{random.randint(1,999)}@{random.choice(domains)}"
     phone = generate_phone_number()
     balance = round(random.uniform(5.00, 1000.00), 2)
+    
     num_contacts = random.randint(0, 5)
     possible_contacts_emails = list(_user_email_to_uuid_map.keys())
     contacts_for_new_user = random.sample(possible_contacts_emails, min(num_contacts, len(possible_contacts_emails)))
+    
     sms_history = []
-    num_sms = random.randint(0, 5)
-    for _ in range(num_sms):
-        receiver_email = random.choice(current_user_emails + [generate_phone_number() + "@external.com"])
-        sms_history.append({
-            "sender": email,
-            "receiver": generate_fake_email,
-            "message": random.choice(["Hi there!", "Are you free later?", "Got it, thanks!", "See you soon!", "On my way."]),
-            "timestamp": generate_random_past_date(90),
-            "is_external": "@external.com" in receiver_email or "+" in receiver_email
-        })
-        if "@communi.link" in receiver_email:
-             sms_history.append({
-                "sender": receiver_email,
-                "receiver": email,
-                "message": random.choice(["Hey!", "Yep!", "Sounds good!", "Awesome!"]),
-                "timestamp": generate_random_past_date(89),
-                "is_external": False
+    num_sms_convos = random.randint(0, 2)
+    for _ in range(num_sms_convos):
+        convo_key = random.choice(list(communilink_conversations.keys()))
+        convo_data = communilink_conversations[convo_key]
+        
+        participant_1_email = email
+        if contacts_for_new_user:
+            participant_2_email = random.choice(contacts_for_new_user)
+        else:
+            participant_2_email = generate_fake_email()
+            
+        is_external = participant_2_email not in possible_contacts_emails
+
+        for user_alias, message in convo_data:
+            if user_alias == "user_1":
+                sender = participant_1_email
+                receiver = participant_2_email
+            else:
+                sender = participant_2_email
+                receiver = participant_1_email
+
+            sms_history.append({
+                "sender": sender,
+                "receiver": receiver,
+                "message": message,
+                "timestamp": generate_random_past_date(90),
+                "is_external": is_external
             })
+            
     call_history = []
     num_calls = random.randint(0, 3)
     for _ in range(num_calls):
         call_type = random.choice(["outgoing", "incoming"])
         duration = random.randint(1, 30)
         external_call = random.random() < 0.3
+        
         if external_call:
             other_party = generate_phone_number()
             caller_email_or_number = email if call_type == "outgoing" else other_party
             receiver_email_or_number = other_party if call_type == "outgoing" else email
         else:
-            other_party_email = random.choice(current_user_emails)
+            other_party_email = random.choice(contacts_for_new_user) if contacts_for_new_user else random.choice(current_user_emails)
             caller_email_or_number = email if call_type == "outgoing" else other_party_email
             receiver_email_or_number = other_party_email if call_type == "outgoing" else email
+            
         call_history.append({
             "caller": caller_email_or_number,
             "receiver": receiver_email_or_number,
