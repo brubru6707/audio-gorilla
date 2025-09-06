@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from fake_data import note_title_and_content, first_names, last_names, domains
+from fake_data import note_title_and_content, first_names, last_names, domains, first_and_last_names, user_count
 
 _user_alias_to_uuid_map = {}
 
@@ -164,7 +164,7 @@ current_user_aliases = list(_user_alias_to_uuid_map.keys())
 
 notes = note_title_and_content
 
-for i in range(300):
+def generate_user(first_name=None, last_name=None, email=None, balance=None):
     first = random.choice(first_names)
     last = random.choice(last_names)
     email = f"{first.lower()}.{last.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
@@ -213,11 +213,17 @@ for i in range(300):
                 {"timestamp": (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=random.randint(1, 30))).isoformat().replace('+00:00', 'Z'), "status": random.choice(["active", "completed"])}
             ] if random.random() < 0.2 else []
         }
-
-    user_id, user_data = _create_user_data(alias, first, last, email, new_note_data)
-    DEFAULT_STATE["users"][user_id] = user_data
     current_user_aliases.append(alias)
+    return _create_user_data(alias, first, last, email, new_note_data)
 
+for i in range(user_count + len(first_and_last_names)):
+    if i > user_count:
+        first_name, _, last_name = first_and_last_names[i - user_count].partition(" ")
+        user_id, user_data = generate_user(first_name=first_name, last_name=last_name)
+    else:
+        user_id, user_data = generate_user()
+    DEFAULT_STATE["users"][user_id] = user_data
+    
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 
 output_filename = 'diverse_simple_notes_state.json'

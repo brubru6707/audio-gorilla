@@ -4,7 +4,7 @@ import uuid
 import json
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, playlist_titles
+from fake_data import first_names, last_names, domains, playlist_titles, user_count, first_and_last_names
 
 _initial_user_email_to_uuid_map = {}
 _initial_vehicle_tag_to_uuid_map = {}
@@ -94,16 +94,13 @@ firmware_versions = ["2024.14.7", "2024.12.3", "2024.8.9", "2023.44.30.8", "2023
 
 
 num_initial_users = len(RAW_DEFAULT_STATE["users"])
-num_users_to_add = 50 - num_initial_users
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
 all_user_uuids = list(DEFAULT_STATE["users"].keys())
 
-for i in range(num_users_to_add):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
+for i in range(user_count + len(first_and_last_names)):
+    first = random.choice(first_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[0]
+    last = random.choice(last_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[2]
     email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
-    
-
     existing_emails = set([DEFAULT_STATE["users"][uid].get("email") for uid in DEFAULT_STATE["users"].keys()])
     while email in existing_emails:
         email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"

@@ -2,7 +2,7 @@ import uuid
 import random
 from datetime import datetime, timedelta
 import json
-from fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories, states, street_names, city_names, product_qa_based_on_categories
+from fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories, states, street_names, city_names, product_qa_based_on_categories, user_count, first_and_last_names
 
 class User:
     def __init__(self, user_id: str, email: str = None):
@@ -324,9 +324,14 @@ existing_uuids = {
     "returns": set()
 }
 
-for _ in range(48):
-    new_user_info, new_user_id = generate_user(existing_uuids)
-    DEFAULT_STATE["users"].update(new_user_info)
+for index in range(user_count + len(first_and_last_names)):
+    if index > user_count:
+        first_name,_, last_name = first_and_last_names[index - user_count].partition(" ")
+        new_user_info, new_user_id = generate_user(existing_uuids, first_name=first_name, last_name=last_name)
+        DEFAULT_STATE["users"].update(new_user_info)
+    else:
+        new_user_info, new_user_id = generate_user(existing_uuids)
+        DEFAULT_STATE["users"].update(new_user_info)   
 
 num_initial_products = len(DEFAULT_STATE["products"])
 

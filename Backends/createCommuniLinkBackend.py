@@ -2,14 +2,12 @@ import random
 import uuid
 from datetime import datetime, timedelta
 import json
-from fake_data import first_names, last_names, domains, communilink_conversations
+from fake_data import first_names, last_names, domains, communilink_conversations, first_and_last_names, user_count
 
-current_datetime = datetime.now()
+# --- Constants and Initial State ---
 
-class CommuniLinkUser:
-    def __init__(self, user_id: str, email: str = None):
-        self.user_id = user_id
-        self.email = email
+# Set the timestamp at the beginning for consistency across the script.
+CURRENT_DATETIME = datetime.now()
 
 DEFAULT_COMMUNILINK_STATE = {
     "users": {},
@@ -17,8 +15,8 @@ DEFAULT_COMMUNILINK_STATE = {
     "support_tickets": [],
     "service_plans": {
         "basic": {"price_per_sms": 0.05, "price_per_minute": 0.10, "description": "Basic communication plan: Affordable messaging and calling rates."},
-        "premium": {"price_per_sms": 0.02, "price_per_minute": 0.05, "description": "Premium communication plan: Enjoy significantly lower rates on SMS and calls, plus priority support."},
-        "unlimited": {"price_per_sms": 0.00, "price_per_minute": 0.00, "monthly_fee": 30.00, "description": "Unlimited plan: All SMS and calls are free within the network for a flat monthly fee."},
+        "premium": {"price_per_sms": 0.02, "price_per_minute": 0.05, "description": "Premium communication plan: Enjoy lower rates and priority support."},
+        "unlimited": {"price_per_sms": 0.00, "price_per_minute": 0.00, "monthly_fee": 30.00, "description": "Unlimited plan: Free SMS and calls for a flat monthly fee."},
     },
     "active_plan": "basic",
     "network_status": "operational",
@@ -26,296 +24,234 @@ DEFAULT_COMMUNILINK_STATE = {
     "system_notifications": [],
 }
 
-_user_email_to_uuid_map = {}
+# --- Helper Functions ---
 
 def generate_random_past_date(max_days_ago=365):
+    """Generates a random ISO formatted datetime string in the past."""
     days_ago = random.randint(1, max_days_ago)
-    return (current_datetime - timedelta(days=days_ago, hours=random.randint(0, 23), minutes=random.randint(0, 59))).isoformat()
+    random_past_time = CURRENT_DATETIME - timedelta(
+        days=days_ago, 
+        hours=random.randint(0, 23), 
+        minutes=random.randint(0, 59)
+    )
+    return random_past_time.isoformat()
 
 def generate_phone_number():
-    area_code = random.randint(200, 999)
-    prefix = random.randint(100, 999)
-    line_number = random.randint(1000, 9999)
-    return f"+1{area_code}{prefix}{line_number}"
+    """Generates a random US-style phone number."""
+    return f"+1{random.randint(200, 999)}{random.randint(100, 999)}{random.randint(1000, 9999)}"
 
-def generate_fake_email():
-    random_first = random.choice(first_names)
-    random_last = random.choice(last_names)
+def generate_fake_email(first, last):
+    """Generates a plausible fake email from a first and last name."""
     random_domain = random.choice(domains)
-    return f"{random_first.replace(' ', '.').lower()}.{random_last.replace(' ', '.').lower()}@{random_domain}"
+    return f"{first.replace(' ', '.').lower()}.{last.replace(' ', '.').lower()}@{random_domain}"
 
-def _create_user_data(email, first_name, last_name, phone_number, balance, contacts_emails, sms_history, call_history, settings, service_plan):
-    user_id = str(uuid.uuid4())
-    _user_email_to_uuid_map[email] = user_id
-    contacts_ids = []
-    for contact_email in contacts_emails:
-        contacts_ids.append(_user_email_to_uuid_map.get(contact_email, contact_email))
-    processed_sms_history = []
-    for sms in sms_history:
-        sms_entry = {**sms, "sms_id": str(uuid.uuid4())}
-        sender_id = _user_email_to_uuid_map.get(sms.get("sender"))
-        receiver_id = _user_email_to_uuid_map.get(sms.get("receiver"))
-        
-        if sender_id and receiver_id:
-            sms_entry["sender_id"] = sender_id
-            sms_entry["receiver_id"] = receiver_id
-        
-        processed_sms_history.append(sms_entry)
-    processed_call_history = []
-    for call in call_history:
-        call_entry = {**call, "call_id": str(uuid.uuid4())}
-        caller_id = _user_email_to_uuid_map.get(call.get("caller"))
-        receiver_id = _user_email_to_uuid_map.get(call.get("receiver"))
-        
-        if caller_id and receiver_id:
-            call_entry["caller_id"] = caller_id
-            call_entry["receiver_id"] = receiver_id
-        
-        processed_call_history.append(call_entry)
-    password_hash = uuid.uuid4().hex + ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=16))
-    return user_id, {
-        "first_name": first_name,
-        "last_name": last_name,
-        "email": email,
-        "phone_number": phone_number,
-        "balance": balance,
-        "sms_history": processed_sms_history,
-        "call_history": processed_call_history,
-        "settings": settings,
-        "contacts": contacts_ids,
-        "password_hash": password_hash,
-        "service_plan": service_plan,
-        "last_login": generate_random_past_date(30),
-        "is_active": random.choice([True, True, False]),
-    }
+# --- Main Data Generation Logic ---
 
-current_user_emails = list(_user_email_to_uuid_map.keys())
-
-for i in range(44):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
-    email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
-    while email in _user_email_to_uuid_map:
-        email = f"{first.lower()}.{last.lower()}{random.randint(1,999)}@{random.choice(domains)}"
-    phone = generate_phone_number()
-    balance = round(random.uniform(5.00, 1000.00), 2)
+def main():
+    """Main function to generate the entire dataset."""
     
-    num_contacts = random.randint(0, 5)
-    possible_contacts_emails = list(_user_email_to_uuid_map.keys())
-    contacts_for_new_user = random.sample(possible_contacts_emails, min(num_contacts, len(possible_contacts_emails)))
-    
-    sms_history = []
-    num_sms_convos = random.randint(0, 2)
-    for _ in range(num_sms_convos):
-        convo_key = random.choice(list(communilink_conversations.keys()))
-        convo_data = communilink_conversations[convo_key]
+    # =========================================================================
+    # PASS 1: Create user shells with unique emails and basic info.
+    # This allows us to create relationships in Pass 2 from a complete user list.
+    # =========================================================================
+    print("PASS 1: Creating user shells...")
+    user_shells = []
+    email_to_uuid_map = {}
+    existing_emails = set()
+
+    # Create a list of all names to generate, combining specific and random users
+    names_to_generate = [(name.partition(" ")[0], name.partition(" ")[2]) for name in first_and_last_names]
+    names_to_generate.extend([(None, None)] * user_count)
+
+    for first_name_spec, last_name_spec in names_to_generate:
+        first_name = first_name_spec or random.choice(first_names)
+        last_name = last_name_spec or random.choice(last_names)
         
-        participant_1_email = email
-        if contacts_for_new_user:
-            participant_2_email = random.choice(contacts_for_new_user)
-        else:
-            participant_2_email = generate_fake_email()
+        email = f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
+        while email in existing_emails:
+            email = f"{first_name.lower()}.{last_name.lower()}{random.randint(100, 999)}@{random.choice(domains)}"
+        
+        existing_emails.add(email)
+        user_id = str(uuid.uuid4())
+        email_to_uuid_map[email] = user_id
+        
+        user_shells.append({
+            "user_id": user_id,
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "phone_number": generate_phone_number()
+        })
+    
+    all_user_ids = list(email_to_uuid_map.values())
+    all_user_emails = list(email_to_uuid_map.keys())
+
+    # =========================================================================
+    # PASS 2: Populate detailed information for each user.
+    # Now we can create realistic contacts, SMS, and call histories.
+    # =========================================================================
+    print("PASS 2: Populating user details and relationships...")
+    for shell in user_shells:
+        user_id = shell["user_id"]
+        
+        # --- Generate Contacts ---
+        num_contacts = random.randint(2, 15)
+        # Ensure user is not in their own contact list
+        other_user_ids = [uid for uid in all_user_ids if uid != user_id]
+        contacts = random.sample(other_user_ids, min(num_contacts, len(other_user_ids)))
+
+        # --- Generate SMS History ---
+        sms_history = []
+        for _ in range(random.randint(0, 5)):
+            convo_key = random.choice(list(communilink_conversations.keys()))
+            # The other participant can be an existing user or an external number
+            other_party_email = random.choice(all_user_emails) if random.random() > 0.2 else generate_fake_email("external", "contact")
             
-        is_external = participant_2_email not in possible_contacts_emails
+            for user_alias, message in communilink_conversations[convo_key]:
+                sender_email = shell["email"] if user_alias == "user_1" else other_party_email
+                receiver_email = other_party_email if user_alias == "user_1" else shell["email"]
+                sms_history.append({
+                    "sms_id": str(uuid.uuid4()),
+                    "sender_id": email_to_uuid_map.get(sender_email),
+                    "receiver_id": email_to_uuid_map.get(receiver_email),
+                    "sender": sender_email,
+                    "receiver": receiver_email,
+                    "message": message,
+                    "timestamp": generate_random_past_date(90),
+                    "is_external": email_to_uuid_map.get(other_party_email) is None
+                })
 
-        for user_alias, message in convo_data:
-            if user_alias == "user_1":
-                sender = participant_1_email
-                receiver = participant_2_email
+        # --- Generate Call History ---
+        call_history = []
+        for _ in range(random.randint(0, 8)):
+            is_external = random.random() < 0.3
+            call_type = random.choice(["outgoing", "incoming"])
+            
+            if is_external:
+                other_party = generate_phone_number()
+                caller = shell["email"] if call_type == "outgoing" else other_party
+                receiver = other_party if call_type == "outgoing" else shell["email"]
             else:
-                sender = participant_2_email
-                receiver = participant_1_email
-
-            sms_history.append({
-                "sender": sender,
+                other_party_email = random.choice([e for e in all_user_emails if e != shell["email"]])
+                caller = shell["email"] if call_type == "outgoing" else other_party_email
+                receiver = other_party_email if call_type == "outgoing" else shell["email"]
+            
+            call_history.append({
+                "call_id": str(uuid.uuid4()),
+                "caller_id": email_to_uuid_map.get(caller),
+                "receiver_id": email_to_uuid_map.get(receiver),
+                "caller": caller,
                 "receiver": receiver,
-                "message": message,
+                "duration_minutes": random.randint(1, 30),
                 "timestamp": generate_random_past_date(90),
+                "type": call_type,
                 "is_external": is_external
             })
             
-    call_history = []
-    num_calls = random.randint(0, 3)
-    for _ in range(num_calls):
-        call_type = random.choice(["outgoing", "incoming"])
-        duration = random.randint(1, 30)
-        external_call = random.random() < 0.3
+        # --- Assemble Final User Object ---
+        DEFAULT_COMMUNILINK_STATE["users"][user_id] = {
+            **shell,
+            "balance": round(random.uniform(5.00, 1000.00), 2),
+            "sms_history": sms_history,
+            "call_history": call_history,
+            "contacts": contacts,
+            "service_plan": random.choice(list(DEFAULT_COMMUNILINK_STATE["service_plans"].keys())),
+            "password_hash": uuid.uuid4().hex + ''.join(random.choices('abcdef0123456789', k=16)),
+            "settings": {
+                "sms_notifications": random.choice([True, False]),
+                "call_forwarding_enabled": random.choice([True, False]),
+                "call_forwarding_number": generate_phone_number() if random.random() < 0.2 else ""
+            },
+            "last_login": generate_random_past_date(30),
+            "is_active": random.choice([True, True, False]),
+        }
+
+    # =========================================================================
+    # PASS 3: Generate related top-level data (billing, tickets, logs).
+    # =========================================================================
+    print("PASS 3: Generating billing, tickets, and logs...")
+    if not all_user_ids:
+        print("No users generated, skipping billing, tickets, and logs.")
+        return
+
+    # --- Generate Billing History ---
+    billing_types = ["plan_charge", "sms_charge", "call_charge", "top_up"]
+    for _ in range(70):
+        user_id = random.choice(all_user_ids)
+        user = DEFAULT_COMMUNILINK_STATE["users"][user_id]
+        plan = user["service_plan"]
+        trans_type = random.choice(billing_types)
+        amount = 0.0
+        desc = ""
         
-        if external_call:
-            other_party = generate_phone_number()
-            caller_email_or_number = email if call_type == "outgoing" else other_party
-            receiver_email_or_number = other_party if call_type == "outgoing" else email
-        else:
-            other_party_email = random.choice(contacts_for_new_user) if contacts_for_new_user else random.choice(current_user_emails)
-            caller_email_or_number = email if call_type == "outgoing" else other_party_email
-            receiver_email_or_number = other_party_email if call_type == "outgoing" else email
-            
-        call_history.append({
-            "caller": caller_email_or_number,
-            "receiver": receiver_email_or_number,
-            "duration_minutes": duration,
-            "timestamp": generate_random_past_date(90),
-            "type": call_type,
-            "is_external": external_call
+        if trans_type == "plan_charge":
+            fee = DEFAULT_COMMUNILINK_STATE["service_plans"][plan].get("monthly_fee", 0)
+            if fee > 0:
+                amount, desc = -fee, f"Monthly {plan.capitalize()} plan charge"
+        elif trans_type == "sms_charge":
+            count = random.randint(1, 50)
+            amount = -round(count * DEFAULT_COMMUNILINK_STATE["service_plans"][plan]["price_per_sms"], 2)
+            desc = f"SMS charge for {count} messages"
+        elif trans_type == "call_charge":
+            minutes = random.randint(1, 120)
+            amount = -round(minutes * DEFAULT_COMMUNILINK_STATE["service_plans"][plan]["price_per_minute"], 2)
+            desc = f"Call charge for {minutes} minutes"
+        else: # top_up
+            amount = round(random.uniform(10.00, 100.00), 2)
+            desc = "Account top-up via credit card"
+
+        if amount != 0:
+            DEFAULT_COMMUNILINK_STATE["billing_history"].append({
+                "transaction_id": str(uuid.uuid4()), "user_id": user_id, "type": trans_type,
+                "amount": amount, "date": generate_random_past_date(180), "description": desc
+            })
+
+    # --- Generate Support Tickets ---
+    ticket_subjects = ["Connectivity Issue", "Billing Discrepancy", "Feature Request", "Bug Report", "Call Quality"]
+    for _ in range(25):
+        created_at = datetime.fromisoformat(generate_random_past_date(90))
+        status = random.choice(["open", "pending", "closed"])
+        DEFAULT_COMMUNILINK_STATE["support_tickets"].append({
+            "ticket_id": str(uuid.uuid4()), "user_id": random.choice(all_user_ids),
+            "subject": random.choice(ticket_subjects), "status": status,
+            "description": "User is reporting an issue regarding their service.",
+            "created_at": created_at.isoformat(),
+            "resolved_at": (created_at + timedelta(days=random.randint(1, 10))).isoformat() if status == "closed" else None,
         })
-    settings = {
-        "sms_notifications": random.choice([True, False]),
-        "call_forwarding_enabled": random.choice([True, False]),
-        "call_forwarding_number": generate_phone_number() if random.random() < 0.2 else ""
-    }
-    service_plan = random.choice(list(DEFAULT_COMMUNILINK_STATE["service_plans"].keys()))
-    user_id, user_data = _create_user_data(email, first, last, phone, balance, contacts_for_new_user, sms_history, call_history, settings, service_plan)
-    DEFAULT_COMMUNILINK_STATE["users"][user_id] = user_data
-    current_user_emails.append(email)
 
-all_user_uuids = list(_user_email_to_uuid_map.values())
-for user_id, user_data in DEFAULT_COMMUNILINK_STATE["users"].items():
-    resolved_contacts = []
-    for contact_item in user_data["contacts"]:
-        if contact_item in _user_email_to_uuid_map:
-            resolved_contacts.append(_user_email_to_uuid_map[contact_item])
-        elif contact_item in all_user_uuids:
-            resolved_contacts.append(contact_item)
-    user_data["contacts"] = list(set([f for f in resolved_contacts if f != user_id]))
+    # --- Generate Network Logs ---
+    for _ in range(100):
+        DEFAULT_COMMUNILINK_STATE["network_logs"].append({
+            "timestamp": generate_random_past_date(10),
+            "level": random.choice(["INFO", "INFO", "INFO", "WARNING", "ERROR"]),
+            "message": f"API endpoint call by user {random.choice(all_user_ids)}"
+        })
+        
+    # --- Generate System Notifications ---
+    for _ in range(5):
+        future_date = (CURRENT_DATETIME + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
+        DEFAULT_COMMUNILINK_STATE["system_notifications"].append({
+            "notification_id": str(uuid.uuid4()), "timestamp": generate_random_past_date(7),
+            "message": f"Scheduled maintenance will occur on {future_date} from 02:00 to 04:00 EDT.",
+            "is_read": random.choice([True, False, False])
+        })
 
-all_user_ids = list(DEFAULT_COMMUNILINK_STATE["users"].keys())
-billing_types = ["plan_charge", "sms_charge", "call_charge", "top_up"]
-descriptions = {
-    "plan_charge": ["Monthly {plan} plan charge", "Subscription renewal for {plan} plan"],
-    "sms_charge": ["SMS charge for {count} messages", "Messaging fees for recent activity"],
-    "call_charge": ["Call charge for {minutes} minutes", "Voice call charges"],
-    "top_up": ["Account top-up via credit card", "Credit added to balance", "Payment received"]
-}
 
-for _ in range(70):
-    user_id = random.choice(all_user_ids)
-    user_email = DEFAULT_COMMUNILINK_STATE["users"][user_id]["email"]
-    user_plan = DEFAULT_COMMUNILINK_STATE["users"][user_id]["service_plan"]
-    trans_type = random.choice(billing_types)
-    amount = 0.0
-    if trans_type == "plan_charge":
-        amount = -DEFAULT_COMMUNILINK_STATE["service_plans"][user_plan].get("monthly_fee", round(random.uniform(5.00, 20.00), 2))
-        desc = random.choice(descriptions[trans_type]).format(plan=user_plan.capitalize())
-    elif trans_type == "sms_charge":
-        count = random.randint(1, 50)
-        cost_per_sms = DEFAULT_COMMUNILINK_STATE["service_plans"][user_plan]["price_per_sms"]
-        amount = -round(count * cost_per_sms, 2)
-        desc = random.choice(descriptions[trans_type]).format(count=count)
-    elif trans_type == "call_charge":
-        minutes = random.randint(1, 120)
-        cost_per_minute = DEFAULT_COMMUNILINK_STATE["service_plans"][user_plan]["price_per_minute"]
-        amount = -round(minutes * cost_per_minute, 2)
-        desc = random.choice(descriptions[trans_type]).format(minutes=minutes)
-    else:
-        amount = round(random.uniform(10.00, 100.00), 2)
-        desc = random.choice(descriptions[trans_type])
-    DEFAULT_COMMUNILINK_STATE["billing_history"].append({
-        "transaction_id": str(uuid.uuid4()),
-        "user_id": user_id,
-        "type": trans_type,
-        "amount": amount,
-        "date": generate_random_past_date(180),
-        "description": desc
-    })
+if __name__ == "__main__":
+    main()
+    
+    # --- Final Output and File Write ---
+    print("-" * 50)
+    print(f"Total number of users generated: {len(DEFAULT_COMMUNILINK_STATE['users'])}")
+    print(f"Total billing history records: {len(DEFAULT_COMMUNILINK_STATE['billing_history'])}")
+    print(f"Total support tickets: {len(DEFAULT_COMMUNILINK_STATE['support_tickets'])}")
+    print(f"Total network logs: {len(DEFAULT_COMMUNILINK_STATE['network_logs'])}")
+    print(f"Total system notifications: {len(DEFAULT_COMMUNILINK_STATE['system_notifications'])}")
+    print("-" * 50)
 
-ticket_subjects = [
-    "Connectivity Issue", "Billing Discrepancy", "Account Suspension",
-    "Feature Request", "Bug Report", "Password Reset", "Call Quality",
-    "SMS Delivery Failure", "Plan Upgrade/Downgrade", "Spam Report"
-]
-ticket_statuses = ["open", "pending", "closed"]
-agent_notes_options = [
-    "Investigating connection logs.", "Forwarded to billing department.",
-    "Resolved, user account reactivated.", "Added to feature backlog.",
-    "Acknowledged, team looking into it.", "Password reset link sent.",
-    "Adjusted call quality settings.", "Checked delivery reports, re-sent.",
-    "Plan change processed.", "User blocked, reported to security."
-]
-
-for _ in range(25):
-    user_id = random.choice(all_user_ids)
-    subject = random.choice(ticket_subjects)
-    status = random.choice(ticket_statuses)
-    created_at = generate_random_past_date(90)
-    resolved_at = None
-    agent_notes = None
-    if status == "closed":
-        resolved_at = (datetime.fromisoformat(created_at) + timedelta(days=random.randint(1, 10))).isoformat()
-        agent_notes = random.choice(agent_notes_options)
-    elif status == "pending":
-        agent_notes = random.choice(agent_notes_options)
-    DEFAULT_COMMUNILINK_STATE["support_tickets"].append({
-        "ticket_id": str(uuid.uuid4()),
-        "user_id": user_id,
-        "subject": subject,
-        "status": status,
-        "description": f"Problem with: {subject.lower()}.",
-        "created_at": created_at,
-        "resolved_at": resolved_at,
-        "agent_notes": agent_notes
-    })
-
-network_log_messages = [
-    "API endpoint /user/profile accessed by user {user_id}",
-    "SMS sent from {sender_id} to {receiver_id}",
-    "Call initiated by {caller_id}",
-    "Database backup completed successfully",
-    "System load: {load_percentage}%",
-    "New user registered: {user_id}",
-    "Payment processed for transaction {transaction_id}"
-]
-
-for _ in range(100):
-    log_time = generate_random_past_date(10)
-    log_message = random.choice(network_log_messages)
-    if "{user_id}" in log_message and all_user_ids:
-        log_message = log_message.replace("{user_id}", random.choice(all_user_ids))
-    if "{sender_id}" in log_message and all_user_ids:
-        log_message = log_message.replace("{sender_id}", random.choice(all_user_ids))
-    if "{receiver_id}" in log_message and all_user_ids:
-        log_message = log_message.replace("{receiver_id}", random.choice(all_user_ids))
-    if "{caller_id}" in log_message and all_user_ids:
-        log_message = log_message.replace("{caller_id}", random.choice(all_user_ids))
-    if "{load_percentage}" in log_message:
-        log_message = log_message.replace("{load_percentage}", str(random.randint(10, 90)))
-    if "{transaction_id}" in log_message and DEFAULT_COMMUNILINK_STATE["billing_history"]:
-        log_message = log_message.replace("{transaction_id}", random.choice([t["transaction_id"] for t in DEFAULT_COMMUNILINK_STATE["billing_history"]]))
-    DEFAULT_COMMUNILINK_STATE["network_logs"].append({
-        "timestamp": log_time,
-        "level": random.choice(["INFO", "WARNING", "ERROR"]),
-        "message": log_message
-    })
-
-system_notification_messages = [
-    "Scheduled maintenance: All services will be affected on {date} from {time_start} to {time_end} EDT.",
-    "New feature alert: Group calling is now available!",
-    "Security update: Please review our updated privacy policy.",
-    "Service restoration: All services are now fully operational.",
-    "Promotion: Get 50% off your next month with code {promo_code}!",
-    "Network congestion detected in your area, calls may experience slight delay."
-]
-
-for _ in range(5):
-    notification_message = random.choice(system_notification_messages)
-    if "{date}" in notification_message:
-        future_date = (current_datetime + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d")
-        time_start = f"{random.randint(8, 10):02d}:00"
-        time_end = f"{random.randint(11, 13):02d}:00"
-        notification_message = notification_message.replace("{date}", future_date).replace("{time_start}", time_start).replace("{time_end}", time_end)
-    if "{promo_code}" in notification_message:
-        notification_message = notification_message.replace("{promo_code}", "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", k=8)))
-    DEFAULT_COMMUNILINK_STATE["system_notifications"].append({
-        "notification_id": str(uuid.uuid4()),
-        "timestamp": generate_random_past_date(7),
-        "message": notification_message,
-        "is_read": random.choice([True, False, False])
-    })
-
-print(f"Total number of users generated: {len(DEFAULT_COMMUNILINK_STATE['users'])}")
-print(f"Total billing history records: {len(DEFAULT_COMMUNILINK_STATE['billing_history'])}")
-print(f"Total support tickets: {len(DEFAULT_COMMUNILINK_STATE['support_tickets'])}")
-print(f"Total network logs: {len(DEFAULT_COMMUNILINK_STATE['network_logs'])}")
-print(f"Total system notifications: {len(DEFAULT_COMMUNILINK_STATE['system_notifications'])}")
-
-with open('diverse_communi_link_state.json', 'w') as f:
-    json.dump(DEFAULT_COMMUNILINK_STATE, f, indent=2)
+    try:
+        with open('diverse_communi_link_state.json', 'w') as f:
+            json.dump(DEFAULT_COMMUNILINK_STATE, f, indent=2)
+        print("Successfully saved data to diverse_communi_link_state.json")
+    except IOError as e:
+        print(f"Error saving file: {e}")

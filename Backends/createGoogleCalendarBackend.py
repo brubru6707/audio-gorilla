@@ -5,7 +5,7 @@ import datetime
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
-from fake_data import first_names, last_names, domains, event_descriptions, event_locations, timezones
+from fake_data import first_names, last_names, domains, event_descriptions, event_locations, timezones, user_count, first_and_last_names
 
 current_datetime = datetime.now()
 
@@ -40,7 +40,6 @@ def generate_random_datetime(min_days_ago=0, max_days_ago=365, future_days=30):
                                 hours=random.randint(7, 18),
                                 minutes=random.choice([0, 15, 30, 45]))
         return (current_datetime - time_offset).isoformat()
-
 
 def _create_user_data(email: str, first_name: str, last_name: str,
                       calendar_data: Dict[str, Any]):
@@ -144,10 +143,11 @@ def _create_user_data(email: str, first_name: str, last_name: str,
 
 current_user_emails = list(_user_email_to_uuid_map.keys())
 
-for i in range(48):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
-    email = generate_random_email(first, last)
+def generate_user(first_name=None, last_name=None, email=None, balance=None):
+
+    first = random.choice(first_names) if first_name is None else first_name
+    last = random.choice(last_names) if last_name is None else last_name
+    email = generate_random_email(first, last) if email is None else email
 
     while email in _user_email_to_uuid_map:
         email = generate_random_email(first, last)
@@ -227,11 +227,17 @@ for i in range(48):
                 "status":
                 random.choice(["confirmed", "tentative", "cancelled"])
             }
-
-    user_id, user_data = _create_user_data(email, first, last,
-                                           new_calendar_data)
-    DEFAULT_STATE["users"][user_id] = user_data
     current_user_emails.append(email)
+    return _create_user_data(email, first, last,
+                                           new_calendar_data)
+
+for i in range(user_count + len(first_and_last_names)):
+    if i > user_count:
+        first_name,_, last_name = first_and_last_names[i - user_count].partition(" ")
+        user_id, user_data = generate_user(first_name=first_name, last_name=last_name)
+    else:
+        user_id, user_data = generate_user()
+    DEFAULT_STATE["users"][user_id] = user_data
 
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 

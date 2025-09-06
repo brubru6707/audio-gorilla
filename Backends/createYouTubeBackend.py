@@ -4,7 +4,7 @@ import json
 import uuid
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, channel_bios, comment_texts, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries
+from fake_data import first_names, last_names, channel_bios, comment_texts, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries, first_and_last_names, user_count
 
 _initial_user_id_map = {}
 _initial_channel_id_map = {}
@@ -310,10 +310,10 @@ num_users_to_add = 100 - num_initial_users
 all_user_uuids = list(DEFAULT_STATE["users"].keys())
 existing_emails = set(user_data["email"] for user_data in DEFAULT_STATE["users"].values())
 
-for i in range(num_users_to_add):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
-    
+for i in range(len(first_and_last_names) + user_count):
+    first = random.choice(first_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[0]
+    last = random.choice(last_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[2]
+
     email_suffix = random.randint(1000, 99999)
     email = f"{first.lower()}.{last.lower()}{email_suffix}@{random.choice(domains)}"
     while email in existing_emails:
@@ -399,18 +399,26 @@ all_video_uuids = list(DEFAULT_STATE["videos"].keys())
 
 for channel_id, channel_data in DEFAULT_STATE["channels"].items():
     owner_id = channel_data["owner_id"]
-    num_videos_to_add = random.randint(1, 15) 
+    num_videos_to_add = random.randint(1, 5) 
 
     for i in range(num_videos_to_add):
+        
         video_uuid = str(uuid.uuid4())
-        random_video_category = random.choice(list(youtube_titles.keys()))
-        title = random.choice(youtube_titles[random_video_category])
-        index_for_title = youtube_titles[random_video_category].index(title)
-        youtube_titles[random_video_category].remove(title)
-        description_template = youtube_video_descriptions[random_video_category][index_for_title]
-        youtube_video_descriptions[random_video_category].remove(description_template)
-        comments_for_video = random.sample(youtube_comments[random_video_category], random.randint(0, 5))
-
+        
+        # Keep trying until we find a valid title
+        title = None
+        while title is None:
+            random_video_category = random.choice(list(youtube_titles.keys()))
+            if youtube_titles[random_video_category]:
+                title = random.choice(youtube_titles[random_video_category])
+                index_for_title = youtube_titles[random_video_category].index(title)
+                youtube_titles[random_video_category].remove(title)
+                description_template = youtube_video_descriptions[random_video_category][index_for_title]
+                youtube_video_descriptions[random_video_category].remove(description_template)
+                comments_for_video = random.sample(youtube_comments[random_video_category], random.randint(0, 5))
+            else:
+                # If this category is empty, continue to try another category
+                continue
         video_data = {
             "id": video_uuid,
             "title": title,
@@ -445,32 +453,26 @@ for channel_id, channel_data in DEFAULT_STATE["channels"].items():
             if video_uuid not in user_owner_data["watch_history"]:
                 user_owner_data["watch_history"].append(video_uuid)
 
-
 for user_id in all_user_uuids:
     user_data = DEFAULT_STATE["users"][user_id]
-    
     
     num_watched = random.randint(5, min(50, len(all_video_uuids)))
     user_data["watch_history"].extend(random.sample(all_video_uuids, min(num_watched, len(all_video_uuids))))
     user_data["watch_history"] = list(set(user_data["watch_history"])) 
 
-    
     num_liked = random.randint(0, min(20, len(all_video_uuids)))
     user_data["liked_videos"].extend(random.sample(all_video_uuids, min(num_liked, len(all_video_uuids))))
     user_data["liked_videos"] = list(set(user_data["liked_videos"])) 
 
-    
     for liked_vid_id in user_data["liked_videos"]:
         if liked_vid_id in DEFAULT_STATE["videos"] and user_id not in DEFAULT_STATE["videos"][liked_vid_id]["liked_by"]:
             DEFAULT_STATE["videos"][liked_vid_id]["liked_by"].append(user_id)
             DEFAULT_STATE["videos"][liked_vid_id]["likes"] += 1 
-
     
     if random.random() < 0.5: 
         num_to_watch_later = random.randint(0, min(10, len(all_video_uuids)))
         user_data["watch_later_playlist"].extend(random.sample(all_video_uuids, min(num_to_watch_later, len(all_video_uuids))))
         user_data["watch_later_playlist"] = list(set(user_data["watch_later_playlist"]))
-
     
     num_channels_visited = random.randint(0, min(15, len(all_channel_uuids)))
     user_data["channel_history"].extend(random.sample(all_channel_uuids, min(num_channels_visited, len(all_channel_uuids))))

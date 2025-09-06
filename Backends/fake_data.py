@@ -1,3 +1,5 @@
+user_count = 250
+
 first_names = [
     "Aarav","Aaliyah", "Aaron", "Abigail", "Adam", "Addison", "Adrian", "Alan", "Alana", "Alex",
     "Alexandra", "Alexis", "Ali", "Alice", "Allen", "Allison", "Amelia", "Amir", "Amy", "Andrew",
@@ -47,6 +49,18 @@ last_names = [
     "Medina", "Salazar", "Rojas", "Lara", "Carrillo", "Soto", "Delgado", "Mendoza", "Valencia", "Orozco"
 ]
 
+first_and_last_names = [
+    "Anya Sharma", "Kenji Tanaka", "Maria Rodriguez", "David Chen", "Fatima Al-Mansoori",
+    "Jamal Washington", "Chloe Dubois", "Liam O'Connell", "Sofia Rossi", "Omar Hassan",
+    "Priya Patel", "Wei Zhang", "Javier Garcia", "Nadia Petrova", "Elias Müller",
+    "Leila Khan", "Mateo Gonzalez", "Hannah Kim", "Caleb Williams", "Amara Diallo",
+    "Hiroshi Nakamura", "Isabella Santos", "Kaelen Jones", "Aisha Ibrahim", "Luca Bianchi",
+    "Sarah Johnson", "Bruno Rodriguez-Mendez", "Mohammed Ali", "Elena Popova", "Benjamin Smith", "Zoe Carter",
+    "Diego Morales", "Eva Kovacs", "Ryan Murphy", "Lina Bergström", "Gideon Levy",
+    "Sana Ahmed", "Kevin Lee", "Olivia Brown", "Rafael Silva", "Samantha Chang",
+    "Yusuf Demir", "Nora Fischer", "Patrick Kelly", "Ingrid Olsen", "Vikram Singh",
+    "Grace Taylor", "Juan Martinez", "Daria Novikova", "Arthur Thompson", "Jasmine Nguyen"
+]
 domains = [
     "onlinetools.io", "techsolutions.dev",
     "digitalhub.app", "creativeagency.co", "dataservices.ai", "webdesigners.co.uk", "globalcorp.biz",

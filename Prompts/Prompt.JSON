@@ -7,11 +7,11 @@
         "gmail_current_user": "73e6974e-34cd-4ac7-ad1d-00fc3075b2f1"
       },
       "ground_truth": {
-        "Gmail": ["sendEmail(user: '6b6004b1-0cda-4db5-ac7e-66a549f153bd', to: 'Dominic', subject: 'Project Inquiry', body: 'Hi Dominic, I wanted to check in on the status of the project. Could you please provide me with an update? Thanks!' )"]
+        "Gmail": ["sendEmail(user: '73e6974e-34cd-4ac7-ad1d-00fc3075b2f1', to: 'Dominic', subject: 'Project Inquiry', body: 'Hi Dominic, I wanted to check in on the status of the project. Could you please provide me with an update? Thanks!' )"]
       }
     },
     {
-      "prompt": "Order 'The Lord of the Rings' book from Amazon and record the purchase in Simple Notes",
+      "prompt": "Order 'The Lord of the Rings' book from Amazon, send it to my home address, and use my primary card. Also, record the purchase in Simple Notes",
       "tools": ["AmazonApis", "SimpleNotesApis"],
       "context": {
         "amazon_current_user": "5a16c235-701f-4bd5-9b6f-90f618b23442",
@@ -19,35 +19,36 @@
       },
       "ground_truth": {
         "Amazon": [
-          "search_products(query: str)", 
-          "checkout(user: str, productId: str, quantity: int)"],
-        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
+          "search_products(query: 'The Lord of the Rings')",
+          "add_to_cart(product_id: 'ccd55ced-c0b4-4624-b1c7-2eeee54db6bf', quantity: 1)",
+          "checkout(user: '5a16c235-701f-4bd5-9b6f-90f618b23442', delivery_address: '2970c751-f1b0-4b30-9498-09d116be92e1', payment_method: 'd26cb04a-8201-46dc-a3da-7caabc239b8f')"],
+        "SimpleNotes": ["create_note(user: '87207463-8313-4278-92bc-5c37e9fc91a4', title: 'The Lord of the Rings Purchase', content: 'Purchased from Amazon')"]
       }
     },
     {
       "prompt": "Order a new 4K inch TV from Amazon and add the delivery date to my Google Calendar",
       "tools": ["AmazonApis", "GoogleCalendarApis"],
       "context": {
-        "amazon_current_user": "15ca4c07-750a-476f-92c3-bd882642fb06",
-        "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+        "amazon_current_user": "0aacdc86-c4da-4467-863f-9e61dae40099",
+        "googlecalendar_current_user": "299785cc-72ee-4ddd-a005-1e1aced16aab"
       },
       "ground_truth": {
       "Amazon": [
-        "search_products(user: str, query: str)", 
+        "search_products(query: '4K TV')", 
         "checkout(user: str, productId: str, quantity: int)"],
       "GoogleCalendar": ["createEvent(user: str, summary: str, description: str, startTime: str, endTime: str)" ]
     }
     },
     {
-      "prompt": "Send an email to Alice about the project status and then create a note in Simple Notes with the project details",
+      "prompt": "Send an email to Dominic about the project status and then create a note in Simple Note to follow up next week",
       "tools": ["GmailApis", "SimpleNotesApis"],
       "context": {
-        "gmail_current_user": "0c90eec2-8bef-47a9-ace9-5edd79232548",
-        "simplenotes_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+        "gmail_current_user": "f4987eac-59bb-4d1f-b8cd-4422b3dd5d98",
+        "simplenotes_current_user": "dd551910-8515-4efa-a6bf-72975c183c98"
       },
       "ground_truth": {
-        "Gmail": ["sendEmail(user: str, to: str, subject: str, body: str)"],
-        "SimpleNotes": ["createNote(user: str, title: str, content: str)"]
+        "Gmail": ["send_message(user: '6b6004b1-0cda-4db5-ac7e-66a549f153bd', to: 'dominic.gordon57@telehealth.services', subject: 'Project Status Update', body: 'Hi Dominic, I wanted to check in on the status of the project. Could you please provide me with an update? Thanks!' )"],
+        "SimpleNotes": ["create_note(user: str, title: str, content: str)"]
       }
     },
     {
