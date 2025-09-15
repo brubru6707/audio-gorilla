@@ -61,6 +61,7 @@ first_and_last_names = [
     "Yusuf Demir", "Nora Fischer", "Patrick Kelly", "Ingrid Olsen", "Vikram Singh",
     "Grace Taylor", "Juan Martinez", "Daria Novikova", "Arthur Thompson", "Jasmine Nguyen"
 ]
+
 domains = [
     "onlinetools.io", "techsolutions.dev",
     "digitalhub.app", "creativeagency.co", "dataservices.ai", "webdesigners.co.uk", "globalcorp.biz",
@@ -7503,6 +7504,7 @@ location_names = [
     "The Cape Cod",
     "The Bungalow"
 ]
+
 
 email_snippets = [
         "Hi, I wanted to follow up on our conversation from yesterday...",

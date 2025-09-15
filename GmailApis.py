@@ -20,7 +20,6 @@ class GmailApis:
     def _load_scenario(self, scenario: Dict) -> None:
         """
         Load a scenario with users and their data.
-
         Args:
             scenario (Dict): Scenario data to load.
         """
@@ -40,7 +39,6 @@ class GmailApis:
     def _get_user_id_by_email(self, email: str) -> Optional[str]:
         """
         Get internal user ID by email address.
-
         Args:
             email (str): User's email address.
         Returns:
@@ -54,7 +52,6 @@ class GmailApis:
     def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
         """
         Get user email by internal user ID.
-
         Args:
             user_id (str): Internal user ID.
         Returns:
@@ -66,7 +63,6 @@ class GmailApis:
     def _get_user_gmail_data(self, user_id: str) -> Optional[Dict]:
         """
         Get Gmail data for a user.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -80,7 +76,6 @@ class GmailApis:
     def _get_user_threads_data(self, user_id: str) -> Optional[Dict]:
         """
         Get threads data for a user.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -92,7 +87,6 @@ class GmailApis:
     def _get_user_messages_data(self, user_id: str) -> Optional[Dict]:
         """
         Get messages data for a user.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -104,7 +98,6 @@ class GmailApis:
     def _get_user_drafts_data(self, user_id: str) -> Optional[Dict]:
         """
         Get drafts data for a user.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -116,7 +109,6 @@ class GmailApis:
     def _get_user_labels_data(self, user_id: str) -> Optional[Dict]:
         """
         Get labels data for a user.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -128,7 +120,6 @@ class GmailApis:
     def get_profile(self, user_id: str) -> Optional[Dict[str, Any]]:
         """
         Get the Gmail profile for a user.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -151,7 +142,6 @@ class GmailApis:
     ) -> Dict[str, Union[List[Dict], str, int]]:
         """
         List messages matching criteria.
-
         Args:
             user_id (str): User's email address.
             query (Optional[str]): Search query.
@@ -205,7 +195,6 @@ class GmailApis:
     ) -> Optional[Dict[str, Any]]:
         """
         Get a specific message.
-
         Args:
             user_id (str): User's email address.
             msg_id (str): Message ID.
@@ -231,7 +220,6 @@ class GmailApis:
     ) -> Dict[str, Union[str, Dict]]:
         """
         Send a message.
-
         Args:
             user_id (str): Sender's email address.
             to (str): Recipient's email address.
@@ -268,7 +256,7 @@ class GmailApis:
             "internalDate": str(int(datetime.datetime.now().timestamp() * 1000)),
             "labelIds": ["SENT", "INBOX"]
         }
-
+# hi
         gmail_data["messages"][new_msg_id] = new_message
         if thread_id not in gmail_data["threads"]:
             gmail_data["threads"][thread_id] = {"id": thread_id, "messages": []}
@@ -295,7 +283,6 @@ class GmailApis:
     def delete_message(self, user_id: str, msg_id: str) -> Dict[str, Union[bool, str]]:
         """
         Delete a message.
-
         Args:
             user_id (str): User's email address.
             msg_id (str): Message ID to delete.
@@ -332,7 +319,6 @@ class GmailApis:
     ) -> Dict[str, Union[List[Dict], str, int]]:
         """
         List drafts.
-
         Args:
             user_id (str): User's email address.
             page_token (Optional[str]): Pagination token.
@@ -367,7 +353,6 @@ class GmailApis:
     def get_draft(self, user_id: str, draft_id: str) -> Optional[Dict[str, Any]]:
         """
         Get a specific draft.
-
         Args:
             user_id (str): User's email address.
             draft_id (str): Draft ID.
@@ -388,7 +373,6 @@ class GmailApis:
     ) -> Dict[str, Union[str, Dict]]:
         """
         Create a draft.
-
         Args:
             user_id (str): User's email address.
             to (str): Recipient's email address.
@@ -423,7 +407,6 @@ class GmailApis:
     ) -> Dict[str, Union[str, Dict]]:
         """
         Update a draft.
-
         Args:
             user_id (str): User's email address.
             draft_id (str): Draft ID to update.
@@ -448,7 +431,6 @@ class GmailApis:
     def delete_draft(self, user_id: str, draft_id: str) -> Dict[str, Union[bool, str]]:
         """
         Delete a draft.
-
         Args:
             user_id (str): User's email address.
             draft_id (str): Draft ID to delete.
@@ -468,7 +450,6 @@ class GmailApis:
     def list_labels(self, user_id: str) -> Dict[str, Union[List[Dict], str]]:
         """
         List labels.
-
         Args:
             user_id (str): User's email address.
         Returns:
@@ -484,7 +465,6 @@ class GmailApis:
     def get_label(self, user_id: str, label_id: str) -> Optional[Dict[str, Any]]:
         """
         Get a specific label.
-
         Args:
             user_id (str): User's email address.
             label_id (str): Label ID.
@@ -503,7 +483,6 @@ class GmailApis:
     def create_label(self, user_id: str, label_name: str) -> Dict[str, Union[str, Dict]]:
         """
         Create a label.
-
         Args:
             user_id (str): User's email address.
             label_name (str): Name for the new label.
@@ -538,7 +517,6 @@ class GmailApis:
     def update_label(self, user_id: str, label_id: str, new_label_name: str) -> Dict[str, Union[str, Dict]]:
         """
         Update a label.
-
         Args:
             user_id (str): User's email address.
             label_id (str): Label ID to update.
@@ -559,7 +537,6 @@ class GmailApis:
     def delete_label(self, user_id: str, label_id: str) -> Dict[str, Union[bool, str]]:
         """
         Delete a label.
-
         Args:
             user_id (str): User's email address.
             label_id (str): Label ID to delete.
@@ -581,7 +558,6 @@ class GmailApis:
     ) -> Optional[Dict[str, Any]]:
         """
         Modify a message (e.g., add/remove labels).
-
         Args:
             user_id (str): User's email address.
             message_id (str): Message ID to modify.
@@ -613,7 +589,6 @@ class GmailApis:
     ) -> Optional[Dict[str, Any]]:
         """
         Get a thread with its messages.
-
         Args:
             user_id (str): User's email address.
             thread_id (str): Thread ID.
@@ -651,7 +626,6 @@ class GmailApis:
     ) -> Optional[Dict[str, Any]]:
         """
         Modify a thread (e.g., add/remove labels to all messages in thread).
-
         Args:
             user_id (str): User's email address.
             thread_id (str): Thread ID to modify.

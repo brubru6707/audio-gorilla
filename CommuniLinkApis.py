@@ -8,18 +8,12 @@ from state_loader import load_default_state
 
 DEFAULT_COMMUNILINK_STATE = load_default_state("CommuniLinkApis")
 
-class CommuniLinkUser:
-    def __init__(self, user_id: str, email: str = None):
-        self.user_id = user_id
-        self.email = email
-
 class CommuniLinkApis:
     """
     A dummy API class for CommuniLink, simulating SMS messaging and voice calling
     functionality. This class provides an in-memory backend for development
     and testing purposes without making actual API calls.
     """
-
     def __init__(self):
         """
         Initializes the CommuniLinkApis instance, setting up the in-memory
@@ -118,7 +112,7 @@ class CommuniLinkApis:
             "date": datetime.now().isoformat(),
             "description": f"SMS to {to_number}"
         })
-
+# hi
         new_sms_id = self._generate_unique_id()
         new_sms = {
             "sms_id": new_sms_id,

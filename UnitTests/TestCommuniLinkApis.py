@@ -77,7 +77,7 @@ class TestCommuniLinkApis(unittest.TestCase):
         self.assertIn("id", result)
         self.assertEqual(result["from"], self.user2_phone)
         self.assertEqual(result["to"], self.user1_phone)
-        self.assertEqual(result["audioUrl"], "http://audio.example.com/greeting.mp3")
+        self.assertEqual(result["audioUrl"], "http:// .example.com/greeting.mp3")
         self.assertEqual(result["status"], "completed")
         self.assertGreater(result["duration"], 0)
         

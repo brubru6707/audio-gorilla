@@ -226,8 +226,26 @@ def main():
     # --- Save to file ---
     output_filename = 'diverse_gmail_state.json'
     print(f"\nSaving generated state to '{output_filename}'...")
-    with open(output_filename, 'w') as f:
-        json.dump(DEFAULT_STATE, f, indent=2)
+    
+    try:
+        with open(output_filename, 'w', encoding='utf-8') as f:
+            json.dump(DEFAULT_STATE, f, indent=2, ensure_ascii=False, separators=(',', ': '))
+        
+        # Validate the saved JSON
+        with open(output_filename, 'r', encoding='utf-8') as f:
+            json.load(f)
+        
+        print(f"✓ Successfully saved and validated {len(DEFAULT_STATE['users'])} users")
+        
+        # Show file size
+        import os
+        file_size = os.path.getsize(output_filename)
+        print(f"✓ File size: {file_size:,} bytes ({file_size/1024/1024:.1f} MB)")
+        
+    except json.JSONEncodeError as e:
+        print(f"✗ JSON encoding error: {e}")
+    except Exception as e:
+        print(f"✗ Error saving file: {e}")
     
     print("Done!")
 

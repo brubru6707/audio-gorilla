@@ -9,10 +9,58 @@ class User:
         self.user_id = user_id
         self.email = email
 
+DEFAULT_STATE = {
+    "users": {},
+    "products": {},
+    "sellers": seller_names_based_on_categories,
+    "product_reviews": {},
+    "product_questions": {},
+    "promotions": {
+        str(uuid.uuid4()): {
+            "code": "SUMMERFUN",
+            "discount_percentage": 15,
+            "min_purchase_amount": 50.00,
+            "expiry_date": "2025-08-31",
+            "description": "15% off orders over $50 for summer!",
+            "is_active": True
+        },
+        str(uuid.uuid4()): {
+            "code": "NEWCUSTOMER20",
+            "discount_percentage": 20,
+            "min_purchase_amount": 0.00,
+            "expiry_date": "2025-12-31",
+            "description": "20% off your first order!",
+            "is_active": True
+        }
+    },
+    "customer_service_tickets": {
+        str(uuid.uuid4()): {
+            "user_id": "",
+            "subject": "Missing Item in Order",
+            "description": "Order TRK123456789 arrived, but Product 5 was missing.",
+            "status": "open",
+            "created_date": "2025-07-20",
+            "last_updated_date": "2025-07-25",
+            "agent_notes": "Checked inventory, sending replacement for Product 5."
+        },
+        str(uuid.uuid4()): {
+            "user_id": "",
+            "subject": "Issue with Payment",
+            "description": "My card was declined for order TRK987654321.",
+            "status": "closed",
+            "created_date": "2025-06-01",
+            "last_updated_date": "2025-06-05",
+            "agent_notes": "User updated card details, payment successful now."
+        }
+    }
+}
+
+
 flattened_product_titles = []
 flattened_product_descriptions = []
 flattened_categories = {}
 category_index = 0
+
 def flatten_categories(data_dict):
     global category_index
     for key, value in data_dict.items():
@@ -94,16 +142,6 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
             "zip_code": random.randint(10000, 99999),
         }
 
-    cart = {}
-    for _ in range(random.randint(0, 3)):
-        product_id = random.randint(1, 15)
-        cart[product_id] = random.randint(1, 3)
-
-    wish_list = {}
-    for _ in range(random.randint(0, 2)):
-        product_id = random.randint(1, 15)
-        wish_list[product_id] = {"added_date": generate_random_date(2023, 2024)}
-
     orders = {}
     num_orders = random.randint(0, 3)
     user_address_ids = list(addresses.keys())
@@ -173,8 +211,8 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
             "balance": balance,
             "payment_cards": payment_cards,
             "addresses": addresses,
-            "cart": cart,
-            "wish_list": wish_list,
+            "cart": {},
+            "wish_list": {},
             "orders": orders,
             "prime_subscriptions": prime_subscriptions,
             "returns": returns,
@@ -220,6 +258,13 @@ def generate_product(product_id):
         seller_name = "Amazon First Time Seller"
     elif type(main_category_name) == str:
         seller_name = seller_names_based_on_categories[main_category_name]
+        while (type(seller_name) == dict and len(seller_name.keys()) > 1) or (type(seller_name) == list and len(seller_name) > 1):
+            if type(seller_name) == list:
+                seller_name = random.choice(seller_name)
+            elif type(seller_name) == dict:
+                categories = list(seller_name.keys())
+                category = random.choice(categories)
+                seller_name = random.choice(seller_name[category])
     else: 
         seller_name = random.choice(flatten_dict_values(seller_names_based_on_categories[main_category_name])) 
     product = {
@@ -230,7 +275,6 @@ def generate_product(product_id):
         "stock": random.randint(0, 100) + 1,
         "category": main_category_name
     }
-    
 
     return product
 
@@ -270,52 +314,6 @@ def generate_question(product_id, existing_user_ids, index):
         "q_and_as": q_and_as,
     }
 
-DEFAULT_STATE = {
-    "users": {},
-    "products": {},
-    "sellers": {},
-    "product_reviews": {},
-    "product_questions": {},
-    "promotions": {
-        str(uuid.uuid4()): {
-            "code": "SUMMERFUN",
-            "discount_percentage": 15,
-            "min_purchase_amount": 50.00,
-            "expiry_date": "2025-08-31",
-            "description": "15% off orders over $50 for summer!",
-            "is_active": True
-        },
-        str(uuid.uuid4()): {
-            "code": "NEWCUSTOMER20",
-            "discount_percentage": 20,
-            "min_purchase_amount": 0.00,
-            "expiry_date": "2025-12-31",
-            "description": "20% off your first order!",
-            "is_active": True
-        }
-    },
-    "customer_service_tickets": {
-        str(uuid.uuid4()): {
-            "user_id": "",
-            "subject": "Missing Item in Order",
-            "description": "Order TRK123456789 arrived, but Product 5 was missing.",
-            "status": "open",
-            "created_date": "2025-07-20",
-            "last_updated_date": "2025-07-25",
-            "agent_notes": "Checked inventory, sending replacement for Product 5."
-        },
-        str(uuid.uuid4()): {
-            "user_id": "",
-            "subject": "Issue with Payment",
-            "description": "My card was declined for order TRK987654321.",
-            "status": "closed",
-            "created_date": "2025-06-01",
-            "last_updated_date": "2025-06-05",
-            "agent_notes": "User updated card details, payment successful now."
-        }
-    }
-}
-
 existing_uuids = {
     "users": set(),
     "payment_cards": set(),
@@ -324,21 +322,44 @@ existing_uuids = {
     "returns": set()
 }
 
-for index in range(user_count + len(first_and_last_names)):
-    if index > user_count:
-        first_name,_, last_name = first_and_last_names[index - user_count].partition(" ")
-        new_user_info, new_user_id = generate_user(existing_uuids, first_name=first_name, last_name=last_name)
-        DEFAULT_STATE["users"].update(new_user_info)
-    else:
-        new_user_info, new_user_id = generate_user(existing_uuids)
-        DEFAULT_STATE["users"].update(new_user_info)   
-
 num_initial_products = len(DEFAULT_STATE["products"])
-
 existing_seller_ids = list(DEFAULT_STATE["sellers"].keys())
-
 all_product_ids = list(DEFAULT_STATE["products"].keys())
 all_user_ids = list(DEFAULT_STATE["users"].keys())
+
+def propagate_cart_to_users(product_ids):
+    for user_id, user_data in DEFAULT_STATE["users"].items():
+        if random.random() < 0.5:
+            cart = {}
+            num_cart_items = random.randint(1, 5)
+            cart["total_price"] = 0.0
+            for _ in range(num_cart_items):
+                product_id = product_ids[random.randint(0, len(product_ids) - 1)]
+                quantity = random.randint(1, 2)
+                cart[product_id] = quantity
+                cart["total_price"] += DEFAULT_STATE["products"][product_id]["price"] * quantity
+            if random.random() < 0.3:
+                promo = random.choice(list(DEFAULT_STATE["promotions"].values()))
+                cart["promo_code"] = promo["code"]
+                if cart["total_price"] >= promo["min_purchase_amount"]:
+                    discount = (promo["discount_percentage"] / 100) * cart["total_price"]
+                    cart["total_price"] -= discount
+            cart["total_price"] = round(cart["total_price"], 2)
+            user_data["cart"] = cart
+        else:
+            user_data["cart"] = {}
+
+def propagate_wish_list_to_users(product_ids):
+    for user_id, user_data in DEFAULT_STATE["users"].items():
+        if random.random() < 0.7:
+            wish_list = []
+            num_wish_list_items = random.randint(1, 10)
+            for _ in range(num_wish_list_items):
+                product_id = product_ids[random.randint(0, len(product_ids) - 1)]
+                wish_list.append(product_id)
+            user_data["wish_list"] = wish_list
+        else:
+            user_data["wish_list"] = []
 
 for i in range(num_initial_products + 1, len(flattened_product_titles)):
     product_id = str(uuid.uuid4())
@@ -354,6 +375,18 @@ for product_id in all_product_ids:
     num_reviews = random.randint(0, 5)
     for _ in range(num_reviews):
         DEFAULT_STATE["product_reviews"][product_id].append(generate_review(product_id, all_user_ids))
+
+for index in range(user_count + len(first_and_last_names)):
+    if index > user_count:
+        first_name,_, last_name = first_and_last_names[index - user_count].partition(" ")
+        new_user_info, new_user_id = generate_user(existing_uuids, first_name=first_name, last_name=last_name)
+        DEFAULT_STATE["users"].update(new_user_info)
+    else:
+        new_user_info, new_user_id = generate_user(existing_uuids)
+        DEFAULT_STATE["users"].update(new_user_info)   
+
+propagate_cart_to_users(list(DEFAULT_STATE["products"].keys()))
+propagate_wish_list_to_users(list(DEFAULT_STATE["products"].keys()))
 
 if all_user_ids:
     for ticket_id in DEFAULT_STATE["customer_service_tickets"]:
