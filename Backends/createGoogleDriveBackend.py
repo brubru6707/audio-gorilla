@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
-from fake_data import first_names, last_names, domains
+from fake_data import first_names, last_names, domains, first_and_last_names, user_count
 
 current_timestamp_s = int(datetime.now().timestamp())
 
@@ -121,21 +121,14 @@ file_names_base = {
     "code_js": ["frontend", "backend"],
     "text": ["Notes", "Log", "Readme"]
 }
-file_descriptions = [
-    "Important internal document.", "Shared with client for review.",
-    "Draft for feedback.", "Final version, do not modify.",
-    "Contains sensitive financial data.", "Marketing collateral for new product.",
-    "Team brainstorming session notes.", "Automatically generated report.",
-    "Legal agreement terms and conditions.", "Personal notes on a project."
-]
 
 current_user_emails = list(_user_email_to_uuid_map.keys())
 
-for i in range(48):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
-    email = generate_random_email(first, last)
-    
+def generate_user(first_name=None, last_name=None, email=None, balance=None):
+    first = random.choice(first_names) if first_name is None else first_name
+    last = random.choice(last_names) if last_name is None else last_name
+    email = generate_random_email(first, last) if email is None else email
+
     while email in _user_email_to_uuid_map:
         email = generate_random_email(first, last)
 
@@ -225,15 +218,21 @@ for i in range(48):
             "starred": random.random() < 0.15,
             "trashed": random.random() < 0.05,
             "shared": random.random() < 0.25,
-            "description": random.choice(file_descriptions) if random.random() < 0.6 else None,
             "version": random.randint(1, 10),
             "lastViewingUser": random.choice([email] + [e["emailAddress"] for e in owners_list if e["emailAddress"] != email]) if len(owners_list) > 1 else email,
             "viewedByMeTime": int(datetime.now().timestamp() - random.randint(60, 86400 * 5))
         }
-
-    user_id, user_data = _create_user_data(email, first, last, new_drive_data)
-    DEFAULT_STATE["users"][user_id] = user_data
     current_user_emails.append(email)
+    return _create_user_data(email, first, last, new_drive_data)
+
+
+for i in range(user_count + len(first_and_last_names)):
+    if user_count < i:
+        first_name, _, last_name = first_and_last_names[i - user_count].partition(" ")
+        user_id, user_data = generate_user(first_name=first_name, last_name=last_name)
+    else:
+        user_id, user_data = generate_user()
+    DEFAULT_STATE["users"][user_id] = user_data    
 
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 
@@ -245,5 +244,3 @@ print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
 
 if DEFAULT_STATE["users"]:
     sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
-    print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
-    print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))

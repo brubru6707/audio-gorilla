@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from fake_data import location_names, domains
+from fake_data import location_names, domains, first_and_last_names, user_count
 
 current_time_edt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=4)
 
@@ -292,9 +292,9 @@ country_codes = ["US", "CA", "GB", "MX", "DE", "JP"]
 timezones = ["America/New_York", "America/Los_Angeles", "America/Chicago", "Europe/London", "Asia/Tokyo", "Europe/Berlin", "Australia/Sydney"]
 subscription_plans = ["Free Tier", "Basic Plan", "Premium Plan", "Family Plan", "Business Tier"]
 
-for i in range(49):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
+def generate_user(first_name=None, last_name=None, email=None, balance=None):
+    first = random.choice(first_names) if first_name is None else first_name
+    last = random.choice(last_names) if last_name is None else last_name
     email = generate_random_email(first, last)
     
     while email in _user_email_to_uuid_map:
@@ -456,8 +456,15 @@ for i in range(49):
             "device_online_status_last_checked": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=1)
         }
 
-    user_id, user_data = _create_user_data(email, first, last, user_smartthings_data)
-    DEFAULT_STATE["users"][user_id] = user_data
+    return _create_user_data(email, first, last, user_smartthings_data)
+
+for i in range(user_count + len(first_and_last_names)):
+    if i >= user_count:
+        first_name, last_name = first_and_last_names[i - user_count].partition(" ")[::2]
+        user_id, user_data = generate_user(first_name=first_name, last_name=last_name)
+    else:
+        user_id, user_data = generate_user()
+    DEFAULT_STATE["users"][user_id] = user_data    
 
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 
@@ -469,5 +476,3 @@ print(f"Generated DEFAULT_STATE saved to '{output_filename}'")
 
 if DEFAULT_STATE["users"]:
     sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(0, len(DEFAULT_STATE["users"]) - 1)]
-    print(f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:")
-    print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))

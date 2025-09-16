@@ -4,7 +4,7 @@ import uuid
 import json
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains
+from fake_data import first_names, last_names, domains, playlist_titles, user_count, first_and_last_names
 
 _initial_user_email_to_uuid_map = {}
 _initial_vehicle_tag_to_uuid_map = {}
@@ -59,167 +59,6 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
 
 RAW_DEFAULT_STATE = {
     "users": {
-        "alice.smith@mail.com": {
-            "first_name": "Alice",
-            "last_name": "Smith",
-            "email": "alice.smith@mail.com",
-            "friends": ["bob.johnson@mail.com"],
-            "tesla_data": {
-                "vehicles": {
-                    "alice_model_3": { # This will be the key for old_vehicle_tag mapping
-                        "vehicle_tag": "5YJ3E1EA2PF330316", # This is the VIN, keep as property
-                        "horn": False,
-                        "media": {
-                            "playing": False,
-                            "volume": 50,
-                            "current_track": 0,
-                            "favorites": ["The Commute Playlist", "Driving Rock Anthems", "Chill Acoustic Vibes"]
-                        },
-                        "trunk": {
-                            "front": "closed",
-                            "rear": "closed"
-                        },
-                        "charge": {
-                            "port_open": False,
-                            "charging": False,
-                            "limit": 80
-                        },
-                        "climate": {
-                            "on": False,
-                            "bioweapon_mode": False,
-                            "climate_keeper_mode": "off",
-                            "cop_temp": 30,
-                            "driver_temp": 20
-                        },
-                        "locks": {
-                            "locked": True
-                        },
-                        "sentry_mode": {
-                            "on": False,
-                            "alerts": []
-                        },
-                        "lights": {
-                            "on": False
-                        },
-                        "doors": {
-                            "driver_front": "closed",
-                            "passenger_front": "closed",
-                            "driver_rear": "closed",
-                            "passenger_rear": "closed"
-                        },
-                        "windows": "closed",
-                        "awake": True,
-                        "speed": 0,
-                        "location": {"latitude": 34.0522, "longitude": -118.2437}, # Los Angeles
-                        "firmware_version": "2024.14.7"
-                    },
-                    "alice_model_y": {
-                        "vehicle_tag": "5YJYGDEE3MF123456",
-                        "horn": False,
-                        "media": {
-                            "playing": True,
-                            "volume": 70,
-                            "current_track": 1,
-                            "favorites": ["Road Trip Mix", "Podcast Binge"]
-                        },
-                        "trunk": {
-                            "front": "closed",
-                            "rear": "closed"
-                        },
-                        "charge": {
-                            "port_open": False,
-                            "charging": True,
-                            "limit": 90
-                        },
-                        "climate": {
-                            "on": True,
-                            "bioweapon_mode": False,
-                            "climate_keeper_mode": "dog",
-                            "cop_temp": 25,
-                            "driver_temp": 22
-                        },
-                        "locks": {
-                            "locked": False
-                        },
-                        "sentry_mode": {
-                            "on": True,
-                            "alerts": ["Motion detected near front door"]
-                        },
-                        "lights": {
-                            "on": False
-                        },
-                        "doors": {
-                            "driver_front": "closed",
-                            "passenger_front": "closed",
-                            "driver_rear": "closed",
-                            "passenger_rear": "closed"
-                        },
-                        "windows": "closed",
-                        "awake": True,
-                        "speed": 65,
-                        "location": {"latitude": 37.7749, "longitude": -122.4194}, # San Francisco
-                        "firmware_version": "2024.14.7"
-                    }
-                }
-            }
-        },
-        "bob.johnson@mail.com": {
-            "first_name": "Bob",
-            "last_name": "Johnson",
-            "email": "bob.johnson@mail.com",
-            "friends": ["alice.smith@mail.com"],
-            "tesla_data": {
-                "vehicles": {
-                    "bob_model_s": {
-                        "vehicle_tag": "5YJSA1CNXJF000001",
-                        "horn": False,
-                        "media": {
-                            "playing": False,
-                            "volume": 60,
-                            "current_track": 0,
-                            "favorites": ["Classical Chill", "News Briefs"]
-                        },
-                        "trunk": {
-                            "front": "closed",
-                            "rear": "closed"
-                        },
-                        "charge": {
-                            "port_open": True,
-                            "charging": False,
-                            "limit": 70
-                        },
-                        "climate": {
-                            "on": False,
-                            "bioweapon_mode": False,
-                            "climate_keeper_mode": "off",
-                            "cop_temp": 28,
-                            "driver_temp": 28
-                        },
-                        "locks": {
-                            "locked": True
-                        },
-                        "sentry_mode": {
-                            "on": False,
-                            "alerts": []
-                        },
-                        "lights": {
-                            "on": False
-                        },
-                        "doors": {
-                            "driver_front": "closed",
-                            "passenger_front": "closed",
-                            "driver_rear": "closed",
-                            "passenger_rear": "closed"
-                        },
-                        "windows": "closed",
-                        "awake": False,
-                        "speed": 0,
-                        "location": {"latitude": 38.9072, "longitude": -77.0369}, # Washington D.C.
-                        "firmware_version": "2024.12.3"
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -247,12 +86,6 @@ def generate_location():
     lon = random.uniform(-125.0, -66.0)
     return {"latitude": round(lat, 4), "longitude": round(lon, 4)}
 
-favorite_playlists = [
-    "Morning Commute Tunes", "Evening Drive Relax", "Weekend Adventure Mix",
-    "Focus Work Beats", "Podcast Catch-up", "Family Road Trip Hits",
-    "City Driving Jazz", "Country Roads Playlist", "Highway Rock Anthems",
-    "Chill Acoustic Vibes", "Energy Boosters", "Rainy Day Reflections"
-]
 sentry_alerts = [
     "Motion detected near front door", "Object too close to rear bumper",
     "Alarm triggered by strange noise", "Recording event - vehicle approached"
@@ -261,16 +94,13 @@ firmware_versions = ["2024.14.7", "2024.12.3", "2024.8.9", "2023.44.30.8", "2023
 
 
 num_initial_users = len(RAW_DEFAULT_STATE["users"])
-num_users_to_add = 50 - num_initial_users
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
 all_user_uuids = list(DEFAULT_STATE["users"].keys())
 
-for i in range(num_users_to_add):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
+for i in range(user_count + len(first_and_last_names)):
+    first = random.choice(first_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[0]
+    last = random.choice(last_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[2]
     email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
-    
-
     existing_emails = set([DEFAULT_STATE["users"][uid].get("email") for uid in DEFAULT_STATE["users"].keys()])
     while email in existing_emails:
         email = f"{first.lower()}.{last.lower()}{random.randint(1, 999)}@{random.choice(domains)}"
@@ -285,8 +115,6 @@ for i in range(num_users_to_add):
         potential_friend_email = f"{random.choice(first_names).lower()}.{random.choice(last_names).lower()}{random.randint(1000, 9999)}@{random.choice(domains)}"
         if potential_friend_email not in existing_emails:
             friends_list.append(potential_friend_email)
-
-
 
     num_vehicles = random.choices([0, 1, 2, 3], weights=[0.4, 0.4, 0.15, 0.05], k=1)[0]
     user_vehicles = {}
@@ -310,7 +138,7 @@ for i in range(num_users_to_add):
                 "playing": media_playing,
                 "volume": random.randint(20, 90),
                 "current_track": random.randint(0, 5) if media_playing else 0,
-                "favorites": random.sample(favorite_playlists, random.randint(0, min(3, len(favorite_playlists))))
+                "favorites": random.sample(playlist_titles, random.randint(0, min(3, len(playlist_titles))))
             },
             "trunk": {
                 "front": random.choice(["open", "closed"]),

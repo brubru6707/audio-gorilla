@@ -5,7 +5,7 @@ import uuid
 import random
 import re
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains
+from fake_data import first_names, last_names, domains, user_count, first_and_last_names
 
 _initial_user_email_to_uuid_map = {}
 _initial_payment_card_id_map = {}
@@ -249,14 +249,12 @@ notification_messages = {
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
 
 num_initial_users = len(RAW_DEFAULT_STATE["users"])
-num_users_to_add = 50 - num_initial_users
-
 all_user_uuids = list(DEFAULT_STATE["users"].keys())
 existing_user_emails = set([DEFAULT_STATE["users"][uid]["email"] for uid in DEFAULT_STATE["users"].keys()])
 
-for i in range(num_users_to_add):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
+for i in range(len(first_and_last_names) + user_count):
+    first = random.choice(first_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[0]
+    last = random.choice(last_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[2]
     email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(domains)}"
     
     while email in existing_user_emails:
@@ -279,19 +277,15 @@ for i in range(num_users_to_add):
         expiry_month = random.randint(1, 12)
         def generate_fake_card_number(card_type):
             if card_type == "Visa":
-                
                 prefix = "4"
                 remaining_digits = 15
             elif card_type == "Mastercard":
-                
                 prefix = "5"
                 remaining_digits = 15
             elif card_type == "Amex":
-                
                 prefix = random.choice(["34", "37"])
                 remaining_digits = 13
             elif card_type == "Discover":
-                
                 prefix = "6011"
                 remaining_digits = 12
             else:

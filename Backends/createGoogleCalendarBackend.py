@@ -5,7 +5,7 @@ import datetime
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
-from fake_data import first_names, last_names
+from fake_data import first_names, last_names, domains, event_descriptions, event_locations, timezones, user_count, first_and_last_names
 
 current_datetime = datetime.now()
 
@@ -16,12 +16,7 @@ DEFAULT_STATE: Dict[str, Any] = {
 _user_email_to_uuid_map = {}
 
 def generate_random_email(first_name, last_name):
-    domains = [
-        "bizmail.co", "techcorp.io", "webmail.net", "globalinc.org",
-        "mailhub.app"
-    ]
     return f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
-
 
 def generate_random_datetime(min_days_ago=0, max_days_ago=365, future_days=30):
     """Generates a random ISO formatted datetime string, either in the past or future."""
@@ -45,7 +40,6 @@ def generate_random_datetime(min_days_ago=0, max_days_ago=365, future_days=30):
                                 hours=random.randint(7, 18),
                                 minutes=random.choice([0, 15, 30, 45]))
         return (current_datetime - time_offset).isoformat()
-
 
 def _create_user_data(email: str, first_name: str, last_name: str,
                       calendar_data: Dict[str, Any]):
@@ -147,38 +141,13 @@ def _create_user_data(email: str, first_name: str, last_name: str,
          timedelta(minutes=random.randint(5, 60 * 24))).isoformat()
     }
 
-timezones = [
-    "America/New_York", "America/Los_Angeles", "America/Chicago",
-    "America/Denver", "Europe/London", "Europe/Paris", "Asia/Tokyo",
-    "Asia/Shanghai", "Australia/Sydney"
-]
-event_summaries = [
-    "Daily Standup", "Project Brainstorm", "Client Demo", "One-on-One Meeting",
-    "Team Lunch", "Training Session", "Code Review", "Strategic Planning",
-    "Vendor Call", "Product Launch Sync", "Workout Session",
-    "Dentist Appointment", "Grocery Shopping", "Book Club Meeting",
-    "Family Dinner"
-]
-event_locations = [
-    "Conference Room A", "Zoom Call", "Office 3B", "Cafe Central", "Virtual",
-    "Gym", "Home", "Library", "Client Site"
-]
-event_descriptions = [
-    "Discuss daily progress.", "Generate new ideas for Q3.",
-    "Showcase latest features.", "Catch up on goals.",
-    "Casual team get-together.", "Learn new software.",
-    "Review pull requests.", "Outline next year's strategy.",
-    "Negotiate new contract.", "Coordinate launch activities.", "Stay fit.",
-    "Routine check-up.", "Weekly supplies run.", "Discuss current reading.",
-    "Enjoy time with family."
-]
-
 current_user_emails = list(_user_email_to_uuid_map.keys())
 
-for i in range(48):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
-    email = generate_random_email(first, last)
+def generate_user(first_name=None, last_name=None, email=None, balance=None):
+
+    first = random.choice(first_names) if first_name is None else first_name
+    last = random.choice(last_names) if last_name is None else last_name
+    email = generate_random_email(first, last) if email is None else email
 
     while email in _user_email_to_uuid_map:
         email = generate_random_email(first, last)
@@ -236,8 +205,6 @@ for i in range(48):
             new_calendar_data["events"][cal_id_temp][event_id_temp] = {
                 "id":
                 event_id_temp,
-                "summary":
-                random.choice(event_summaries),
                 "location":
                 random.choice(event_locations),
                 "start": {
@@ -260,11 +227,17 @@ for i in range(48):
                 "status":
                 random.choice(["confirmed", "tentative", "cancelled"])
             }
-
-    user_id, user_data = _create_user_data(email, first, last,
-                                           new_calendar_data)
-    DEFAULT_STATE["users"][user_id] = user_data
     current_user_emails.append(email)
+    return _create_user_data(email, first, last,
+                                           new_calendar_data)
+
+for i in range(user_count + len(first_and_last_names)):
+    if i > user_count:
+        first_name,_, last_name = first_and_last_names[i - user_count].partition(" ")
+        user_id, user_data = generate_user(first_name=first_name, last_name=last_name)
+    else:
+        user_id, user_data = generate_user()
+    DEFAULT_STATE["users"][user_id] = user_data
 
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 
@@ -278,7 +251,3 @@ if DEFAULT_STATE["users"]:
     sample_user_id = list(DEFAULT_STATE["users"].keys())[random.randint(
         0,
         len(DEFAULT_STATE["users"]) - 1)]
-    print(
-        f"\nSample data for user {DEFAULT_STATE['users'][sample_user_id]['first_name']} {DEFAULT_STATE['users'][sample_user_id]['last_name']}:"
-    )
-    print(json.dumps(DEFAULT_STATE["users"][sample_user_id], indent=2))

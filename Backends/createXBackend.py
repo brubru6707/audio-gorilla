@@ -4,8 +4,7 @@ import copy
 import uuid
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, social_media_bios
-
+from fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names
 
 _initial_user_id_map = {}
 _initial_post_id_map = {}
@@ -165,30 +164,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365 * 5):
     )
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec="milliseconds").replace("+00:00", "Z")
-
-
-post_texts = [
-    "Just wrapped up a challenging project! Feeling accomplished.",
-    "Loving this sunny weather! Perfect for a walk in the park. ☀️",
-    "Deep dive into machine learning today. My brain hurts, but in a good way!",
-    "Found the most amazing local coffee shop. Highly recommend their cold brew!",
-    "Thinking about starting a new side project. Any ideas for a passion project?",
-    "Reading 'The Alchemist' again. Always find new insights. What's your favorite book?",
-    "Practicing my guitar solos. Getting there! 🎸",
-    "Just published a new blog post on sustainable living tips. Link in bio!",
-    "Reflecting on the past year's growth. So much to be grateful for.",
-    "Exploring new hiking trails this weekend. Any hidden gems near Pine Hills?",
-    "Working on a new digital painting. Sometimes the blank canvas is the hardest part.",
-    "Just finished a fantastic workout! Feeling energized and ready to tackle the day.",
-    "Learning a new language. Slowly but surely making progress! ¡Hola!",
-    "Excited for the upcoming tech conference! Who else is going?",
-    "Meal prepping for the week. Saves so much time and keeps me on track.",
-    "Watching a documentary about space exploration. The universe is truly mind-boggling!",
-    "Spending quality time with family today. Cherish these moments. ❤️",
-    "Trying out a new recipe tonight. Wish me luck! 🍳",
-    "Volunteer work always fills my soul. Give back when you can!",
-    "Just enjoyed a beautiful sunset. Nature's masterpiece. 🌅",
-]
 
 dm_messages = [
     "Hey, how have you been?",
@@ -424,7 +399,6 @@ RAW_DEFAULT_STATE = {
 DEFAULT_STATE = _convert_initial_data_to_uuids(RAW_DEFAULT_STATE)
 
 num_initial_users = len(DEFAULT_STATE["users"])
-num_users_to_add = 50 - num_initial_users
 
 existing_usernames = set(
     user_data["username"] for user_data in DEFAULT_STATE["users"].values()
@@ -435,9 +409,9 @@ existing_emails = set(
 
 new_user_ids = []
 
-for i in range(num_users_to_add):
-    first = random.choice(first_names)
-    last = random.choice(last_names)
+for i in range(user_count + len(first_and_last_names)):
+    first = random.choice(first_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[0]
+    last = random.choice(last_names) if i < user_count else first_and_last_names[i - user_count].partition(" ")[2]
     username = f"{first.lower()}_{last.lower()}{random.randint(10, 99)}"
     email = f"{first.lower()}.{last.lower()}{random.randint(100, 9999)}@{random.choice(domains)}"
 
