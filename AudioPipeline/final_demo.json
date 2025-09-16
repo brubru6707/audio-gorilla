@@ -1,0 +1,37 @@
+[
+    {
+        "text": "Welcome to the AudioPipeline demonstration! This system converts text to speech with professional-quality output.",
+        "filename": "demo_intro.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "Each audio file is enhanced with ambient background sounds like city noise, rain, or coffee shop ambiance.",
+        "filename": "demo_ambient.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "The background audio is automatically balanced to be quieter than the speech, ensuring clear communication.",
+        "filename": "demo_balance.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "You can process multiple JSON files at once, customize background volume, or disable background audio entirely.",
+        "filename": "demo_features.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "This technology is perfect for creating engaging podcasts, audiobooks, or any content that benefits from ambient soundscapes.",
+        "filename": "demo_applications.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "The system gracefully handles API failures and missing dependencies with automatic fallbacks to ensure reliable operation.",
+        "filename": "demo_reliability.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "Thank you for exploring the AudioPipeline! Enjoy the rich, professional-quality audio output with ambient backgrounds.",
+        "filename": "demo_conclusion.mp3",
+        "folder": "demo_outputs"
+    }
+]

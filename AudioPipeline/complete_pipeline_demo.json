@@ -1,0 +1,27 @@
+[
+  {
+    "text": "Welcome to the complete AudioPipeline demonstration! This showcases text-to-speech with ambient background audio.",
+    "filename": "complete_demo_intro.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "The system processes JSON input files containing text prompts and generates professional audio with background ambiance.",
+    "filename": "complete_demo_process.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "Each audio file features a randomly selected background track from our collection of ambient sounds.",
+    "filename": "complete_demo_random.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "The background audio is automatically balanced to enhance the listening experience without overwhelming the speech.",
+    "filename": "complete_demo_balance.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "This technology is perfect for creating engaging content, podcasts, audiobooks, and multimedia presentations.",
+    "filename": "complete_demo_applications.mp3",
+    "folder": "demo_outputs"
+  }
+]

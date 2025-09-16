@@ -1,0 +1,22 @@
+[
+    {
+        "text": "Hello! This is Rachel from ElevenLabs, demonstrating the AudioPipeline with background audio.",
+        "filename": "demo_rachel.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "I'm Clyde, another voice from ElevenLabs. Notice how each voice has a different character and tone.",
+        "filename": "demo_clyde.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "This is Roger speaking. The pipeline randomly selects different voices for variety in your content.",
+        "filename": "demo_roger.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "And I'm Sarah, completing our voice demonstration. Each audio file includes ambient background sounds.",
+        "filename": "demo_sarah.mp3",
+        "folder": "demo_outputs"
+    }
+]

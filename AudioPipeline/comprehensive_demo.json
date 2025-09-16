@@ -1,0 +1,42 @@
+[
+    {
+        "text": "Welcome to the AudioPipeline demo! This system can convert text to speech using advanced AI voice providers.",
+        "filename": "demo_welcome.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "The pipeline supports multiple voice providers including ElevenLabs and Hume.ai, with automatic fallback to Google TTS.",
+        "filename": "demo_features.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "Each audio file is enhanced with random background ambient sounds like city noise, rain, or coffee shop ambiance.",
+        "filename": "demo_background.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "The background audio is automatically balanced to be quieter than the speech, ensuring clear communication.",
+        "filename": "demo_balance.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "You can customize the background volume, disable background audio entirely, or process multiple JSON files at once.",
+        "filename": "demo_customization.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "This technology is perfect for creating engaging podcasts, audiobooks, or any content that benefits from ambient soundscapes.",
+        "filename": "demo_applications.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "The system automatically handles API rate limits, network errors, and missing dependencies with graceful fallbacks.",
+        "filename": "demo_reliability.mp3",
+        "folder": "demo_outputs"
+    },
+    {
+        "text": "Thank you for exploring the AudioPipeline! We hope you enjoy the rich, professional-quality audio output.",
+        "filename": "demo_conclusion.mp3",
+        "folder": "demo_outputs"
+    }
+]

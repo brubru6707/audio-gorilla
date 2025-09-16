@@ -1,0 +1,27 @@
+[
+  {
+    "text": "This is Demo One with very noticeable background audio. You should clearly hear ambient sounds behind the speech.",
+    "filename": "demo_noticeable_1.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "This is Demo Two featuring city street ambiance. The background should be clearly audible but not overpowering.",
+    "filename": "demo_noticeable_2.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "This is Demo Three with coffee shop background sounds. Notice how the ambient audio enhances the listening experience.",
+    "filename": "demo_noticeable_3.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "This is Demo Four with rain ambiance. The background audio creates atmosphere while keeping speech clear.",
+    "filename": "demo_noticeable_4.mp3",
+    "folder": "demo_outputs"
+  },
+  {
+    "text": "This is Demo Five showcasing highway ambience. Each background track is randomly selected for variety.",
+    "filename": "demo_noticeable_5.mp3",
+    "folder": "demo_outputs"
+  }
+]

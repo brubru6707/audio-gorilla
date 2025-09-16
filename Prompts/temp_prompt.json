@@ -1,0 +1,650 @@
+{
+  "Prompts": {
+    "SingleTurn": [
+      {
+        "prompt": "What is the status of my latest Amazon order?",
+        "tools": ["AmazonApis"],
+        "context": {
+          "amazon_current_user": "5dd86039-99f2-4aaa-9a5a-99a453adc80c"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "show_orders(user: str, page_index=1, page_limit=1)"
+            ],
+            "response_to_user": "Your latest Amazon order (order_id) is currently in 'shipped' status."
+          }
+        }
+      },
+      {
+        "prompt": "Send a text message to Sarah Williams saying 'Lunch at noon?'",
+        "tools": ["CommuniLinkApis"],
+        "context": {
+          "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "send_sms(from_number: str, to_number='+12025550105', message='Lunch at noon?')"
+            ],
+            "response_to_user": "SMS sent to Sarah Williams."
+          }
+        }
+      },
+      {
+        "prompt": "Search my Gmail for emails about the quarterly report.",
+        "tools": ["GmailApis"],
+        "context": {
+          "gmail_current_user": "419c119c-64c7-411f-8ab4-b890e8ac417a"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "list_messages(user_id: str, query='quarterly report', max_results=10)"
+            ],
+            "response_to_user": "Here are the top results related to the quarterly report."
+          }
+        }
+      },
+      {
+        "prompt": "What's on my Google Calendar for tomorrow?",
+        "tools": ["GoogleCalendarApis"],
+        "context": {
+          "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "list_calendars(user_id: str)",
+              "list_events(calendar_id: primary, user_id: str, time_min=tomorrow_start, time_max=tomorrow_end)"
+            ],
+            "response_to_user": "You have X events scheduled for tomorrow."
+          }
+        }
+      },
+      {
+        "prompt": "Share the file 'Project_Plan_Q3.docx' with bob.jones@cloudrive.com.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "googledrive_current_user": "36ab6ab8-0ddd-4050-a707-d9c2985adcd1"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "search_files(user_id: str, name='Project_Plan_Q3.docx')",
+              "share_file(user_id: str, file_id: str, email='bob.jones@cloudrive.com', role='writer')"
+            ],
+            "response_to_user": "The file has been shared with bob.jones@cloudrive.com."
+          }
+        }
+      },
+      {
+        "prompt": "Play the next episode of Stranger Things on my profile.",
+        "tools": ["NetflixApis"],
+        "context": {
+          "netflix_current_profile": "P001"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "get_next_episode(profile_id: str, show_name='Stranger Things')",
+              "play_episode(profile_id: str, episode_id: str)"
+            ],
+            "response_to_user": "Playing the next episode of Stranger Things. Enjoy!"
+          }
+        }
+      },
+      {
+        "prompt": "Create a note titled 'Grocery List' with the items eggs, milk, and bread.",
+        "tools": ["SimpleNoteApis"],
+        "context": {
+          "simplenote_current_user": "bf5626ed-1cba-4fc5-a904-1d4a7397714a"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "create_note(user_id: str, title='Grocery List', content='eggs, milk, bread')"
+            ],
+            "response_to_user": "Note 'Grocery List' created."
+          }
+        }
+      },
+      {
+        "prompt": "Post a message in the #marketing channel saying 'Great job on the campaign!'",
+        "tools": ["SlackApis"],
+        "context": {
+          "slack_current_user": "U001"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "post_message(user_id: str, channel='#marketing', text='Great job on the campaign!')"
+            ],
+            "response_to_user": "Message posted to #marketing."
+          }
+        }
+      },
+      {
+        "prompt": "Turn off the patio lights.",
+        "tools": ["SmartHomeApis"],
+        "context": {
+          "smarthome_current_user": "974277c8-62ca-40c3-a18c-cde01879a66b"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "set_device_state(user_id: str, device_name='Patio Light', state={'on': false})"
+            ],
+            "response_to_user": "Patio lights turned off."
+          }
+        }
+      },
+      {
+        "prompt": "Set the Living Room Lamp to 50% brightness.",
+        "tools": ["SmartThingsApis"],
+        "context": {
+          "smartthings_current_user": "9489bd03-2ff9-4e05-990a-c10a3482c8c5"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "set_device_level(user_id: str, device_name='Living Room Lamp', level=50)"
+            ],
+            "response_to_user": "Living Room Lamp set to 50% brightness."
+          }
+        }
+      },
+      {
+        "prompt": "Play my 'Chill Acoustic Vibes' playlist.",
+        "tools": ["SpotifyApis"],
+        "context": {
+          "spotify_current_user": "bfe0de4c-60ce-4f13-bd43-5d557d63fe07"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "start_playlist(user: str, playlist_name='Chill Acoustic Vibes')"
+            ],
+            "response_to_user": "Now playing 'Chill Acoustic Vibes'."
+          }
+        }
+      },
+      {
+        "prompt": "Unlock my Model 3.",
+        "tools": ["TeslaFleetApis"],
+        "context": {
+          "teslafleet_current_user": "7b46220c-64da-4ec1-9224-d10f681f3435"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "unlock_vehicle(user: str, vehicle_tag='alice_model_3')"
+            ],
+            "response_to_user": "Your Model 3 is unlocked."
+          }
+        }
+      },
+      {
+        "prompt": "Send $15 to Bob Johnson for lunch.",
+        "tools": ["VenmoApis"],
+        "context": {
+          "venmo_current_user": "4886f759-8bc1-4574-a359-31bf55a7774b"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "send_payment(user: str, to_email='bob.johnson@yahoo.com', amount=15.00, note='Lunch')"
+            ],
+            "response_to_user": "$15 sent to Bob Johnson."
+          }
+        }
+      },
+      {
+        "prompt": "List the 'Portable Air Fryer' (SKU005) at a 10% discount.",
+        "tools": ["WalmartMarketplaceApis"],
+        "context": {},
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "update_item_price(sku='SKU005', new_price=original_price * 0.9)"
+            ],
+            "response_to_user": "SKU005 discounted by 10%."
+          }
+        }
+      },
+      {
+        "prompt": "Post a tweet saying 'Excited to launch our new feature today!'",
+        "tools": ["XApis"],
+        "context": {
+          "x_current_user": "66f44580-aff6-4d15-8193-17a6872d7108"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "create_post(user: str, text='Excited to launch our new feature today!')"
+            ],
+            "response_to_user": "Tweet posted."
+          }
+        }
+      },
+      {
+        "prompt": "Add the video 'AI Explained in 5 Minutes' to my Watch Later playlist.",
+        "tools": ["YouTubeApis"],
+        "context": {
+          "youtube_current_user": "ac8e7240-ce2b-4f41-bb6f-7dda1b340b85"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "search_videos(user: str, query='AI Explained in 5 Minutes')",
+              "add_to_watch_later(user: str, video_id: str)"
+            ],
+            "response_to_user": "Video added to Watch Later."
+          }
+        }
+      }
+    ],
+    "MultiTurn": [
+      {
+        "prompt": "I want to order a new laptop from Amazon.",
+        "tools": ["AmazonApis"],
+        "context": {
+          "amazon_current_user": "5dd86039-99f2-4aaa-9a5a-99a453adc80c"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "search_products(query='laptop')"
+            ]
+          },
+          "user1": "I'd like a 15-inch screen.",
+          "turn2": {
+            "action": [
+              "search_products(query='15 inch laptop')"
+            ]
+          },
+          "user2": "I need it to have a good battery life.",
+          "turn3": {
+            "action": [
+              "search_products(query='15 inch laptop long battery life')"
+            ]
+          },
+          "user3": "Prefer something relatively light.",
+          "turn4": {
+            "action": [
+              "search_products(query='15 inch lightweight laptop long battery life')"
+            ]
+          },
+          "user4": "Yes, please order the Dell XPS 15.",
+          "turn5": {
+            "action": [
+              "add_to_cart(user: str, product_id='DELL_XPS_15', quantity=1)",
+              "checkout(user: str, delivery_address_id=default, payment_card_id=default)"
+            ]
+          }
+        }
+      },
+      {
+        "prompt": "I need to buy a birthday gift for my sister.",
+        "tools": ["AmazonApis"],
+        "context": {
+          "amazon_current_user": "5dd86039-99f2-4aaa-9a5a-99a453adc80c"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "Sure! What's your sister interested in and what's the budget?"
+          },
+          "user1": "She loves reading and my budget is under $50.",
+          "turn2": {
+            "action": [
+              "search_products(query='books bestsellers', max_price=50)"
+            ],
+            "response_to_user": "Here are some top-rated books. Which one would you like?"
+          },
+          "user2": "Let's go with 'The Midnight Library'.",
+          "turn3": {
+            "action": [
+              "add_to_cart(product_id: str, quantity=1)",
+              "checkout(user: str, delivery_address_id: default, payment_card_id: default)"
+            ],
+            "response_to_user": "Great! 'The Midnight Library' has been ordered."
+          }
+        }
+      },
+      {
+        "prompt": "Help me clean up my Google Drive storage.",
+        "tools": ["GoogleDriveApis"],
+        "context": {
+          "googledrive_current_user": "36ab6ab8-0ddd-4050-a707-d9c2985adcd1"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "Would you like to delete large files, old files, or both?"
+          },
+          "user1": "Large files first, please.",
+          "turn2": {
+            "action": [
+              "list_files(user_id: str, order_by='size desc', page_limit=20)"
+            ],
+            "response_to_user": "Here are your 20 largest files. Which should I delete?"
+          },
+          "user2": "Delete the first 5.",
+          "turn3": {
+            "action": [
+              "delete_files(user_id: str, file_ids=[id1,id2,id3,id4,id5])"
+            ],
+            "response_to_user": "Selected files deleted."
+          }
+        }
+      },
+      {
+        "prompt": "I want a playlist for a road trip.",
+        "tools": ["SpotifyApis"],
+        "context": {
+          "spotify_current_user": "bfe0de4c-60ce-4f13-bd43-5d557d63fe07"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "What genres or mood are you looking for?"
+          },
+          "user1": "Upbeat classic rock.",
+          "turn2": {
+            "action": [
+              "create_playlist(user: str, name='Road Trip Rock', seed_genres=['classic rock'])",
+              "populate_playlist(user: str, playlist_id: str, genre='classic rock', limit=50)"
+            ],
+            "response_to_user": "Playlist 'Road Trip Rock' created with 50 songs."
+          }
+        }
+      },
+      {
+        "prompt": "Let's set up a recurring meeting with the design team.",
+        "tools": ["GoogleCalendarApis"],
+        "context": {
+          "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "What day and time works best and how often should it repeat?"
+          },
+          "user1": "Every Monday at 10 AM for the next 3 months.",
+          "turn2": {
+            "action": [
+              "create_event(calendar_id: primary, summary='Design Team Sync', start_time='Next Monday 10:00', end_time='Next Monday 11:00', recurrence='RRULE:FREQ=WEEKLY;COUNT=12')"
+            ],
+            "response_to_user": "Recurring meeting created and invites sent."
+          }
+        }
+      },
+      {
+        "prompt": "Plan a charging stop for my trip to San Francisco.",
+        "tools": ["TeslaFleetApis"],
+        "context": {
+          "teslafleet_current_user": "7b46220c-64da-4ec1-9224-d10f681f3435"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "What is your starting point and preferred route?"
+          },
+          "user1": "Leaving from Los Angeles via I-5.",
+          "turn2": {
+            "action": [
+              "plan_charging_route(user: str, origin='Los Angeles', destination='San Francisco', route='I-5')"
+            ],
+            "response_to_user": "Route planned with charging stops at Harris Ranch and Cupertino Superchargers."
+          }
+        }
+      },
+      {
+        "prompt": "I'm hosting a movie night this weekend.",
+        "tools": ["SmartHomeApis", "SpotifyApis", "NetflixApis"],
+        "context": {
+          "smarthome_current_user": "974277c8-62ca-40c3-a18c-cde01879a66b",
+          "spotify_current_user": "bfe0de4c-60ce-4f13-bd43-5d557d63fe07",
+          "netflix_current_profile": "P001"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "Great! What time should we start and which movie?"
+          },
+          "user1": "7 PM, Stranger Things Season 1 marathon.",
+          "turn2": {
+            "action": [
+              "set_scene(user: str, scene='Movie Night')",
+              "queue_episode(profile_id: str, show_name='Stranger Things', season=1, episode=1)",
+              "play_playlist(user: str, playlist_name='Chill Acoustic Vibes')"
+            ],
+            "response_to_user": "Lights dimmed, first episode queued, and background playlist ready. Enjoy!"
+          }
+        }
+      },
+      {
+        "prompt": "I need to split the dinner bill with friends.",
+        "tools": ["VenmoApis", "CommuniLinkApis"],
+        "context": {
+          "venmo_current_user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+          "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "How many friends and total amount?"
+          },
+          "user1": "$120 split among 3 friends.",
+          "turn2": {
+            "action": [
+              "calculate_split(amount=120, people=3)"
+            ],
+            "response_to_user": "Each person owes $40. Shall I send requests?"
+          },
+          "user2": "Yes, please.",
+          "turn3": {
+            "action": [
+              "send_payment_request(user: str, to_emails=[...], amount=40, note='Dinner split')"
+            ],
+            "response_to_user": "Payment requests sent via Venmo and SMS notifications delivered."
+          }
+        }
+      },
+      {
+        "prompt": "I want to start a YouTube channel about cooking.",
+        "tools": ["YouTubeApis"],
+        "context": {
+          "youtube_current_user": "ac8e7240-ce2b-4f41-bb6f-7dda1b340b85"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [],
+            "response_to_user": "What would you like to name your channel?"
+          },
+          "user1": "Tasty Home Eats",
+          "turn2": {
+            "action": [
+              "create_channel(user: str, channel_name='Tasty Home Eats', description='Homemade cooking tutorials')"
+            ],
+            "response_to_user": "Channel 'Tasty Home Eats' created! Ready to upload your first video?"
+          }
+        }
+      }
+    ],
+    "MultiStep": [
+      {
+        "prompt": "Play my 'Driving Rock Anthems' playlist in my Tesla.",
+        "tools": ["SpotifyApis", "TeslaFleetApis"],
+        "context": {
+          "spotify_current_user": "bfe0de4c-60ce-4f13-bd43-5d557d63fe07",
+          "teslafleet_current_user": "7b46220c-64da-4ec1-9224-d10f681f3435"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "start_playlist(user: str, playlist_name='Driving Rock Anthems')",
+              "set_car_media(user: str, source='Driving Rock Anthems')"
+            ],
+            "response_to_user": "Your Tesla is now blasting 'Driving Rock Anthems'."
+          }
+        }
+      },
+      {
+        "prompt": "Find the latest project plan in Google Drive and email it to the marketing team.",
+        "tools": ["GoogleDriveApis", "GmailApis"],
+        "context": {
+          "googledrive_current_user": "36ab6ab8-0ddd-4050-a707-d9c2985adcd1",
+          "gmail_current_user": "419c119c-64c7-411f-8ab4-b890e8ac417a"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "search_files(user: str, name contains 'Project Plan', order_by='modifiedTime desc', limit=1)",
+              "send_message(user_id: str, to='marketing@company.com', subject='Latest Project Plan', body='Attached is the latest project plan.', attachments=[file_id])"
+            ],
+            "response_to_user": "Latest project plan emailed to the marketing team."
+          }
+        }
+      },
+      {
+        "prompt": "Order the book 'Clean Code' on Amazon and add its delivery date to my Google Calendar.",
+        "tools": ["AmazonApis", "GoogleCalendarApis"],
+        "context": {
+          "amazon_current_user": "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+          "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "search_products(query='Clean Code')",
+              "add_to_cart(product_id: str, quantity=1)",
+              "checkout(user: str, delivery_address_id: default, payment_card_id: default)",
+              "create_event(calendar_id: primary, summary='Clean Code Delivery', start_time=delivery_date, end_time=delivery_date_plus_one_hour)"
+            ],
+            "response_to_user": "'Clean Code' ordered and delivery date added to your calendar."
+          }
+        }
+      },
+      {
+        "prompt": "Tweet the link to my newest YouTube video.",
+        "tools": ["YouTubeApis", "XApis"],
+        "context": {
+          "youtube_current_user": "ac8e7240-ce2b-4f41-bb6f-7dda1b340b85",
+          "x_current_user": "66f44580-aff6-4d15-8193-17a6872d7108"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "get_latest_video(user: str)",
+              "create_post(user: str, text='Check out my new video: ' + video_url)"
+            ],
+            "response_to_user": "Tweet posted with your newest video link."
+          }
+        }
+      },
+      {
+        "prompt": "Turn off the house lights when my Tesla arrives home.",
+        "tools": ["TeslaFleetApis", "SmartHomeApis"],
+        "context": {
+          "teslafleet_current_user": "7b46220c-64da-4ec1-9224-d10f681f3435",
+          "smarthome_current_user": "974277c8-62ca-40c3-a18c-cde01879a66b"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "subscribe_vehicle_event(user: str, event='vehicle_arrived')",
+              "set_automation(trigger='vehicle_arrived', action='turn_off_all_lights')"
+            ],
+            "response_to_user": "Automation set: lights will turn off when your Tesla arrives."
+          }
+        }
+      },
+      {
+        "prompt": "Text Charlie Brown the tracking number of my pending Amazon order.",
+        "tools": ["AmazonApis", "CommuniLinkApis"],
+        "context": {
+          "amazon_current_user": "5dd86039-99f2-4aaa-9a5a-99a453adc80c",
+          "communilink_current_user": "d3006f08-3e70-4e57-820c-ef788dc84926"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "show_orders(user: str, status='pending', page_limit=1)",
+              "send_sms(from_number: str, to_number='charlie.brown@communi.link', message='Tracking number: ' + tracking_number)"
+            ],
+            "response_to_user": "Tracking number sent to Charlie Brown."
+          }
+        }
+      },
+      {
+        "prompt": "Share my Spotify 'Chill Acoustic Vibes' playlist in the #music Slack channel.",
+        "tools": ["SpotifyApis", "SlackApis"],
+        "context": {
+          "spotify_current_user": "bfe0de4c-60ce-4f13-bd43-5d557d63fe07",
+          "slack_current_user": "U001"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "get_playlist_link(user: str, playlist_name='Chill Acoustic Vibes')",
+              "post_message(user_id: str, channel='#music', text=playlist_link)"
+            ],
+            "response_to_user": "Playlist link shared in #music."
+          }
+        }
+      },
+      {
+        "prompt": "Pay the caterer $200 via Venmo and email a receipt.",
+        "tools": ["VenmoApis", "GmailApis"],
+        "context": {
+          "venmo_current_user": "4886f759-8bc1-4574-a359-31bf55a7774b",
+          "gmail_current_user": "419c119c-64c7-411f-8ab4-b890e8ac417a"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "send_payment(user: str, to_email='caterer@events.com', amount=200, note='Event catering')",
+              "send_message(user_id: str, to='caterer@events.com', subject='Payment Receipt', body='Attached is the Venmo receipt.', attachments=[receipt_pdf])"
+            ],
+            "response_to_user": "$200 paid to the caterer and receipt emailed."
+          }
+        }
+      },
+      {
+        "prompt": "Add the Walmart Portable Air Fryer listing link to a note titled 'Kitchen Upgrades'.",
+        "tools": ["WalmartMarketplaceApis", "SimpleNoteApis"],
+        "context": {
+          "simplenote_current_user": "bf5626ed-1cba-4fc5-a904-1d4a7397714a"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "get_item_link(sku='SKU005')",
+              "append_to_note(user: str, title='Kitchen Upgrades', content=item_link)"
+            ],
+            "response_to_user": "Listing link added to 'Kitchen Upgrades' note."
+          }
+        }
+      },
+      {
+        "prompt": "Schedule a meeting in Google Calendar and post a Slack reminder 10 minutes before.",
+        "tools": ["GoogleCalendarApis", "SlackApis"],
+        "context": {
+          "googlecalendar_current_user": "4fd2b8e4-bdae-457e-a389-eeb860695243",
+          "slack_current_user": "U001"
+        },
+        "ground_truth": {
+          "turn1": {
+            "action": [
+              "create_event(calendar_id: primary, summary='Meeting', start_time='next available 2pm', end_time='3pm')",
+              "create_slack_reminder(user_id: str, channel='#general', text='Meeting starts in 10 minutes', time=event_start_minus_10)"
+            ],
+            "response_to_user": "Meeting scheduled and Slack reminder set."
+          }
+        }
+      }
+    ]
+  }
+}
