@@ -1,6 +1,7 @@
 import datetime
 import copy
 import uuid
+import random
 from typing import Dict, List, Any, Optional, Union
 from state_loader import load_default_state
 
@@ -56,7 +57,14 @@ class SmartThingsApis:
 
     def _get_user_smartthings_data(self, user_id: str) -> Optional[Dict]:
         """Helper to get a user's SmartThings data."""
-        internal_user_id = self._get_user_id_by_email(user_id) if user_id != 'me' else self._get_user_id_by_email("alice.smith@gmail.com") 
+        if user_id == 'me':
+            # Get the first available user if 'me' is requested
+            if self.users:
+                first_user_id = next(iter(self.users.keys()))
+                return self.users.get(first_user_id, {}).get("smartthings_data")
+            return None
+        
+        internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
             return None
         return self.users.get(internal_user_id, {}).get("smartthings_data")
@@ -200,7 +208,13 @@ class SmartThingsApis:
             "components": initial_status if initial_status is not None else {"main": {}},
             "capabilities": capabilities if capabilities is not None else [],
             "creation_time": current_time_iso,
-            "last_activity_time": current_time_iso
+            "last_activity_time": current_time_iso,
+            "powerSource": "mains",
+            "healthStatus": "healthy",
+            "manufacturer": "SmartCorp",
+            "model": f"Device-{random.randint(100,999)}",
+            "firmwareVersion": "v1.0.0",
+            "device_online_status_last_checked": current_time_iso
         }
         devices[new_device_id] = new_device
         
@@ -666,3 +680,126 @@ class SmartThingsApis:
             if cap["id"] == capability_id and (version is None or cap.get("version") == version):
                 return copy.deepcopy(cap)
         return {"error": f"Capability {capability_id} not found."}
+
+    def get_device_health(self, device_id: str, user_id: str = 'me') -> Dict[str, Any]:
+        """
+        Get health status and metadata for a specific device.
+
+        Args:
+            device_id (str): ID of the device.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        
+        Returns:
+            Dict[str, Any]: Device health information including status, power source, etc.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return {"error": f"User with ID {user_id} not found or has no devices."}
+
+        device = user_devices.get(device_id)
+        if not device:
+            return {"error": f"Device {device_id} not found."}
+
+        health_info = {
+            "device_id": device_id,
+            "name": device.get("name", "Unknown"),
+            "status": device.get("status", "unknown"),
+            "health_status": device.get("healthStatus", "unknown"),
+            "power_source": device.get("powerSource", "unknown"),
+            "manufacturer": device.get("manufacturer", "unknown"),
+            "model": device.get("model", "unknown"),
+            "firmware_version": device.get("firmwareVersion", "unknown"),
+            "last_activity_time": device.get("last_activity_time"),
+            "device_online_status_last_checked": device.get("device_online_status_last_checked"),
+            "creation_time": device.get("creation_time")
+        }
+
+        return {"status": "success", "health": health_info}
+
+    def list_devices_by_health_status(self, health_status: str, user_id: str = 'me') -> List[Dict[str, Any]]:
+        """
+        List devices filtered by health status.
+
+        Args:
+            health_status (str): Health status to filter by (healthy, degraded, error).
+            user_id (str): User's email address or 'me' for the authenticated user.
+        
+        Returns:
+            List[Dict[str, Any]]: List of devices with the specified health status.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return []
+
+        filtered_devices = []
+        for device in user_devices.values():
+            if device.get("healthStatus") == health_status:
+                filtered_devices.append(copy.deepcopy(device))
+        
+        return filtered_devices
+
+    def list_devices_by_manufacturer(self, manufacturer: str, user_id: str = 'me') -> List[Dict[str, Any]]:
+        """
+        List devices filtered by manufacturer.
+
+        Args:
+            manufacturer (str): Manufacturer name to filter by.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        
+        Returns:
+            List[Dict[str, Any]]: List of devices from the specified manufacturer.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return []
+
+        filtered_devices = []
+        for device in user_devices.values():
+            if device.get("manufacturer") == manufacturer:
+                filtered_devices.append(copy.deepcopy(device))
+        
+        return filtered_devices
+
+    def update_device_firmware(self, device_id: str, new_version: str, user_id: str = 'me') -> Dict[str, Any]:
+        """
+        Update the firmware version of a device.
+
+        Args:
+            device_id (str): ID of the device.
+            new_version (str): New firmware version.
+            user_id (str): User's email address or 'me' for the authenticated user.
+        
+        Returns:
+            Dict[str, Any]: Result of the firmware update operation.
+        """
+        user_devices = self._get_user_devices_data(user_id)
+        if user_devices is None:
+            return {"error": f"User with ID {user_id} not found or has no devices."}
+
+        device = user_devices.get(device_id)
+        if not device:
+            return {"error": f"Device {device_id} not found."}
+
+        old_version = device.get("firmwareVersion", "unknown")
+        device["firmwareVersion"] = new_version
+        device["last_activity_time"] = datetime.datetime.now().isoformat() + "Z"
+        
+        return {
+            "status": "success", 
+            "message": f"Firmware updated from {old_version} to {new_version}",
+            "device_id": device_id,
+            "old_version": old_version,
+            "new_version": new_version
+        }
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("SmartThingsApis: All dummy data reset to default state.")
+        return {"reset_status": True}

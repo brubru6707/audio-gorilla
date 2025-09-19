@@ -112,6 +112,46 @@ class YouTubeApis:
             return True
         return False
 
+    def _find_user_by_email(self, email: str) -> Optional[str]:
+        """Helper to find a user UUID by their email address."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("email") == email:
+                return user_id
+        return None
+
+    def _find_user_by_display_name(self, display_name: str) -> Optional[str]:
+        """Helper to find a user UUID by their display name."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("display_name") == display_name:
+                return user_id
+        return None
+
+    def _get_user_id_from_identifier(self, identifier: str) -> Optional[str]:
+        """
+        Helper to get user UUID from email, display name, or UUID.
+        
+        Args:
+            identifier (str): Email, display name, or UUID
+            
+        Returns:
+            Optional[str]: User UUID if found, None otherwise
+        """
+        # First check if it's already a UUID in our users
+        if identifier in self.users:
+            return identifier
+        
+        # Try to find by email
+        user_id = self._find_user_by_email(identifier)
+        if user_id:
+            return user_id
+            
+        # Try to find by display name
+        user_id = self._find_user_by_display_name(identifier)
+        if user_id:
+            return user_id
+            
+        return None
+
     def set_current_user(self, user_id: str) -> Dict[str, Union[bool, str]]:
         """
         Sets the current authenticated user for the API session.
@@ -989,3 +1029,353 @@ class YouTubeApis:
                 del self.channels[channel_id]["captions"][id]
                 return {"success": True, "deleted_caption_id": id}
         return {"error": "Caption track not found.", "success": False}
+
+    # ====================
+    # Enhanced User Operations (utilizing backend fields)
+    # ====================
+
+    def get_user_by_email(self, email: str) -> Dict[str, Any]:
+        """
+        Get user data by email address.
+
+        Args:
+            email (str): The email address to search for.
+
+        Returns:
+            Dict: A dictionary containing the user's profile data.
+        """
+        user_id = self._find_user_by_email(email)
+        if user_id:
+            return {"data": copy.deepcopy(self.users[user_id])}
+        return {"data": None, "error": "User not found"}
+
+    def get_user_by_display_name(self, display_name: str) -> Dict[str, Any]:
+        """
+        Get user data by display name.
+
+        Args:
+            display_name (str): The display name to search for.
+
+        Returns:
+            Dict: A dictionary containing the user's profile data.
+        """
+        user_id = self._find_user_by_display_name(display_name)
+        if user_id:
+            return {"data": copy.deepcopy(self.users[user_id])}
+        return {"data": None, "error": "User not found"}
+
+    def get_watch_later_playlist(self, user_identifier: str) -> Dict[str, Any]:
+        """
+        Get the watch later playlist for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+
+        Returns:
+            Dict: A dictionary containing the watch later playlist videos.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"data": None, "error": "User not found"}
+        
+        user_data = self.users[user_id]
+        watch_later_videos = []
+        for video_id in user_data.get("watch_later_playlist", []):
+            video_data = self._get_video_data(video_id)
+            if video_data:
+                watch_later_videos.append(copy.deepcopy(video_data))
+        
+        return {"data": watch_later_videos}
+
+    def add_to_watch_later(self, user_identifier: str, video_id: str) -> Dict[str, Any]:
+        """
+        Add a video to the user's watch later playlist.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+            video_id (str): The ID of the video to add.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"status": "error", "message": "User not found"}
+        
+        if not self._get_video_data(video_id):
+            return {"status": "error", "message": "Video not found"}
+        
+        user_data = self.users[user_id]
+        watch_later = user_data.get("watch_later_playlist", [])
+        
+        if video_id in watch_later:
+            return {"status": "error", "message": "Video already in watch later playlist"}
+        
+        watch_later.append(video_id)
+        user_data["watch_later_playlist"] = watch_later
+        
+        return {"status": "success", "message": "Video added to watch later playlist"}
+
+    def remove_from_watch_later(self, user_identifier: str, video_id: str) -> Dict[str, Any]:
+        """
+        Remove a video from the user's watch later playlist.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+            video_id (str): The ID of the video to remove.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"status": "error", "message": "User not found"}
+        
+        user_data = self.users[user_id]
+        watch_later = user_data.get("watch_later_playlist", [])
+        
+        if video_id not in watch_later:
+            return {"status": "error", "message": "Video not in watch later playlist"}
+        
+        watch_later.remove(video_id)
+        user_data["watch_later_playlist"] = watch_later
+        
+        return {"status": "success", "message": "Video removed from watch later playlist"}
+
+    def get_notification_settings(self, user_identifier: str) -> Dict[str, Any]:
+        """
+        Get notification settings for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+
+        Returns:
+            Dict: A dictionary containing the user's notification settings.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"data": None, "error": "User not found"}
+        
+        user_data = self.users[user_id]
+        settings = user_data.get("notification_settings", {})
+        
+        return {"data": copy.deepcopy(settings)}
+
+    def update_notification_settings(self, user_identifier: str, settings: Dict[str, bool]) -> Dict[str, Any]:
+        """
+        Update notification settings for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+            settings (Dict[str, bool]): New notification settings.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"status": "error", "message": "User not found"}
+        
+        user_data = self.users[user_id]
+        current_settings = user_data.get("notification_settings", {})
+        current_settings.update(settings)
+        user_data["notification_settings"] = current_settings
+        
+        return {"status": "success", "message": "Notification settings updated"}
+
+    def get_user_language_preference(self, user_identifier: str) -> Dict[str, Any]:
+        """
+        Get language preference for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+
+        Returns:
+            Dict: A dictionary containing the user's language preference.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"data": None, "error": "User not found"}
+        
+        user_data = self.users[user_id]
+        language = user_data.get("language_preference", "en-US")
+        
+        return {"data": {"language_preference": language}}
+
+    def update_language_preference(self, user_identifier: str, language: str) -> Dict[str, Any]:
+        """
+        Update language preference for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+            language (str): New language preference (e.g., "en-US", "es-ES").
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"status": "error", "message": "User not found"}
+        
+        user_data = self.users[user_id]
+        user_data["language_preference"] = language
+        
+        return {"status": "success", "message": "Language preference updated"}
+
+    def get_account_status(self, user_identifier: str) -> Dict[str, Any]:
+        """
+        Get account status for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+
+        Returns:
+            Dict: A dictionary containing the user's account status.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"data": None, "error": "User not found"}
+        
+        user_data = self.users[user_id]
+        status = user_data.get("account_status", "active")
+        
+        return {"data": {"account_status": status}}
+
+    def get_channel_history(self, user_identifier: str) -> Dict[str, Any]:
+        """
+        Get channel browsing history for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+
+        Returns:
+            Dict: A dictionary containing the user's channel history.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"data": None, "error": "User not found"}
+        
+        user_data = self.users[user_id]
+        channel_history = []
+        
+        for channel_id in user_data.get("channel_history", []):
+            channel_data = self._get_channel_data(channel_id)
+            if channel_data:
+                channel_history.append({
+                    "id": channel_id,
+                    "title": channel_data.get("title"),
+                    "description": channel_data.get("description"),
+                    "subscriber_count": channel_data.get("subscriber_count", 0)
+                })
+        
+        return {"data": channel_history}
+
+    def add_to_channel_history(self, user_identifier: str, channel_id: str) -> Dict[str, Any]:
+        """
+        Add a channel to the user's browsing history.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+            channel_id (str): The ID of the channel to add to history.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"status": "error", "message": "User not found"}
+        
+        if not self._get_channel_data(channel_id):
+            return {"status": "error", "message": "Channel not found"}
+        
+        user_data = self.users[user_id]
+        channel_history = user_data.get("channel_history", [])
+        
+        # Remove if already exists to move to front
+        if channel_id in channel_history:
+            channel_history.remove(channel_id)
+        
+        # Add to front of history
+        channel_history.insert(0, channel_id)
+        
+        # Keep only last 50 channels
+        channel_history = channel_history[:50]
+        user_data["channel_history"] = channel_history
+        
+        return {"status": "success", "message": "Channel added to history"}
+
+    def get_user_analytics(self, user_identifier: str) -> Dict[str, Any]:
+        """
+        Get comprehensive analytics for a user.
+
+        Args:
+            user_identifier (str): The user ID, email, or display name.
+
+        Returns:
+            Dict: A dictionary containing user analytics.
+        """
+        user_id = self._get_user_id_from_identifier(user_identifier)
+        if not user_id:
+            return {"data": None, "error": "User not found"}
+        
+        user_data = self.users[user_id]
+        
+        # Calculate analytics
+        total_videos_watched = len(user_data.get("watch_history", []))
+        total_subscriptions = len(user_data.get("subscriptions", []))
+        total_liked_videos = len(user_data.get("liked_videos", []))
+        total_channels_owned = len(user_data.get("channels", []))
+        watch_later_count = len(user_data.get("watch_later_playlist", []))
+        
+        analytics = {
+            "user_id": user_id,
+            "display_name": user_data.get("display_name"),
+            "email": user_data.get("email"),
+            "joined_date": user_data.get("joined_date"),
+            "account_status": user_data.get("account_status", "active"),
+            "language_preference": user_data.get("language_preference", "en-US"),
+            "total_videos_watched": total_videos_watched,
+            "total_subscriptions": total_subscriptions,
+            "total_liked_videos": total_liked_videos,
+            "total_channels_owned": total_channels_owned,
+            "watch_later_count": watch_later_count,
+            "notification_settings": user_data.get("notification_settings", {})
+        }
+        
+        return {"data": analytics}
+
+    def search_users_by_language(self, language: str) -> Dict[str, Any]:
+        """
+        Search for users by their language preference.
+
+        Args:
+            language (str): The language code to search for.
+
+        Returns:
+            Dict: A dictionary containing matching users.
+        """
+        matching_users = []
+        
+        for user_id, user_data in self.users.items():
+            if user_data.get("language_preference") == language:
+                matching_users.append({
+                    "id": user_id,
+                    "display_name": user_data.get("display_name"),
+                    "email": user_data.get("email"),
+                    "account_status": user_data.get("account_status", "active"),
+                    "joined_date": user_data.get("joined_date")
+                })
+        
+        return {"data": matching_users, "count": len(matching_users)}
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("YouTubeApis: All dummy data reset to default state.")
+        return {"reset_status": True}

@@ -472,3 +472,153 @@ class TeslaFleetApis:
         vehicle["windows"] = command
         print(f"Vehicle {vehicle_tag}: Window command '{command}' issued at ({lat}, {lon}).")
         return {"success": True}
+
+    def get_vehicle_location(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Get the current location of the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing location information.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+
+        location = vehicle.get("location", {"latitude": 0, "longitude": 0})
+        return {
+            "success": True,
+            "location": {
+                "latitude": location.get("latitude"),
+                "longitude": location.get("longitude"),
+                "speed": vehicle.get("speed", 0)
+            }
+        }
+
+    def get_vehicle_status(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Get comprehensive status information for the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing detailed vehicle status.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+
+        status = {
+            "success": True,
+            "vehicle_info": {
+                "id": vehicle.get("id"),
+                "vehicle_tag": vehicle.get("vehicle_tag"),
+                "firmware_version": vehicle.get("firmware_version"),
+                "awake": vehicle.get("awake", False),
+                "speed": vehicle.get("speed", 0)
+            },
+            "location": vehicle.get("location", {}),
+            "charge": vehicle.get("charge", {}),
+            "climate": vehicle.get("climate", {}),
+            "locks": vehicle.get("locks", {}),
+            "doors": vehicle.get("doors", {}),
+            "trunk": vehicle.get("trunk", {}),
+            "sentry_mode": vehicle.get("sentry_mode", {}),
+            "lights": vehicle.get("lights", {}),
+            "media": vehicle.get("media", {}),
+            "windows": vehicle.get("windows", "closed")
+        }
+        
+        return status
+
+    def manage_sentry_mode(self, user: User, vehicle_tag: str, command: Literal["on", "off"]) -> Dict[str, Any]:
+        """
+        Control sentry mode for the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            command (Literal["on", "off"]): The sentry mode command.
+
+        Returns:
+            Dict[str, Any]: A dictionary indicating success and any alerts.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+
+        sentry_mode = vehicle.get("sentry_mode", {})
+        sentry_mode["on"] = (command == "on")
+        vehicle["sentry_mode"] = sentry_mode
+        
+        response = {
+            "success": True,
+            "sentry_mode": {
+                "on": sentry_mode["on"],
+                "alerts": sentry_mode.get("alerts", [])
+            }
+        }
+        
+        print(f"Vehicle {vehicle_tag}: Sentry mode turned {command}.")
+        return response
+
+    def get_firmware_info(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Get firmware version and update information for the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing firmware information.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+
+        return {
+            "success": True,
+            "firmware": {
+                "current_version": vehicle.get("firmware_version", "Unknown"),
+                "created_time": vehicle.get("createdTime"),
+                "modified_time": vehicle.get("modifiedTime"),
+                "vehicle_tag": vehicle.get("vehicle_tag")
+            }
+        }
+
+    def wake_vehicle(self, user: User, vehicle_tag: str) -> Dict[str, bool]:
+        """
+        Wake up the specified vehicle from sleep mode.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, bool]: A dictionary indicating if the wake command was successful.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+
+        vehicle["awake"] = True
+        print(f"Vehicle {vehicle_tag}: Wake command sent successfully.")
+        return {"success": True, "awake": True}
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("TeslaFleetApis: All dummy data reset to default state.")
+        return {"reset_status": True}

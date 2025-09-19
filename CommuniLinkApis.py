@@ -64,6 +64,18 @@ class CommuniLinkApis:
         user_data = self.users.get(user_id)
         return user_data.get("email") if user_data else None
 
+    def _get_user_id_by_phone(self, phone_number: str) -> Optional[str]:
+        """Helper to get user_id from phone number."""
+        for user_id, user_data in self.users.items():
+            if user_data.get("phone_number") == phone_number:
+                return user_id
+        return None
+
+    def _get_user_phone_by_id(self, user_id: str) -> Optional[str]:
+        """Helper to get phone number from user_id."""
+        user_data = self.users.get(user_id)
+        return user_data.get("phone_number") if user_data else None
+
     def _generate_unique_id(self) -> str:
         """
         Generates a unique UUID for dummy entities.
@@ -88,12 +100,7 @@ class CommuniLinkApis:
         if not from_number or not to_number or not message:
             return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number, to_number, and message."}
 
-        sender_user_id = None
-        for u_id, user_data in self.users.items():
-            if user_data["phone_number"] == from_number:
-                sender_user_id = u_id
-                break
-        
+        sender_user_id = self._get_user_id_by_phone(from_number)
         if not sender_user_id:
             return {"code": "INVALID_FROM_NUMBER", "message": "Sender phone number not associated with any user."}
         
@@ -124,14 +131,8 @@ class CommuniLinkApis:
             "timestamp": datetime.now().isoformat()
         }
         
-        is_external = True
-        receiver_user_id = None
-        for u_id, user_data in self.users.items():
-            if user_data["phone_number"] == to_number:
-                receiver_user_id = u_id
-                is_external = False
-                break
-        
+        receiver_user_id = self._get_user_id_by_phone(to_number)
+        is_external = receiver_user_id is None
         new_sms["is_external"] = is_external
 
         sender_user["sms_history"].append(new_sms)
@@ -188,7 +189,7 @@ class CommuniLinkApis:
             "timestamp": sms["timestamp"]
         }
 
-    def make_voice_call(self, from_number: str, to_number: str, audio_url: Optional[str] = None) -> Dict[str, Union[str, int, float]]:
+    def make_voice_call(self, from_number: str, to_number: str) -> Dict[str, Union[str, int, float]]:
         """
         Simulates initiating an outbound voice call. The call status progresses
         from 'initiated' to 'ringing', 'in-progress', and then 'completed'
@@ -197,24 +198,17 @@ class CommuniLinkApis:
         Args:
             from_number (str): The caller's phone number (E.164 format).
             to_number (str): The recipient's phone number (E.164 format).
-            audio_url (Optional[str]): Optional URL for audio to play to the recipient
-                                       upon connection (e.g., "https://CommuniLink.com/welcome.mp3").
 
         Returns:
             Dict: A dictionary representing the simulated voice call object,
-                  including 'id', 'from', 'to', 'audioUrl', 'status', 'timestamp',
+                  including 'id', 'from', 'to', 'status', 'timestamp',
                   and 'duration' (if completed). Returns an error dictionary
                   if parameters are missing.
         """
         if not from_number or not to_number:
             return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number and to_number."}
 
-        caller_user_id = None
-        for u_id, user_data in self.users.items():
-            if user_data["phone_number"] == from_number:
-                caller_user_id = u_id
-                break
-
+        caller_user_id = self._get_user_id_by_phone(from_number)
         if not caller_user_id:
             return {"code": "INVALID_FROM_NUMBER", "message": "Caller phone number not associated with any user."}
         
@@ -223,23 +217,18 @@ class CommuniLinkApis:
         new_call_id = self._generate_unique_id()
         new_call = {
             "call_id": new_call_id,
-            "caller": from_number,
             "caller_id": caller_user_id,
+            "caller": from_number,
             "receiver": to_number,
-            "audioUrl": audio_url,
+            "duration_minutes": random.randint(1, 59),
             "status": "initiated",
             "timestamp": datetime.now().isoformat(),
-            "duration": 0
+            "type": "incoming",
+            "is_external": False,
         }
         
-        is_external = True
-        receiver_user_id = None
-        for u_id, user_data in self.users.items():
-            if user_data["phone_number"] == to_number:
-                receiver_user_id = u_id
-                is_external = False
-                break
-        
+        receiver_user_id = self._get_user_id_by_phone(to_number)
+        is_external = receiver_user_id is None
         new_call["is_external"] = is_external
 
         caller_user["call_history"].append(new_call)
@@ -255,11 +244,11 @@ class CommuniLinkApis:
         time.sleep(0.5)
         new_call["status"] = "in-progress"
         
-        call_duration_seconds = round(random.uniform(30, 120))
-        time.sleep(min(call_duration_seconds / 10, 2))
-        
-        new_call["duration"] = call_duration_seconds
-        
+        call_duration_ = round(random.uniform(30, 120))
+        time.sleep(min(call_duration_ / 10, 2))
+
+        new_call["duration"] = call_duration_
+
         call_cost = self.service_plans[self.active_plan]["price_per_minute"] * (new_call["duration"] / 60)
         
         if caller_user["balance"] < call_cost:

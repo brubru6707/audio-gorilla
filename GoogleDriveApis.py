@@ -5,7 +5,7 @@ from typing import Dict, Union, Any, Optional, List
 from datetime import datetime
 from state_loader import load_default_state
 
-DEFAULT_STATE = load_default_state("GoogleCalendarApis")
+DEFAULT_STATE = load_default_state("GoogleDriveApis")
 
 class GoogleDriveApis:
     """
@@ -113,15 +113,44 @@ class GoogleDriveApis:
         filtered_files = []
 
         if query:
+            # Enhanced query parsing to support multiple Google Drive query formats
             if "name contains '" in query and query.endswith("'"):
                 search_term = query.split("name contains '")[1][:-1].lower()
                 for file_data in all_files:
                     if search_term in file_data.get("name", "").lower():
                         filtered_files.append(file_data)
+            elif "trashed = true" in query.lower():
+                for file_data in all_files:
+                    if file_data.get("trashed", False):
+                        filtered_files.append(file_data)
+            elif "trashed = false" in query.lower():
+                for file_data in all_files:
+                    if not file_data.get("trashed", False):
+                        filtered_files.append(file_data)
+            elif "starred = true" in query.lower():
+                for file_data in all_files:
+                    if file_data.get("starred", False):
+                        filtered_files.append(file_data)
+            elif "shared = true" in query.lower():
+                for file_data in all_files:
+                    if file_data.get("shared", False):
+                        filtered_files.append(file_data)
+            elif "mimeType = '" in query and query.endswith("'"):
+                mime_type = query.split("mimeType = '")[1][:-1]
+                for file_data in all_files:
+                    if file_data.get("mimeType") == mime_type:
+                        filtered_files.append(file_data)
+            elif "'" in query and "' in parents" in query:
+                parent_id = query.split("'")[1]
+                for file_data in all_files:
+                    if parent_id in file_data.get("parents", []):
+                        filtered_files.append(file_data)
             else:
+                # If query format is not recognized, return all files
                 filtered_files = all_files
         else:
-            filtered_files = all_files
+            # Default: exclude trashed files unless specifically requested
+            filtered_files = [f for f in all_files if not f.get("trashed", False)]
 
         start_index = 0
         if page_token:
@@ -156,6 +185,9 @@ class GoogleDriveApis:
         
         file_data = files.get(fileId)
         if file_data:
+            # Update viewing metadata when file is accessed
+            file_data["lastViewingUser"] = user_id
+            file_data["viewedByMeTime"] = int(datetime.now().timestamp())
             return {"retrieval_status": True, "file_data": copy.deepcopy(file_data)}
         return {"retrieval_status": False, "file_data": {}}
 
@@ -203,7 +235,13 @@ class GoogleDriveApis:
             "modifiedTime": current_time,
             "owners": [{"displayName": user_info.get("name", user_id), "emailAddress": user_id}],
             "parents": parents if parents is not None else ["root"],
-            "size": len(content) if content else 0
+            "size": len(content) if content else 0,
+            "starred": False,
+            "trashed": False,
+            "shared": False,
+            "version": 1,
+            "lastViewingUser": user_id,
+            "viewedByMeTime": current_time
         }
         files[new_file_id] = new_file
 
@@ -245,20 +283,30 @@ class GoogleDriveApis:
 
         file = files[fileId]
         file["modifiedTime"] = int(datetime.now().timestamp())
+        file["version"] = file.get("version", 1) + 1  # Increment version on update
+        file["lastViewingUser"] = user_id
+        file["viewedByMeTime"] = int(datetime.now().timestamp())
 
         if name is not None:
             file["name"] = name
         if mimeType is not None:
             file["mimeType"] = mimeType
 
+        # Ensure parents is always a list
+        if "parents" not in file:
+            file["parents"] = ["root"]
+        elif not isinstance(file["parents"], list):
+            file["parents"] = [file["parents"]] if file["parents"] else ["root"]
+
         if addParents:
-            if "parents" not in file:
-                file["parents"] = []
             if addParents not in file["parents"]:
                 file["parents"].append(addParents)
 
         if removeParents and "parents" in file:
             file["parents"] = [p for p in file["parents"] if p != removeParents]
+            # Ensure at least one parent exists
+            if not file["parents"]:
+                file["parents"] = ["root"]
 
         print(f"File '{fileId}' updated for {user_id}")
         return {"updated_file": copy.deepcopy(file), "status": "success"}
@@ -327,6 +375,10 @@ class GoogleDriveApis:
         copied_file["createdTime"] = current_time
         copied_file["modifiedTime"] = current_time
         copied_file["parents"] = parents if parents is not None else ["root"]
+        copied_file["version"] = 1  # Reset version for copy
+        copied_file["lastViewingUser"] = user_id
+        copied_file["viewedByMeTime"] = current_time
+        copied_file["shared"] = False  # Reset sharing for copy
 
         files[new_file_id] = copied_file
 
@@ -350,5 +402,172 @@ class GoogleDriveApis:
         self._load_scenario(DEFAULT_STATE)
         print("GoogleDriveApis: All dummy data reset to default state.")
         return {"reset_status": True}
-    
+
+    def star_file(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, str]]:
+        """
+        Stars or unstars a file in Google Drive.
+
+        Args:
+            fileId (str): The ID of the file to star/unstar.
+            user_id (str): User's email address or 'me' for the authenticated user.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        files = self._get_user_files(user_id)
+        if files is None:
+            return {"star_status": False, "message": "User data not found."}
+
+        if fileId not in files:
+            return {"star_status": False, "message": "File not found."}
+
+        file = files[fileId]
+        file["starred"] = not file.get("starred", False)
+        file["modifiedTime"] = int(datetime.now().timestamp())
+        file["lastViewingUser"] = user_id
+        file["viewedByMeTime"] = int(datetime.now().timestamp())
+
+        status = "starred" if file["starred"] else "unstarred"
+        print(f"File '{fileId}' {status} for {user_id}")
+        return {"star_status": True, "message": f"File {status} successfully.", "starred": file["starred"]}
+
+    def trash_file(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, str]]:
+        """
+        Moves a file to trash or restores it from trash.
+
+        Args:
+            fileId (str): The ID of the file to trash/restore.
+            user_id (str): User's email address or 'me' for the authenticated user.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        files = self._get_user_files(user_id)
+        if files is None:
+            return {"trash_status": False, "message": "User data not found."}
+
+        if fileId not in files:
+            return {"trash_status": False, "message": "File not found."}
+
+        file = files[fileId]
+        file["trashed"] = not file.get("trashed", False)
+        file["modifiedTime"] = int(datetime.now().timestamp())
+        file["lastViewingUser"] = user_id
+        file["viewedByMeTime"] = int(datetime.now().timestamp())
+
+        status = "trashed" if file["trashed"] else "restored"
+        print(f"File '{fileId}' {status} for {user_id}")
+        return {"trash_status": True, "message": f"File {status} successfully.", "trashed": file["trashed"]}
+
+    def share_file(self, fileId: str, email: str, role: str = "reader", user_id: str = "me") -> Dict[str, Union[bool, str]]:
+        """
+        Shares a file with another user.
+
+        Args:
+            fileId (str): The ID of the file to share.
+            email (str): Email address of the user to share with.
+            role (str): The role to grant ("reader", "writer", "owner").
+            user_id (str): User's email address or 'me' for the authenticated user.
+
+        Returns:
+            Dict: A dictionary indicating success or failure.
+        """
+        files = self._get_user_files(user_id)
+        if files is None:
+            return {"share_status": False, "message": "User data not found."}
+
+        if fileId not in files:
+            return {"share_status": False, "message": "File not found."}
+
+        file = files[fileId]
+        
+        # Add the new owner/collaborator
+        if "owners" not in file:
+            file["owners"] = []
+        
+        # Check if already shared with this user
+        existing_owner = next((owner for owner in file["owners"] if owner.get("emailAddress") == email), None)
+        
+        if existing_owner:
+            return {"share_status": False, "message": "File already shared with this user."}
+
+        # Find the user's display name if they exist in our system
+        shared_user_name = "External User"
+        for user_data in self.users.values():
+            if user_data.get("email") == email:
+                shared_user_name = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
+                break
+
+        file["owners"].append({
+            "displayName": shared_user_name,
+            "emailAddress": email,
+            "role": role
+        })
+        
+        file["shared"] = True
+        file["modifiedTime"] = int(datetime.now().timestamp())
+        file["lastViewingUser"] = user_id
+        file["viewedByMeTime"] = int(datetime.now().timestamp())
+
+        print(f"File '{fileId}' shared with {email} as {role} for {user_id}")
+        return {"share_status": True, "message": f"File shared with {email} successfully."}
+
+    def get_file_revisions(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, List, str]]:
+        """
+        Gets revision history for a file (simulated).
+
+        Args:
+            fileId (str): The ID of the file.
+            user_id (str): User's email address or 'me' for the authenticated user.
+
+        Returns:
+            Dict: A dictionary with revision history.
+        """
+        files = self._get_user_files(user_id)
+        if files is None:
+            return {"retrieval_status": False, "revisions": [], "message": "User data not found."}
+
+        if fileId not in files:
+            return {"retrieval_status": False, "revisions": [], "message": "File not found."}
+
+        file = files[fileId]
+        
+        # Simulate revision history based on version number
+        revisions = []
+        current_version = file.get("version", 1)
+        created_time = file.get("createdTime", int(datetime.now().timestamp()))
+        modified_time = file.get("modifiedTime", int(datetime.now().timestamp()))
+        
+        for v in range(1, current_version + 1):
+            revision_time = created_time + (modified_time - created_time) * (v - 1) / max(1, current_version - 1)
+            revisions.append({
+                "id": f"{fileId}_v{v}",
+                "mimeType": file.get("mimeType"),
+                "modifiedTime": int(revision_time),
+                "size": file.get("size", 0),
+                "version": v
+            })
+
+        return {"retrieval_status": True, "revisions": revisions}
+
+    def create_folder(self, name: str, parents: Optional[List[str]] = None, user_id: str = "me") -> Dict[str, Union[bool, Dict]]:
+        """
+        Creates a new folder in the user's Drive.
+
+        Args:
+            name (str): The name of the folder.
+            parents (Optional[List[str]]): A list of parent folder IDs. Defaults to root.
+            user_id (str): User's email address or 'me' for the authenticated user.
+
+        Returns:
+            Dict: A dictionary containing 'creation_status' (bool) and 'folder_data' (Dict) if successful.
+        """
+        return self.create_file(
+            name=name,
+            mimeType="application/vnd.google-apps.folder",
+            parents=parents,
+            content=None,
+            user_id=user_id
+        )
+
     #hi

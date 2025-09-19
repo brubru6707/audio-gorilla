@@ -137,7 +137,7 @@ class VenmoApis:
 
     def show_account(self, user: User) -> Dict[str, Any]:
         """
-        Shows the current user's account details.
+        Shows the current user's account details including metadata.
 
         Args:
             user (User): The current user object.
@@ -148,7 +148,22 @@ class VenmoApis:
         user_data = self._get_user_data(user)
         if not user_data:
             return {"account_status": False, "account_details": {}}
-        return {"account_status": True, "account_details": copy.deepcopy(user_data)}
+        
+        # Enhanced account details including backend metadata
+        account_details = {
+            "id": user_data.get("id"),
+            "email": user_data.get("email"),
+            "first_name": user_data.get("first_name"),
+            "last_name": user_data.get("last_name"),
+            "balance": user_data.get("balance", 0.0),
+            "registration_date": user_data.get("registration_date"),
+            "last_login_date": user_data.get("last_login_date"),
+            "is_premium": user_data.get("is_premium", False),
+            "total_friends": len(user_data.get("friends", [])),
+            "total_payment_cards": len(user_data.get("payment_cards", {}))
+        }
+        
+        return {"account_status": True, "account_details": account_details}
 
     def list_friends(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
         """
@@ -522,3 +537,135 @@ class VenmoApis:
                 notif["read"] = read_status
         
         return {"mark_status": True}
+
+    def get_account_analytics(self, user: User) -> Dict[str, Any]:
+        """
+        Get analytics and summary information for the user's account.
+
+        Args:
+            user (User): The current user object.
+
+        Returns:
+            Dict: A dictionary containing account analytics.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"analytics_status": False, "analytics": {}}
+
+        user_uuid = user_data["id"]
+        
+        # Count transactions where user is sender or receiver
+        sent_transactions = [t for t in self.transactions.values() if t.get("sender") == user_uuid]
+        received_transactions = [t for t in self.transactions.values() if t.get("receiver") == user_uuid]
+        
+        total_sent = sum(t.get("amount", 0) for t in sent_transactions)
+        total_received = sum(t.get("amount", 0) for t in received_transactions)
+        
+        # Count notifications
+        user_notifications = [n for n in self.notifications.values() if n.get("user") == user_uuid]
+        unread_notifications = [n for n in user_notifications if not n.get("read", False)]
+        
+        analytics = {
+            "registration_date": user_data.get("registration_date"),
+            "last_login_date": user_data.get("last_login_date"),
+            "is_premium": user_data.get("is_premium", False),
+            "current_balance": user_data.get("balance", 0.0),
+            "total_friends": len(user_data.get("friends", [])),
+            "total_payment_cards": len(user_data.get("payment_cards", {})),
+            "transactions_sent": len(sent_transactions),
+            "transactions_received": len(received_transactions),
+            "total_amount_sent": round(total_sent, 2),
+            "total_amount_received": round(total_received, 2),
+            "net_amount": round(total_received - total_sent, 2),
+            "total_notifications": len(user_notifications),
+            "unread_notifications": len(unread_notifications)
+        }
+        
+        return {"analytics_status": True, "analytics": analytics}
+
+    def get_transaction_history(self, user: User, limit: int = 50) -> Dict[str, Any]:
+        """
+        Get transaction history for the user.
+
+        Args:
+            user (User): The current user object.
+            limit (int): Maximum number of transactions to return.
+
+        Returns:
+            Dict: A dictionary containing transaction history.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"history_status": False, "transactions": []}
+
+        user_uuid = user_data["id"]
+        
+        # Get all transactions involving the user
+        user_transactions = []
+        for transaction in self.transactions.values():
+            if transaction.get("sender") == user_uuid or transaction.get("receiver") == user_uuid:
+                # Add transaction direction for clarity
+                transaction_copy = copy.deepcopy(transaction)
+                if transaction.get("sender") == user_uuid:
+                    transaction_copy["direction"] = "sent"
+                    # Get receiver info
+                    receiver_data = self.users.get(transaction.get("receiver"))
+                    if receiver_data:
+                        transaction_copy["other_party"] = {
+                            "email": receiver_data.get("email"),
+                            "name": f"{receiver_data.get('first_name', '')} {receiver_data.get('last_name', '')}".strip()
+                        }
+                else:
+                    transaction_copy["direction"] = "received"
+                    # Get sender info  
+                    sender_data = self.users.get(transaction.get("sender"))
+                    if sender_data:
+                        transaction_copy["other_party"] = {
+                            "email": sender_data.get("email"),
+                            "name": f"{sender_data.get('first_name', '')} {sender_data.get('last_name', '')}".strip()
+                        }
+                
+                user_transactions.append(transaction_copy)
+        
+        # Sort by timestamp (most recent first)
+        user_transactions.sort(key=lambda x: x.get("timestamp", ""), reverse=True)
+        
+        return {
+            "history_status": True, 
+            "transactions": user_transactions[:limit],
+            "total_transactions": len(user_transactions)
+        }
+
+    def upgrade_to_premium(self, user: User) -> Dict[str, bool]:
+        """
+        Upgrade user account to premium status.
+
+        Args:
+            user (User): The current user object.
+
+        Returns:
+            Dict: A dictionary indicating success status.
+        """
+        user_data = self._get_user_data(user)
+        if not user_data:
+            return {"upgrade_status": False, "message": "User not found."}
+
+        if user_data.get("is_premium", False):
+            return {"upgrade_status": False, "message": "User is already premium."}
+
+        user_data["is_premium"] = True
+        user_data["last_login_date"] = datetime.datetime.now().isoformat() + "Z"
+        
+        return {"upgrade_status": True, "message": "Successfully upgraded to premium."}
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("VenmoApis: All dummy data reset to default state.")
+        return {"reset_status": True}

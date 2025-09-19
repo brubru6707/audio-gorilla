@@ -11,6 +11,7 @@ CURRENT_DATETIME = datetime.now()
 
 DEFAULT_COMMUNILINK_STATE = {
     "users": {},
+    "current_user_id": None,  # Will be set to first user's ID
     "billing_history": [],
     "support_tickets": [],
     "service_plans": {
@@ -40,24 +41,19 @@ def generate_phone_number():
     """Generates a random US-style phone number."""
     return f"+1{random.randint(200, 999)}{random.randint(100, 999)}{random.randint(1000, 9999)}"
 
-def generate_fake_email(first, last):
-    """Generates a plausible fake email from a first and last name."""
-    random_domain = random.choice(domains)
-    return f"{first.replace(' ', '.').lower()}.{last.replace(' ', '.').lower()}@{random_domain}"
-
 # --- Main Data Generation Logic ---
 
 def main():
     """Main function to generate the entire dataset."""
     
     # =========================================================================
-    # PASS 1: Create user shells with unique emails and basic info.
+    # PASS 1: Create user shells with unique phone numbers and basic info.
     # This allows us to create relationships in Pass 2 from a complete user list.
     # =========================================================================
     print("PASS 1: Creating user shells...")
     user_shells = []
-    email_to_uuid_map = {}
-    existing_emails = set()
+    phone_to_uuid_map = {}
+    existing_phones = set()
 
     # Create a list of all names to generate, combining specific and random users
     names_to_generate = [(name.partition(" ")[0], name.partition(" ")[2]) for name in first_and_last_names]
@@ -67,24 +63,28 @@ def main():
         first_name = first_name_spec or random.choice(first_names)
         last_name = last_name_spec or random.choice(last_names)
         
-        email = f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
-        while email in existing_emails:
-            email = f"{first_name.lower()}.{last_name.lower()}{random.randint(100, 999)}@{random.choice(domains)}"
+        # Generate unique phone number
+        phone_number = generate_phone_number()
+        while phone_number in existing_phones:
+            phone_number = generate_phone_number()
         
-        existing_emails.add(email)
+        existing_phones.add(phone_number)
         user_id = str(uuid.uuid4())
-        email_to_uuid_map[email] = user_id
+        phone_to_uuid_map[phone_number] = user_id
+        
+        # Generate email as secondary identifier
+        email = f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
         
         user_shells.append({
             "user_id": user_id,
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
-            "phone_number": generate_phone_number()
+            "phone_number": phone_number
         })
     
-    all_user_ids = list(email_to_uuid_map.values())
-    all_user_emails = list(email_to_uuid_map.keys())
+    all_user_ids = list(phone_to_uuid_map.values())
+    all_user_phones = list(phone_to_uuid_map.keys())
 
     # =========================================================================
     # PASS 2: Populate detailed information for each user.
@@ -104,21 +104,22 @@ def main():
         sms_history = []
         for _ in range(random.randint(0, 5)):
             convo_key = random.choice(list(communilink_conversations.keys()))
-            # The other participant can be an existing user or an external number
-            other_party_email = random.choice(all_user_emails) if random.random() > 0.2 else generate_fake_email("external", "contact")
+            # The other participant can be an existing user or an external phone number
+            other_party_phone = random.choice(all_user_phones) if random.random() > 0.2 else generate_phone_number()
             
             for user_alias, message in communilink_conversations[convo_key]:
-                sender_email = shell["email"] if user_alias == "user_1" else other_party_email
-                receiver_email = other_party_email if user_alias == "user_1" else shell["email"]
+                sender_phone = shell["phone_number"] if user_alias == "user_1" else other_party_phone
+                receiver_phone = other_party_phone if user_alias == "user_1" else shell["phone_number"]
                 sms_history.append({
                     "sms_id": str(uuid.uuid4()),
-                    "sender_id": email_to_uuid_map.get(sender_email),
-                    "receiver_id": email_to_uuid_map.get(receiver_email),
-                    "sender": sender_email,
-                    "receiver": receiver_email,
+                    "sender_id": phone_to_uuid_map.get(sender_phone),
+                    "receiver_id": phone_to_uuid_map.get(receiver_phone),
+                    "sender": sender_phone,
+                    "receiver": receiver_phone,
                     "message": message,
                     "timestamp": generate_random_past_date(90),
-                    "is_external": email_to_uuid_map.get(other_party_email) is None
+                    "status": "delivered",
+                    "is_external": phone_to_uuid_map.get(other_party_phone) is None
                 })
 
         # --- Generate Call History ---
@@ -129,20 +130,20 @@ def main():
             
             if is_external:
                 other_party = generate_phone_number()
-                caller = shell["email"] if call_type == "outgoing" else other_party
-                receiver = other_party if call_type == "outgoing" else shell["email"]
+                caller = shell["phone_number"] if call_type == "outgoing" else other_party
+                receiver = other_party if call_type == "outgoing" else shell["phone_number"]
             else:
-                other_party_email = random.choice([e for e in all_user_emails if e != shell["email"]])
-                caller = shell["email"] if call_type == "outgoing" else other_party_email
-                receiver = other_party_email if call_type == "outgoing" else shell["email"]
+                other_party_phone = random.choice([p for p in all_user_phones if p != shell["phone_number"]])
+                caller = shell["phone_number"] if call_type == "outgoing" else other_party_phone
+                receiver = other_party_phone if call_type == "outgoing" else shell["phone_number"]
             
             call_history.append({
                 "call_id": str(uuid.uuid4()),
-                "caller_id": email_to_uuid_map.get(caller),
-                "receiver_id": email_to_uuid_map.get(receiver),
+                "caller_id": phone_to_uuid_map.get(caller),
                 "caller": caller,
                 "receiver": receiver,
                 "duration_minutes": random.randint(1, 30),
+                "status": "completed",
                 "timestamp": generate_random_past_date(90),
                 "type": call_type,
                 "is_external": is_external
@@ -165,6 +166,10 @@ def main():
             "last_login": generate_random_past_date(30),
             "is_active": random.choice([True, True, False]),
         }
+
+    # Set current_user_id to the first user created
+    if all_user_ids:
+        DEFAULT_COMMUNILINK_STATE["current_user_id"] = all_user_ids[0]
 
     # =========================================================================
     # PASS 3: Generate related top-level data (billing, tickets, logs).

@@ -87,8 +87,11 @@ class SpotifyApis:
             Optional[Dict]: Current user's data if authenticated, None otherwise.
         """
         if not self.username:
-            return None
-        return self.users.get(self.username)
+            # Auto-login the first user if no user is authenticated
+            if self.users:
+                self.username = next(iter(self.users.keys()))
+        
+        return self.users.get(self.username) if self.username else None
 
     def _get_user_payment_cards(self, user_id: str) -> Dict[str, Any]:
         """
@@ -882,3 +885,120 @@ class SpotifyApis:
         if content:
             return {"status": "success", "message": f"Now playing {content_type}: {content.get('title') or content.get('name')} (ID: {content_id})."}
         return {"status": "error", "message": f"{content_type.capitalize()} with ID {content_id} not found."}
+
+    def get_user_statistics(self) -> Dict[str, Any]:
+        """
+        Retrieves statistics and metadata for the current user.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing user statistics or error message.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        stats = {
+            "user_id": user_data["id"],
+            "email": user_data.get("email"),
+            "first_name": user_data.get("first_name"),
+            "last_name": user_data.get("last_name"),
+            "registration_date": user_data.get("registration_date"),
+            "last_active_date": user_data.get("last_active_date"),
+            "preferred_genre": user_data.get("preferred_genre"),
+            "total_play_time_ms": user_data.get("total_play_time_ms", 0),
+            "country": user_data.get("country"),
+            "device_type": user_data.get("device_type"),
+            "premium": user_data.get("premium", False),
+            "total_liked_songs": len(user_data.get("liked_songs", [])),
+            "total_liked_albums": len(user_data.get("liked_albums", [])),
+            "total_liked_playlists": len(user_data.get("liked_playlists", [])),
+            "total_following_artists": len(user_data.get("following_artists", [])),
+            "total_library_songs": len(user_data.get("library_songs", [])),
+            "total_downloaded_songs": len(user_data.get("downloaded_songs", []))
+        }
+        
+        return {"status": "success", "statistics": stats}
+
+    def update_user_preferences(
+        self,
+        preferred_genre: Optional[str] = None,
+        country: Optional[str] = None,
+        device_type: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Updates user preferences.
+
+        Args:
+            preferred_genre (Optional[str]): New preferred genre.
+            country (Optional[str]): New country setting.
+            device_type (Optional[str]): New device type.
+
+        Returns:
+            Dict[str, Any]: Dictionary indicating success status and updated fields.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        updated_fields = []
+        
+        if preferred_genre is not None:
+            user_data["preferred_genre"] = preferred_genre
+            updated_fields.append("preferred_genre")
+        
+        if country is not None:
+            user_data["country"] = country
+            updated_fields.append("country")
+        
+        if device_type is not None:
+            user_data["device_type"] = device_type
+            updated_fields.append("device_type")
+        
+        user_data["last_active_date"] = datetime.datetime.now().isoformat() + "Z"
+        
+        return {
+            "status": "success", 
+            "message": f"Updated fields: {', '.join(updated_fields) if updated_fields else 'none'}",
+            "updated_fields": updated_fields
+        }
+
+    def get_listening_history(self, limit: int = 50) -> Dict[str, Any]:
+        """
+        Retrieves user's listening history based on liked songs and library.
+
+        Args:
+            limit (int): Maximum number of items to return.
+
+        Returns:
+            Dict[str, Any]: Dictionary containing listening history or error message.
+        """
+        user_data = self._get_current_user_data()
+        if not user_data:
+            return {"status": "error", "message": "User not authenticated."}
+        
+        # Combine liked songs and library songs as "history"
+        all_song_ids = list(set(
+            user_data.get("liked_songs", []) + 
+            user_data.get("library_songs", [])
+        ))
+        
+        history = []
+        for song_id in all_song_ids[:limit]:
+            if song_id in self.songs:
+                song_data = copy.deepcopy(self.songs[song_id])
+                song_data["played_at"] = user_data.get("last_active_date", datetime.datetime.now().isoformat() + "Z")
+                history.append(song_data)
+        
+        return {"status": "success", "history": history, "total_items": len(history)}
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("SpotifyApis: All dummy data reset to default state.")
+        return {"reset_status": True}

@@ -108,8 +108,23 @@ class XApis:
         """
         user_data = self._get_user_data(user_id)
         if user_data:
-            # Return a copy to prevent external modification
-            return {"data": copy.deepcopy(user_data)}
+            # Return enhanced profile with backend metadata
+            profile = {
+                "id": user_data.get("id"),
+                "username": user_data.get("username"),
+                "name": user_data.get("name"),
+                "email": user_data.get("email"),
+                "bio": user_data.get("bio"),
+                "profile_picture_url": user_data.get("profile_picture_url"),
+                "joined_date": user_data.get("joined_date"),
+                "is_verified": user_data.get("is_verified", False),
+                "follower_count": len(user_data.get("followers", [])),
+                "following_count": len(user_data.get("following", [])),
+                "posts_count": len(user_data.get("posts", [])),
+                "liked_posts_count": len(user_data.get("liked_posts", [])),
+                "api_usage": user_data.get("api_usage", {})
+            }
+            return {"data": profile}
         return {"data": None, "error": "User not found"}
 
     def list_followers(self, user_id: str) -> Dict[str, Any]:
@@ -504,3 +519,117 @@ class XApis:
             else:
                 post_metrics.append({"post_id": post_id, "error": "Post not found"})
         return {"data": post_metrics}
+
+    def update_user_bio(self, user_id: str, new_bio: str) -> Dict[str, Any]:
+        """
+        Update a user's bio.
+
+        Args:
+            user_id (str): The ID (UUID) of the user.
+            new_bio (str): The new bio text.
+
+        Returns:
+            Dict: A dictionary indicating success status.
+        """
+        if user_id in self.users:
+            self.users[user_id]["bio"] = new_bio
+            return {"status": "success", "message": "Bio updated successfully"}
+        return {"status": "error", "message": "User not found"}
+
+    def get_user_analytics(self, user_id: str) -> Dict[str, Any]:
+        """
+        Get comprehensive analytics for a user.
+
+        Args:
+            user_id (str): The ID (UUID) of the user.
+
+        Returns:
+            Dict: A dictionary containing user analytics.
+        """
+        user_data = self._get_user_data(user_id)
+        if not user_data:
+            return {"data": None, "error": "User not found"}
+
+        user_posts = [p for p in self.posts.values() if p.get("author_id") == user_id]
+        total_likes_received = sum(len(p.get("likes", [])) for p in user_posts)
+        
+        analytics = {
+            "user_id": user_id,
+            "username": user_data.get("username"),
+            "joined_date": user_data.get("joined_date"),
+            "is_verified": user_data.get("is_verified", False),
+            "follower_count": len(user_data.get("followers", [])),
+            "following_count": len(user_data.get("following", [])),
+            "posts_count": len(user_data.get("posts", [])),
+            "total_likes_received": total_likes_received,
+            "liked_posts_count": len(user_data.get("liked_posts", [])),
+            "api_usage": user_data.get("api_usage", {}),
+            "engagement_ratio": round(total_likes_received / max(len(user_posts), 1), 2)
+        }
+        
+        return {"data": analytics}
+
+    def search_users_by_bio(self, search_term: str) -> Dict[str, Any]:
+        """
+        Search for users based on bio content.
+
+        Args:
+            search_term (str): The term to search for in user bios.
+
+        Returns:
+            Dict: A dictionary containing matching users.
+        """
+        matching_users = []
+        search_term_lower = search_term.lower()
+        
+        for user_id, user_data in self.users.items():
+            bio = user_data.get("bio", "").lower()
+            if search_term_lower in bio:
+                matching_users.append({
+                    "id": user_id,
+                    "username": user_data.get("username"),
+                    "name": user_data.get("name"),
+                    "bio": user_data.get("bio"),
+                    "is_verified": user_data.get("is_verified", False),
+                    "follower_count": len(user_data.get("followers", []))
+                })
+        
+        return {"data": matching_users, "count": len(matching_users)}
+
+    def get_verified_users(self) -> Dict[str, Any]:
+        """
+        Get all verified users.
+
+        Returns:
+            Dict: A dictionary containing all verified users.
+        """
+        verified_users = []
+        
+        for user_id, user_data in self.users.items():
+            if user_data.get("is_verified", False):
+                verified_users.append({
+                    "id": user_id,
+                    "username": user_data.get("username"),
+                    "name": user_data.get("name"),
+                    "bio": user_data.get("bio"),
+                    "profile_picture_url": user_data.get("profile_picture_url"),
+                    "follower_count": len(user_data.get("followers", [])),
+                    "joined_date": user_data.get("joined_date")
+                })
+        
+        # Sort by follower count (most followed first)
+        verified_users.sort(key=lambda x: x["follower_count"], reverse=True)
+        
+        return {"data": verified_users, "count": len(verified_users)}
+
+    def reset_data(self) -> Dict[str, bool]:
+        """
+        Resets all simulated data in the dummy backend to its default state.
+        This is a utility function for testing and not a standard API endpoint.
+
+        Returns:
+            Dict: A dictionary indicating the success of the reset operation.
+        """
+        self._load_scenario(DEFAULT_STATE)
+        print("XApis: All dummy data reset to default state.")
+        return {"reset_status": True}

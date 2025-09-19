@@ -110,24 +110,42 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
         min(num_recipients, len(all_user_emails) - 1)
     )
 
+    # Generate messages count first for realistic totals
+    num_messages = random.randint(20, 70)
+    
     new_gmail_data = {
         "profile": {
             "emailAddress": email,
-            "messagesTotal": random.randint(50, 5000),
-            "threadsTotal": random.randint(20, 1500),
+            "messagesTotal": num_messages + random.randint(0, 50),  # Close to actual with small variance
+            "threadsTotal": random.randint(max(1, num_messages // 4), num_messages // 2),  # Realistic thread count
             "historyId": str(random.randint(10**12, 10**13 - 1))
         },
         "drafts": {}, "labels": {}, "messages": {}, "threads": {}
     }
 
-    # Generate a few random drafts
+    # Generate a few random drafts with proper Gmail structure
     for _ in range(random.randint(0, 2)):
         draft_id = f"temp_draft_{uuid.uuid4()}"
+        draft_msg_id = str(uuid.uuid4())
         new_gmail_data["drafts"][draft_id] = {
             "id": draft_id,
             "message": {
-                "to": random.choice(all_user_emails), "from": email,
-                "subject": random.choice(email_subjects), "body": random.choice(email_bodies)
+                "id": draft_msg_id,
+                "threadId": draft_msg_id,
+                "labelIds": ["DRAFT"],
+                "snippet": "Draft message",
+                "payload": {
+                    "mimeType": "text/plain",
+                    "body": {
+                        "size": random.randint(50, 2000),
+                        "data": ""
+                    },
+                    "headers": [
+                        {"name": "To", "value": random.choice(all_user_emails)},
+                        {"name": "From", "value": email},
+                        {"name": "Subject", "value": random.choice(email_subjects)}
+                    ]
+                }
             }
         }
 
@@ -139,37 +157,95 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
         }
 
     # Generate messages and group them into threads
-    num_messages = random.randint(20, 70)
     temp_messages = {}
-    all_possible_recipients = recipients_for_new_user + [generate_email(random.choice(first_names), random.choice(last_names))]
+    
+    # Create realistic contact patterns: frequent contacts vs. random people
+    frequent_contacts = random.sample(recipients_for_new_user, min(5, len(recipients_for_new_user)))
+    occasional_contacts = [e for e in recipients_for_new_user if e not in frequent_contacts]
+    random_contacts = [generate_email(random.choice(first_names), random.choice(last_names)) for _ in range(3)]
+    
+    all_possible_recipients = frequent_contacts + occasional_contacts + random_contacts
 
     for _ in range(num_messages):
         msg_id = f"temp_msg_{uuid.uuid4()}"
-        sender = random.choice([email, random.choice(all_possible_recipients)])
-        recipient = email if sender != email else random.choice(all_possible_recipients)
         
+        # Realistic sender patterns: 60% received, 40% sent
+        is_received = random.random() < 0.6
+        
+        if is_received:
+            # Weight towards frequent contacts: 70% frequent, 20% occasional, 10% random
+            sender_pool = random.choices(
+                [frequent_contacts, occasional_contacts, random_contacts],
+                weights=[70, 20, 10]
+            )[0]
+            sender = random.choice(sender_pool) if sender_pool else random.choice(all_possible_recipients)
+            recipient = email
+        else:
+            # When sending, also favor frequent contacts
+            sender = email
+            recipient_pool = random.choices(
+                [frequent_contacts, occasional_contacts, random_contacts],
+                weights=[60, 30, 10]
+            )[0]
+            recipient = random.choice(recipient_pool) if recipient_pool else random.choice(all_possible_recipients)
+        
+        # Realistic label distribution
         label_ids = ["INBOX"] if recipient == email else ["SENT"]
-        if random.random() < 0.3 and "INBOX" in label_ids: label_ids.append("UNREAD")
-        if random.random() < 0.1: label_ids.append("STARRED")
+        
+        # More realistic percentages for labels
+        if "INBOX" in label_ids:
+            if random.random() < 0.15: label_ids.append("UNREAD")  # 15% unread (more realistic)
+            if random.random() < 0.05: label_ids.append("IMPORTANT")  # 5% important
+            if random.random() < 0.02: label_ids.append("SPAM")  # 2% spam
+        
+        if random.random() < 0.08: label_ids.append("STARRED")  # 8% starred (slightly more realistic)
 
+        # Generate timestamp once for consistency
+        message_timestamp = generate_random_past_timestamp(365)
+        message_datetime = datetime.datetime.fromtimestamp(int(message_timestamp)/1000)
+        
         temp_messages[msg_id] = {
-            "id": msg_id, "threadId": msg_id, # Default threadId to msgId
+            "id": msg_id, 
+            "threadId": msg_id, # Default threadId to msgId
             "snippet": random.choice(email_snippets),
-            "payload": {"headers": [{"name": "From", "value": sender}, {"name": "To", "value": recipient}, {"name": "Subject", "value": random.choice(email_subjects)}]},
-            "internalDate": generate_random_past_timestamp(365), "labelIds": label_ids,
+            "payload": {
+                "mimeType": "text/plain",
+                "body": {
+                    "size": random.randint(100, 5000),
+                    "data": ""  # Base64 encoded content would go here
+                },
+                "headers": [
+                    {"name": "From", "value": sender}, 
+                    {"name": "To", "value": recipient}, 
+                    {"name": "Subject", "value": random.choice(email_subjects)},
+                    {"name": "Date", "value": message_datetime.strftime("%a, %d %b %Y %H:%M:%S +0000")},
+                    {"name": "Message-ID", "value": f"<{uuid.uuid4()}@gmail.com>"}
+                ]
+            },
+            "internalDate": message_timestamp, 
+            "labelIds": label_ids,
+            "sizeEstimate": random.randint(1000, 8000)
         }
     
-    # Create threads by grouping some messages
+    # Create threads by grouping some messages with realistic patterns
     message_ids = list(temp_messages.keys())
     random.shuffle(message_ids)
-    while len(message_ids) > 10: # Leave some messages as single-message threads
-        thread_size = random.randint(2, 5)
-        if len(message_ids) < thread_size: break
+    
+    # Leave about 40% as single-message threads (realistic for Gmail)
+    target_threaded_messages = int(len(message_ids) * 0.6)
+    threaded_count = 0
+    
+    while threaded_count < target_threaded_messages and len(message_ids) >= 2:
+        # Weighted thread sizes: 2(40%), 3(35%), 4(20%), 5(5%)
+        thread_size = random.choices([2, 3, 4, 5], weights=[40, 35, 20, 5])[0]
+        if len(message_ids) < thread_size: 
+            thread_size = len(message_ids)
         
         thread_msg_ids = [message_ids.pop() for _ in range(thread_size)]
         thread_uuid = str(uuid.uuid4())
         for mid in thread_msg_ids:
             temp_messages[mid]["threadId"] = thread_uuid
+        threaded_count += thread_size
 
     new_gmail_data["messages"] = temp_messages
     

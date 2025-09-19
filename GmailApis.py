@@ -117,6 +117,38 @@ class GmailApis:
         gmail_data = self._get_user_gmail_data(user_id)
         return gmail_data.get("labels") if gmail_data else None
 
+    def _update_thread_snippet(self, user_id: str, thread_id: str) -> None:
+        """
+        Update a thread's snippet with the most recent message.
+        Args:
+            user_id (str): User's email address.
+            thread_id (str): Thread ID to update.
+        """
+        threads = self._get_user_threads_data(user_id)
+        messages = self._get_user_messages_data(user_id)
+        
+        if not threads or not messages or thread_id not in threads:
+            return
+            
+        thread = threads[thread_id]
+        thread_msg_ids = [m["id"] for m in thread.get("messages", [])]
+        
+        if not thread_msg_ids:
+            return
+            
+        # Find the most recent message by timestamp
+        latest_msg = None
+        latest_timestamp = 0
+        for msg_id in thread_msg_ids:
+            if msg_id in messages:
+                msg_timestamp = int(messages[msg_id].get("internalDate", "0"))
+                if msg_timestamp > latest_timestamp:
+                    latest_timestamp = msg_timestamp
+                    latest_msg = messages[msg_id]
+        
+        if latest_msg:
+            thread["snippet"] = latest_msg.get("snippet", "")
+
     def get_profile(self, user_id: str) -> Optional[Dict[str, Any]]:
         """
         Get the Gmail profile for a user.
@@ -244,7 +276,7 @@ class GmailApis:
         new_message = {
             "id": new_msg_id,
             "threadId": thread_id,
-            "snippet": body[:100] + "...",
+            "snippet": body[:100] + "..." if len(body) > 100 else body,
             "payload": {
                 "headers": [
                     {"name": "To", "value": to},
@@ -258,8 +290,19 @@ class GmailApis:
         }
 # hi
         gmail_data["messages"][new_msg_id] = new_message
+        
+        # Create or update thread with snippet
         if thread_id not in gmail_data["threads"]:
-            gmail_data["threads"][thread_id] = {"id": thread_id, "messages": []}
+            gmail_data["threads"][thread_id] = {
+                "id": thread_id, 
+                "messages": [],
+                "snippet": new_message["snippet"],
+                "historyId": str(int(datetime.datetime.now().timestamp() * 1000))
+            }
+        else:
+            # Update thread snippet with latest message
+            gmail_data["threads"][thread_id]["snippet"] = new_message["snippet"]
+            
         gmail_data["threads"][thread_id]["messages"].append({"id": new_msg_id})
         gmail_data["profile"]["messagesTotal"] = gmail_data["profile"].get("messagesTotal", 0) + 1
         gmail_data["profile"]["threadsTotal"] = len(gmail_data["threads"])
@@ -271,8 +314,19 @@ class GmailApis:
                 recipient_message = copy.deepcopy(new_message)
                 recipient_message["labelIds"] = ["INBOX", "UNREAD"]
                 recipient_gmail_data["messages"][new_msg_id] = recipient_message
+                
+                # Create or update thread for recipient with snippet
                 if thread_id not in recipient_gmail_data["threads"]:
-                    recipient_gmail_data["threads"][thread_id] = {"id": thread_id, "messages": []}
+                    recipient_gmail_data["threads"][thread_id] = {
+                        "id": thread_id, 
+                        "messages": [],
+                        "snippet": new_message["snippet"],
+                        "historyId": str(int(datetime.datetime.now().timestamp() * 1000))
+                    }
+                else:
+                    # Update thread snippet with latest message
+                    recipient_gmail_data["threads"][thread_id]["snippet"] = new_message["snippet"]
+                    
                 recipient_gmail_data["threads"][thread_id]["messages"].append({"id": new_msg_id})
                 recipient_gmail_data["profile"]["messagesTotal"] = recipient_gmail_data["profile"].get("messagesTotal", 0) + 1
                 recipient_gmail_data["profile"]["threadsTotal"] = len(recipient_gmail_data["threads"])
@@ -300,8 +354,13 @@ class GmailApis:
             threads = self._get_user_threads_data(user_id)
             if threads and thread_id in threads:
                 threads[thread_id]["messages"] = [m for m in threads[thread_id]["messages"] if m["id"] != msg_id]
+                
+                # If no messages left in thread, delete the thread
                 if not threads[thread_id]["messages"]:
                     del threads[thread_id]
+                else:
+                    # Update thread snippet with the most recent remaining message
+                    self._update_thread_snippet(user_id, thread_id)
 
             internal_user_id = self._get_user_id_by_email(user_id)
             if internal_user_id:
@@ -446,6 +505,43 @@ class GmailApis:
             print(f"Dummy draft deleted: ID={draft_id} for user {user_id}")
             return {"success": True, "message": f"Draft {draft_id} deleted."}
         return {"success": False, "message": f"Draft {draft_id} not found."}
+
+    def send_draft(self, user_id: str, draft_id: str) -> Dict[str, Union[str, Dict]]:
+        """
+        Send a draft as a message.
+        Args:
+            user_id (str): User's email address.
+            draft_id (str): Draft ID to send.
+        Returns:
+            Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
+        """
+        drafts = self._get_user_drafts_data(user_id)
+        if drafts is None:
+            return {"error": "User not found or no drafts data."}
+        
+        if draft_id not in drafts:
+            return {"error": f"Draft {draft_id} not found."}
+        
+        draft = drafts[draft_id]
+        draft_message = draft.get("message", {})
+        
+        # Extract draft details
+        to = draft_message.get("to", "")
+        subject = draft_message.get("subject", "")
+        body = draft_message.get("body", "")
+        
+        if not to:
+            return {"error": "Draft has no recipient specified."}
+        
+        # Send the draft as a regular message
+        result = self.send_message(user_id, to, subject, body)
+        
+        # If message was sent successfully, delete the draft
+        if "id" in result and "error" not in result:
+            self.delete_draft(user_id, draft_id)
+            print(f"Dummy draft sent and deleted: draft ID={draft_id}, message ID={result['id']}")
+        
+        return result
 
     def list_labels(self, user_id: str) -> Dict[str, Union[List[Dict], str]]:
         """
