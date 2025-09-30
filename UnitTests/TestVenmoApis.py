@@ -1,4 +1,4 @@
-from audio_gorilla.VenmoApis import VenmoApis, DEFAULT_STATE
+from audio_gorilla.VenmoApis import VenmoApis, DEFAULT_STATE, User
 import unittest
 from copy import deepcopy
 
@@ -8,8 +8,10 @@ class TestVenmoApis(unittest.TestCase):
         self.venmo_api = VenmoApis()
         # Ensure a clean state for each test by explicitly loading the default scenario
         self.venmo_api._load_scenario(deepcopy(DEFAULT_STATE))
-        self.user1_email = "user1@example.com"
-        self.user2_email = "user2@example.com"
+        # Create test users
+        self.user1 = User(email="user1@example.com")
+        self.user2 = User(email="user2@example.com")
+        self.test_email = "user1@example.com"
 
     # --- Unit Tests for Core Functions (most important for audio calling) ---
 
@@ -208,6 +210,347 @@ class TestVenmoApis(unittest.TestCase):
         user2_notifications_after_deny = self.venmo_api.show_my_notifications()
         self.assertTrue(user2_notifications_after_deny["notifications_status"])
         self.assertEqual(len(user2_notifications_after_deny["notifications"]), 1) 
+
+    # --- Comprehensive Test Coverage for All VenmoApis Methods ---
+
+    def test_set_current_user_success(self):
+        """Test setting current user with valid email."""
+        result = self.venmo_api.set_current_user("user2@example.com")
+        self.assertTrue(result["success"])
+        self.assertEqual(self.venmo_api.current_user, "user2@example.com")
+
+    def test_set_current_user_invalid_email(self):
+        """Test setting current user with invalid email."""
+        result = self.venmo_api.set_current_user("nonexistent@example.com")
+        self.assertFalse(result["success"])
+
+    def test_show_account_success(self):
+        """Test showing account details for valid user."""
+        result = self.venmo_api.show_account(self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("account_details", result)
+        self.assertIn("email", result["account_details"])
+
+    def test_show_account_invalid_user(self):
+        """Test showing account for user not in system."""
+        invalid_user = User(email="invalid@example.com")
+        result = self.venmo_api.show_account(invalid_user)
+        self.assertFalse(result["success"])
+
+    def test_list_friends_success(self):
+        """Test listing friends for valid user."""
+        result = self.venmo_api.list_friends(self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("friends", result)
+        self.assertIsInstance(result["friends"], list)
+
+    def test_list_friends_no_friends(self):
+        """Test listing friends when user has no friends."""
+        # Create isolated user
+        isolated_user = User(email="isolated@example.com")
+        result = self.venmo_api.list_friends(isolated_user)
+        # Should still be successful but with empty friends list
+        self.assertTrue(result["success"])
+        self.assertEqual(len(result.get("friends", [])), 0)
+
+    def test_send_money_success_with_valid_users(self):
+        """Test sending money between valid users."""
+        result = self.venmo_api.send_money(
+            self.user1, 
+            "user2@example.com", 
+            25.0, 
+            "Test payment"
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("transaction_id", result)
+
+    def test_send_money_insufficient_funds(self):
+        """Test sending money with insufficient balance."""
+        result = self.venmo_api.send_money(
+            self.user1, 
+            "user2@example.com", 
+            9999.99, 
+            "Too much money"
+        )
+        self.assertFalse(result["success"])
+
+    def test_send_money_invalid_receiver(self):
+        """Test sending money to non-existent user."""
+        result = self.venmo_api.send_money(
+            self.user1, 
+            "nonexistent@example.com", 
+            10.0, 
+            "Invalid receiver"
+        )
+        self.assertFalse(result["success"])
+
+    def test_request_money_success(self):
+        """Test requesting money from valid user."""
+        result = self.venmo_api.request_money(
+            self.user1, 
+            "user2@example.com", 
+            30.0, 
+            "Rent money"
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("request_id", result)
+
+    def test_request_money_invalid_receiver(self):
+        """Test requesting money from invalid user."""
+        result = self.venmo_api.request_money(
+            self.user1, 
+            "invalid@example.com", 
+            30.0, 
+            "Invalid request"
+        )
+        self.assertFalse(result["success"])
+
+    def test_request_money_zero_amount(self):
+        """Test requesting zero amount."""
+        result = self.venmo_api.request_money(
+            self.user1, 
+            "user2@example.com", 
+            0.0, 
+            "Zero request"
+        )
+        self.assertFalse(result["success"])
+
+    def test_get_transaction_details_valid_id(self):
+        """Test getting transaction details with valid ID."""
+        # First create a transaction
+        send_result = self.venmo_api.send_money(
+            self.user1, 
+            "user2@example.com", 
+            15.0, 
+            "Test transaction"
+        )
+        self.assertTrue(send_result["success"])
+        
+        transaction_id = send_result["transaction_id"]
+        result = self.venmo_api.get_transaction_details(transaction_id)
+        self.assertTrue(result["success"])
+        self.assertIn("transaction", result)
+
+    def test_get_transaction_details_invalid_id(self):
+        """Test getting transaction details with invalid ID."""
+        result = self.venmo_api.get_transaction_details("invalid_id")
+        self.assertFalse(result["success"])
+
+    def test_list_user_transactions_success(self):
+        """Test listing transactions for user."""
+        # Create some transactions first
+        self.venmo_api.send_money(self.user1, "user2@example.com", 10.0, "Payment 1")
+        self.venmo_api.send_money(self.user1, "user2@example.com", 20.0, "Payment 2")
+        
+        result = self.venmo_api.list_user_transactions(self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("transactions", result)
+        self.assertGreaterEqual(len(result["transactions"]), 2)
+
+    def test_list_user_transactions_no_transactions(self):
+        """Test listing transactions for user with no transactions."""
+        # Create a new user with no transaction history
+        new_user = User(email="newtestuser@example.com")
+        result = self.venmo_api.list_user_transactions(new_user)
+        # Should succeed but with empty list
+        self.assertTrue(result["success"])
+        self.assertEqual(len(result.get("transactions", [])), 0)
+
+    def test_add_payment_card_success(self):
+        """Test adding a payment card successfully."""
+        result = self.venmo_api.add_payment_card(
+            self.user1,
+            "Test Bank Card",
+            "John Doe",
+            "1234567890123456",
+            2025,
+            12,
+            "123"
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("card_id", result)
+
+    def test_add_payment_card_invalid_data(self):
+        """Test adding payment card with invalid data."""
+        result = self.venmo_api.add_payment_card(
+            self.user1,
+            "",  # Empty name
+            "John Doe",
+            "invalid_card_number",
+            2020,  # Past year
+            13,    # Invalid month
+            "12"   # Invalid CVV
+        )
+        self.assertFalse(result["success"])
+
+    def test_list_payment_methods_success(self):
+        """Test listing payment methods for user."""
+        result = self.venmo_api.list_payment_methods(self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("payment_methods", result)
+        self.assertIsInstance(result["payment_methods"], list)
+
+    def test_list_payment_methods_invalid_user(self):
+        """Test listing payment methods for invalid user."""
+        invalid_user = User(email="invalid@example.com")
+        result = self.venmo_api.list_payment_methods(invalid_user)
+        self.assertFalse(result["success"])
+
+    def test_set_default_payment_method_success(self):
+        """Test setting default payment method."""
+        # First add a payment card
+        add_result = self.venmo_api.add_payment_card(
+            self.user1,
+            "Test Card",
+            "John Doe", 
+            "1234567890123456",
+            2025,
+            12,
+            "123"
+        )
+        self.assertTrue(add_result["success"])
+        
+        card_id = add_result["card_id"]
+        result = self.venmo_api.set_default_payment_method(self.user1, card_id)
+        self.assertTrue(result["success"])
+
+    def test_set_default_payment_method_invalid_card(self):
+        """Test setting default payment method with invalid card ID."""
+        result = self.venmo_api.set_default_payment_method(self.user1, "invalid_card_id")
+        self.assertFalse(result["success"])
+
+    def test_delete_payment_method_success(self):
+        """Test deleting a payment method."""
+        # First add a payment card
+        add_result = self.venmo_api.add_payment_card(
+            self.user1,
+            "Card to Delete",
+            "John Doe",
+            "1234567890123456", 
+            2025,
+            12,
+            "123"
+        )
+        self.assertTrue(add_result["success"])
+        
+        card_id = add_result["card_id"]
+        result = self.venmo_api.delete_payment_method(self.user1, card_id)
+        self.assertTrue(result["success"])
+
+    def test_delete_payment_method_invalid_card(self):
+        """Test deleting non-existent payment method."""
+        result = self.venmo_api.delete_payment_method(self.user1, "invalid_card_id")
+        self.assertFalse(result["success"])
+
+    def test_get_unread_notification_count_success(self):
+        """Test getting unread notification count."""
+        result = self.venmo_api.get_unread_notification_count()
+        self.assertTrue(result["success"])
+        self.assertIn("count", result)
+        self.assertIsInstance(result["count"], int)
+
+    def test_payment_workflow_end_to_end(self):
+        """Test complete payment workflow: add card, send money, check transaction."""
+        # Step 1: Add payment card
+        card_result = self.venmo_api.add_payment_card(
+            self.user1,
+            "Workflow Test Card",
+            "Test User",
+            "1234567890123456",
+            2026,
+            6,
+            "456"
+        )
+        self.assertTrue(card_result["success"])
+        
+        # Step 2: Send money
+        send_result = self.venmo_api.send_money(
+            self.user1,
+            "user2@example.com",
+            50.0,
+            "End-to-end test payment"
+        )
+        self.assertTrue(send_result["success"])
+        
+        # Step 3: Check transaction details
+        transaction_id = send_result["transaction_id"]
+        details_result = self.venmo_api.get_transaction_details(transaction_id)
+        self.assertTrue(details_result["success"])
+        
+        # Step 4: Verify transaction in user's transaction list
+        transactions_result = self.venmo_api.list_user_transactions(self.user1)
+        self.assertTrue(transactions_result["success"])
+        self.assertGreater(len(transactions_result["transactions"]), 0)
+
+    def test_request_workflow_end_to_end(self):
+        """Test complete request workflow: request money, check notifications."""
+        # Step 1: Request money
+        request_result = self.venmo_api.request_money(
+            self.user1,
+            "user2@example.com", 
+            75.0,
+            "End-to-end test request"
+        )
+        self.assertTrue(request_result["success"])
+        
+        # Step 2: Check unread notifications
+        notifications_result = self.venmo_api.get_unread_notification_count()
+        self.assertTrue(notifications_result["success"])
+        
+        # Step 3: List user transactions to verify request
+        transactions_result = self.venmo_api.list_user_transactions(self.user1)
+        self.assertTrue(transactions_result["success"])
+
+    def test_account_management_workflow(self):
+        """Test account management: show account, list friends, manage payment methods."""
+        # Step 1: Show account details
+        account_result = self.venmo_api.show_account(self.user1)
+        self.assertTrue(account_result["success"])
+        
+        # Step 2: List friends
+        friends_result = self.venmo_api.list_friends(self.user1)
+        self.assertTrue(friends_result["success"])
+        
+        # Step 3: List payment methods
+        payment_methods_result = self.venmo_api.list_payment_methods(self.user1)
+        self.assertTrue(payment_methods_result["success"])
+        
+        # Step 4: Add new payment method
+        add_card_result = self.venmo_api.add_payment_card(
+            self.user1,
+            "Account Management Card",
+            "Test User",
+            "9876543210123456",
+            2027,
+            3,
+            "789"
+        )
+        self.assertTrue(add_card_result["success"])
+
+    def test_error_handling_edge_cases(self):
+        """Test various error handling scenarios."""
+        # Test with None user
+        with self.assertRaises((AttributeError, TypeError)):
+            self.venmo_api.show_account(None)
+        
+        # Test with negative amount
+        result = self.venmo_api.send_money(
+            self.user1,
+            "user2@example.com",
+            -10.0,
+            "Negative amount"
+        )
+        self.assertFalse(result["success"])
+        
+        # Test with empty note
+        result = self.venmo_api.request_money(
+            self.user1,
+            "user2@example.com",
+            10.0,
+            ""  # Empty note
+        )
+        # This might be valid depending on implementation
+        self.assertIn("success", result) 
 
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

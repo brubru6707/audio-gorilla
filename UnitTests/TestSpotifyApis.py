@@ -306,6 +306,277 @@ class TestSpotifyApis(unittest.TestCase):
         # Revert premium status for other tests
         self.spotify_api.users[self.test_user_email]["premium"] = True
 
+    # ================ COMPREHENSIVE COVERAGE FOR MISSING METHODS ================
+
+    def test_set_current_user_success(self):
+        """Test setting current user successfully."""
+        result = self.spotify_api.set_current_user(self.test_user_email)
+        self.assertTrue(result["success"])
+        self.assertEqual(self.spotify_api.current_user_email, self.test_user_email)
+
+    def test_set_current_user_not_found(self):
+        """Test setting non-existent user."""
+        result = self.spotify_api.set_current_user("nonexistent@test.com")
+        self.assertFalse(result["success"])
+
+    def test_show_account_success(self):
+        """Test showing account information."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        result = self.spotify_api.show_account()
+        self.assertTrue(result["success"])
+        self.assertIn("account", result)
+        self.assertEqual(result["account"]["email"], self.test_user_email)
+
+    def test_show_account_no_current_user(self):
+        """Test showing account with no current user set."""
+        self.spotify_api.current_user_email = None
+        result = self.spotify_api.show_account()
+        self.assertFalse(result["success"])
+
+    def test_add_payment_method_success(self):
+        """Test adding a payment method successfully."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        result = self.spotify_api.add_payment_method(
+            card_number="4111111111111111",
+            expiry_month="12",
+            expiry_year="2025",
+            cvv="123",
+            cardholder_name="Test User",
+            billing_address="123 Test St, Test City, TC 12345"
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("payment_method_id", result)
+
+    def test_show_payment_methods_success(self):
+        """Test showing payment methods."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        result = self.spotify_api.show_payment_methods()
+        self.assertTrue(result["success"])
+        self.assertIn("payment_methods", result)
+
+    def test_set_default_payment_method_success(self):
+        """Test setting default payment method."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        
+        # First add a payment method
+        add_result = self.spotify_api.add_payment_method(
+            card_number="4111111111111111",
+            expiry_month="12",
+            expiry_year="2025",
+            cvv="123",
+            cardholder_name="Test User",
+            billing_address="123 Test St"
+        )
+        payment_id = add_result["payment_method_id"]
+        
+        # Then set it as default
+        result = self.spotify_api.set_default_payment_method(payment_id)
+        self.assertTrue(result["success"])
+
+    def test_get_user_liked_songs_success(self):
+        """Test getting user's liked songs."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        result = self.spotify_api.get_user_liked_songs()
+        self.assertTrue(result["success"])
+        self.assertIn("liked_songs", result)
+
+    def test_like_unlike_song_operations(self):
+        """Test comprehensive like/unlike song operations."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        song_id = "test_song_123"
+        
+        # Like song
+        like_result = self.spotify_api.like_song(song_id)
+        self.assertTrue(like_result["success"])
+        
+        # Check it's in liked songs
+        liked_songs_result = self.spotify_api.get_user_liked_songs()
+        self.assertIn(song_id, liked_songs_result["liked_songs"])
+        
+        # Unlike song
+        unlike_result = self.spotify_api.unlike_song(song_id)
+        self.assertTrue(unlike_result["success"])
+        
+        # Check it's no longer in liked songs
+        liked_songs_result_after = self.spotify_api.get_user_liked_songs()
+        self.assertNotIn(song_id, liked_songs_result_after["liked_songs"])
+
+    def test_library_song_operations(self):
+        """Test comprehensive library song operations."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        song_id = "library_song_456"
+        
+        # Get initial library
+        initial_library = self.spotify_api.get_user_library_songs()
+        self.assertTrue(initial_library["success"])
+        
+        # Add to library
+        add_result = self.spotify_api.add_song_to_library(song_id)
+        self.assertTrue(add_result["success"])
+        
+        # Check it's in library
+        library_after_add = self.spotify_api.get_user_library_songs()
+        self.assertIn(song_id, library_after_add["library_songs"])
+        
+        # Remove from library
+        remove_result = self.spotify_api.remove_song_from_library(song_id)
+        self.assertTrue(remove_result["success"])
+        
+        # Check it's no longer in library
+        library_after_remove = self.spotify_api.get_user_library_songs()
+        self.assertNotIn(song_id, library_after_remove["library_songs"])
+
+    def test_get_user_downloaded_songs_success(self):
+        """Test getting user's downloaded songs."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        result = self.spotify_api.get_user_downloaded_songs()
+        self.assertTrue(result["success"])
+        self.assertIn("downloaded_songs", result)
+
+    def test_album_operations_comprehensive(self):
+        """Test comprehensive album operations."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        album_id = "test_album_789"
+        
+        # Get initial liked albums
+        initial_liked = self.spotify_api.get_user_liked_albums()
+        self.assertTrue(initial_liked["success"])
+        
+        # Like album
+        like_result = self.spotify_api.like_album(album_id)
+        self.assertTrue(like_result["success"])
+        
+        # Check it's in liked albums
+        liked_after = self.spotify_api.get_user_liked_albums()
+        self.assertIn(album_id, liked_after["liked_albums"])
+        
+        # Get library albums
+        library_albums = self.spotify_api.get_user_library_albums()
+        self.assertTrue(library_albums["success"])
+        
+        # Add to library
+        add_library_result = self.spotify_api.add_album_to_library(album_id)
+        self.assertTrue(add_library_result["success"])
+        
+        # Remove from library
+        remove_library_result = self.spotify_api.remove_album_from_library(album_id)
+        self.assertTrue(remove_library_result["success"])
+        
+        # Unlike album
+        unlike_result = self.spotify_api.unlike_album(album_id)
+        self.assertTrue(unlike_result["success"])
+        
+        # Check it's no longer in liked albums
+        liked_after_unlike = self.spotify_api.get_user_liked_albums()
+        self.assertNotIn(album_id, liked_after_unlike["liked_albums"])
+
+    def test_playlist_operations_comprehensive(self):
+        """Test comprehensive playlist operations."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        playlist_id = "test_playlist_101"
+        
+        # Get initial liked playlists
+        initial_liked = self.spotify_api.get_user_liked_playlists()
+        self.assertTrue(initial_liked["success"])
+        
+        # Like playlist
+        like_result = self.spotify_api.like_playlist(playlist_id)
+        self.assertTrue(like_result["success"])
+        
+        # Check it's in liked playlists
+        liked_after = self.spotify_api.get_user_liked_playlists()
+        self.assertIn(playlist_id, liked_after["liked_playlists"])
+        
+        # Unlike playlist
+        unlike_result = self.spotify_api.unlike_playlist(playlist_id)
+        self.assertTrue(unlike_result["success"])
+        
+        # Check it's no longer in liked playlists
+        liked_after_unlike = self.spotify_api.get_user_liked_playlists()
+        self.assertNotIn(playlist_id, liked_after_unlike["liked_playlists"])
+
+    def test_artist_following_operations(self):
+        """Test comprehensive artist following operations."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        artist_id = "test_artist_202"
+        
+        # Get initial following artists
+        initial_following = self.spotify_api.get_user_following_artists()
+        self.assertTrue(initial_following["success"])
+        
+        # Follow artist
+        follow_result = self.spotify_api.follow_artist(artist_id)
+        self.assertTrue(follow_result["success"])
+        
+        # Check it's in following artists
+        following_after = self.spotify_api.get_user_following_artists()
+        self.assertIn(artist_id, following_after["following_artists"])
+        
+        # Unfollow artist
+        unfollow_result = self.spotify_api.unfollow_artist(artist_id)
+        self.assertTrue(unfollow_result["success"])
+        
+        # Check it's no longer in following artists
+        following_after_unfollow = self.spotify_api.get_user_following_artists()
+        self.assertNotIn(artist_id, following_after_unfollow["following_artists"])
+
+    def test_like_operations_without_current_user(self):
+        """Test like operations without current user set."""
+        self.spotify_api.current_user_email = None
+        
+        # Test various operations fail without current user
+        like_song_result = self.spotify_api.like_song("test_song")
+        self.assertFalse(like_song_result["success"])
+        
+        like_album_result = self.spotify_api.like_album("test_album")
+        self.assertFalse(like_album_result["success"])
+        
+        follow_artist_result = self.spotify_api.follow_artist("test_artist")
+        self.assertFalse(follow_artist_result["success"])
+
+    def test_payment_method_edge_cases(self):
+        """Test payment method edge cases."""
+        self.spotify_api.set_current_user(self.test_user_email)
+        
+        # Test setting non-existent payment method as default
+        invalid_result = self.spotify_api.set_default_payment_method("nonexistent_id")
+        self.assertFalse(invalid_result["success"])
+
+    def test_comprehensive_user_workflow(self):
+        """Test a complete user workflow with multiple operations."""
+        # Set user
+        self.spotify_api.set_current_user(self.test_user_email)
+        
+        # Show account
+        account_result = self.spotify_api.show_account()
+        self.assertTrue(account_result["success"])
+        
+        # Like some content
+        song_id = "workflow_song"
+        album_id = "workflow_album"
+        artist_id = "workflow_artist"
+        
+        self.spotify_api.like_song(song_id)
+        self.spotify_api.like_album(album_id)
+        self.spotify_api.follow_artist(artist_id)
+        
+        # Add to library
+        self.spotify_api.add_song_to_library(song_id)
+        self.spotify_api.add_album_to_library(album_id)
+        
+        # Verify all operations
+        liked_songs = self.spotify_api.get_user_liked_songs()
+        liked_albums = self.spotify_api.get_user_liked_albums()
+        following_artists = self.spotify_api.get_user_following_artists()
+        library_songs = self.spotify_api.get_user_library_songs()
+        library_albums = self.spotify_api.get_user_library_albums()
+        
+        self.assertIn(song_id, liked_songs["liked_songs"])
+        self.assertIn(album_id, liked_albums["liked_albums"])
+        self.assertIn(artist_id, following_artists["following_artists"])
+        self.assertIn(song_id, library_songs["library_songs"])
+        self.assertIn(album_id, library_albums["library_albums"])
+
 
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

@@ -11,6 +11,301 @@ class TestSimpleNoteApis(unittest.TestCase):
         self.user1 = "user123"
         self.user2 = "user456"
 
+    # --- User Account Tests ---
+    def test_show_account_user1(self):
+        """Test showing account information for user1."""
+        result = self.note_api.show_account(self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("account", result)
+        self.assertEqual(result["account"]["user_alias"], self.user1)
+        self.assertEqual(result["account"]["display_name"], "John Doe")
+
+    def test_show_account_user2(self):
+        """Test showing account information for user2."""
+        result = self.note_api.show_account(self.user2)
+        self.assertTrue(result["success"])
+        self.assertIn("account", result)
+        self.assertEqual(result["account"]["user_alias"], self.user2)
+        self.assertEqual(result["account"]["display_name"], "Jane Smith")
+
+    def test_show_account_non_existent_user(self):
+        """Test showing account for non-existent user."""
+        result = self.note_api.show_account("nonexistent_user")
+        self.assertFalse(result["success"])
+        self.assertNotIn("account", result)
+
+    # --- List Notes Tests ---
+    def test_list_notes_user1(self):
+        """Test listing all notes for user1."""
+        result = self.note_api.list_notes(user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        self.assertEqual(len(result["notes"]), 3)  # user1 has 3 notes in default state
+
+    def test_list_notes_user2(self):
+        """Test listing all notes for user2."""
+        result = self.note_api.list_notes(user=self.user2)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        self.assertEqual(len(result["notes"]), 1)  # user2 has 1 note in default state
+
+    def test_list_notes_with_limit(self):
+        """Test listing notes with limit for user1."""
+        result = self.note_api.list_notes(limit=2, user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        self.assertEqual(len(result["notes"]), 2)
+
+    def test_list_notes_with_offset(self):
+        """Test listing notes with offset for user1."""
+        result = self.note_api.list_notes(offset=1, user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        self.assertEqual(len(result["notes"]), 2)  # 3 total - 1 offset = 2
+
+    def test_list_notes_with_tag_filter(self):
+        """Test listing notes filtered by tag."""
+        result = self.note_api.list_notes(tags=["personal"], user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        self.assertEqual(len(result["notes"]), 1)  # Only one note with "personal" tag
+
+    def test_list_notes_non_existent_user(self):
+        """Test listing notes for non-existent user."""
+        result = self.note_api.list_notes(user="nonexistent_user")
+        self.assertFalse(result["success"])
+        self.assertEqual(len(result["notes"]), 0)
+
+    # --- Get Note Tests ---
+    def test_get_note_user1(self):
+        """Test getting a specific note for user1."""
+        result = self.note_api.get_note("0", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("note", result)
+        self.assertEqual(result["note"]["title"], "My First Note")
+        self.assertEqual(result["note"]["user"], self.user1)
+
+    def test_get_note_user2(self):
+        """Test getting a specific note for user2."""
+        result = self.note_api.get_note("3", user=self.user2)
+        self.assertTrue(result["success"])
+        self.assertIn("note", result)
+        self.assertEqual(result["note"]["title"], "Meeting Minutes")
+        self.assertEqual(result["note"]["user"], self.user2)
+
+    def test_get_note_non_existent(self):
+        """Test getting a non-existent note."""
+        result = self.note_api.get_note("999", user=self.user1)
+        self.assertFalse(result["success"])
+        self.assertNotIn("note", result)
+
+    def test_get_note_wrong_user(self):
+        """Test getting a note that belongs to different user."""
+        result = self.note_api.get_note("3", user=self.user1)  # user1 trying to access user2's note
+        self.assertFalse(result["success"])
+        self.assertNotIn("note", result)
+
+    # --- Update Note Content Tests ---
+    def test_update_note_content_user1(self):
+        """Test updating note content for user1."""
+        new_content = "This is updated content."
+        result = self.note_api.update_note_content("0", new_content, user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # Verify update
+        updated_note = self.note_api.get_note("0", user=self.user1)
+        self.assertEqual(updated_note["note"]["content"], new_content)
+
+    def test_update_note_content_user2(self):
+        """Test updating note content for user2."""
+        new_content = "Updated meeting minutes content."
+        result = self.note_api.update_note_content("3", new_content, user=self.user2)
+        self.assertTrue(result["success"])
+        
+        # Verify update
+        updated_note = self.note_api.get_note("3", user=self.user2)
+        self.assertEqual(updated_note["note"]["content"], new_content)
+
+    def test_update_note_content_non_existent(self):
+        """Test updating content of non-existent note."""
+        result = self.note_api.update_note_content("999", "Should fail", user=self.user1)
+        self.assertFalse(result["success"])
+
+    def test_update_note_content_wrong_user(self):
+        """Test updating note content for wrong user."""
+        result = self.note_api.update_note_content("3", "Should fail", user=self.user1)
+        self.assertFalse(result["success"])
+
+    # --- Append/Prepend Note Content Tests ---
+    def test_append_note_content(self):
+        """Test appending content to a note."""
+        original_content = self.note_api.notes[0]["content"]
+        append_text = "This is appended text."
+        result = self.note_api.append_or_prepend_note_content("0", "append", append_text, user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # Verify append
+        updated_note = self.note_api.get_note("0", user=self.user1)
+        expected_content = f"{original_content}\n{append_text}"
+        self.assertEqual(updated_note["note"]["content"], expected_content)
+
+    def test_prepend_note_content(self):
+        """Test prepending content to a note."""
+        original_content = self.note_api.notes[1]["content"]
+        prepend_text = "This is prepended text."
+        result = self.note_api.append_or_prepend_note_content("1", "prepend", prepend_text, user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # Verify prepend
+        updated_note = self.note_api.get_note("1", user=self.user1)
+        expected_content = f"{prepend_text}\n{original_content}"
+        self.assertEqual(updated_note["note"]["content"], expected_content)
+
+    def test_append_prepend_invalid_operation(self):
+        """Test append/prepend with invalid operation."""
+        result = self.note_api.append_or_prepend_note_content("0", "invalid", "text", user=self.user1)
+        self.assertFalse(result["success"])
+
+    def test_append_prepend_non_existent_note(self):
+        """Test append/prepend on non-existent note."""
+        result = self.note_api.append_or_prepend_note_content("999", "append", "text", user=self.user1)
+        self.assertFalse(result["success"])
+
+    # --- Share Note Tests ---
+    def test_share_note_with_user(self):
+        """Test sharing a note with another user."""
+        result = self.note_api.share_note("0", self.user2, "read", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("shared successfully", result["message"])
+
+    def test_share_note_with_email(self):
+        """Test sharing a note via email."""
+        result = self.note_api.share_note("1", "friend@example.com", "read", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("shared successfully", result["message"])
+
+    def test_share_note_with_edit_permission(self):
+        """Test sharing a note with edit permission."""
+        result = self.note_api.share_note("2", self.user2, "edit", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("shared successfully", result["message"])
+
+    def test_share_note_non_existent(self):
+        """Test sharing a non-existent note."""
+        result = self.note_api.share_note("999", self.user2, "read", user=self.user1)
+        self.assertFalse(result["success"])
+
+    def test_share_note_wrong_user(self):
+        """Test sharing a note that doesn't belong to user."""
+        result = self.note_api.share_note("3", self.user1, "read", user=self.user1)  # user1 sharing user2's note
+        self.assertFalse(result["success"])
+
+    # --- Add Reminder Tests ---
+    def test_add_reminder_to_note(self):
+        """Test adding a reminder to a note."""
+        reminder_date = "2025-12-31T23:59:59"
+        result = self.note_api.add_reminder("0", reminder_date, user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("reminder added", result["message"])
+
+    def test_add_reminder_with_message(self):
+        """Test adding a reminder with custom message."""
+        reminder_date = "2025-12-25T12:00:00"
+        reminder_message = "Don't forget Christmas!"
+        result = self.note_api.add_reminder("1", reminder_date, reminder_message, user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("reminder added", result["message"])
+
+    def test_add_reminder_non_existent_note(self):
+        """Test adding reminder to non-existent note."""
+        result = self.note_api.add_reminder("999", "2025-12-31T23:59:59", user=self.user1)
+        self.assertFalse(result["success"])
+
+    def test_add_reminder_wrong_user(self):
+        """Test adding reminder to note of wrong user."""
+        result = self.note_api.add_reminder("3", "2025-12-31T23:59:59", user=self.user1)
+        self.assertFalse(result["success"])
+
+    def test_add_reminder_invalid_date(self):
+        """Test adding reminder with invalid date format."""
+        result = self.note_api.add_reminder("0", "invalid-date", user=self.user1)
+        self.assertFalse(result["success"])
+
+    # --- Get Notes by Color Tests ---
+    def test_get_notes_by_color_yellow(self):
+        """Test getting notes by yellow color."""
+        result = self.note_api.get_notes_by_color("yellow", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        # Check that returned notes have yellow color
+        for note in result["notes"]:
+            self.assertEqual(note["color"], "yellow")
+
+    def test_get_notes_by_color_blue(self):
+        """Test getting notes by blue color."""
+        result = self.note_api.get_notes_by_color("blue", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+
+    def test_get_notes_by_color_non_existent_user(self):
+        """Test getting notes by color for non-existent user."""
+        result = self.note_api.get_notes_by_color("yellow", user="nonexistent")
+        self.assertFalse(result["success"])
+
+    def test_get_notes_by_color_invalid_color(self):
+        """Test getting notes by invalid color."""
+        result = self.note_api.get_notes_by_color("invalid_color", user=self.user1)
+        self.assertTrue(result["success"])  # Should succeed but return empty list
+        self.assertEqual(len(result["notes"]), 0)
+
+    # --- Get Notes by Priority Tests ---
+    def test_get_notes_by_priority_high(self):
+        """Test getting notes by high priority."""
+        result = self.note_api.get_notes_by_priority("high", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+        # Check that returned notes have high priority
+        for note in result["notes"]:
+            self.assertEqual(note["priority"], "high")
+
+    def test_get_notes_by_priority_medium(self):
+        """Test getting notes by medium priority."""
+        result = self.note_api.get_notes_by_priority("medium", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+
+    def test_get_notes_by_priority_low(self):
+        """Test getting notes by low priority."""
+        result = self.note_api.get_notes_by_priority("low", user=self.user1)
+        self.assertTrue(result["success"])
+        self.assertIn("notes", result)
+
+    def test_get_notes_by_priority_non_existent_user(self):
+        """Test getting notes by priority for non-existent user."""
+        result = self.note_api.get_notes_by_priority("high", user="nonexistent")
+        self.assertFalse(result["success"])
+
+    def test_get_notes_by_priority_invalid_priority(self):
+        """Test getting notes by invalid priority."""
+        result = self.note_api.get_notes_by_priority("invalid_priority", user=self.user1)
+        self.assertTrue(result["success"])  # Should succeed but return empty list
+        self.assertEqual(len(result["notes"]), 0)
+
+    # --- Reset Data Tests ---
+    def test_reset_data(self):
+        """Test resetting all data."""
+        # First modify some data
+        self.note_api.create_note("Test Note", "Test Content", user=self.user1)
+        initial_notes_count = len(self.note_api.notes)
+        
+        # Reset data
+        result = self.note_api.reset_data()
+        self.assertTrue(result["success"])
+        
+        # Verify data is reset to default state
+        # The reset should reload DEFAULT_STATE
+        self.assertLessEqual(len(self.note_api.notes), initial_notes_count)
+
     # --- Unit Tests for Core Functions (most important for audio calling) ---
 
     def test_create_note_success(self):
@@ -215,6 +510,189 @@ class TestSimpleNoteApis(unittest.TestCase):
         # Ensure the count is correct (default pinned notes + our new one)
         # Default state has 2 pinned notes for user123 (id 0 and 2)
         self.assertEqual(len(search_pinned_result["notes"]), 3)
+
+    # --- Comprehensive Workflow Tests ---
+    def test_comprehensive_note_management_workflow(self):
+        """Test comprehensive note management workflow."""
+        # 1. Create a new note
+        result = self.note_api.create_note("Workflow Note", "Initial content", user=self.user1)
+        self.assertTrue(result["status"])
+        note_id = result["id"]
+        
+        # 2. Update note content using update_note_content
+        result = self.note_api.update_note_content(note_id, "Updated content", user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # 3. Append more content
+        result = self.note_api.append_or_prepend_note_content(note_id, "append", "Appended text", user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # 4. Share the note
+        result = self.note_api.share_note(note_id, self.user2, "read", user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # 5. Add a reminder
+        result = self.note_api.add_reminder(note_id, "2025-12-31T23:59:59", user=self.user1)
+        self.assertTrue(result["success"])
+        
+        # 6. Verify final state
+        final_note = self.note_api.get_note(note_id, user=self.user1)
+        self.assertTrue(final_note["success"])
+        expected_content = "Updated content\nAppended text"
+        self.assertEqual(final_note["note"]["content"], expected_content)
+
+    def test_comprehensive_search_and_filter_workflow(self):
+        """Test comprehensive search and filtering workflow."""
+        # 1. Create notes with different properties
+        note1_result = self.note_api.create_note("High Priority Task", "Important work", tags=["work"], user=self.user1)
+        self.assertTrue(note1_result["status"])
+        note1_id = note1_result["id"]
+        
+        note2_result = self.note_api.create_note("Personal Reminder", "Buy groceries", tags=["personal"], user=self.user1)
+        self.assertTrue(note2_result["status"])
+        note2_id = note2_result["id"]
+        
+        # 2. Search by different criteria
+        search_work = self.note_api.search_notes("work", user=self.user1)
+        self.assertTrue(search_work["status"])
+        
+        search_personal = self.note_api.search_notes("personal", tags=["personal"], user=self.user1)
+        self.assertTrue(search_personal["status"])
+        
+        # 3. Get notes by color (if any)
+        color_result = self.note_api.get_notes_by_color("yellow", user=self.user1)
+        self.assertTrue(color_result["success"])
+        
+        # 4. Get notes by priority
+        priority_result = self.note_api.get_notes_by_priority("high", user=self.user1)
+        self.assertTrue(priority_result["success"])
+        
+        # 5. List all notes with limit
+        limited_list = self.note_api.list_notes(limit=3, user=self.user1)
+        self.assertTrue(limited_list["success"])
+        self.assertLessEqual(len(limited_list["notes"]), 3)
+
+    def test_multi_user_collaboration_workflow(self):
+        """Test multi-user collaboration workflow."""
+        # 1. User1 creates a note
+        note_result = self.note_api.create_note("Shared Project", "Project details", user=self.user1)
+        self.assertTrue(note_result["status"])
+        note_id = note_result["id"]
+        
+        # 2. User1 shares note with User2
+        share_result = self.note_api.share_note(note_id, self.user2, "edit", user=self.user1)
+        self.assertTrue(share_result["success"])
+        
+        # 3. User2 creates their own note
+        user2_note = self.note_api.create_note("User2 Note", "User2 content", user=self.user2)
+        self.assertTrue(user2_note["status"])
+        user2_note_id = user2_note["id"]
+        
+        # 4. Verify user isolation - User1 cannot access User2's private note
+        user1_access_attempt = self.note_api.get_note(user2_note_id, user=self.user1)
+        self.assertFalse(user1_access_attempt["success"])
+        
+        # 5. User2 adds reminder to their own note
+        reminder_result = self.note_api.add_reminder(user2_note_id, "2025-12-25T12:00:00", user=self.user2)
+        self.assertTrue(reminder_result["success"])
+        
+        # 6. Both users list their notes
+        user1_notes = self.note_api.list_notes(user=self.user1)
+        user2_notes = self.note_api.list_notes(user=self.user2)
+        self.assertTrue(user1_notes["success"])
+        self.assertTrue(user2_notes["success"])
+
+    def test_content_manipulation_workflow(self):
+        """Test comprehensive content manipulation workflow."""
+        # 1. Create a note
+        result = self.note_api.create_note("Content Test", "Original content", user=self.user1)
+        self.assertTrue(result["status"])
+        note_id = result["id"]
+        
+        # 2. Prepend content
+        prepend_result = self.note_api.append_or_prepend_note_content(note_id, "prepend", "Prepended text", user=self.user1)
+        self.assertTrue(prepend_result["success"])
+        
+        # 3. Append content
+        append_result = self.note_api.append_or_prepend_note_content(note_id, "append", "Appended text", user=self.user1)
+        self.assertTrue(append_result["success"])
+        
+        # 4. Verify final content structure
+        final_note = self.note_api.get_note(note_id, user=self.user1)
+        self.assertTrue(final_note["success"])
+        expected_content = "Prepended text\nOriginal content\nAppended text"
+        self.assertEqual(final_note["note"]["content"], expected_content)
+        
+        # 5. Update entire content
+        update_result = self.note_api.update_note_content(note_id, "Completely new content", user=self.user1)
+        self.assertTrue(update_result["success"])
+        
+        # 6. Verify update
+        updated_note = self.note_api.get_note(note_id, user=self.user1)
+        self.assertEqual(updated_note["note"]["content"], "Completely new content")
+
+    def test_error_handling_workflow(self):
+        """Test comprehensive error handling scenarios."""
+        # Test operations with non-existent notes
+        result = self.note_api.get_note("999", user=self.user1)
+        self.assertFalse(result["success"])
+        
+        result = self.note_api.update_note_content("999", "content", user=self.user1)
+        self.assertFalse(result["success"])
+        
+        result = self.note_api.share_note("999", self.user2, "read", user=self.user1)
+        self.assertFalse(result["success"])
+        
+        result = self.note_api.add_reminder("999", "2025-12-31T23:59:59", user=self.user1)
+        self.assertFalse(result["success"])
+        
+        # Test operations with non-existent users
+        result = self.note_api.show_account("nonexistent")
+        self.assertFalse(result["success"])
+        
+        result = self.note_api.list_notes(user="nonexistent")
+        self.assertFalse(result["success"])
+        
+        result = self.note_api.get_notes_by_color("yellow", user="nonexistent")
+        self.assertFalse(result["success"])
+        
+        # Test cross-user access violations
+        user2_note = self.note_api.create_note("User2 Private", "Private content", user=self.user2)
+        user2_note_id = user2_note["id"]
+        
+        # User1 trying to access User2's note
+        result = self.note_api.get_note(user2_note_id, user=self.user1)
+        self.assertFalse(result["success"])
+        
+        result = self.note_api.update_note_content(user2_note_id, "hack attempt", user=self.user1)
+        self.assertFalse(result["success"])
+
+    def test_account_and_preferences_workflow(self):
+        """Test account management and preferences workflow."""
+        # 1. Check account information for both users
+        user1_account = self.note_api.show_account(self.user1)
+        self.assertTrue(user1_account["success"])
+        self.assertEqual(user1_account["account"]["user_alias"], self.user1)
+        
+        user2_account = self.note_api.show_account(self.user2)
+        self.assertTrue(user2_account["success"])
+        self.assertEqual(user2_account["account"]["user_alias"], self.user2)
+        
+        # 2. Create notes with different colors and priorities
+        high_priority_note = self.note_api.create_note("Urgent Task", "High priority content", user=self.user1)
+        self.assertTrue(high_priority_note["status"])
+        
+        # 3. Filter by different attributes
+        high_priority_notes = self.note_api.get_notes_by_priority("high", user=self.user1)
+        self.assertTrue(high_priority_notes["success"])
+        
+        yellow_notes = self.note_api.get_notes_by_color("yellow", user=self.user1)
+        self.assertTrue(yellow_notes["success"])
+        
+        # 4. Test data reset functionality
+        initial_notes_count = len(self.note_api.notes)
+        reset_result = self.note_api.reset_data()
+        self.assertTrue(reset_result["success"])
 
 
 if __name__ == '__main__':

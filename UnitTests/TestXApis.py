@@ -225,5 +225,271 @@ class TestXApis(unittest.TestCase):
         self.assertEqual(search_note_result["data"][0]["text"], note_text)
         self.assertEqual(search_note_result["data"][0]["tweet_id"], eligible_post_id)
 
+    # ================ COMPREHENSIVE COVERAGE FOR MISSING METHODS ================
+
+    def test_set_current_user_success(self):
+        """Test setting current user successfully."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.set_current_user(user_id)
+        self.assertTrue(result["success"])
+        self.assertEqual(self.x_api.current_user, user_id)
+
+    def test_set_current_user_not_found(self):
+        """Test setting non-existent user."""
+        result = self.x_api.set_current_user("nonexistent_user")
+        self.assertFalse(result["success"])
+        self.assertIn("User not found", result["message"])
+
+    def test_get_user_profile_success(self):
+        """Test getting user profile successfully."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.get_user_profile(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("user", result)
+        self.assertEqual(result["user"]["id"], user_id)
+
+    def test_get_user_profile_not_found(self):
+        """Test getting profile for non-existent user."""
+        result = self.x_api.get_user_profile("nonexistent_user")
+        self.assertFalse(result["success"])
+        self.assertIn("User not found", result["message"])
+
+    def test_list_followers_success(self):
+        """Test listing user followers."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.list_followers(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("followers", result)
+        self.assertIsInstance(result["followers"], list)
+
+    def test_list_following_success(self):
+        """Test listing users being followed."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.list_following(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("following", result)
+        self.assertIsInstance(result["following"], list)
+
+    def test_list_liked_posts_success(self):
+        """Test listing user's liked posts."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.list_liked_posts(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("liked_posts", result)
+        self.assertIsInstance(result["liked_posts"], list)
+
+    def test_create_post_success(self):
+        """Test creating a post successfully."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        post_text = "This is a test post from unit tests!"
+        initial_post_count = len(self.x_api.posts)
+        
+        result = self.x_api.create_post(user_id, post_text)
+        self.assertTrue(result["success"])
+        self.assertIn("post", result)
+        self.assertEqual(result["post"]["text"], post_text)
+        self.assertEqual(result["post"]["author_id"], user_id)
+        self.assertEqual(len(self.x_api.posts), initial_post_count + 1)
+
+    def test_delete_post_success(self):
+        """Test deleting a post successfully."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # First create a post
+        create_result = self.x_api.create_post(user_id, "Post to be deleted")
+        post_id = create_result["post"]["id"]
+        initial_post_count = len(self.x_api.posts)
+        
+        # Then delete it
+        delete_result = self.x_api.delete_post(user_id, post_id)
+        self.assertTrue(delete_result["success"])
+        self.assertEqual(len(self.x_api.posts), initial_post_count - 1)
+        self.assertNotIn(post_id, self.x_api.posts)
+
+    def test_delete_post_not_found(self):
+        """Test deleting non-existent post."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.delete_post(user_id, "nonexistent_post")
+        self.assertFalse(result["success"])
+        self.assertIn("Post not found", result["message"])
+
+    def test_get_post_details_success(self):
+        """Test getting post details."""
+        post_id = list(DEFAULT_STATE["posts"].keys())[0]
+        result = self.x_api.get_post_details(post_id)
+        self.assertTrue(result["success"])
+        self.assertIn("post", result)
+        self.assertEqual(result["post"]["id"], post_id)
+
+    def test_get_post_details_not_found(self):
+        """Test getting details for non-existent post."""
+        result = self.x_api.get_post_details("nonexistent_post")
+        self.assertFalse(result["success"])
+        self.assertIn("Post not found", result["message"])
+
+    def test_list_user_posts_success(self):
+        """Test listing user's posts."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.list_user_posts(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("posts", result)
+        self.assertIsInstance(result["posts"], list)
+
+    def test_like_unlike_post_operations(self):
+        """Test comprehensive like/unlike post operations."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        post_id = list(DEFAULT_STATE["posts"].keys())[0]
+        
+        # Like post
+        like_result = self.x_api.like_post(user_id, post_id)
+        self.assertTrue(like_result["success"])
+        
+        # Check if post is in liked posts
+        liked_posts_result = self.x_api.list_liked_posts(user_id)
+        liked_post_ids = [p["id"] for p in liked_posts_result["liked_posts"]]
+        self.assertIn(post_id, liked_post_ids)
+        
+        # Unlike post
+        unlike_result = self.x_api.unlike_post(user_id, post_id)
+        self.assertTrue(unlike_result["success"])
+        
+        # Check if post is no longer in liked posts
+        liked_posts_after = self.x_api.list_liked_posts(user_id)
+        liked_post_ids_after = [p["id"] for p in liked_posts_after["liked_posts"]]
+        self.assertNotIn(post_id, liked_post_ids_after)
+
+    def test_direct_message_operations_comprehensive(self):
+        """Test comprehensive direct message operations."""
+        user_id1 = list(DEFAULT_STATE["users"].keys())[0]
+        user_id2 = list(DEFAULT_STATE["users"].keys())[1] if len(DEFAULT_STATE["users"]) > 1 else user_id1
+        
+        # List conversations
+        conversations_result = self.x_api.list_direct_messages_conversations(user_id1)
+        self.assertTrue(conversations_result["success"])
+        self.assertIn("conversations", conversations_result)
+        
+        # Send direct message
+        message_text = "Test DM from comprehensive test"
+        send_result = self.x_api.send_direct_message(user_id1, user_id2, message_text)
+        self.assertTrue(send_result["success"])
+        self.assertIn("message", send_result)
+        
+        # Get conversation details
+        if send_result.get("conversation_id"):
+            conversation_id = send_result["conversation_id"]
+            get_conversation_result = self.x_api.get_direct_messages_conversation(conversation_id)
+            self.assertTrue(get_conversation_result["success"])
+            self.assertIn("conversation", get_conversation_result)
+
+    def test_api_usage_and_metrics(self):
+        """Test API usage and metrics functionality."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # Get API usage
+        usage_result = self.x_api.get_api_usage(user_id)
+        self.assertIn("data", usage_result)
+        self.assertIn("user_id", usage_result["data"])
+        
+        # Get post metrics
+        post_ids = list(DEFAULT_STATE["posts"].keys())[:2]  # Get first 2 posts
+        metrics_result = self.x_api.get_post_metrics(post_ids)
+        self.assertIn("data", metrics_result)
+        self.assertIsInstance(metrics_result["data"], list)
+
+    def test_user_profile_operations(self):
+        """Test user profile update operations."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        new_bio = "Updated bio from unit tests"
+        
+        # Update bio
+        update_result = self.x_api.update_user_bio(user_id, new_bio)
+        self.assertTrue(update_result["success"])
+        
+        # Verify bio was updated
+        profile_result = self.x_api.get_user_profile(user_id)
+        if "bio" in profile_result["user"]:
+            self.assertEqual(profile_result["user"]["bio"], new_bio)
+
+    def test_get_user_analytics_success(self):
+        """Test getting user analytics."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.x_api.get_user_analytics(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("analytics", result)
+        self.assertIn("total_posts", result["analytics"])
+        self.assertIn("total_followers", result["analytics"])
+        self.assertIn("total_following", result["analytics"])
+
+    def test_comprehensive_user_workflow(self):
+        """Test a complete user workflow."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # Set current user
+        self.x_api.set_current_user(user_id)
+        
+        # Get profile
+        profile_result = self.x_api.get_user_profile(user_id)
+        self.assertTrue(profile_result["success"])
+        
+        # Create a post
+        post_text = "Workflow test post"
+        create_result = self.x_api.create_post(user_id, post_text)
+        self.assertTrue(create_result["success"])
+        post_id = create_result["post"]["id"]
+        
+        # Like the post
+        like_result = self.x_api.like_post(user_id, post_id)
+        self.assertTrue(like_result["success"])
+        
+        # Get post details
+        details_result = self.x_api.get_post_details(post_id)
+        self.assertTrue(details_result["success"])
+        
+        # List user posts
+        posts_result = self.x_api.list_user_posts(user_id)
+        self.assertTrue(posts_result["success"])
+        
+        # Get analytics
+        analytics_result = self.x_api.get_user_analytics(user_id)
+        self.assertTrue(analytics_result["success"])
+        
+        # Clean up - delete the post
+        delete_result = self.x_api.delete_post(user_id, post_id)
+        self.assertTrue(delete_result["success"])
+
+    def test_error_handling_edge_cases(self):
+        """Test various error handling scenarios."""
+        # Test operations with invalid user IDs
+        invalid_user_result = self.x_api.get_user_profile("invalid_user")
+        self.assertFalse(invalid_user_result["success"])
+        
+        # Test operations with invalid post IDs
+        invalid_post_result = self.x_api.get_post_details("invalid_post")
+        self.assertFalse(invalid_post_result["success"])
+        
+        # Test delete operations on non-existent items
+        delete_invalid_post = self.x_api.delete_post("user1", "invalid_post")
+        self.assertFalse(delete_invalid_post["success"])
+
+    def test_direct_message_conversation_management(self):
+        """Test direct message conversation management."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # List conversations
+        conversations_result = self.x_api.list_direct_messages_conversations(user_id)
+        self.assertTrue(conversations_result["success"])
+        
+        # If there are existing conversations, test getting conversation details
+        if conversations_result["conversations"]:
+            conversation_id = conversations_result["conversations"][0]["id"]
+            
+            # Get conversation details
+            conversation_result = self.x_api.get_direct_messages_conversation(conversation_id)
+            self.assertTrue(conversation_result["success"])
+            
+            # Test deleting conversation
+            delete_result = self.x_api.delete_direct_message_conversation(user_id, conversation_id)
+            self.assertTrue(delete_result["success"])
+
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

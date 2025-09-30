@@ -295,5 +295,316 @@ class TestYouTubeApis(unittest.TestCase):
         self.assertNotIn(new_thread_id, self.youtube_api.comment_threads)
         self.assertNotIn(new_reply_id, self.youtube_api.comments) # Verify reply is also gone
 
+    # ================ COMPREHENSIVE COVERAGE FOR MISSING METHODS ================
+
+    def test_set_current_user_success(self):
+        """Test setting current user successfully."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.youtube_api.set_current_user(user_id)
+        self.assertTrue(result["success"])
+        self.assertEqual(self.youtube_api.current_user, user_id)
+
+    def test_set_current_user_not_found(self):
+        """Test setting non-existent user."""
+        result = self.youtube_api.set_current_user("nonexistent_user")
+        self.assertFalse(result["success"])
+        self.assertIn("User not found", result["message"])
+
+    def test_set_current_channel_success(self):
+        """Test setting current channel successfully."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        result = self.youtube_api.set_current_channel(channel_id)
+        self.assertTrue(result["success"])
+        self.assertEqual(self.youtube_api.current_channel, channel_id)
+
+    def test_get_user_profile_success(self):
+        """Test getting user profile."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.youtube_api.get_user_profile(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("user", result)
+        self.assertEqual(result["user"]["user_id"], user_id)
+
+    def test_get_watch_history_success(self):
+        """Test getting user watch history."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.youtube_api.get_watch_history(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("watch_history", result)
+
+    def test_list_subscriptions_success(self):
+        """Test listing user subscriptions."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.youtube_api.list_subscriptions(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("subscriptions", result)
+
+    def test_youtube_subscriptions_insert_success(self):
+        """Test subscribing to a channel."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        
+        result = self.youtube_api.youtube_subscriptions_insert(channel_id, user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("subscription_id", result)
+
+    def test_youtube_subscriptions_delete_success(self):
+        """Test unsubscribing from a channel."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        
+        # First subscribe
+        self.youtube_api.youtube_subscriptions_insert(channel_id, user_id)
+        
+        # Then unsubscribe
+        result = self.youtube_api.youtube_subscriptions_delete(channel_id, user_id)
+        self.assertTrue(result["success"])
+
+    def test_list_channels_for_user_success(self):
+        """Test listing channels for a user."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.youtube_api.list_channels_for_user(user_id)
+        self.assertTrue(result["success"])
+        self.assertIn("channels", result)
+
+    def test_get_channel_details_success(self):
+        """Test getting channel details."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        result = self.youtube_api.get_channel_details(channel_id)
+        self.assertTrue(result["success"])
+        self.assertIn("channel", result)
+
+    def test_create_channel_success(self):
+        """Test creating a new channel."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        result = self.youtube_api.create_channel(
+            user_id=user_id,
+            title="Test Channel",
+            description="A test channel"
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("channel_id", result)
+
+    def test_youtube_channels_update_success(self):
+        """Test updating channel information."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        updates = {"title": "Updated Channel Title", "description": "Updated description"}
+        result = self.youtube_api.youtube_channels_update(channel_id, updates, user_id)
+        self.assertTrue(result["success"])
+
+    def test_youtube_channel_banners_insert_success(self):
+        """Test uploading channel banner."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        result = self.youtube_api.youtube_channel_banners_insert(
+            image_path="/path/to/banner.jpg",
+            channel_id=channel_id
+        )
+        self.assertTrue(result["success"])
+
+    def test_list_videos_in_channel_success(self):
+        """Test listing videos in a channel."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        result = self.youtube_api.list_videos_in_channel(channel_id)
+        self.assertTrue(result["success"])
+        self.assertIn("videos", result)
+
+    def test_get_video_details_success(self):
+        """Test getting video details."""
+        video_id = list(DEFAULT_STATE["videos"].keys())[0]
+        result = self.youtube_api.get_video_details(video_id)
+        self.assertTrue(result["success"])
+        self.assertIn("video", result)
+
+    def test_upload_video_success(self):
+        """Test uploading a video."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        result = self.youtube_api.upload_video(
+            channel_id=channel_id,
+            title="Test Video",
+            description="A test video",
+            duration_seconds=120,
+            tags=["test", "video"]
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("video_id", result)
+
+    def test_delete_video_success(self):
+        """Test deleting a video."""
+        # First upload a video
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        upload_result = self.youtube_api.upload_video(
+            channel_id=channel_id,
+            title="Video to Delete",
+            description="Will be deleted"
+        )
+        video_id = upload_result["video_id"]
+        
+        # Then delete it
+        result = self.youtube_api.delete_video(video_id, channel_id, user_id)
+        self.assertTrue(result["success"])
+
+    def test_like_unlike_video_success(self):
+        """Test liking and unliking a video."""
+        video_id = list(DEFAULT_STATE["videos"].keys())[0]
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # Like video
+        like_result = self.youtube_api.like_video(video_id, user_id)
+        self.assertTrue(like_result["success"])
+        
+        # Unlike video
+        unlike_result = self.youtube_api.unlike_video(video_id, user_id)
+        self.assertTrue(unlike_result["success"])
+
+    def test_search_videos_success(self):
+        """Test searching for videos."""
+        result = self.youtube_api.search_videos("test", max_results=5)
+        self.assertTrue(result["success"])
+        self.assertIn("videos", result)
+        self.assertLessEqual(len(result["videos"]), 5)
+
+    def test_playlist_operations_comprehensive(self):
+        """Test comprehensive playlist operations."""
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        video_id = list(DEFAULT_STATE["videos"].keys())[0]
+        
+        # 1. List playlists in channel
+        list_result = self.youtube_api.list_playlists_in_channel(channel_id)
+        self.assertTrue(list_result["success"])
+        
+        # 2. Create new playlist
+        create_result = self.youtube_api.create_playlist(
+            channel_id=channel_id,
+            title="Test Playlist",
+            description="A test playlist",
+            privacy_status="public"
+        )
+        self.assertTrue(create_result["success"])
+        playlist_id = create_result["playlist_id"]
+        
+        # 3. Get playlist details
+        details_result = self.youtube_api.get_playlist_details(playlist_id)
+        self.assertTrue(details_result["success"])
+        
+        # 4. Add video to playlist
+        add_result = self.youtube_api.add_video_to_playlist(playlist_id, video_id, user_id)
+        self.assertTrue(add_result["success"])
+        
+        # 5. Remove video from playlist
+        remove_result = self.youtube_api.remove_video_from_playlist(playlist_id, video_id, user_id)
+        self.assertTrue(remove_result["success"])
+
+    def test_comment_operations_comprehensive(self):
+        """Test comprehensive comment operations."""
+        video_id = list(DEFAULT_STATE["videos"].keys())[0]
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # 1. Add comment to video
+        add_result = self.youtube_api.add_comment_to_video(
+            video_id=video_id,
+            author_id=user_id,
+            text="This is a test comment"
+        )
+        self.assertTrue(add_result["success"])
+        comment_id = add_result["comment_id"]
+        
+        # 2. List comments for video
+        list_result = self.youtube_api.list_comments_for_video(video_id)
+        self.assertTrue(list_result["success"])
+        self.assertIn("comments", list_result)
+        
+        # 3. Delete comment
+        delete_result = self.youtube_api.delete_comment(comment_id, user_id)
+        self.assertTrue(delete_result["success"])
+
+    def test_watch_later_operations(self):
+        """Test watch later playlist operations."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        video_id = list(DEFAULT_STATE["videos"].keys())[0]
+        
+        # 1. Get watch later playlist
+        playlist_result = self.youtube_api.get_watch_later_playlist(user_id)
+        self.assertTrue(playlist_result["success"])
+        
+        # 2. Add to watch later
+        add_result = self.youtube_api.add_to_watch_later(user_id, video_id)
+        self.assertTrue(add_result["success"])
+        
+        # 3. Remove from watch later
+        remove_result = self.youtube_api.remove_from_watch_later(user_id, video_id)
+        self.assertTrue(remove_result["success"])
+
+    def test_user_settings_operations(self):
+        """Test user settings operations."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        
+        # 1. Get notification settings
+        notifications_result = self.youtube_api.get_notification_settings(user_id)
+        self.assertTrue(notifications_result["success"])
+        
+        # 2. Update notification settings
+        settings = {"email_notifications": True, "push_notifications": False}
+        update_result = self.youtube_api.update_notification_settings(user_id, settings)
+        self.assertTrue(update_result["success"])
+        
+        # 3. Get language preference
+        lang_result = self.youtube_api.get_user_language_preference(user_id)
+        self.assertTrue(lang_result["success"])
+        
+        # 4. Update language preference
+        lang_update_result = self.youtube_api.update_language_preference(user_id, "en")
+        self.assertTrue(lang_update_result["success"])
+
+    def test_user_analytics_and_history(self):
+        """Test user analytics and history operations."""
+        user_id = list(DEFAULT_STATE["users"].keys())[0]
+        channel_id = list(DEFAULT_STATE["channels"].keys())[0]
+        
+        # 1. Get account status
+        status_result = self.youtube_api.get_account_status(user_id)
+        self.assertTrue(status_result["success"])
+        
+        # 2. Get channel history
+        history_result = self.youtube_api.get_channel_history(user_id)
+        self.assertTrue(history_result["success"])
+        
+        # 3. Add to channel history
+        add_history_result = self.youtube_api.add_to_channel_history(user_id, channel_id)
+        self.assertTrue(add_history_result["success"])
+        
+        # 4. Get user analytics
+        analytics_result = self.youtube_api.get_user_analytics(user_id)
+        self.assertTrue(analytics_result["success"])
+
+    def test_user_lookup_operations(self):
+        """Test user lookup operations."""
+        # Get sample user data
+        user_data = list(DEFAULT_STATE["users"].values())[0]
+        email = user_data.get("email", "test@example.com")
+        display_name = user_data.get("display_name", "TestUser")
+        
+        # 1. Get user by email
+        email_result = self.youtube_api.get_user_by_email(email)
+        self.assertTrue(email_result["success"])
+        
+        # 2. Get user by display name
+        name_result = self.youtube_api.get_user_by_display_name(display_name)
+        self.assertTrue(name_result["success"])
+
+    def test_search_users_by_language(self):
+        """Test searching users by language preference."""
+        result = self.youtube_api.search_users_by_language("en")
+        self.assertTrue(result["success"])
+        self.assertIn("users", result)
+
+    def test_reset_data(self):
+        """Test resetting API data."""
+        result = self.youtube_api.reset_data()
+        self.assertTrue(result["success"])
+
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

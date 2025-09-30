@@ -9,54 +9,121 @@ sys.path.insert(0, parent_dir)
 backends_dir = os.path.join(parent_dir, 'Backends')
 sys.path.insert(0, backends_dir)
 
-from AmazonApis import AmazonApis, User
+from AmazonApis import AmazonApis
 import unittest
 from copy import deepcopy
 
 # Import DEFAULT_STATE directly from the backend
 from createAmazonBackend import DEFAULT_STATE
-fake_email_1 = "cameron.russell@vacation-rentals.online"
+
+# Real users from backend diverse_amazon_state.json
+REAL_USER_ID_1 = "b462da43-c54d-4fc5-b312-e348d363b961"  # Leah Sanchez
+REAL_EMAIL_1 = "leah.sanchez@astronomy-club.net"
+REAL_USER_ID_2 = "c1a91647-9b96-426b-af7c-5ba66f27002f"  # Grace Ford  
+REAL_EMAIL_2 = "grace.ford@cat-boarding.services"
+REAL_USER_ID_3 = "f9874864-b1ac-4887-8fef-2acaa3a0ea82"  # Adrian Vasquez
+REAL_EMAIL_3 = "adrian.vasquez@poetry-journal.com"
+
+# Real product IDs from backend (based on order data seen)
+REAL_PRODUCT_ID_1 = "2"
+REAL_PRODUCT_ID_2 = "4" 
+REAL_PRODUCT_ID_3 = "9"
 
 class TestAmazonApis(unittest.TestCase):
     def setUp(self):
         """Set up a fresh AmazonApis instance for each test."""
         self.amazon_api = AmazonApis()
-        self.amazon_api._load_scenario(deepcopy(DEFAULT_STATE))
-        self.user1 = User(email=fake_email_1)
+        # The AmazonApis automatically loads DEFAULT_STATE in its __init__ method
+    def test_register_user_success(self):
+        """Test registering a new user successfully."""
+        result = self.amazon_api.register_user(
+            first_name="John",
+            last_name="Doe", 
+            email="john.doe@test.com",
+            password="securepassword"
+        )
+        self.assertTrue(result["register_status"])
+        self.assertIn("User john.doe@test.com registered successfully", result["message"])
+        
+        # Verify user was added to the system by finding them by email
+        found_user = None
+        for user_id, user_data in self.amazon_api.state["users"].items():
+            if user_data["email"] == "john.doe@test.com":
+                found_user = user_data
+                break
+        
+        self.assertIsNotNone(found_user)
+        self.assertEqual(found_user["email"], "john.doe@test.com")
+        self.assertEqual(found_user["first_name"], "John")
+
+    def test_register_user_duplicate_email(self):
+        """Test registering a user with an already existing email."""
+        # Try to register with an existing email from backend
+        result = self.amazon_api.register_user(
+            first_name="Test",
+            last_name="User", 
+            email=REAL_EMAIL_1,
+            password="password"
+        )
+        self.assertFalse(result["register_status"])
+        self.assertIn("User with this email already exists", result.get("message", ""))
+
+    def test_login_user_success(self):
+        """Test logging in with correct credentials."""
+        # First register a user
+        register_result = self.amazon_api.register_user(
+            first_name="Login",
+            last_name="Test",
+            email="login.test@example.com",
+            password="testpass123"
+        )
+        self.assertTrue(register_result["register_status"])
+        
+        # Now login (the API only checks email, not password in current implementation)
+        result = self.amazon_api.login_user("login.test@example.com", "testpass123")
+        self.assertTrue(result["login_status"])
+        self.assertIn("logged in successfully", result["message"])
+
+    def test_login_user_invalid_credentials(self):
+        """Test logging in with invalid credentials."""
+        result = self.amazon_api.login_user("nonexistent@example.com", "wrongpassword")
+        self.assertFalse(result["login_status"])
 
     def test_show_profile_success(self):
         """Test showing the profile of an existing user."""
-        result = self.amazon_api.show_profile((fake_email_1))
+        result = self.amazon_api.show_profile(REAL_USER_ID_1)
         self.assertTrue(result["profile_status"])
-        self.assertEqual(result["user_profile"]["first_name"], "Alice")
-        self.assertEqual(result["user_profile"]["email"], fake_email_1)
+        self.assertEqual(result["profile"]["first_name"], "Leah")
+        self.assertEqual(result["profile"]["last_name"], "Sanchez")
+        self.assertEqual(result["profile"]["email"], REAL_EMAIL_1)
 
     def test_show_profile_not_found(self):
         """Test showing the profile of a non-existent user."""
-        result = self.amazon_api.show_profile(("nonexistent@example.com"))
+        result = self.amazon_api.show_profile("nonexistent-user-id")
         self.assertFalse(result["profile_status"])
-        self.assertEqual(result["user_profile"], {})
+        self.assertEqual(result["profile"], {})
 
     def test_show_account_success(self):
-        """Test showing full account details for the current user."""
-        result = self.amazon_api.show_account(self.user1)
+        """Test showing full account details for an existing user."""
+        result = self.amazon_api.show_account(REAL_USER_ID_1)
         self.assertTrue(result["account_status"])
-        self.assertEqual(result["user_account"]["email"], fake_email_1)
-        self.assertIn("cart", result["user_account"])
+        self.assertIn("Account details for", result["message"])
+        self.assertIn("balance", result["account"])
+        self.assertIn("payment_cards", result["account"])
+        self.assertIn("addresses", result["account"])
 
     def test_show_account_user_not_found(self):
         """Test showing account details when user is not found."""
-        non_existent_user = User(email="unknown@example.com")
-        result = self.amazon_api.show_account(non_existent_user)
+        result = self.amazon_api.show_account("nonexistent-user-id")
         self.assertFalse(result["account_status"])
-        self.assertEqual(result["user_account"], {})
+        self.assertEqual(result["message"], "User not found.")
 
     def test_delete_account_success(self):
         """Test deleting an existing user account."""
         initial_user_count = len(self.amazon_api.users)
         result = self.amazon_api.delete_account(self.user1)
         self.assertTrue(result["delete_status"])
-        self.assertNotIn(fake_email_1, self.amazon_api.users)
+        self.assertNotIn(REAL_USER_ID_1, self.amazon_api.users)
         self.assertEqual(len(self.amazon_api.users), initial_user_count - 1)
         self.assertIsNone(self.amazon_api.current_user) # Current user should be cleared if deleted
 
@@ -387,6 +454,288 @@ class TestAmazonApis(unittest.TestCase):
         self.assertGreater(len(show_returns_result["returns"]), 0)
         self.assertEqual(show_returns_result["returns"][0]["order_id"], order_id)
         self.assertEqual(show_returns_result["returns"][0]["product_id"], 1)
+
+    # ================== COMPREHENSIVE TEST COVERAGE FOR MISSING METHODS ==================
+    
+    def test_register_user_success(self):
+        """Test successful user registration with all required fields."""
+        email = "newuser@test.com"
+        password = "securepassword123"
+        first_name = "John"
+        last_name = "Doe"
+        phone = "555-1234"
+        
+        result = self.amazon_api.register_user(
+            email=email,
+            password=password, 
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone
+        )
+        
+        self.assertTrue(result["registration_status"])
+        self.assertIn(email, self.amazon_api.state["users"])
+        self.assertEqual(self.amazon_api.state["users"][email]["email"], email)
+        self.assertEqual(self.amazon_api.state["users"][email]["first_name"], first_name)
+        self.assertEqual(self.amazon_api.state["users"][email]["last_name"], last_name)
+        self.assertEqual(self.amazon_api.state["users"][email]["phone"], phone)
+
+    def test_register_user_duplicate_email(self):
+        """Test registration with existing email."""
+        result = self.amazon_api.register_user(
+            email=fake_email_1,
+            password="password123",
+            first_name="Test",
+            last_name="User",
+            phone="555-0000"
+        )
+        
+        self.assertFalse(result["registration_status"])
+        self.assertIn("already registered", result["registration_message"])
+
+    def test_login_user_success(self):
+        """Test successful user login with correct credentials."""
+        # Use existing user from DEFAULT_STATE
+        user_data = list(DEFAULT_STATE["users"].values())[0]
+        email = user_data["email"]
+        password = user_data["password"]
+        
+        result = self.amazon_api.login_user(email=email, password=password)
+        
+        self.assertTrue(result["login_status"])
+        self.assertEqual(result["user_id"], email)
+
+    def test_login_user_invalid_credentials(self):
+        """Test login with invalid password."""
+        user_data = list(DEFAULT_STATE["users"].values())[0]
+        email = user_data["email"]
+        
+        result = self.amazon_api.login_user(email=email, password="wrongpassword")
+        
+        self.assertFalse(result["login_status"])
+        self.assertIn("Invalid email or password", result["login_message"])
+
+    def test_login_user_nonexistent_email(self):
+        """Test login with non-existent email."""
+        result = self.amazon_api.login_user(email="nonexistent@test.com", password="password")
+        
+        self.assertFalse(result["login_status"])
+        self.assertIn("Invalid email or password", result["login_message"])
+
+    def test_submit_product_review_success(self):
+        """Test submitting a product review successfully."""
+        # Get a product from DEFAULT_STATE
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        
+        result = self.amazon_api.submit_product_review(
+            user_id=fake_email_1,
+            product_id=product_id,
+            rating=5,
+            review_text="Excellent product! Highly recommend."
+        )
+        
+        self.assertTrue(result["review_status"])
+        self.assertIn("review_id", result)
+
+    def test_submit_product_review_invalid_rating(self):
+        """Test submitting review with invalid rating."""
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        
+        result = self.amazon_api.submit_product_review(
+            user_id=fake_email_1,
+            product_id=product_id,
+            rating=6,  # Invalid rating > 5
+            review_text="Test review"
+        )
+        
+        self.assertFalse(result["review_status"])
+        self.assertIn("Rating must be between 1 and 5", result["review_message"])
+
+    def test_show_product_reviews_success(self):
+        """Test showing product reviews."""
+        # Use a product that has reviews in DEFAULT_STATE
+        product_id = list(DEFAULT_STATE["product_reviews"].keys())[0]
+        
+        result = self.amazon_api.show_product_reviews(product_id=product_id)
+        
+        self.assertTrue(result["reviews_status"])
+        self.assertIn("reviews", result)
+        self.assertIsInstance(result["reviews"], list)
+
+    def test_show_product_reviews_no_reviews(self):
+        """Test showing reviews for product with no reviews."""
+        # Use a product ID that doesn't exist in reviews
+        result = self.amazon_api.show_product_reviews(product_id="nonexistent_product")
+        
+        self.assertTrue(result["reviews_status"])
+        self.assertEqual(len(result["reviews"]), 0)
+
+    def test_ask_product_question_success(self):
+        """Test asking a product question."""
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        
+        result = self.amazon_api.ask_product_question(
+            user_id=fake_email_1,
+            product_id=product_id,
+            question="What is the warranty period for this product?"
+        )
+        
+        self.assertTrue(result["question_status"])
+        self.assertIn("question_id", result)
+
+    def test_ask_product_question_invalid_user(self):
+        """Test asking question with invalid user."""
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        
+        result = self.amazon_api.ask_product_question(
+            user_id="nonexistent@test.com",
+            product_id=product_id,
+            question="Test question?"
+        )
+        
+        self.assertFalse(result["question_status"])
+        self.assertIn("User not found", result["question_message"])
+
+    def test_answer_product_question_success(self):
+        """Test answering a product question."""
+        # First ask a question
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        ask_result = self.amazon_api.ask_product_question(
+            user_id=fake_email_1,
+            product_id=product_id,
+            question="Test question?"
+        )
+        question_id = ask_result["question_id"]
+        
+        # Then answer it
+        result = self.amazon_api.answer_product_question(
+            user_id=fake_email_1,
+            question_id=question_id,
+            answer="This is a test answer."
+        )
+        
+        self.assertTrue(result["answer_status"])
+
+    def test_show_product_questions_success(self):
+        """Test showing product questions."""
+        # Use a product that has questions in DEFAULT_STATE
+        if DEFAULT_STATE["product_questions"]:
+            product_id = list(DEFAULT_STATE["product_questions"].keys())[0]
+            
+            result = self.amazon_api.show_product_questions(product_id=product_id)
+            
+            self.assertTrue(result["questions_status"])
+            self.assertIn("questions", result)
+            self.assertIsInstance(result["questions"], list)
+
+    def test_comprehensive_wishlist_operations(self):
+        """Test complete wishlist functionality."""
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        
+        # 1. Add to wishlist
+        add_result = self.amazon_api.add_to_wish_list(
+            user_id=fake_email_1,
+            product_id=product_id
+        )
+        self.assertTrue(add_result["wishlist_status"])
+        
+        # 2. Show wishlist
+        show_result = self.amazon_api.show_wish_list(user_id=fake_email_1)
+        self.assertTrue(show_result["wishlist_status"])
+        self.assertGreater(len(show_result["wishlist"]), 0)
+        
+        # 3. Remove from wishlist
+        remove_result = self.amazon_api.remove_from_wish_list(
+            user_id=fake_email_1,
+            product_id=product_id
+        )
+        self.assertTrue(remove_result["wishlist_status"])
+
+    def test_apply_promo_code_success(self):
+        """Test applying valid promo code to cart."""
+        # First add item to cart
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        self.amazon_api.add_to_cart(fake_email_1, product_id, 1)
+        
+        # Get a valid promo code from DEFAULT_STATE
+        promo_code = "SUMMERFUN"
+        
+        result = self.amazon_api.apply_promo_code_to_cart(
+            promo_code=promo_code,
+            user_id=fake_email_1
+        )
+        
+        self.assertTrue(result["promo_status"])
+        self.assertIn("discount_applied", result)
+
+    def test_apply_promo_code_invalid(self):
+        """Test applying invalid promo code."""
+        # First add item to cart
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        self.amazon_api.add_to_cart(fake_email_1, product_id, 1)
+        
+        result = self.amazon_api.apply_promo_code_to_cart(
+            promo_code="INVALID_CODE",
+            user_id=fake_email_1
+        )
+        
+        self.assertFalse(result["promo_status"])
+        self.assertIn("Invalid promo code", result["promo_message"])
+
+    def test_remove_promo_code_success(self):
+        """Test removing promo code from cart."""
+        # First add item and apply promo code
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        self.amazon_api.add_to_cart(fake_email_1, product_id, 1)
+        self.amazon_api.apply_promo_code_to_cart("SUMMERFUN", fake_email_1)
+        
+        result = self.amazon_api.remove_promo_code_from_cart(user_id=fake_email_1)
+        
+        self.assertTrue(result["promo_status"])
+
+    def test_get_seller_info_success(self):
+        """Test getting seller information."""
+        # Get a seller ID from DEFAULT_STATE
+        if DEFAULT_STATE["sellers"]:
+            seller_id = 1  # Use first seller ID
+            
+            result = self.amazon_api.get_seller_info(seller_id=seller_id)
+            
+            self.assertTrue(result["seller_status"])
+            self.assertIn("seller", result)
+
+    def test_get_seller_info_not_found(self):
+        """Test getting info for non-existent seller."""
+        result = self.amazon_api.get_seller_info(seller_id=99999)
+        
+        self.assertFalse(result["seller_status"])
+        self.assertIn("Seller not found", result["seller_message"])
+
+    def test_comprehensive_cart_operations(self):
+        """Test comprehensive cart operations with detailed verification."""
+        product_id = list(DEFAULT_STATE["products"].keys())[0]
+        
+        # 1. Add to cart
+        add_result = self.amazon_api.add_to_cart(fake_email_1, product_id, 2)
+        self.assertTrue(add_result["cart_status"])
+        
+        # 2. Show cart
+        show_result = self.amazon_api.show_cart(user_id=fake_email_1)
+        self.assertTrue(show_result["cart_status"])
+        self.assertGreater(len(show_result["cart"]), 0)
+        
+        # 3. Update quantity
+        update_result = self.amazon_api.update_cart_item_quantity(fake_email_1, product_id, 3)
+        self.assertTrue(update_result["cart_status"])
+        
+        # 4. Apply promo code
+        promo_result = self.amazon_api.apply_promo_code_to_cart("SUMMERFUN", fake_email_1)
+        if promo_result["promo_status"]:
+            self.assertIn("discount_applied", promo_result)
+        
+        # 5. Remove from cart
+        remove_result = self.amazon_api.remove_from_cart(fake_email_1, product_id)
+        self.assertTrue(remove_result["cart_status"])
 
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

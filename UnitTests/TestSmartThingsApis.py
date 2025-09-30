@@ -672,6 +672,302 @@ class TestSmartThingsApis(unittest.TestCase):
         self.assertEqual(updated_health["state"], "online") # Status remains online even if switch is off
         self.assertEqual(updated_health["healthStatus"], "GOOD")
 
+    # --- Additional Comprehensive Test Coverage ---
+
+    def test_get_user_profile_success(self):
+        """Test getting user profile for default user."""
+        result = self.smartthings_api.get_user_profile()
+        self.assertTrue(result["success"])
+        self.assertIn("profile", result)
+        self.assertIn("userId", result["profile"])
+
+    def test_get_user_profile_invalid_user(self):
+        """Test getting user profile for invalid user."""
+        result = self.smartthings_api.get_user_profile("invalid_user")
+        self.assertFalse(result["success"])
+
+    def test_list_devices_by_health_status_online(self):
+        """Test listing devices by health status - online."""
+        devices = self.smartthings_api.list_devices_by_health_status("online")
+        self.assertIsInstance(devices, list)
+        # All devices in DEFAULT_STATE should be online
+        self.assertGreater(len(devices), 0)
+        for device in devices:
+            self.assertEqual(device["health"]["state"], "online")
+
+    def test_list_devices_by_health_status_offline(self):
+        """Test listing devices by health status - offline."""
+        devices = self.smartthings_api.list_devices_by_health_status("offline")
+        self.assertIsInstance(devices, list)
+        # Should be empty in DEFAULT_STATE
+        self.assertEqual(len(devices), 0)
+
+    def test_list_devices_by_manufacturer_success(self):
+        """Test listing devices by manufacturer."""
+        # Assuming SmartThings is a manufacturer in DEFAULT_STATE
+        devices = self.smartthings_api.list_devices_by_manufacturer("SmartThings")
+        self.assertIsInstance(devices, list)
+        for device in devices:
+            self.assertEqual(device["manufacturer"], "SmartThings")
+
+    def test_list_devices_by_manufacturer_none_found(self):
+        """Test listing devices by non-existent manufacturer."""
+        devices = self.smartthings_api.list_devices_by_manufacturer("NonExistentManufacturer")
+        self.assertIsInstance(devices, list)
+        self.assertEqual(len(devices), 0)
+
+    def test_update_device_firmware_success(self):
+        """Test updating device firmware."""
+        result = self.smartthings_api.update_device_firmware(
+            self.device1_id, 
+            "v2.1.0"
+        )
+        self.assertTrue(result["success"])
+        self.assertIn("firmware_version", result)
+        self.assertEqual(result["firmware_version"], "v2.1.0")
+
+    def test_update_device_firmware_invalid_device(self):
+        """Test updating firmware for invalid device."""
+        result = self.smartthings_api.update_device_firmware(
+            "invalid_device", 
+            "v1.0.0"
+        )
+        self.assertFalse(result["success"])
+
+    def test_update_device_status_comprehensive(self):
+        """Test comprehensive device status update."""
+        # Test updating multiple capabilities at once
+        new_status = {
+            "switch": "off",
+            "level": 25,
+            "color": "#FF0000"
+        }
+        result = self.smartthings_api.update_device_status(
+            self.device1_id,
+            "main",
+            new_status
+        )
+        self.assertTrue(result["success"])
+        
+        # Verify the changes
+        updated_device = self.smartthings_api.get_device_status(self.device1_id)
+        main_component = updated_device["components"]["main"]
+        if "switch" in main_component:
+            self.assertEqual(main_component["switch"]["switch"], "off")
+        if "level" in main_component:
+            self.assertEqual(main_component["level"]["level"], 25)
+
+    def test_get_capability_details(self):
+        """Test getting capability details."""
+        result = self.smartthings_api.get_capability("switch")
+        self.assertTrue(result["success"])
+        self.assertIn("capability", result)
+        self.assertEqual(result["capability"]["id"], "switch")
+
+    def test_get_capability_invalid(self):
+        """Test getting invalid capability."""
+        result = self.smartthings_api.get_capability("invalidCapability")
+        self.assertFalse(result["success"])
+
+    def test_list_capabilities_success(self):
+        """Test listing all capabilities."""
+        capabilities = self.smartthings_api.list_capabilities()
+        self.assertIsInstance(capabilities, list)
+        self.assertGreater(len(capabilities), 0)
+        # Verify expected capabilities exist
+        capability_ids = [cap["id"] for cap in capabilities]
+        self.assertIn("switch", capability_ids)
+        self.assertIn("level", capability_ids)
+
+    def test_create_location_comprehensive(self):
+        """Test creating location with comprehensive data."""
+        location_data = {
+            "name": "Test Smart Home",
+            "timezone": "America/New_York",
+            "address": "123 Test Street",
+            "city": "Test City",
+            "state": "NY",
+            "country": "USA",
+            "zipCode": "12345"
+        }
+        result = self.smartthings_api.create_location(location_data)
+        self.assertTrue(result["success"])
+        self.assertIn("locationId", result)
+        
+        # Verify location was created
+        created_location = self.smartthings_api.get_location(result["locationId"])
+        self.assertTrue(created_location["success"])
+        self.assertEqual(created_location["location"]["name"], "Test Smart Home")
+
+    def test_update_location_success(self):
+        """Test updating location details."""
+        # Create a location first
+        location_data = {"name": "Original Name", "timezone": "UTC"}
+        created = self.smartthings_api.create_location(location_data)
+        
+        # Update the location
+        update_data = {"name": "Updated Name", "timezone": "America/Chicago"}
+        result = self.smartthings_api.update_location(
+            created["locationId"],
+            update_data
+        )
+        self.assertTrue(result["success"])
+        
+        # Verify the update
+        updated_location = self.smartthings_api.get_location(created["locationId"])
+        self.assertEqual(updated_location["location"]["name"], "Updated Name")
+
+    def test_create_room_with_devices(self):
+        """Test creating room and assigning devices."""
+        # Create a new location first
+        location_data = {"name": "Device Test Location", "timezone": "UTC"}
+        location = self.smartthings_api.create_location(location_data)
+        
+        # Create room in that location
+        room_data = {
+            "name": "Device Test Room",
+            "backgroundImage": "test_image.jpg"
+        }
+        result = self.smartthings_api.create_room(location["locationId"], room_data)
+        self.assertTrue(result["success"])
+        self.assertIn("roomId", result)
+
+    def test_update_room_success(self):
+        """Test updating room details."""
+        # Use existing room
+        update_data = {
+            "name": "Updated Living Room",
+            "backgroundImage": "new_background.jpg"
+        }
+        result = self.smartthings_api.update_room(
+            self.loc1_id,
+            self.room1_id,
+            update_data
+        )
+        self.assertTrue(result["success"])
+
+    def test_delete_room_success(self):
+        """Test deleting a room."""
+        # Create a room to delete
+        location_data = {"name": "Delete Test Location", "timezone": "UTC"}
+        location = self.smartthings_api.create_location(location_data)
+        
+        room_data = {"name": "Room to Delete"}
+        room = self.smartthings_api.create_room(location["locationId"], room_data)
+        
+        # Delete the room
+        result = self.smartthings_api.delete_room(room["roomId"])
+        self.assertTrue(result["success"])
+
+    def test_list_rooms_by_location(self):
+        """Test listing rooms filtered by location."""
+        rooms = self.smartthings_api.list_rooms(location_id=self.loc1_id)
+        self.assertIsInstance(rooms, list)
+        for room in rooms:
+            self.assertEqual(room["locationId"], self.loc1_id)
+
+    def test_device_crud_workflow(self):
+        """Test complete device CRUD workflow."""
+        # Create device
+        device_data = {
+            "name": "CRUD Test Device",
+            "label": "Test Light Switch",
+            "manufacturer": "TestCorp",
+            "model": "TS-001",
+            "deviceHandlerType": "switch",
+            "location": self.loc1_id,
+            "room": self.room1_id,
+            "capabilities": ["switch", "level"]
+        }
+        
+        created = self.smartthings_api.create_device(device_data)
+        self.assertTrue(created["success"])
+        device_id = created["deviceId"]
+        
+        # Read device
+        device = self.smartthings_api.get_device(device_id)
+        self.assertTrue(device["success"])
+        self.assertEqual(device["device"]["name"], "CRUD Test Device")
+        
+        # Update device status
+        status_update = {"switch": "on", "level": 75}
+        update_result = self.smartthings_api.update_device_status(
+            device_id, "main", status_update
+        )
+        self.assertTrue(update_result["success"])
+        
+        # Verify update
+        updated_status = self.smartthings_api.get_device_status(device_id)
+        if "switch" in updated_status["components"]["main"]:
+            self.assertEqual(updated_status["components"]["main"]["switch"]["switch"], "on")
+        
+        # Delete device
+        delete_result = self.smartthings_api.delete_device(device_id)
+        self.assertTrue(delete_result["success"])
+
+    def test_location_room_hierarchy(self):
+        """Test location and room hierarchy relationships."""
+        # Create location
+        location_data = {"name": "Hierarchy Test Home", "timezone": "UTC"}
+        location = self.smartthings_api.create_location(location_data)
+        location_id = location["locationId"]
+        
+        # Create multiple rooms in location
+        room_names = ["Kitchen", "Bathroom", "Office"]
+        created_rooms = []
+        
+        for name in room_names:
+            room_data = {"name": name}
+            room = self.smartthings_api.create_room(location_id, room_data)
+            self.assertTrue(room["success"])
+            created_rooms.append(room["roomId"])
+        
+        # List rooms for location
+        rooms = self.smartthings_api.list_rooms(location_id=location_id)
+        self.assertEqual(len(rooms), len(room_names))
+        
+        # Verify all rooms belong to correct location
+        for room in rooms:
+            self.assertEqual(room["locationId"], location_id)
+
+    def test_reset_data_functionality(self):
+        """Test resetting data to default state."""
+        # Modify some data first
+        device_data = {
+            "name": "Temp Device",
+            "manufacturer": "Test",
+            "model": "Test-001",
+            "location": self.loc1_id,
+            "capabilities": ["switch"]
+        }
+        self.smartthings_api.create_device(device_data)
+        
+        # Reset data
+        result = self.smartthings_api.reset_data()
+        self.assertTrue(result["success"])
+        
+        # Verify data is reset (device count should match DEFAULT_STATE)
+        devices = self.smartthings_api.list_devices()
+        self.assertEqual(len(devices), 5)  # DEFAULT_STATE device count
+
+    def test_comprehensive_error_handling(self):
+        """Test comprehensive error handling scenarios."""
+        # Test with None parameters
+        with self.assertRaises((TypeError, AttributeError)):
+            self.smartthings_api.get_device(None)
+        
+        # Test with empty string
+        result = self.smartthings_api.get_device("")
+        self.assertFalse(result.get("success", True))
+        
+        # Test invalid location operations
+        invalid_location = self.smartthings_api.get_location("invalid_location_id")
+        self.assertFalse(invalid_location.get("success", True))
+        
+        # Test invalid room operations
+        invalid_room = self.smartthings_api.get_room("invalid_room_id")
+        self.assertFalse(invalid_room.get("success", True))
+
 
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

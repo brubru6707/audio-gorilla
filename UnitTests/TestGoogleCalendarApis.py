@@ -51,6 +51,180 @@ class TestGoogleCalendarApis(unittest.TestCase):
         non_existent_user = self.api._get_user_data("nonexistent@example.com")
         self.assertIsNone(non_existent_user)
 
+    # --- User Profile Tests ---
+    def test_get_user_profile_user1(self):
+        """Test getting user profile for user1."""
+        result = self.api.get_user_profile(self.user1_id)
+        self.assertTrue(result["success"])
+        self.assertIn("profile", result)
+        self.assertEqual(result["profile"]["email"], self.user1_id)
+        self.assertEqual(result["profile"]["name"], "Alice Smith")
+
+    def test_get_user_profile_user2(self):
+        """Test getting user profile for user2."""
+        result = self.api.get_user_profile(self.user2_id)
+        self.assertTrue(result["success"])
+        self.assertIn("profile", result)
+        self.assertEqual(result["profile"]["email"], self.user2_id)
+        self.assertEqual(result["profile"]["name"], "Bob Johnson")
+
+    def test_get_user_profile_non_existent(self):
+        """Test getting user profile for non-existent user."""
+        result = self.api.get_user_profile("nonexistent@example.com")
+        self.assertFalse(result["success"])
+        self.assertNotIn("profile", result)
+
+    # --- List Calendars Tests ---
+    def test_list_calendars_user1(self):
+        """Test listing all calendars for user1."""
+        result = self.api.list_calendars(self.user1_id)
+        self.assertTrue(result["success"])
+        self.assertIn("calendars", result)
+        self.assertEqual(len(result["calendars"]), 2)
+        calendar_ids = [cal["id"] for cal in result["calendars"]]
+        self.assertIn(self.user1_cal1_id, calendar_ids)
+        self.assertIn(self.user1_cal2_id, calendar_ids)
+
+    def test_list_calendars_user2(self):
+        """Test listing all calendars for user2."""
+        result = self.api.list_calendars(self.user2_id)
+        self.assertTrue(result["success"])
+        self.assertIn("calendars", result)
+        self.assertEqual(len(result["calendars"]), 2)
+        calendar_ids = [cal["id"] for cal in result["calendars"]]
+        self.assertIn(self.user2_cal3_id, calendar_ids)
+        self.assertIn(self.user2_cal4_id, calendar_ids)
+
+    def test_list_calendars_non_existent_user(self):
+        """Test listing calendars for non-existent user."""
+        result = self.api.list_calendars("nonexistent@example.com")
+        self.assertFalse(result["success"])
+        self.assertEqual(len(result["calendars"]), 0)
+
+    # --- Update Calendar Tests ---
+    def test_update_calendar_user1(self):
+        """Test updating calendar for user1."""
+        result = self.api.update_calendar(
+            self.user1_cal1_id,
+            summary="Updated Personal Calendar",
+            description="Updated description",
+            time_zone="Pacific/Honolulu",
+            user_id=self.user1_id
+        )
+        self.assertTrue(result["update_status"])
+        
+        # Verify the update
+        updated_cal = self.api._get_user_calendars(self.user1_id)[self.user1_cal1_id]
+        self.assertEqual(updated_cal["summary"], "Updated Personal Calendar")
+        self.assertEqual(updated_cal["description"], "Updated description")
+        self.assertEqual(updated_cal["timeZone"], "Pacific/Honolulu")
+
+    def test_update_calendar_user2(self):
+        """Test updating calendar for user2."""
+        result = self.api.update_calendar(
+            self.user2_cal3_id,
+            summary="Bob's Updated Calendar",
+            user_id=self.user2_id
+        )
+        self.assertTrue(result["update_status"])
+        
+        # Verify the update
+        updated_cal = self.api._get_user_calendars(self.user2_id)[self.user2_cal3_id]
+        self.assertEqual(updated_cal["summary"], "Bob's Updated Calendar")
+
+    def test_update_calendar_non_existent(self):
+        """Test updating non-existent calendar."""
+        result = self.api.update_calendar(
+            "non_existent_cal",
+            summary="Should Fail",
+            user_id=self.user1_id
+        )
+        self.assertFalse(result["update_status"])
+
+    def test_update_calendar_non_existent_user(self):
+        """Test updating calendar for non-existent user."""
+        result = self.api.update_calendar(
+            self.user1_cal1_id,
+            summary="Should Fail",
+            user_id="nonexistent@example.com"
+        )
+        self.assertFalse(result["update_status"])
+
+    # --- Update Event Tests ---
+    def test_update_event_user1(self):
+        """Test updating event for user1."""
+        updated_event_data = {
+            "summary": "Updated Morning Run",
+            "description": "Updated description for morning run",
+            "start": {"dateTime": "2025-07-20T08:00:00-04:00"},
+            "end": {"dateTime": "2025-07-20T09:00:00-04:00"}
+        }
+        result = self.api.update_event(
+            self.user1_cal1_id,
+            self.user1_event1_id,
+            updated_event_data,
+            user_id=self.user1_id
+        )
+        self.assertTrue(result["update_status"])
+        
+        # Verify the update
+        updated_event = self.api._get_user_events(self.user1_id)[self.user1_cal1_id][self.user1_event1_id]
+        self.assertEqual(updated_event["summary"], "Updated Morning Run")
+        self.assertEqual(updated_event["description"], "Updated description for morning run")
+        self.assertEqual(updated_event["start"]["dateTime"], "2025-07-20T08:00:00-04:00")
+
+    def test_update_event_user2(self):
+        """Test updating event for user2."""
+        updated_event_data = {
+            "summary": "Updated Gym Session",
+            "location": "New Gym Location"
+        }
+        result = self.api.update_event(
+            self.user2_cal3_id,
+            self.user2_event4_id,
+            updated_event_data,
+            user_id=self.user2_id
+        )
+        self.assertTrue(result["update_status"])
+        
+        # Verify the update
+        updated_event = self.api._get_user_events(self.user2_id)[self.user2_cal3_id][self.user2_event4_id]
+        self.assertEqual(updated_event["summary"], "Updated Gym Session")
+        self.assertEqual(updated_event["location"], "New Gym Location")
+
+    def test_update_event_non_existent_calendar(self):
+        """Test updating event in non-existent calendar."""
+        updated_event_data = {"summary": "Should Fail"}
+        result = self.api.update_event(
+            "non_existent_cal",
+            self.user1_event1_id,
+            updated_event_data,
+            user_id=self.user1_id
+        )
+        self.assertFalse(result["update_status"])
+
+    def test_update_event_non_existent_event(self):
+        """Test updating non-existent event."""
+        updated_event_data = {"summary": "Should Fail"}
+        result = self.api.update_event(
+            self.user1_cal1_id,
+            "non_existent_event",
+            updated_event_data,
+            user_id=self.user1_id
+        )
+        self.assertFalse(result["update_status"])
+
+    def test_update_event_non_existent_user(self):
+        """Test updating event for non-existent user."""
+        updated_event_data = {"summary": "Should Fail"}
+        result = self.api.update_event(
+            self.user1_cal1_id,
+            self.user1_event1_id,
+            updated_event_data,
+            user_id="nonexistent@example.com"
+        )
+        self.assertFalse(result["update_status"])
+
     def test_get_user_calendars_helper(self):
         """Test retrieving user-specific calendars using the helper."""
         user1_calendars = self.api._get_user_calendars(self.user1_id)
@@ -323,6 +497,159 @@ class TestGoogleCalendarApis(unittest.TestCase):
         time_max = "2025-07-20T23:59:59-04:00"
         result = self.api.check_free_busy(time_min, time_max, items, user_id=self.user1_id)
         self.assertTrue(result["retrieval_status"]) # Still returns true, but free_busy_data will be empty
+        self.assertEqual(len(result["free_busy_data"]), 0)
+
+    # --- Comprehensive Workflow Tests ---
+    def test_comprehensive_calendar_workflow(self):
+        """Test comprehensive calendar management workflow."""
+        # 1. Create a new calendar
+        result = self.api.create_calendar("Workflow Test Calendar", user_id=self.user1_id)
+        self.assertTrue(result["creation_status"])
+        new_cal_id = f"cal_{self.api.state['calendar_counter']}"
+        
+        # 2. Update the calendar
+        result = self.api.update_calendar(
+            new_cal_id,
+            summary="Updated Workflow Calendar",
+            description="Calendar for testing workflow",
+            user_id=self.user1_id
+        )
+        self.assertTrue(result["update_status"])
+        
+        # 3. Create an event in the calendar
+        event_data = {
+            "summary": "Workflow Event",
+            "start": {"dateTime": "2025-08-01T10:00:00-04:00"},
+            "end": {"dateTime": "2025-08-01T11:00:00-04:00"}
+        }
+        result = self.api.create_event(new_cal_id, event_data, user_id=self.user1_id)
+        self.assertTrue(result["creation_status"])
+        new_event_id = f"event_{self.api.state['event_counter']}"
+        
+        # 4. Update the event
+        updated_event_data = {"summary": "Updated Workflow Event"}
+        result = self.api.update_event(new_cal_id, new_event_id, updated_event_data, user_id=self.user1_id)
+        self.assertTrue(result["update_status"])
+        
+        # 5. List events to verify
+        result = self.api.list_events(new_cal_id, user_id=self.user1_id)
+        self.assertTrue(result["retrieval_status"])
+        self.assertEqual(len(result["events"]), 1)
+        
+        # 6. Delete the event
+        result = self.api.delete_event(new_cal_id, new_event_id, user_id=self.user1_id)
+        self.assertTrue(result["deletion_status"])
+        
+        # 7. Delete the calendar
+        result = self.api.delete_calendar(new_cal_id, user_id=self.user1_id)
+        self.assertTrue(result["deletion_status"])
+
+    def test_comprehensive_event_management_workflow(self):
+        """Test comprehensive event management workflow."""
+        # 1. Create multiple events in different calendars
+        event1_data = {
+            "summary": "Event 1",
+            "start": {"dateTime": "2025-08-01T09:00:00-04:00"},
+            "end": {"dateTime": "2025-08-01T10:00:00-04:00"}
+        }
+        result1 = self.api.create_event(self.user1_cal1_id, event1_data, user_id=self.user1_id)
+        self.assertTrue(result1["creation_status"])
+        event1_id = f"event_{self.api.state['event_counter']}"
+        
+        event2_data = {
+            "summary": "Event 2",
+            "start": {"dateTime": "2025-08-01T11:00:00-04:00"},
+            "end": {"dateTime": "2025-08-01T12:00:00-04:00"}
+        }
+        result2 = self.api.create_event(self.user1_cal2_id, event2_data, user_id=self.user1_id)
+        self.assertTrue(result2["creation_status"])
+        event2_id = f"event_{self.api.state['event_counter']}"
+        
+        # 2. Move event from one calendar to another
+        result = self.api.move_event(self.user1_cal1_id, event1_id, self.user1_cal2_id, user_id=self.user1_id)
+        self.assertTrue(result["move_status"])
+        
+        # 3. Check free/busy across both calendars
+        items = [{"id": self.user1_cal1_id}, {"id": self.user1_cal2_id}]
+        result = self.api.check_free_busy(
+            "2025-08-01T08:00:00-04:00",
+            "2025-08-01T13:00:00-04:00",
+            items,
+            user_id=self.user1_id
+        )
+        self.assertTrue(result["retrieval_status"])
+
+    def test_multi_user_calendar_interaction(self):
+        """Test multi-user calendar interactions."""
+        # 1. Both users create calendars
+        result1 = self.api.create_calendar("User1 Shared Calendar", user_id=self.user1_id)
+        self.assertTrue(result1["creation_status"])
+        user1_shared_cal = f"cal_{self.api.state['calendar_counter']}"
+        
+        result2 = self.api.create_calendar("User2 Shared Calendar", user_id=self.user2_id)
+        self.assertTrue(result2["creation_status"])
+        user2_shared_cal = f"cal_{self.api.state['calendar_counter']}"
+        
+        # 2. Create events in respective calendars
+        event_data1 = {
+            "summary": "User1 Event",
+            "start": {"dateTime": "2025-08-01T14:00:00-04:00"},
+            "end": {"dateTime": "2025-08-01T15:00:00-04:00"}
+        }
+        result = self.api.create_event(user1_shared_cal, event_data1, user_id=self.user1_id)
+        self.assertTrue(result["creation_status"])
+        
+        event_data2 = {
+            "summary": "User2 Event",
+            "start": {"dateTime": "2025-08-01T14:00:00+01:00"},
+            "end": {"dateTime": "2025-08-01T15:00:00+01:00"}
+        }
+        result = self.api.create_event(user2_shared_cal, event_data2, user_id=self.user2_id)
+        self.assertTrue(result["creation_status"])
+        
+        # 3. Verify each user can only access their own calendars
+        result1 = self.api.list_calendars(self.user1_id)
+        calendar_ids1 = [cal["id"] for cal in result1["calendars"]]
+        self.assertIn(user1_shared_cal, calendar_ids1)
+        self.assertNotIn(user2_shared_cal, calendar_ids1)
+        
+        result2 = self.api.list_calendars(self.user2_id)
+        calendar_ids2 = [cal["id"] for cal in result2["calendars"]]
+        self.assertIn(user2_shared_cal, calendar_ids2)
+        self.assertNotIn(user1_shared_cal, calendar_ids2)
+
+    def test_calendar_error_handling_workflow(self):
+        """Test comprehensive error handling scenarios."""
+        # Test creating calendar with invalid user
+        result = self.api.create_calendar("Invalid User Calendar", user_id="invalid@example.com")
+        self.assertFalse(result["creation_status"])
+        
+        # Test updating non-existent calendar
+        result = self.api.update_calendar("invalid_cal", summary="Should Fail", user_id=self.user1_id)
+        self.assertFalse(result["update_status"])
+        
+        # Test creating event in non-existent calendar
+        event_data = {
+            "summary": "Invalid Event",
+            "start": {"dateTime": "2025-08-01T10:00:00-04:00"},
+            "end": {"dateTime": "2025-08-01T11:00:00-04:00"}
+        }
+        result = self.api.create_event("invalid_cal", event_data, user_id=self.user1_id)
+        self.assertFalse(result["creation_status"])
+        
+        # Test moving event to non-existent calendar
+        result = self.api.move_event(self.user1_cal1_id, self.user1_event2_id, "invalid_cal", user_id=self.user1_id)
+        self.assertFalse(result["move_status"])
+        
+        # Test free/busy with invalid calendar
+        items = [{"id": "invalid_cal"}]
+        result = self.api.check_free_busy(
+            "2025-08-01T08:00:00-04:00",
+            "2025-08-01T13:00:00-04:00",
+            items,
+            user_id=self.user1_id
+        )
+        self.assertTrue(result["retrieval_status"])  # Still succeeds but returns empty data
         self.assertEqual(len(result["free_busy_data"]), 0)
 
 
