@@ -4,7 +4,7 @@ import json
 import uuid
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, channel_bios, comment_texts, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries, first_and_last_names, user_count
+from .fake_data import first_names, last_names, channel_bios, comment_texts, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries, first_and_last_names, user_count
 
 _initial_user_id_map = {}
 _initial_channel_id_map = {}

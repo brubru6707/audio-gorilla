@@ -5,6 +5,18 @@ from typing import Dict, List, Any, Optional, Union, Literal
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("SimpleNoteApis")
+# If the file doesn't exist with snake_case, try the actual filename
+if not DEFAULT_STATE:
+    import json
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    json_file_path = os.path.join(current_dir, 'Backends', 'diverse_simple_notes_state.json')
+    try:
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            DEFAULT_STATE = json.load(f)
+        print(f"Successfully loaded Simple Notes state from: {json_file_path}")
+    except:
+        DEFAULT_STATE = {}
 
 class SimpleNoteApis:
     """

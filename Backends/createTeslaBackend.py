@@ -4,7 +4,7 @@ import uuid
 import json
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, playlist_titles, user_count, first_and_last_names
+from .fake_data import first_names, last_names, domains, playlist_titles, user_count, first_and_last_names
 
 _initial_user_email_to_uuid_map = {}
 _initial_vehicle_tag_to_uuid_map = {}

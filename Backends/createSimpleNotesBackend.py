@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from fake_data import note_title_and_content, first_names, last_names, domains, first_and_last_names, user_count
+from .fake_data import note_title_and_content, first_names, last_names, domains, first_and_last_names, user_count
 
 _user_alias_to_uuid_map = {}
 

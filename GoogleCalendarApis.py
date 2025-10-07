@@ -434,16 +434,17 @@ class GoogleCalendarApis:
             Dict[str, Union[bool, str]]: Dictionary with move status and message.
         """
         events_by_calendar = self._get_user_events(user_id)
-        if not events_by_calendar:
-            return {"move_status": False, "message": "User not found or no event data."}
+        calendars = self._get_user_calendars(user_id)
+        if not events_by_calendar or not calendars:
+            return {"move_status": False, "message": "User not found or no data."}
 
         source_events = events_by_calendar.get(calendar_id)
-        destination_events = events_by_calendar.get(destination_calendar_id)
-
         if not source_events or event_id not in source_events:
             return {"move_status": False, "message": "Source calendar or event not found."}
-        if not destination_events:
+        if destination_calendar_id not in calendars:
             return {"move_status": False, "message": "Destination calendar not found."}
+
+        destination_events = events_by_calendar.setdefault(destination_calendar_id, {})
 
         event_to_move = source_events[event_id]
         

@@ -1,9 +1,9 @@
 import copy
 import uuid
 from typing import Dict, Any, Optional, Literal
-from state_loader import load_default_state
+from UnitTests.test_data_helper import BackendDataLoader
 
-DEFAULT_STATE = load_default_state("TeslaFleetApis")
+DEFAULT_STATE = BackendDataLoader.get_teslafleet_data()
 
 class EmailStr(str):
     pass

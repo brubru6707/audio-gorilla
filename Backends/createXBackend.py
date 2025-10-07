@@ -4,7 +4,7 @@ import copy
 import uuid
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names
+from .fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names
 
 _initial_user_id_map = {}
 _initial_post_id_map = {}

@@ -2,9 +2,17 @@ import datetime
 import copy
 import uuid
 from typing import Dict, List, Any, Optional, Union
-from state_loader import load_default_state
+import sys
+import os
+from pathlib import Path
 
-DEFAULT_STATE = load_default_state("YouTubeApis")
+# Add parent directory to path to import test_data_helper
+parent_dir = Path(__file__).parent
+sys.path.insert(0, str(parent_dir / 'UnitTests'))
+
+from test_data_helper import BackendDataLoader
+
+DEFAULT_STATE = BackendDataLoader.get_youtube_data()
 
 class EmailStr(str):
     pass
@@ -206,7 +214,7 @@ class YouTubeApis:
         user_data = self._get_user_data(user_id)
         if user_data:
             return {"data": copy.deepcopy(user_data)}
-        return {"data": None, "error": "User not found"}
+        return {"data": None, "message": "User not found"}
 
     def get_watch_history(self, user_id: str) -> Dict[str, Any]:
         """
@@ -226,7 +234,7 @@ class YouTubeApis:
                 if video_details:
                     watched_videos.append(copy.deepcopy(video_details))
             return {"data": watched_videos}
-        return {"data": None, "error": "User not found"}
+        return {"data": None, "message": "User not found"}
 
     def list_subscriptions(self, user_id: str) -> Dict[str, Any]:
         """
@@ -246,7 +254,7 @@ class YouTubeApis:
                 if channel_details:
                     subscribed_channels.append(copy.deepcopy(channel_details))
             return {"data": subscribed_channels}
-        return {"data": None, "error": "User not found"}
+        return {"data": None, "message": "User not found"}
     
     def youtube_subscriptions_insert(self, channel_id: str, user_id: str) -> Dict[str, Any]:
         """
@@ -263,18 +271,18 @@ class YouTubeApis:
         channel_data = self._get_channel_data(channel_id)
 
         if not user_data:
-            return {"error": "User not found.", "success": False}
+            return {"status": False, "message": "User not found."}
         if not channel_data:
-            return {"error": "Channel not found.", "success": False}
+            return {"status": False, "message": "Channel not found."}
         
         if channel_id in user_data.get("subscriptions", []):
-            return {"error": "Already subscribed.", "success": False}
+            return {"status": False, "message": "Already subscribed."}
         
         user_data["subscriptions"].append(channel_id)
         channel_data["subscribers"].append(user_id)
         channel_data["subscriber_count"] = channel_data.get("subscriber_count", 0) + 1
         
-        return {"success": True, "channel_id": channel_id, "user_id": user_id}
+        return {"status": True, "message": f"Successfully subscribed to channel {channel_id}"}
 
     def youtube_subscriptions_delete(self, channel_id: str, user_id: str) -> Dict[str, Any]:
         """
@@ -291,19 +299,19 @@ class YouTubeApis:
         channel_data = self._get_channel_data(channel_id)
 
         if not user_data:
-            return {"error": "User not found.", "success": False}
+            return {"status": False, "message": "User not found."}
         if not channel_data:
-            return {"error": "Channel not found.", "success": False}
+            return {"status": False, "message": "Channel not found."}
         
         if channel_id not in user_data.get("subscriptions", []):
-            return {"error": "Not subscribed to this channel.", "success": False}
+            return {"status": False, "message": "Not subscribed to this channel."}
         
         user_data["subscriptions"].remove(channel_id)
         if user_id in channel_data.get("subscribers", []):
             channel_data["subscribers"].remove(user_id)
         channel_data["subscriber_count"] = max(0, channel_data.get("subscriber_count", 0) - 1)
         
-        return {"success": True, "channel_id": channel_id, "user_id": user_id}
+        return {"status": True, "message": f"Successfully unsubscribed from channel {channel_id}"}
 
 
     # ====================
@@ -322,7 +330,7 @@ class YouTubeApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_channels = []
         for channel_uuid in user_data.get("channels", []):
@@ -344,7 +352,7 @@ class YouTubeApis:
         channel_data = self._get_channel_data(channel_id)
         if channel_data:
             return {"data": copy.deepcopy(channel_data)}
-        return {"data": None, "error": "Channel not found"}
+        return {"data": None, "message": "Channel not found"}
 
     def create_channel(self, user_id: str, title: str, description: str = "") -> Dict[str, Any]:
         """
@@ -359,7 +367,7 @@ class YouTubeApis:
             Dict: A dictionary containing the newly created channel's data.
         """
         if user_id not in self.users:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
 
         channel_uuid = self._generate_unique_id()
         new_channel = {
@@ -396,10 +404,10 @@ class YouTubeApis:
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"error": "Channel not found."}
+            return {"status": False, "message": "Channel not found."}
         
         if channel_data.get("owner_id") != user_id:
-            return {"error": "User is not the owner of this channel."}
+            return {"status": False, "message": "User is not the owner of this channel."}
 
         for key, value in updates.items():
             if key in channel_data: # Only allow updating existing fields for simplicity
@@ -420,12 +428,12 @@ class YouTubeApis:
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"error": "Channel not found."}
+            return {"message": "Channel not found."}
         
         # In a real API, this would upload the image and return a URL
         # For this dummy, we'll just acknowledge the upload and store the path
         channel_data["banner_image_path"] = image_path
-        return {"success": True, "image_path": image_path, "channel_id": channel_id}
+        return {"status": True, "image_path": image_path, "channel_id": channel_id}
 
 
     # ====================
@@ -444,7 +452,7 @@ class YouTubeApis:
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "error": "Channel not found"}
+            return {"data": None, "message": "Channel not found"}
         
         channel_videos = []
         for video_uuid in channel_data.get("videos", []):
@@ -468,7 +476,7 @@ class YouTubeApis:
             # Increment view count for realism
             video_data["views"] = video_data.get("views", 0) + 1 
             return {"data": copy.deepcopy(video_data)}
-        return {"data": None, "error": "Video not found"}
+        return {"data": None, "message": "Video not found"}
     
     def upload_video(self, channel_id: str, title: str, description: str = "", duration_seconds: int = 0, tags: Optional[List[str]] = None) -> Dict[str, Any]:
         """
@@ -486,11 +494,11 @@ class YouTubeApis:
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "error": "Channel not found"}
+            return {"data": None, "message": "Channel not found"}
         
         uploader_id = channel_data["owner_id"]
         if not uploader_id or uploader_id not in self.users:
-            return {"data": None, "error": "Uploader user not found for this channel."}
+            return {"data": None, "message": "Uploader user not found for this channel."}
 
         video_uuid = self._generate_unique_id()
         new_video = {
@@ -530,14 +538,14 @@ class YouTubeApis:
         channel_data = self._get_channel_data(channel_id)
 
         if not video_data:
-            return {"success": False, "error": "Video not found"}
+            return {"status": False, "message": "Video not found"}
         if not channel_data:
-            return {"success": False, "error": "Channel not found"}
+            return {"status": False, "message": "Channel not found"}
         
         if video_data.get("channel_id") != channel_id:
-            return {"success": False, "error": "Video does not belong to the specified channel"}
+            return {"status": False, "message": "Video does not belong to the specified channel"}
         if channel_data.get("owner_id") != user_id:
-            return {"success": False, "error": "User is not the owner of this channel and cannot delete videos"}
+            return {"status": False, "message": "User is not the owner of this channel and cannot delete videos"}
 
         if video_id in self.videos:
             del self.videos[video_id]
@@ -564,8 +572,8 @@ class YouTubeApis:
             for cid in comments_to_delete:
                 del self.comments[cid]
 
-            return {"success": True}
-        return {"success": False, "error": "Video not found or internal error"}
+            return {"status": True, "message": "Video deleted successfully"}
+        return {"status": False, "message": "Video not found or internal error"}
 
     def youtube_videos_rate(self, video_id: str, rating: str, user_id: str) -> Dict[str, Any]:
         """
@@ -583,9 +591,9 @@ class YouTubeApis:
         user_data = self._get_user_data(user_id)
 
         if not video_data:
-            return {"error": "Video not found.", "success": False}
+            return {"message": "Video not found.", "status": False}
         if not user_data:
-            return {"error": "User not found.", "success": False}
+            return {"message": "User not found.", "status": False}
 
         liked_by_list = video_data.get("liked_by", [])
         
@@ -595,7 +603,7 @@ class YouTubeApis:
                 liked_by_list.append(user_id)
                 if video_id not in user_data.get("liked_videos", []):
                     user_data["liked_videos"].append(video_id)
-            return {"success": True, "message": f"Video {video_id} liked by {user_id}."}
+            return {"status": True, "message": f"Video {video_id} liked by {user_id}."}
         elif rating == "dislike":
             if user_id in liked_by_list:
                 video_data["likes"] = max(0, video_data.get("likes", 0) - 1)
@@ -603,16 +611,16 @@ class YouTubeApis:
             video_data["dislikes"] = video_data.get("dislikes", 0) + 1
             if video_id in user_data.get("liked_videos", []):
                 user_data["liked_videos"].remove(video_id) # Remove from liked if disliked
-            return {"success": True, "message": f"Video {video_id} disliked by {user_id}."}
+            return {"status": True, "message": f"Video {video_id} disliked by {user_id}."}
         else:
-            return {"error": "Invalid rating. Must be 'like' or 'dislike'.", "success": False}
+            return {"message": "Invalid rating. Must be 'like' or 'dislike'.", "status": False}
 
     def like_video(self, video_id: str, user_id: str) -> Dict[str, bool]:
         """
         Mark a video as liked by the user. This is a simplified wrapper around youtube_videos_rate.
         """
         result = self.youtube_videos_rate(video_id, "like", user_id)
-        return {"success": result.get("success", False)}
+        return result
 
     def unlike_video(self, video_id: str, user_id: str) -> Dict[str, bool]:
         """
@@ -624,7 +632,7 @@ class YouTubeApis:
         video_data = self._get_video_data(video_id)
         user_data = self._get_user_data(user_id)
         if not video_data or not user_data:
-            return {"success": False, "error": "Video or user not found."}
+            return {"status": False, "message": "Video or user not found."}
         
         liked_by_list = video_data.get("liked_by", [])
         if user_id in liked_by_list:
@@ -632,8 +640,8 @@ class YouTubeApis:
             liked_by_list.remove(user_id)
             if video_id in user_data.get("liked_videos", []):
                 user_data["liked_videos"].remove(video_id)
-            return {"success": True}
-        return {"success": False, "error": "Video not previously liked by this user."}
+            return {"status": True, "message": "Video unliked successfully."}
+        return {"status": False, "message": "Video not previously liked by this user."}
 
     def search_videos(self, query: str, max_results: int = 10) -> Dict[str, Any]:
         """
@@ -674,7 +682,7 @@ class YouTubeApis:
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "error": "Channel not found"}
+            return {"data": None, "message": "Channel not found"}
         
         channel_playlists = []
         for playlist_uuid in channel_data.get("playlists", []):
@@ -703,7 +711,7 @@ class YouTubeApis:
                 if video_details:
                     playlist_copy["videos"].append(video_details)
             return {"data": playlist_copy}
-        return {"data": None, "error": "Playlist not found"}
+        return {"data": None, "message": "Playlist not found"}
 
     def create_playlist(self, channel_id: str, title: str, description: str = "", privacy_status: str = "public") -> Dict[str, Any]:
         """
@@ -720,11 +728,11 @@ class YouTubeApis:
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "error": "Channel not found"}
+            return {"data": None, "message": "Channel not found"}
         
         owner_id = channel_data["owner_id"]
         if not owner_id or owner_id not in self.users:
-            return {"data": None, "error": "Owner user not found for this channel."}
+            return {"data": None, "message": "Owner user not found for this channel."}
 
         playlist_uuid = self._generate_unique_id()
         new_playlist = {
@@ -759,18 +767,18 @@ class YouTubeApis:
         video_data = self._get_video_data(video_id)
 
         if not playlist_data:
-            return {"success": False, "error": "Playlist not found"}
+            return {"status": False, "message": "Playlist not found"}
         if not video_data:
-            return {"success": False, "error": "Video not found"}
+            return {"status": False, "message": "Video not found"}
         
         if playlist_data.get("owner_id") != user_id:
-            return {"success": False, "error": "User is not the owner of this playlist."}
+            return {"status": False, "message": "User is not the owner of this playlist."}
 
         if video_id not in playlist_data.get("video_ids", []):
             playlist_data["video_ids"].append(video_id)
             playlist_data["item_count"] = playlist_data.get("item_count", 0) + 1
-            return {"success": True}
-        return {"success": False, "error": "Video already in playlist"}
+            return {"status": True}
+        return {"status": False, "message": "Video already in playlist"}
 
     def remove_video_from_playlist(self, playlist_id: str, video_id: str, user_id: str) -> Dict[str, bool]:
         """
@@ -788,18 +796,18 @@ class YouTubeApis:
         video_data = self._get_video_data(video_id) # Just to check if video exists, not strictly needed but good practice
 
         if not playlist_data:
-            return {"success": False, "error": "Playlist not found"}
+            return {"status": False, "message": "Playlist not found"}
         if not video_data: # If video doesn't exist anymore, it's implicitly not in playlist
             pass # Continue to try removing it
         
         if playlist_data.get("owner_id") != user_id:
-            return {"success": False, "error": "User is not the owner of this playlist."}
+            return {"status": False, "message": "User is not the owner of this playlist."}
 
         if video_id in playlist_data.get("video_ids", []):
             playlist_data["video_ids"].remove(video_id)
             playlist_data["item_count"] = max(0, playlist_data.get("item_count", 0) - 1)
-            return {"success": True}
-        return {"success": False, "error": "Video not found in playlist"}
+            return {"status": True}
+        return {"status": False, "message": "Video not found in playlist"}
     
     def youtube_playlistItems_insert(self, playlist_id: str, video_id: str, user_id: str) -> Dict[str, Any]:
         """
@@ -836,9 +844,9 @@ class YouTubeApis:
             if playlist_data.get("owner_id") == user_id and target_video_id in playlist_data.get("video_ids", []):
                 playlist_data["video_ids"].remove(target_video_id)
                 playlist_data["item_count"] = max(0, playlist_data.get("item_count", 0) - 1)
-                return {"success": True, "message": f"Video {target_video_id} removed from playlist {p_id}."}
+                return {"status": True, "message": f"Video {target_video_id} removed from playlist {p_id}."}
         
-        return {"error": "Playlist item not found or user not authorized.", "success": False}
+        return {"message": "Playlist item not found or user not authorized.", "status": False}
 
 
     # ====================
@@ -861,9 +869,9 @@ class YouTubeApis:
         author_data = self._get_user_data(author_id)
 
         if not video_data:
-            return {"data": None, "error": "Video not found"}
+            return {"data": None, "message": "Video not found"}
         if not author_data:
-            return {"data": None, "error": "Author user not found"}
+            return {"data": None, "message": "Author user not found"}
 
         comment_uuid = self._generate_unique_id()
         new_comment = {
@@ -891,7 +899,7 @@ class YouTubeApis:
         """
         video_data = self._get_video_data(video_id)
         if not video_data:
-            return {"data": None, "error": "Video not found"}
+            return {"data": None, "message": "Video not found"}
 
         video_comments = []
         for comment_uuid in video_data.get("comments", []):
@@ -920,14 +928,14 @@ class YouTubeApis:
         """
         comment_data = self._get_comment_data(comment_id)
         if not comment_data:
-            return {"success": False, "error": "Comment not found"}
+            return {"status": False, "message": "Comment not found"}
         
         video_id = comment_data.get("video_id")
         video_data = self._get_video_data(video_id)
         
         if not video_data: # Associated video not found, perhaps already deleted
             del self.comments[comment_id] # Clean up orphaned comment
-            return {"success": True, "message": "Comment found but video not, deleting orphaned comment."}
+            return {"status": True, "message": "Comment found but video not, deleting orphaned comment."}
 
         channel_id = video_data.get("channel_id")
         channel_data = self._get_channel_data(channel_id)
@@ -936,14 +944,14 @@ class YouTubeApis:
         is_channel_owner = channel_data and channel_data.get("owner_id") == user_id
 
         if not is_author and not is_channel_owner:
-            return {"success": False, "error": "Not authorized to delete this comment"}
+            return {"status": False, "message": "Not authorized to delete this comment"}
 
         if comment_id in self.comments:
             del self.comments[comment_id]
             if comment_id in self.videos[video_id].get("comments", []):
                 self.videos[video_id]["comments"].remove(comment_id)
-            return {"success": True}
-        return {"success": False, "error": "Comment not found or internal error"}
+            return {"status": True}
+        return {"status": False, "message": "Comment not found or internal error"}
 
     def youtube_comments_insert(self, video_id: str, text: str, author_id: str) -> Dict[str, Any]:
         """
@@ -978,7 +986,7 @@ class YouTubeApis:
         """
         video_data = self._get_video_data(video_id)
         if not video_data:
-            return {"error": "Video not found.", "success": False}
+            return {"message": "Video not found.", "status": False}
         
         # Simulating storing captions within the channel's data for the video
         caption_id = self._generate_unique_id()
@@ -993,8 +1001,8 @@ class YouTubeApis:
                 "status": "serving", # Dummy status
                 "content_snippet": track_content[:50] + "..." if len(track_content) > 50 else track_content
             }
-            return {"success": True, "caption_id": caption_id, "language": language}
-        return {"error": "Channel for video not found.", "success": False}
+            return {"status": True, "caption_id": caption_id, "language": language}
+        return {"message": "Channel for video not found.", "status": False}
 
     def youtube_captions_update(self, id: str, track_content: str) -> Dict[str, Any]:
         """
@@ -1011,8 +1019,8 @@ class YouTubeApis:
         for channel_id, channel_data in self.channels.items():
             if "captions" in channel_data and id in channel_data["captions"]:
                 channel_data["captions"][id]["content_snippet"] = track_content[:50] + "..." if len(track_content) > 50 else track_content
-                return {"success": True, "caption_id": id, "message": "Caption updated."}
-        return {"error": "Caption track not found.", "success": False}
+                return {"status": True, "caption_id": id, "message": "Caption updated."}
+        return {"message": "Caption track not found.", "status": False}
 
     def youtube_captions_delete(self, id: str) -> Dict[str, Any]:
         """
@@ -1027,8 +1035,8 @@ class YouTubeApis:
         for channel_id, channel_data in self.channels.items():
             if "captions" in channel_data and id in channel_data["captions"]:
                 del self.channels[channel_id]["captions"][id]
-                return {"success": True, "deleted_caption_id": id}
-        return {"error": "Caption track not found.", "success": False}
+                return {"status": True, "deleted_caption_id": id}
+        return {"message": "Caption track not found.", "status": False}
 
     # ====================
     # Enhanced User Operations (utilizing backend fields)
@@ -1047,7 +1055,7 @@ class YouTubeApis:
         user_id = self._find_user_by_email(email)
         if user_id:
             return {"data": copy.deepcopy(self.users[user_id])}
-        return {"data": None, "error": "User not found"}
+        return {"data": None, "message": "User not found"}
 
     def get_user_by_display_name(self, display_name: str) -> Dict[str, Any]:
         """
@@ -1062,7 +1070,7 @@ class YouTubeApis:
         user_id = self._find_user_by_display_name(display_name)
         if user_id:
             return {"data": copy.deepcopy(self.users[user_id])}
-        return {"data": None, "error": "User not found"}
+        return {"data": None, "message": "User not found"}
 
     def get_watch_later_playlist(self, user_identifier: str) -> Dict[str, Any]:
         """
@@ -1076,7 +1084,7 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_data = self.users[user_id]
         watch_later_videos = []
@@ -1100,21 +1108,21 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"status": "error", "message": "User not found"}
+            return {"status": False, "message": "User not found"}
         
         if not self._get_video_data(video_id):
-            return {"status": "error", "message": "Video not found"}
+            return {"status": False, "message": "Video not found"}
         
         user_data = self.users[user_id]
         watch_later = user_data.get("watch_later_playlist", [])
         
         if video_id in watch_later:
-            return {"status": "error", "message": "Video already in watch later playlist"}
+            return {"status": False, "message": "Video already in watch later playlist"}
         
         watch_later.append(video_id)
         user_data["watch_later_playlist"] = watch_later
         
-        return {"status": "success", "message": "Video added to watch later playlist"}
+        return {"status": True, "message": "Video added to watch later playlist"}
 
     def remove_from_watch_later(self, user_identifier: str, video_id: str) -> Dict[str, Any]:
         """
@@ -1129,18 +1137,18 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"status": "error", "message": "User not found"}
+            return {"status": False, "message": "User not found"}
         
         user_data = self.users[user_id]
         watch_later = user_data.get("watch_later_playlist", [])
         
         if video_id not in watch_later:
-            return {"status": "error", "message": "Video not in watch later playlist"}
+            return {"status": False, "message": "Video not in watch later playlist"}
         
         watch_later.remove(video_id)
         user_data["watch_later_playlist"] = watch_later
         
-        return {"status": "success", "message": "Video removed from watch later playlist"}
+        return {"status": True, "message": "Video removed from watch later playlist"}
 
     def get_notification_settings(self, user_identifier: str) -> Dict[str, Any]:
         """
@@ -1154,7 +1162,7 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_data = self.users[user_id]
         settings = user_data.get("notification_settings", {})
@@ -1174,14 +1182,14 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"status": "error", "message": "User not found"}
+            return {"status": False, "message": "User not found"}
         
         user_data = self.users[user_id]
         current_settings = user_data.get("notification_settings", {})
         current_settings.update(settings)
         user_data["notification_settings"] = current_settings
         
-        return {"status": "success", "message": "Notification settings updated"}
+        return {"status": True, "message": "Notification settings updated"}
 
     def get_user_language_preference(self, user_identifier: str) -> Dict[str, Any]:
         """
@@ -1195,7 +1203,7 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_data = self.users[user_id]
         language = user_data.get("language_preference", "en-US")
@@ -1215,12 +1223,12 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"status": "error", "message": "User not found"}
+            return {"status": False, "message": "User not found"}
         
         user_data = self.users[user_id]
         user_data["language_preference"] = language
         
-        return {"status": "success", "message": "Language preference updated"}
+        return {"status": True, "message": "Language preference updated"}
 
     def get_account_status(self, user_identifier: str) -> Dict[str, Any]:
         """
@@ -1234,7 +1242,7 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_data = self.users[user_id]
         status = user_data.get("account_status", "active")
@@ -1253,7 +1261,7 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_data = self.users[user_id]
         channel_history = []
@@ -1283,10 +1291,10 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"status": "error", "message": "User not found"}
+            return {"status": False, "message": "User not found"}
         
         if not self._get_channel_data(channel_id):
-            return {"status": "error", "message": "Channel not found"}
+            return {"status": False, "message": "Channel not found"}
         
         user_data = self.users[user_id]
         channel_history = user_data.get("channel_history", [])
@@ -1302,7 +1310,7 @@ class YouTubeApis:
         channel_history = channel_history[:50]
         user_data["channel_history"] = channel_history
         
-        return {"status": "success", "message": "Channel added to history"}
+        return {"status": True, "message": "Channel added to history"}
 
     def get_user_analytics(self, user_identifier: str) -> Dict[str, Any]:
         """
@@ -1316,7 +1324,7 @@ class YouTubeApis:
         """
         user_id = self._get_user_id_from_identifier(user_identifier)
         if not user_id:
-            return {"data": None, "error": "User not found"}
+            return {"data": None, "message": "User not found"}
         
         user_data = self.users[user_id]
         

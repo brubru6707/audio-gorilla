@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from fake_data import location_names, domains, first_and_last_names, user_count
+from .fake_data import location_names, domains, first_and_last_names, user_count
 
 current_time_edt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=4)
 

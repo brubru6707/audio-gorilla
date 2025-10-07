@@ -6,6 +6,18 @@ from datetime import datetime
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("GoogleDriveApis")
+# If the file doesn't exist with snake_case, try the actual filename
+if not DEFAULT_STATE:
+    import json
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    json_file_path = os.path.join(current_dir, 'Backends', 'diverse_googledrive_state.json')
+    try:
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            DEFAULT_STATE = json.load(f)
+        print(f"Successfully loaded Google Drive state from: {json_file_path}")
+    except:
+        DEFAULT_STATE = {}
 
 class GoogleDriveApis:
     """
@@ -210,11 +222,11 @@ class GoogleDriveApis:
             user_id (str): User's email address or 'me' for the authenticated user.
 
         Returns:
-            Dict: A dictionary containing 'creation_status' (bool) and 'file_data' (Dict) if successful.
+            Dict: A dictionary containing 'status' (bool) and 'file' (Dict) if successful.
         """
         internal_user_id = self._get_user_id_by_email(user_id)
         if not internal_user_id:
-            return {"creation_status": False, "message": "User not found."}
+            return {"status": False, "message": "User not found."}
 
         user_drive_data = self.users[internal_user_id].get("drive_data")
         if user_drive_data is None:
@@ -248,7 +260,7 @@ class GoogleDriveApis:
         user_info["storage_quota"]["used"] += new_file["size"]
         
         print(f"File '{name}' created for {user_id} with ID: {new_file_id}")
-        return {"creation_status": True, "file_data": new_file}
+        return {"status": True, "file": new_file}
 
     def update_file(
         self,
@@ -360,11 +372,11 @@ class GoogleDriveApis:
         """
         files = self._get_user_files(user_id)
         if files is None:
-            return {"copy_status": False, "message": "User data not found."}
+            return {"status": False, "message": "User data not found."}
 
         original_file = files.get(fileId)
         if not original_file:
-            return {"copy_status": False, "message": "Original file not found."}
+            return {"status": False, "message": "Original file not found."}
 
         new_file_id = self._generate_id()
         current_time = int(datetime.now().timestamp())
@@ -389,7 +401,7 @@ class GoogleDriveApis:
                 user_info["storage_quota"]["used"] += copied_file.get("size", 0)
 
         print(f"File '{fileId}' copied to '{name}' with ID: {new_file_id} for {user_id}")
-        return {"copy_status": True, "copied_file_data": copied_file}
+        return {"status": True, "file": copied_file}
 
     def reset_data(self) -> Dict[str, bool]:
         """
@@ -472,6 +484,11 @@ class GoogleDriveApis:
         Returns:
             Dict: A dictionary indicating success or failure.
         """
+        # Validate role
+        valid_roles = ["reader", "writer", "owner"]
+        if role not in valid_roles:
+            return {"share_status": False, "message": f"Invalid role '{role}'. Valid roles are: {', '.join(valid_roles)}"}
+
         files = self._get_user_files(user_id)
         if files is None:
             return {"share_status": False, "message": "User data not found."}

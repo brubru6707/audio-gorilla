@@ -2,7 +2,7 @@ import random
 import uuid
 from datetime import datetime, timedelta
 import json
-from fake_data import first_names, last_names, domains, communilink_conversations, first_and_last_names, user_count
+from .fake_data import first_names, last_names, domains, communilink_conversations, first_and_last_names, user_count
 
 # --- Constants and Initial State ---
 

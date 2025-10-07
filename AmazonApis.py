@@ -28,7 +28,8 @@ class AmazonApis:
         first_name: str,
         last_name: str,
         email: str,
-        password: str) -> Dict[str, Union[bool, str]]:
+        password: str,
+        phone_number: Union[str, None] = None) -> Dict[str, Union[bool, str]]:
         """
         Registers a new user with the system by creating a unique user ID and storing their information.
         Args:
@@ -49,6 +50,7 @@ class AmazonApis:
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
+            "phone_number": phone_number,
             "balance": 0.0,
             "payment_cards": {},
             "addresses": {},
@@ -312,17 +314,17 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"add_to_cart_status": False, "message": "User not found."}
+            return {"cart_status": False, "message": "User not found."}
 
         if product_id not in self.state["products"]:
-            return {"add_to_cart_status": False, "message": "Product not found."}
+            return {"cart_status": False, "message": "Product not found."}
         if self.state["products"][product_id]["stock"] < quantity:
-            return {"add_to_cart_status": False, "message": "Not enough stock."}
+            return {"cart_status": False, "message": "Not enough stock."}
 
         user_cart = user_data.get("cart", {})
         user_cart[product_id] = user_cart.get(product_id, 0) + quantity
         self._update_user_data(user_id, "cart", user_cart)
-        return {"add_to_cart_status": True, "message": "Product added to cart."}
+        return {"cart_status": True, "message": "Product added to cart."}
 
     def remove_from_cart(self, user_id: str, product_id: str) -> Dict[str, Union[bool, str]]:
         """
@@ -336,14 +338,14 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"remove_from_cart_status": False, "message": "User not found."}
+            return {"cart_status": False, "message": "User not found."}
 
         user_cart = user_data.get("cart", {})
         if product_id in user_cart:
             del user_cart[product_id]
             self._update_user_data(user_id, "cart", user_cart)
-            return {"remove_from_cart_status": True, "message": "Product removed from cart."}
-        return {"remove_from_cart_status": False, "message": "Product not found in cart."}
+            return {"cart_status": True, "message": "Product removed from cart."}
+        return {"cart_status": False, "message": "Product not found in cart."}
 
     def update_cart_item_quantity(self, user_id: str, product_id: str, quantity: int) -> Dict[str, Union[bool, str]]:
         """
@@ -358,20 +360,20 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"update_cart_status": False, "message": "User not found."}
+            return {"cart_status": False, "message": "User not found."}
 
         user_cart = user_data.get("cart", {})
         if product_id not in user_cart:
-            return {"update_cart_status": False, "message": "Product not in cart."}
+            return {"cart_status": False, "message": "Product not in cart."}
         if self.state["products"][product_id]["stock"] < quantity:
-            return {"update_cart_status": False, "message": "Not enough stock."}
+            return {"cart_status": False, "message": "Not enough stock."}
 
         if quantity <= 0:
             del user_cart[product_id]
         else:
             user_cart[product_id] = quantity
         self._update_user_data(user_id, "cart", user_cart)
-        return {"update_cart_status": True, "message": "Cart updated."}
+        return {"cart_status": True, "message": "Cart updated."}
 
     def show_cart(self, user_id: str) -> Dict[str, Union[bool, List[Dict]]]:
         """
@@ -384,10 +386,12 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"cart_status": False, "cart_items": []}
+            return {"cart_status": False, "cart": []}
 
         cart_items = []
         for product_id, quantity in user_data.get("cart", {}).items():
+            if product_id == "promo_code":
+                continue
             product_info = self.state["products"].get(product_id)
             if product_info:
                 cart_items.append(
@@ -399,7 +403,7 @@ class AmazonApis:
                         "total": product_info["price"] * quantity,
                     }
                 )
-        return {"cart_status": True, "cart_items": cart_items}
+        return {"cart_status": True, "cart": cart_items}
 
     def apply_promo_code_to_cart(self, promo_code: str, user_id: str) -> Dict[str, Union[bool, str, float]]:
         """
@@ -507,6 +511,8 @@ class AmazonApis:
         total_amount = 0.0
         products_in_order = {}
         for product_id, quantity in user_cart.items():
+            if product_id == "promo_code":
+                continue
             product_info = self.state["products"].get(product_id)
             if not product_info or product_info["stock"] < quantity:
                 return {"checkout_status": False, "message": f"Not enough stock for product ID {product_id}."}
@@ -582,18 +588,20 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"add_to_wish_list_status": False, "message": "User not found."}
+            return {"wishlist_status": False, "message": "User not found."}
 
         if product_id not in self.state["products"]:
-            return {"add_to_wish_list_status": False, "message": "Product not found."}
+            return {"wishlist_status": False, "message": "Product not found."}
 
-        user_wish_list = user_data.get("wish_list", {})
-        if product_id in user_wish_list:
-            return {"add_to_wish_list_status": False, "message": "Product already in wish list."}
+        user_wish_list = user_data.get("wish_list", [])
+        # Check if already in wish list
+        for item in user_wish_list:
+            if item.get("product_id") == product_id:
+                return {"wishlist_status": False, "message": "Product already in wish list."}
 
-        user_wish_list[product_id] = {"added_date": datetime.now().strftime("%Y-%m-%d")}
+        user_wish_list.append({"product_id": product_id, "added_date": datetime.now().strftime("%Y-%m-%d")})
         self._update_user_data(user_id, "wish_list", user_wish_list)
-        return {"add_to_wish_list_status": True, "message": "Product added to wish list."}
+        return {"wishlist_status": True, "message": "Product added to wish list."}
 
     def remove_from_wish_list(self, user_id: str, product_id: str) -> Dict[str, Union[bool, str]]:
         """
@@ -607,14 +615,15 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"remove_from_wish_list_status": False, "message": "User not found."}
+            return {"wishlist_status": False, "message": "User not found."}
 
-        user_wish_list = user_data.get("wish_list", {})
-        if product_id in user_wish_list:
-            del user_wish_list[product_id]
-            self._update_user_data(user_id, "wish_list", user_wish_list)
-            return {"remove_from_wish_list_status": True, "message": "Product removed from wish list."}
-        return {"remove_from_wish_list_status": False, "message": "Product not found in wish list."}
+        user_wish_list = user_data.get("wish_list", [])
+        for i, item in enumerate(user_wish_list):
+            if item.get("product_id") == product_id:
+                user_wish_list.pop(i)
+                self._update_user_data(user_id, "wish_list", user_wish_list)
+                return {"wishlist_status": True, "message": "Product removed from wish list."}
+        return {"wishlist_status": False, "message": "Product not found in wish list."}
 
     def show_wish_list(self, user_id: str) -> Dict[str, Union[bool, List[Dict]]]:
         """
@@ -627,10 +636,11 @@ class AmazonApis:
         """
         user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"wish_list_status": False, "wish_list_items": []}
+            return {"wishlist_status": False, "wishlist": []}
 
         wish_list_items = []
-        for product_id, details in user_data.get("wish_list", {}).items():
+        for item in user_data.get("wish_list", []):
+            product_id = item.get("product_id")
             product_info = self.state["products"].get(product_id)
             if product_info:
                 wish_list_items.append(
@@ -638,10 +648,10 @@ class AmazonApis:
                         "product_id": product_id,
                         "name": product_info["name"],
                         "price": product_info["price"],
-                        "added_date": details["added_date"],
+                        "added_date": item["added_date"],
                     }
                 )
-        return {"wish_list_status": True, "wish_list_items": wish_list_items}
+        return {"wishlist_status": True, "wishlist": wish_list_items}
 
     def search_products(
         self, query: str, category: Union[str, None] = None, min_price: float = 0.0, max_price: float = float('inf')
@@ -767,23 +777,18 @@ class AmazonApis:
         if product_id not in self.state["products"]:
             return {"ask_question_status": False, "message": "Product not found."}
 
-        product_questions = self.state["product_questions"].get(product_id, [])
+        if product_id not in self.state["product_questions"]:
+            self.state["product_questions"][product_id] = {"product_id": product_id, "q_and_as": []}
+
+        qa_list = self.state["product_questions"][product_id]["q_and_as"]
         new_question_id = str(uuid.uuid4())
-        product_questions.append({
-            product_id : {
-                "product_id": product_id,
-                "id": str(uuid.uuid4()),
-                "q_and_as": [ 
-                    { 
-                    "id": new_question_id,
-                    "question": question, 
-                    "answer": "...", 
-                    "date": datetime.now().strftime("%Y-%m-%d")
-                    } 
-                ]
-            }
+        qa_list.append({
+            "id": new_question_id,
+            "user_id": user_id,
+            "question": question,
+            "answer": "...",
+            "date": datetime.now().strftime("%Y-%m-%d")
         })
-        self.state["product_questions"][product_id] = product_questions
         return {"ask_question_status": True, "message": "Question submitted successfully.", "question_id": new_question_id}
 
     def answer_product_question(
@@ -807,9 +812,9 @@ class AmazonApis:
         if product_id not in self.state["products"]:
             return {"answer_question_status": False, "message": "Product not found."}
 
-        question_containers = self.state["product_questions"].get(product_id, [])
+        container = self.state["product_questions"].get(product_id)
 
-        for container in question_containers:
+        if container:
             for qa_pair in container.get("q_and_as", []):
                 if qa_pair.get("id") == question_id:
                     qa_pair["answer"] = answer
@@ -836,30 +841,31 @@ class AmazonApis:
             Dict: A dictionary containing questions status and a list of question objects
                   with user email information and pagination applied.
         """
-        questions = self.state["product_questions"].get(product_id, [])
+        container = self.state["product_questions"].get(product_id)
+        if not container:
+            return {"questions_status": True, "questions": []}
+        
+        qa_list = container.get("q_and_as", [])
         
         start_index = (page_index - 1) * page_limit
         end_index = start_index + page_limit
-        paginated_questions = questions[start_index:end_index]
+        paginated_qa = qa_list[start_index:end_index]
 
         display_questions = []
-        for question in paginated_questions:
-            question_copy = question.copy()
+        for qa in paginated_qa:
+            qa_copy = qa.copy()
+            # Add user email for asker
             for u_id, u_data in self.state["users"].items():
-                if u_id == question_copy["user_id"]:
-                    question_copy["user_email"] = u_data["email"]
+                if u_id == qa_copy.get("user_id"):
+                    qa_copy["user_email"] = u_data["email"]
                     break
-            
-            display_answers = []
-            for answer in question_copy.get("answers", []):
-                answer_copy = answer.copy()
+            # If answered, add answer user email
+            if qa_copy.get("answer_user_id"):
                 for u_id, u_data in self.state["users"].items():
-                    if u_id == answer_copy["user_id"]:
-                        answer_copy["user_email"] = u_data["email"]
+                    if u_id == qa_copy["answer_user_id"]:
+                        qa_copy["answer_user_email"] = u_data["email"]
                         break
-                display_answers.append(answer_copy)
-            question_copy["answers"] = display_answers
-            display_questions.append(question_copy)
+            display_questions.append(qa_copy)
 
         return {"questions_status": True, "questions": display_questions}
 

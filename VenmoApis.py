@@ -40,19 +40,8 @@ class VenmoApis:
         for user_uuid, user_data in self.users.items():
             payment_cards = user_data.get("payment_cards", {})
             for card_uuid, card_data in payment_cards.items():
-                # We stored the original_card_id as the key in RAW_DEFAULT_STATE,
-                # but it's not a direct property in the converted card_data.
-                # If we need to map a *string* card_id from the API call to a UUID,
-                # we need to ensure this mapping is handled during conversion or here.
-                # For simplicity, if the API takes `card_id: str`, we assume it's a UUID.
-                # If it takes `payment_method_id: int`, we would need a map from int to UUID.
-                # Given the user's request for "long complex string", I'm assuming such inputs are UUIDs.
                 pass # No direct mapping needed for old_card_id if API takes UUIDs for card_id
-
-        # Rebuild transaction and notification lookup maps from the current state (already UUIDs)
-        # These are direct lookups by UUID, so no extra map needed for "old" IDs
-
-
+            
     def _load_scenario(self, scenario: Dict) -> None:
         """
         Loads a predefined scenario into the dummy backend's state.

@@ -6,6 +6,14 @@ from typing import Dict, List, Any, Optional, Union
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("SmartThingsApis")
+# Cache the deepcopied default users state for performance
+_DEFAULT_USERS_COPY = None
+
+def _get_default_users_copy():
+    global _DEFAULT_USERS_COPY
+    if _DEFAULT_USERS_COPY is None:
+        _DEFAULT_USERS_COPY = copy.deepcopy(DEFAULT_STATE.get("users", {}))
+    return _DEFAULT_USERS_COPY
 
 
 class SmartThingsApis:
@@ -33,8 +41,11 @@ class SmartThingsApis:
                              It should contain a "users" key.
         """
         
-        DEFAULT_STATE_COPY = copy.deepcopy(scenario)
-        self.users = DEFAULT_STATE_COPY.get("users", {})
+        # Use cached deep copy for performance
+        if scenario is DEFAULT_STATE:
+            self.users = copy.deepcopy(_get_default_users_copy())
+        else:
+            self.users = copy.deepcopy(scenario.get("users", {}))
         print("SmartThingsApis: Loaded scenario with users, devices, locations, and rooms (all with UUIDs).")
 
     def _generate_id(self) -> str:

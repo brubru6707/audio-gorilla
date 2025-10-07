@@ -7,7 +7,7 @@ import json
 from typing import Dict, Any, List, Tuple
 
 # Assuming fake_data.py contains these lists
-from fake_data import first_names, last_names, email_bodies, email_subjects, email_snippets, domains, timezones, first_and_last_names, user_count
+from .fake_data import first_names, last_names, email_bodies, email_subjects, email_snippets, domains, timezones, first_and_last_names, user_count
 
 # Set a fixed start time for consistent "now" across the script
 current_datetime = datetime.datetime.now()

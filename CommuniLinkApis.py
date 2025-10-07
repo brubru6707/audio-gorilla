@@ -269,8 +269,10 @@ class CommuniLinkApis:
         new_call["status"] = "completed"
         print(f"Dummy Call ID={new_call['call_id']} status updated to 'completed'")
         
+        # attach a mock audio URL for the call
+        new_call["audioUrl"] = f"https://audio.mock/{new_call_id}.mp3"
         return {
-            "id": new_call["call_id"],
+            "call_id": new_call["call_id"],
             "from": new_call["caller"],
             "to": new_call["receiver"],
             "audioUrl": new_call["audioUrl"],
@@ -302,13 +304,13 @@ class CommuniLinkApis:
 
         print(f"Dummy Call status retrieved for ID={call_id}: {call['status']}")
         return {
-            "id": call["call_id"],
+            "call_id": call["call_id"],
             "from": call["caller"],
             "to": call["receiver"],
-            "audioUrl": call["audioUrl"],
+            "audioUrl": call.get("audioUrl"),
             "status": call["status"],
             "timestamp": call["timestamp"],
-            "duration": call["duration"]
+            "duration": call.get("duration")
         }
 
     def get_all_sms_messages(self, user_email: Optional[str] = None) -> Dict[str, Union[List[Dict], str]]:
@@ -441,7 +443,6 @@ class CommuniLinkApis:
             if call["call_id"] not in seen_call_ids:
                 unique_calls.append(call)
                 seen_call_ids.add(call["call_id"])
-
         return {"voice_calls": unique_calls, "status": "success"}
 
     def get_user_info(self, user_email: str) -> Dict[str, Union[Dict, str]]:
@@ -457,7 +458,7 @@ class CommuniLinkApis:
         """
         user_id = self._get_user_id_by_email(user_email)
         if not user_id:
-            return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
+            return {"error": "User not found"}
 
         user_info_copy = deepcopy(self.users[user_id])
         
@@ -469,8 +470,7 @@ class CommuniLinkApis:
         user_info_copy["friends"] = friend_emails
 
         user_info_copy.pop("password_hash", None)
-
-        return {"user_info": user_info_copy, "status": "success"}
+        return {"user": user_info_copy, "status": "success"}
 
     def update_user_settings(self, user_email: str, settings: Dict) -> Dict[str, Union[Dict, str]]:
         """
@@ -518,8 +518,7 @@ class CommuniLinkApis:
             for record in self.billing_history:
                 record_copy = deepcopy(record)
                 record_copy["user_email"] = self._get_user_email_by_id(record_copy.get("user_id"))
-                filtered_history.append(record_copy)
-                
+                filtered_history.append(record_copy)           
         return {"billing_history": filtered_history, "status": "success"}
 
     def create_support_ticket(self, user_email: str, subject: str, description: str) -> Dict[str, Union[Dict, str]]:
@@ -554,7 +553,8 @@ class CommuniLinkApis:
         ticket_for_display = deepcopy(new_ticket)
         ticket_for_display["user_email"] = user_email
 
-        return {"support_ticket": ticket_for_display, "status": "success", "message": "Support ticket created successfully."}
+        # tests expect the key 'ticket' and the ticket to contain 'ticket_id'
+        return {"ticket": ticket_for_display, "status": "success", "message": "Support ticket created successfully."}
 
     def get_network_status(self) -> Dict[str, str]:
         """
@@ -564,7 +564,7 @@ class CommuniLinkApis:
             Dict: A dictionary indicating the network status.
         """
         time.sleep(0.05)
-        return {"network_status": self.network_status, "status": "success"}
+        return {"status": "success", "message": self.network_status}
 
     def reset_data(self) -> Dict[str, bool]:
         """
@@ -576,4 +576,4 @@ class CommuniLinkApis:
         """
         self._load_scenario(DEFAULT_COMMUNILINK_STATE)
         print("CommuniLinkApis: All dummy data reset to default state.")
-        return {"reset_status": True}
+        return {"success": True, "status": True}
