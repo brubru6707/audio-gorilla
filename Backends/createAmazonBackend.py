@@ -2,7 +2,10 @@ import uuid
 import random
 from datetime import datetime, timedelta
 import json
-from .fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories, states, street_names, city_names, product_qa_based_on_categories, user_count, first_and_last_names, product_reviews_based_on_categories
+try:
+    from .fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories, states, street_names, city_names, product_qa_based_on_categories, user_count, first_and_last_names, product_reviews_based_on_categories
+except ImportError:
+    from fake_data import first_names, last_names, domains, seller_names_based_on_categories, products_based_on_categories, product_descriptions_based_on_categories, states, street_names, city_names, product_qa_based_on_categories, user_count, first_and_last_names, product_reviews_based_on_categories
 
 class User:
     def __init__(self, user_id: str, email: str = None):
@@ -160,7 +163,7 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         address_type = "Home Address" if random.random() < 0.7 else "Work Address"
         addresses[address_id] = {
             "name": address_type,
-            "street_address": f"{random.randint(100, 999)} {random.choice(street_names)} {random.choice(['Street', 'Avenue', 'Road', 'Lane'])}",
+            "street_address": f"{random.randint(100, 999)} {random.choice(street_names)}",
             "city": random.choice(city_names),
             "state": random.choice(states),
             "country": "USA",
@@ -292,9 +295,13 @@ def generate_product(product_id):
                 seller_name = random.choice(seller_name[category])
     else: 
         seller_name = random.choice(flatten_dict_values(seller_names_based_on_categories[main_category_name])) 
+    # Use modulo to wrap around if product_id exceeds list length
+    title_index = product_id % len(flattened_product_titles)
+    desc_index = product_id % len(flattened_product_descriptions)
+    
     product = {
-        "name": flattened_product_titles[product_id],
-        "description": flattened_product_titles[product_id],
+        "name": flattened_product_titles[title_index],
+        "description": flattened_product_descriptions[desc_index],
         "seller": seller_name,
         "price": round(random.uniform(5.00, 1500.00), 2),
         "stock": random.randint(0, 100) + 1,
@@ -394,7 +401,10 @@ def propagate_wish_list_to_users(product_ids):
             num_wish_list_items = random.randint(1, 10)
             for _ in range(num_wish_list_items):
                 product_id = product_ids[random.randint(0, len(product_ids) - 1)]
-                wish_list.append(product_id)
+                wish_list.append({
+                    "product_id": product_id,
+                    "added_date": generate_random_date(2023, 2025)
+                })
             user_data["wish_list"] = wish_list
         else:
             user_data["wish_list"] = []

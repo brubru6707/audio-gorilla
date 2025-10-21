@@ -1,0 +1,184 @@
+{
+    "Multistep": [{
+        "prompt": "Buy me a __ from Amazon and ship it to my work address.",
+        "context": {
+            "user_id": "user_id_1"
+        },
+        "ground_truth": ["add_to_cart('user_id_1', 'product_id_1', 1)", "checkout('user_id_1', 'home_address_1', 'payment_card_id_1')"]
+    },
+    {
+        "prompt": "I want to order a __ and a __ from Amazon. Ship them to my home address.",
+        "context": {
+            "user_id": "user_id_2"
+        },
+        "ground_truth": ["add_to_cart('user_id_2', 'product_id_2', 1)", "add_to_cart('user_id_2', 'product_id_3', 1)", "checkout('user_id_2', 'work_address_1', 'payment_card_id_2')"]
+    },
+    {
+        "prompt": "Start a new monthly Prime Subscription for me.",
+        "context": {
+            "user_id": "user_id_3"
+        },
+        "ground_truth": ["subscribe_prime('user_id_3', 'monthly')"]
+    }, 
+    {
+        "prompt": "Add a new credit card to my Amazon account with number __, expiry __, and CVV __.",
+        "context": {
+            "user_id": "user_id_4"
+        },
+        "ground_truth": ["add_payment_card('user_id_4', 'Addition Financial', 'John Mendez', '2342-2343-2342-3234', '2029', '12')"]
+    }, 
+    {
+        "prompt": "I want two instead of one ____ in my Amazon cart.",
+        "context": {
+            "user_id": "user_id_5"
+        },
+        "ground_truth": ["search_products('product_name_5')", "update_cart_item_quantity('user_id_5', 'product_id_5', 2)"]
+        }
+    ], 
+    "Multiturn": [
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to buy a new laptop from Amazon."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! Do you have a specific brand or model in mind?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, I'm looking for a Dell XPS 13."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Great choice! How many units would you like to add to your cart?"
+                },
+                {
+                    "role": "user",
+                    "content": "Just one, please."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've added one Dell XPS 13 to your cart. Would you like to proceed to checkout?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, please ship it to my home address."
+                }
+            ],
+            "context": {
+                "user_id": "user_id_6"
+            },
+            "ground_truth": ["add_to_cart('user_id_6', 'product_id_6', 1)", "checkout('user_id_6', 'home_address_2', 'payment_card_id_3')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to add my shipping address on Amazon."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! Please provide the new address details."
+                },
+                {
+                    "role": "user",
+                    "content": "It's 476 New Street, Springfield, IL, 62701."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Your shipping address has been updated. Is there anything else I can help you with?"
+                }
+            ],
+            "context": {
+                "user_id": "user_id_7"
+            },
+            "ground_truth": ["add_address('user_id_7', 'user_name','address_id_3', '476 New Street', 'Springfield', 'IL', 'USA', '62701')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to subscribe to Amazon Prime."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Would you like a monthly or annual subscription?"
+                },
+                {
+                    "role": "user",
+                    "content": "Annual, please."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Your annual Prime subscription has been activated. Enjoy the benefits!"
+                }
+            ],
+            "context": {
+                "user_id": "user_id_8"
+            },
+            "ground_truth": ["subscribe_prime('user_id_8', 'annual')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "Buy me a new headphone on Amazon."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! Do you have a specific brand or model in mind?"
+                },
+                {
+                    "role": "user",
+                    "content": "No, just find me a good one."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've found a few options for you. How many would you like to add to your cart?"
+                },
+                {
+                    "role": "user",
+                    "content": "Just one, please."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've added one headphone to your cart. Would you like to proceed to checkout?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, please ship it to my work address."
+                }
+            ],
+            "context": {
+                "user_id": "user_id_9"
+            },
+            "ground_truth": ["search_products('headphone')", "add_to_cart('user_id_9', 'product_id_7', 1)", "checkout('user_id_9', 'work_address_2', 'payment_card_id_4')"]
+        }, 
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to change the quantity of an item in my Amazon cart."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! Which item would you like to update and what quantity do you want?"
+                },
+                {
+                    "role": "user",
+                    "content": "It's a book titled 'Learning Python'. I want to change the quantity to 3."
+                },
+                {
+                    "role": "assistant",
+                    "content": "The quantity of 'Learning Python' has been updated to 3 in your cart. Is there anything else I can assist you with?"
+                }
+            ],
+            "context": {
+                "user_id": "user_id_10"
+            },
+            "ground_truth": ["search_products('Learning Python')", "update_cart_item_quantity('user_id_10', 'product_id_8', 3)"]
+        }
+    ]
+}

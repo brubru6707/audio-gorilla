@@ -760,70 +760,22 @@ products_based_on_categories = {
         "Dune by Frank Herbert - 50th Anniversary Deluxe Hardcover with Dust Jacket",
         "Salt, Fat, Acid, Heat by Samin Nosrat - James Beard Award Winner Cookbook",
         "Sapiens: A Brief History of Humankind by Yuval Noah Harari Paperback",
-        "Bath & Body Works 3-Wick Candle Mahogany Teakwood 14.5oz with Essential Oils",
-        "BenQ e-Reading LED Desk Lamp with Auto-Dimming and Halo Technology",
-        "Titleist Pro V1 Golf Balls Dozen White High Performance Urethane Cover",
-        "Chanel No. 5 Eau de Parfum Spray 3.4oz Classic French Luxury Fragrance",
-        "Charlotte Tilbury Matte Revolution Lipstick Pillow Talk Medium-Full Coverage",
-        "NARS Blush Orgasm 4.8g Peachy Pink with Golden Undertones Cult Classic",
-        "Fenty Beauty Pro Filt'r Soft Matte Longwear Foundation 32ml Medium Coverage",
-        "NARS Radiant Creamy Concealer 6ml Full Coverage Weightless Formula",
-        "Essie Nail Polish Ballet Slippers 0.46oz Sheer Pink Classic Shade",
-        "Olay Regenerist Night Recovery Cream 1.7oz with Niacinamide and Amino-Peptides",
-        "Differin Adapalene Gel 0.1% Acne Treatment 1.6oz Retinoid Prescription Strength",
-        "Kaytee Wild Bird Food Classic Mixed Seed Blend 10lb Bag Sunflower Seeds",
-        "Flexi New Classic Retractable Dog Leash 16ft Cord Medium Dogs up to 44lbs",
-        "KONG Classic Dog Toy Medium Red Durable Natural Rubber Mental Stimulation",
-        "LEGO Star Wars Millennium Falcon 75257 Building Kit 1351 Pieces",
-        "Catan Board Game 5th Edition Strategy Game for 3-4 Players",
-        "TP-Link Deco Mesh WiFi System 3-pack Whole Home Coverage up to 5500 sq ft",
-        "TheraBox Subscription Box for Self Care Monthly Curated Items for Wellness",
-        "PUR Classic 11 Cup Water Filter Pitcher with Lead Reduction Filter",
-        "Calphalon Premier Hard-Anodized Nonstick 11-Piece Cookware Set",
-        "Stanley Classic Legendary Bottle 1.1 Quart Hammertone Green",
-        "LEGO Classic Medium Creative Brick Box 10696 484 Pieces",
-        "Crayola Ultimate Crayon Collection 152 Count with Sharpener",
-        "Samsung Galaxy Watch6 Classic 47mm LTE Black with Rotating Bezel",
-        "Wüsthof Classic Ikon 7-Inch Santoku Knife with Hollow Edge",
-        "UGG Classic Short II Women's Boots Pretreated Against Water",
-        "Polo Ralph Lauren Men's Classic Fit Mesh Polo Shirt",
-        "Fjällräven Kånken Classic Backpack 16L Water Resistant Vinylal Fabric",
-        "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex 1.7 oz",
-        "Whoop 4.0 Fitness and Health Tracker Subscription-based",
-        "Star Wars: X-Wing Second Edition Miniature Game Core Set",
-        "Ravensburger The World's Most Beautiful Jigsaw Puzzles 18000 Pieces",
         "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover",
         "The Food Lab: Better Home Cooking Through Science by J. Kenji López-Alt Bestselling Cookbook",
         "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations",
         "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback",
-        "Fjällräven Kanken Classic Backpack Water Resistant Vinylon F Fabric Daypack",
-        "Chaco Z/1 Classic Sandals Unisex with ChacoGrip Rubber Outsole Adjustable Straps",
-        "Timex Expedition Scout 40mm Watch Men's with INDIGLO Night-Light Brown Leather Strap",
-        "Adidas EPP II Training Soccer Ball Size 5 Machine Stitched TPU Cover",
-        "Srixon Z-Star Golf Balls Dozen White Urethane Cover FastLayer Core",
-        "Ghost Legend Pre-Workout Powder Blue Raspberry 25 Servings",
-        "Proraso Shaving Cream Eucalyptus & Menthol 5.2oz Classic Italian Formula",
-        "NARS Powermatte Lipstick American Woman 5.5ml Matte Finish Full Coverage",
-        "L'Oréal Paris Voluminous Original Mascara Blackest Black Volume Building",
-        "Milk Makeup Flex Concealer 6ml Medium Coverage Concealer with Marshmallow Root",
-        "Autodesk AutoCAD 2024 Professional 2D and 3D CAD Software Subscription",
-        "Boss Katana-50 MkII Guitar Amplifier 50-watt with 5 Amp Characters",
-        "LEGO Star Wars Millennium Falcon 75192 Ultimate Collector Series with 7541 Pieces",
-        "Dungeons & Dragons Starter Set 5th Edition Roleplaying Game",
-        "Hasbro The Black Series Boba Fett (Re-Armored) Electronic Helmet",
-        "Melissa & Doug Food Groups Wooden Play Food Set with 21 Pieces",
-        "Bitdefender Total Security 2024 1-Year Subscription 5 Devices",
-        "NordVPN 2-Year Subscription for 6 Devices with Threat Protection",
-        "ExpressVPN 1-Year Subscription for 5 Devices with 256-bit AES Encryption",
-        "Chemex Classic Series Pour-Over Glass Coffeemaker 8-Cup",
-        "All-Clad D5 Brushed Stainless 5-Ply Bonded Cookware Set 10-Piece",
-        "Wüsthof Classic 8-inch Chef's Knife with Forged Blade and Full Tang",
-        "Shun Classic 8-inch Chef's Knife with Damascus Cladding and D-Shaped Handle",
-        "OXO Good Grips 3-Piece POP Container Set Airtight with Push-Button Seal",
-        "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex Serum 50ml",
-        "IT Cosmetics Your Skin But Better CC+ Cream with SPF 50+ Full Coverage",
-        "Braun Series 9 Pro Electric Shaver with ProLift Trimmer and AutoSense Technology",
-        "Jack Black Double-Duty Face Moisturizer SPF 20 with Blue Algae Extract"
+        "The Hobbit by J.R.R. Tolkien Illustrated Edition Hardcover",
+        "1984 by George Orwell Classic Dystopian Novel Paperback",
+        "To Kill a Mockingbird by Harper Lee 60th Anniversary Edition",
+        "The Great Gatsby by F. Scott Fitzgerald Collector's Edition",
+        "Harry Potter and the Sorcerer's Stone by J.K. Rowling Illustrated Edition",
+        "The Lord of the Rings Trilogy by J.R.R. Tolkien Boxed Set",
+        "Project Hail Mary by Andy Weir Science Fiction Novel Hardcover",
+        "The Thursday Murder Club by Richard Osman Mystery Novel",
+        "Becoming by Michelle Obama Autobiography Hardcover",
+        "The Body Keeps the Score by Bessel van der Kolk Trauma and Healing",
+        "Thinking, Fast and Slow by Daniel Kahneman Psychology Paperback",
+        "The Subtle Art of Not Giving a F*ck by Mark Manson Self-Help",
     ],
     "Gaming & Hobbies": [
         "Bowflex SelectTech 552 Adjustable Dumbbells Set 5-52.5 lbs per Dumbbell",
@@ -4276,270 +4228,148 @@ product_qa_based_on_categories = {
    "q_and_a": []
   },
   {
-   "product_name": "Bath & Body Works 3-Wick Candle Mahogany Teakwood 14.5oz with Essential Oils",
-   "q_and_a": []
-  },
-  {
-   "product_name": "BenQ e-Reading LED Desk Lamp with Auto-Dimming and Halo Technology",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Titleist Pro V1 Golf Balls Dozen White High Performance Urethane Cover",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Chanel No. 5 Eau de Parfum Spray 3.4oz Classic French Luxury Fragrance",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Charlotte Tilbury Matte Revolution Lipstick Pillow Talk Medium-Full Coverage",
-   "q_and_a": []
-  },
-  {
-   "product_name": "NARS Blush Orgasm 4.8g Peachy Pink with Golden Undertones Cult Classic",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Fenty Beauty Pro Filt'r Soft Matte Longwear Foundation 32ml Medium Coverage",
-   "q_and_a": []
-  },
-  {
-   "product_name": "NARS Radiant Creamy Concealer 6ml Full Coverage Weightless Formula",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Essie Nail Polish Ballet Slippers 0.46oz Sheer Pink Classic Shade",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Olay Regenerist Night Recovery Cream 1.7oz with Niacinamide and Amino-Peptides",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Differin Adapalene Gel 0.1% Acne Treatment 1.6oz Retinoid Prescription Strength",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Kaytee Wild Bird Food Classic Mixed Seed Blend 10lb Bag Sunflower Seeds",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Flexi New Classic Retractable Dog Leash 16ft Cord Medium Dogs up to 44lbs",
-   "q_and_a": []
-  },
-  {
-   "product_name": "KONG Classic Dog Toy Medium Red Durable Natural Rubber Mental Stimulation",
-   "q_and_a": []
-  },
-  {
-   "product_name": "LEGO Star Wars Millennium Falcon 75257 Building Kit 1351 Pieces",
+   "product_name": "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover",
    "q_and_a": [
     {
-     "question": "How many minifigures are included in this set?",
-     "answer": "This set includes 7 LEGO Star Wars minifigures: Finn, Chewbacca, Lando Calrissian, C-3PO, and Boolio, plus fan-favorite droids R2-D2 and D-O."
+     "question": "Is this the complete series or just selected volumes?",
+     "answer": "This is the complete collection containing all 75 issues of the original series plus the special issues, all in one beautiful absolute edition hardcover."
     }
    ]
-  },
-  {
-   "product_name": "Catan Board Game 5th Edition Strategy Game for 3-4 Players",
-   "q_and_a": []
-  },
-  {
-   "product_name": "TP-Link Deco Mesh WiFi System 3-pack Whole Home Coverage up to 5500 sq ft",
-   "q_and_a": []
-  },
-  {
-   "product_name": "TheraBox Subscription Box for Self Care Monthly Curated Items for Wellness",
-   "q_and_a": []
-  },
-  {
-   "product_name": "PUR Classic 11 Cup Water Filter Pitcher with Lead Reduction Filter",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Calphalon Premier Hard-Anodized Nonstick 11-Piece Cookware Set",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Stanley Classic Legendary Bottle 1.1 Quart Hammertone Green",
-   "q_and_a": []
-  },
-  {
-   "product_name": "LEGO Classic Medium Creative Brick Box 10696 484 Pieces",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Crayola Ultimate Crayon Collection 152 Count with Sharpener",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Samsung Galaxy Watch6 Classic 47mm LTE Black with Rotating Bezel",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Wüsthof Classic Ikon 7-Inch Santoku Knife with Hollow Edge",
-   "q_and_a": []
-  },
-  {
-   "product_name": "UGG Classic Short II Women's Boots Pretreated Against Water",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Polo Ralph Lauren Men's Classic Fit Mesh Polo Shirt",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Fjällräven Kånken Classic Backpack 16L Water Resistant Vinylal Fabric",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex 1.7 oz",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Whoop 4.0 Fitness and Health Tracker Subscription-based",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Star Wars: X-Wing Second Edition Miniature Game Core Set",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Ravensburger The World's Most Beautiful Jigsaw Puzzles 18000 Pieces",
-   "q_and_a": []
-  },
-  {
-   "product_name": "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover",
-   "q_and_a": []
   },
   {
    "product_name": "The Food Lab: Better Home Cooking Through Science by J. Kenji López-Alt Bestselling Cookbook",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Fjällräven Kanken Classic Backpack Water Resistant Vinylon F Fabric Daypack",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Chaco Z/1 Classic Sandals Unisex with ChacoGrip Rubber Outsole Adjustable Straps",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Timex Expedition Scout 40mm Watch Men's with INDIGLO Night-Light Brown Leather Strap",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Adidas EPP II Training Soccer Ball Size 5 Machine Stitched TPU Cover",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Srixon Z-Star Golf Balls Dozen White Urethane Cover FastLayer Core",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Ghost Legend Pre-Workout Powder Blue Raspberry 25 Servings",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Proraso Shaving Cream Eucalyptus & Menthol 5.2oz Classic Italian Formula",
-   "q_and_a": []
-  },
-  {
-   "product_name": "NARS Powermatte Lipstick American Woman 5.5ml Matte Finish Full Coverage",
-   "q_and_a": []
-  },
-  {
-   "product_name": "L'Oréal Paris Voluminous Original Mascara Blackest Black Volume Building",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Milk Makeup Flex Concealer 6ml Medium Coverage Concealer with Marshmallow Root",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Autodesk AutoCAD 2024 Professional 2D and 3D CAD Software Subscription",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Boss Katana-50 MkII Guitar Amplifier 50-watt with 5 Amp Characters",
-   "q_and_a": []
-  },
-  {
-   "product_name": "LEGO Star Wars Millennium Falcon 75192 Ultimate Collector Series with 7541 Pieces",
    "q_and_a": [
     {
-     "question": "What are the dimensions of the fully built model?",
-     "answer": "The completed Ultimate Collector Series Millennium Falcon is a massive display piece, measuring over 8 inches (21cm) high, 33 inches (84cm) long, and 23 inches (60cm) wide."
+     "question": "Does this cookbook explain the science behind cooking techniques?",
+     "answer": "Yes! This is one of its main strengths. It thoroughly explains the science and reasoning behind each technique, not just the recipes themselves."
     }
    ]
   },
   {
-   "product_name": "Dungeons & Dragons Starter Set 5th Edition Roleplaying Game",
-   "q_and_a": []
+   "product_name": "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations",
+   "q_and_a": [
+    {
+     "question": "Is this the updated version or the original from 1980?",
+     "answer": "This is the 40th anniversary edition with updated content and stunning full-color illustrations throughout, enhanced from the original."
+    }
+   ]
   },
   {
-   "product_name": "Hasbro The Black Series Boba Fett (Re-Armored) Electronic Helmet",
-   "q_and_a": []
+   "product_name": "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback",
+   "q_and_a": [
+    {
+     "question": "What age group is this book appropriate for?",
+     "answer": "It's recommended for ages 8-12 but enjoyable for all ages. It's a beautifully illustrated fantasy adventure based on Chinese folklore."
+    }
+   ]
   },
   {
-   "product_name": "Melissa & Doug Food Groups Wooden Play Food Set with 21 Pieces",
-   "q_and_a": []
+   "product_name": "The Hobbit by J.R.R. Tolkien Illustrated Edition Hardcover",
+   "q_and_a": [
+    {
+     "question": "Are the illustrations by Tolkien himself?",
+     "answer": "Yes, this edition includes J.R.R. Tolkien's original illustrations and maps, making it a special collector's edition."
+    }
+   ]
   },
   {
-   "product_name": "Bitdefender Total Security 2024 1-Year Subscription 5 Devices",
-   "q_and_a": []
+   "product_name": "1984 by George Orwell Classic Dystopian Novel Paperback",
+   "q_and_a": [
+    {
+     "question": "Is this relevant to modern times?",
+     "answer": "Absolutely! Many readers find 1984 even more relevant today with themes of surveillance, propaganda, and government control."
+    }
+   ]
   },
   {
-   "product_name": "NordVPN 2-Year Subscription for 6 Devices with Threat Protection",
-   "q_and_a": []
+   "product_name": "To Kill a Mockingbird by Harper Lee 60th Anniversary Edition",
+   "q_and_a": [
+    {
+     "question": "Does this edition include any special features?",
+     "answer": "Yes, the 60th anniversary edition includes a foreword, historical context, and reader's guide for book clubs and students."
+    }
+   ]
   },
   {
-   "product_name": "ExpressVPN 1-Year Subscription for 5 Devices with 256-bit AES Encryption",
-   "q_and_a": []
+   "product_name": "The Great Gatsby by F. Scott Fitzgerald Collector's Edition",
+   "q_and_a": [
+    {
+     "question": "What makes this a collector's edition?",
+     "answer": "This features a beautiful cloth-bound cover, gilded pages, and includes critical essays and historical context about the Jazz Age."
+    }
+   ]
   },
   {
-   "product_name": "Chemex Classic Series Pour-Over Glass Coffeemaker 8-Cup",
-   "q_and_a": []
+   "product_name": "Harry Potter and the Sorcerer's Stone by J.K. Rowling Illustrated Edition",
+   "q_and_a": [
+    {
+     "question": "Who did the illustrations for this edition?",
+     "answer": "The stunning full-color illustrations are by Jim Kay, bringing the magical world of Hogwarts to life in a completely new way."
+    }
+   ]
   },
   {
-   "product_name": "All-Clad D5 Brushed Stainless 5-Ply Bonded Cookware Set 10-Piece",
-   "q_and_a": []
+   "product_name": "The Lord of the Rings Trilogy by J.R.R. Tolkien Boxed Set",
+   "q_and_a": [
+    {
+     "question": "Does this include all three books?",
+     "answer": "Yes, this boxed set includes The Fellowship of the Ring, The Two Towers, and The Return of the King in beautiful matching editions."
+    }
+   ]
   },
   {
-   "product_name": "Wüsthof Classic 8-inch Chef's Knife with Forged Blade and Full Tang",
-   "q_and_a": []
+   "product_name": "Project Hail Mary by Andy Weir Science Fiction Novel Hardcover",
+   "q_and_a": [
+    {
+     "question": "Is this similar to The Martian?",
+     "answer": "Yes! Same author and similar style of problem-solving sci-fi, but this one involves an interstellar mission. Fans of The Martian will love it."
+    }
+   ]
   },
   {
-   "product_name": "Shun Classic 8-inch Chef's Knife with Damascus Cladding and D-Shaped Handle",
-   "q_and_a": []
+   "product_name": "The Thursday Murder Club by Richard Osman Mystery Novel",
+   "q_and_a": [
+    {
+     "question": "Is this the first book in a series?",
+     "answer": "Yes, this is the first in the Thursday Murder Club series. It's a charming British mystery featuring four retirees who solve cold cases."
+    }
+   ]
   },
   {
-   "product_name": "OXO Good Grips 3-Piece POP Container Set Airtight with Push-Button Seal",
-   "q_and_a": []
+   "product_name": "Becoming by Michelle Obama Autobiography Hardcover",
+   "q_and_a": [
+    {
+     "question": "Does she discuss her time as First Lady?",
+     "answer": "Yes, she shares intimate stories from her time in the White House, her childhood in Chicago, and her work advocating for women and girls."
+    }
+   ]
   },
   {
-   "product_name": "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex Serum 50ml",
-   "q_and_a": []
+   "product_name": "The Body Keeps the Score by Bessel van der Kolk Trauma and Healing",
+   "q_and_a": [
+    {
+     "question": "Is this written for professionals or general readers?",
+     "answer": "While it's based on scientific research, it's written accessibly for general readers interested in understanding trauma and its effects on the body and mind."
+    }
+   ]
   },
   {
-   "product_name": "IT Cosmetics Your Skin But Better CC+ Cream with SPF 50+ Full Coverage",
-   "q_and_a": []
+   "product_name": "Thinking, Fast and Slow by Daniel Kahneman Psychology Paperback",
+   "q_and_a": [
+    {
+     "question": "Is this book dense or easy to read?",
+     "answer": "It covers complex psychology concepts but Kahneman writes clearly with engaging examples. It requires attention but is accessible to non-academic readers."
+    }
+   ]
   },
   {
-   "product_name": "Braun Series 9 Pro Electric Shaver with ProLift Trimmer and AutoSense Technology",
-   "q_and_a": []
-  },
-  {
-   "product_name": "Jack Black Double-Duty Face Moisturizer SPF 20 with Blue Algae Extract",
-   "q_and_a": []
+   "product_name": "The Subtle Art of Not Giving a F*ck by Mark Manson Self-Help",
+   "q_and_a": [
+    {
+     "question": "Is this a typical self-help book?",
+     "answer": "Not at all! It's a counterintuitive, no-nonsense approach to living a good life that challenges conventional self-help wisdom with humor and honesty."
+    }
+   ]
   }
  ],
  "Gaming & Hobbies": [
@@ -6966,71 +6796,23 @@ product_descriptions_based_on_categories = {
         "Dune by Frank Herbert - 50th Anniversary Deluxe Hardcover with Dust Jacket: Celebrating a milestone for one of science fiction's most revered novels, this deluxe hardcover edition of 'Dune' is a beautiful tribute to Frank Herbert's masterpiece. The book tells the epic story of Paul Atreides and his quest to control the desert planet Arrakis. This collector's item features a dust jacket, making it a stunning addition to any bookshelf.",
         "Salt, Fat, Acid, Heat by Samin Nosrat - James Beard Award Winner Cookbook: More than just a cookbook, this James Beard Award-winning title by Samin Nosrat is a comprehensive guide to the four elements of good cooking. It teaches you how to master these principles to improve your food, regardless of the recipe. The book's engaging writing and clear illustrations make it accessible for both beginner cooks and seasoned professionals.",
         "Sapiens: A Brief History of Humankind by Yuval Noah Harari Paperback: Yuval Noah Harari's global bestseller is a thought-provoking exploration of humanity's history, from our origins to the present day. The book examines the major revolutions that have shaped our species, including the Cognitive, Agricultural, and Scientific revolutions. This paperback edition is an accessible entry point into a fascinating and mind-expanding read.",
-        "Bath & Body Works 3-Wick Candle Mahogany Teakwood 14.5oz with Essential Oils: This large, 3-wick candle from Bath & Body Works provides a long-lasting and powerful fragrance experience. The Mahogany Teakwood scent is a classic blend of rich mahogany, black teakwood, and dark oak, enhanced with essential oils for a strong, consistent aroma. Its three wicks ensure an even burn and a beautiful glow, making it a perfect addition to any room.",
-        "BenQ e-Reading LED Desk Lamp with Auto-Dimming and Halo Technology: The BenQ e-Reading Desk Lamp is specifically designed to provide optimal lighting for reading and working on a computer. Its unique curved head creates a wide, even light distribution to eliminate glare on screens. The lamp also features an auto-dimming function that adjusts brightness based on ambient light, and a 'halo' feature that illuminates the entire desk space.",
-        "Titleist Pro V1 Golf Balls Dozen White High Performance Urethane Cover: The Titleist Pro V1 is a premium golf ball favored by professional and amateur players alike for its exceptional performance. It features a high-performance urethane cover that provides a soft feel, excellent spin control, and durability. These balls are engineered for a long and consistent flight, making them a top choice for serious golfers.",
-        "Chanel No. 5 Eau de Parfum Spray 3.4oz Classic French Luxury Fragrance: Chanel No. 5 is arguably the most famous perfume in the world, an iconic and luxurious fragrance with a timeless appeal. This Eau de Parfum features a complex and sophisticated blend of floral notes, including jasmine, rose, and ylang-ylang, with a hint of aldehydes that create its signature scent. It's a classic French fragrance that represents elegance and style.",
-        "Charlotte Tilbury Matte Revolution Lipstick Pillow Talk Medium-Full Coverage: 'Pillow Talk' by Charlotte Tilbury is a cult-favorite lipstick known for its universally flattering nude-pink shade. The Matte Revolution formula provides a velvety matte finish with medium-to-full coverage that feels hydrating and comfortable on the lips. Its square-angled tip is designed to mimic a lip brush for precise application.",
-        "NARS Blush Orgasm 4.8g Peachy Pink with Golden Undertones Cult Classic: The NARS 'Orgasm' blush is a legendary beauty product, beloved for its peachy-pink shade with a subtle golden shimmer that flatters a wide range of skin tones. This cult-classic powder blush provides a natural, healthy-looking flush and a radiant glow. Its silky, blendable formula makes it easy to apply and build for a customized look.",
-        "Fenty Beauty Pro Filt'r Soft Matte Longwear Foundation 32ml Medium Coverage: Fenty Beauty's Pro Filt'r foundation is a highly popular and inclusive foundation known for its vast range of shades. The formula provides a soft matte, long-wearing finish with medium-to-full coverage that is designed to be sweat and humidity-resistant. It's a go-to choice for a flawless and lasting complexion.",
-        "NARS Radiant Creamy Concealer 6ml Full Coverage Weightless Formula: This concealer by NARS is a favorite among makeup artists and consumers for its ability to hide imperfections and brighten the complexion. It provides full, buildable coverage with a luminous, radiant finish that doesn't crease or cake. The weightless formula is enriched with botanical extracts to hydrate and protect the skin, making it comfortable for all-day wear.",
-        "Essie Nail Polish Ballet Slippers 0.46oz Sheer Pink Classic Shade: Essie's 'Ballet Slippers' is a timeless and iconic nail polish shade, a soft and sheer pink that is perfect for a clean, elegant look. This classic color is a favorite for its delicate and subtle appearance, suitable for any occasion. The polish applies smoothly and provides a beautiful, glossy finish.",
-        "Olay Regenerist Night Recovery Cream 1.7oz with Niacinamide and Amino-Peptides: This night cream from Olay is designed to hydrate and renew the skin while you sleep. The formula is packed with key anti-aging ingredients, including niacinamide and a blend of amino-peptides, to reduce the appearance of fine lines and wrinkles. The cream works to improve skin's elasticity and firmness, leaving you with a smooth and radiant complexion by morning.",
-        "Differin Adapalene Gel 0.1% Acne Treatment 1.6oz Retinoid Prescription Strength: Differin Gel is a powerful over-the-counter acne treatment containing adapalene, a retinoid previously available only by prescription. It works by normalizing skin cell turnover to prevent pores from clogging, effectively treating and preventing breakouts. This gel is a strong and effective solution for combating acne.",
-        "Kaytee Wild Bird Food Classic Mixed Seed Blend 10lb Bag Sunflower Seeds: This 10lb bag of wild bird food from Kaytee is a classic mixed seed blend designed to attract a wide variety of birds to your backyard. The mix is rich in sunflower seeds, a favorite among many bird species, providing a high-energy food source. It's an excellent choice for anyone looking to start or maintain a bird feeder.",
-        "Flexi New Classic Retractable Dog Leash 16ft Cord Medium Dogs up to 44lbs: The Flexi New Classic is a convenient retractable dog leash that gives your pet up to 16 feet of freedom while still maintaining control. The cord is durable and suitable for medium-sized dogs weighing up to 44 pounds. Its ergonomic handle and one-handed braking system make it easy and comfortable to use during walks.",
-        "KONG Classic Dog Toy Medium Red Durable Natural Rubber Mental Stimulation: The KONG Classic is a staple in dog toys, made from durable, all-natural red rubber that is perfect for power chewers. Its unpredictable bounce makes it ideal for games of fetch, and it can be stuffed with treats or kibble to provide mental stimulation and reduce boredom. This medium-sized toy is a great way to keep your dog engaged and happy.",
-        "LEGO Star Wars Millennium Falcon 75257 Building Kit 1351 Pieces: This 1351-piece LEGO set allows you to build a detailed and playable version of the iconic Millennium Falcon from Star Wars. It features a range of minifigures, a removable cockpit, and interior details for imaginative play. The set is a fun and engaging build for fans of the Star Wars saga and LEGO.",
-        "Catan Board Game 5th Edition Strategy Game for 3-4 Players: Catan, formerly known as The Settlers of Catan, is a modern classic strategy board game where players compete to build the most prosperous settlements on the island of Catan. This 5th Edition is a great entry point for new players, providing everything needed for 3-4 players to trade resources, build roads, and expand their civilization. It's a highly replayable and engaging game night choice.",
-        "TP-Link Deco Mesh WiFi System 3-pack Whole Home Coverage up to 5500 sq ft: The TP-Link Deco Mesh WiFi System is a three-pack of units that work together to create a seamless, whole-home network. The system is designed to provide coverage up to 5500 sq ft, eliminating dead zones and ensuring a stable internet connection. It's an excellent solution for large homes that need reliable and fast Wi-Fi in every corner.",
-        "TheraBox Subscription Box for Self Care Monthly Curated Items for Wellness: TheraBox is a subscription service that delivers a monthly curated box of self-care and wellness products. Each box is centered around a theme and contains a variety of items, from aromatherapy and skincare to journals and books. It's a great way to discover new products and prioritize your mental and physical well-being.",
-        "PUR Classic 11 Cup Water Filter Pitcher with Lead Reduction Filter: The PUR Classic Water Filter Pitcher is a large-capacity pitcher that can hold up to 11 cups of water. It comes with a filter that is certified to reduce a variety of contaminants, including lead, chlorine, and mercury. The pitcher's sleek design and filter life indicator make it a convenient and effective way to enjoy cleaner, better-tasting water.",
-        "Calphalon Premier Hard-Anodized Nonstick 11-Piece Cookware Set: This 11-piece cookware set from Calphalon Premier is made with a durable hard-anodized aluminum exterior and a three-layer nonstick interior. The nonstick surface allows for easy food release and cleanup, and the hard-anodized construction ensures even heating. This comprehensive set is a great investment for any home cook.",
-        "Stanley Classic Legendary Bottle 1.1 Quart Hammertone Green: The Stanley Classic Legendary Bottle is a durable, vacuum-insulated thermos that is built to keep your drinks hot or cold for up to 28 hours. It features a rugged, hammertone green finish and a double-wall stainless steel construction that can withstand a lot of abuse. This 1.1-quart bottle is an essential piece of gear for camping, hiking, or any outdoor adventure.",
-        "LEGO Classic Medium Creative Brick Box 10696 484 Pieces: This LEGO Classic set is a versatile collection of 484 bricks in 35 different colors, designed to inspire creative building. It includes a variety of windows, eyes, and wheels, along with a baseplate, to help you build almost anything you can imagine. The set is perfect for kids and adults who want to explore their creativity with LEGOs.",
-        "Crayola Ultimate Crayon Collection 152 Count with Sharpener: The Crayola Ultimate Crayon Collection is a massive set of 152 crayons in a wide range of vibrant colors. The collection comes in a convenient tiered case with a built-in sharpener, making it easy to find the perfect shade and keep your crayons in top condition. This is an essential art supply for any young artist.",
-        "Samsung Galaxy Watch6 Classic 47mm LTE Black with Rotating Bezel: The Samsung Galaxy Watch6 Classic is a premium smartwatch with a large 47mm display and a classic rotating bezel for intuitive navigation. It features LTE connectivity, allowing you to make calls and stream music without your phone nearby. The watch is packed with advanced health and fitness tracking features, making it a powerful and stylish companion for your daily life.",
-        "Wüsthof Classic Ikon 7-Inch Santoku Knife with Hollow Edge: The Wüsthof Classic Ikon Santoku knife is a high-quality kitchen tool with a precision-forged blade that is perfect for slicing, dicing, and mincing. The hollow edge creates small air pockets between the blade and food, preventing it from sticking. The ergonomic handle is designed for a comfortable and secure grip, making it a joy to use in the kitchen.",
-        "UGG Classic Short II Women's Boots Pretreated Against Water: The UGG Classic Short II is a popular style of women's boot that is beloved for its comfort and warmth. The boot is made with a plush sheepskin lining and a durable Treadlite sole for a cushioned feel. It also comes pretreated to resist water and stains, ensuring your boots stay looking great for longer.",
-        "Polo Ralph Lauren Men's Classic Fit Mesh Polo Shirt: The Polo Ralph Lauren Classic Fit Mesh Polo Shirt is an iconic piece of apparel known for its timeless style and comfortable fit. It's made from a breathable mesh cotton fabric that is perfect for a variety of occasions. The classic fit is designed to be relaxed through the chest and waist, providing a comfortable and polished look.",
-        "Fjällräven Kånken Classic Backpack 16L Water Resistant Vinylal Fabric: The Fjällräven Kånken Classic Backpack is a stylish and durable daypack known for its simple, functional design. It's made from a water-resistant Vinylal fabric that protects your belongings from light rain and dirt. With a 16L capacity, it's perfect for carrying your essentials for school, work, or a day trip.",
-        "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex 1.7 oz: This is a popular and powerful anti-aging serum from Estée Lauder that works to repair and renew the skin overnight. The formula is designed to reduce the appearance of multiple signs of aging, including fine lines and wrinkles. It leaves your skin feeling hydrated and looking radiant, making it a key step in a nightly skincare routine.",
-        "Whoop 4.0 Fitness and Health Tracker Subscription-based: The Whoop 4.0 is a screen-free fitness and health tracker that provides in-depth data on your sleep, recovery, and daily strain. Unlike traditional trackers, it focuses on providing actionable insights to help you optimize your performance. This is a subscription-based service that is popular among athletes and anyone serious about their health data.",
-        "Star Wars: X-Wing Second Edition Miniature Game Core Set: Star Wars: X-Wing Second Edition is a fast-paced tabletop miniature game of starfighter combat. The Core Set includes everything you need to start playing, including detailed starfighter miniatures, dice, and movement tools. Players take command of iconic ships from the Star Wars universe and engage in thrilling dogfights.",
-        "Ravensburger The World's Most Beautiful Jigsaw Puzzles 18000 Pieces: This enormous jigsaw puzzle from Ravensburger is a challenging and rewarding project for puzzle enthusiasts. With 18000 pieces, it's one of the largest puzzles available and features a stunning, high-quality image. Ravensburger is known for its durable, high-quality pieces, ensuring a satisfying and long-lasting puzzle experience.",
-        "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover: The Absolute Edition of 'The Sandman' is a definitive, oversized hardcover collection of Neil Gaiman's acclaimed comic book series. The books are printed on high-quality paper with a slipcase, showcasing the art in a large format. This collection is a beautiful and comprehensive way to experience Gaiman's masterpiece.",
-        "The Food Lab: Better Home Cooking Through Science by J. Kenji López-Alt Bestselling Cookbook: J. Kenji López-Alt's 'The Food Lab' is a groundbreaking cookbook that uses a scientific approach to explain why certain cooking techniques work. The book is packed with detailed explanations, experiments, and recipes that will help you become a better, more confident cook. This bestselling title is an essential reference for anyone who loves to cook and wants to understand the science behind it.",
-        "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations: This 40th Anniversary Hardcover Edition of Carl Sagan's 'Cosmos' is a beautifully produced version of a classic book on science and astronomy. The book takes readers on a journey through space and time, explaining complex scientific concepts in an accessible way. This special edition features full-color illustrations and a new introduction, making it a stunning addition to any library.",
-        "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback: 'Where the Mountain Meets the Moon' is a magical children's fantasy novel by Grace Lin that won a Newbery Honor. The story follows a young girl named Minli on her quest to find the Old Man on the Moon to change her family's fortune. The paperback edition is a great way to introduce young readers to this charming and beautifully illustrated tale.",
-        "Fjällräven Kanken Classic Backpack Water Resistant Vinylon F Fabric Daypack: The Fjällräven Kanken Classic Backpack is a stylish and durable daypack known for its simple, functional design. It's made from a water-resistant Vinylon F fabric that protects your belongings from light rain and dirt. With a 16L capacity, it's perfect for carrying your essentials for school, work, or a day trip.",
-        "Chaco Z/1 Classic Sandals Unisex with ChacoGrip Rubber Outsole Adjustable Straps: Chaco Z/1 Classic Sandals are durable and comfortable outdoor sandals that are perfect for hiking, water activities, and everyday wear. They feature a single strap that wraps around the foot for a customized fit and a non-marking ChacoGrip rubber outsole for excellent traction. These sandals are known for their long-lasting quality and versatile design.",
-        "Timex Expedition Scout 40mm Watch Men's with INDIGLO Night-Light Brown Leather Strap: The Timex Expedition Scout is a rugged and reliable men's watch with a classic field watch design. The 40mm case is paired with a comfortable brown leather strap and features a date window and easy-to-read dial. The watch also includes the brand's signature INDIGLO Night-Light, which illuminates the entire dial for easy viewing in low light conditions.",
-        "Adidas EPP II Training Soccer Ball Size 5 Machine Stitched TPU Cover: The Adidas EPP II is a durable training soccer ball perfect for practice and casual games. Its machine-stitched construction ensures a consistent touch and shape retention. The TPU cover is designed to withstand the wear and tear of both indoor and outdoor play, making it a reliable choice for players of all levels.",
-        "Srixon Z-Star Golf Balls Dozen White Urethane Cover FastLayer Core: The Srixon Z-Star golf ball is a premium performance ball designed for golfers who want maximum spin and feel around the greens. It features a soft urethane cover that provides exceptional greenside control and a FastLayer Core for increased ball speed and distance. These balls are a great choice for skilled players who demand high performance.",
-        "Ghost Legend Pre-Workout Powder Blue Raspberry 25 Servings: Ghost Legend is a popular pre-workout supplement designed to provide energy, focus, and pump for your workouts. This powder comes in a delicious blue raspberry flavor and provides 25 servings per container. It's a great option for those looking to enhance their gym performance and get the most out of their training sessions.",
-        "Proraso Shaving Cream Eucalyptus & Menthol 5.2oz Classic Italian Formula: Proraso Shaving Cream is a classic Italian formula known for its refreshing and invigorating properties. The cream is enriched with eucalyptus oil and menthol, providing a cooling sensation and a smooth shave. It's a great choice for anyone looking for a high-quality, old-school shaving experience.",
-        "NARS Powermatte Lipstick American Woman 5.5ml Matte Finish Full Coverage: The NARS Powermatte Lipstick is a long-wearing liquid lipstick that delivers a full-coverage, matte finish in a single swipe. The 'American Woman' shade is a popular chestnut rose that is both modern and timeless. Its innovative formula feels weightless on the lips and stays put for hours without smudging or fading.",
-        "L'Oréal Paris Voluminous Original Mascara Blackest Black Volume Building: L'Oréal Paris Voluminous Original Mascara is a classic mascara that has been a fan favorite for years. Its volume-building formula is designed to create lashes that are up to five times their natural thickness, without clumping or smudging. The mascara's rich, black color and conical brush work together to create a bold and dramatic eye look.",
-        "Milk Makeup Flex Concealer 6ml Medium Coverage Concealer with Marshmallow Root: The Milk Makeup Flex Concealer is a flexible, medium-coverage concealer that is designed to move with your skin, preventing it from creasing or caking. The formula is infused with marshmallow root extract, which helps to hydrate and soothe the skin. This concealer is a great choice for anyone looking for a natural-looking finish that lasts all day.",
-        "Autodesk AutoCAD 2024 Professional 2D and 3D CAD Software Subscription: Autodesk AutoCAD is the industry-standard software for 2D and 3D computer-aided design (CAD). This professional-grade software is used by architects, engineers, and designers to create precise drawings and models. The 2024 subscription provides access to the latest features and updates, making it an essential tool for any professional in the design industry.",
-        "Boss Katana-50 MkII Guitar Amplifier 50-watt with 5 Amp Characters: The Boss Katana-50 MkII is a versatile 50-watt guitar amplifier that is perfect for practice, jamming, and small gigs. It features five distinct amp characters, from clean to brown, allowing you to dial in a wide variety of tones. The amp also includes a range of built-in effects, making it a great all-in-one solution for guitarists.",
-        "LEGO Star Wars Millennium Falcon 75192 Ultimate Collector Series with 7541 Pieces: This LEGO Star Wars set is an enormous and highly-detailed model of the Millennium Falcon, part of the Ultimate Collector Series. With an incredible 7,541 pieces, it's one of the largest LEGO sets ever created and is designed for the ultimate Star Wars enthusiast. The set is packed with intricate details and features, making it a challenging and rewarding build.",
-        "Dungeons & Dragons Starter Set 5th Edition Roleplaying Game: The Dungeons & Dragons Starter Set is the perfect way to get into the world of tabletop roleplaying games. It includes everything a group of 4-6 players needs to start an adventure, including a rulebook, a pre-written adventure, and pre-generated characters. This set is a great entry point for those who are new to D&D and want to experience the magic of collaborative storytelling.",
-        "Hasbro The Black Series Boba Fett (Re-Armored) Electronic Helmet: This electronic helmet from Hasbro's The Black Series is a highly-detailed, full-scale replica of Boba Fett's helmet from the Star Wars series. It features a flip-down rangefinder with LED lights and a weathered design, making it perfect for cosplay, display, or collecting. This is a great piece of gear for any fan of the iconic bounty hunter.",
-        "Melissa & Doug Food Groups Wooden Play Food Set with 21 Pieces: The Melissa & Doug Food Groups set is a classic wooden toy that teaches children about healthy eating and nutrition. The 21-piece set includes a variety of foods from the four basic food groups, along with four wooden crates for storage and sorting. It's a great toy for imaginative play and for helping kids learn about different types of food.",
-        "Bitdefender Total Security 2024 1-Year Subscription 5 Devices: Bitdefender Total Security is a comprehensive cybersecurity suite that provides protection against a wide range of online threats, including viruses, malware, and ransomware. The 2024 version offers a one-year subscription that can be used on up to five devices, including PCs, Macs, and mobile devices. It's a great all-in-one solution for protecting your digital life.",
-        "NordVPN 2-Year Subscription for 6 Devices with Threat Protection: NordVPN is a popular virtual private network (VPN) service that allows you to browse the internet securely and privately. The two-year subscription provides access to a large network of servers and can be used on up to six devices. The service also includes a Threat Protection feature that blocks malware, trackers, and malicious websites, providing an extra layer of security.",
-        "ExpressVPN 1-Year Subscription for 5 Devices with 256-bit AES Encryption: ExpressVPN is a high-speed VPN service known for its reliability and security. The one-year subscription provides access to servers in over 90 countries and can be used on up to five devices. The service uses 256-bit AES encryption to protect your data, making it a great choice for anyone who wants to browse the internet securely and privately.",
-        "Chemex Classic Series Pour-Over Glass Coffeemaker 8-Cup: The Chemex Classic Series is an elegant and timeless pour-over coffeemaker that brews clean, flavorful coffee. The coffeemaker is made from a single piece of heat-resistant borosilicate glass and features a wooden collar with a leather tie. The 8-cup capacity is perfect for brewing a large batch of coffee to share with friends and family.",
-        "All-Clad D5 Brushed Stainless 5-Ply Bonded Cookware Set 10-Piece: The All-Clad D5 Brushed Stainless Cookware Set is a professional-grade 10-piece collection with a five-ply bonded construction that provides superior heat distribution and warp resistance. The brushed stainless finish is a stylish and durable addition to any kitchen. This set is a fantastic investment for anyone who is serious about cooking.",
-        "Wüsthof Classic 8-inch Chef's Knife with Forged Blade and Full Tang: The Wüsthof Classic 8-inch Chef's Knife is a professional-grade kitchen knife that is perfect for a variety of tasks, from chopping vegetables to slicing meat. The knife features a precision-forged blade with a full tang for exceptional balance and durability. Its ergonomic handle is designed for a comfortable and secure grip, making it a joy to use in the kitchen.",
-        "Shun Classic 8-inch Chef's Knife with Damascus Cladding and D-Shaped Handle: The Shun Classic 8-inch Chef's Knife is a high-end Japanese-style kitchen knife that is known for its incredible sharpness and stunning craftsmanship. The blade features Damascus cladding, which not only looks beautiful but also helps to prevent food from sticking. The D-shaped handle is designed for a comfortable and secure grip, making it an excellent tool for any serious cook.",
-        "OXO Good Grips 3-Piece POP Container Set Airtight with Push-Button Seal: The OXO Good Grips POP Container Set is a convenient and effective food storage solution. The containers feature a unique push-button seal that creates an airtight seal to keep food fresh. The modular design allows you to stack them neatly in your pantry, making it easy to keep your kitchen organized and your food fresh.",
-        "Estée Lauder Advanced Night Repair Synchronized Multi-Recovery Complex Serum 50ml: This is a popular and powerful anti-aging serum from Estée Lauder that works to repair and renew the skin overnight. The formula is designed to reduce the appearance of multiple signs of aging, including fine lines and wrinkles. It leaves your skin feeling hydrated and looking radiant, making it a key step in a nightly skincare routine.",
-        "IT Cosmetics Your Skin But Better CC+ Cream with SPF 50+ Full Coverage: The IT Cosmetics CC+ Cream is a multi-functional beauty product that combines full-coverage foundation, anti-aging serum, and SPF 50+ sunscreen. It works to correct the appearance of skin imperfections while providing hydration and sun protection. This is a great all-in-one product for anyone who wants a flawless complexion with added skincare benefits.",
-        "Braun Series 9 Pro Electric Shaver with ProLift Trimmer and AutoSense Technology: The Braun Series 9 Pro is a high-end electric shaver that provides a close, comfortable, and efficient shave. It features a specialized ProLift Trimmer that captures flat-lying hairs and AutoSense technology that adjusts the power to your beard's density. This is a great choice for anyone who wants a powerful and advanced shaving experience.",
-        "Jack Black Double-Duty Face Moisturizer SPF 20 with Blue Algae Extract: The Jack Black Double-Duty Face Moisturizer is a lightweight, all-in-one moisturizer that provides hydration and sun protection. The formula contains SPF 20 to protect your skin from UV rays and blue algae extract to help improve skin's elasticity. This is a great daily moisturizer for men who want a simple yet effective skincare routine."
-    ],
+        "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover: Neil Gaiman's groundbreaking masterpiece is collected in this stunning absolute edition. The series follows Dream, also known as Morpheus, one of the seven Endless, as he rebuilds his kingdom after 70 years of imprisonment. This complete collection includes all 75 issues plus special editions, featuring exquisite artwork and storytelling that redefined the comic book medium.",
+        "The Food Lab: Better Home Cooking Through Science by J. Kenji López-Alt Bestselling Cookbook: A New York Times bestseller that revolutionizes home cooking by exploring the science behind great food. López-Alt combines rigorous testing with accessible explanations to help home cooks understand why recipes work. The book includes hundreds of simple techniques and recipes, all tested and perfected through thousands of kitchen experiments.",
+        "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations: This 40th anniversary edition celebrates Carl Sagan's timeless classic about our universe and our place within it. Featuring stunning full-color photographs and illustrations, this hardcover edition brings Sagan's visionary perspective to life. The book explores the origins of life, consciousness, and the future of humanity in space.",
+        "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback: A Newbery Honor-winning fantasy adventure that weaves Chinese folklore into an unforgettable story. Young Minli embarks on a quest to find the Old Man of the Moon and change her family's fortune. Beautifully illustrated by the author, this paperback edition is perfect for readers who love tales of adventure, magic, and the power of storytelling.",
+        "The Hobbit by J.R.R. Tolkien Illustrated Edition Hardcover: Tolkien's beloved classic about Bilbo Baggins' unexpected journey, featuring the author's own illustrations and maps. This illustrated hardcover edition showcases Tolkien's artistic vision alongside his masterful storytelling. Follow Bilbo as he encounters trolls, goblins, elves, and a dragon in his quest to reclaim the dwarves' treasure.",
+        "1984 by George Orwell Classic Dystopian Novel Paperback: Orwell's chilling vision of a totalitarian future where Big Brother watches everything remains disturbingly relevant. This classic dystopian novel explores themes of surveillance, propaganda, and the manipulation of truth. A must-read that continues to resonate with readers as a warning about the dangers of unchecked government power.",
+        "To Kill a Mockingbird by Harper Lee 60th Anniversary Edition: Harper Lee's Pulitzer Prize-winning novel about racial injustice and childhood innocence in the American South. This 60th anniversary edition includes special features celebrating the book's enduring legacy. Through the eyes of young Scout Finch, readers experience powerful lessons about empathy, courage, and standing up for what's right.",
+        "The Great Gatsby by F. Scott Fitzgerald Collector's Edition: F. Scott Fitzgerald's masterpiece of the Jazz Age, presented in a beautiful collector's edition with cloth binding and gilded pages. The story of Jay Gatsby's obsessive pursuit of Daisy Buchanan remains one of American literature's greatest achievements. This edition includes critical essays providing historical and literary context.",
+        "Harry Potter and the Sorcerer's Stone by J.K. Rowling Illustrated Edition: The magical beginning of Harry's journey, brought to life with Jim Kay's breathtaking full-color illustrations. This large-format illustrated edition transforms Rowling's beloved story into a visual masterpiece. Perfect for fans of all ages who want to experience Hogwarts in a completely new way.",
+        "The Lord of the Rings Trilogy by J.R.R. Tolkien Boxed Set: The complete epic fantasy trilogy in a beautiful boxed set featuring matching editions. Follow Frodo's quest to destroy the One Ring across Middle-earth in this timeless tale of friendship, sacrifice, and the battle between good and evil. This set includes The Fellowship of the Ring, The Two Towers, and The Return of the King.",
+        "Project Hail Mary by Andy Weir Science Fiction Novel Hardcover: From the author of The Martian comes a spectacular interstellar adventure about a lone astronaut who must save Earth. Ryland Grace wakes up on a spaceship with no memory of how he got there, facing an impossible scientific mystery. This hardcover edition delivers Weir's signature blend of hard science, humor, and heart-pounding suspense.",
+        "The Thursday Murder Club by Richard Osman Mystery Novel: A charming and clever mystery featuring four unlikely sleuths living in a British retirement village. Every Thursday, these septuagenarians meet to investigate unsolved murders, until a real case lands on their doorstep. The first in a bestselling series that combines humor, heart, and clever plotting.",
+        "Becoming by Michelle Obama Autobiography Hardcover: The intimate and inspiring memoir of the former First Lady of the United States. Michelle Obama shares her story from childhood on Chicago's South Side to her years in the White House. This hardcover edition offers honest reflections on motherhood, marriage, work, health, and her journey finding her voice.",
+        "The Body Keeps the Score by Bessel van der Kolk Trauma and Healing: A groundbreaking exploration of how trauma reshapes the body and brain, and pathways to recovery. Dr. van der Kolk draws on decades of research and clinical work to explain how trauma affects development and treatment approaches. This book has become essential reading for anyone interested in understanding and healing from trauma.",
+        "Thinking, Fast and Slow by Daniel Kahneman Psychology Paperback: Nobel Prize winner Daniel Kahneman explores the two systems that drive the way we think and make decisions. This influential book reveals where we can trust our intuitions and when we cannot. A fascinating journey into the psychology of judgment, decision-making, and the workings of the human mind.",
+        "The Subtle Art of Not Giving a F*ck by Mark Manson Self-Help: A counterintuitive approach to living a good life that challenges the relentless positivity of conventional self-help. Manson argues that improvement comes from choosing what to care about based on personal values. Written with profanity-laced humor and brutal honesty, this book offers refreshing perspective on happiness and success.",
+        ],
     "Gaming & Hobbies": [
         "Bowflex SelectTech 552 Adjustable Dumbbells Set 5-52.5 lbs per Dumbbell: The Bowflex SelectTech 552 is a convenient and space-saving set of adjustable dumbbells. With a simple turn of a dial, you can change the weight from 5 to 52.5 pounds, eliminating the need for an entire rack of dumbbells. This set is a great investment for anyone looking to build a home gym or save space.",
         "Plano 3700 Tackle Box with Adjustable Dividers Clear Lid Organization: The Plano 3700 is a versatile tackle box that is perfect for organizing fishing gear, craft supplies, or other small items. It features a clear lid for easy viewing and adjustable dividers that allow you to customize the storage space. This is a great solution for anyone who needs to keep their small items organized and easily accessible.",
@@ -18941,6 +18723,26 @@ product_reviews_based_on_categories = {
         {"product_name": "The Seven Husbands of Evelyn Hugo by Taylor Jenkins Reid", "rating": 4.7, "review": "Captivating story! The characters are well-developed and the plot twists are surprising. A page-turner that explores love, ambition, and sacrifice."},
         {"product_name": "Educated by Tara Westover", "rating": 4.6, "review": "Powerful memoir! The story is both heartbreaking and inspiring. Well-written account of education, family, and finding your own path."},
         {"product_name": "The Midnight Library by Matt Haig", "rating": 4.4, "review": "Thought-provoking concept! Explores life's possibilities in an engaging way. A philosophical read that makes you reflect on choices and regrets."},
+        {"product_name": "Watchmen: The Complete Collection by Alan Moore Deluxe Hardcover Edition", "rating": 4.9, "review": "A masterpiece of the graphic novel medium! The storytelling is complex and layered, with incredible depth. This deluxe edition is beautifully produced."},
+        {"product_name": "Dune by Frank Herbert - 50th Anniversary Deluxe Hardcover with Dust Jacket", "rating": 4.8, "review": "Epic science fiction at its finest! The world-building is unparalleled and the political intrigue is fascinating. This anniversary edition is stunning."},
+        {"product_name": "Salt, Fat, Acid, Heat by Samin Nosrat - James Beard Award Winner Cookbook", "rating": 4.7, "review": "Transformed the way I cook! Understanding these four elements has made me a more confident and creative cook. Beautifully illustrated and written."},
+        {"product_name": "Sapiens: A Brief History of Humankind by Yuval Noah Harari Paperback", "rating": 4.6, "review": "Mind-expanding read! Harari's perspective on human history is both fascinating and thought-provoking. Changed how I think about our species."},
+        {"product_name": "The Sandman: The Complete Collection by Neil Gaiman Absolute Edition Hardcover", "rating": 4.9, "review": "Simply extraordinary! Gaiman's storytelling is mesmerizing and the art is breathtaking. This absolute edition is a work of art itself."},
+        {"product_name": "The Food Lab: Better Home Cooking Through Science by J. Kenji López-Alt Bestselling Cookbook", "rating": 4.8, "review": "A revelation for home cooks! The scientific approach makes cooking make sense. Every recipe is thoroughly tested and works perfectly."},
+        {"product_name": "Cosmos by Carl Sagan - 40th Anniversary Hardcover Edition with Full Color Illustrations", "rating": 4.7, "review": "Timeless and inspiring! Sagan's passion for science is contagious. The updated edition with new illustrations is absolutely gorgeous."},
+        {"product_name": "Where the Mountain Meets the Moon by Grace Lin Newbery Honor Book Paperback", "rating": 4.6, "review": "Enchanting children's book! The blend of Chinese folklore and adventure is beautifully done. My kids love the illustrations and story."},
+        {"product_name": "The Hobbit by J.R.R. Tolkien Illustrated Edition Hardcover", "rating": 4.9, "review": "A timeless classic! Tolkien's own illustrations add so much charm. Perfect for introducing young readers to Middle-earth."},
+        {"product_name": "1984 by George Orwell Classic Dystopian Novel Paperback", "rating": 4.8, "review": "Disturbingly relevant! Orwell's vision is more prescient than ever. A must-read that everyone should experience at least once."},
+        {"product_name": "To Kill a Mockingbird by Harper Lee 60th Anniversary Edition", "rating": 4.9, "review": "An American masterpiece! The lessons about justice and compassion are timeless. This anniversary edition includes wonderful supplementary materials."},
+        {"product_name": "The Great Gatsby by F. Scott Fitzgerald Collector's Edition", "rating": 4.7, "review": "Beautiful prose and tragic romance! The collector's edition is gorgeously crafted. A quintessential American novel."},
+        {"product_name": "Harry Potter and the Sorcerer's Stone by J.K. Rowling Illustrated Edition", "rating": 4.9, "review": "Magic brought to life! Jim Kay's illustrations are absolutely stunning. Reading this feels like experiencing Hogwarts for the first time all over again."},
+        {"product_name": "The Lord of the Rings Trilogy by J.R.R. Tolkien Boxed Set", "rating": 5.0, "review": "The greatest fantasy epic ever written! This boxed set is perfect for collectors. Tolkien's world-building is unmatched."},
+        {"product_name": "Project Hail Mary by Andy Weir Science Fiction Novel Hardcover", "rating": 4.8, "review": "Absolutely thrilling! Weir delivers another masterpiece of problem-solving sci-fi. Couldn't put it down once I started."},
+        {"product_name": "The Thursday Murder Club by Richard Osman Mystery Novel", "rating": 4.6, "review": "Delightfully charming mystery! The characters are endearing and the plot is clever. Perfect blend of humor and suspense."},
+        {"product_name": "Becoming by Michelle Obama Autobiography Hardcover", "rating": 4.7, "review": "Inspiring and honest! Michelle Obama's voice comes through beautifully. A powerful story of resilience and grace."},
+        {"product_name": "The Body Keeps the Score by Bessel van der Kolk Trauma and Healing", "rating": 4.8, "review": "Groundbreaking and essential! Completely changed my understanding of trauma. A must-read for anyone interested in mental health."},
+        {"product_name": "Thinking, Fast and Slow by Daniel Kahneman Psychology Paperback", "rating": 4.7, "review": "Fascinating insights into decision-making! Kahneman's research is eye-opening. Makes you aware of your own thinking patterns."},
+        {"product_name": "The Subtle Art of Not Giving a F*ck by Mark Manson Self-Help", "rating": 4.5, "review": "Refreshingly honest self-help! Manson cuts through the BS with humor and real talk. Actually helpful advice without toxic positivity."},
     ],
     "Gaming": [
         {"product_name": "The Legend of Zelda: Tears of the Kingdom Nintendo Switch", "rating": 4.9, "review": "Masterpiece sequel! The building mechanics are incredible and the world is even more expansive. Nintendo has outdone themselves again."},
