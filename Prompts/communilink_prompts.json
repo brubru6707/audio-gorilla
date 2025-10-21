@@ -1,0 +1,155 @@
+{
+    "multistep": [{
+        "prompt": "Tell ___ that I will be late to the 7 o'clock meeting",
+        "context": {
+            "userID": "some_userID" 
+        },
+        "ground_truth": ["send_sms(user_num, to_num, 'I am going to be late to the 7 o'clock meeting.')"]
+    },
+    {
+        "prompt": "Call ___ right now!",
+        "context": {
+            "userID": "some_userID" 
+        },
+        "ground_truth": ["make_voice_call(user_num, to_num)"]
+    }, 
+    {
+        "prompt": "Was my last message to ___ sent successfully or nah?",
+        "context": {
+            "userID": "some_userID" 
+        },
+        "ground_truth": ["get_sms_status(sms_id)"]
+    }, 
+    {
+        "prompt": "Show me my recent calls with ___",
+        "context": {
+            "userID": "some_userID" 
+        },
+        "ground_truth": ["get_call_history(user_num, contact_num)"]
+    },
+    {
+        "prompt": "Resend my last text to ___",
+        "context": {
+            "userID": "some_userID" 
+        },
+        "ground_truth": ["get_all_sms_messages()"]
+    }],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "prompt": "I need to call ___",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Sure! Calling your ___ now.",
+                    "ground_truth": ["make_voice_call(user_num, to_num)"]
+                },
+                {
+                    "prompt": "Actually, send them a text instead telling them that I need to eat first.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Got it! Sending the message now.",
+                    "ground_truth": ["send_sms(user_num, to_num, 'I need to eat first.')"]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "YO!!! Why the hell is my bill so freaking high!?!? Give me my billing history!",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Yes! I can help you with that. Retrieving your billing history now.",
+                    "ground_truth": ["get_billing_history()"]
+                },
+                {
+                    "prompt": "Call my mother now!",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Sure! Calling your mother now.",
+                    "ground_truth": ["make_voice_call(user_num, to_num)"]
+                },
+                {
+                    "prompt": "Nah. Forget that, I don't even like calling her. Just send her a messsage saying to give me 1000 dollars.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Got it! Sending the message now.",
+                    "ground_truth": ["send_sms(user_num, to_num, 'Give me 1000 dollars.')"]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Did my last text to ___ go through?",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Let me check that for you.",
+                    "ground_truth": ["get_sms_status(sms_id)"]
+                },
+                {
+                    "prompt": "If it didn't, resend it -- it's important.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Resending the message now.",
+                    "ground_truth": ["get_all_sms_messages()"]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Please send a message to ___ for me.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "There are multiple ___ in your contacts. Which one would you like to message?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Send it to the one with the last name as ___.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Last thing! What is the mssage you would like to send?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "TUgh. Tell her that I'm not coming to the party tonight.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Got it! Sending the message now.",
+                    "ground_truth": ["send_sms(user_num, to_num, 'I am not coming to the party tonight.')"]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Tell ___ that the bill just came through.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Got it! ",
+                    "ground_truth": ["send_sms(user_num, contact_num, 'The bill just came through.')"]
+                },
+                {
+                    "prompt": "Along with that, send them the actual billing info.",
+                    "context": {
+                        "userID": "some_userID" 
+                    },
+                    "assist": "Sure! Sending the message now.",
+                    "ground_truth": ["send_sms(user_num, to_num, billing_info_string)"]
+                }
+            ]
+        }
+    ]
+}

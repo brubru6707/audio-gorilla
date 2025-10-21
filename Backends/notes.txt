@@ -1,65 +1,10 @@
-amazon"::
-    "e7d9362a-330c-45f2-afb1-d4c683e03e4d": {
-      "first_name": "Mila",
-      "last_name": "Hernandez",
-      "email": "mila.hernandez@investment-advice.online",
-      "balance": 1460.74,
-      "payment_cards": {
-        "09b911eb-c4a1-411d-bbd9-bfe074f277de": {
-          "card_name": "Mila's Discover",
-          "owner_name": "Mila Hernandez",
-          "card_number_last4": "1151",
-          "expiry_year": 2031,
-          "expiry_month": 8
-        }
-      },
-      "addresses": {
-        "257583cc-7a7d-4866-ba44-196486249814": {
-          "name": "Work Address",
-          "street_address": "390 Fenner Street Street",
-          "city": "Montgomery",
-          "state": "Alaska",
-          "country": "USA",
-          "zip_code": 43823
-        }
-      },
-      "cart": {},
-      "wish_list": [
-        "de5305bd-07f5-47b8-808f-60a6c710421e",
-        "d9bccfe1-f1df-4eba-805e-9306649f453b",
-        "9145bd2c-4261-4850-862c-c89c16b3a25c",
-        "d7e15675-54bc-421f-9f25-8c03ee404bf8",
-        "955bc718-c292-4124-8757-002abf58e070",
-        "44a40aa7-857d-4113-aa38-6598ee3d0848",
-        "b71bba67-d12d-4fa0-ab98-1cfe3343fcf1",
-        "74243950-7140-4428-b51c-f0c0d1a4a8e6",
-        "8bfc7a36-27e5-4541-8df1-69da2d2969ab",
-        "1d35bf77-4b6f-4da0-aee5-feb355d31643"
-      ],
-      "orders": {
-        "8edc9209-28e3-498d-ad01-180e43f80ec9": {
-          "order_date": "2025-09-14",
-          "total_amount": 55.76,
-          "products": {
-            "10": 2,
-            "12": 1,
-            "14": 2
-          },
-          "delivery_address_id": "257583cc-7a7d-4866-ba44-196486249814",
-          "payment_card_id": "09b911eb-c4a1-411d-bbd9-bfe074f277de",
-          "status": "delivered",
-          "promo_code_applied": "FREESHIP",
-          "tracking_number": "TRK395211675"
-        }
-      },
-      "prime_subscriptions": {},
-      "returns": {
-        "25bc3f31-bfc9-44e2-9a73-5f1fa7a7d7b0": {
-          "order_id": "8edc9209-28e3-498d-ad01-180e43f80ec9",
-          "product_id": 12,
-          "return_date": "2025-01-23",
-          "reason": "wrong size",
-          "status": "processed"
-        }
-      }
+
+
+    "297df157-059c-4f5f-b0af-9a7a93d21a8b": {
+      "name": "Dell XPS 13 Laptop Intel Core i7 16GB RAM 512GB SSD FHD+ InfinityEdge Display",
+      "description": "Dell XPS 13 Laptop Intel Core i7 16GB RAM 512GB SSD FHD+ InfinityEdge Display: The Dell XPS 13 is an ultra-portable laptop that combines a sleek, minimalist design with powerful performance. It features a stunning FHD+ InfinityEdge display that provides an immersive viewing experience with incredibly thin bezels. Powered by an Intel Core i7 processor and 16GB of RAM, this laptop is perfect for productivity and everyday use.",
+      "seller": "The Gadget Hub",
+      "price": 627.98,
+      "stock": 42,
+      "category": "Electronics"
     },

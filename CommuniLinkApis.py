@@ -119,7 +119,6 @@ class CommuniLinkApis:
             "date": datetime.now().isoformat(),
             "description": f"SMS to {to_number}"
         })
-# hi
         new_sms_id = self._generate_unique_id()
         new_sms = {
             "sms_id": new_sms_id,

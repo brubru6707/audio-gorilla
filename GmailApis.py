@@ -288,7 +288,6 @@ class GmailApis:
             "internalDate": str(int(datetime.datetime.now().timestamp() * 1000)),
             "labelIds": ["SENT", "INBOX"]
         }
-# hi
         gmail_data["messages"][new_msg_id] = new_message
         
         # Create or update thread with snippet
