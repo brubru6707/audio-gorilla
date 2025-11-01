@@ -1,0 +1,190 @@
+{
+    "multistep": [
+        {
+        "prompt": "Remind me what email that I sent to ___ and send a message to ___ reminding them that we have a meeting tomorrow at 9PM",
+         "context": {
+            "user_id": "_____"
+         },
+         "model": "Yes, I will do that right now!",
+         "ground_truth": [
+            "get_message('user_id_9', 'msg_id')",
+            "send_message('user_id_9', 'contact_id_5', 'Reminder: Meeting Tomorrow at 9PM', 'Just wanted to remind you that we have a meeting scheduled for tomorrow at 9PM.')"
+         ]
+        },
+        {
+            "prompt": "Create a draft email to ___ about our plant pot project that we plan to do and delete my previous draft of that I had with ____",
+            "context": {
+                "user_id": "_____"
+            },
+            "model": "Sure, I will handle that for you.",   
+            "ground_truth": [
+                "create_draft('user_id_9', 'contact_id_7', 'Plant Pot Project', 'Hi ___, I wanted to discuss our plans for the plant pot project...')",
+                "delete_draft('user_id_9', 'draft_id_3')"
+            ]
+        },
+        {
+            "prompt": "List all the labels that I have and create a new one that is about my banking.",
+            "context": {
+                "user_id": "_____"
+            }, 
+            "model": "I will get that done for you.",
+            "ground_truth": [
+                "list_labels('user_id_9')",
+                "create_label('user_id_9', 'Banking')"
+            ]
+        },
+        {
+            "prompt": "Find the last email that I received from ___ and forward it to ___ with a note saying that I will get back to them later.",
+            "context": {
+                "user_id": "_____"
+            },
+            "model": "On it! I will take care of that now.",
+            "ground_truth": [
+                "get_message('user_id_9', 'contact_id_4')",
+                "send_message('user_id_9', 'email_id_12', '_____', '_____')"
+            ]
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "prompt": "Can you help me draft an email to ___ about our upcoming trip?",
+                    "context": {
+                        "user_id": "_____"
+                    },
+                    "assist": "Of course! What details would you like to include in the email?",
+                    "ground_truth": [
+                        "create_draft('user_id_9', 'contact_id_8', 'Upcoming Trip', 'Hi ___, I wanted to discuss our plans for the upcoming trip...')"
+                    ]
+                },
+                {
+                    "prompt": "Yes, please include the dates from July 10th to July 15th and mention that we need to book our accommodations soon.",
+                    "context": {
+                        "user_id": "_____"
+                    },
+                    "assist": "Got it! I will add those details to the draft.",
+                    "ground_truth": [
+                        "update_draft('user_id_9', 'draft_id_5', 'Hi ___, I wanted to discuss our plans for the upcoming trip from July 10th to July 15th. We need to book our accommodations soon.')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Can you check if I have any unread emails from ___?",
+                    "context": {
+                        "user_id": "_____"
+                    },
+                    "assist": "Sure! Let me look that up for you.",
+                    "ground_truth": [
+                        "list_unread_messages('user_id_9', 'contact_id_6')"
+                    ]
+                },
+                {
+                    "prompt": "Great! If there are any, please mark them as important.",
+                    "context": {
+                        "user_id": "_____"
+                    },
+                    "assist": "Will do! I will mark those emails as important.",
+                    "ground_truth": [
+                        "mark_as_important('user_id_9', 'message_id_15')",
+                        "mark_as_important('user_id_9', 'message_id_18')"
+                    ]
+                }
+            ]
+        },
+  
+        {
+            "turns": [
+                {
+                    "prompt": "Draft an email about the project deadline.",
+                    "context": {
+                        "user_id": "user_id_10"
+                    },
+                    "assist": "Sure! Who should I send it to, and what specific details about the deadline should I include?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Send it to my boss at boss@example.com, and mention that the deadline is November 1st, 2025.",
+                    "context": {
+                        "user_id": "user_id_10"
+                    },
+                    "assist": "Got it! Drafting the email now.",
+                    "ground_truth": [
+                        "create_draft('user_id_10', 'boss@example.com', 'Project Deadline Update', 'Hi Boss, I wanted to update you on the project deadline, which is November 1st, 2025.')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Find emails about the budget meeting.",
+                    "context": {
+                        "user_id": "user_id_11"
+                    },
+                    "assist": "I need more details to search accurately. What date range or sender should I look for?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "From last month, and from finance@company.com.",
+                    "context": {
+                        "user_id": "user_id_11"
+                    },
+                    "assist": "Searching now.",
+                    "ground_truth": [
+                        "list_messages('user_id_11', 'from:finance@company.com after:2025-09-01 before:2025-10-01', null, null, 50)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Create a label for urgent items.",
+                    "context": {
+                        "user_id": "user_id_12"
+                    },
+                    "assist": "What should I name the label, and do you want to apply it to any existing messages?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Name it 'Urgent', and apply it to all unread messages in my inbox.",
+                    "context": {
+                        "user_id": "user_id_12"
+                    },
+                    "assist": "Creating the label and applying it.",
+                    "ground_truth": [
+                        "create_label('user_id_12', 'Urgent')",
+                        "list_messages('user_id_12', 'is:unread', null, null, 100)",
+                        "modify_message('user_id_12', 'message_id_X', {\"addLabelIds\": [\"Urgent\"]})"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Send a follow-up email to the client.",
+                    "context": {
+                        "user_id": "user_id_13"
+                    },
+                    "assist": "Which client? And what should the email say?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "To client@abc.com, and ask about the status of the order.",
+                    "context": {
+                        "user_id": "user_id_13"
+                    },
+                    "assist": "Sending the email.",
+                    "ground_truth": [
+                        "send_message('user_id_13', 'client@abc.com', 'Follow-up on Order', 'Hi, I wanted to follow up on the status of our order.')"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,367 @@
+include shared-gdrive("mst-definitions.arr", "1BGkPeyFNhp0ND5sENwAXbL-BgQ9ZB_Nt")
+
+provide: mst-prim, mst-kruskal, generate-input, mst-cmp, sort-o-cle end
+
+# END HEADER
+# DO NOT CHANGE ANYTHING ABOVE THIS LINE
+#
+# You may write implementation-specific tests (e.g., of helper functions)
+# in this file.
+
+include lists
+import sets as S
+import pick as P
+
+#data Edge:
+#  | edge(a :: String, b :: String, weight :: Number)
+#end
+
+#type Graph = List<Edge>
+
+data Heap:
+  | mt
+  | node(value :: Edge, left :: Heap, right :: Heap)
+end
+
+data Amputated:
+  | elt-and-heap(edge :: Edge, heap :: Heap)
+end
+
+data Output:
+  | output(mst-edges, total)
+end
+
+fun rebalance(h :: Heap) -> Heap:
+  doc: ```Given a Heap h, switches all children along the leftmost path```
+  cases (Heap) h:
+    | mt => mt
+    | node(val, lh, rh) =>
+      node(val, rh, rebalance(lh))
+  end
+end
+
+fun get-min(h :: Heap%(is-node)) -> Number:
+  doc: ```Takes in a proper, non-empty Heap h and produces the
+      minimum Number in h.```
+  cases (Heap) h:
+    | mt => raise("Invalid input: empty heap")
+    | node(val,_,_) => val
+  end
+end
+
+fun insert(e :: Edge, heap :: Heap) -> Heap:
+  cases (Heap) heap:
+    | mt => node(e, mt, mt)
+    | node(v, l, r) =>
+      if e.weight < v.weight:
+        node(e, insert(v, r), l)
+      else:
+        node(v, insert(e, r), l)
+      end
+  end
+end
+
+fun remove-min(heap :: Heap%(is-node)) -> Heap:
+  cases (Heap) heap:
+    | mt => raise("Cannot remove-min from an empty heap") 
+    | node(v, l, r) =>
+      if is-mt(l) and is-mt(r):
+        mt
+      else:
+        amputated = amputate-bottom-left(heap)
+        new-root-val = amputated.elt
+        heap-minus-elt = amputated.heap 
+
+        temp-heap = node(new-root-val, heap-minus-elt.left, heap-minus-elt.right)
+
+        balanced-heap = rebalance(temp-heap)
+
+        reorder(balanced-heap)
+      end
+  end
+end
+
+fun amputate-bottom-left(h :: Heap%(is-node)) -> Amputated:
+  doc: ```Given a Heap h, produes an Amputated that contains the 
+      bottom-left element of h, and h with the bottom-left element removed.```
+  cases (Heap) h:
+    | mt => raise("Invalid input: empty heap")
+    | node(value, left, right) =>
+      cases (Heap) left:
+        | mt => elt-and-heap(value, mt)
+        | node(_, _, _) => 
+          rec-amputated = amputate-bottom-left(left)
+          elt-and-heap(rec-amputated.elt,
+            node(value, rec-amputated.heap, right))
+      end
+  end
+end
+
+fun reorder(h :: Heap) -> Heap:
+  doc: ```Given a Heap h, where only the top node is misplaced,
+      produces a Heap with the same elements but in proper order.```
+  cases(Heap) h:
+    | mt => mt # Do nothing (empty heap)
+    | node(val, lh, rh) =>
+      cases(Heap) lh:
+        | mt => h # Do nothing (no children)
+        | node(lval, llh, lrh) =>
+          cases(Heap) rh:
+            | mt => # Just left child
+              ask:
+                | val < lval then: h # Do nothing
+                | otherwise: node(lval, reorder(node(val, llh, lrh)), rh) # Swap left
+              end
+            | node(rval, rlh, rrh) => # Both children
+              ask:
+                | (val < lval) and (val < rval) then: h # Do nothing
+                | lval < rval then: node(lval, reorder(node(val, llh, lrh)), rh) # Swap left
+                | lval >= rval then: node(rval, lh, reorder(node(val, rlh, rrh))) # Swap right
+              end
+          end
+      end
+  end
+end
+
+data Parent-Map:
+  | mt-p-map
+  | parent-map(value, parent, nxt-parent-mp)
+end
+
+fun create-parent-map-recur(verts):
+  cases (List) verts:
+    | empty => mt-p-map
+    | link(first, rest) => 
+      parent-map(first, first, create-parent-map-recur(rest))
+  end
+end
+
+fun get-parent-recur(p-map, vert):
+  if p-map == mt-p-map:
+    vert
+  else:
+    cases(Parent-Map) p-map:
+      | parent-map(value, parent, nxt-parent-mp) => 
+        if value == vert:
+          parent
+        else:
+          get-parent-recur(nxt-parent-mp, vert)
+        end
+    end
+  end
+end
+
+fun update-parent-recur(p-map, vertex, new-parent):
+  if p-map == mt-p-map:
+    mt-p-map
+  else: 
+    cases(Parent-Map) p-map:
+      | parent-map(v, p, nxt) =>
+        if v == vertex:
+          parent-map(v, new-parent, nxt)
+        else:
+          parent-map(v, p, update-parent-recur(nxt, vertex, new-parent))
+        end
+    end
+  end
+end
+
+data Find-Leader:
+  | find-leader(vert, par-map)
+end
+
+fun find-leader-recur(pmap, vertex):
+  parent = get-parent-recur(pmap, vertex)
+  if parent == vertex:
+    find-leader(vertex, pmap)
+  else:
+    finding-lead = find-leader-recur(pmap, parent)
+    leader = finding-lead.vert
+    map-after-find = finding-lead.par-map
+    final-map = update-parent-recur(map-after-find, vertex, leader)
+    find-leader(leader, final-map)
+  end
+end
+
+data Union-Set-Recur:
+  | union-set-recur(final-map, tof) # true or false
+end
+
+fun union-sets-recur(p-map, u, v):
+  found-lead-1 = find-leader-recur(p-map, u)
+  found-lead-2 = find-leader-recur(found-lead-1.par-map, v)
+
+  if found-lead-1.vert == found-lead-2.vert:
+    union-set-recur(found-lead-2.par-map, false)
+  else:
+    final-map = update-parent-recur(found-lead-2.par-map, found-lead-1.vert, found-lead-2.vert)
+    union-set-recur(final-map, true)
+  end
+end
+
+data P-Map-Mst-Edges:
+  | p-map-mst-edges(p-map, mst-edges)
+end
+
+fun mst-kruskal-helper(verts, edge-list):
+  num-verts = verts.length()
+
+  if num-verts == 0:
+    output([list:], 0)
+  else:
+    sorted-edges = edge-list.sort-by(lam(e1, e2): e1.weight < e2.weight end, lam(e1, e2): e1.weight == e2.weight end)
+
+    initial-map = create-parent-map-recur(verts)
+    initial-mst = [list:]
+    initial-base = p-map-mst-edges(initial-map, initial-mst)
+
+    sorted-edges-output = sorted-edges.foldl(lam(acc, e): 
+      cases(P-Map-Mst-Edges) acc:
+        | p-map-mst-edges(cur-map, cur-mst) => 
+          cases(Edge) e:
+            | edge(u, v, weight) =>
+              if cur-mst.length() == (num-verts - 1): 
+                acc
+              else: 
+                u-set-recur = union-sets-recur(cur-map, u, v)
+                if u-set-recur.tof:
+                  p-map-mst-edges(u-set-recur.final-map, cur-mst.append(e))
+                else:
+                  p-map-mst-edges(u-set-recur.final-map, cur-mst)
+                end
+              end
+          end
+      end
+    end, initial-base)
+
+    mst-cost = sorted-edges-output.mst-edges.foldl(lam(acc, e): acc + e.weight end, 0)
+    
+    output(sorted-edges-output.mst-edges, mst-cost)
+  end
+end
+
+fun get-all-vertices(graph :: Graph) -> List<String>:
+  all-verts-list = graph.foldl(lam(acc, e): acc + [list: e.a, e.b] end, [list:])
+  verts-set = S.list-to-set(all-verts-list)
+  verts-set.to-list()
+end
+
+fun mst-kruskal(graph :: Graph) -> Graph: 
+  verts-list = get-all-vertices(graph)
+  kruskal-output = mst-kruskal-helper(verts-list, graph)
+  kruskal-output.mst-edges
+end
+
+fun mst-prim(graph :: Graph) -> Graph:
+  cases (List) graph:
+    | empty => [list:]
+    | link(first, rest) =>
+      all-verts = get-all-vertices(graph)
+      num-verts = all-verts.length()
+      
+      if num-verts == 0:
+        [list:]
+      else:
+        visted = S.list-to-set([list: all-verts.get(0)])
+        heap = mt
+        mst-edges = [list:]
+        total-cost = 0
+
+        updated-heap = graph.foldl(lam(acc, e): insert(e, acc) end, heap)
+
+        prim-out = prim-helper(graph, updated-heap, visted, mst-edges, num-verts)
+        prim-out.mst-edges
+      end
+  end
+end
+
+fun prim-helper(graph, heap, visted, mst-edges, num-verts):
+  if heap == mt:
+    output(mst-edges, mst-edges.foldl(lam(acc, e): e.weight + acc end, 0))
+  else if (mst-edges.length() == (num-verts - 1)):
+    output(mst-edges, mst-edges.foldl(lam(acc, e): e.weight + acc end, 0))
+  else:
+    ampu = amputate-bottom-left(heap)
+    
+    a-visited = visted.member(ampu.edge.a)
+    b-visited = visted.member(ampu.edge.b)
+    
+    if a-visited and b-visited:
+      prim-helper(graph, ampu.heap, visted, mst-edges, num-verts)
+    else:
+      new-vert = if a-visited: ampu.edge.b else: ampu.edge.a end
+      updated-visted = visted.add(new-vert)
+      updated-mst-edges = mst-edges.append(ampu.edge)
+      good-neighbor = graph.filter(lam(e): (visted.member(e.a)) <> true end)
+      updated-heap = graph.foldl(lam(acc, elm): insert(elm, acc) end, ampu.heap)
+      prim-helper(graph, updated-heap, updated-visted, updated-mst-edges, num-verts)
+    end
+  end
+end
+
+fun generate-input(num-vertices :: Number) -> Graph:
+  graph-set = generate-input-helper(num-vertices, [S.list-set:])
+  graph-set.to-list()
+end
+
+fun generate-input-helper(num-verts, graph):
+  if num-verts <= 0:
+    graph
+  else:
+    if graph.is-empty():
+      # make a new edge if set empty
+      a = fold(lam(acc, elm): string-append(acc, string-from-code-point(random(26) + 65), [list: 0,0,0]) end, "")
+      b = fold(lam(acc, elm): string-append(acc, string-from-code-point(random(26) + 65), [list: 0,0,0]) end, "")
+      weight = random(1, 100)
+      new-edge = edge(a, b, weight)
+      generate-input-helper(num-verts - 2, graph.add(new-edge))
+    else:
+      all-points = graph.fold(lam(acc, e): acc.add(e.a).add(e.b) end, [S.list-set:])
+
+      random-choice = random(4)
+      if (random-choice == 1) or (all-points.size() < 2):
+        # make new point
+        cases(P.Pick) all-points.pick():
+          | pick-none => generate-input-helper(num-verts, graph)
+          | pick-some(elt, rest) =>
+            a = fold(lam(acc, elm): string-append(acc, string-from-code-point(random(26) + 65), [list: 0,0,0]) end, "")
+            new-edge = edge(a, elt, random(1, 100))
+            generate-input-helper(num-verts - 1, graph.add(new-edge))
+        end
+      else:
+        # connect current points
+        cases(P.Pick) all-points.pick():
+          | pick-none => graph
+          | pick-some(elt, rest) =>
+            cases(P.Pick) rest.pick():
+              | pick-none => generate-input-helper(num-verts, graph)
+              | pick-some(elt-nest, rest-nest) =>
+                new-edge = edge(elt-nest, elt, random(1, 100))
+                if graph.filter(lam(e): (e.a == new-edge.a) and (e.b == new-edge.b) end).length() > 0:
+                  generate-input-helper(num-verts, graph)
+                else:
+                  generate-input-helper(num-verts, graph.add(new-edge))
+                end
+            end
+        end 
+      end
+    end
+  end
+end
+
+print(generate-input(10))
+
+fun mst-cmp(
+    graph :: Graph,
+    mst-a :: Graph,
+    mst-b :: Graph)
+  -> Boolean:
+  ...
+end
+
+fun sort-o-cle(
+    mst-alg-a :: (Graph -> Graph),
+    mst-alg-b :: (Graph -> Graph))
+  -> Boolean:
+  ...
+end

@@ -6,7 +6,6 @@ from datetime import datetime
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("GoogleDriveApis")
-# If the file doesn't exist with snake_case, try the actual filename
 if not DEFAULT_STATE:
     import json
     import os
@@ -586,5 +585,3 @@ class GoogleDriveApis:
             content=None,
             user_id=user_id
         )
-
-    #hi

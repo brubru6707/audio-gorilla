@@ -1,0 +1,130 @@
+{
+    "multistep": [
+        {
+            "prompt": "Create a new calendar called 'Work Projects' in my time zone.",
+            "context": {
+                "user_id": "user_1"
+            },
+            "ground_truth": [
+                "create_calendar('Work Projects', 'America/New_York', 'user_1')"
+            ]
+        },
+        {
+            "prompt": "List all my calendars.",
+            "context": {
+                "user_id": "user_1"
+            },
+            "ground_truth": [
+                "list_calendars('user_1')"
+            ]
+        },
+        {
+            "prompt": "Schedule a meeting titled 'Team Standup' from 10 AM to 11 AM tomorrow in my primary calendar.",
+            "context": {
+                "user_id": "user_1"
+            },
+            "ground_truth": [
+                "create_event('primary', 'Team Standup', '2025-10-25T10:00:00', '2025-10-25T11:00:00', 'America/New_York', null, null, 'user_1')"
+            ]
+        },
+        {
+            "prompt": "Check if I'm free from 2 PM to 4 PM today.",
+            "context": {
+                "user_id": "user_1"
+            },
+            "ground_truth": [
+                "check_free_busy('2025-10-24T14:00:00', '2025-10-24T16:00:00', [{'id': 'primary'}], 'user_1')"
+            ]
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "prompt": "Schedule a meeting for the project.",
+                    "context": {
+                        "user_id": "user_2"
+                    },
+                    "assist": "Sure! What should the title be, and when is it?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Title 'Project Review', tomorrow at 3 PM for 1 hour.",
+                    "context": {
+                        "user_id": "user_2"
+                    },
+                    "assist": "Got it! Scheduling now.",
+                    "ground_truth": [
+                        "create_event('primary', 'Project Review', '2025-10-25T15:00:00', '2025-10-25T16:00:00', 'America/New_York', null, null, 'user_2')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Find my events next week.",
+                    "context": {
+                        "user_id": "user_3"
+                    },
+                    "assist": "Which calendar? And what time range exactly?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Primary calendar, from Monday to Friday.",
+                    "context": {
+                        "user_id": "user_3"
+                    },
+                    "assist": "Listing events.",
+                    "ground_truth": [
+                        "list_events('primary', 'user_3', '2025-10-28T00:00:00', '2025-11-01T00:00:00', 50, null)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Update my calendar event.",
+                    "context": {
+                        "user_id": "user_4"
+                    },
+                    "assist": "Which event? What changes?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "The 'Team Meeting' event, change time to 2 PM and add a description 'Discuss Q4 goals'.",
+                    "context": {
+                        "user_id": "user_4"
+                    },
+                    "assist": "Updating the event.",
+                    "ground_truth": [
+                        "update_event('primary', 'event_id_team_meeting', null, '2025-10-25T14:00:00', '2025-10-25T15:00:00', null, 'Discuss Q4 goals', null, 'user_4')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Move an event to another calendar.",
+                    "context": {
+                        "user_id": "user_5"
+                    },
+                    "assist": "Which event and to which calendar?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Move 'Client Call' to my work calendar.",
+                    "context": {
+                        "user_id": "user_5"
+                    },
+                    "assist": "Moving the event.",
+                    "ground_truth": [
+                        "move_event('primary', 'event_id_client_call', 'work_calendar_id', 'user_5')"
+                    ]
+                }
+            ]
+        }
+    ]
+}

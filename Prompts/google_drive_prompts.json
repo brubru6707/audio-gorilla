@@ -1,0 +1,260 @@
+{
+    "multistep": [
+        {
+            "prompt": "Create a new folder called 'Project Docs' in my Drive and upload a text file named 'notes.txt' with content 'Initial notes' inside it.",
+            "context": {
+                "user_id": "user_1"
+            },
+            "ground_truth": [
+                "get_user_info('user_1')",
+                "create_folder('Project Docs', null, null, null, 'user_1')",
+                "create_file('notes.txt', 'text/plain', ['folder_id_project_docs'], 'Initial notes', 'user_1')"
+            ]
+        },
+        {
+            "prompt": "List all files in my Drive that contain 'report' in the name and delete the oldest one.",
+            "context": {
+                "user_id": "user_2"
+            },
+            "ground_truth": [
+                "get_user_info('user_2')",
+                "list_files('user_2', 'name contains \"report\"', 50, null)",
+                "delete_file('oldest_file_id', 'user_2')"
+            ]
+        },
+        {
+            "prompt": "Copy the file with ID 'file_123' to a new folder named 'Backup' and rename the copy to 'file_backup.txt'.",
+            "context": {
+                "user_id": "user_3"
+            },
+            "ground_truth": [
+                "get_user_info('user_3')",
+                "create_folder('Backup', 'application/vnd.google-apps.folder', null, null, 'user_3')",
+                "copy_file('file_123', 'file_backup.txt', ['folder_id_backup'], 'user_3')"
+            ]
+        },
+        {
+            "prompt": "List my my first ten files and share those ten files to ____.",
+            "context": {
+                "user_id": "user_4"
+            },
+            "ground_truth": [
+                "get_user_info('user_4')",
+                "list_files('user_4', null, 10, null)",
+                "share_file('file_id_1', 'user_to_share_with', 'user_4')"
+            ]
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "prompt": "Create a new file in my Drive.",
+                    "context": {
+                        "user_id": "user_5"
+                    },
+                    "assist": "Sure! What should the file be named, and what type of file is it?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Name it 'presentation', and it's a PowerPoint file.",
+                    "context": {
+                        "user_id": "user_5"
+                    },
+                    "assist": "What is the file extension?",
+                    "ground_truth": [
+                        "create_file('presentation.pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', null, null, 'user_5')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Find a file in my Drive.",
+                    "context": {
+                        "user_id": "user_6"
+                    },
+                    "assist": "What are you looking for? A specific name or type?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Look for files named 'budget.xlsx' and show me the details.",
+                    "context": {
+                        "user_id": "user_6"
+                    },
+                    "assist": "Retrieving the file.",
+                    "ground_truth": [
+                        "list_files('user_6', 'name = \"budget.xlsx\"', 1, null)",
+                        "get_file('file_id_budget', 'user_6')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Update a file in my Drive.",
+                    "context": {
+                        "user_id": "user_7"
+                    },
+                    "assist": "Which file? And what changes do you want to make?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "The file 'report.docx', move it to the 'Archives' folder and rename it to 'old_report.docx'.",
+                    "context": {
+                        "user_id": "user_7"
+                    },
+                    "assist": "Updating the file.",
+                    "ground_truth": [
+                        "update_file('file_id_report', 'folder_id_archives', null, 'user_7', 'old_report.docx', null)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Delete a file from my Drive.",
+                    "context": {
+                        "user_id": "user_8"
+                    },
+                    "assist": "Which file should I delete? Please provide the name or ID.",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Delete the file 'temp.txt' if it exists.",
+                    "context": {
+                        "user_id": "user_8"
+                    },
+                    "assist": "Checking and deleting if found.",
+                    "ground_truth": [
+                        "list_files('user_8', 'name = \"temp.txt\"', 1, null)",
+                        "delete_file('file_id_temp', 'user_8')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Copy a file in my Drive.",
+                    "context": {
+                        "user_id": "user_9"
+                    },
+                    "assist": "Which file do you want to copy, and where to?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Copy 'document.pdf' to the 'Shared' folder.",
+                    "context": {
+                        "user_id": "user_9"
+                    },
+                    "assist": "Copying the file.",
+                    "ground_truth": [
+                        "copy_file('file_id_document', 'document.pdf', ['folder_id_shared'], 'user_9')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "List files in a specific folder.",
+                    "context": {
+                        "user_id": "user_10"
+                    },
+                    "assist": "Which folder? And any filters like file type?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "The 'Work' folder, only PDFs.",
+                    "context": {
+                        "user_id": "user_10"
+                    },
+                    "assist": "Listing the files.",
+                    "ground_truth": [
+                        "list_files('user_10', 'parents in \"folder_id_work\" and mimeType = \"application/pdf\"', 50, null)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Organize my files.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "Sure! What kind of organization do you have in mind? Like by type, date, or something else?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "By type, please.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "Got it. Which file types should I group? For example, documents, images, etc.?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Documents, images, and videos.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "Okay. Should I create new folders for each type or move to existing ones?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Create new folders.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "What should I name the folders? And should I also copy any important files to a backup folder?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Name them 'My Documents', 'My Images', 'My Videos', and yes, copy the most recent document to a 'Backup' folder.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "Should I delete any duplicate files after organizing?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yes, delete duplicates in the images folder.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "Do you want me to get details on the organized files afterward?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yes, show me the details of the backup file.",
+                    "context": {
+                        "user_id": "user_11"
+                    },
+                    "assist": "Organizing your files now.",
+                    "ground_truth": [
+                        "get_user_info('user_11')",
+                        "list_files('user_11', null, 100, null)",
+                        "create_file('My Documents', 'application/vnd.google-apps.folder', null, null, 'user_11')",
+                        "create_file('My Images', 'application/vnd.google-apps.folder', null, null, 'user_11')",
+                        "create_file('My Videos', 'application/vnd.google-apps.folder', null, null, 'user_11')",
+                        "create_file('Backup', 'application/vnd.google-apps.folder', null, null, 'user_11')",
+                        "copy_file('most_recent_doc_id', 'backup_doc', ['folder_id_backup'], 'user_11')",
+                        "update_file('file_id_doc1', 'folder_id_my_documents', null, 'user_11', null, null)",
+                        "update_file('file_id_doc2', 'folder_id_my_documents', null, 'user_11', null, null)",
+                        "update_file('file_id_img1', 'folder_id_my_images', null, 'user_11', null, null)",
+                        "update_file('file_id_img2', 'folder_id_my_images', null, 'user_11', null, null)",
+                        "update_file('file_id_img3', 'folder_id_my_images', null, 'user_11', null, null)",
+                        "update_file('file_id_vid1', 'folder_id_my_videos', null, 'user_11', null, null)",
+                        "delete_file('duplicate_img_id', 'user_11')",
+                        "get_file('backup_doc_id', 'user_11')"
+                    ]
+                }
+            ]
+        }
+    ]
+}
