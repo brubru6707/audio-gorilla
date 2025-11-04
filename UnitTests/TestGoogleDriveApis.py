@@ -19,18 +19,19 @@ class TestGoogleDriveApis(unittest.TestCase):
     # Load real data from backend
     real_data = BackendDataLoader.get_googledrive_data()
     
-    # Extract real user data
-    users = list(real_data.get("users", {}).values())
-    user_data_alice = users[0] if users else {}
-    user_data_bob = users[1] if len(users) > 1 else user_data_alice
+    # Extract real user UUIDs (not emails!)
+    user_ids = list(real_data.get("users", {}).keys())
+    user_id_alice = user_ids[0] if user_ids else "user_001"
+    user_id_bob = user_ids[1] if len(user_ids) > 1 else user_id_alice
     
-    user_id_alice = user_data_alice.get("email", "alice@example.com")
-    user_id_bob = user_data_bob.get("email", "bob@example.com")
+    # Get user data for reference
+    user_data_alice = real_data.get("users", {}).get(user_id_alice, {})
+    user_data_bob = real_data.get("users", {}).get(user_id_bob, {})
     
     # Extract real file data
-    files = list(real_data.get("files", {}).values())
-    file_data = files[0] if files else {}
-    REAL_FILE_ID = next(iter(real_data.get("files", {})), "file1")
+    files_alice = user_data_alice.get("drive_data", {}).get("files", {})
+    REAL_FILE_ID = next(iter(files_alice), "file1")
+    file_data = files_alice.get(REAL_FILE_ID, {})
     REAL_FILE_NAME = file_data.get("name", "Test File")
     
     def setUp(self):
