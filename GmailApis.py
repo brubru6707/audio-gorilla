@@ -64,20 +64,17 @@ class GmailApis:
         """
         Get Gmail data for a user.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict]: User's Gmail data if found, None otherwise.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
-            return None
-        return self.users.get(internal_user_id, {}).get("gmail_data")
+        return self.users.get(user_id, {}).get("gmail_data")
 
     def _get_user_threads_data(self, user_id: str) -> Optional[Dict]:
         """
         Get threads data for a user.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict]: User's threads data if found, None otherwise.
         """
@@ -88,7 +85,7 @@ class GmailApis:
         """
         Get messages data for a user.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict]: User's messages data if found, None otherwise.
         """
@@ -99,7 +96,7 @@ class GmailApis:
         """
         Get drafts data for a user.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict]: User's drafts data if found, None otherwise.
         """
@@ -110,7 +107,7 @@ class GmailApis:
         """
         Get labels data for a user.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict]: User's labels data if found, None otherwise.
         """
@@ -121,7 +118,7 @@ class GmailApis:
         """
         Update a thread's snippet with the most recent message.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             thread_id (str): Thread ID to update.
         """
         threads = self._get_user_threads_data(user_id)
@@ -153,15 +150,14 @@ class GmailApis:
         """
         Get the Gmail profile for a user.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict[str, Any]]: User's profile data if found, None otherwise.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return None
         
-        user_data = self.users.get(internal_user_id)
+        user_data = self.users.get(user_id)
         return user_data.get("gmail_data", {}).get("profile") if user_data else None
 
     def list_messages(
@@ -175,7 +171,7 @@ class GmailApis:
         """
         List messages matching criteria.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             query (Optional[str]): Search query.
             label_ids (Optional[List[str]]): Label IDs to filter by.
             page_token (Optional[str]): Pagination token.
@@ -228,7 +224,7 @@ class GmailApis:
         """
         Get a specific message.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             msg_id (str): Message ID.
             format (str): Format of the message ('minimal', 'full', or 'raw').
         Returns:
@@ -253,7 +249,7 @@ class GmailApis:
         """
         Send a message.
         Args:
-            user_id (str): Sender's email address.
+            user_id (str): The internal user ID (UUID) of the sender.
             to (str): Recipient's email address.
             subject (str): Message subject.
             body (str): Message body.
@@ -261,14 +257,14 @@ class GmailApis:
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"error": "User not found."}
 
-        gmail_data = self.users[internal_user_id].get("gmail_data")
+        gmail_data = self.users[user_id].get("gmail_data")
         if not gmail_data:
             return {"error": "Gmail data not available for user."}
 
+        user_email = self._get_user_email_by_id(user_id)
         new_msg_id = self._generate_id()
         if not thread_id:
             thread_id = self._generate_id()
@@ -280,7 +276,7 @@ class GmailApis:
             "payload": {
                 "headers": [
                     {"name": "To", "value": to},
-                    {"name": "From", "value": user_id},
+                    {"name": "From", "value": user_email},
                     {"name": "Subject", "value": subject}
                 ],
                 "body": {"data": body}
@@ -307,7 +303,7 @@ class GmailApis:
         gmail_data["profile"]["threadsTotal"] = len(gmail_data["threads"])
 
         recipient_user_id = self._get_user_id_by_email(to)
-        if recipient_user_id and recipient_user_id != internal_user_id:
+        if recipient_user_id and recipient_user_id != user_id:
             recipient_gmail_data = self.users[recipient_user_id].get("gmail_data")
             if recipient_gmail_data:
                 recipient_message = copy.deepcopy(new_message)
@@ -330,14 +326,14 @@ class GmailApis:
                 recipient_gmail_data["profile"]["messagesTotal"] = recipient_gmail_data["profile"].get("messagesTotal", 0) + 1
                 recipient_gmail_data["profile"]["threadsTotal"] = len(recipient_gmail_data["threads"])
 
-        print(f"Dummy email sent: from {user_id} to {to}, subject '{subject}'")
+        print(f"Dummy email sent: from {user_email} to {to}, subject '{subject}'")
         return {"id": new_msg_id, "threadId": thread_id}
 
     def delete_message(self, user_id: str, msg_id: str) -> Dict[str, Union[bool, str]]:
         """
         Delete a message.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             msg_id (str): Message ID to delete.
         Returns:
             Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
@@ -361,9 +357,8 @@ class GmailApis:
                     # Update thread snippet with the most recent remaining message
                     self._update_thread_snippet(user_id, thread_id)
 
-            internal_user_id = self._get_user_id_by_email(user_id)
-            if internal_user_id:
-                profile = self.users[internal_user_id].get("gmail_data", {}).get("profile")
+            if user_id in self.users:
+                profile = self.users[user_id].get("gmail_data", {}).get("profile")
                 if profile:
                     profile["messagesTotal"] = max(0, profile.get("messagesTotal", 0) - 1)
                     profile["threadsTotal"] = len(threads) if threads else 0
@@ -378,7 +373,7 @@ class GmailApis:
         """
         List drafts.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             page_token (Optional[str]): Pagination token.
             max_results (int): Maximum number of results to return.
         Returns:
@@ -412,7 +407,7 @@ class GmailApis:
         """
         Get a specific draft.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             draft_id (str): Draft ID.
         Returns:
             Optional[Dict[str, Any]]: Draft data if found, None otherwise.
@@ -432,18 +427,17 @@ class GmailApis:
         """
         Create a draft.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             to (str): Recipient's email address.
             subject (str): Message subject.
             body (str): Message body.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"error": "User not found."}
 
-        gmail_data = self.users[internal_user_id].get("gmail_data")
+        gmail_data = self.users[user_id].get("gmail_data")
         if not gmail_data:
             return {"error": "Gmail data not available for user."}
 
@@ -466,7 +460,7 @@ class GmailApis:
         """
         Update a draft.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             draft_id (str): Draft ID to update.
             to (str): New recipient's email address.
             subject (str): New message subject.
@@ -490,7 +484,7 @@ class GmailApis:
         """
         Delete a draft.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             draft_id (str): Draft ID to delete.
         Returns:
             Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
@@ -509,7 +503,7 @@ class GmailApis:
         """
         Send a draft as a message.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             draft_id (str): Draft ID to send.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
@@ -546,7 +540,7 @@ class GmailApis:
         """
         List labels.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[List[Dict], str]]: Dictionary containing labels.
         """
@@ -561,7 +555,7 @@ class GmailApis:
         """
         Get a specific label.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             label_id (str): Label ID.
         Returns:
             Optional[Dict[str, Any]]: Label data if found, None otherwise.
@@ -579,16 +573,15 @@ class GmailApis:
         """
         Create a label.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             label_name (str): Name for the new label.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"error": "User not found."}
 
-        gmail_data = self.users[internal_user_id].get("gmail_data")
+        gmail_data = self.users[user_id].get("gmail_data")
         if not gmail_data:
             return {"error": "Gmail data not available for user."}
         
@@ -613,7 +606,7 @@ class GmailApis:
         """
         Update a label.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             label_id (str): Label ID to update.
             new_label_name (str): New name for the label.
         Returns:
@@ -633,7 +626,7 @@ class GmailApis:
         """
         Delete a label.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             label_id (str): Label ID to delete.
         Returns:
             Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
@@ -654,7 +647,7 @@ class GmailApis:
         """
         Modify a message (e.g., add/remove labels).
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             message_id (str): Message ID to modify.
             modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
         Returns:
@@ -685,7 +678,7 @@ class GmailApis:
         """
         Get a thread with its messages.
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             thread_id (str): Thread ID.
             format (str): Format of the messages ('minimal', 'full', or 'raw').
         Returns:
@@ -722,7 +715,7 @@ class GmailApis:
         """
         Modify a thread (e.g., add/remove labels to all messages in thread).
         Args:
-            user_id (str): User's email address.
+            user_id (str): The internal user ID (UUID).
             thread_id (str): Thread ID to modify.
             modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
         Returns:

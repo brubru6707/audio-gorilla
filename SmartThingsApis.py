@@ -68,17 +68,9 @@ class SmartThingsApis:
 
     def _get_user_smartthings_data(self, user_id: str) -> Optional[Dict]:
         """Helper to get a user's SmartThings data."""
-        if user_id == 'me':
-            # Get the first available user if 'me' is requested
-            if self.users:
-                first_user_id = next(iter(self.users.keys()))
-                return self.users.get(first_user_id, {}).get("smartthings_data")
+        if user_id not in self.users:
             return None
-        
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
-            return None
-        return self.users.get(internal_user_id, {}).get("smartthings_data")
+        return self.users.get(user_id, {}).get("smartthings_data")
 
     def _get_user_devices_data(self, user_id: str) -> Optional[Dict]:
         """Helper to get a user's devices data."""
@@ -101,12 +93,12 @@ class SmartThingsApis:
         return smartthings_data.get("capabilities") if smartthings_data else None
 
 
-    def get_user_profile(self, user_id: str = 'me') -> Dict[str, Union[bool, Dict]]:
+    def get_user_profile(self, user_id: str) -> Dict[str, Union[bool, Dict]]:
         """
         Retrieves the profile information for the authenticated SmartThings user.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary containing 'status' (bool) and 'profile' (Dict) if successful.
@@ -116,12 +108,12 @@ class SmartThingsApis:
             return {"status": True, "profile": copy.deepcopy(smartthings_data["profile"])}
         return {"status": False, "profile": {}}
 
-    def list_devices(self, user_id: str = 'me') -> List[Dict[str, Any]]:
+    def list_devices(self, user_id: str) -> List[Dict[str, Any]]:
         """
         List all devices for a user.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             List[Dict[str, Any]]: List of all devices.
         """
@@ -130,13 +122,13 @@ class SmartThingsApis:
             return []
         return [copy.deepcopy(d) for d in user_devices.values()]
 
-    def get_device(self, device_id: str, user_id: str = 'me') -> Dict[str, Any]:
+    def get_device(self, device_id: str, user_id: str) -> Dict[str, Any]:
         """
         Get a specific device for a user.
 
         Args:
             device_id (str): ID of the device.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Any]: Details of the device.
         """
@@ -152,7 +144,7 @@ class SmartThingsApis:
     def create_device(
         self,
         name: str,
-        user_id: str = 'me',
+        user_id: str,
         location_name: Optional[str] = None, 
         room_name: Optional[str] = None, 
         capabilities: Optional[List[str]] = None,
@@ -163,7 +155,7 @@ class SmartThingsApis:
 
         Args:
             name (str): The name of the new device.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             location_name (Optional[str]): The name of the location for the device. If not found, a new one will be created.
             room_name (Optional[str]): The name of the room for the device. If not found, a new one will be created.
             capabilities (Optional[List[str]]): List of capabilities the device supports (e.g., ["switch", "level"]).
@@ -238,7 +230,7 @@ class SmartThingsApis:
         capability_id: str,
         command: str,
         args: Optional[List[Any]] = None,
-        user_id: str = 'me'
+        user_id: str = None
     ) -> Dict[str, Any]:
         """
         Update the status of a specific device's capability.
@@ -249,7 +241,7 @@ class SmartThingsApis:
             capability_id (str): ID of the capability (e.g., 'switch').
             command (str): Command to send (e.g., 'on', 'off', 'setLevel').
             args (Optional[List[Any]]): Arguments for the command (e.g., [75] for setLevel).
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Any]: The updated device status or an error message.
         """
@@ -299,13 +291,13 @@ class SmartThingsApis:
         
         return {"error": f"Component '{component_id}' or capability '{capability_id}' not found for device '{device_id}'."}
 
-    def delete_device(self, device_id: str, user_id: str = 'me') -> Dict[str, bool]:
+    def delete_device(self, device_id: str, user_id: str) -> Dict[str, bool]:
         """
         Delete a device.
 
         Args:
             device_id (str): ID of the device to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, bool]: True if the device was deleted successfully, False otherwise.
         """
@@ -315,7 +307,8 @@ class SmartThingsApis:
 
         if device_id in user_devices:
             del user_devices[device_id]
-            print(f"Device '{device_id}' deleted for {user_id}")
+            user_email = self._get_user_email_by_id(user_id)
+            print(f"Device '{device_id}' deleted for user {user_id} ({user_email})")
             return {"status": True}
         return {"status": False}
 
@@ -324,7 +317,7 @@ class SmartThingsApis:
         device_id: str,
         component_id: str = "main",
         capability_id: Optional[str] = None,
-        user_id: str = 'me'
+        user_id: str = None
     ) -> Dict[str, Any]:
         """
         Get the current status of a device or a specific capability.
@@ -333,7 +326,7 @@ class SmartThingsApis:
             device_id (str): ID of the device.
             component_id (str): ID of the component (e.g., 'main').
             capability_id (Optional[str]): ID of the capability (e.g., 'switch', 'level'). If None, returns all component status.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Any]: The status of the device/capability or an error message.
         """
@@ -357,12 +350,12 @@ class SmartThingsApis:
         
         return {"status": "success", "component_status": copy.deepcopy(component_status)}
 
-    def list_locations(self, user_id: str = 'me') -> List[Dict[str, Any]]:
+    def list_locations(self, user_id: str) -> List[Dict[str, Any]]:
         """
         List all locations for a user.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             List[Dict[str, Any]]: List of all locations.
         """
@@ -371,13 +364,13 @@ class SmartThingsApis:
             return []
         return [copy.deepcopy(loc) for loc in user_locations.values()]
 
-    def get_location(self, location_id: str, user_id: str = 'me') -> Dict[str, Any]:
+    def get_location(self, location_id: str, user_id: str) -> Dict[str, Any]:
         """
         Get a specific location for a user.
 
         Args:
             location_id (str): ID of the location.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Any]: Details of the location.
         """
@@ -393,7 +386,7 @@ class SmartThingsApis:
     def create_location(
         self,
         name: str,
-        user_id: str = 'me',
+        user_id: str,
         address: Optional[str] = None,
         latitude: Optional[float] = None,
         longitude: Optional[float] = None
@@ -403,7 +396,7 @@ class SmartThingsApis:
 
         Args:
             name (str): The name of the new location.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             address (Optional[str]): The address of the location.
             latitude (Optional[float]): The latitude of the location.
             longitude (Optional[float]): The longitude of the location.
@@ -436,7 +429,7 @@ class SmartThingsApis:
     def update_location(
         self,
         location_id: str,
-        user_id: str = 'me',
+        user_id: str,
         name: Optional[str] = None,
         address: Optional[str] = None,
         latitude: Optional[float] = None,
@@ -447,7 +440,7 @@ class SmartThingsApis:
 
         Args:
             location_id (str): ID of the location to update.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             name (Optional[str]): New name for the location.
             address (Optional[str]): New address for the location.
             latitude (Optional[float]): New latitude for the location.
@@ -475,13 +468,13 @@ class SmartThingsApis:
         
         return {"status": "success", "location": copy.deepcopy(location)}
 
-    def delete_location(self, location_id: str, user_id: str = 'me') -> Dict[str, bool]:
+    def delete_location(self, location_id: str, user_id: str) -> Dict[str, bool]:
         """
         Delete a location.
 
         Args:
             location_id (str): ID of the location to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, bool]: True if the location was deleted successfully, False otherwise.
         """
@@ -504,16 +497,17 @@ class SmartThingsApis:
                     del user_devices[device_id]
 
             del user_locations[location_id]
-            print(f"Location '{location_id}' deleted for {user_id}")
+            user_email = self._get_user_email_by_id(user_id)
+            print(f"Location '{location_id}' deleted for user {user_id} ({user_email})")
             return {"status": True}
         return {"status": False}
 
-    def list_rooms(self, user_id: str = 'me', location_id: Optional[str] = None) -> List[Dict[str, Any]]:
+    def list_rooms(self, user_id: str, location_id: Optional[str] = None) -> List[Dict[str, Any]]:
         """
         List all rooms for a user, optionally filtered by location.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             location_id (Optional[str]): Filter rooms by this location ID.
         Returns:
             List[Dict[str, Any]]: List of all rooms.
@@ -528,13 +522,13 @@ class SmartThingsApis:
                 filtered_rooms.append(copy.deepcopy(room_data))
         return filtered_rooms
 
-    def get_room(self, room_id: str, user_id: str = 'me') -> Dict[str, Any]:
+    def get_room(self, room_id: str, user_id: str) -> Dict[str, Any]:
         """
         Get a specific room for a user.
 
         Args:
             room_id (str): ID of the room.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Any]: Details of the room.
         """
@@ -550,7 +544,7 @@ class SmartThingsApis:
     def create_room(
         self,
         name: str,
-        user_id: str = 'me',
+        user_id: str,
         location_id: Optional[str] = None
     ) -> Dict[str, Any]:
         """
@@ -558,7 +552,7 @@ class SmartThingsApis:
 
         Args:
             name (str): The name of the new room.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             location_id (Optional[str]): The ID of the location this room belongs to.
 
         Returns:
@@ -591,7 +585,7 @@ class SmartThingsApis:
     def update_room(
         self,
         room_id: str,
-        user_id: str = 'me',
+        user_id: str,
         name: Optional[str] = None,
         location_id: Optional[str] = None
     ) -> Dict[str, Any]:
@@ -600,7 +594,7 @@ class SmartThingsApis:
 
         Args:
             room_id (str): ID of the room to update.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             name (Optional[str]): New name for the room.
             location_id (Optional[str]): New location ID for the room.
 
@@ -626,13 +620,13 @@ class SmartThingsApis:
         
         return {"status": "success", "room": copy.deepcopy(room)}
 
-    def delete_room(self, room_id: str, user_id: str = 'me') -> Dict[str, bool]:
+    def delete_room(self, room_id: str, user_id: str) -> Dict[str, bool]:
         """
         Delete a room.
 
         Args:
             room_id (str): ID of the room to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, bool]: True if the room was deleted successfully, False otherwise.
         """
@@ -649,16 +643,17 @@ class SmartThingsApis:
                         device_data["room"] = None 
             
             del user_rooms[room_id]
-            print(f"Room '{room_id}' deleted for {user_id}")
+            user_email = self._get_user_email_by_id(user_id)
+            print(f"Room '{room_id}' deleted for user {user_id} ({user_email})")
             return {"status": True}
         return {"status": False}
 
-    def list_capabilities(self, user_id: str = 'me') -> List[Dict[str, Any]]:
+    def list_capabilities(self, user_id: str) -> List[Dict[str, Any]]:
         """
         List all capabilities for a user.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             List[Dict[str, Any]]: List of all capabilities.
         """
@@ -671,7 +666,7 @@ class SmartThingsApis:
         self,
         capability_id: str,
         version: Optional[int] = None,
-        user_id: str = 'me'
+        user_id: str = None
     ) -> Dict[str, Any]:
         """
         Get a specific capability for a user.
@@ -679,7 +674,7 @@ class SmartThingsApis:
         Args:
             capability_id (str): ID of the capability.
             version (Optional[int]): Version of the capability.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Any]: Details of the capability.
         """
@@ -692,13 +687,13 @@ class SmartThingsApis:
                 return copy.deepcopy(cap)
         return {"error": f"Capability {capability_id} not found."}
 
-    def get_device_health(self, device_id: str, user_id: str = 'me') -> Dict[str, Any]:
+    def get_device_health(self, device_id: str, user_id: str) -> Dict[str, Any]:
         """
         Get health status and metadata for a specific device.
 
         Args:
             device_id (str): ID of the device.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         
         Returns:
             Dict[str, Any]: Device health information including status, power source, etc.
@@ -727,13 +722,13 @@ class SmartThingsApis:
 
         return {"status": "success", "health": health_info}
 
-    def list_devices_by_health_status(self, health_status: str, user_id: str = 'me') -> List[Dict[str, Any]]:
+    def list_devices_by_health_status(self, health_status: str, user_id: str) -> List[Dict[str, Any]]:
         """
         List devices filtered by health status.
 
         Args:
             health_status (str): Health status to filter by (healthy, degraded, error).
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         
         Returns:
             List[Dict[str, Any]]: List of devices with the specified health status.
@@ -749,13 +744,13 @@ class SmartThingsApis:
         
         return filtered_devices
 
-    def list_devices_by_manufacturer(self, manufacturer: str, user_id: str = 'me') -> List[Dict[str, Any]]:
+    def list_devices_by_manufacturer(self, manufacturer: str, user_id: str) -> List[Dict[str, Any]]:
         """
         List devices filtered by manufacturer.
 
         Args:
             manufacturer (str): Manufacturer name to filter by.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         
         Returns:
             List[Dict[str, Any]]: List of devices from the specified manufacturer.
@@ -771,14 +766,14 @@ class SmartThingsApis:
         
         return filtered_devices
 
-    def update_device_firmware(self, device_id: str, new_version: str, user_id: str = 'me') -> Dict[str, Any]:
+    def update_device_firmware(self, device_id: str, new_version: str, user_id: str) -> Dict[str, Any]:
         """
         Update the firmware version of a device.
 
         Args:
             device_id (str): ID of the device.
             new_version (str): New firmware version.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         
         Returns:
             Dict[str, Any]: Result of the firmware update operation.

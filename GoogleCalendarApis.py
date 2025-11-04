@@ -57,22 +57,12 @@ class GoogleCalendarApis:
         """
         return self.users.get(user_id, {}).get("email")
 
-    def _get_user_calendar_data(self, user_id: str) -> Optional[Dict]:
-        """
-        Get calendar data for a specific user.
-        Args:
-            user_id (str): User's email address for the authenticated user.
-        Returns:
-            Optional[Dict]: User's calendar data if found, None otherwise.
-        """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        return self.users.get(internal_user_id, {}).get("calendar_data") if internal_user_id else None
 
     def _get_user_calendars(self, user_id: str) -> Optional[Dict]:
         """
         Get calendars for a specific user.
         Args:
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict]: User's calendars if found, None otherwise.
         """
@@ -83,7 +73,7 @@ class GoogleCalendarApis:
         """
         Get events for a specific user.
         Args:
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Optional[Dict[str, Dict]]: User's events organized by calendar if found, None otherwise.
         """
@@ -94,22 +84,21 @@ class GoogleCalendarApis:
         """
         Get profile information for a user.
         Args:
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and profile data.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"retrieval_status": False, "profile_data": {}}
         
-        user_data = self.users.get(internal_user_id)
+        user_data = self.users.get(user_id)
         return {"retrieval_status": True, "profile_data": {"email": user_data["email"], "first_name": user_data["first_name"], "last_name": user_data["last_name"]}} if user_data else {"retrieval_status": False, "profile_data": {}}
 
     def list_calendars(self, user_id: str) -> Dict[str, Union[bool, List[Dict]]]:
         """
         List all calendars for a user.
         Args:
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, List[Dict]]]: Dictionary with retrieval status and list of calendars.
         """
@@ -121,7 +110,7 @@ class GoogleCalendarApis:
         Get details for a specific calendar.
         Args:
             calendar_id (str): ID of the calendar to retrieve.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and calendar data.
         """
@@ -140,18 +129,17 @@ class GoogleCalendarApis:
         Args:
             summary (str): Name/description of the new calendar.
             time_zone (str): Time zone for the calendar.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, Dict]]: Dictionary with creation status and new calendar data.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"creation_status": False, "calendar_data": {}}
 
-        user_calendar_data = self.users[internal_user_id].get("calendar_data")
+        user_calendar_data = self.users[user_id].get("calendar_data")
         if user_calendar_data is None:
             user_calendar_data = {"calendars": {}, "events": {}}
-            self.users[internal_user_id]["calendar_data"] = user_calendar_data
+            self.users[user_id]["calendar_data"] = user_calendar_data
 
         calendars = user_calendar_data.get("calendars")
         events = user_calendar_data.get("events")
@@ -165,7 +153,8 @@ class GoogleCalendarApis:
         calendars[new_calendar_id] = new_calendar
         events[new_calendar_id] = {}
 
-        print(f"Calendar created: {summary} for {user_id}")
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Calendar created: {summary} for user {user_id} ({user_email})")
         return {"creation_status": True, "calendar_data": new_calendar}
 
     def update_calendar(
@@ -176,7 +165,7 @@ class GoogleCalendarApis:
         Args:
             calendar_id (str): ID of the calendar to update.
             new_summary (str): New name/description for the calendar.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, str]]: Dictionary with update status and message.
         """
@@ -186,7 +175,8 @@ class GoogleCalendarApis:
         
         if calendar_id in calendars:
             calendars[calendar_id]["summary"] = new_summary
-            print(f"Calendar '{calendar_id}' updated to '{new_summary}' for {user_id}")
+            user_email = self._get_user_email_by_id(user_id)
+            print(f"Calendar '{calendar_id}' updated to '{new_summary}' for user {user_id} ({user_email})")
             return {"update_status": True, "message": "Calendar updated successfully."}
         return {"update_status": False, "message": "Calendar not found."}
 
@@ -197,15 +187,14 @@ class GoogleCalendarApis:
         Delete a calendar and all its events.
         Args:
             calendar_id (str): ID of the calendar to delete.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, str]]: Dictionary with deletion status and message.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"delete_status": False, "message": "User not found."}
         
-        user_calendar_data = self.users[internal_user_id].get("calendar_data")
+        user_calendar_data = self.users[user_id].get("calendar_data")
         if user_calendar_data is None:
              return {"delete_status": False, "message": "User not found or no calendar data."}
 
@@ -216,7 +205,8 @@ class GoogleCalendarApis:
             del calendars[calendar_id]
             if calendar_id in events_data:
                 del events_data[calendar_id]
-            print(f"Calendar '{calendar_id}' and its events deleted for {user_id}")
+            user_email = self._get_user_email_by_id(user_id)
+            print(f"Calendar '{calendar_id}' and its events deleted for user {user_id} ({user_email})")
             return {"delete_status": True, "message": "Calendar deleted successfully."}
         return {"delete_status": False, "message": "Calendar not found."}
 
@@ -233,7 +223,7 @@ class GoogleCalendarApis:
         List events in a calendar with optional filters and pagination.
         Args:
             calendar_id (str): ID of the calendar to list events from.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             time_min (Optional[str]): Minimum start time for events (ISO format).
             time_max (Optional[str]): Maximum end time for events (ISO format).
             max_results (int): Maximum number of events to return.
@@ -282,7 +272,7 @@ class GoogleCalendarApis:
         Args:
             calendar_id (str): ID of the calendar containing the event.
             event_id (str): ID of the event to retrieve.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and event data.
         """
@@ -312,17 +302,16 @@ class GoogleCalendarApis:
             start_time (str): Start time of the event (ISO format).
             end_time (str): End time of the event (ISO format).
             time_zone (str): Time zone for the event.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             description (Optional[str]): Additional description for the event.
             attendees (Optional[List[Dict[str, str]]]): List of attendees forthe event.
         Returns:
             Dict[str, Union[bool, Dict]]: Dictionary with creation status and event data.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"creation_status": False, "message": "User not found."}
         
-        user_calendar_data = self.users[internal_user_id].get("calendar_data")
+        user_calendar_data = self.users[user_id].get("calendar_data")
         if user_calendar_data is None:
             return {"creation_status": False, "message": "User has no calendar data."}
 
@@ -346,7 +335,8 @@ class GoogleCalendarApis:
 
         events_data[calendar_id][new_event_id] = new_event
 
-        print(f"Event '{summary}' created in calendar '{calendar_id}' for {user_id}")
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Event '{summary}' created in calendar '{calendar_id}' for user {user_id} ({user_email})")
         return {"creation_status": True, "event_data": new_event}
 
     def update_event(
@@ -366,7 +356,7 @@ class GoogleCalendarApis:
         Args:
             calendar_id (str): ID of the calendar containing the event.
             event_id (str): ID of the event to update.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             summary (Optional[str]): New title/description for the event.
             start_time (Optional[str]): New start time for the event (ISO format).
             end_time (Optional[str]): New end time for the event (ISO format).
@@ -393,7 +383,8 @@ class GoogleCalendarApis:
         if description is not None: event["description"] = description
         if attendees is not None: event["attendees"] = attendees
 
-        print(f"Event '{event_id}' updated in calendar '{calendar_id}' for {user_id}")
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Event '{event_id}' updated in calendar '{calendar_id}' for user {user_id} ({user_email})")
         return {"update_status": True, "message": "Event updated successfully."}
 
     def delete_event(self, calendar_id: str, event_id: str, user_id: str) -> Dict[str, Union[bool, str]]:
@@ -402,7 +393,7 @@ class GoogleCalendarApis:
         Args:
             calendar_id (str): ID of the calendar containing the event.
             event_id (str): ID of the event to delete.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, str]]: Dictionary with deletion status and message.
         """
@@ -412,7 +403,8 @@ class GoogleCalendarApis:
         
         if event_id in events_by_calendar[calendar_id]:
             del events_by_calendar[calendar_id][event_id]
-            print(f"Event '{event_id}' deleted from calendar '{calendar_id}' for {user_id}")
+            user_email = self._get_user_email_by_id(user_id)
+            print(f"Event '{event_id}' deleted from calendar '{calendar_id}' for user {user_id} ({user_email})")
             return {"delete_status": True, "message": "Event deleted successfully."}
         return {"delete_status": False, "message": "Event not found."}
 
@@ -429,7 +421,7 @@ class GoogleCalendarApis:
             calendar_id (str): ID of the source calendar.
             event_id (str): ID of the event to move.
             destination_calendar_id (str): ID of the destination calendar.
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, str]]: Dictionary with move status and message.
         """
@@ -451,7 +443,8 @@ class GoogleCalendarApis:
         destination_events[event_id] = copy.deepcopy(event_to_move)
         del source_events[event_id]
 
-        print(f"Event '{event_id}' moved from '{calendar_id}' to '{destination_calendar_id}' for {user_id}")
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Event '{event_id}' moved from '{calendar_id}' to '{destination_calendar_id}' for user {user_id} ({user_email})")
         return {"move_status": True, "message": f"Event '{event_id}' moved successfully from '{calendar_id}' to '{destination_calendar_id}'."}
 
     def check_free_busy(self, time_min: str, time_max: str, items: List[Dict], user_id: str) -> Dict[str, Union[bool, Dict]]:
@@ -461,7 +454,7 @@ class GoogleCalendarApis:
             time_min (str): Start of time range to check (ISO format).
             time_max (str): End of time range to check (ISO format).
             items (List[Dict]): List of calendars to check (each with 'id' field).
-            user_id (str): User's email address for the authenticated user.
+            user_id (str): The internal user ID (UUID).
         Returns:
             Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and free/busy data.
         """

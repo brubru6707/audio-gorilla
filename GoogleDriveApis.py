@@ -65,28 +65,40 @@ class GoogleDriveApis:
         return user_data.get("email") if user_data else None
 
     def _get_user_drive_data(self, user_id: str) -> Optional[Dict]:
-        """Helper to get a user's drive data."""
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
-            return None
-        return self.users.get(internal_user_id, {}).get("drive_data")
+        """
+        Helper to get a user's drive data.
+        
+        Args:
+            user_id (str): The internal user ID (UUID).
+        """
+        return self.users.get(user_id, {}).get("drive_data")
 
     def _get_user_files(self, user_id: str) -> Optional[Dict]:
-        """Helper to get a user's files."""
+        """
+        Helper to get a user's files.
+        
+        Args:
+            user_id (str): The internal user ID (UUID).
+        """
         drive_data = self._get_user_drive_data(user_id)
         return drive_data.get("files") if drive_data else None
 
     def _get_user_info(self, user_id: str) -> Optional[Dict]:
-        """Helper to get a user's drive user info."""
+        """
+        Helper to get a user's drive user info.
+        
+        Args:
+            user_id (str): The internal user ID (UUID).
+        """
         drive_data = self._get_user_drive_data(user_id)
         return drive_data.get("user_info") if drive_data else None
 
-    def get_user_info(self, user_id: str = "me") -> Dict[str, Union[bool, Dict]]:
+    def get_user_info(self, user_id: str) -> Dict[str, Union[bool, Dict]]:
         """
-        Retrieves information about the authenticated user's Drive.
+        Retrieves information about the user's Drive.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary containing 'retrieval_status' (bool) and 'user_info' (Dict) if successful.
@@ -98,7 +110,7 @@ class GoogleDriveApis:
 
     def list_files(
         self,
-        user_id: str = "me",
+        user_id: str,
         query: Optional[str] = None,
         page_size: int = 10,
         page_token: Optional[str] = None,
@@ -107,7 +119,7 @@ class GoogleDriveApis:
         Lists files in the user's Drive.
 
         Args:
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
             query (Optional[str]): A query string to filter results (e.g., "name contains 'report'").
             page_size (int): The maximum number of files to return per page.
             page_token (Optional[str]): The token for the next page of results.
@@ -179,13 +191,13 @@ class GoogleDriveApis:
             "nextPageToken": next_page_token,
         }
 
-    def get_file(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, Dict]]:
+    def get_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, Dict]]:
         """
         Retrieves a file by its ID from the user's Drive.
 
         Args:
             fileId (str): The ID of the file to retrieve.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary containing 'retrieval_status' (bool) and 'file_data' (Dict) if successful.
@@ -197,7 +209,8 @@ class GoogleDriveApis:
         file_data = files.get(fileId)
         if file_data:
             # Update viewing metadata when file is accessed
-            file_data["lastViewingUser"] = user_id
+            user_email = self._get_user_email_by_id(user_id)
+            file_data["lastViewingUser"] = user_email
             file_data["viewedByMeTime"] = int(datetime.now().timestamp())
             return {"retrieval_status": True, "file_data": copy.deepcopy(file_data)}
         return {"retrieval_status": False, "file_data": {}}
@@ -206,9 +219,9 @@ class GoogleDriveApis:
         self,
         name: str,
         mimeType: str,
+        user_id: str,
         parents: Optional[List[str]] = None,
         content: Optional[str] = None,
-        user_id: str = "me",
     ) -> Dict[str, Union[bool, Dict]]:
         """
         Creates a new file in the user's Drive.
@@ -216,24 +229,25 @@ class GoogleDriveApis:
         Args:
             name (str): The name of the file.
             mimeType (str): The MIME type of the file.
-            parents (Optional[List[str]]): A list of parent folder IDs/names. Defaults to root.
+            user_id (str): The internal user ID (UUID).
+            parents (Optional[List[str]]): A list of parent folder IDs. Defaults to root.
             content (Optional[str]): The content of the file (for simplicity).
-            user_id (str): User's email address or 'me' for the authenticated user.
 
         Returns:
             Dict: A dictionary containing 'status' (bool) and 'file' (Dict) if successful.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"status": False, "message": "User not found."}
 
-        user_drive_data = self.users[internal_user_id].get("drive_data")
+        user_drive_data = self.users[user_id].get("drive_data")
         if user_drive_data is None:
-            user_drive_data = {"user_info": {"name": "", "email": user_id, "storage_quota": {"total": 0, "used": 0}}, "files": {}}
-            self.users[internal_user_id]["drive_data"] = user_drive_data
+            user_email = self._get_user_email_by_id(user_id)
+            user_drive_data = {"user_info": {"name": "", "email": user_email, "storage_quota": {"total": 0, "used": 0}}, "files": {}}
+            self.users[user_id]["drive_data"] = user_drive_data
         
         files = user_drive_data.get("files")
         user_info = user_drive_data.get("user_info")
+        user_email = self._get_user_email_by_id(user_id)
 
         new_file_id = self._generate_id()
         current_time = int(datetime.now().timestamp())
@@ -244,29 +258,29 @@ class GoogleDriveApis:
             "mimeType": mimeType,
             "createdTime": current_time,
             "modifiedTime": current_time,
-            "owners": [{"displayName": user_info.get("name", user_id), "emailAddress": user_id}],
+            "owners": [{"displayName": user_info.get("name", user_email), "emailAddress": user_email}],
             "parents": parents if parents is not None else ["root"],
             "size": len(content) if content else 0,
             "starred": False,
             "trashed": False,
             "shared": False,
             "version": 1,
-            "lastViewingUser": user_id,
+            "lastViewingUser": user_email,
             "viewedByMeTime": current_time
         }
         files[new_file_id] = new_file
 
         user_info["storage_quota"]["used"] += new_file["size"]
         
-        print(f"File '{name}' created for {user_id} with ID: {new_file_id}")
+        print(f"File '{name}' created for user {user_id} with ID: {new_file_id}")
         return {"status": True, "file": new_file}
 
     def update_file(
         self,
         fileId: str,
+        user_id: str,
         addParents: Optional[str] = None,
         removeParents: Optional[str] = None,
-        user_id: str = "me",
         name: Optional[str] = None,
         mimeType: Optional[str] = None,
     ) -> Dict[str, Any]:
@@ -275,9 +289,9 @@ class GoogleDriveApis:
 
         Args:
             fileId (str): ID of the file to update.
+            user_id (str): The internal user ID (UUID).
             addParents (str, optional): Parents to add to the file. Defaults to None.
             removeParents (str, optional): Parents to remove from the file. Defaults to None.
-            user_id (str, optional): User's email address or 'me' for the authenticated user. Defaults to 'me'.
             name (str, optional): New name for the file.
             mimeType (str, optional): New MIME type for the file.
 
@@ -293,9 +307,10 @@ class GoogleDriveApis:
             return {"error": "File not found"}
 
         file = files[fileId]
+        user_email = self._get_user_email_by_id(user_id)
         file["modifiedTime"] = int(datetime.now().timestamp())
         file["version"] = file.get("version", 1) + 1  # Increment version on update
-        file["lastViewingUser"] = user_id
+        file["lastViewingUser"] = user_email
         file["viewedByMeTime"] = int(datetime.now().timestamp())
 
         if name is not None:
@@ -319,25 +334,24 @@ class GoogleDriveApis:
             if not file["parents"]:
                 file["parents"] = ["root"]
 
-        print(f"File '{fileId}' updated for {user_id}")
+        print(f"File '{fileId}' updated for user {user_id}")
         return {"updated_file": copy.deepcopy(file), "status": "success"}
 
-    def delete_file(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, str]]:
+    def delete_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, str]]:
         """
         Deletes a file by its ID from the user's Drive.
 
         Args:
             fileId (str): The ID of the file to delete.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary indicating success or failure.
         """
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if not internal_user_id:
+        if user_id not in self.users:
             return {"delete_status": False, "message": "User not found."}
         
-        user_drive_data = self.users[internal_user_id].get("drive_data")
+        user_drive_data = self.users[user_id].get("drive_data")
         if user_drive_data is None:
             return {"delete_status": False, "message": "User data not found."}
 
@@ -350,12 +364,12 @@ class GoogleDriveApis:
 
             user_info["storage_quota"]["used"] -= deleted_file_size
 
-            print(f"File '{fileId}' deleted for {user_id}")
+            print(f"File '{fileId}' deleted for user {user_id}")
             return {"delete_status": True, "message": "File deleted successfully."}
         return {"delete_status": False, "message": "File not found."}
 
     def copy_file(
-        self, fileId: str, name: str, parents: Optional[List[str]] = None, user_id: str = "me"
+        self, fileId: str, name: str, user_id: str, parents: Optional[List[str]] = None
     ) -> Dict[str, Union[bool, Dict]]:
         """
         Copies an existing file in the user's Drive.
@@ -363,8 +377,8 @@ class GoogleDriveApis:
         Args:
             fileId (str): The ID of the file to copy.
             name (str): The name for the new copied file.
-            parents (Optional[List[str]]): A list of parent folder IDs/names for the copy. Defaults to root.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
+            parents (Optional[List[str]]): A list of parent folder IDs for the copy. Defaults to root.
 
         Returns:
             Dict: A dictionary containing 'copy_status' (bool) and 'copied_file_data' (Dict) if successful.
@@ -379,6 +393,7 @@ class GoogleDriveApis:
 
         new_file_id = self._generate_id()
         current_time = int(datetime.now().timestamp())
+        user_email = self._get_user_email_by_id(user_id)
 
         copied_file = copy.deepcopy(original_file)
         copied_file["id"] = new_file_id
@@ -387,19 +402,18 @@ class GoogleDriveApis:
         copied_file["modifiedTime"] = current_time
         copied_file["parents"] = parents if parents is not None else ["root"]
         copied_file["version"] = 1  # Reset version for copy
-        copied_file["lastViewingUser"] = user_id
+        copied_file["lastViewingUser"] = user_email
         copied_file["viewedByMeTime"] = current_time
         copied_file["shared"] = False  # Reset sharing for copy
 
         files[new_file_id] = copied_file
 
-        internal_user_id = self._get_user_id_by_email(user_id)
-        if internal_user_id:
-            user_info = self.users[internal_user_id]["drive_data"].get("user_info")
+        if user_id in self.users:
+            user_info = self.users[user_id]["drive_data"].get("user_info")
             if user_info:
                 user_info["storage_quota"]["used"] += copied_file.get("size", 0)
 
-        print(f"File '{fileId}' copied to '{name}' with ID: {new_file_id} for {user_id}")
+        print(f"File '{fileId}' copied to '{name}' with ID: {new_file_id} for user {user_id}")
         return {"status": True, "file": copied_file}
 
     def reset_data(self) -> Dict[str, bool]:
@@ -414,13 +428,13 @@ class GoogleDriveApis:
         print("GoogleDriveApis: All dummy data reset to default state.")
         return {"reset_status": True}
 
-    def star_file(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, str]]:
+    def star_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, str]]:
         """
         Stars or unstars a file in Google Drive.
 
         Args:
             fileId (str): The ID of the file to star/unstar.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary indicating success or failure.
@@ -433,22 +447,23 @@ class GoogleDriveApis:
             return {"star_status": False, "message": "File not found."}
 
         file = files[fileId]
+        user_email = self._get_user_email_by_id(user_id)
         file["starred"] = not file.get("starred", False)
         file["modifiedTime"] = int(datetime.now().timestamp())
-        file["lastViewingUser"] = user_id
+        file["lastViewingUser"] = user_email
         file["viewedByMeTime"] = int(datetime.now().timestamp())
 
         status = "starred" if file["starred"] else "unstarred"
-        print(f"File '{fileId}' {status} for {user_id}")
+        print(f"File '{fileId}' {status} for user {user_id}")
         return {"star_status": True, "message": f"File {status} successfully.", "starred": file["starred"]}
 
-    def trash_file(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, str]]:
+    def trash_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, str]]:
         """
         Moves a file to trash or restores it from trash.
 
         Args:
             fileId (str): The ID of the file to trash/restore.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary indicating success or failure.
@@ -461,24 +476,25 @@ class GoogleDriveApis:
             return {"trash_status": False, "message": "File not found."}
 
         file = files[fileId]
+        user_email = self._get_user_email_by_id(user_id)
         file["trashed"] = not file.get("trashed", False)
         file["modifiedTime"] = int(datetime.now().timestamp())
-        file["lastViewingUser"] = user_id
+        file["lastViewingUser"] = user_email
         file["viewedByMeTime"] = int(datetime.now().timestamp())
 
         status = "trashed" if file["trashed"] else "restored"
-        print(f"File '{fileId}' {status} for {user_id}")
+        print(f"File '{fileId}' {status} for user {user_id}")
         return {"trash_status": True, "message": f"File {status} successfully.", "trashed": file["trashed"]}
 
-    def share_file(self, fileId: str, email: str, role: str = "reader", user_id: str = "me") -> Dict[str, Union[bool, str]]:
+    def share_file(self, fileId: str, email: str, user_id: str, role: str = "reader") -> Dict[str, Union[bool, str]]:
         """
         Shares a file with another user.
 
         Args:
             fileId (str): The ID of the file to share.
             email (str): Email address of the user to share with.
+            user_id (str): The internal user ID (UUID) of the file owner.
             role (str): The role to grant ("reader", "writer", "owner").
-            user_id (str): User's email address or 'me' for the authenticated user.
 
         Returns:
             Dict: A dictionary indicating success or failure.
@@ -496,6 +512,7 @@ class GoogleDriveApis:
             return {"share_status": False, "message": "File not found."}
 
         file = files[fileId]
+        user_email = self._get_user_email_by_id(user_id)
         
         # Add the new owner/collaborator
         if "owners" not in file:
@@ -522,19 +539,19 @@ class GoogleDriveApis:
         
         file["shared"] = True
         file["modifiedTime"] = int(datetime.now().timestamp())
-        file["lastViewingUser"] = user_id
+        file["lastViewingUser"] = user_email
         file["viewedByMeTime"] = int(datetime.now().timestamp())
 
-        print(f"File '{fileId}' shared with {email} as {role} for {user_id}")
+        print(f"File '{fileId}' shared with {email} as {role} for user {user_id}")
         return {"share_status": True, "message": f"File shared with {email} successfully."}
 
-    def get_file_revisions(self, fileId: str, user_id: str = "me") -> Dict[str, Union[bool, List, str]]:
+    def get_file_revisions(self, fileId: str, user_id: str) -> Dict[str, Union[bool, List, str]]:
         """
         Gets revision history for a file (simulated).
 
         Args:
             fileId (str): The ID of the file.
-            user_id (str): User's email address or 'me' for the authenticated user.
+            user_id (str): The internal user ID (UUID).
 
         Returns:
             Dict: A dictionary with revision history.
@@ -566,14 +583,14 @@ class GoogleDriveApis:
 
         return {"retrieval_status": True, "revisions": revisions}
 
-    def create_folder(self, name: str, parents: Optional[List[str]] = None, user_id: str = "me") -> Dict[str, Union[bool, Dict]]:
+    def create_folder(self, name: str, user_id: str, parents: Optional[List[str]] = None) -> Dict[str, Union[bool, Dict]]:
         """
         Creates a new folder in the user's Drive.
 
         Args:
             name (str): The name of the folder.
+            user_id (str): The internal user ID (UUID).
             parents (Optional[List[str]]): A list of parent folder IDs. Defaults to root.
-            user_id (str): User's email address or 'me' for the authenticated user.
 
         Returns:
             Dict: A dictionary containing 'creation_status' (bool) and 'folder_data' (Dict) if successful.
@@ -581,7 +598,7 @@ class GoogleDriveApis:
         return self.create_file(
             name=name,
             mimeType="application/vnd.google-apps.folder",
+            user_id=user_id,
             parents=parents,
             content=None,
-            user_id=user_id
         )
