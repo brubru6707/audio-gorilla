@@ -82,7 +82,17 @@ class CommuniLinkApis:
         """
         return str(uuid.uuid4())
 
-    def send_sms(self, from_number: str, to_number: str, message: str) -> Dict[str, Union[str, int]]:
+    def send_sms(
+        self, 
+        from_number: str, 
+        to_number: str, 
+        message: str,
+        priority: str = "normal",
+        delivery_receipt: bool = True,
+        schedule_time: Optional[str] = None,
+        max_retries: int = 3,
+        message_type: str = "text"
+    ) -> Dict[str, Union[str, int]]:
         """
         Simulates sending an SMS message. The message status progresses
         from 'queued' to 'sent' and then 'delivered' over a short simulated time.
@@ -91,6 +101,11 @@ class CommuniLinkApis:
             from_number (str): The sender's phone number (E.164 format, e.g., "+15551234567").
             to_number (str): The recipient's phone number (E.164 format, e.g., "+15559876543").
             message (str): The text content of the SMS.
+            priority (str): Message priority level - "low", "normal", or "high". Default is "normal".
+            delivery_receipt (bool): Whether to request a delivery receipt. Default is True.
+            schedule_time (Optional[str]): ISO timestamp to schedule message for future delivery. Default is None (send immediately).
+            max_retries (int): Maximum number of retry attempts if delivery fails. Default is 3.
+            message_type (str): Type of message - "text", "marketing", or "transactional". Default is "text".
 
         Returns:
             Dict: A dictionary representing the simulated SMS message object,
@@ -100,13 +115,24 @@ class CommuniLinkApis:
         if not from_number or not to_number or not message:
             return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number, to_number, and message."}
 
+        # Validate priority
+        if priority not in ["low", "normal", "high"]:
+            return {"code": "INVALID_PRIORITY", "message": "Priority must be 'low', 'normal', or 'high'."}
+        
+        # Validate message_type
+        if message_type not in ["text", "marketing", "transactional"]:
+            return {"code": "INVALID_MESSAGE_TYPE", "message": "Message type must be 'text', 'marketing', or 'transactional'."}
+
         sender_user_id = self._get_user_id_by_phone(from_number)
         if not sender_user_id:
             return {"code": "INVALID_FROM_NUMBER", "message": "Sender phone number not associated with any user."}
         
         sender_user = self.users[sender_user_id]
 
-        sms_cost = self.service_plans[self.active_plan]["price_per_sms"]
+        # Apply priority-based cost multiplier
+        cost_multiplier = {"low": 0.8, "normal": 1.0, "high": 1.5}
+        sms_cost = self.service_plans[self.active_plan]["price_per_sms"] * cost_multiplier[priority]
+        
         if sender_user["balance"] < sms_cost:
             return {"code": "INSUFFICIENT_BALANCE", "message": "Insufficient balance to send SMS."}
         
@@ -117,7 +143,7 @@ class CommuniLinkApis:
             "user_id": sender_user_id,
             "amount": -sms_cost,
             "date": datetime.now().isoformat(),
-            "description": f"SMS to {to_number}"
+            "description": f"SMS to {to_number} (priority: {priority}, type: {message_type})"
         })
         new_sms_id = self._generate_unique_id()
         new_sms = {
@@ -126,8 +152,14 @@ class CommuniLinkApis:
             "sender_id": sender_user_id,
             "receiver": to_number,
             "message": message,
-            "status": "queued",
-            "timestamp": datetime.now().isoformat()
+            "status": "queued" if not schedule_time else "scheduled",
+            "timestamp": datetime.now().isoformat(),
+            "priority": priority,
+            "delivery_receipt": delivery_receipt,
+            "schedule_time": schedule_time,
+            "max_retries": max_retries,
+            "message_type": message_type,
+            "retry_count": 0
         }
         
         receiver_user_id = self._get_user_id_by_phone(to_number)
@@ -138,9 +170,23 @@ class CommuniLinkApis:
         if receiver_user_id:
             receiver_user = self.users[receiver_user_id]
             receiver_user["sms_history"].append(new_sms)
-            print(f"Dummy SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to {receiver_user['email']}")
+            print(f"Dummy SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to {receiver_user['email']} (priority: {priority})")
         else:
-            print(f"Dummy SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to external number {to_number}")
+            print(f"Dummy SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to external number {to_number} (priority: {priority})")
+
+        # If scheduled, don't progress status yet
+        if schedule_time:
+            print(f"Dummy SMS ID={new_sms['sms_id']} scheduled for {schedule_time}")
+            return {
+                "id": new_sms["sms_id"],
+                "from": new_sms["sender"],
+                "to": new_sms["receiver"],
+                "message": new_sms["message"],
+                "status": new_sms["status"],
+                "timestamp": new_sms["timestamp"],
+                "schedule_time": schedule_time,
+                "priority": priority
+            }
 
         time.sleep(0.1)
         new_sms["status"] = "sent"
@@ -154,7 +200,9 @@ class CommuniLinkApis:
             "to": new_sms["receiver"],
             "message": new_sms["message"],
             "status": new_sms["status"],
-            "timestamp": new_sms["timestamp"]
+            "timestamp": new_sms["timestamp"],
+            "priority": priority,
+            "delivery_receipt": delivery_receipt
         }
 
     def get_sms_status(self, message_id: str) -> Dict[str, Union[str, int]]:
@@ -188,7 +236,17 @@ class CommuniLinkApis:
             "timestamp": sms["timestamp"]
         }
 
-    def make_voice_call(self, from_number: str, to_number: str) -> Dict[str, Union[str, int, float]]:
+    def make_voice_call(
+        self, 
+        from_number: str, 
+        to_number: str,
+        call_type: str = "voice",
+        recording_enabled: bool = False,
+        caller_id_display: bool = True,
+        call_forwarding: Optional[str] = None,
+        voicemail_enabled: bool = True,
+        call_quality: str = "standard"
+    ) -> Dict[str, Union[str, int, float]]:
         """
         Simulates initiating an outbound voice call. The call status progresses
         from 'initiated' to 'ringing', 'in-progress', and then 'completed'
@@ -197,6 +255,12 @@ class CommuniLinkApis:
         Args:
             from_number (str): The caller's phone number (E.164 format).
             to_number (str): The recipient's phone number (E.164 format).
+            call_type (str): Type of call - "voice", "video", or "conference". Default is "voice".
+            recording_enabled (bool): Whether to record the call. Default is False.
+            caller_id_display (bool): Whether to display caller ID to recipient. Default is True.
+            call_forwarding (Optional[str]): Phone number to forward call to if unanswered. Default is None.
+            voicemail_enabled (bool): Whether voicemail is available if unanswered. Default is True.
+            call_quality (str): Call quality setting - "standard", "hd", or "premium". Default is "standard".
 
         Returns:
             Dict: A dictionary representing the simulated voice call object,
@@ -206,6 +270,14 @@ class CommuniLinkApis:
         """
         if not from_number or not to_number:
             return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number and to_number."}
+
+        # Validate call_type
+        if call_type not in ["voice", "video", "conference"]:
+            return {"code": "INVALID_CALL_TYPE", "message": "Call type must be 'voice', 'video', or 'conference'."}
+        
+        # Validate call_quality
+        if call_quality not in ["standard", "hd", "premium"]:
+            return {"code": "INVALID_CALL_QUALITY", "message": "Call quality must be 'standard', 'hd', or 'premium'."}
 
         caller_user_id = self._get_user_id_by_phone(from_number)
         if not caller_user_id:
@@ -222,8 +294,13 @@ class CommuniLinkApis:
             "duration_minutes": random.randint(1, 59),
             "status": "initiated",
             "timestamp": datetime.now().isoformat(),
-            "type": "incoming",
+            "type": call_type,
             "is_external": False,
+            "recording_enabled": recording_enabled,
+            "caller_id_display": caller_id_display,
+            "call_forwarding": call_forwarding,
+            "voicemail_enabled": voicemail_enabled,
+            "call_quality": call_quality
         }
         
         receiver_user_id = self._get_user_id_by_phone(to_number)
@@ -248,7 +325,18 @@ class CommuniLinkApis:
 
         new_call["duration"] = call_duration_
 
-        call_cost = self.service_plans[self.active_plan]["price_per_minute"] * (new_call["duration"] / 60)
+        # Apply quality-based cost multiplier
+        quality_multiplier = {"standard": 1.0, "hd": 1.3, "premium": 1.8}
+        type_multiplier = {"voice": 1.0, "video": 2.0, "conference": 2.5}
+        
+        call_cost = (self.service_plans[self.active_plan]["price_per_minute"] * 
+                     (new_call["duration"] / 60) * 
+                     quality_multiplier[call_quality] * 
+                     type_multiplier[call_type])
+        
+        # Add recording cost if enabled
+        if recording_enabled:
+            call_cost += 0.05 * (new_call["duration"] / 60)  # $0.05 per minute for recording
         
         if caller_user["balance"] < call_cost:
             new_call["status"] = "failed_insufficient_balance"
@@ -262,7 +350,7 @@ class CommuniLinkApis:
             "user_id": caller_user_id,
             "amount": -call_cost,
             "date": datetime.now().isoformat(),
-            "description": f"Call to {to_number}, duration {new_call['duration']}s"
+            "description": f"{call_type.capitalize()} call to {to_number}, duration {new_call['duration']}s, quality: {call_quality}"
         })
         
         new_call["status"] = "completed"
@@ -270,6 +358,11 @@ class CommuniLinkApis:
         
         # attach a mock audio URL for the call
         new_call["audioUrl"] = f"https://audio.mock/{new_call_id}.mp3"
+        
+        # Add recording URL if recording was enabled
+        if recording_enabled:
+            new_call["recordingUrl"] = f"https://recordings.mock/{new_call_id}.mp3"
+        
         return {
             "call_id": new_call["call_id"],
             "from": new_call["caller"],
@@ -277,7 +370,10 @@ class CommuniLinkApis:
             "audioUrl": new_call["audioUrl"],
             "status": new_call["status"],
             "timestamp": new_call["timestamp"],
-            "duration": new_call["duration"]
+            "duration": new_call["duration"],
+            "call_type": call_type,
+            "call_quality": call_quality,
+            "recording_url": new_call.get("recordingUrl")
         }
 
     def get_voice_call_status(self, call_id: str) -> Dict[str, Union[str, int, float]]:
@@ -471,13 +567,21 @@ class CommuniLinkApis:
         user_info_copy.pop("password_hash", None)
         return {"user": user_info_copy, "status": "success"}
 
-    def update_user_settings(self, user_email: str, settings: Dict) -> Dict[str, Union[Dict, str]]:
+    def update_user_settings(
+        self, 
+        user_email: str, 
+        settings: Dict,
+        validate_settings: bool = True,
+        merge_with_existing: bool = True
+    ) -> Dict[str, Union[Dict, str]]:
         """
         Updates the settings for a specific user.
 
         Args:
             user_email (str): The email of the user whose settings are to be updated.
             settings (Dict): A dictionary containing the settings to update (e.g., {"sms_notifications": False}).
+            validate_settings (bool): Whether to validate settings before applying. Default is True.
+            merge_with_existing (bool): Whether to merge with existing settings or replace. Default is True.
 
         Returns:
             Dict: A dictionary containing the updated user's settings,
@@ -487,15 +591,37 @@ class CommuniLinkApis:
         if not user_id:
             return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
 
-        self.users[user_id]["settings"].update(settings)
+        # Validate settings if requested
+        if validate_settings:
+            valid_keys = ["sms_notifications", "call_notifications", "voicemail_enabled", "call_forwarding", "do_not_disturb"]
+            for key in settings.keys():
+                if key not in valid_keys:
+                    return {"code": "INVALID_SETTING", "message": f"Invalid setting key: {key}. Valid keys: {valid_keys}"}
+
+        if merge_with_existing:
+            self.users[user_id]["settings"].update(settings)
+        else:
+            self.users[user_id]["settings"] = settings
+            
         return {"updated_settings": deepcopy(self.users[user_id]["settings"]), "status": "success", "message": "User settings updated successfully."}
 
-    def get_billing_history(self, user_email: Optional[str] = None) -> Dict[str, Union[List[Dict], str]]:
+    def get_billing_history(
+        self, 
+        user_email: Optional[str] = None,
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
+        transaction_type: Optional[str] = None,
+        limit: int = 100
+    ) -> Dict[str, Union[List[Dict], str]]:
         """
         Retrieves the billing history for all users or a specific user.
 
         Args:
             user_email (Optional[str]): If provided, filters billing history for this user.
+            start_date (Optional[str]): ISO timestamp to filter records from this date. Default is None.
+            end_date (Optional[str]): ISO timestamp to filter records up to this date. Default is None.
+            transaction_type (Optional[str]): Filter by type - "sms_charge", "voice_call_charge", "refund". Default is None.
+            limit (int): Maximum number of records to return. Default is 100.
 
         Returns:
             Dict: A dictionary containing a list of billing records,
@@ -509,18 +635,55 @@ class CommuniLinkApis:
                 return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
             
             for record in self.billing_history:
-                if record.get("user_id") == user_id:
-                    record_copy = deepcopy(record)
-                    record_copy["user_email"] = user_email
-                    filtered_history.append(record_copy)
+                if record.get("user_id") != user_id:
+                    continue
+                
+                # Apply date filters
+                record_date = record.get("date", "")
+                if start_date and record_date < start_date:
+                    continue
+                if end_date and record_date > end_date:
+                    continue
+                
+                # Apply transaction type filter
+                if transaction_type and record.get("type") != transaction_type:
+                    continue
+                
+                record_copy = deepcopy(record)
+                record_copy["user_email"] = user_email
+                filtered_history.append(record_copy)
         else:
             for record in self.billing_history:
+                # Apply date filters
+                record_date = record.get("date", "")
+                if start_date and record_date < start_date:
+                    continue
+                if end_date and record_date > end_date:
+                    continue
+                
+                # Apply transaction type filter
+                if transaction_type and record.get("type") != transaction_type:
+                    continue
+                
                 record_copy = deepcopy(record)
                 record_copy["user_email"] = self._get_user_email_by_id(record_copy.get("user_id"))
-                filtered_history.append(record_copy)           
-        return {"billing_history": filtered_history, "status": "success"}
+                filtered_history.append(record_copy)
+        
+        # Apply limit
+        filtered_history = filtered_history[:limit]
+        
+        return {"billing_history": filtered_history, "status": "success", "total_records": len(filtered_history)}
 
-    def create_support_ticket(self, user_email: str, subject: str, description: str) -> Dict[str, Union[Dict, str]]:
+    def create_support_ticket(
+        self, 
+        user_email: str, 
+        subject: str, 
+        description: str,
+        priority: str = "medium",
+        category: str = "general",
+        attachments: Optional[List[str]] = None,
+        preferred_contact_method: str = "email"
+    ) -> Dict[str, Union[Dict, str]]:
         """
         Creates a new support ticket for a user.
 
@@ -528,6 +691,10 @@ class CommuniLinkApis:
             user_email (str): The email of the user creating the ticket.
             subject (str): The subject of the support ticket.
             description (str): A detailed description of the issue.
+            priority (str): Priority level - "low", "medium", "high", or "urgent". Default is "medium".
+            category (str): Ticket category - "general", "billing", "technical", or "account". Default is "general".
+            attachments (Optional[List[str]]): List of attachment URLs/paths. Default is None.
+            preferred_contact_method (str): Preferred contact method - "email", "phone", or "sms". Default is "email".
 
         Returns:
             Dict: A dictionary representing the created support ticket,
@@ -537,17 +704,34 @@ class CommuniLinkApis:
         if not user_id:
             return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
 
+        # Validate priority
+        if priority not in ["low", "medium", "high", "urgent"]:
+            return {"code": "INVALID_PRIORITY", "message": "Priority must be 'low', 'medium', 'high', or 'urgent'."}
+        
+        # Validate category
+        if category not in ["general", "billing", "technical", "account"]:
+            return {"code": "INVALID_CATEGORY", "message": "Category must be 'general', 'billing', 'technical', or 'account'."}
+        
+        # Validate contact method
+        if preferred_contact_method not in ["email", "phone", "sms"]:
+            return {"code": "INVALID_CONTACT_METHOD", "message": "Contact method must be 'email', 'phone', or 'sms'."}
+
         ticket_id = self._generate_unique_id()
         new_ticket = {
             "ticket_id": ticket_id,
             "user_id": user_id,
             "subject": subject,
             "description": description,
+            "priority": priority,
+            "category": category,
+            "attachments": attachments or [],
+            "preferred_contact_method": preferred_contact_method,
             "status": "open",
-            "created_at": datetime.now().isoformat()
+            "created_at": datetime.now().isoformat(),
+            "last_updated": datetime.now().isoformat()
         }
         self.support_tickets.append(new_ticket)
-        print(f"Support ticket created: ID={new_ticket['ticket_id']} for {user_email}")
+        print(f"Support ticket created: ID={new_ticket['ticket_id']} for {user_email} (priority: {priority}, category: {category})")
         
         ticket_for_display = deepcopy(new_ticket)
         ticket_for_display["user_email"] = user_email

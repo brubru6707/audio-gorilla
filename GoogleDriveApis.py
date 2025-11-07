@@ -1,3 +1,4 @@
+# Inspired by https://developers.google.com/workspace/drive/api/quickstart/nodejs
 import copy
 import copy
 import uuid

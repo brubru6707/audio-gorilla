@@ -104,6 +104,10 @@ class SimpleNoteApis:
         color: Optional[str] = None,
         archived: Optional[bool] = None,
         priority: Optional[str] = None,
+        sort_by: str = "updated",
+        sort_order: str = "desc",
+        limit: int = 100,
+        offset: int = 0
     ) -> Dict[str, Union[bool, List[Dict]]]:
         """
         Lists all notes for a specific user, with optional filtering by tag, pinned status, color, archived status, or priority.
@@ -115,6 +119,10 @@ class SimpleNoteApis:
             color (Optional[str]): If provided, only notes with this color will be returned.
             archived (Optional[bool]): If True, only archived notes; if False, only unarchived notes.
             priority (Optional[str]): If provided, only notes with this priority will be returned.
+            sort_by (str): Field to sort by - "created", "updated", "title", or "priority". Default is "updated".
+            sort_order (str): Sort order - "asc" or "desc". Default is "desc".
+            limit (int): Maximum number of notes to return. Default is 100.
+            offset (int): Number of notes to skip for pagination. Default is 0.
 
         Returns:
             Dict: A dictionary containing 'status' (bool) and 'notes' (List[Dict]) if successful.
@@ -122,6 +130,13 @@ class SimpleNoteApis:
         user_note_data = self._get_user_note_data(user)
         if user_note_data is None:
             return {"status": False, "notes": []}
+
+        # Validate sort parameters
+        if sort_by not in ["created", "updated", "title", "priority"]:
+            return {"status": False, "notes": [], "message": "Invalid sort_by. Must be 'created', 'updated', 'title', or 'priority'."}
+        
+        if sort_order not in ["asc", "desc"]:
+            return {"status": False, "notes": [], "message": "Invalid sort_order. Must be 'asc' or 'desc'."}
 
         notes = user_note_data.get("notes", {})
         filtered_notes = []
@@ -153,7 +168,22 @@ class SimpleNoteApis:
             
             filtered_notes.append(copy.deepcopy(note_content))
 
-        return {"status": True, "notes": filtered_notes}
+        # Sort notes
+        priority_order = {"low": 1, "medium": 2, "high": 3}
+        if sort_by == "created":
+            filtered_notes.sort(key=lambda x: x.get("created_at", ""), reverse=(sort_order == "desc"))
+        elif sort_by == "updated":
+            filtered_notes.sort(key=lambda x: x.get("updated_at", ""), reverse=(sort_order == "desc"))
+        elif sort_by == "title":
+            filtered_notes.sort(key=lambda x: x.get("title", "").lower(), reverse=(sort_order == "desc"))
+        elif sort_by == "priority":
+            filtered_notes.sort(key=lambda x: priority_order.get(x.get("priority", "medium"), 2), reverse=(sort_order == "desc"))
+
+        # Apply pagination
+        total_count = len(filtered_notes)
+        paginated_notes = filtered_notes[offset:offset + limit]
+
+        return {"status": True, "notes": paginated_notes, "total_count": total_count}
 
     def get_note(self, note_id: str, user: str) -> Dict[str, Union[bool, Dict]]:
         """
@@ -186,6 +216,9 @@ class SimpleNoteApis:
         color: str = "yellow",
         archived: bool = False,
         priority: str = "medium",
+        font_size: str = "normal",
+        encrypted: bool = False,
+        share_permissions: str = "view_only"
     ) -> Dict[str, Union[bool, Dict]]:
         """
         Creates a new note for a specific user.
@@ -199,6 +232,9 @@ class SimpleNoteApis:
             color (str): The color of the note (yellow, blue, green, pink, white, purple).
             archived (bool): Whether the note should be archived.
             priority (str): The priority of the note (low, medium, high).
+            font_size (str): Font size setting - "small", "normal", or "large". Default is "normal".
+            encrypted (bool): Whether the note should be encrypted. Default is False.
+            share_permissions (str): Default sharing permissions - "view_only", "edit", or "full". Default is "view_only".
 
         Returns:
             Dict: A dictionary containing 'status' (bool) and 'note' (Dict) if successful.
@@ -206,6 +242,14 @@ class SimpleNoteApis:
         internal_user_id = self._get_user_id_by_alias(user)
         if not internal_user_id:
             return {"status": False, "message": "User not found."}
+
+        # Validate font_size
+        if font_size not in ["small", "normal", "large"]:
+            return {"status": False, "message": "Invalid font size. Must be 'small', 'normal', or 'large'."}
+        
+        # Validate share_permissions
+        if share_permissions not in ["view_only", "edit", "full"]:
+            return {"status": False, "message": "Invalid share permissions. Must be 'view_only', 'edit', or 'full'."}
 
         user_note_data = self.users[internal_user_id].get("note_data")
         if user_note_data is None:
@@ -226,6 +270,9 @@ class SimpleNoteApis:
             "color": color,
             "archived": archived,
             "priority": priority,
+            "font_size": font_size,
+            "encrypted": encrypted,
+            "share_permissions": share_permissions,
             "shared_with": [],
             "reminders": [],
             "user": internal_user_id,
@@ -234,7 +281,7 @@ class SimpleNoteApis:
         }
         notes[new_note_id] = new_note
 
-        print(f"Note '{title}' created for {user} with ID: {new_note_id}")
+        print(f"Note '{title}' created for {user} with ID: {new_note_id} (encrypted: {encrypted}, priority: {priority})")
         return {"status": True, "note": new_note}
 
     def update_note_content(
@@ -363,6 +410,9 @@ class SimpleNoteApis:
         note_id: str,
         user: str,
         share_with_alias: str,
+        permissions: str = "view_only",
+        notify_recipient: bool = True,
+        allow_reshare: bool = False
     ) -> Dict[str, bool]:
         """
         Share a note with another user by alias.
@@ -371,6 +421,9 @@ class SimpleNoteApis:
             note_id (str): ID of the note to share.
             user (str): The user identifier (note owner).
             share_with_alias (str): The alias of the user to share with.
+            permissions (str): Sharing permissions - "view_only", "edit", or "full". Default is "view_only".
+            notify_recipient (bool): Whether to notify the recipient. Default is True.
+            allow_reshare (bool): Whether the recipient can reshare the note. Default is False.
 
         Returns:
             Dict[str, bool]: A dictionary containing 'status' (bool) indicating success or failure.
@@ -384,16 +437,40 @@ class SimpleNoteApis:
         if not target_user_id:
             return {"status": False}
 
+        # Validate permissions
+        if permissions not in ["view_only", "edit", "full"]:
+            return {"status": False}
+
         notes = user_note_data.get("notes", {})
         if note_id not in notes:
             return {"status": False}
 
         note = notes[note_id]
         shared_with = note.get("shared_with", [])
-        if share_with_alias not in shared_with:
-            shared_with.append(share_with_alias)
-            note["shared_with"] = shared_with
-            note["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+        
+        # Store sharing information with permissions
+        share_info = {
+            "alias": share_with_alias,
+            "permissions": permissions,
+            "allow_reshare": allow_reshare,
+            "shared_at": datetime.datetime.now().isoformat() + "Z"
+        }
+        
+        # Check if already shared and update or add
+        existing_share = next((s for s in shared_with if isinstance(s, dict) and s.get("alias") == share_with_alias), None)
+        if existing_share:
+            existing_share.update(share_info)
+        else:
+            # Convert old format if needed
+            if shared_with and isinstance(shared_with[0], str):
+                shared_with = [{"alias": alias, "permissions": "view_only", "allow_reshare": False} for alias in shared_with]
+            shared_with.append(share_info)
+        
+        note["shared_with"] = shared_with
+        note["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+        
+        if notify_recipient:
+            print(f"Notification sent to {share_with_alias} about shared note: {note.get('title')}")
 
         return {"status": True}
 
@@ -403,6 +480,9 @@ class SimpleNoteApis:
         user: str,
         reminder_timestamp: str,
         status: str = "active",
+        repeat_interval: Optional[str] = None,
+        notification_method: str = "app",
+        custom_message: Optional[str] = None
     ) -> Dict[str, bool]:
         """
         Add a reminder to a note.
@@ -412,6 +492,9 @@ class SimpleNoteApis:
             user (str): The user identifier.
             reminder_timestamp (str): ISO timestamp for the reminder.
             status (str): Status of the reminder (active, completed).
+            repeat_interval (Optional[str]): Repeat interval - "daily", "weekly", "monthly", or None. Default is None.
+            notification_method (str): How to notify - "app", "email", or "sms". Default is "app".
+            custom_message (Optional[str]): Custom reminder message. Default is None.
 
         Returns:
             Dict[str, bool]: A dictionary containing 'status' (bool) indicating success or failure.
@@ -424,11 +507,23 @@ class SimpleNoteApis:
         if note_id not in notes:
             return {"status": False}
 
+        # Validate repeat_interval if provided
+        if repeat_interval and repeat_interval not in ["daily", "weekly", "monthly"]:
+            return {"status": False}
+        
+        # Validate notification_method
+        if notification_method not in ["app", "email", "sms"]:
+            return {"status": False}
+
         note = notes[note_id]
         reminders = note.get("reminders", [])
         reminders.append({
             "timestamp": reminder_timestamp,
-            "status": status
+            "status": status,
+            "repeat_interval": repeat_interval,
+            "notification_method": notification_method,
+            "custom_message": custom_message,
+            "created_at": datetime.datetime.now().isoformat() + "Z"
         })
         note["reminders"] = reminders
         note["updated_at"] = datetime.datetime.now().isoformat() + "Z"
@@ -442,6 +537,9 @@ class SimpleNoteApis:
         search_in_content: bool = True,
         search_in_title: bool = True,
         search_in_tags: bool = True,
+        case_sensitive: bool = False,
+        whole_word_only: bool = False,
+        include_archived: bool = False
     ) -> Dict[str, Union[bool, List[Dict]]]:
         """
         Search for notes based on a query string.
@@ -452,6 +550,9 @@ class SimpleNoteApis:
             search_in_content (bool): Whether to search in note content.
             search_in_title (bool): Whether to search in note titles.
             search_in_tags (bool): Whether to search in note tags.
+            case_sensitive (bool): Whether to perform case-sensitive search. Default is False.
+            whole_word_only (bool): Whether to match whole words only. Default is False.
+            include_archived (bool): Whether to include archived notes in search. Default is False.
 
         Returns:
             Dict: A dictionary containing 'status' (bool) and 'notes' (List[Dict]) if successful.
@@ -461,24 +562,52 @@ class SimpleNoteApis:
             return {"status": False, "notes": []}
 
         notes = user_note_data.get("notes", {})
-        query_lower = query.lower()
+        search_query = query if case_sensitive else query.lower()
         matching_notes = []
 
+        import re
+        
         for note_id, note_content in notes.items():
+            # Skip archived notes if not included
+            if not include_archived and note_content.get("archived", False):
+                continue
+            
             match_found = False
             
-            if search_in_title and query_lower in note_content.get("title", "").lower():
-                match_found = True
+            if search_in_title:
+                title = note_content.get("title", "")
+                search_text = title if case_sensitive else title.lower()
+                if whole_word_only:
+                    if re.search(r'\b' + re.escape(search_query) + r'\b', search_text):
+                        match_found = True
+                else:
+                    if search_query in search_text:
+                        match_found = True
             
-            if search_in_content and query_lower in note_content.get("content", "").lower():
-                match_found = True
+            if search_in_content:
+                content = note_content.get("content", "")
+                search_text = content if case_sensitive else content.lower()
+                if whole_word_only:
+                    if re.search(r'\b' + re.escape(search_query) + r'\b', search_text):
+                        match_found = True
+                else:
+                    if search_query in search_text:
+                        match_found = True
             
             if search_in_tags:
                 tags = note_content.get("tags", [])
                 if isinstance(tags, str):
                     tags = tags.split(" | ")
-                if any(query_lower in tag.lower() for tag in tags):
-                    match_found = True
+                for tag in tags:
+                    search_tag = tag if case_sensitive else tag.lower()
+                    if whole_word_only:
+                        if re.search(r'\b' + re.escape(search_query) + r'\b', search_tag):
+                            match_found = True
+                            break
+                    else:
+                        if search_query in search_tag:
+                            match_found = True
+                            break
             
             if match_found:
                 matching_notes.append(copy.deepcopy(note_content))

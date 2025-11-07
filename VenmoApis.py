@@ -181,7 +181,18 @@ class VenmoApis:
                 })
         return {"friends_status": True, "friends": friends_list}
 
-    def send_money(self, sender_user: User, receiver_email: str, amount: float, note: str) -> Dict[str, Union[bool, str]]:
+    def send_money(
+        self, 
+        sender_user: User, 
+        receiver_email: str, 
+        amount: float, 
+        note: str,
+        privacy_setting: str = "private",
+        is_request: bool = False,
+        split_payment: bool = False,
+        payment_method_id: Optional[str] = None,
+        send_notification: bool = True
+    ) -> Dict[str, Union[bool, str]]:
         """
         Sends money from the current user to another user.
 
@@ -190,6 +201,11 @@ class VenmoApis:
             receiver_email (str): The email of the receiver.
             amount (float): The amount of money to send.
             note (str): A note for the transaction.
+            privacy_setting (str): Privacy level - "public", "friends", or "private". Default is "private".
+            is_request: bool: Whether this is a request for payment instead of direct payment. Default is False.
+            split_payment (bool): Whether this is part of a split payment. Default is False.
+            payment_method_id (Optional[str]): Specific payment method ID to use. Default is None (uses default).
+            send_notification (bool): Whether to send a notification to the receiver. Default is True.
 
         Returns:
             Dict: A dictionary containing 'send_status' (bool) and 'message' (str).
@@ -202,6 +218,17 @@ class VenmoApis:
             return {"send_status": False, "message": f"Sender user {sender_user.email} not found."}
         if not receiver_data:
             return {"send_status": False, "message": f"Receiver user {receiver_email} not found."}
+        
+        # Validate privacy_setting
+        if privacy_setting not in ["public", "friends", "private"]:
+            return {"send_status": False, "message": "Invalid privacy setting. Must be 'public', 'friends', or 'private'."}
+        
+        # Validate payment method if specified
+        if payment_method_id:
+            user_payment_cards = sender_data.get("payment_cards", {})
+            if payment_method_id not in user_payment_cards:
+                return {"send_status": False, "message": "Invalid payment method ID."}
+        
         if sender_data["balance"] < amount:
             return {"send_status": False, "message": "Insufficient balance."}
         if amount <= 0:
@@ -217,33 +244,48 @@ class VenmoApis:
             "receiver": receiver_data["id"],
             "amount": amount,
             "note": note,
+            "privacy_setting": privacy_setting,
+            "is_request": is_request,
+            "split_payment": split_payment,
+            "payment_method_id": payment_method_id,
             "status": "completed",
             "timestamp": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
         }
         self.transactions[transaction_id] = new_transaction
         
-        # Create notifications for sender and receiver
-        self.notifications[self._generate_unique_id()] = {
-            "id": self._generate_unique_id(), # New UUID for notification
-            "user": sender_data["id"],
-            "type": "payment_sent",
-            "message": f"You sent ${amount:.2f} to {receiver_data['first_name']} {receiver_data['last_name']}.",
-            "read": False,
-            "notification_time": new_transaction["timestamp"]
-        }
-        self.notifications[self._generate_unique_id()] = {
-            "id": self._generate_unique_id(), # New UUID for notification
-            "user": receiver_data["id"],
-            "type": "payment_received",
-            "message": f"You received ${amount:.2f} from {sender_data['first_name']} {sender_data['last_name']}.",
-            "read": False,
-            "notification_time": new_transaction["timestamp"]
-        }
+        # Create notifications for sender and receiver if enabled
+        if send_notification:
+            self.notifications[self._generate_unique_id()] = {
+                "id": self._generate_unique_id(), # New UUID for notification
+                "user": sender_data["id"],
+                "type": "payment_sent",
+                "message": f"You sent ${amount:.2f} to {receiver_data['first_name']} {receiver_data['last_name']}.",
+                "read": False,
+                "notification_time": new_transaction["timestamp"]
+            }
+            self.notifications[self._generate_unique_id()] = {
+                "id": self._generate_unique_id(), # New UUID for notification
+                "user": receiver_data["id"],
+                "type": "payment_received",
+                "message": f"You received ${amount:.2f} from {sender_data['first_name']} {sender_data['last_name']}.",
+                "read": False,
+                "notification_time": new_transaction["timestamp"]
+            }
 
-        print(f"Transaction {transaction_id}: {sender_user.email} sent ${amount} to {receiver_email}")
+        print(f"Transaction {transaction_id}: {sender_user.email} sent ${amount} to {receiver_email} (privacy: {privacy_setting})")
         return {"send_status": True, "transaction_id": transaction_id}
 
-    def request_money(self, sender_user: User, receiver_email: str, amount: float, note: str) -> Dict[str, Union[bool, str]]:
+    def request_money(
+        self, 
+        sender_user: User, 
+        receiver_email: str, 
+        amount: float, 
+        note: str,
+        privacy_setting: str = "private",
+        due_date: Optional[str] = None,
+        auto_reminder: bool = True,
+        send_notification: bool = True
+    ) -> Dict[str, Union[bool, str]]:
         """
         Requests money from another user to the current user.
 
@@ -252,6 +294,10 @@ class VenmoApis:
             receiver_email (str): The email of the user from whom money is requested (will be the sender of the payment).
             amount (float): The amount of money to request.
             note (str): A note for the request.
+            privacy_setting (str): Privacy level - "public", "friends", or "private". Default is "private".
+            due_date (Optional[str]): ISO timestamp for when payment is due. Default is None.
+            auto_reminder (bool): Whether to send automatic reminders. Default is True.
+            send_notification (bool): Whether to send a notification to the payer. Default is True.
 
         Returns:
             Dict: A dictionary containing 'request_status' (bool) and 'message' (str).
@@ -264,6 +310,11 @@ class VenmoApis:
             return {"request_status": False, "message": f"Requester user {sender_user.email} not found."}
         if not payer_data:
             return {"request_status": False, "message": f"Payer user {receiver_email} not found."}
+        
+        # Validate privacy_setting
+        if privacy_setting not in ["public", "friends", "private"]:
+            return {"request_status": False, "message": "Invalid privacy setting. Must be 'public', 'friends', or 'private'."}
+        
         if amount <= 0:
             return {"request_status": False, "message": "Amount must be positive."}
 
@@ -274,30 +325,34 @@ class VenmoApis:
             "receiver": requester_data["id"], # Requester is receiver in the actual payment
             "amount": amount,
             "note": note,
+            "privacy_setting": privacy_setting,
+            "due_date": due_date,
+            "auto_reminder": auto_reminder,
             "status": "pending", # Request starts as pending
             "timestamp": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
         }
         self.transactions[transaction_id] = new_transaction
 
-        # Create notifications for requester and payer
-        self.notifications[self._generate_unique_id()] = {
-            "id": self._generate_unique_id(), # New UUID for notification
-            "user": requester_data["id"],
-            "type": "payment_request_sent",
-            "message": f"You requested ${amount:.2f} from {payer_data['first_name']} {payer_data['last_name']}.",
-            "read": False,
-            "notification_time": new_transaction["timestamp"]
-        }
-        self.notifications[self._generate_unique_id()] = {
-            "id": self._generate_unique_id(), # New UUID for notification
-            "user": payer_data["id"],
-            "type": "payment_request_received",
-            "message": f"{requester_data['first_name']} {requester_data['last_name']} requested ${amount:.2f}.",
-            "read": False,
-            "notification_time": new_transaction["timestamp"]
-        }
+        # Create notifications for requester and payer if enabled
+        if send_notification:
+            self.notifications[self._generate_unique_id()] = {
+                "id": self._generate_unique_id(), # New UUID for notification
+                "user": requester_data["id"],
+                "type": "payment_request_sent",
+                "message": f"You requested ${amount:.2f} from {payer_data['first_name']} {payer_data['last_name']}.",
+                "read": False,
+                "notification_time": new_transaction["timestamp"]
+            }
+            self.notifications[self._generate_unique_id()] = {
+                "id": self._generate_unique_id(), # New UUID for notification
+                "user": payer_data["id"],
+                "type": "payment_request_received",
+                "message": f"{requester_data['first_name']} {requester_data['last_name']} requested ${amount:.2f}.",
+                "read": False,
+                "notification_time": new_transaction["timestamp"]
+            }
 
-        print(f"Transaction {transaction_id}: {sender_user.email} requested ${amount} from {receiver_email}")
+        print(f"Transaction {transaction_id}: {sender_user.email} requested ${amount} from {receiver_email} (due: {due_date or 'no deadline'})")
         return {"request_status": True, "transaction_id": transaction_id}
     
     def get_transaction_details(self, transaction_id: str) -> Dict[str, Union[bool, Dict]]:
@@ -315,12 +370,23 @@ class VenmoApis:
             return {"transaction_status": False, "transaction_details": {}}
         return {"transaction_status": True, "transaction_details": copy.deepcopy(transaction)}
 
-    def list_user_transactions(self, user: User) -> Dict[str, Union[bool, List[Dict]]]:
+    def list_user_transactions(
+        self, 
+        user: User,
+        limit: int = 50,
+        offset: int = 0,
+        status_filter: Optional[str] = None,
+        transaction_type: Optional[str] = None
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
         Lists all transactions (sent and received) for the current user.
 
         Args:
             user (User): The current user object.
+            limit (int): Maximum number of transactions to return. Default is 50.
+            offset (int): Number of transactions to skip (for pagination). Default is 0.
+            status_filter (Optional[str]): Filter by status - "completed", "pending", "failed". Default is None (all statuses).
+            transaction_type (Optional[str]): Filter by type - "sent", "received", "all". Default is None (all types).
 
         Returns:
             Dict: A dictionary containing 'transactions_status' (bool) and 'transactions' (List[Dict]) if successful.
@@ -329,12 +395,28 @@ class VenmoApis:
         if not user_data:
             return {"transactions_status": False, "transactions": []}
 
-        user_transactions = [
-            copy.deepcopy(t) for t in self.transactions.values()
-            if t["sender"] == user_data["id"] or t["receiver"] == user_data["id"]
-        ]
+        user_transactions = []
+        for t in self.transactions.values():
+            # Apply transaction type filter
+            if transaction_type == "sent" and t["sender"] != user_data["id"]:
+                continue
+            elif transaction_type == "received" and t["receiver"] != user_data["id"]:
+                continue
+            elif transaction_type is None and t["sender"] != user_data["id"] and t["receiver"] != user_data["id"]:
+                continue
+            
+            # Apply status filter
+            if status_filter and t.get("status") != status_filter:
+                continue
+            
+            user_transactions.append(copy.deepcopy(t))
+        
         user_transactions.sort(key=lambda x: x.get("timestamp", ""), reverse=True) # Sort by timestamp
-        return {"transactions_status": True, "transactions": user_transactions}
+        
+        # Apply pagination
+        paginated_transactions = user_transactions[offset:offset + limit]
+        
+        return {"transactions_status": True, "transactions": paginated_transactions, "total_count": len(user_transactions)}
 
     def add_payment_card(
         self,

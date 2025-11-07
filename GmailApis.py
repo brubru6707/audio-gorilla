@@ -1,3 +1,4 @@
+# Inspired by https://developers.google.com/workspace/gmail/api/guides
 import datetime
 import copy
 import uuid
