@@ -63,49 +63,64 @@ class TestGoogleCalendarApis(unittest.TestCase):
     # --- List Calendars Tests ---
     def test_list_calendars_success(self):
         """Test listing all calendars for user."""
-        result = self.calendar_api.list_calendars(self.REAL_USER_ID)
+        self.calendar_api.set_current_user(self.REAL_USER_ID)
+        result = self.calendar_api.list_calendars()
         self.assertTrue(result["retrieval_status"])
         self.assertIn("calendars", result)
 
     def test_list_calendars_non_existent_user(self):
         """Test listing calendars for non-existent user."""
-        result = self.calendar_api.list_calendars("nonexistent@example.com")
+        success = self.calendar_api.set_current_user("nonexistent@example.com")
+        self.assertFalse(success)
+        # If setting non-existent user fails, current_user remains None
+        result = self.calendar_api.list_calendars()
         self.assertFalse(result["retrieval_status"])
 
     # --- Create Calendar Tests ---
     def test_create_calendar_success(self):
         """Test creating a calendar successfully."""
-        result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
-        )
+        self.calendar_api.set_current_user(self.REAL_USER_ID)
+        calendar = {
+            "summary": "Test Calendar",
+            "timeZone": self.TIME_ZONE
+        }
+        result = self.calendar_api.create_calendar(calendar)
         self.assertTrue(result["creation_status"])
         self.assertIn("calendar_data", result)
 
     def test_create_calendar_non_existent_user(self):
         """Test creating calendar for non-existent user."""
-        result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, "nonexistent@example.com"
-        )
+        success = self.calendar_api.set_current_user("nonexistent@example.com")
+        self.assertFalse(success)
+        calendar = {
+            "summary": "Test Calendar",
+            "timeZone": self.TIME_ZONE
+        }
+        result = self.calendar_api.create_calendar(calendar)
         self.assertFalse(result["creation_status"])
 
     # --- Get Calendar Tests ---
     def test_get_calendar_success(self):
         """Test getting calendar successfully."""
+        self.calendar_api.set_current_user(self.REAL_USER_ID)
         # First create a calendar
-        create_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
-        )
+        calendar = {
+            "summary": "Test Calendar",
+            "timeZone": self.TIME_ZONE
+        }
+        create_result = self.calendar_api.create_calendar(calendar)
         self.assertTrue(create_result["creation_status"])
         calendar_id = create_result["calendar_data"]["id"]
         
         # Then get it
-        result = self.calendar_api.get_calendar(calendar_id, self.REAL_USER_ID)
+        result = self.calendar_api.get_calendar(calendar_id)
         self.assertTrue(result["retrieval_status"])
         self.assertIn("calendar_data", result)
 
     def test_get_calendar_non_existent(self):
         """Test getting non-existent calendar."""
-        result = self.calendar_api.get_calendar("non_existent_calendar", self.REAL_USER_ID)
+        self.calendar_api.set_current_user(self.REAL_USER_ID)
+        result = self.calendar_api.get_calendar("non_existent_calendar")
         self.assertFalse(result["retrieval_status"])
 
     # --- Update Calendar Tests ---

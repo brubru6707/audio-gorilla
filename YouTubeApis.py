@@ -10,7 +10,7 @@ from pathlib import Path
 parent_dir = Path(__file__).parent
 sys.path.insert(0, str(parent_dir / 'UnitTests'))
 
-from test_data_helper import BackendDataLoader
+from UnitTests.test_data_helper import BackendDataLoader
 
 DEFAULT_STATE = BackendDataLoader.get_youtube_data()
 
@@ -197,10 +197,6 @@ class YouTubeApis:
             return {"status": False, "message": "You do not own this channel."}
         return {"status": False, "message": f"Channel with ID {channel_id} not found."}
 
-    # ====================
-    # User Operations
-    # ====================
-
     def get_user_profile(self, user_id: str) -> Dict[str, Any]:
         """
         Get the profile information for a specific user.
@@ -312,11 +308,6 @@ class YouTubeApis:
         channel_data["subscriber_count"] = max(0, channel_data.get("subscriber_count", 0) - 1)
         
         return {"status": True, "message": f"Successfully unsubscribed from channel {channel_id}"}
-
-
-    # ====================
-    # Channel Operations
-    # ====================
 
     def list_channels_for_user(self, user_id: str) -> Dict[str, Any]:
         """
@@ -430,15 +421,8 @@ class YouTubeApis:
         if not channel_data:
             return {"message": "Channel not found."}
         
-        # In a real API, this would upload the image and return a URL
-        # For this dummy, we'll just acknowledge the upload and store the path
         channel_data["banner_image_path"] = image_path
         return {"status": True, "image_path": image_path, "channel_id": channel_id}
-
-
-    # ====================
-    # Video Operations
-    # ====================
 
     def list_videos_in_channel(self, channel_id: str) -> Dict[str, Any]:
         """
@@ -666,10 +650,6 @@ class YouTubeApis:
         matching_videos.sort(key=lambda x: x.get("views", 0), reverse=True)
         return {"data": matching_videos[:max_results]}
 
-    # ====================
-    # Playlist Operations
-    # ====================
-
     def list_playlists_in_channel(self, channel_id: str) -> Dict[str, Any]:
         """
         List all playlists belonging to a specific channel.
@@ -834,10 +814,6 @@ class YouTubeApis:
         Returns:
             Dict[str, Any]: Result of the operation.
         """
-        # In a real API, playlist_item_id is distinct from video_id.
-        # For simplicity, this dummy will assume playlist_item_id IS the video_id,
-        # and it will try to find any playlist where this user is owner and this video exists.
-        
         target_video_id = playlist_item_id
         
         for p_id, playlist_data in self.playlists.items():
@@ -847,11 +823,6 @@ class YouTubeApis:
                 return {"status": True, "message": f"Video {target_video_id} removed from playlist {p_id}."}
         
         return {"message": "Playlist item not found or user not authorized.", "status": False}
-
-
-    # ====================
-    # Comment Operations
-    # ====================
 
     def add_comment_to_video(self, video_id: str, author_id: str, text: str) -> Dict[str, Any]:
         """
@@ -967,10 +938,6 @@ class YouTubeApis:
         """
         return self.add_comment_to_video(video_id, author_id, text)
 
-    # ====================
-    # Caption Operations (Dummy)
-    # ====================
-
     def youtube_captions_insert(self, video_id: str, language: str, track_content: str) -> Dict[str, Any]:
         """
         Uploads a caption track for a video.
@@ -988,7 +955,6 @@ class YouTubeApis:
         if not video_data:
             return {"message": "Video not found.", "status": False}
         
-        # Simulating storing captions within the channel's data for the video
         caption_id = self._generate_unique_id()
         channel_id = video_data.get("channel_id")
         if channel_id and channel_id in self.channels:
@@ -998,7 +964,7 @@ class YouTubeApis:
                 "id": caption_id,
                 "video_id": video_id,
                 "language": language,
-                "status": "serving", # Dummy status
+                "status": "serving",
                 "content_snippet": track_content[:50] + "..." if len(track_content) > 50 else track_content
             }
             return {"status": True, "caption_id": caption_id, "language": language}
@@ -1037,10 +1003,6 @@ class YouTubeApis:
                 del self.channels[channel_id]["captions"][id]
                 return {"status": True, "deleted_caption_id": id}
         return {"message": "Caption track not found.", "status": False}
-
-    # ====================
-    # Enhanced User Operations (utilizing backend fields)
-    # ====================
 
     def get_user_by_email(self, email: str) -> Dict[str, Any]:
         """
