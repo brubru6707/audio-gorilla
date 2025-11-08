@@ -164,19 +164,21 @@ class GmailApis:
     def list_messages(
         self,
         user_id: str,
-        query: Optional[str] = None,
+        q: Optional[str] = None,
         label_ids: Optional[List[str]] = None,
         page_token: Optional[str] = None,
-        max_results: int = 10,
+        max_results: int = 100,
+        includeSpamTrash: bool = False,
     ) -> Dict[str, Union[List[Dict], str, int]]:
         """
         List messages matching criteria.
         Args:
-            user_id (str): The internal user ID (UUID).
-            query (Optional[str]): Search query.
-            label_ids (Optional[List[str]]): Label IDs to filter by.
-            page_token (Optional[str]): Pagination token.
-            max_results (int): Maximum number of results to return.
+            user_id (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            q (Optional[str]): Only return messages matching the specified query. Supports the same query format as the Gmail search box.
+            label_ids (Optional[List[str]]): Only return messages with labels that match all of the specified label IDs.
+            page_token (Optional[str]): Page token to retrieve a specific page of results in the list.
+            max_results (int): Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500.
+            includeSpamTrash (bool): Include messages from SPAM and TRASH in the results.
         Returns:
             Dict[str, Union[List[Dict], str, int]]: Dictionary containing messages, pagination token, and result count.
         """
@@ -187,12 +189,22 @@ class GmailApis:
         filtered_messages = []
         for msg_id, msg_data in messages.items():
             match = True
-            if query and query.lower() not in msg_data.get("snippet", "").lower() and \
-               query.lower() not in msg_data.get("payload", {}).get("headers", [{"value":""}])[0].get("value", "").lower():
+            
+            # Filter by query
+            if q and q.lower() not in msg_data.get("snippet", "").lower() and \
+               q.lower() not in msg_data.get("payload", {}).get("headers", [{"value":""}])[0].get("value", "").lower():
                 match = False
+                
+            # Filter by label IDs
             if label_ids:
                 msg_labels = set(msg_data.get("labelIds", []))
                 if not all(label in msg_labels for label in label_ids):
+                    match = False
+            
+            # Filter out SPAM and TRASH unless includeSpamTrash is True
+            if not includeSpamTrash:
+                msg_labels = set(msg_data.get("labelIds", []))
+                if "SPAM" in msg_labels or "TRASH" in msg_labels:
                     match = False
             
             if match:
@@ -220,22 +232,22 @@ class GmailApis:
         }
 
     def get_message(
-        self, user_id: str, msg_id: str, format: str = "full"
+        self, userId: str, id: str, format: str = "full"
     ) -> Optional[Dict[str, Any]]:
         """
         Get a specific message.
         Args:
-            user_id (str): The internal user ID (UUID).
-            msg_id (str): Message ID.
-            format (str): Format of the message ('minimal', 'full', or 'raw').
+            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            id (str): The ID of the message to retrieve.
+            format (str): The format to return the message in.
         Returns:
             Optional[Dict[str, Any]]: Message data if found, None otherwise.
         """
-        messages = self._get_user_messages_data(user_id)
+        messages = self._get_user_messages_data(userId)
         if messages is None:
             return None
         
-        message = messages.get(msg_id)
+        message = messages.get(id)
         if message:
             if format == "minimal":
                 return {"id": message["id"], "threadId": message["threadId"], "snippet": message["snippet"]}
@@ -245,27 +257,44 @@ class GmailApis:
         return None
 
     def send_message(
-        self, user_id: str, to: str, subject: str, body: str, thread_id: Optional[str] = None
+        self, userId: str, message: Dict[str, Any]
     ) -> Dict[str, Union[str, Dict]]:
         """
         Send a message.
         Args:
-            user_id (str): The internal user ID (UUID) of the sender.
-            to (str): Recipient's email address.
-            subject (str): Message subject.
-            body (str): Message body.
-            thread_id (Optional[str]): Thread ID if replying.
+            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            message (Dict[str, Any]): The message to send. Must contain 'raw' field with base64url encoded email.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
         """
-        if user_id not in self.users:
+        if userId not in self.users:
             return {"error": "User not found."}
 
-        gmail_data = self.users[user_id].get("gmail_data")
+        gmail_data = self.users[userId].get("gmail_data")
         if not gmail_data:
             return {"error": "Gmail data not available for user."}
 
-        user_email = self._get_user_email_by_id(user_id)
+        # For mock purposes, we'll decode the raw message or use provided fields
+        raw_content = message.get("raw", "")
+        thread_id = message.get("threadId")
+        
+        # If no raw content, construct from message parts for backward compatibility
+        if not raw_content:
+            to = message.get("to", "")
+            subject = message.get("subject", "")
+            body = message.get("body", "")
+            if not thread_id:
+                thread_id = message.get("threadId")
+        else:
+            # In a real implementation, we'd decode the raw email
+            # For mock, we'll use dummy values
+            to = "decoded_recipient@example.com"
+            subject = "Decoded Subject"
+            body = "Decoded body content"
+            if not thread_id:
+                thread_id = self._generate_id()
+
+        user_email = self._get_user_email_by_id(userId)
         new_msg_id = self._generate_id()
         if not thread_id:
             thread_id = self._generate_id()
@@ -304,7 +333,7 @@ class GmailApis:
         gmail_data["profile"]["threadsTotal"] = len(gmail_data["threads"])
 
         recipient_user_id = self._get_user_id_by_email(to)
-        if recipient_user_id and recipient_user_id != user_id:
+        if recipient_user_id and recipient_user_id != userId:
             recipient_gmail_data = self.users[recipient_user_id].get("gmail_data")
             if recipient_gmail_data:
                 recipient_message = copy.deepcopy(new_message)
@@ -423,24 +452,38 @@ class GmailApis:
         return None
 
     def create_draft(
-        self, user_id: str, to: str, subject: str, body: str
+        self, userId: str, draft: Dict[str, Any]
     ) -> Dict[str, Union[str, Dict]]:
         """
         Create a draft.
         Args:
-            user_id (str): The internal user ID (UUID).
-            to (str): Recipient's email address.
-            subject (str): Message subject.
-            body (str): Message body.
+            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            draft (Dict[str, Any]): The draft to create. Must contain 'message' field with Message object.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
         """
-        if user_id not in self.users:
+        if userId not in self.users:
             return {"error": "User not found."}
 
-        gmail_data = self.users[user_id].get("gmail_data")
+        gmail_data = self.users[userId].get("gmail_data")
         if not gmail_data:
             return {"error": "Gmail data not available for user."}
+
+        message = draft.get("message", {})
+        
+        # Extract message details for backward compatibility
+        to = message.get("to", "")
+        subject = message.get("subject", "")
+        body = message.get("body", "")
+        
+        # If message doesn't have individual fields, use the raw content
+        if not to and not subject and not body:
+            # For mock purposes, use dummy values if raw content provided
+            raw_content = message.get("raw", "")
+            if raw_content:
+                to = "decoded_recipient@example.com"
+                subject = "Decoded Draft Subject"
+                body = "Decoded draft body content"
 
         new_draft_id = self._generate_id()
         new_draft = {
@@ -452,34 +495,48 @@ class GmailApis:
             }
         }
         gmail_data["drafts"][new_draft_id] = new_draft
-        print(f"Dummy draft created: ID={new_draft_id} for user {user_id}")
+        print(f"Dummy draft created: ID={new_draft_id} for user {userId}")
         return {"id": new_draft_id, "message": new_draft["message"]}
 
     def update_draft(
-        self, user_id: str, draft_id: str, to: str, subject: str, body: str
+        self, userId: str, id: str, draft: Dict[str, Any]
     ) -> Dict[str, Union[str, Dict]]:
         """
         Update a draft.
         Args:
-            user_id (str): The internal user ID (UUID).
-            draft_id (str): Draft ID to update.
-            to (str): New recipient's email address.
-            subject (str): New message subject.
-            body (str): New message body.
+            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            id (str): The ID of the draft to update.
+            draft (Dict[str, Any]): The draft to update. Must contain 'message' field with Message object.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
         """
-        drafts = self._get_user_drafts_data(user_id)
+        drafts = self._get_user_drafts_data(userId)
         if drafts is None:
             return {"error": "User not found or no drafts data."}
 
-        if draft_id in drafts:
-            drafts[draft_id]["message"]["to"] = to
-            drafts[draft_id]["message"]["subject"] = subject
-            drafts[draft_id]["message"]["body"] = body
-            print(f"Dummy draft updated: ID={draft_id} for user {user_id}")
-            return {"id": draft_id, "message": drafts[draft_id]["message"]}
-        return {"error": f"Draft {draft_id} not found."}
+        if id in drafts:
+            message = draft.get("message", {})
+            
+            # Extract message details for backward compatibility
+            to = message.get("to", "")
+            subject = message.get("subject", "")
+            body = message.get("body", "")
+            
+            # If message doesn't have individual fields, use the raw content
+            if not to and not subject and not body:
+                # For mock purposes, use dummy values if raw content provided
+                raw_content = message.get("raw", "")
+                if raw_content:
+                    to = "decoded_recipient@example.com"
+                    subject = "Decoded Updated Draft Subject"
+                    body = "Decoded updated draft body content"
+            
+            drafts[id]["message"]["to"] = to
+            drafts[id]["message"]["subject"] = subject
+            drafts[id]["message"]["body"] = body
+            print(f"Dummy draft updated: ID={id} for user {userId}")
+            return {"id": id, "message": drafts[id]["message"]}
+        return {"error": f"Draft {id} not found."}
 
     def delete_draft(self, user_id: str, draft_id: str) -> Dict[str, Union[bool, str]]:
         """
@@ -500,23 +557,23 @@ class GmailApis:
             return {"success": True, "message": f"Draft {draft_id} deleted."}
         return {"success": False, "message": f"Draft {draft_id} not found."}
 
-    def send_draft(self, user_id: str, draft_id: str) -> Dict[str, Union[str, Dict]]:
+    def send_draft(self, userId: str, id: str) -> Dict[str, Union[str, Dict]]:
         """
         Send a draft as a message.
         Args:
-            user_id (str): The internal user ID (UUID).
-            draft_id (str): Draft ID to send.
+            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            id (str): The ID of the draft to send.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
         """
-        drafts = self._get_user_drafts_data(user_id)
+        drafts = self._get_user_drafts_data(userId)
         if drafts is None:
             return {"error": "User not found or no drafts data."}
         
-        if draft_id not in drafts:
-            return {"error": f"Draft {draft_id} not found."}
+        if id not in drafts:
+            return {"error": f"Draft {id} not found."}
         
-        draft = drafts[draft_id]
+        draft = drafts[id]
         draft_message = draft.get("message", {})
         
         # Extract draft details
@@ -527,13 +584,18 @@ class GmailApis:
         if not to:
             return {"error": "Draft has no recipient specified."}
         
-        # Send the draft as a regular message
-        result = self.send_message(user_id, to, subject, body)
+        # Send the draft as a regular message using the new send_message signature
+        message = {
+            "to": to,
+            "subject": subject,
+            "body": body
+        }
+        result = self.send_message(userId, message)
         
         # If message was sent successfully, delete the draft
         if "id" in result and "error" not in result:
-            self.delete_draft(user_id, draft_id)
-            print(f"Dummy draft sent and deleted: draft ID={draft_id}, message ID={result['id']}")
+            self.delete_draft(userId, id)
+            print(f"Dummy draft sent and deleted: draft ID={id}, message ID={result['id']}")
         
         return result
 
@@ -643,22 +705,22 @@ class GmailApis:
         return {"success": False, "message": f"Label {label_id} not found."}
 
     def modify_message(
-        self, user_id: str, message_id: str, modify_request: Dict[str, List[str]]
+        self, userId: str, id: str, modify_request: Dict[str, List[str]]
     ) -> Optional[Dict[str, Any]]:
         """
         Modify a message (e.g., add/remove labels).
         Args:
-            user_id (str): The internal user ID (UUID).
-            message_id (str): Message ID to modify.
+            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            id (str): The ID of the message to modify.
             modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
         Returns:
             Optional[Dict[str, Any]]: Modified message data if found, None otherwise.
         """
-        messages = self._get_user_messages_data(user_id)
+        messages = self._get_user_messages_data(userId)
         if messages is None:
             return None
         
-        message = messages.get(message_id)
+        message = messages.get(id)
         if not message:
             return None
 
@@ -670,7 +732,7 @@ class GmailApis:
         message["labelIds"] = list(current_labels.union(add_labels))
         message["labelIds"] = list(set(message["labelIds"]) - remove_labels)
 
-        print(f"Dummy message modified: ID={message_id}, New Labels={message['labelIds']} for user {user_id}")
+        print(f"Dummy message modified: ID={id}, New Labels={message['labelIds']} for user {userId}")
         return copy.deepcopy(message)
 
     def get_thread(

@@ -29,7 +29,7 @@ class AmazonApis:
         last_name: str,
         email: str,
         password: str,
-        phone_number: Union[str, None] = None) -> Dict[str, Union[bool, str]]:
+        phone_number: str) -> Dict[str, Union[bool, str]]:
         """
         Registers a new user with the system by creating a unique user ID and storing their information.
         Args:
@@ -50,6 +50,7 @@ class AmazonApis:
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
+            "password": password,
             "phone_number": phone_number,
             "balance": 0.0,
             "payment_cards": {},

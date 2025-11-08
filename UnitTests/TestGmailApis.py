@@ -77,7 +77,7 @@ class TestGmailApis(unittest.TestCase):
 
     def test_list_messages_with_query(self):
         """Test listing messages with query."""
-        result = self.gmail_api.list_messages(self.REAL_USER_ID, query="subject:test")
+        result = self.gmail_api.list_messages(self.REAL_USER_ID, q="subject:test")
         self.assertIn("messages", result)
         self.assertIsInstance(result["messages"], list)
 
@@ -102,47 +102,47 @@ class TestGmailApis(unittest.TestCase):
 
     def test_send_message_success(self):
         """Test sending message successfully."""
-        result = self.gmail_api.send_message(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Test Subject",
-            "Test message body"
-        )
+        message = {
+            "to": self.REAL_RECIPIENT,
+            "subject": "Test Subject", 
+            "body": "Test message body"
+        }
+        result = self.gmail_api.send_message(self.REAL_USER_ID, message)
         self.assertIn("id", result)
         self.assertNotIn("error", result)
 
     def test_send_message_with_thread_id(self):
         """Test sending message with thread ID."""
-        result = self.gmail_api.send_message(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Re: Test Subject",
-            "Reply message body",
-            thread_id="test_thread_id"
-        )
+        message = {
+            "to": self.REAL_RECIPIENT,
+            "subject": "Re: Test Subject",
+            "body": "Reply message body",
+            "threadId": "test_thread_id"
+        }
+        result = self.gmail_api.send_message(self.REAL_USER_ID, message)
         self.assertIn("id", result)
         self.assertNotIn("error", result)
 
     def test_send_message_user_not_found(self):
         """Test sending message for non-existent user."""
-        result = self.gmail_api.send_message(
-            "nonexistent@example.com",
-            self.REAL_RECIPIENT,
-            "Test Subject",
-            "Test message body"
-        )
+        message = {
+            "to": self.REAL_RECIPIENT,
+            "subject": "Test Subject",
+            "body": "Test message body"
+        }
+        result = self.gmail_api.send_message("nonexistent@example.com", message)
         self.assertIn("error", result)
         self.assertEqual(result["error"], "User not found.")
 
     def test_delete_message_success(self):
         """Test deleting message successfully."""
         # First send a message to delete
-        send_result = self.gmail_api.send_message(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Test Delete Subject",
-            "Test delete body"
-        )
+        message = {
+            "to": self.REAL_RECIPIENT,
+            "subject": "Test Delete Subject",
+            "body": "Test delete body"
+        }
+        send_result = self.gmail_api.send_message(self.REAL_USER_ID, message)
         message_id = send_result.get("id")
         
         if message_id:
@@ -176,46 +176,53 @@ class TestGmailApis(unittest.TestCase):
 
     def test_create_draft_success(self):
         """Test creating draft successfully."""
-        result = self.gmail_api.create_draft(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Draft Subject",
-            "Draft message body"
-        )
+        draft = {
+            "message": {
+                "to": self.REAL_RECIPIENT,
+                "subject": "Draft Subject",
+                "body": "Draft message body"
+            }
+        }
+        result = self.gmail_api.create_draft(self.REAL_USER_ID, draft)
         self.assertIn("id", result)
         self.assertNotIn("error", result)
 
     def test_update_draft_success(self):
         """Test updating draft successfully."""
         # First create a draft
-        create_result = self.gmail_api.create_draft(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Original Draft Subject",
-            "Original draft body"
-        )
+        draft = {
+            "message": {
+                "to": self.REAL_RECIPIENT,
+                "subject": "Original Draft Subject",
+                "body": "Original draft body"
+            }
+        }
+        create_result = self.gmail_api.create_draft(self.REAL_USER_ID, draft)
         draft_id = create_result.get("id")
         
         if draft_id:
-            result = self.gmail_api.update_draft(
-                self.REAL_USER_ID,
-                draft_id,
-                self.REAL_RECIPIENT,
-                "Updated Draft Subject",
-                "Updated draft body"
-            )
+            updated_draft = {
+                "message": {
+                    "to": self.REAL_RECIPIENT,
+                    "subject": "Updated Draft Subject",
+                    "body": "Updated draft body"
+                }
+            }
+            result = self.gmail_api.update_draft(self.REAL_USER_ID, draft_id, updated_draft)
             self.assertIn("id", result)
             self.assertNotIn("error", result)
 
     def test_delete_draft_success(self):
         """Test deleting draft successfully."""
         # First create a draft
-        create_result = self.gmail_api.create_draft(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Delete Draft Subject",
-            "Delete draft body"
-        )
+        draft = {
+            "message": {
+                "to": self.REAL_RECIPIENT,
+                "subject": "Delete Draft Subject",
+                "body": "Delete draft body"
+            }
+        }
+        create_result = self.gmail_api.create_draft(self.REAL_USER_ID, draft)
         draft_id = create_result.get("id")
         
         if draft_id:
@@ -225,12 +232,14 @@ class TestGmailApis(unittest.TestCase):
     def test_send_draft_success(self):
         """Test sending draft successfully."""
         # First create a draft
-        create_result = self.gmail_api.create_draft(
-            self.REAL_USER_ID,
-            self.REAL_RECIPIENT,
-            "Send Draft Subject",
-            "Send draft body"
-        )
+        draft = {
+            "message": {
+                "to": self.REAL_RECIPIENT,
+                "subject": "Send Draft Subject",
+                "body": "Send draft body"
+            }
+        }
+        create_result = self.gmail_api.create_draft(self.REAL_USER_ID, draft)
         draft_id = create_result.get("id")
         
         if draft_id:
@@ -323,7 +332,12 @@ class TestGmailApis(unittest.TestCase):
         nonexistent_user = "nonexistent@example.com"
         
         # Test send message
-        result = self.gmail_api.send_message(nonexistent_user, "to@example.com", "Subject", "Body")
+        message = {
+            "to": "to@example.com",
+            "subject": "Subject",
+            "body": "Body"
+        }
+        result = self.gmail_api.send_message(nonexistent_user, message)
         self.assertIn("error", result)
         
         # Test create label
