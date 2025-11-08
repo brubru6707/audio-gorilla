@@ -130,7 +130,7 @@ def generate_random_date(start_year, end_year):
     random_date = start_date + timedelta(days=random_number_of_days)
     return random_date.strftime("%Y-%m-%d")
 
-def generate_user(existing_uuids, first_name=None, last_name=None, email=None, balance=None):
+def generate_user(existing_uuids, first_name=None, last_name=None, email=None, balance=None, password=None):
     user_id = str(uuid.uuid4())
     existing_uuids["users"].add(user_id)
 
@@ -142,7 +142,9 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         email = f"{first_name.lower()}.{last_name.lower()}@{random.choice(domains)}"
     if balance is None:
         balance = round(random.uniform(0.00, 2500.00), 2)
-        
+    if not password:
+        password = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()', k=8))
+
     payment_cards = {}
     for _ in range(random.randint(0, 2)):
         card_id = str(uuid.uuid4())
@@ -236,6 +238,7 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
+            "password": password,
             "balance": balance,
             "payment_cards": payment_cards,
             "addresses": addresses,

@@ -58,6 +58,15 @@ class GoogleCalendarApis:
         """
         return self.users.get(user_id, {}).get("email")
 
+    def _get_user_calendar_data(self, user_id: str) -> Optional[Dict]:
+        """
+        Get calendar data for a specific user.
+        Args:
+            user_id (str): The internal user ID (UUID).
+        Returns:
+            Optional[Dict]: User's calendar data if found, None otherwise.
+        """
+        return self.users.get(user_id, {}).get("calendar_data")
 
     def _get_user_calendars(self, user_id: str) -> Optional[Dict]:
         """

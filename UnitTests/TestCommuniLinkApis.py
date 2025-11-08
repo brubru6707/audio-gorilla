@@ -138,7 +138,7 @@ class TestCommuniLinkApis(unittest.TestCase):
 
     def test_update_user_settings_success(self):
         """Test updating user settings."""
-        settings = {"notifications": True, "auto_reply": False}
+        settings = {"sms_notifications": True, "call_notifications": False}
         result = self.communilink_api.update_user_settings(self.REAL_EMAIL, settings)
         self.assertIn("updated_settings", result)
 

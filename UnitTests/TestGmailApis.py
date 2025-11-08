@@ -58,7 +58,7 @@ class TestGmailApis(unittest.TestCase):
     # --- Profile Tests ---
     def test_get_profile_success(self):
         """Test getting user profile successfully."""
-        result = self.gmail_api.get_profile(self.REAL_USER_EMAIL)
+        result = self.gmail_api.get_profile(self.REAL_USER_ID)
         self.assertIsNotNone(result)
         if result:
             self.assertIn("emailAddress", result)
@@ -71,25 +71,25 @@ class TestGmailApis(unittest.TestCase):
     # --- Message Tests ---
     def test_list_messages_success(self):
         """Test listing messages successfully."""
-        result = self.gmail_api.list_messages(self.REAL_USER_EMAIL)
+        result = self.gmail_api.list_messages(self.REAL_USER_ID)
         self.assertIn("messages", result)
         self.assertIsInstance(result["messages"], list)
 
     def test_list_messages_with_query(self):
         """Test listing messages with query."""
-        result = self.gmail_api.list_messages(self.REAL_USER_EMAIL, query="subject:test")
+        result = self.gmail_api.list_messages(self.REAL_USER_ID, query="subject:test")
         self.assertIn("messages", result)
         self.assertIsInstance(result["messages"], list)
 
     def test_list_messages_with_label_ids(self):
         """Test listing messages with label IDs."""
-        result = self.gmail_api.list_messages(self.REAL_USER_EMAIL, label_ids=["INBOX"])
+        result = self.gmail_api.list_messages(self.REAL_USER_ID, label_ids=["INBOX"])
         self.assertIn("messages", result)
         self.assertIsInstance(result["messages"], list)
 
     def test_get_message_success(self):
         """Test getting message successfully."""
-        result = self.gmail_api.get_message(self.REAL_USER_EMAIL, self.REAL_MESSAGE_ID)
+        result = self.gmail_api.get_message(self.REAL_USER_ID, self.REAL_MESSAGE_ID)
         self.assertIsNotNone(result)
         if result:
             self.assertIn("id", result)
@@ -97,13 +97,13 @@ class TestGmailApis(unittest.TestCase):
 
     def test_get_message_not_found(self):
         """Test getting non-existent message."""
-        result = self.gmail_api.get_message(self.REAL_USER_EMAIL, "nonexistent_msg")
+        result = self.gmail_api.get_message(self.REAL_USER_ID, "nonexistent_msg")
         self.assertIsNone(result)
 
     def test_send_message_success(self):
         """Test sending message successfully."""
         result = self.gmail_api.send_message(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Test Subject",
             "Test message body"
@@ -114,7 +114,7 @@ class TestGmailApis(unittest.TestCase):
     def test_send_message_with_thread_id(self):
         """Test sending message with thread ID."""
         result = self.gmail_api.send_message(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Re: Test Subject",
             "Reply message body",
@@ -138,7 +138,7 @@ class TestGmailApis(unittest.TestCase):
         """Test deleting message successfully."""
         # First send a message to delete
         send_result = self.gmail_api.send_message(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Test Delete Subject",
             "Test delete body"
@@ -146,38 +146,38 @@ class TestGmailApis(unittest.TestCase):
         message_id = send_result.get("id")
         
         if message_id:
-            result = self.gmail_api.delete_message(self.REAL_USER_EMAIL, message_id)
+            result = self.gmail_api.delete_message(self.REAL_USER_ID, message_id)
             self.assertTrue(result.get("success", False))
 
     def test_delete_message_not_found(self):
         """Test deleting non-existent message."""
-        result = self.gmail_api.delete_message(self.REAL_USER_EMAIL, "nonexistent_msg")
+        result = self.gmail_api.delete_message(self.REAL_USER_ID, "nonexistent_msg")
         self.assertIn("success", result)
         self.assertFalse(result["success"])
 
     # --- Draft Tests ---
     def test_list_drafts_success(self):
         """Test listing drafts successfully."""
-        result = self.gmail_api.list_drafts(self.REAL_USER_EMAIL)
+        result = self.gmail_api.list_drafts(self.REAL_USER_ID)
         self.assertIn("drafts", result)
         self.assertIsInstance(result["drafts"], list)
 
     def test_get_draft_success(self):
         """Test getting draft successfully."""
-        result = self.gmail_api.get_draft(self.REAL_USER_EMAIL, self.REAL_DRAFT_ID)
+        result = self.gmail_api.get_draft(self.REAL_USER_ID, self.REAL_DRAFT_ID)
         self.assertIsNotNone(result)
         if result:
             self.assertIn("id", result)
 
     def test_get_draft_not_found(self):
         """Test getting non-existent draft."""
-        result = self.gmail_api.get_draft(self.REAL_USER_EMAIL, "nonexistent_draft")
+        result = self.gmail_api.get_draft(self.REAL_USER_ID, "nonexistent_draft")
         self.assertIsNone(result)
 
     def test_create_draft_success(self):
         """Test creating draft successfully."""
         result = self.gmail_api.create_draft(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Draft Subject",
             "Draft message body"
@@ -189,7 +189,7 @@ class TestGmailApis(unittest.TestCase):
         """Test updating draft successfully."""
         # First create a draft
         create_result = self.gmail_api.create_draft(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Original Draft Subject",
             "Original draft body"
@@ -198,7 +198,7 @@ class TestGmailApis(unittest.TestCase):
         
         if draft_id:
             result = self.gmail_api.update_draft(
-                self.REAL_USER_EMAIL,
+                self.REAL_USER_ID,
                 draft_id,
                 self.REAL_RECIPIENT,
                 "Updated Draft Subject",
@@ -211,7 +211,7 @@ class TestGmailApis(unittest.TestCase):
         """Test deleting draft successfully."""
         # First create a draft
         create_result = self.gmail_api.create_draft(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Delete Draft Subject",
             "Delete draft body"
@@ -219,14 +219,14 @@ class TestGmailApis(unittest.TestCase):
         draft_id = create_result.get("id")
         
         if draft_id:
-            result = self.gmail_api.delete_draft(self.REAL_USER_EMAIL, draft_id)
+            result = self.gmail_api.delete_draft(self.REAL_USER_ID, draft_id)
             self.assertTrue(result.get("success", False))
 
     def test_send_draft_success(self):
         """Test sending draft successfully."""
         # First create a draft
         create_result = self.gmail_api.create_draft(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_RECIPIENT,
             "Send Draft Subject",
             "Send draft body"
@@ -234,20 +234,20 @@ class TestGmailApis(unittest.TestCase):
         draft_id = create_result.get("id")
         
         if draft_id:
-            result = self.gmail_api.send_draft(self.REAL_USER_EMAIL, draft_id)
+            result = self.gmail_api.send_draft(self.REAL_USER_ID, draft_id)
             self.assertIn("id", result)
             self.assertNotIn("error", result)
 
     # --- Label Tests ---
     def test_list_labels_success(self):
         """Test listing labels successfully."""
-        result = self.gmail_api.list_labels(self.REAL_USER_EMAIL)
+        result = self.gmail_api.list_labels(self.REAL_USER_ID)
         self.assertIn("labels", result)
         self.assertIsInstance(result["labels"], list)
 
     def test_get_label_success(self):
         """Test getting label successfully."""
-        result = self.gmail_api.get_label(self.REAL_USER_EMAIL, self.REAL_LABEL_ID)
+        result = self.gmail_api.get_label(self.REAL_USER_ID, self.REAL_LABEL_ID)
         self.assertIsNotNone(result)
         if result:
             self.assertIn("id", result)
@@ -255,12 +255,12 @@ class TestGmailApis(unittest.TestCase):
 
     def test_get_label_not_found(self):
         """Test getting non-existent label."""
-        result = self.gmail_api.get_label(self.REAL_USER_EMAIL, "nonexistent_label")
+        result = self.gmail_api.get_label(self.REAL_USER_ID, "nonexistent_label")
         self.assertIsNone(result)
 
     def test_create_label_success(self):
         """Test creating label successfully."""
-        result = self.gmail_api.create_label(self.REAL_USER_EMAIL, "Test Label")
+        result = self.gmail_api.create_label(self.REAL_USER_ID, "Test Label")
         self.assertIn("id", result)
         self.assertIn("name", result)
         self.assertEqual(result["name"], "Test Label")
@@ -268,11 +268,11 @@ class TestGmailApis(unittest.TestCase):
     def test_update_label_success(self):
         """Test updating label successfully."""
         # First create a label
-        create_result = self.gmail_api.create_label(self.REAL_USER_EMAIL, "Original Label")
+        create_result = self.gmail_api.create_label(self.REAL_USER_ID, "Original Label")
         label_id = create_result.get("id")
         
         if label_id:
-            result = self.gmail_api.update_label(self.REAL_USER_EMAIL, label_id, "Updated Label")
+            result = self.gmail_api.update_label(self.REAL_USER_ID, label_id, "Updated Label")
             self.assertIn("id", result)
             self.assertIn("name", result)
             self.assertEqual(result["name"], "Updated Label")
@@ -280,18 +280,18 @@ class TestGmailApis(unittest.TestCase):
     def test_delete_label_success(self):
         """Test deleting label successfully."""
         # First create a label
-        create_result = self.gmail_api.create_label(self.REAL_USER_EMAIL, "Delete Label")
+        create_result = self.gmail_api.create_label(self.REAL_USER_ID, "Delete Label")
         label_id = create_result.get("id")
         
         if label_id:
-            result = self.gmail_api.delete_label(self.REAL_USER_EMAIL, label_id)
+            result = self.gmail_api.delete_label(self.REAL_USER_ID, label_id)
             self.assertTrue(result.get("success", False))
 
     # --- Message Modification Tests ---
     def test_modify_message_success(self):
         """Test modifying message successfully."""
         result = self.gmail_api.modify_message(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_MESSAGE_ID,
             {"addLabelIds": ["IMPORTANT"], "removeLabelIds": ["UNREAD"]}
         )
@@ -301,7 +301,7 @@ class TestGmailApis(unittest.TestCase):
     # --- Thread Tests ---
     def test_get_thread_success(self):
         """Test getting thread successfully."""
-        result = self.gmail_api.get_thread(self.REAL_USER_EMAIL, self.REAL_THREAD_ID)
+        result = self.gmail_api.get_thread(self.REAL_USER_ID, self.REAL_THREAD_ID)
         self.assertIsNotNone(result)
         if result:
             self.assertIn("id", result)
@@ -310,7 +310,7 @@ class TestGmailApis(unittest.TestCase):
     def test_modify_thread_success(self):
         """Test modifying thread successfully."""
         result = self.gmail_api.modify_thread(
-            self.REAL_USER_EMAIL,
+            self.REAL_USER_ID,
             self.REAL_THREAD_ID,
             {"addLabelIds": ["IMPORTANT"], "removeLabelIds": ["UNREAD"]}
         )

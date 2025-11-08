@@ -20,8 +20,10 @@ class TestGoogleCalendarApis(unittest.TestCase):
     real_data = BackendDataLoader.get_google_calendar_data()
     
     # Extract real user data
-    users = list(real_data.get("users", {}).values())
-    user_data = users[0] if users else {}
+    users = real_data.get("users", {})
+    user_id_key = list(users.keys())[0] if users else None
+    user_data = users[user_id_key] if user_id_key else {}
+    REAL_USER_ID = user_id_key
     REAL_USER_EMAIL = user_data.get("email", "real_user@gmail.com")
     
     # Extract real calendar data
@@ -48,7 +50,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
     # --- User Profile Tests ---
     def test_get_user_profile_success(self):
         """Test getting user profile successfully."""
-        result = self.calendar_api.get_user_profile(self.REAL_USER_EMAIL)
+        result = self.calendar_api.get_user_profile(self.REAL_USER_ID)
         self.assertTrue(result["retrieval_status"])
         self.assertIn("profile_data", result)
 
@@ -61,7 +63,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
     # --- List Calendars Tests ---
     def test_list_calendars_success(self):
         """Test listing all calendars for user."""
-        result = self.calendar_api.list_calendars(self.REAL_USER_EMAIL)
+        result = self.calendar_api.list_calendars(self.REAL_USER_ID)
         self.assertTrue(result["retrieval_status"])
         self.assertIn("calendars", result)
 
@@ -74,7 +76,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
     def test_create_calendar_success(self):
         """Test creating a calendar successfully."""
         result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertTrue(result["creation_status"])
         self.assertIn("calendar_data", result)
@@ -91,19 +93,19 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test getting calendar successfully."""
         # First create a calendar
         create_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertTrue(create_result["creation_status"])
         calendar_id = create_result["calendar_data"]["id"]
         
         # Then get it
-        result = self.calendar_api.get_calendar(calendar_id, self.REAL_USER_EMAIL)
+        result = self.calendar_api.get_calendar(calendar_id, self.REAL_USER_ID)
         self.assertTrue(result["retrieval_status"])
         self.assertIn("calendar_data", result)
 
     def test_get_calendar_non_existent(self):
         """Test getting non-existent calendar."""
-        result = self.calendar_api.get_calendar("non_existent_calendar", self.REAL_USER_EMAIL)
+        result = self.calendar_api.get_calendar("non_existent_calendar", self.REAL_USER_ID)
         self.assertFalse(result["retrieval_status"])
 
     # --- Update Calendar Tests ---
@@ -111,21 +113,21 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test updating calendar successfully."""
         # First create a calendar
         create_result = self.calendar_api.create_calendar(
-            "Original Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Original Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertTrue(create_result["creation_status"])
         calendar_id = create_result["calendar_data"]["id"]
         
         # Then update it
         result = self.calendar_api.update_calendar(
-            calendar_id, "Updated Calendar", self.REAL_USER_EMAIL
+            calendar_id, "Updated Calendar", self.REAL_USER_ID
         )
         self.assertTrue(result["update_status"])
 
     def test_update_calendar_non_existent(self):
         """Test updating non-existent calendar."""
         result = self.calendar_api.update_calendar(
-            "non_existent_calendar", "This should fail", self.REAL_USER_EMAIL
+            "non_existent_calendar", "This should fail", self.REAL_USER_ID
         )
         self.assertFalse(result["update_status"])
 
@@ -141,18 +143,18 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test deleting calendar successfully."""
         # First create a calendar
         create_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertTrue(create_result["creation_status"])
         calendar_id = create_result["calendar_data"]["id"]
         
         # Then delete it
-        result = self.calendar_api.delete_calendar(calendar_id, self.REAL_USER_EMAIL)
+        result = self.calendar_api.delete_calendar(calendar_id, self.REAL_USER_ID)
         self.assertTrue(result["delete_status"])
 
     def test_delete_calendar_non_existent(self):
         """Test deleting non-existent calendar."""
-        result = self.calendar_api.delete_calendar("non_existent_calendar", self.REAL_USER_EMAIL)
+        result = self.calendar_api.delete_calendar("non_existent_calendar", self.REAL_USER_ID)
         self.assertFalse(result["delete_status"])
 
     # --- Create Event Tests ---
@@ -160,7 +162,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test creating event successfully."""
         # First create a calendar
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertTrue(create_cal_result["creation_status"])
         calendar_id = create_cal_result["calendar_data"]["id"]
@@ -168,7 +170,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
         # Then create an event
         result = self.calendar_api.create_event(
             calendar_id, "Test Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertTrue(result["creation_status"])
         self.assertIn("event_data", result)
@@ -177,7 +179,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test creating event in non-existent calendar."""
         result = self.calendar_api.create_event(
             "non_existent_calendar", "Test Event", self.START_TIME, 
-            self.END_TIME, self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.END_TIME, self.TIME_ZONE, self.REAL_USER_ID
         )
         self.assertFalse(result["creation_status"])
 
@@ -186,18 +188,18 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test getting event successfully."""
         # First create a calendar and event
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
         create_event_result = self.calendar_api.create_event(
             calendar_id, "Test Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         event_id = create_event_result["event_data"]["id"]
         
         # Then get the event
-        result = self.calendar_api.get_event(calendar_id, event_id, self.REAL_USER_EMAIL)
+        result = self.calendar_api.get_event(calendar_id, event_id, self.REAL_USER_ID)
         self.assertTrue(result["retrieval_status"])
         self.assertIn("event_data", result)
 
@@ -205,11 +207,11 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test getting non-existent event."""
         # First create a calendar
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
-        result = self.calendar_api.get_event(calendar_id, "non_existent_event", self.REAL_USER_EMAIL)
+        result = self.calendar_api.get_event(calendar_id, "non_existent_event", self.REAL_USER_ID)
         self.assertFalse(result["retrieval_status"])
 
     # --- List Events Tests ---
@@ -217,23 +219,23 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test listing events successfully."""
         # First create a calendar and event
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
         self.calendar_api.create_event(
             calendar_id, "Test Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         
         # Then list events
-        result = self.calendar_api.list_events(calendar_id, self.REAL_USER_EMAIL)
+        result = self.calendar_api.list_events(calendar_id, self.REAL_USER_ID)
         self.assertTrue(result["retrieval_status"])
         self.assertIn("events", result)
 
     def test_list_events_non_existent_calendar(self):
         """Test listing events for non-existent calendar."""
-        result = self.calendar_api.list_events("non_existent_calendar", self.REAL_USER_EMAIL)
+        result = self.calendar_api.list_events("non_existent_calendar", self.REAL_USER_ID)
         self.assertFalse(result["retrieval_status"])
 
     # --- Delete Event Tests ---
@@ -241,29 +243,29 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test deleting event successfully."""
         # First create a calendar and event
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
         create_event_result = self.calendar_api.create_event(
             calendar_id, "Test Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         event_id = create_event_result["event_data"]["id"]
         
         # Then delete the event
-        result = self.calendar_api.delete_event(calendar_id, event_id, self.REAL_USER_EMAIL)
+        result = self.calendar_api.delete_event(calendar_id, event_id, self.REAL_USER_ID)
         self.assertTrue(result["delete_status"])
 
     def test_delete_event_non_existent(self):
         """Test deleting non-existent event."""
         # First create a calendar
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
-        result = self.calendar_api.delete_event(calendar_id, "non_existent_event", self.REAL_USER_EMAIL)
+        result = self.calendar_api.delete_event(calendar_id, "non_existent_event", self.REAL_USER_ID)
         self.assertFalse(result["delete_status"])
 
     # --- Update Event Tests ---
@@ -271,19 +273,19 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test updating event successfully."""
         # First create a calendar and event
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
         create_event_result = self.calendar_api.create_event(
             calendar_id, "Original Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         event_id = create_event_result["event_data"]["id"]
         
         # Then update the event
         result = self.calendar_api.update_event(
-            calendar_id, event_id, self.REAL_USER_EMAIL, summary="Updated Event"
+            calendar_id, event_id, self.REAL_USER_ID, summary="Updated Event"
         )
         self.assertTrue(result["update_status"])
 
@@ -291,12 +293,12 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test updating non-existent event."""
         # First create a calendar
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
         result = self.calendar_api.update_event(
-            calendar_id, "non_existent_event", self.REAL_USER_EMAIL, summary="This should fail"
+            calendar_id, "non_existent_event", self.REAL_USER_ID, summary="This should fail"
         )
         self.assertFalse(result["update_status"])
 
@@ -305,24 +307,24 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test moving event successfully."""
         # First create two calendars and an event
         create_cal1_result = self.calendar_api.create_calendar(
-            "Source Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Source Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         source_calendar_id = create_cal1_result["calendar_data"]["id"]
         
         create_cal2_result = self.calendar_api.create_calendar(
-            "Destination Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Destination Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         dest_calendar_id = create_cal2_result["calendar_data"]["id"]
         
         create_event_result = self.calendar_api.create_event(
             source_calendar_id, "Test Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         event_id = create_event_result["event_data"]["id"]
         
         # Then move the event
         result = self.calendar_api.move_event(
-            source_calendar_id, event_id, dest_calendar_id, self.REAL_USER_EMAIL
+            source_calendar_id, event_id, dest_calendar_id, self.REAL_USER_ID
         )
         self.assertTrue(result["move_status"])
 
@@ -330,12 +332,12 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test moving event from non-existent source calendar."""
         # First create destination calendar
         create_cal_result = self.calendar_api.create_calendar(
-            "Destination Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Destination Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         dest_calendar_id = create_cal_result["calendar_data"]["id"]
         
         result = self.calendar_api.move_event(
-            "non_existent_source", "any_event", dest_calendar_id, self.REAL_USER_EMAIL
+            "non_existent_source", "any_event", dest_calendar_id, self.REAL_USER_ID
         )
         self.assertFalse(result["move_status"])
 
@@ -343,18 +345,18 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test moving event to non-existent destination calendar."""
         # First create source calendar and event
         create_cal_result = self.calendar_api.create_calendar(
-            "Source Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Source Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         source_calendar_id = create_cal_result["calendar_data"]["id"]
         
         create_event_result = self.calendar_api.create_event(
             source_calendar_id, "Test Event", self.START_TIME, self.END_TIME, 
-            self.TIME_ZONE, self.REAL_USER_EMAIL
+            self.TIME_ZONE, self.REAL_USER_ID
         )
         event_id = create_event_result["event_data"]["id"]
         
         result = self.calendar_api.move_event(
-            source_calendar_id, event_id, "non_existent_dest", self.REAL_USER_EMAIL
+            source_calendar_id, event_id, "non_existent_dest", self.REAL_USER_ID
         )
         self.assertFalse(result["move_status"])
 
@@ -363,13 +365,13 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test checking free/busy status successfully."""
         # First create a calendar
         create_cal_result = self.calendar_api.create_calendar(
-            "Test Calendar", self.TIME_ZONE, self.REAL_USER_EMAIL
+            "Test Calendar", self.TIME_ZONE, self.REAL_USER_ID
         )
         calendar_id = create_cal_result["calendar_data"]["id"]
         
         items = [{"id": calendar_id}]
         result = self.calendar_api.check_free_busy(
-            self.START_TIME, self.END_TIME, items, self.REAL_USER_EMAIL
+            self.START_TIME, self.END_TIME, items, self.REAL_USER_ID
         )
         self.assertTrue(result["retrieval_status"])
         self.assertIn("free_busy_data", result)
@@ -378,7 +380,7 @@ class TestGoogleCalendarApis(unittest.TestCase):
         """Test checking free/busy status for non-existent calendar."""
         items = [{"id": "non_existent_calendar"}]
         result = self.calendar_api.check_free_busy(
-            self.START_TIME, self.END_TIME, items, self.REAL_USER_EMAIL
+            self.START_TIME, self.END_TIME, items, self.REAL_USER_ID
         )
         self.assertTrue(result["retrieval_status"])
         self.assertIn("error", result["free_busy_data"]["non_existent_calendar"])
