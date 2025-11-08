@@ -542,24 +542,24 @@ class TestYouTubeApis(unittest.TestCase):
         """Test deleting comment for Alice."""
         # First add a comment
         comment_result = self.youtube_api.add_comment_to_video(video_id=self.REAL_VIDEO_ID, author_id=self.REAL_USER_ID_ALICE, text="Comment to delete")
-        if comment_result.get("status"):
-            comment_id = comment_result["comment"]["id"]
-            result = self.youtube_api.delete_comment(comment_id=comment_id, user_id=self.REAL_USER_ID_ALICE)
-            self.assertIn("data", result); self.assertIsNotNone(result["data"])
+        self.assertIn("data", comment_result)
+        # Delete the comment by video_id and user_id
+        result = self.youtube_api.delete_comment(video_id=self.REAL_VIDEO_ID, user_id=self.REAL_USER_ID_ALICE)
+        self.assertTrue(result.get("status", False))
 
     def test_delete_comment_bob(self):
         """Test deleting comment for Bob."""
         # First add a comment
         comment_result = self.youtube_api.add_comment_to_video(video_id=self.REAL_VIDEO_ID, author_id=self.REAL_USER_ID_BOB, text="Bob's comment to delete")
-        if comment_result.get("status"):
-            comment_id = comment_result["comment"]["id"]
-            result = self.youtube_api.delete_comment(comment_id=comment_id, user_id=self.REAL_USER_ID_BOB)
-            self.assertIn("data", result); self.assertIsNotNone(result["data"])
+        self.assertIn("data", comment_result)
+        # Delete the comment by video_id and user_id
+        result = self.youtube_api.delete_comment(video_id=self.REAL_VIDEO_ID, user_id=self.REAL_USER_ID_BOB)
+        self.assertTrue(result.get("status", False))
 
     def test_delete_comment_non_existent(self):
         """Test deleting non-existent comment."""
-        result = self.youtube_api.delete_comment(comment_id="nonexistent_comment", user_id=self.REAL_USER_ID_ALICE)
-        self.assertFalse(result.get("status", True)); self.assertIn("message", result)
+        result = self.youtube_api.delete_comment(video_id=self.REAL_VIDEO_ID, user_id="nonexistent_user")
+        self.assertFalse(result.get("status", True))
 
     def test_youtube_comments_insert_alice(self):
         """Test inserting comment for Alice."""

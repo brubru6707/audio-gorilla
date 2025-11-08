@@ -119,8 +119,12 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
 
         
         if "comments" in video_data:
-            video_data["comments_temp"] = video_data["comments"]
-            video_data["comments"] = [] 
+            # comments is now a dict {user_id: comment_text}, convert user_ids to UUIDs
+            video_data["comments_temp"] = {}
+            for user_id, comment_text in video_data["comments"].items():
+                new_user_id = _initial_user_id_map.get(user_id, user_id)
+                video_data["comments_temp"][new_user_id] = comment_text
+            video_data["comments"] = {}
 
         new_videos[video_uuid] = video_data
     converted_data["videos"] = new_videos
@@ -234,12 +238,12 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
     
     for video_uuid, video_data in new_videos.items():
         if "comments_temp" in video_data:
-            video_data["comments"] = [
-                _initial_comment_id_map.get(c_id, c_id) for c_id in video_data.pop("comments_temp")
-            ]
-            video_data["comments"] = [
-                c_id for c_id in video_data["comments"] if c_id in new_comments
-            ]
+            # comments_temp is {user_id: comment_text}, filter valid user_ids
+            comments_dict = video_data.pop("comments_temp")
+            video_data["comments"] = {
+                user_id: comment_text for user_id, comment_text in comments_dict.items()
+                if user_id in new_users
+            }
         if "liked_by_temp" in video_data:
             video_data["liked_by"] = [
                 _initial_user_id_map.get(u_id, u_id) for u_id in video_data.pop("liked_by_temp")
@@ -396,6 +400,7 @@ for user_id in all_user_uuids:
                 DEFAULT_STATE["channels"][sub_channel_id]["subscriber_count"] += 1
 
 all_video_uuids = list(DEFAULT_STATE["videos"].keys())
+all_comment_uuids = list(DEFAULT_STATE["comments"].keys())
 
 for channel_id, channel_data in DEFAULT_STATE["channels"].items():
     owner_id = channel_data["owner_id"]
@@ -415,7 +420,15 @@ for channel_id, channel_data in DEFAULT_STATE["channels"].items():
                 youtube_titles[random_video_category].remove(title)
                 description_template = youtube_video_descriptions[random_video_category][index_for_title]
                 youtube_video_descriptions[random_video_category].remove(description_template)
-                comments_for_video = random.sample(youtube_comments[random_video_category], random.randint(0, 5))
+                
+                # Create comments as a dictionary {user_id: comment_text}
+                comments_for_video = {}
+                num_comments = random.randint(0, 5)
+                if num_comments > 0:
+                    available_users = list(DEFAULT_STATE["users"].keys())
+                    selected_comments = random.sample(youtube_comments[random_video_category], num_comments)
+                    selected_users = random.sample(available_users, num_comments)
+                    comments_for_video = dict(zip(selected_users, selected_comments))
             else:
                 # If this category is empty, continue to try another category
                 continue
@@ -516,8 +529,6 @@ for user_id in all_user_uuids:
         DEFAULT_STATE["channels"][channel_for_playlist]["playlists"].append(playlist_uuid)
         all_playlist_uuids.append(playlist_uuid)
 
-all_comment_uuids = list(DEFAULT_STATE["comments"].keys())
-
 for video_id, video_data in DEFAULT_STATE["videos"].items():
     num_comments_to_add = random.choices([0, 1, 2, 3, 5, 10], weights=[0.4, 0.2, 0.15, 0.1, 0.1, 0.05], k=1)[0]
 
@@ -530,17 +541,8 @@ for video_id, video_data in DEFAULT_STATE["videos"].items():
         comment_uuid = str(uuid.uuid4())
         author_id = random.choice(possible_commenters)
         
-        comment_data = {
-            "id": comment_uuid,
-            "video_id": video_id,
-            "author_id": author_id,
-            "text": random.choice(comment_texts),
-            "created_at": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=300), 
-            "likes": random.randint(0, 50)
-        }
-        DEFAULT_STATE["comments"][comment_uuid] = comment_data
-        video_data["comments"].append(comment_uuid)
-        all_comment_uuids.append(comment_uuid)
+        # Add comment directly to video's comments dictionary
+        video_data["comments"][author_id] = random.choice(comment_texts)
 
 output_filename = 'diverse_youtube_state.json'
 with open(output_filename, 'w') as f:

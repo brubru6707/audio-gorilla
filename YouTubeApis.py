@@ -1,3 +1,4 @@
+# Inspired by https://developers.google.com/youtube/v3/docs
 import datetime
 import copy
 import uuid
@@ -53,7 +54,7 @@ class YouTubeApis:
         self.channels = copy.deepcopy(scenario.get("channels", {}))
         self.videos = copy.deepcopy(scenario.get("videos", {}))
         self.playlists = copy.deepcopy(scenario.get("playlists", {}))
-        self.comments = copy.deepcopy(scenario.get("comments", {}))
+        self.comments = {}
         self.current_user = scenario.get("current_user") # This will already be a UUID after conversion
         self.current_channel = scenario.get("current_channel") # This will already be a UUID after conversion
         print("YouTubeApis: Loaded scenario with UUIDs for users, channels, videos, playlists, and comments.")
@@ -495,7 +496,7 @@ class YouTubeApis:
             "views": 0,
             "likes": 0,
             "dislikes": 0,
-            "comments": [],
+            "comments": {},
             "tags": tags if tags is not None else [],
             "liked_by": [] # Keep track of users who liked this video
         }
@@ -550,10 +551,7 @@ class YouTubeApis:
                     p_data["video_ids"].remove(video_id)
                     p_data["item_count"] = max(0, p_data.get("item_count", 0) - 1)
             
-            # Delete associated comments
-            comments_to_delete = [cid for cid, cdata in self.comments.items() if cdata.get("video_id") == video_id]
-            for cid in comments_to_delete:
-                del self.comments[cid]
+            # Comments are now stored directly in videos, so they get deleted with the video
 
             return {"status": True, "message": "Video deleted successfully"}
         return {"status": False, "message": "Video not found or internal error"}
@@ -843,19 +841,15 @@ class YouTubeApis:
         if not author_data:
             return {"data": None, "message": "Author user not found"}
 
-        comment_uuid = self._generate_unique_id()
-        new_comment = {
-            "id": comment_uuid,
-            "video_id": video_id,
-            "author_id": author_id,
-            "text": text,
-            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
-            "likes": 0
-        }
-        self.comments[comment_uuid] = new_comment
-        self.videos[video_id]["comments"].append(comment_uuid)
-        print(f"Comment added: ID={comment_uuid} on video {video_id} by {author_data['display_name']}")
-        return {"data": copy.deepcopy(new_comment)}
+        # Ensure comments is a dictionary
+        if not isinstance(self.videos[video_id]["comments"], dict):
+            # Convert old list format to dict format
+            self.videos[video_id]["comments"] = {}
+        
+        # Add comment directly to video's comments dictionary
+        self.videos[video_id]["comments"][author_id] = text
+        print(f"Comment added on video {video_id} by {author_data['display_name']}: {text}")
+        return {"data": {"video_id": video_id, "author_id": author_id, "text": text}}
 
     def list_comments_for_video(self, video_id: str) -> Dict[str, Any]:
         """
@@ -872,56 +866,56 @@ class YouTubeApis:
             return {"data": None, "message": "Video not found"}
 
         video_comments = []
-        for comment_uuid in video_data.get("comments", []):
-            comment_details = self._get_comment_data(comment_uuid)
-            if comment_details:
-                # Add author's display name for convenience
-                author_info = self._get_user_data(comment_details.get("author_id"))
-                comment_copy = copy.deepcopy(comment_details)
-                comment_copy["author_display_name"] = author_info["display_name"] if author_info else "Unknown User"
-                video_comments.append(comment_copy)
+        comments_data = video_data.get("comments", {})
+        if isinstance(comments_data, dict):
+            # New format: {user_id: comment_text}
+            for author_id, comment_text in comments_data.items():
+                author_info = self._get_user_data(author_id)
+                comment_data = {
+                    "author_id": author_id,
+                    "text": comment_text,
+                    "author_display_name": author_info["display_name"] if author_info else "Unknown User"
+                }
+                video_comments.append(comment_data)
+        elif isinstance(comments_data, list):
+            # Old format: [comment_uuid1, comment_uuid2, ...]
+            for comment_uuid in comments_data:
+                comment_details = self._get_comment_data(comment_uuid)
+                if comment_details:
+                    author_info = self._get_user_data(comment_details.get("author_id"))
+                    comment_copy = copy.deepcopy(comment_details)
+                    comment_copy["author_display_name"] = author_info["display_name"] if author_info else "Unknown User"
+                    video_comments.append(comment_copy)
         
-        # Sort comments by creation time, oldest first
-        video_comments.sort(key=lambda x: x.get("created_at", ""))
         return {"data": video_comments}
 
-    def delete_comment(self, comment_id: str, user_id: str) -> Dict[str, bool]:
+    def delete_comment(self, video_id: str, user_id: str) -> Dict[str, bool]:
         """
-        Delete a comment. Only the author of the comment or the channel owner can delete it.
+        Delete a comment from a video. Only the author of the comment can delete it.
 
         Args:
-            comment_id (str): The ID (UUID) of the comment to delete.
-            user_id (str): The ID (UUID) of the user attempting to delete (must be author or channel owner).
+            video_id (str): The ID (UUID) of the video containing the comment.
+            user_id (str): The ID (UUID) of the user who authored the comment.
 
         Returns:
             Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
         """
-        comment_data = self._get_comment_data(comment_id)
-        if not comment_data:
-            return {"status": False, "message": "Comment not found"}
-        
-        video_id = comment_data.get("video_id")
         video_data = self._get_video_data(video_id)
+        if not video_data:
+            return {"status": False, "message": "Video not found"}
         
-        if not video_data: # Associated video not found, perhaps already deleted
-            del self.comments[comment_id] # Clean up orphaned comment
-            return {"status": True, "message": "Comment found but video not, deleting orphaned comment."}
-
-        channel_id = video_data.get("channel_id")
-        channel_data = self._get_channel_data(channel_id)
+        comments = video_data.get("comments", {})
         
-        is_author = comment_data.get("author_id") == user_id
-        is_channel_owner = channel_data and channel_data.get("owner_id") == user_id
-
-        if not is_author and not is_channel_owner:
-            return {"status": False, "message": "Not authorized to delete this comment"}
-
-        if comment_id in self.comments:
-            del self.comments[comment_id]
-            if comment_id in self.videos[video_id].get("comments", []):
-                self.videos[video_id]["comments"].remove(comment_id)
-            return {"status": True}
-        return {"status": False, "message": "Comment not found or internal error"}
+        # Handle both dict and list formats
+        if isinstance(comments, dict):
+            if user_id not in comments:
+                return {"status": False, "message": "Comment not found"}
+            del comments[user_id]
+        elif isinstance(comments, list):
+            # For old format, we can't easily delete by user_id since we don't know which UUID belongs to which user
+            return {"status": False, "message": "Cannot delete comments from old format videos"}
+        
+        return {"status": True, "message": "Comment deleted successfully"}
 
     def youtube_comments_insert(self, video_id: str, text: str, author_id: str) -> Dict[str, Any]:
         """
