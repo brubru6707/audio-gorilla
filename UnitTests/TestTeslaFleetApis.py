@@ -309,13 +309,13 @@ class TestTeslaFleetApis(unittest.TestCase):
     # --- Window Control Tests ---
     def test_window_control_vent_alice(self):
         """Test venting windows for Alice."""
-        result = self.tesla_api.window_control(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="vent", lat=37.7749, lon=-122.4194)
+        result = self.tesla_api.window_control(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="vent")
         self.assertEqual(result["result"], True)
         self.assertEqual(result["reason"], "")
 
     def test_window_control_close_bob(self):
         """Test closing windows for Bob."""
-        result = self.tesla_api.window_control(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="close", lat=40.7128, lon=-74.0060)
+        result = self.tesla_api.window_control(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="close")
         self.assertEqual(result["result"], True)
         self.assertEqual(result["reason"], "")
 
@@ -323,25 +323,28 @@ class TestTeslaFleetApis(unittest.TestCase):
     def test_get_vehicle_location_alice(self):
         """Test getting vehicle location for Alice."""
         result = self.tesla_api.get_vehicle_location(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
         self.assertIn("location", result)
 
     def test_get_vehicle_location_bob(self):
         """Test getting vehicle location for Bob."""
         result = self.tesla_api.get_vehicle_location(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
         self.assertIn("location", result)
 
     def test_get_vehicle_location_non_existent(self):
         """Test getting location for non-existent vehicle."""
         result = self.tesla_api.get_vehicle_location(user=self.REAL_USER_ALICE, vehicle_tag="non_existent_vehicle")
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        self.assertEqual(result["result"], False)
+        self.assertIn("not found", result["reason"])
 
     def test_get_vehicle_status_alice(self):
         """Test getting vehicle status for Alice."""
         result = self.tesla_api.get_vehicle_status(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
         self.assertIn("vehicle_info", result)
         self.assertIn("charge", result)
         self.assertIn("climate", result)
@@ -349,32 +352,35 @@ class TestTeslaFleetApis(unittest.TestCase):
     def test_get_vehicle_status_bob(self):
         """Test getting vehicle status for Bob."""
         result = self.tesla_api.get_vehicle_status(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
         self.assertIn("vehicle_info", result)
 
     def test_get_vehicle_status_non_existent(self):
         """Test getting status for non-existent vehicle."""
         result = self.tesla_api.get_vehicle_status(user=self.REAL_USER_ALICE, vehicle_tag="non_existent_vehicle")
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        self.assertEqual(result["result"], False)
+        self.assertIn("not found", result["reason"])
 
     def test_get_firmware_info_alice(self):
         """Test getting firmware info for Alice."""
         result = self.tesla_api.get_firmware_info(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
         self.assertIn("firmware", result)
 
     def test_get_firmware_info_bob(self):
         """Test getting firmware info for Bob."""
         result = self.tesla_api.get_firmware_info(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
         self.assertIn("firmware", result)
 
     def test_get_firmware_info_non_existent(self):
         """Test getting firmware info for non-existent vehicle."""
         result = self.tesla_api.get_firmware_info(user=self.REAL_USER_ALICE, vehicle_tag="non_existent_vehicle")
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        self.assertEqual(result["result"], False)
+        self.assertIn("not found", result["reason"])
 
     # --- Security Tests ---
     def test_set_sentry_mode_on_alice(self):
@@ -408,7 +414,8 @@ class TestTeslaFleetApis(unittest.TestCase):
 
         # Get status
         status_result = self.tesla_api.get_vehicle_status(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(status_result.get("success", False))
+        self.assertEqual(status_result["result"], True)
+        self.assertEqual(status_result["reason"], "")
         self.assertIn("vehicle_info", status_result)
 
     def test_charging_workflow_bob(self):

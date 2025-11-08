@@ -218,6 +218,8 @@ class TeslaFleetApis:
         vehicle["media"]["volume"] = max(0, current_volume - 1)
         print(f"Vehicle {vehicle_tag}: Volume decreased.")
         return {"reason": "", "result": True}
+
+    def door_unlock(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
         Unlocks the doors to the car.
 
@@ -253,23 +255,6 @@ class TeslaFleetApis:
 
         vehicle["locks"] = "locked"
         print(f"Vehicle {vehicle_tag}: Doors locked.")
-        return {"reason": "", "result": True}
-        """
-        Flash the lights of the specified vehicle.
-
-        Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-
-        Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
-        """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
-        vehicle["lights"]["on"] = True
-        print(f"Vehicle {vehicle_tag}: Lights flashed.")
         return {"reason": "", "result": True}
 
     def media_toggle_playback(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
@@ -597,7 +582,7 @@ class TeslaFleetApis:
         print(f"Vehicle {vehicle_tag}: Vehicle woken up.")
         return {"reason": "", "result": True}
 
-    def window_control(self, user: User, vehicle_tag: str, command: Literal["vent", "close"], lat: float, lon: float) -> Dict[str, Any]:
+    def window_control(self, user: User, vehicle_tag: str, command: Literal["vent", "close"]) -> Dict[str, Any]:
         """
         Controls the windows. Will vent or close all windows simultaneously.
 
@@ -605,8 +590,6 @@ class TeslaFleetApis:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
             command (Literal["vent", "close"]): The window control command.
-            lat (float): Latitude coordinate.
-            lon (float): Longitude coordinate.
 
         Returns:
             Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
@@ -616,7 +599,7 @@ class TeslaFleetApis:
             return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         vehicle["windows"] = command
-        print(f"Vehicle {vehicle_tag}: Window command '{command}' issued at ({lat}, {lon}).")
+        print(f"Vehicle {vehicle_tag}: Window command '{command}' issued.")
         return {"reason": "", "result": True}
 
     def get_vehicle_location(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
@@ -632,11 +615,12 @@ class TeslaFleetApis:
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
 
         location = vehicle.get("location", {"latitude": 0, "longitude": 0})
         return {
-            "success": True,
+            "result": True,
+            "reason": "",
             "location": {
                 "latitude": location.get("latitude"),
                 "longitude": location.get("longitude"),
@@ -657,10 +641,11 @@ class TeslaFleetApis:
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
 
         status = {
-            "success": True,
+            "result": True,
+            "reason": "",
             "vehicle_info": {
                 "id": vehicle.get("id"),
                 "vehicle_tag": vehicle.get("vehicle_tag"),
@@ -718,10 +703,11 @@ class TeslaFleetApis:
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
 
         return {
-            "success": True,
+            "result": True,
+            "reason": "",
             "firmware": {
                 "current_version": vehicle.get("firmware_version", "Unknown"),
                 "created_time": vehicle.get("createdTime"),
@@ -748,6 +734,99 @@ class TeslaFleetApis:
         vehicle["awake"] = True
         print(f"Vehicle {vehicle_tag}: Wake command sent successfully.")
         return {"reason": "", "result": True}
+
+    def set_speed_limit(self, user: User, vehicle_tag: str, limit_mph: int) -> Dict[str, Any]:
+        """
+        Set the speed limit for the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            limit_mph (int): The speed limit in miles per hour (0-140).
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        if not (0 <= limit_mph <= 140):
+            return {"reason": "Speed limit must be between 0 and 140 mph.", "result": False}
+
+        vehicle["speed_limit"] = limit_mph
+        print(f"Vehicle {vehicle_tag}: Speed limit set to {limit_mph} mph.")
+        return {"reason": "", "result": True}
+
+    def set_valet_mode(self, user: User, vehicle_tag: str, on: bool, pin: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Enable or disable valet mode for the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            on (bool): Whether to enable (True) or disable (False) valet mode.
+            pin (Optional[str]): PIN code for valet mode (required when enabling).
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        if on and not pin:
+            return {"reason": "PIN code is required to enable valet mode.", "result": False}
+
+        vehicle["valet_mode"] = {"on": on, "pin": pin if on else None}
+        print(f"Vehicle {vehicle_tag}: Valet mode {'enabled' if on else 'disabled'}.")
+        return {"reason": "", "result": True}
+
+    def get_nearby_charging_sites(self, user: User, vehicle_tag: str, lat: float, lon: float, radius: int = 50) -> Dict[str, Any]:
+        """
+        Get nearby charging sites (superchargers) for the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            lat (float): Latitude coordinate.
+            lon (float): Longitude coordinate.
+            radius (int): Search radius in miles (default 50).
+
+        Returns:
+            Dict[str, Any]: A dictionary containing nearby charging sites.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
+
+        # Mock nearby superchargers
+        superchargers = [
+            {
+                "name": "Tesla Supercharger - Example Location 1",
+                "latitude": lat + 0.01,
+                "longitude": lon + 0.01,
+                "distance": 2.3,
+                "available_stalls": 8,
+                "total_stalls": 12,
+                "site_type": "supercharger"
+            },
+            {
+                "name": "Tesla Supercharger - Example Location 2",
+                "latitude": lat - 0.02,
+                "longitude": lon + 0.03,
+                "distance": 5.1,
+                "available_stalls": 4,
+                "total_stalls": 8,
+                "site_type": "supercharger"
+            }
+        ]
+
+        return {
+            "result": True,
+            "reason": "",
+            "charging_sites": superchargers
+        }
 
     def reset_data(self) -> Dict[str, bool]:
         """
