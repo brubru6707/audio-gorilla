@@ -782,6 +782,37 @@ class TeslaFleetApis:
         print(f"Vehicle {vehicle_tag}: Valet mode {'enabled' if on else 'disabled'}.")
         return {"reason": "", "result": True}
 
+    def _calculate_distance(self, lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+        """
+        Calculate the distance between two points using the Haversine formula.
+        
+        Args:
+            lat1 (float): Latitude of first point
+            lon1 (float): Longitude of first point
+            lat2 (float): Latitude of second point
+            lon2 (float): Longitude of second point
+            
+        Returns:
+            float: Distance in miles
+        """
+        import math
+        
+        # Convert to radians
+        lat1_rad = math.radians(lat1)
+        lon1_rad = math.radians(lon1)
+        lat2_rad = math.radians(lat2)
+        lon2_rad = math.radians(lon2)
+        
+        # Haversine formula
+        dlat = lat2_rad - lat1_rad
+        dlon = lon2_rad - lon1_rad
+        a = math.sin(dlat/2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon/2)**2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+        
+        # Earth's radius in miles
+        earth_radius = 3959
+        return earth_radius * c
+
     def get_nearby_charging_sites(self, user: User, vehicle_tag: str, lat: float, lon: float, radius: int = 50) -> Dict[str, Any]:
         """
         Get nearby charging sites (superchargers) for the specified vehicle.
@@ -800,32 +831,38 @@ class TeslaFleetApis:
         if vehicle is None:
             return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
 
-        # Mock nearby superchargers
-        superchargers = [
-            {
-                "name": "Tesla Supercharger - Example Location 1",
-                "latitude": lat + 0.01,
-                "longitude": lon + 0.01,
-                "distance": 2.3,
-                "available_stalls": 8,
-                "total_stalls": 12,
-                "site_type": "supercharger"
-            },
-            {
-                "name": "Tesla Supercharger - Example Location 2",
-                "latitude": lat - 0.02,
-                "longitude": lon + 0.03,
-                "distance": 5.1,
-                "available_stalls": 4,
-                "total_stalls": 8,
-                "site_type": "supercharger"
-            }
-        ]
+        # Get superchargers from the state
+        all_superchargers = DEFAULT_STATE.get("superchargers", [])
+        
+        # Find nearby superchargers within the radius
+        nearby_sites = []
+        for charger in all_superchargers:
+            distance = self._calculate_distance(lat, lon, charger["latitude"], charger["longitude"])
+            if distance <= radius:
+                # Simulate available stalls (random but realistic)
+                import random
+                total_stalls = charger["total_stalls"]
+                available_stalls = random.randint(max(0, total_stalls - 4), total_stalls)
+                
+                site_data = {
+                    "name": charger["name"],
+                    "latitude": charger["latitude"],
+                    "longitude": charger["longitude"],
+                    "distance": round(distance, 1),
+                    "available_stalls": available_stalls,
+                    "total_stalls": total_stalls,
+                    "site_type": "supercharger",
+                    "address": charger.get("address", "")
+                }
+                nearby_sites.append(site_data)
+        
+        # Sort by distance
+        nearby_sites.sort(key=lambda x: x["distance"])
 
         return {
             "result": True,
             "reason": "",
-            "charging_sites": superchargers
+            "charging_sites": nearby_sites
         }
 
     def reset_data(self) -> Dict[str, bool]:

@@ -4,7 +4,7 @@ import uuid
 import json
 import random
 from typing import Dict, Any
-from .fake_data import first_names, last_names, domains, playlist_titles, user_count, first_and_last_names
+from fake_data import first_names, last_names, domains, playlist_titles, user_count, first_and_last_names, tesla_superchargers
 
 _initial_user_email_to_uuid_map = {}
 _initial_vehicle_tag_to_uuid_map = {}
@@ -201,6 +201,9 @@ for user_id, user_data in DEFAULT_STATE["users"].items():
             elif friend_identifier in DEFAULT_STATE["users"]:
                 updated_friends.append(friend_identifier)
         user_data["friends"] = list(set(updated_friends))
+
+# Add superchargers to the state
+DEFAULT_STATE["superchargers"] = copy.deepcopy(tesla_superchargers)
 
 output_filename = 'diverse_teslafleet_state.json'
 with open(output_filename, 'w') as f:

@@ -18766,3 +18766,111 @@ product_reviews_based_on_categories = {
         {"product_name": "REI Co-op Flash 22 Daypack Lightweight Hiking Backpack", "rating": 4.3, "review": "Great hiking daypack! Lightweight and comfortable with good organization. Perfect for day hikes and outdoor adventures."},
     ]
 }
+
+# Tesla Supercharger locations data
+tesla_superchargers = [
+    # California
+    {"name": "Tesla Supercharger - Los Angeles Convention Center", "latitude": 34.0407, "longitude": -118.2468, "address": "1201 S Figueroa St, Los Angeles, CA 90015", "total_stalls": 24},
+    {"name": "Tesla Supercharger - San Francisco Bay Area", "latitude": 37.7749, "longitude": -122.4194, "address": "845 South Figueroa Street, Los Angeles, CA 90017", "total_stalls": 20},
+    {"name": "Tesla Supercharger - San Diego Mission Valley", "latitude": 32.7831, "longitude": -117.1197, "address": "1640 Camino Del Rio N, San Diego, CA 92108", "total_stalls": 16},
+    {"name": "Tesla Supercharger - Sacramento Capital Mall", "latitude": 38.5816, "longitude": -121.4944, "address": "3615 N Freeway Blvd, Sacramento, CA 95834", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Bakersfield River Walk", "latitude": 35.3733, "longitude": -119.0187, "address": "1000 Potomac Ave, Bakersfield, CA 93312", "total_stalls": 8},
+    {"name": "Tesla Supercharger - Fresno Fashion Fair", "latitude": 36.8252, "longitude": -119.7026, "address": "8450 Golden State Blvd, Fresno, CA 93720", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Palm Springs Airport", "latitude": 33.8297, "longitude": -116.5067, "address": "3400 E Tahquitz Canyon Way, Palm Springs, CA 92262", "total_stalls": 6},
+
+    # Texas
+    {"name": "Tesla Supercharger - Austin Domain", "latitude": 30.4014, "longitude": -97.7203, "address": "11401 Domain Dr, Austin, TX 78758", "total_stalls": 18},
+    {"name": "Tesla Supercharger - Dallas Galleria", "latitude": 32.9282, "longitude": -96.8387, "address": "13355 Midway Rd, Dallas, TX 75244", "total_stalls": 22},
+    {"name": "Tesla Supercharger - Houston Galleria", "latitude": 29.7417, "longitude": -95.4657, "address": "5085 Westheimer Rd, Houston, TX 77056", "total_stalls": 20},
+    {"name": "Tesla Supercharger - San Antonio Rivercenter", "latitude": 29.4241, "longitude": -98.4936, "address": "849 E Commerce St, San Antonio, TX 78205", "total_stalls": 14},
+    {"name": "Tesla Supercharger - El Paso Cielo Vista", "latitude": 31.7619, "longitude": -106.4850, "address": "8401 Gateway Blvd W, El Paso, TX 79925", "total_stalls": 8},
+    {"name": "Tesla Supercharger - Fort Worth Alliance", "latitude": 32.9857, "longitude": -97.3188, "address": "1400 Alliance Gateway Fwy, Fort Worth, TX 76177", "total_stalls": 16},
+
+    # Florida
+    {"name": "Tesla Supercharger - Miami Dolphin Mall", "latitude": 25.9581, "longitude": -80.1201, "address": "11401 NW 12th St, Miami, FL 33172", "total_stalls": 20},
+    {"name": "Tesla Supercharger - Orlando Vineland", "latitude": 28.5417, "longitude": -81.3792, "address": "8203 World Center Dr, Orlando, FL 32821", "total_stalls": 18},
+    {"name": "Tesla Supercharger - Tampa Westchase", "latitude": 28.0556, "longitude": -82.7694, "address": "18900 N Dale Mabry Hwy, Lutz, FL 33548", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Jacksonville Regency", "latitude": 30.3322, "longitude": -81.6557, "address": "9501 Arlington Expy, Jacksonville, FL 32225", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Fort Lauderdale Bonaventure", "latitude": 26.1224, "longitude": -80.1373, "address": "2411 E Sunrise Blvd, Fort Lauderdale, FL 33304", "total_stalls": 14},
+
+    # New York
+    {"name": "Tesla Supercharger - New York City Hudson Yards", "latitude": 40.7539, "longitude": -74.0017, "address": "20 Hudson Yards, New York, NY 10001", "total_stalls": 36},
+    {"name": "Tesla Supercharger - Albany Crossgates", "latitude": 42.6886, "longitude": -73.8517, "address": "1 Crossgates Mall Rd, Albany, NY 12203", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Buffalo Canalside", "latitude": 42.8864, "longitude": -78.8784, "address": "25 Sheehan Terrace, Buffalo, NY 14203", "total_stalls": 8},
+    {"name": "Tesla Supercharger - Syracuse Destiny USA", "latitude": 43.0481, "longitude": -76.1474, "address": "9090 Destiny USA Dr, Syracuse, NY 13204", "total_stalls": 10},
+
+    # Illinois
+    {"name": "Tesla Supercharger - Chicago Michigan Avenue", "latitude": 41.8781, "longitude": -87.6298, "address": "401 N Michigan Ave, Chicago, IL 60611", "total_stalls": 28},
+    {"name": "Tesla Supercharger - Naperville Fox Valley", "latitude": 41.7508, "longitude": -88.1535, "address": "195 Fox Valley Center, Aurora, IL 60504", "total_stalls": 14},
+    {"name": "Tesla Supercharger - Springfield White Oaks", "latitude": 39.7817, "longitude": -89.6501, "address": "4701 Wabash Ave, Springfield, IL 62711", "total_stalls": 8},
+
+    # Pennsylvania
+    {"name": "Tesla Supercharger - Philadelphia King of Prussia", "latitude": 40.0893, "longitude": -75.3961, "address": "160 N Gulph Rd, King of Prussia, PA 19406", "total_stalls": 20},
+    {"name": "Tesla Supercharger - Pittsburgh Robinson", "latitude": 40.4511, "longitude": -80.1625, "address": "100 Robinson Centre Dr, Pittsburgh, PA 15205", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Harrisburg Capital City", "latitude": 40.2732, "longitude": -76.8867, "address": "3501 Paxton St, Harrisburg, PA 17111", "total_stalls": 10},
+
+    # Ohio
+    {"name": "Tesla Supercharger - Columbus Easton", "latitude": 40.0508, "longitude": -82.9081, "address": "4040 Townsfair Way, Columbus, OH 43219", "total_stalls": 16},
+    {"name": "Tesla Supercharger - Cleveland West Side", "latitude": 41.4993, "longitude": -81.6944, "address": "5800 Detroit Ave, Cleveland, OH 44102", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Cincinnati Kenwood", "latitude": 39.2117, "longitude": -84.3733, "address": "8401 Chester Ave, Cincinnati, OH 45247", "total_stalls": 14},
+
+    # Georgia
+    {"name": "Tesla Supercharger - Atlanta Cumberland", "latitude": 33.8798, "longitude": -84.4671, "address": "2911 Cobb Pkwy SE, Atlanta, GA 30339", "total_stalls": 24},
+    {"name": "Tesla Supercharger - Savannah Oglethorpe", "latitude": 32.0809, "longitude": -81.0912, "address": "7804 Abercorn St, Savannah, GA 31406", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Augusta Evans Town Center", "latitude": 33.5556, "longitude": -82.1317, "address": "3930 Jimmie Dyess Pkwy, Augusta, GA 30909", "total_stalls": 8},
+
+    # North Carolina
+    {"name": "Tesla Supercharger - Charlotte Concord Mills", "latitude": 35.3644, "longitude": -80.7306, "address": "8111 Concord Mills Blvd, Concord, NC 28027", "total_stalls": 18},
+    {"name": "Tesla Supercharger - Raleigh North Hills", "latitude": 35.8417, "longitude": -78.6394, "address": "4151 Louis Stephens Dr, Raleigh, NC 27616", "total_stalls": 14},
+    {"name": "Tesla Supercharger - Asheville Biltmore Square", "latitude": 35.5967, "longitude": -82.5511, "address": "1 Resort Dr, Asheville, NC 28806", "total_stalls": 8},
+
+    # Michigan
+    {"name": "Tesla Supercharger - Detroit Somerset", "latitude": 42.5172, "longitude": -83.3975, "address": "27600 Novi Rd, Novi, MI 48375", "total_stalls": 16},
+    {"name": "Tesla Supercharger - Grand Rapids Woodland", "latitude": 42.9634, "longitude": -85.6681, "address": "3550 32nd St SE, Grand Rapids, MI 49512", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Ann Arbor Maple Village", "latitude": 42.2772, "longitude": -83.7431, "address": "300 E Maple Rd, Birmingham, MI 48009", "total_stalls": 10},
+
+    # Washington
+    {"name": "Tesla Supercharger - Seattle Bellevue", "latitude": 47.6101, "longitude": -122.2015, "address": "575 Bellevue Square, Bellevue, WA 98004", "total_stalls": 20},
+    {"name": "Tesla Supercharger - Spokane River Park", "latitude": 47.6587, "longitude": -117.4260, "address": "808 W Main Ave, Spokane, WA 99201", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Vancouver Pacific", "latitude": 45.6387, "longitude": -122.6615, "address": "9301 NE Cascades Pkwy, Portland, OR 97220", "total_stalls": 12},
+
+    # Arizona
+    {"name": "Tesla Supercharger - Phoenix Desert Ridge", "latitude": 33.6742, "longitude": -111.9647, "address": "21001 N Tatum Blvd, Phoenix, AZ 85050", "total_stalls": 18},
+    {"name": "Tesla Supercharger - Tucson La Encantada", "latitude": 32.2369, "longitude": -110.8942, "address": "2905 E Skyline Dr, Tucson, AZ 85718", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Flagstaff Little America", "latitude": 35.1983, "longitude": -111.6513, "address": "251 N Leroux St, Flagstaff, AZ 86001", "total_stalls": 6},
+
+    # Colorado
+    {"name": "Tesla Supercharger - Denver FlatIron Crossing", "latitude": 39.5933, "longitude": -105.0778, "address": "1 W FlatIron Crossing Dr, Broomfield, CO 80021", "total_stalls": 16},
+    {"name": "Tesla Supercharger - Colorado Springs Citadel", "latitude": 38.9017, "longitude": -104.8000, "address": "7535 N Academy Blvd, Colorado Springs, CO 80920", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Boulder Table Mesa", "latitude": 40.1672, "longitude": -105.1011, "address": "1660 30th St, Boulder, CO 80301", "total_stalls": 8},
+
+    # Nevada
+    {"name": "Tesla Supercharger - Las Vegas South Point", "latitude": 36.0117, "longitude": -115.1744, "address": "9777 Las Vegas Blvd S, Las Vegas, NV 89183", "total_stalls": 20},
+    {"name": "Tesla Supercharger - Reno South Virginia", "latitude": 39.5296, "longitude": -119.8138, "address": "5250 S Virginia St, Reno, NV 89502", "total_stalls": 10},
+
+    # Utah
+    {"name": "Tesla Supercharger - Salt Lake City Trolley", "latitude": 40.7608, "longitude": -111.8910, "address": "455 S 500 E, Salt Lake City, UT 84102", "total_stalls": 14},
+    {"name": "Tesla Supercharger - Park City Kimball Junction", "latitude": 40.6461, "longitude": -111.4975, "address": "1600 Park Ave, Park City, UT 84060", "total_stalls": 8},
+
+    # New Mexico
+    {"name": "Tesla Supercharger - Albuquerque Coronado", "latitude": 35.0881, "longitude": -106.6511, "address": "6600 Menaul Blvd NE, Albuquerque, NM 87110", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Santa Fe St. Francis", "latitude": 35.6869, "longitude": -105.9378, "address": "8380 Cerrillos Rd, Santa Fe, NM 87507", "total_stalls": 6},
+
+    # Additional locations for coverage
+    {"name": "Tesla Supercharger - Boston Prudential Center", "latitude": 42.3467, "longitude": -71.0428, "address": "800 Boylston St, Boston, MA 02199", "total_stalls": 16},
+    {"name": "Tesla Supercharger - Nashville Opry Mills", "latitude": 36.2083, "longitude": -86.6933, "address": "433 Opry Mills Dr, Nashville, TN 37214", "total_stalls": 14},
+    {"name": "Tesla Supercharger - Portland Lloyd Center", "latitude": 45.5322, "longitude": -122.6531, "address": "2201 Lloyd Center, Portland, OR 97232", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Seattle Northgate", "latitude": 47.7081, "longitude": -122.3211, "address": "401 NE Northgate Way, Seattle, WA 98125", "total_stalls": 18},
+    {"name": "Tesla Supercharger - Denver Cherry Creek", "latitude": 39.7181, "longitude": -104.9542, "address": "3000 E 1st Ave, Denver, CO 80206", "total_stalls": 20},
+    {"name": "Tesla Supercharger - Minneapolis Mall of America", "latitude": 44.8544, "longitude": -93.2422, "address": "60 E Broadway, Bloomington, MN 55425", "total_stalls": 22},
+    {"name": "Tesla Supercharger - Kansas City Country Club Plaza", "latitude": 39.0417, "longitude": -94.5933, "address": "4621 W 119th St, Leawood, KS 66209", "total_stalls": 12},
+    {"name": "Tesla Supercharger - St. Louis Chesterfield", "latitude": 38.6642, "longitude": -90.5778, "address": "291 Chesterfield Pkwy W, Chesterfield, MO 63005", "total_stalls": 14},
+    {"name": "Tesla Supercharger - Indianapolis Castleton", "latitude": 39.9092, "longitude": -86.0550, "address": "6020 E 82nd St, Indianapolis, IN 46250", "total_stalls": 16},
+    {"name": "Tesla Supercharger - Louisville Oxmoor", "latitude": 38.2367, "longitude": -85.5639, "address": "7900 Shelbyville Rd, Louisville, KY 40222", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Milwaukee Mayfair", "latitude": 43.1139, "longitude": -88.0342, "address": "2500 N Mayfair Rd, Wauwatosa, WI 53226", "total_stalls": 12},
+    {"name": "Tesla Supercharger - Oklahoma City Penn Square", "latitude": 35.4675, "longitude": -97.5161, "address": "1901 NW Expressway, Oklahoma City, OK 73118", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Albuquerque Cottonwood", "latitude": 35.1039, "longitude": -106.5689, "address": "10000 Coors Blvd NW, Albuquerque, NM 87114", "total_stalls": 8},
+    {"name": "Tesla Supercharger - Boise Towne Square", "latitude": 43.6125, "longitude": -114.3150, "address": "150 ParkCentre Blvd, Boise, ID 83706", "total_stalls": 10},
+    {"name": "Tesla Supercharger - Anchorage Dimond Center", "latitude": 61.1389, "longitude": -149.8283, "address": "800 E Dimond Blvd, Anchorage, AK 99515", "total_stalls": 6},
+    {"name": "Tesla Supercharger - Honolulu Ala Moana", "latitude": 21.2917, "longitude": -157.8433, "address": "1450 Ala Moana Blvd, Honolulu, HI 96814", "total_stalls": 8}
+]

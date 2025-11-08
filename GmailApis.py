@@ -2,6 +2,7 @@
 import datetime
 import copy
 import uuid
+import base64
 from typing import Dict, List, Any, Optional, Union
 from state_loader import load_default_state
 
@@ -36,6 +37,59 @@ class GmailApis:
             str: Generated UUID.
         """
         return str(uuid.uuid4())
+
+    def _decode_raw_message(self, raw_content: str) -> Dict[str, str]:
+        """
+        Decode base64url encoded email content and extract fields.
+        For mock purposes, we'll simulate decoding by assuming the raw content
+        contains JSON-like structure or simple text format.
+
+        Args:
+            raw_content (str): Base64url encoded email content.
+
+        Returns:
+            Dict[str, str]: Dictionary with 'to', 'subject', 'body' fields.
+        """
+        try:
+            # Try to decode as base64url
+            decoded_bytes = base64.urlsafe_b64decode(raw_content)
+            decoded_text = decoded_bytes.decode('utf-8')
+
+            # For mock purposes, try to parse as simple JSON first
+            import json
+            try:
+                parsed = json.loads(decoded_text)
+                return {
+                    "to": parsed.get("to", ""),
+                    "subject": parsed.get("subject", ""),
+                    "body": parsed.get("body", "")
+                }
+            except json.JSONDecodeError:
+                # If not JSON, try to extract from RFC 2822-like format
+                lines = decoded_text.split('\n')
+                to = ""
+                subject = ""
+                body = ""
+
+                for line in lines:
+                    if line.lower().startswith('to:'):
+                        to = line[3:].strip()
+                    elif line.lower().startswith('subject:'):
+                        subject = line[8:].strip()
+                    elif line.strip() == "" and not body:
+                        # Empty line marks start of body
+                        continue
+                    elif body or line.strip():
+                        if not body:
+                            body = line
+                        else:
+                            body += '\n' + line
+
+                return {"to": to, "subject": subject, "body": body.strip()}
+
+        except Exception:
+            # If decoding fails, return empty dict - caller should handle
+            return {"to": "", "subject": "", "body": ""}
 
     def _get_user_id_by_email(self, email: str) -> Optional[str]:
         """
@@ -286,11 +340,11 @@ class GmailApis:
             if not thread_id:
                 thread_id = message.get("threadId")
         else:
-            # In a real implementation, we'd decode the raw email
-            # For mock, we'll use dummy values
-            to = "decoded_recipient@example.com"
-            subject = "Decoded Subject"
-            body = "Decoded body content"
+            # Decode the raw email content
+            decoded_fields = self._decode_raw_message(raw_content)
+            to = decoded_fields.get("to", "")
+            subject = decoded_fields.get("subject", "")
+            body = decoded_fields.get("body", "")
             if not thread_id:
                 thread_id = self._generate_id()
 
@@ -478,12 +532,12 @@ class GmailApis:
         
         # If message doesn't have individual fields, use the raw content
         if not to and not subject and not body:
-            # For mock purposes, use dummy values if raw content provided
             raw_content = message.get("raw", "")
             if raw_content:
-                to = "decoded_recipient@example.com"
-                subject = "Decoded Draft Subject"
-                body = "Decoded draft body content"
+                decoded_fields = self._decode_raw_message(raw_content)
+                to = decoded_fields.get("to", "")
+                subject = decoded_fields.get("subject", "")
+                body = decoded_fields.get("body", "")
 
         new_draft_id = self._generate_id()
         new_draft = {
@@ -524,12 +578,12 @@ class GmailApis:
             
             # If message doesn't have individual fields, use the raw content
             if not to and not subject and not body:
-                # For mock purposes, use dummy values if raw content provided
                 raw_content = message.get("raw", "")
                 if raw_content:
-                    to = "decoded_recipient@example.com"
-                    subject = "Decoded Updated Draft Subject"
-                    body = "Decoded updated draft body content"
+                    decoded_fields = self._decode_raw_message(raw_content)
+                    to = decoded_fields.get("to", "")
+                    subject = decoded_fields.get("subject", "")
+                    body = decoded_fields.get("body", "")
             
             drafts[id]["message"]["to"] = to
             drafts[id]["message"]["subject"] = subject
