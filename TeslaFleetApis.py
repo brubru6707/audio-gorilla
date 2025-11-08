@@ -141,7 +141,7 @@ class TeslaFleetApis:
             return {"error": f"Vehicle '{vehicle_tag}' not found for user {user.email}."}
         return {"vehicle_info": copy.deepcopy(vehicle)}
 
-    def honk_horn(self, user: User, vehicle_tag: str) -> Dict[str, bool]:
+    def honk_horn(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
         Honk the horn of the specified vehicle.
 
@@ -150,18 +150,17 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         vehicle["horn"] = True
         print(f"Vehicle {vehicle_tag}: Horn honked.")
-        return {"success": True}
+        return {"reason": "", "result": True}
 
-    def flash_lights(self, user: User, vehicle_tag: str) -> Dict[str, bool]:
+    def flash_lights(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
         Flash the lights of the specified vehicle.
 
@@ -170,111 +169,210 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         vehicle["lights"]["on"] = True
         print(f"Vehicle {vehicle_tag}: Lights flashed.")
-        return {"success": True}
+        return {"reason": "", "result": True}
 
-    def start_stop_media(self, user: User, vehicle_tag: str, command: Literal["start", "stop"]) -> Dict[str, bool]:
+    def media_volume_up(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Start or stop media playback in the specified vehicle.
+        Turns up the volume of the media system.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["start", "stop"]): The command to issue ('start' or 'stop').
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        vehicle["media"]["playing"] = (command == "start")
-        print(f"Vehicle {vehicle_tag}: Media playback {command}ed.")
-        return {"success": True}
+        current_volume = vehicle["media"]["volume"]
+        vehicle["media"]["volume"] = min(100, current_volume + 1)
+        print(f"Vehicle {vehicle_tag}: Volume increased.")
+        return {"reason": "", "result": True}
 
-    def set_volume(self, user: User, vehicle_tag: str, volume_level: int) -> Dict[str, bool]:
+    def media_volume_down(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Set the media volume level in the specified vehicle.
+        Turns down the volume of the media system.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            volume_level (int): The desired volume level (0-100).
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        if not (0 <= volume_level <= 100):
-            return {"success": False, "message": "Volume level must be between 0 and 100."}
-
-        vehicle["media"]["volume"] = volume_level
-        print(f"Vehicle {vehicle_tag}: Volume set to {volume_level}.")
-        return {"success": True}
-
-    def skip_media_track(self, user: User, vehicle_tag: str, direction: Literal["next", "previous"]) -> Dict[str, bool]:
+        current_volume = vehicle["media"]["volume"]
+        vehicle["media"]["volume"] = max(0, current_volume - 1)
+        print(f"Vehicle {vehicle_tag}: Volume decreased.")
+        return {"reason": "", "result": True}
         """
-        Skip to the next or previous media track in the specified vehicle.
+        Unlocks the doors to the car.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            direction (Literal["next", "previous"]): The direction to skip ('next' or 'previous').
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["locks"] = "unlocked"
+        print(f"Vehicle {vehicle_tag}: Doors unlocked.")
+        return {"reason": "", "result": True}
+
+    def door_lock(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Locks the doors to the car.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["locks"] = "locked"
+        print(f"Vehicle {vehicle_tag}: Doors locked.")
+        return {"reason": "", "result": True}
+        """
+        Flash the lights of the specified vehicle.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["lights"]["on"] = True
+        print(f"Vehicle {vehicle_tag}: Lights flashed.")
+        return {"reason": "", "result": True}
+
+    def media_toggle_playback(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Toggles the media between playing and paused.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["media"]["playing"] = not vehicle["media"]["playing"]
+        print(f"Vehicle {vehicle_tag}: Media playback toggled.")
+        return {"reason": "", "result": True}
+
+    def adjust_volume(self, user: User, vehicle_tag: str, volume: int) -> Dict[str, Any]:
+        """
+        Adjusts the volume of the media system to the desired volume.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            volume (int): The desired volume level.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        if not (0 <= volume <= 100):
+            return {"reason": "Volume level must be between 0 and 100.", "result": False}
+
+        vehicle["media"]["volume"] = volume
+        print(f"Vehicle {vehicle_tag}: Volume set to {volume}.")
+        return {"reason": "", "result": True}
+
+    def media_next_track(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Skips to the next track in the current playlist.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
         
-        current_track = vehicle["media"]["current_track"]
-        if direction == "next":
-            vehicle["media"]["current_track"] = current_track + 1
-        else: 
-            vehicle["media"]["current_track"] = max(0, current_track - 1)
-        
-        print(f"Vehicle {vehicle_tag}: Skipped to {direction} track.")
-        return {"success": True}
+        vehicle["media"]["current_track"] = vehicle["media"]["current_track"] + 1
+        print(f"Vehicle {vehicle_tag}: Skipped to next track.")
+        return {"reason": "", "result": True}
 
-    def open_close_trunk(self, user: User, vehicle_tag: str, trunk_part: Literal["front", "rear"], command: Literal["open", "close"]) -> Dict[str, bool]:
+    def media_prev_track(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Open or close the front or rear trunk of the specified vehicle.
+        Skips to the previous track in the current playlist.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            trunk_part (Literal["front", "rear"]): Which part of the trunk to control ('front' or 'rear').
-            command (Literal["open", "close"]): The command to issue ('open' or 'close').
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+        
+        vehicle["media"]["current_track"] = max(0, vehicle["media"]["current_track"] - 1)
+        print(f"Vehicle {vehicle_tag}: Skipped to previous track.")
+        return {"reason": "", "result": True}
 
-        vehicle["trunk"][trunk_part] = command
-        print(f"Vehicle {vehicle_tag}: {trunk_part.capitalize()} trunk {command}ed.")
-        return {"success": True}
+    def actuate_trunk(self, user: User, vehicle_tag: str, which_trunk: Literal["front", "rear"]) -> Dict[str, Any]:
+        """
+        Opens either the front or rear trunk.
 
-    def set_charge_limit(self, user: User, vehicle_tag: str, limit: int) -> Dict[str, bool]:
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            which_trunk (Literal["front", "rear"]): Which trunk to actuate.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["trunk"][which_trunk] = "open"
+        print(f"Vehicle {vehicle_tag}: {which_trunk.capitalize()} trunk opened.")
+        return {"reason": "", "result": True}
+
+    def set_charge_limit(self, user: User, vehicle_tag: str, limit: int) -> Dict[str, Any]:
         """
         Set the charge limit percentage for the specified vehicle.
 
@@ -284,194 +382,242 @@ class TeslaFleetApis:
             limit (int): The desired charge limit percentage (0-100).
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         if not (0 <= limit <= 100):
-            return {"success": False, "message": "Charge limit must be between 0 and 100."}
+            return {"reason": "Charge limit must be between 0 and 100.", "result": False}
 
         vehicle["charge"]["limit"] = limit
         print(f"Vehicle {vehicle_tag}: Charge limit set to {limit}%.")
-        return {"success": True}
+        return {"reason": "", "result": True}
 
-    def open_close_charge_port(self, user: User, vehicle_tag: str, command: Literal["open", "close"]) -> Dict[str, bool]:
+    def charge_port_door_open(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Open or close the charge port of the specified vehicle.
+        Opens the charge port or unlocks the cable.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["open", "close"]): The command to issue ('open' or 'close').
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        vehicle["charge"]["port_open"] = (command == "open")
-        print(f"Vehicle {vehicle_tag}: Charge port {command}ed.")
-        return {"success": True}
+        vehicle["charge"]["port_open"] = True
+        print(f"Vehicle {vehicle_tag}: Charge port opened.")
+        return {"reason": "", "result": True}
 
-    def start_stop_charge(self, user: User, vehicle_tag: str, command: Literal["start", "stop"]) -> Dict[str, bool]:
+    def charge_port_door_close(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Start or stop charging for the specified vehicle.
+        Closes the charge port.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["start", "stop"]): The command to issue ('start' or 'stop').
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        vehicle["charge"]["charging"] = (command == "start")
-        print(f"Vehicle {vehicle_tag}: Charging {command}ed.")
-        return {"success": True}
+        vehicle["charge"]["port_open"] = False
+        print(f"Vehicle {vehicle_tag}: Charge port closed.")
+        return {"reason": "", "result": True}
 
-    def start_stop_climate(self, user: User, vehicle_tag: str, command: Literal["on", "off"]) -> Dict[str, bool]:
+    def charge_start(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Turn the climate control system of the specified vehicle on or off.
+        Start charging if the car is plugged in but not currently charging.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["on", "off"]): The command to issue ('on' or 'off').
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        vehicle["climate"]["on"] = (command == "on")
-        print(f"Vehicle {vehicle_tag}: Climate control turned {command}.")
-        return {"success": True}
+        vehicle["charge"]["charging"] = True
+        print(f"Vehicle {vehicle_tag}: Charging started.")
+        return {"reason": "", "result": True}
 
-    def set_climate_temp(self, user: User, vehicle_tag: str, driver_temp: int, cop_temp: int) -> Dict[str, bool]:
+    def charge_stop(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Set the driver and passenger cabin temperatures for the specified vehicle.
+        Stop charging if the car is currently charging.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            driver_temp (int): Desired temperature for the driver's side (in Celsius).
-            cop_temp (int): Desired temperature for the co-pilot's side (in Celsius).
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        if not (15 <= driver_temp <= 30) or not (15 <= cop_temp <= 30):
-            return {"success": False, "message": "Temperatures must be between 15 and 30 Celsius."}
+        vehicle["charge"]["charging"] = False
+        print(f"Vehicle {vehicle_tag}: Charging stopped.")
+        return {"reason": "", "result": True}
+
+    def auto_conditioning_start(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Start the climate control (HVAC) system.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["climate"]["on"] = True
+        print(f"Vehicle {vehicle_tag}: Climate control started.")
+        return {"reason": "", "result": True}
+
+    def auto_conditioning_stop(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+        """
+        Stop the climate control (HVAC) system.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        vehicle["climate"]["on"] = False
+        print(f"Vehicle {vehicle_tag}: Climate control stopped.")
+        return {"reason": "", "result": True}
+
+    def set_temps(self, user: User, vehicle_tag: str, driver_temp: float, passenger_temp: float) -> Dict[str, Any]:
+        """
+        Sets the target temperature for the climate control (HVAC) system.
+
+        Args:
+            user (User): The current user object.
+            vehicle_tag (str): The unique identifier of the vehicle.
+            driver_temp (float): The desired temperature for the driver.
+            passenger_temp (float): The desired temperature for the passenger.
+
+        Returns:
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+        """
+        vehicle = self._get_vehicle(user, vehicle_tag)
+        if vehicle is None:
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
+
+        if not (15 <= driver_temp <= 30) or not (15 <= passenger_temp <= 30):
+            return {"reason": "Temperatures must be between 15 and 30 Celsius.", "result": False}
 
         vehicle["climate"]["driver_temp"] = driver_temp
-        vehicle["climate"]["cop_temp"] = cop_temp
-        print(f"Vehicle {vehicle_tag}: Driver temp set to {driver_temp}°C, Co-pilot temp set to {cop_temp}°C.")
-        return {"success": True}
+        vehicle["climate"]["cop_temp"] = passenger_temp
+        print(f"Vehicle {vehicle_tag}: Driver temp set to {driver_temp}°C, Passenger temp set to {passenger_temp}°C.")
+        return {"reason": "", "result": True}
 
-    def set_bioweapon_mode(self, user: User, vehicle_tag: str, command: Literal["on", "off"]) -> Dict[str, bool]:
+    def set_bioweapon_mode(self, user: User, vehicle_tag: str, on: bool) -> Dict[str, Any]:
         """
-        Turn the Bioweapon Defense Mode of the specified vehicle on or off.
+        Enable or disable Bioweapon Defense Mode.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["on", "off"]): The command to issue ('on' or 'off').
+            on (bool): Whether to enable (True) or disable (False) Bioweapon Defense Mode.
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        vehicle["climate"]["bioweapon_mode"] = (command == "on")
-        print(f"Vehicle {vehicle_tag}: Bioweapon Defense Mode turned {command}.")
-        return {"success": True}
+        vehicle["climate"]["bioweapon_mode"] = on
+        print(f"Vehicle {vehicle_tag}: Bioweapon Defense Mode turned {'on' if on else 'off'}.")
+        return {"reason": "", "result": True}
 
-    def set_climate_keeper_mode(self, user: User, vehicle_tag: str, mode: Literal["off", "dog", "camp"]) -> Dict[str, bool]:
+    def set_climate_keeper_mode(self, user: User, vehicle_tag: str, climate_keeper_mode: int) -> Dict[str, Any]:
         """
-        Set the Climate Keeper Mode of the specified vehicle (e.g., "dog", "camp", "off").
+        Set the Climate Keeper mode.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            mode (Literal["off", "dog", "camp"]): The Climate Keeper Mode to set.
+            climate_keeper_mode (int): The Climate Keeper mode (0=off, 1=dog, 2=camp).
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
-        vehicle["climate"]["climate_keeper_mode"] = mode
-        print(f"Vehicle {vehicle_tag}: Climate Keeper Mode set to '{mode}'.")
-        return {"success": True}
+        mode_names = {0: "off", 1: "dog", 2: "camp"}
+        if climate_keeper_mode not in mode_names:
+            return {"reason": "Invalid climate keeper mode. Must be 0 (off), 1 (dog), or 2 (camp).", "result": False}
+
+        vehicle["climate"]["climate_keeper_mode"] = mode_names[climate_keeper_mode]
+        print(f"Vehicle {vehicle_tag}: Climate Keeper Mode set to '{mode_names[climate_keeper_mode]}'.")
+        return {"reason": "", "result": True}
     
-    def wake_up(self, user: User, vehicle_tag: str) -> Dict[str, bool]:
+    def wake_up(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
-        Wake up the specified vehicle from sleep mode.
+        Wakes up the car from a sleeping state.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         vehicle["awake"] = True
         print(f"Vehicle {vehicle_tag}: Vehicle woken up.")
-        return {"success": True}
+        return {"reason": "", "result": True}
 
-    def window_control(self, user: User, vehicle_tag: str, command: Literal["vent", "close"], lat: float, lon: float) -> Dict[str, bool]:
+    def window_control(self, user: User, vehicle_tag: str, command: Literal["vent", "close"], lat: float, lon: float) -> Dict[str, Any]:
         """
-        Control the windows of the specified vehicle (e.g., "vent", "close").
-        The latitude and longitude might be used to confirm a safe location for window operations.
+        Controls the windows. Will vent or close all windows simultaneously.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["vent", "close"]): The window control command (e.g., "vent", "close").
-            lat (float): The latitude coordinate of the vehicle.
-            lon (float): The longitude coordinate of the vehicle.
+            command (Literal["vent", "close"]): The window control command.
+            lat (float): Latitude coordinate.
+            lon (float): Longitude coordinate.
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating
-                             if the command was successful (True).
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         vehicle["windows"] = command
         print(f"Vehicle {vehicle_tag}: Window command '{command}' issued at ({lat}, {lon}).")
-        return {"success": True}
+        return {"reason": "", "result": True}
 
     def get_vehicle_location(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
@@ -536,36 +682,28 @@ class TeslaFleetApis:
         
         return status
 
-    def manage_sentry_mode(self, user: User, vehicle_tag: str, command: Literal["on", "off"]) -> Dict[str, Any]:
+    def set_sentry_mode(self, user: User, vehicle_tag: str, on: bool) -> Dict[str, Any]:
         """
-        Control sentry mode for the specified vehicle.
+        Turns sentry mode on or off.
 
         Args:
             user (User): The current user object.
             vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["on", "off"]): The sentry mode command.
+            on (bool): Whether to enable (True) or disable (False) sentry mode.
 
         Returns:
-            Dict[str, Any]: A dictionary indicating success and any alerts.
+            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         sentry_mode = vehicle.get("sentry_mode", {})
-        sentry_mode["on"] = (command == "on")
+        sentry_mode["on"] = on
         vehicle["sentry_mode"] = sentry_mode
         
-        response = {
-            "success": True,
-            "sentry_mode": {
-                "on": sentry_mode["on"],
-                "alerts": sentry_mode.get("alerts", [])
-            }
-        }
-        
-        print(f"Vehicle {vehicle_tag}: Sentry mode turned {command}.")
-        return response
+        print(f"Vehicle {vehicle_tag}: Sentry mode turned {'on' if on else 'off'}.")
+        return {"reason": "", "result": True}
 
     def get_firmware_info(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
@@ -592,7 +730,7 @@ class TeslaFleetApis:
             }
         }
 
-    def wake_vehicle(self, user: User, vehicle_tag: str) -> Dict[str, bool]:
+    def wake_vehicle(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
         """
         Wake up the specified vehicle from sleep mode.
 
@@ -601,15 +739,15 @@ class TeslaFleetApis:
             vehicle_tag (str): The unique identifier of the vehicle.
 
         Returns:
-            Dict[str, bool]: A dictionary indicating if the wake command was successful.
+            Dict[str, Any]: A dictionary indicating if the wake command was successful.
         """
         vehicle = self._get_vehicle(user, vehicle_tag)
         if vehicle is None:
-            return {"success": False, "message": f"Vehicle '{vehicle_tag}' not found."}
+            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
 
         vehicle["awake"] = True
         print(f"Vehicle {vehicle_tag}: Wake command sent successfully.")
-        return {"success": True, "awake": True}
+        return {"reason": "", "result": True}
 
     def reset_data(self) -> Dict[str, bool]:
         """

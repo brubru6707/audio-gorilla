@@ -64,7 +64,6 @@ class YouTubeApis:
         """
         return str(uuid.uuid4())
 
-    # --- Helper functions for data access ---
     def _get_user_data(self, user_id: str) -> Optional[Dict[str, Any]]:
         """Helper to get a user's data based on their UUID."""
         return self.users.get(user_id)

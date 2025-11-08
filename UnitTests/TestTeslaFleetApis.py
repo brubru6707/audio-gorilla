@@ -89,204 +89,235 @@ class TestTeslaFleetApis(unittest.TestCase):
     def test_honk_horn_alice(self):
         """Test honking horn for Alice."""
         result = self.tesla_api.honk_horn(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_honk_horn_bob(self):
         """Test honking horn for Bob."""
         result = self.tesla_api.honk_horn(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_honk_horn_non_existent_vehicle(self):
         """Test honking horn for non-existent vehicle."""
         result = self.tesla_api.honk_horn(user=self.REAL_USER_ALICE, vehicle_tag="non_existent_vehicle")
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        self.assertEqual(result["result"], False)
+        self.assertIn("not found", result["reason"])
 
     def test_flash_lights_alice(self):
         """Test flashing lights for Alice."""
         result = self.tesla_api.flash_lights(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_flash_lights_bob(self):
         """Test flashing lights for Bob."""
         result = self.tesla_api.flash_lights(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_flash_lights_non_existent_vehicle(self):
         """Test flashing lights for non-existent vehicle."""
         result = self.tesla_api.flash_lights(user=self.REAL_USER_ALICE, vehicle_tag="non_existent_vehicle")
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        self.assertEqual(result["result"], False)
+        self.assertIn("not found", result["reason"])
 
     def test_wake_up_alice(self):
         """Test waking up vehicle for Alice."""
         result = self.tesla_api.wake_up(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_wake_up_bob(self):
         """Test waking up vehicle for Bob."""
         result = self.tesla_api.wake_up(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_wake_vehicle_alice(self):
         """Test wake_vehicle method for Alice."""
         result = self.tesla_api.wake_vehicle(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(result.get("success", False))
-        self.assertTrue(result.get("awake", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_wake_vehicle_bob(self):
         """Test wake_vehicle method for Bob."""
         result = self.tesla_api.wake_vehicle(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
-        self.assertTrue(result.get("success", False))
-        self.assertTrue(result.get("awake", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Media Control Tests ---
-    def test_start_stop_media_start_alice(self):
-        """Test starting media for Alice."""
-        result = self.tesla_api.start_stop_media(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="start")
-        self.assertTrue(result.get("success", False))
+    def test_media_toggle_playback_alice(self):
+        """Test media toggle playback for Alice."""
+        result = self.tesla_api.media_toggle_playback(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_start_stop_media_stop_bob(self):
-        """Test stopping media for Bob."""
-        result = self.tesla_api.start_stop_media(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="stop")
-        self.assertTrue(result.get("success", False))
+    def test_media_toggle_playback_bob(self):
+        """Test media toggle playback for Bob."""
+        result = self.tesla_api.media_toggle_playback(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_set_volume_alice(self):
-        """Test setting volume for Alice."""
-        result = self.tesla_api.set_volume(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, volume_level=50)
-        self.assertTrue(result.get("success", False))
+    def test_adjust_volume_alice(self):
+        """Test adjusting volume for Alice."""
+        result = self.tesla_api.adjust_volume(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, volume=50)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_set_volume_bob_max(self):
-        """Test setting volume to max for Bob."""
-        result = self.tesla_api.set_volume(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, volume_level=100)
-        self.assertTrue(result.get("success", False))
+    def test_adjust_volume_bob_max(self):
+        """Test adjusting volume to max for Bob."""
+        result = self.tesla_api.adjust_volume(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, volume=100)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_set_volume_invalid_level(self):
-        """Test setting invalid volume level."""
-        result = self.tesla_api.set_volume(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, volume_level=150)
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+    def test_adjust_volume_invalid_level(self):
+        """Test adjusting to invalid volume level."""
+        result = self.tesla_api.adjust_volume(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, volume=150)
+        self.assertEqual(result["result"], False)
+        self.assertIn("Volume level must be between 0 and 100", result["reason"])
 
-    def test_skip_media_track_next_alice(self):
+    def test_media_next_track_alice(self):
         """Test skipping to next track for Alice."""
-        result = self.tesla_api.skip_media_track(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, direction="next")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.media_next_track(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_skip_media_track_previous_bob(self):
+    def test_media_prev_track_bob(self):
         """Test skipping to previous track for Bob."""
-        result = self.tesla_api.skip_media_track(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, direction="previous")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.media_prev_track(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Trunk Control Tests ---
-    def test_open_close_trunk_front_open_alice(self):
+    def test_actuate_trunk_front_alice(self):
         """Test opening front trunk for Alice."""
-        result = self.tesla_api.open_close_trunk(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, trunk_part="front", command="open")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.actuate_trunk(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, which_trunk="front")
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_open_close_trunk_rear_close_bob(self):
-        """Test closing rear trunk for Bob."""
-        result = self.tesla_api.open_close_trunk(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, trunk_part="rear", command="close")
-        self.assertTrue(result.get("success", False))
+    def test_actuate_trunk_rear_bob(self):
+        """Test opening rear trunk for Bob."""
+        result = self.tesla_api.actuate_trunk(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, which_trunk="rear")
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Charging Tests ---
     def test_set_charge_limit_alice(self):
         """Test setting charge limit for Alice."""
         result = self.tesla_api.set_charge_limit(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, limit=80)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_set_charge_limit_bob_max(self):
         """Test setting charge limit to max for Bob."""
         result = self.tesla_api.set_charge_limit(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, limit=100)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_set_charge_limit_invalid(self):
         """Test setting invalid charge limit."""
         result = self.tesla_api.set_charge_limit(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, limit=150)
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        self.assertEqual(result["result"], False)
+        self.assertIn("Charge limit must be between 0 and 100", result["reason"])
 
-    def test_open_close_charge_port_open_alice(self):
+    def test_charge_port_door_open_alice(self):
         """Test opening charge port for Alice."""
-        result = self.tesla_api.open_close_charge_port(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="open")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.charge_port_door_open(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_open_close_charge_port_close_bob(self):
+    def test_charge_port_door_close_bob(self):
         """Test closing charge port for Bob."""
-        result = self.tesla_api.open_close_charge_port(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="close")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.charge_port_door_close(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_start_stop_charge_start_alice(self):
+    def test_charge_start_alice(self):
         """Test starting charge for Alice."""
-        result = self.tesla_api.start_stop_charge(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="start")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.charge_start(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_start_stop_charge_stop_bob(self):
+    def test_charge_stop_bob(self):
         """Test stopping charge for Bob."""
-        result = self.tesla_api.start_stop_charge(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="stop")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.charge_stop(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Climate Control Tests ---
-    def test_start_stop_climate_on_alice(self):
-        """Test turning climate on for Alice."""
-        result = self.tesla_api.start_stop_climate(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="on")
-        self.assertTrue(result.get("success", False))
+    def test_auto_conditioning_start_alice(self):
+        """Test starting climate control for Alice."""
+        result = self.tesla_api.auto_conditioning_start(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_start_stop_climate_off_bob(self):
-        """Test turning climate off for Bob."""
-        result = self.tesla_api.start_stop_climate(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="off")
-        self.assertTrue(result.get("success", False))
+    def test_auto_conditioning_stop_bob(self):
+        """Test stopping climate control for Bob."""
+        result = self.tesla_api.auto_conditioning_stop(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_set_climate_temp_alice(self):
-        """Test setting climate temperature for Alice."""
-        result = self.tesla_api.set_climate_temp(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, driver_temp=22, cop_temp=20)
-        self.assertTrue(result.get("success", False))
+    def test_set_temps_alice(self):
+        """Test setting climate temperatures for Alice."""
+        result = self.tesla_api.set_temps(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, driver_temp=22.0, passenger_temp=20.0)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_set_climate_temp_bob(self):
-        """Test setting climate temperature for Bob."""
-        result = self.tesla_api.set_climate_temp(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, driver_temp=20, cop_temp=20)
-        self.assertTrue(result.get("success", False))
+    def test_set_temps_bob(self):
+        """Test setting climate temperatures for Bob."""
+        result = self.tesla_api.set_temps(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, driver_temp=20.0, passenger_temp=20.0)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_set_climate_temp_invalid(self):
+    def test_set_temps_invalid(self):
         """Test setting invalid climate temperature."""
-        result = self.tesla_api.set_climate_temp(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, driver_temp=50, cop_temp=20)
-        self.assertFalse(result.get("success", True))
-        self.assertIn("message", result)
+        result = self.tesla_api.set_temps(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, driver_temp=50.0, passenger_temp=20.0)
+        self.assertEqual(result["result"], False)
+        self.assertIn("Temperatures must be between 15 and 30", result["reason"])
 
     def test_set_bioweapon_mode_on_alice(self):
         """Test turning bioweapon mode on for Alice."""
-        result = self.tesla_api.set_bioweapon_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="on")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.set_bioweapon_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, on=True)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_set_bioweapon_mode_off_bob(self):
         """Test turning bioweapon mode off for Bob."""
-        result = self.tesla_api.set_bioweapon_mode(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="off")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.set_bioweapon_mode(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, on=False)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_set_climate_keeper_mode_dog_alice(self):
         """Test setting climate keeper mode to dog for Alice."""
-        result = self.tesla_api.set_climate_keeper_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, mode="dog")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.set_climate_keeper_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, climate_keeper_mode=1)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_set_climate_keeper_mode_camp_bob(self):
         """Test setting climate keeper mode to camp for Bob."""
-        result = self.tesla_api.set_climate_keeper_mode(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, mode="camp")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.set_climate_keeper_mode(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, climate_keeper_mode=2)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_set_climate_keeper_mode_off(self):
         """Test turning climate keeper mode off."""
-        result = self.tesla_api.set_climate_keeper_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, mode="off")
-        self.assertTrue(result.get("success", False))
+        result = self.tesla_api.set_climate_keeper_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, climate_keeper_mode=0)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Window Control Tests ---
     def test_window_control_vent_alice(self):
         """Test venting windows for Alice."""
         result = self.tesla_api.window_control(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="vent", lat=37.7749, lon=-122.4194)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     def test_window_control_close_bob(self):
         """Test closing windows for Bob."""
         result = self.tesla_api.window_control(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="close", lat=40.7128, lon=-74.0060)
-        self.assertTrue(result.get("success", False))
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Vehicle Status Tests ---
     def test_get_vehicle_location_alice(self):
@@ -346,24 +377,25 @@ class TestTeslaFleetApis(unittest.TestCase):
         self.assertIn("message", result)
 
     # --- Security Tests ---
-    def test_manage_sentry_mode_on_alice(self):
+    def test_set_sentry_mode_on_alice(self):
         """Test turning sentry mode on for Alice."""
-        result = self.tesla_api.manage_sentry_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="on")
-        self.assertTrue(result.get("success", False))
-        self.assertIn("sentry_mode", result)
+        result = self.tesla_api.set_sentry_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, on=True)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
-    def test_manage_sentry_mode_off_bob(self):
+    def test_set_sentry_mode_off_bob(self):
         """Test turning sentry mode off for Bob."""
-        result = self.tesla_api.manage_sentry_mode(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="off")
-        self.assertTrue(result.get("success", False))
-        self.assertIn("sentry_mode", result)
+        result = self.tesla_api.set_sentry_mode(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, on=False)
+        self.assertEqual(result["result"], True)
+        self.assertEqual(result["reason"], "")
 
     # --- Workflow Tests ---
     def test_vehicle_control_workflow_alice(self):
         """Test comprehensive vehicle control workflow for Alice."""
         # Wake up vehicle
         wake_result = self.tesla_api.wake_up(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(wake_result.get("success", False))
+        self.assertEqual(wake_result["result"], True)
+        self.assertEqual(wake_result["reason"], "")
 
         # Get vehicle info
         info_result = self.tesla_api.show_vehicle_info(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
@@ -371,39 +403,47 @@ class TestTeslaFleetApis(unittest.TestCase):
 
         # Honk horn
         honk_result = self.tesla_api.honk_horn(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
-        self.assertTrue(honk_result.get("success", False))
+        self.assertEqual(honk_result["result"], True)
+        self.assertEqual(honk_result["reason"], "")
 
         # Get status
         status_result = self.tesla_api.get_vehicle_status(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
         self.assertTrue(status_result.get("success", False))
+        self.assertIn("vehicle_info", status_result)
 
     def test_charging_workflow_bob(self):
         """Test charging workflow for Bob."""
         # Open charge port
-        open_result = self.tesla_api.open_close_charge_port(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="open")
-        self.assertTrue(open_result.get("success", False))
+        open_result = self.tesla_api.charge_port_door_open(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(open_result["result"], True)
+        self.assertEqual(open_result["reason"], "")
 
         # Set charge limit
         limit_result = self.tesla_api.set_charge_limit(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, limit=90)
-        self.assertTrue(limit_result.get("success", False))
+        self.assertEqual(limit_result["result"], True)
+        self.assertEqual(limit_result["reason"], "")
 
         # Start charging
-        start_result = self.tesla_api.start_stop_charge(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB, command="start")
-        self.assertTrue(start_result.get("success", False))
+        start_result = self.tesla_api.charge_start(user=self.REAL_USER_BOB, vehicle_tag=self.REAL_VEHICLE_TAG_BOB)
+        self.assertEqual(start_result["result"], True)
+        self.assertEqual(start_result["reason"], "")
 
     def test_climate_control_workflow_alice(self):
         """Test climate control workflow for Alice."""
         # Turn climate on
-        on_result = self.tesla_api.start_stop_climate(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="on")
-        self.assertTrue(on_result.get("success", False))
+        on_result = self.tesla_api.auto_conditioning_start(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE)
+        self.assertEqual(on_result["result"], True)
+        self.assertEqual(on_result["reason"], "")
 
         # Set temperature
-        temp_result = self.tesla_api.set_climate_temp(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, driver_temp=22, cop_temp=22)
-        self.assertTrue(temp_result.get("success", False))
+        temp_result = self.tesla_api.set_temps(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, driver_temp=22.0, passenger_temp=22.0)
+        self.assertEqual(temp_result["result"], True)
+        self.assertEqual(temp_result["reason"], "")
 
         # Set bioweapon mode
-        bio_result = self.tesla_api.set_bioweapon_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, command="on")
-        self.assertTrue(bio_result.get("success", False))
+        bio_result = self.tesla_api.set_bioweapon_mode(user=self.REAL_USER_ALICE, vehicle_tag=self.REAL_VEHICLE_TAG_ALICE, on=True)
+        self.assertEqual(bio_result["result"], True)
+        self.assertEqual(bio_result["reason"], "")
 
     # --- Data Reset Tests ---
     def test_reset_data_success(self):
