@@ -68,7 +68,6 @@ class XApis:
             if user_id in conv_data.get("participants", [])
         }
 
-
     def _update_user_data(self, user_id: str, key: str, value: Any) -> bool:
         """Helper to update a specific key in a user's data by UUID."""
         if user_id in self.users:
@@ -90,11 +89,6 @@ class XApis:
             self.current_user = user_id
             return {"status": True, "message": f"Current user set to {self.users[user_id]['username']} (ID: {user_id})."}
         return {"status": False, "message": f"User with ID {user_id} not found."}
-
-
-    # ================
-    # User Profile
-    # ================
 
     def get_user_profile(self, user_id: str) -> Dict[str, Any]:
         """
@@ -185,10 +179,6 @@ class XApis:
             ]
             return {"data": liked_posts_details}
         return {"data": None, "error": "User not found"}
-
-    # ================
-    # Posts
-    # ================
 
     def create_post(self, user_id: str, text: str) -> Dict[str, Any]:
         """
@@ -338,10 +328,6 @@ class XApis:
             return {"success": True}
         return {"success": False, "error": "Post not liked by this user"}
 
-    # ================
-    # Direct Messages
-    # ================
-
     def list_direct_messages_conversations(self, user_id: str) -> Dict[str, Any]:
         """
         List all direct message conversations for a specific user.
@@ -471,10 +457,6 @@ class XApis:
             print(f"Conversation {conversation_id} deleted by user {user_id}")
             return {"success": True}
         return {"success": False, "error": "Conversation not found or internal error"}
-
-    # ================
-    # Analytics / Metrics (Dummy)
-    # ================
 
     def get_api_usage(self, user_id: str) -> Dict:
         """

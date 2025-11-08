@@ -130,7 +130,7 @@ def generate_random_date(start_year, end_year):
     random_date = start_date + timedelta(days=random_number_of_days)
     return random_date.strftime("%Y-%m-%d")
 
-def generate_user(existing_uuids, first_name=None, last_name=None, email=None, balance=None, password=None):
+def generate_user(existing_uuids, first_name=None, last_name=None, email=None, balance=None, password=None, available_product_ids=None):
     user_id = str(uuid.uuid4())
     existing_uuids["users"].add(user_id)
 
@@ -183,7 +183,10 @@ def generate_user(existing_uuids, first_name=None, last_name=None, email=None, b
         total_amount = round(random.uniform(10.00, 1500.00), 2)
         products_in_order = {}
         for _ in range(random.randint(1, 3)):
-            product_id = random.randint(1, 15)
+            if available_product_ids:
+                product_id = random.choice(available_product_ids)
+            else:
+                product_id = random.randint(1, 15)  # fallback for backward compatibility
             products_in_order[product_id] = random.randint(1, 2)
 
         delivery_address_id = random.choice(user_address_ids) if user_address_ids else None
@@ -431,10 +434,10 @@ for product_id in all_product_ids:
 for index in range(user_count + len(first_and_last_names)):
     if index > user_count:
         first_name,_, last_name = first_and_last_names[index - user_count].partition(" ")
-        new_user_info, new_user_id = generate_user(existing_uuids, first_name=first_name, last_name=last_name)
+        new_user_info, new_user_id = generate_user(existing_uuids, first_name=first_name, last_name=last_name, available_product_ids=all_product_ids)
         DEFAULT_STATE["users"].update(new_user_info)
     else:
-        new_user_info, new_user_id = generate_user(existing_uuids)
+        new_user_info, new_user_id = generate_user(existing_uuids, available_product_ids=all_product_ids)
         DEFAULT_STATE["users"].update(new_user_info)
 
 # Now we have all users, update the user IDs list
