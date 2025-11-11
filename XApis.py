@@ -1,3 +1,5 @@
+# https://developers.google.com/youtube/v3/docs
+
 import datetime
 import copy
 import uuid
@@ -5,9 +7,6 @@ from typing import Dict, List, Any, Optional, Union
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("XApis")
-
-class EmailStr(str):
-    pass
 
 class XApis:
     """
@@ -24,7 +23,8 @@ class XApis:
         self.users: Dict[str, Any] = {} # Keyed by user UUID
         self.posts: Dict[str, Any] = {} # Keyed by post UUID
         self.direct_messages: Dict[str, Any] = {} # Keyed by DM conversation UUID
-        self.current_user: Optional[str] = None # Stores the UUID of the current user
+        self.access_token: Optional[str] = None
+        self.current_user_id: Optional[str] = None
 
         self._load_scenario(DEFAULT_STATE)
 
@@ -41,8 +41,57 @@ class XApis:
         self.users = copy.deepcopy(scenario.get("users", {}))
         self.posts = copy.deepcopy(scenario.get("posts", {}))
         self.direct_messages = copy.deepcopy(scenario.get("direct_messages", {}))
-        self.current_user = scenario.get("current_user") # This will already be a UUID after conversion
         print("XApis: Loaded scenario with UUIDs for users, posts, and DMs.")
+
+    def authenticate(self, access_token: str) -> Dict[str, Any]:
+        """
+        Authenticate with X API using an access token.
+
+        Args:
+            access_token (str): OAuth 2.0 Bearer token (format: "token_{email}")
+
+        Returns:
+            Dict[str, Any]: Authenticated user's profile data
+
+        Raises:
+            Exception: If token is invalid or user not found
+        """
+        if not access_token or not access_token.startswith("token_"):
+            raise Exception("Invalid access token format")
+        
+        # Extract email from token
+        email = access_token.replace("token_", "")
+        
+        # Find user by email
+        user_id = None
+        for uid, user_data in self.users.items():
+            if user_data.get("email") == email:
+                user_id = uid
+                break
+        
+        if not user_id:
+            raise Exception(f"No user found with email: {email}")
+        
+        self.access_token = access_token
+        self.current_user_id = user_id
+        
+        user_data = self.users[user_id]
+        return {
+            "id": user_data.get("id"),
+            "username": user_data.get("username"),
+            "name": user_data.get("name"),
+            "email": user_data.get("email")
+        }
+    
+    def _ensure_authenticated(self) -> None:
+        """
+        Ensures that the user is authenticated before accessing protected resources.
+
+        Raises:
+            Exception: If not authenticated
+        """
+        if not self.access_token or not self.current_user_id:
+            raise Exception("Authentication required. Call authenticate() first.")
 
     def _generate_unique_id(self) -> str:
         """
@@ -75,199 +124,274 @@ class XApis:
             return True
         return False
     
-    def set_current_user(self, user_id: str) -> Dict[str, Union[bool, str]]:
+    def get_user_profile(self) -> Dict[str, Any]:
         """
-        Sets the current authenticated user for the API session.
-
-        Args:
-            user_id (str): The ID (UUID) of the user to set as current.
+        Get the profile information for the authenticated user.
 
         Returns:
-            Dict[str, Union[bool, str]]: A dictionary with 'status' indicating success or failure and a message.
-        """
-        if user_id in self.users:
-            self.current_user = user_id
-            return {"status": True, "message": f"Current user set to {self.users[user_id]['username']} (ID: {user_id})."}
-        return {"status": False, "message": f"User with ID {user_id} not found."}
+            Dict[str, Any]: User's profile data
 
-    def get_user_profile(self, user_id: str) -> Dict[str, Any]:
+        Raises:
+            Exception: If not authenticated
         """
-        Get the profile information for a specific user.
-
-        Args:
-            user_id (str): The ID (UUID) of the user whose profile is to be retrieved.
-
-        Returns:
-            Dict: A dictionary containing the user's profile data.
-        """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            # Return enhanced profile with backend metadata
-            profile = {
-                "id": user_data.get("id"),
-                "username": user_data.get("username"),
-                "name": user_data.get("name"),
-                "email": user_data.get("email"),
-                "bio": user_data.get("bio"),
-                "profile_picture_url": user_data.get("profile_picture_url"),
-                "joined_date": user_data.get("joined_date"),
-                "is_verified": user_data.get("is_verified", False),
-                "follower_count": len(user_data.get("followers", [])),
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        # Return enhanced profile with backend metadata
+        return {
+            "id": user_data.get("id"),
+            "username": user_data.get("username"),
+            "name": user_data.get("name"),
+            "email": user_data.get("email"),
+            "bio": user_data.get("bio"),
+            "profile_picture_url": user_data.get("profile_picture_url"),
+            "created_at": user_data.get("joined_date"),
+            "verified": user_data.get("is_verified", False),
+            "public_metrics": {
+                "followers_count": len(user_data.get("followers", [])),
                 "following_count": len(user_data.get("following", [])),
-                "posts_count": len(user_data.get("posts", [])),
-                "liked_posts_count": len(user_data.get("liked_posts", [])),
-                "api_usage": user_data.get("api_usage", {})
+                "tweet_count": len(user_data.get("posts", [])),
+                "like_count": len(user_data.get("liked_posts", []))
             }
-            return {"data": profile}
-        return {"data": None, "error": "User not found"}
+        }
 
-    def list_followers(self, user_id: str) -> Dict[str, Any]:
+    def get_followers(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
         """
-        List the followers of a specific user.
+        Get the followers of the authenticated user with pagination.
 
         Args:
-            user_id (str): The ID (UUID) of the user whose followers are to be listed.
+            limit (int): Maximum number of followers to return (default: 20)
+            offset (int): Number of followers to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing a list of follower IDs.
-        """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            follower_uuids = user_data.get("followers", [])
-            followers_details = [
-                {"id": self.users[f_id]["id"], "username": self.users[f_id]["username"], "name": self.users[f_id]["name"]}
-                for f_id in follower_uuids if f_id in self.users
-            ]
-            return {"data": followers_details}
-        return {"data": None, "error": "User not found"}
+            Dict[str, Any]: Paginated list of followers with metadata
 
-    def list_following(self, user_id: str) -> Dict[str, Any]:
+        Raises:
+            Exception: If not authenticated
         """
-        List the users a specific user is following.
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        follower_uuids = user_data.get("followers", [])
+        paginated_followers = follower_uuids[offset:offset + limit]
+        
+        followers_details = [
+            {
+                "id": self.users[f_id]["id"],
+                "username": self.users[f_id]["username"],
+                "name": self.users[f_id]["name"],
+                "verified": self.users[f_id].get("is_verified", False)
+            }
+            for f_id in paginated_followers if f_id in self.users
+        ]
+        
+        return {
+            "data": followers_details,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(follower_uuids)
+            }
+        }
+
+    def get_following(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
+        """
+        Get the users the authenticated user is following with pagination.
 
         Args:
-            user_id (str): The ID (UUID) of the user whose following list is to be retrieved.
+            limit (int): Maximum number of users to return (default: 20)
+            offset (int): Number of users to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing a list of IDs of users being followed.
-        """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            following_uuids = user_data.get("following", [])
-            following_details = [
-                {"id": self.users[f_id]["id"], "username": self.users[f_id]["username"], "name": self.users[f_id]["name"]}
-                for f_id in following_uuids if f_id in self.users
-            ]
-            return {"data": following_details}
-        return {"data": None, "error": "User not found"}
+            Dict[str, Any]: Paginated list of following with metadata
 
-    def list_liked_posts(self, user_id: str) -> Dict[str, Any]:
+        Raises:
+            Exception: If not authenticated
         """
-        List the posts liked by a specific user.
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        following_uuids = user_data.get("following", [])
+        paginated_following = following_uuids[offset:offset + limit]
+        
+        following_details = [
+            {
+                "id": self.users[f_id]["id"],
+                "username": self.users[f_id]["username"],
+                "name": self.users[f_id]["name"],
+                "verified": self.users[f_id].get("is_verified", False)
+            }
+            for f_id in paginated_following if f_id in self.users
+        ]
+        
+        return {
+            "data": following_details,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(following_uuids)
+            }
+        }
+
+    def get_liked_tweets(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
+        """
+        Get tweets liked by the authenticated user with pagination.
 
         Args:
-            user_id (str): The ID (UUID) of the user whose liked posts are to be listed.
+            limit (int): Maximum number of tweets to return (default: 20)
+            offset (int): Number of tweets to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing a list of liked post IDs.
-        """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            liked_post_uuids = user_data.get("liked_posts", [])
-            liked_posts_details = [
-                copy.deepcopy(self.posts[p_id]) for p_id in liked_post_uuids if p_id in self.posts
-            ]
-            return {"data": liked_posts_details}
-        return {"data": None, "error": "User not found"}
+            Dict[str, Any]: Paginated list of liked tweets
 
-    def create_post(self, user_id: str, text: str) -> Dict[str, Any]:
+        Raises:
+            Exception: If not authenticated
         """
-        Create a new post for a specific user.
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        liked_post_uuids = user_data.get("liked_posts", [])
+        paginated_likes = liked_post_uuids[offset:offset + limit]
+        
+        liked_posts_details = [
+            copy.deepcopy(self.posts[p_id]) for p_id in paginated_likes if p_id in self.posts
+        ]
+        
+        return {
+            "data": liked_posts_details,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(liked_post_uuids)
+            }
+        }
+
+    def create_tweet(self, text: str) -> Dict[str, Any]:
+        """
+        Create a new tweet for the authenticated user.
 
         Args:
-            user_id (str): The ID (UUID) of the user creating the post.
-            text (str): The content of the post.
+            text (str): The content of the tweet (max 280 characters)
 
         Returns:
-            Dict: A dictionary containing the newly created post's data.
+            Dict[str, Any]: The newly created tweet data
+
+        Raises:
+            Exception: If not authenticated
         """
-        if user_id not in self.users:
-            return {"data": None, "error": "User not found"}
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
 
         post_uuid = self._generate_unique_id()
         new_post = {
             "id": post_uuid,
-            "author_id": user_id,
+            "author_id": self.current_user_id,
             "text": text,
             "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
-            "likes": [],
-            "reposts": [],
-            "replies": [],
-            "metrics": {"views": 0, "likes": 0, "reposts": 0, "replies": 0}
+            "lang": "en",
+            "possibly_sensitive": False,
+            "edit_history_tweet_ids": [post_uuid],
+            "public_metrics": {
+                "retweet_count": 0,
+                "reply_count": 0,
+                "like_count": 0,
+                "quote_count": 0,
+                "impression_count": 0
+            }
         }
         self.posts[post_uuid] = new_post
-        self.users[user_id]["posts"].append(post_uuid)
-        self.users[user_id]["api_usage"]["posts_created"] = self.users[user_id]["api_usage"].get("posts_created", 0) + 1
-        print(f"Post created: ID={post_uuid} by {self.users[user_id]['username']}")
-        return {"data": copy.deepcopy(new_post)}
+        user_data["posts"].append(post_uuid)
+        user_data["api_usage"]["posts_created"] = user_data["api_usage"].get("posts_created", 0) + 1
+        
+        print(f"Tweet created: ID={post_uuid} by {user_data['username']}")
+        return copy.deepcopy(new_post)
 
-    def delete_post(self, user_id: str, post_id: str) -> Dict[str, bool]:
+    def delete_tweet(self, tweet_id: str) -> None:
         """
-        Delete a post by its ID. Only the author can delete their post.
+        Delete a tweet by its ID. Only the author can delete their tweet.
 
         Args:
-            user_id (str): The ID (UUID) of the user attempting to delete the post.
-            post_id (str): The ID (UUID) of the post to delete.
+            tweet_id (str): The ID of the tweet to delete
 
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+        Raises:
+            Exception: If not authenticated, tweet not found, or not authorized
         """
-        post = self.posts.get(post_id)
+        self._ensure_authenticated()
+        
+        post = self.posts.get(tweet_id)
         if not post:
-            return {"success": False, "error": "Post not found"}
-        if post["author_id"] != user_id:
-            return {"success": False, "error": "Not authorized to delete this post"}
+            raise Exception("Tweet not found")
+        
+        if post["author_id"] != self.current_user_id:
+            raise Exception("Not authorized to delete this tweet")
 
-        if post_id in self.posts:
-            del self.posts[post_id]
+        if tweet_id in self.posts:
+            del self.posts[tweet_id]
             # Remove from author's list of posts
-            if user_id in self.users and post_id in self.users[user_id].get("posts", []):
-                self.users[user_id]["posts"].remove(post_id)
+            if self.current_user_id in self.users and tweet_id in self.users[self.current_user_id].get("posts", []):
+                self.users[self.current_user_id]["posts"].remove(tweet_id)
             # Remove from any user's liked_posts
             for u_data in self.users.values():
-                if post_id in u_data.get("liked_posts", []):
-                    u_data["liked_posts"].remove(post_id)
-            return {"success": True}
-        return {"success": False, "error": "Post not found or internal error"}
+                if tweet_id in u_data.get("liked_posts", []):
+                    u_data["liked_posts"].remove(tweet_id)
+            
+            print(f"Tweet deleted: ID={tweet_id}")
+        else:
+            raise Exception("Tweet not found or internal error")
 
-    def get_post_details(self, post_id: str) -> Dict[str, Any]:
+    def get_tweet(self, tweet_id: str) -> Dict[str, Any]:
         """
-        Get the details of a specific post.
+        Get the details of a specific tweet (public endpoint, no auth required).
 
         Args:
-            post_id (str): The ID (UUID) of the post to retrieve.
+            tweet_id (str): The ID of the tweet to retrieve
 
         Returns:
-            Dict: A dictionary containing the post's data.
-        """
-        post_data = self.posts.get(post_id)
-        if post_data:
-            return {"data": copy.deepcopy(post_data)}
-        return {"data": None, "error": "Post not found"}
+            Dict[str, Any]: The tweet data
 
-    def list_user_posts(self, user_id: str) -> Dict[str, Any]:
+        Raises:
+            Exception: If tweet not found
         """
-        List all posts created by a specific user.
+        post_data = self.posts.get(tweet_id)
+        if not post_data:
+            raise Exception("Tweet not found")
+        
+        return copy.deepcopy(post_data)
+
+    def get_user_tweets(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
+        """
+        Get all tweets created by the authenticated user with pagination.
 
         Args:
-            user_id (str): The ID (UUID) of the user whose posts are to be listed.
+            limit (int): Maximum number of tweets to return (default: 20)
+            offset (int): Number of tweets to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing a list of posts.
+            Dict[str, Any]: Paginated list of tweets
+
+        Raises:
+            Exception: If not authenticated
         """
-        user_data = self._get_user_data(user_id)
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
         if not user_data:
-            return {"data": None, "error": "User not found"}
+            raise Exception("User data not found")
 
         user_post_uuids = user_data.get("posts", [])
         user_posts = [
@@ -275,75 +399,103 @@ class XApis:
         ]
         # Sort by creation time, most recent first
         user_posts.sort(key=lambda x: x.get("created_at", ""), reverse=True)
-        return {"data": user_posts}
+        
+        paginated_posts = user_posts[offset:offset + limit]
+        
+        return {
+            "data": paginated_posts,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(user_posts)
+            }
+        }
 
-    def like_post(self, user_id: str, post_id: str) -> Dict[str, bool]:
+    def like_tweet(self, tweet_id: str) -> None:
         """
-        Like a specific post.
+        Like a specific tweet.
 
         Args:
-            user_id (str): The ID (UUID) of the user liking the post.
-            post_id (str): The ID (UUID) of the post to like.
+            tweet_id (str): The ID of the tweet to like
 
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+        Raises:
+            Exception: If not authenticated, tweet not found, or already liked
         """
-        user = self._get_user_data(user_id)
-        post = self.posts.get(post_id)
+        self._ensure_authenticated()
+        
+        user = self._get_user_data(self.current_user_id)
+        post = self.posts.get(tweet_id)
+        
         if not user:
-            return {"success": False, "error": "User not found"}
+            raise Exception("User data not found")
         if not post:
-            return {"success": False, "error": "Post not found"}
+            raise Exception("Tweet not found")
 
-        if post_id not in user.get("liked_posts", []):
-            user["liked_posts"].append(post_id)
-            post["likes"].append(user_id)
-            post["metrics"]["likes"] = post["metrics"].get("likes", 0) + 1
-            return {"success": True}
-        return {"success": False, "error": "Post already liked by this user"}
+        if tweet_id in user.get("liked_posts", []):
+            raise Exception("Tweet already liked by this user")
+        
+        user["liked_posts"].append(tweet_id)
+        
+        # Update public metrics
+        if "public_metrics" not in post:
+            post["public_metrics"] = {"retweet_count": 0, "reply_count": 0, "like_count": 0, "quote_count": 0, "impression_count": 0}
+        post["public_metrics"]["like_count"] = post["public_metrics"].get("like_count", 0) + 1
+        
+        print(f"Tweet liked: ID={tweet_id} by {user['username']}")
 
-    def unlike_post(self, user_id: str, post_id: str) -> Dict[str, bool]:
+    def unlike_tweet(self, tweet_id: str) -> None:
         """
-        Unlike a specific post.
+        Unlike a specific tweet.
 
         Args:
-            user_id (str): The ID (UUID) of the user unliking the post.
-            post_id (str): The ID (UUID) of the post to unlike.
+            tweet_id (str): The ID of the tweet to unlike
 
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+        Raises:
+            Exception: If not authenticated, tweet not found, or not liked
         """
-        user = self._get_user_data(user_id)
-        post = self.posts.get(post_id)
+        self._ensure_authenticated()
+        
+        user = self._get_user_data(self.current_user_id)
+        post = self.posts.get(tweet_id)
+        
         if not user:
-            return {"success": False, "error": "User not found"}
+            raise Exception("User data not found")
         if not post:
-            return {"success": False, "error": "Post not found"}
+            raise Exception("Tweet not found")
 
-        if post_id in user.get("liked_posts", []):
-            user["liked_posts"].remove(post_id)
-            if user_id in post["likes"]:
-                post["likes"].remove(user_id)
-            post["metrics"]["likes"] = max(0, post["metrics"].get("likes", 0) - 1)
-            return {"success": True}
-        return {"success": False, "error": "Post not liked by this user"}
+        if tweet_id not in user.get("liked_posts", []):
+            raise Exception("Tweet not liked by this user")
+        
+        user["liked_posts"].remove(tweet_id)
+        
+        # Update public metrics
+        if "public_metrics" in post:
+            post["public_metrics"]["like_count"] = max(0, post["public_metrics"].get("like_count", 0) - 1)
+        
+        print(f"Tweet unliked: ID={tweet_id} by {user['username']}")
 
-    def list_direct_messages_conversations(self, user_id: str) -> Dict[str, Any]:
+    def get_dm_conversations(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
         """
-        List all direct message conversations for a specific user.
+        Get all direct message conversations for the authenticated user with pagination.
 
         Args:
-            user_id (str): The ID (UUID) of the user whose conversations are to be listed.
+            limit (int): Maximum number of conversations to return (default: 20)
+            offset (int): Number of conversations to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing a list of conversation summaries.
+            Dict[str, Any]: Paginated list of DM conversations
+
+        Raises:
+            Exception: If not authenticated
         """
-        if user_id not in self.users:
-            return {"data": None, "error": "User not found"}
+        self._ensure_authenticated()
+        
+        if self.current_user_id not in self.users:
+            raise Exception("User not found")
 
         user_conversations = []
         for conv_id, conv_data in self.direct_messages.items():
-            if user_id in conv_data.get("participants", []):
+            if self.current_user_id in conv_data.get("participants", []):
                 # Get participant details (usernames)
                 participant_usernames = []
                 for p_uuid in conv_data["participants"]:
@@ -364,47 +516,72 @@ class XApis:
                     "last_message_snippet": last_message
                 })
         
-        return {"data": user_conversations}
+        # Pagination
+        paginated_conversations = user_conversations[offset:offset + limit]
+        
+        return {
+            "data": paginated_conversations,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(user_conversations)
+            }
+        }
 
-    def get_direct_messages_conversation(self, conversation_id: str) -> Dict[str, Any]:
+    def get_dm_conversation(self, conversation_id: str) -> Dict[str, Any]:
         """
-        Get all messages within a specific direct message conversation.
+        Get all messages within a specific DM conversation (requires participation).
 
         Args:
-            conversation_id (str): The ID (UUID) of the conversation to retrieve.
+            conversation_id (str): The ID of the conversation to retrieve
 
         Returns:
-            Dict: A dictionary containing the conversation data, including messages.
+            Dict[str, Any]: The conversation data with messages
+
+        Raises:
+            Exception: If not authenticated, conversation not found, or not a participant
         """
+        self._ensure_authenticated()
+        
         conv_data = self.direct_messages.get(conversation_id)
-        if conv_data:
-            # Sort messages by timestamp
-            sorted_messages = sorted(conv_data.get("messages", []), key=lambda msg: msg.get("timestamp", ""))
-            conversation_copy = copy.deepcopy(conv_data)
-            conversation_copy["messages"] = sorted_messages
-            return {"data": conversation_copy}
-        return {"data": None, "error": "Conversation not found"}
+        if not conv_data:
+            raise Exception("Conversation not found")
+        
+        # Verify user is participant
+        if self.current_user_id not in conv_data.get("participants", []):
+            raise Exception("Not authorized to view this conversation")
+        
+        # Sort messages by timestamp
+        sorted_messages = sorted(conv_data.get("messages", []), key=lambda msg: msg.get("timestamp", ""))
+        conversation_copy = copy.deepcopy(conv_data)
+        conversation_copy["messages"] = sorted_messages
+        
+        return conversation_copy
 
-    def send_direct_message(self, sender_id: str, receiver_id: str, text: str) -> Dict[str, Any]:
+    def send_dm(self, recipient_id: str, text: str) -> Dict[str, Any]:
         """
-        Send a direct message to another user. If no existing conversation, a new one is created.
+        Send a direct message to another user. Creates new conversation if needed.
 
         Args:
-            sender_id (str): The ID (UUID) of the user sending the message.
-            receiver_id (str): The ID (UUID) of the user receiving the message.
-            text (str): The content of the message.
+            recipient_id (str): The ID of the user to send the message to
+            text (str): The content of the message
 
         Returns:
-            Dict: A dictionary containing the updated conversation data or an error.
+            Dict[str, Any]: The updated conversation data
+
+        Raises:
+            Exception: If not authenticated or recipient not found
         """
-        if sender_id not in self.users or receiver_id not in self.users:
-            return {"data": None, "error": "Sender or receiver user not found"}
+        self._ensure_authenticated()
+        
+        if recipient_id not in self.users:
+            raise Exception("Recipient user not found")
 
         # Find existing conversation or create a new one
         conversation_id = None
         for conv_id, conv_data in self.direct_messages.items():
             participants = set(conv_data.get("participants", []))
-            if participants == {sender_id, receiver_id}:
+            if participants == {self.current_user_id, recipient_id}:
                 conversation_id = conv_id
                 break
 
@@ -412,154 +589,169 @@ class XApis:
             conversation_id = self._generate_unique_id()
             self.direct_messages[conversation_id] = {
                 "id": conversation_id,
-                "participants": sorted([sender_id, receiver_id]), # Ensure consistent order
+                "participants": sorted([self.current_user_id, recipient_id]), # Ensure consistent order
                 "messages": []
             }
         
         new_message = {
             "id": self._generate_unique_id(), # Unique ID for the message
-            "sender_id": sender_id,
+            "sender_id": self.current_user_id,
             "text": text,
-            "timestamp": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
         }
         self.direct_messages[conversation_id]["messages"].append(new_message)
         
         # Update API usage for the sender
-        self.users[sender_id]["api_usage"]["dms_sent"] = self.users[sender_id]["api_usage"].get("dms_sent", 0) + 1
+        sender_data = self.users[self.current_user_id]
+        sender_data["api_usage"]["dms_sent"] = sender_data["api_usage"].get("dms_sent", 0) + 1
         
-        print(f"DM sent in conversation {conversation_id}: from {self.users[sender_id]['username']} to {self.users[receiver_id]['username']}")
-        return {"data": copy.deepcopy(self.direct_messages[conversation_id])}
+        print(f"DM sent in conversation {conversation_id}: from {sender_data['username']} to {self.users[recipient_id]['username']}")
+        return copy.deepcopy(self.direct_messages[conversation_id])
 
-    def delete_direct_message_conversation(self, user_id: str, conversation_id: str) -> Dict[str, bool]:
+    def delete_dm_conversation(self, conversation_id: str) -> None:
         """
-        Delete a direct message conversation for a specific user.
+        Delete a DM conversation for the authenticated user.
 
         Args:
-            user_id (str): The ID (UUID) of the user deleting the conversation.
-            conversation_id (str): The ID (UUID) of the conversation to delete.
+            conversation_id (str): The ID of the conversation to delete
 
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+        Raises:
+            Exception: If not authenticated, conversation not found, or not a participant
         """
+        self._ensure_authenticated()
+        
         conv_data = self.direct_messages.get(conversation_id)
         if not conv_data:
-            return {"success": False, "error": "Conversation not found"}
+            raise Exception("Conversation not found")
         
-        if user_id not in conv_data.get("participants", []):
-            return {"success": False, "error": "User is not a participant in this conversation"}
+        if self.current_user_id not in conv_data.get("participants", []):
+            raise Exception("User is not a participant in this conversation")
 
-        # In a real scenario, this would likely "hide" the conversation for the user,
-        # not delete it for everyone. For this dummy, we'll remove it entirely if a participant deletes it.
-        # This implies a shared delete, or that the current user is the only one left.
-        # For simplicity, we'll just delete it from global store for now.
+        # Delete from global store
         if conversation_id in self.direct_messages:
             del self.direct_messages[conversation_id]
-            print(f"Conversation {conversation_id} deleted by user {user_id}")
-            return {"success": True}
-        return {"success": False, "error": "Conversation not found or internal error"}
+            print(f"Conversation {conversation_id} deleted by user {self.current_user_id}")
 
-    def get_api_usage(self, user_id: str) -> Dict:
+    def get_api_usage(self) -> Dict:
         """
-        Get current API usage statistics for a specific user.
-
-        Parameters:
-            user_id (str):
-                User ID (UUID) to retrieve API usage for.
+        Get current API usage statistics for the authenticated user.
 
         Returns:
-            Dict:
-                Dictionary containing API usage metrics.
+            Dict: API usage metrics
+
+        Raises:
+            Exception: If not authenticated
         """
-        if user_id in self.users:
-            return {"data": self.users[user_id].get("api_usage", {})}
-        return {"data": None, "error": "User not found"}
-
-    def get_post_metrics(self, post_ids: List[str], metrics: Optional[List[str]] = None) -> Dict:
-        """
-        Get metrics for specific posts.
-
-        Parameters:
-            post_ids (List[str]):
-                List of post IDs (UUIDs) to get metrics for.
-            metrics (Optional[List[str]]):
-                Specific metrics to retrieve.
-
-        Returns:
-            Dict:
-                Dictionary containing post metrics.
-        """
-        post_metrics = []
-        for post_id in post_ids:
-            if post_id in self.posts:
-                post = self.posts[post_id]
-                if "metrics" in post:
-                    if metrics:
-                        filtered_metrics = {k: v for k, v in post["metrics"].items() if k in metrics}
-                        post_metrics.append({"post_id": post_id, "metrics": filtered_metrics})
-                    else:
-                        post_metrics.append({"post_id": post_id, "metrics": copy.deepcopy(post["metrics"])})
-            else:
-                post_metrics.append({"post_id": post_id, "error": "Post not found"})
-        return {"data": post_metrics}
-
-    def update_user_bio(self, user_id: str, new_bio: str) -> Dict[str, Any]:
-        """
-        Update a user's bio.
-
-        Args:
-            user_id (str): The ID (UUID) of the user.
-            new_bio (str): The new bio text.
-
-        Returns:
-            Dict: A dictionary indicating success status.
-        """
-        if user_id in self.users:
-            self.users[user_id]["bio"] = new_bio
-            return {"status": "success", "message": "Bio updated successfully"}
-        return {"status": "error", "message": "User not found"}
-
-    def get_user_analytics(self, user_id: str) -> Dict[str, Any]:
-        """
-        Get comprehensive analytics for a user.
-
-        Args:
-            user_id (str): The ID (UUID) of the user.
-
-        Returns:
-            Dict: A dictionary containing user analytics.
-        """
-        user_data = self._get_user_data(user_id)
-        if not user_data:
-            return {"data": None, "error": "User not found"}
-
-        user_posts = [p for p in self.posts.values() if p.get("author_id") == user_id]
-        total_likes_received = sum(len(p.get("likes", [])) for p in user_posts)
+        self._ensure_authenticated()
         
-        analytics = {
-            "user_id": user_id,
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        return user_data.get("api_usage", {})
+
+    def get_tweet_metrics(self, tweet_ids: List[str], metrics: Optional[List[str]] = None) -> List[Dict]:
+        """
+        Get public metrics for specific tweets (public endpoint, no auth required).
+
+        Args:
+            tweet_ids (List[str]): List of tweet IDs to get metrics for
+            metrics (Optional[List[str]]): Specific metrics to retrieve
+
+        Returns:
+            List[Dict]: List of tweet metrics
+        """
+        tweet_metrics = []
+        for tweet_id in tweet_ids:
+            if tweet_id in self.posts:
+                post = self.posts[tweet_id]
+                if "public_metrics" in post:
+                    if metrics:
+                        filtered_metrics = {k: v for k, v in post["public_metrics"].items() if k in metrics}
+                        tweet_metrics.append({"tweet_id": tweet_id, "public_metrics": filtered_metrics})
+                    else:
+                        tweet_metrics.append({"tweet_id": tweet_id, "public_metrics": copy.deepcopy(post["public_metrics"])})
+            else:
+                tweet_metrics.append({"tweet_id": tweet_id, "error": "Tweet not found"})
+        return tweet_metrics
+
+    def update_profile(self, bio: Optional[str] = None, name: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Update the authenticated user's profile.
+
+        Args:
+            bio (Optional[str]): New bio text
+            name (Optional[str]): New display name
+
+        Returns:
+            Dict[str, Any]: Updated profile data
+
+        Raises:
+            Exception: If not authenticated
+        """
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        if bio is not None:
+            user_data["bio"] = bio
+        if name is not None:
+            user_data["name"] = name
+        
+        return {
+            "id": user_data.get("id"),
             "username": user_data.get("username"),
-            "joined_date": user_data.get("joined_date"),
-            "is_verified": user_data.get("is_verified", False),
-            "follower_count": len(user_data.get("followers", [])),
-            "following_count": len(user_data.get("following", [])),
-            "posts_count": len(user_data.get("posts", [])),
+            "name": user_data.get("name"),
+            "bio": user_data.get("bio")
+        }
+
+    def get_user_analytics(self) -> Dict[str, Any]:
+        """
+        Get comprehensive analytics for the authenticated user.
+
+        Returns:
+            Dict[str, Any]: User analytics data
+
+        Raises:
+            Exception: If not authenticated
+        """
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+
+        user_posts = [p for p in self.posts.values() if p.get("author_id") == self.current_user_id]
+        total_likes_received = sum(p.get("public_metrics", {}).get("like_count", 0) for p in user_posts)
+        
+        return {
+            "user_id": self.current_user_id,
+            "username": user_data.get("username"),
+            "created_at": user_data.get("joined_date"),
+            "verified": user_data.get("is_verified", False),
+            "public_metrics": {
+                "followers_count": len(user_data.get("followers", [])),
+                "following_count": len(user_data.get("following", [])),
+                "tweet_count": len(user_data.get("posts", [])),
+                "like_count": len(user_data.get("liked_posts", []))
+            },
             "total_likes_received": total_likes_received,
-            "liked_posts_count": len(user_data.get("liked_posts", [])),
-            "api_usage": user_data.get("api_usage", {}),
             "engagement_ratio": round(total_likes_received / max(len(user_posts), 1), 2)
         }
-        
-        return {"data": analytics}
 
-    def search_users_by_bio(self, search_term: str) -> Dict[str, Any]:
+    def search_users_by_bio(self, search_term: str, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
         """
-        Search for users based on bio content.
+        Search for users based on bio content (public endpoint, no auth required).
 
         Args:
-            search_term (str): The term to search for in user bios.
+            search_term (str): The term to search for in user bios
+            limit (int): Maximum number of users to return (default: 20)
+            offset (int): Number of users to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing matching users.
+            Dict[str, Any]: Paginated list of matching users
         """
         matching_users = []
         search_term_lower = search_term.lower()
@@ -572,18 +764,33 @@ class XApis:
                     "username": user_data.get("username"),
                     "name": user_data.get("name"),
                     "bio": user_data.get("bio"),
-                    "is_verified": user_data.get("is_verified", False),
-                    "follower_count": len(user_data.get("followers", []))
+                    "verified": user_data.get("is_verified", False),
+                    "public_metrics": {
+                        "followers_count": len(user_data.get("followers", []))
+                    }
                 })
         
-        return {"data": matching_users, "count": len(matching_users)}
+        paginated_users = matching_users[offset:offset + limit]
+        
+        return {
+            "data": paginated_users,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(matching_users)
+            }
+        }
 
-    def get_verified_users(self) -> Dict[str, Any]:
+    def get_verified_users(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
         """
-        Get all verified users.
+        Get all verified users (public endpoint, no auth required).
+
+        Args:
+            limit (int): Maximum number of users to return (default: 20)
+            offset (int): Number of users to skip (default: 0)
 
         Returns:
-            Dict: A dictionary containing all verified users.
+            Dict[str, Any]: Paginated list of verified users
         """
         verified_users = []
         
@@ -595,23 +802,33 @@ class XApis:
                     "name": user_data.get("name"),
                     "bio": user_data.get("bio"),
                     "profile_picture_url": user_data.get("profile_picture_url"),
-                    "follower_count": len(user_data.get("followers", [])),
-                    "joined_date": user_data.get("joined_date")
+                    "created_at": user_data.get("joined_date"),
+                    "verified": True,
+                    "public_metrics": {
+                        "followers_count": len(user_data.get("followers", []))
+                    }
                 })
         
         # Sort by follower count (most followed first)
-        verified_users.sort(key=lambda x: x["follower_count"], reverse=True)
+        verified_users.sort(key=lambda x: x["public_metrics"]["followers_count"], reverse=True)
         
-        return {"data": verified_users, "count": len(verified_users)}
+        paginated_users = verified_users[offset:offset + limit]
+        
+        return {
+            "data": paginated_users,
+            "pagination": {
+                "limit": limit,
+                "offset": offset,
+                "total": len(verified_users)
+            }
+        }
 
-    def reset_data(self) -> Dict[str, bool]:
+    def reset_data(self) -> None:
         """
         Resets all simulated data in the dummy backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
         """
         self._load_scenario(DEFAULT_STATE)
+        self.access_token = None
+        self.current_user_id = None
         print("XApis: All dummy data reset to default state.")
-        return {"reset_status": True}

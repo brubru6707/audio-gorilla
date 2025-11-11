@@ -1,5 +1,7 @@
 # Inspired by https://developers.google.com/youtube/v3/docs
+
 import datetime
+from datetime import timezone
 import copy
 import uuid
 from typing import Dict, List, Any, Optional, Union
@@ -14,9 +16,6 @@ sys.path.insert(0, str(parent_dir / 'UnitTests'))
 from UnitTests.test_data_helper import BackendDataLoader
 
 DEFAULT_STATE = BackendDataLoader.get_youtube_data()
-
-class EmailStr(str):
-    pass
 
 class YouTubeApis:
     """
@@ -35,8 +34,8 @@ class YouTubeApis:
         self.videos: Dict[str, Any] = {} # Keyed by video UUID
         self.playlists: Dict[str, Any] = {} # Keyed by playlist UUID
         self.comments: Dict[str, Any] = {} # Keyed by comment UUID
-        self.current_user: Optional[str] = None # Stores the UUID of the current user
-        self.current_channel: Optional[str] = None # Stores the UUID of the current channel
+        self.access_token: Optional[str] = None
+        self.current_user_id: Optional[str] = None
 
         self._load_scenario(DEFAULT_STATE)
 
@@ -55,9 +54,57 @@ class YouTubeApis:
         self.videos = copy.deepcopy(scenario.get("videos", {}))
         self.playlists = copy.deepcopy(scenario.get("playlists", {}))
         self.comments = {}
-        self.current_user = scenario.get("current_user") # This will already be a UUID after conversion
-        self.current_channel = scenario.get("current_channel") # This will already be a UUID after conversion
         print("YouTubeApis: Loaded scenario with UUIDs for users, channels, videos, playlists, and comments.")
+
+    def authenticate(self, access_token: str) -> Dict[str, Any]:
+        """
+        Authenticate with YouTube Data API using an OAuth 2.0 access token.
+
+        Args:
+            access_token (str): OAuth 2.0 Bearer token (format: "token_{email}")
+
+        Returns:
+            Dict[str, Any]: Authenticated user's profile data
+
+        Raises:
+            Exception: If token is invalid or user not found
+        """
+        if not access_token or not access_token.startswith("token_"):
+            raise Exception("Invalid access token format")
+        
+        # Extract email from token
+        email = access_token.replace("token_", "")
+        
+        # Find user by email
+        user_id = None
+        for uid, user_data in self.users.items():
+            if user_data.get("email") == email:
+                user_id = uid
+                break
+        
+        if not user_id:
+            raise Exception(f"No user found with email: {email}")
+        
+        self.access_token = access_token
+        self.current_user_id = user_id
+        
+        user_data = self.users[user_id]
+        return {
+            "id": user_data.get("id"),
+            "email": user_data.get("email"),
+            "displayName": user_data.get("display_name"),
+            "kind": "youtube#channel"
+        }
+    
+    def _ensure_authenticated(self) -> None:
+        """
+        Ensures that the user is authenticated before accessing protected resources.
+
+        Raises:
+            Exception: If not authenticated
+        """
+        if not self.access_token or not self.current_user_id:
+            raise Exception("Authentication required. Call authenticate() first.")
 
     def _generate_unique_id(self) -> str:
         """
@@ -160,383 +207,582 @@ class YouTubeApis:
             
         return None
 
-    def set_current_user(self, user_id: str) -> Dict[str, Union[bool, str]]:
+    def get_my_channel(self) -> Dict[str, Any]:
         """
-        Sets the current authenticated user for the API session.
-
-        Args:
-            user_id (str): The ID (UUID) of the user to set as current.
+        Get the authenticated user's YouTube channel (primary channel).
 
         Returns:
-            Dict[str, Union[bool, str]]: A dictionary with 'status' indicating success or failure and a message.
-        """
-        if user_id in self.users:
-            self.current_user = user_id
-            return {"status": True, "message": f"Current user set to {self.users[user_id]['display_name']} (ID: {user_id})."}
-        return {"status": False, "message": f"User with ID {user_id} not found."}
+            Dict[str, Any]: Channel data with YouTube API v3 structure
 
-    def set_current_channel(self, channel_id: str) -> Dict[str, Union[bool, str]]:
+        Raises:
+            Exception: If not authenticated or no channel found
         """
-        Sets the current active channel for the API session.
-        The current user must own this channel.
-
-        Args:
-            channel_id (str): The ID (UUID) of the channel to set as current.
-
-        Returns:
-            Dict[str, Union[bool, str]]: A dictionary with 'status' indicating success or failure and a message.
-        """
-        if not self.current_user:
-            return {"status": False, "message": "No current user set. Please set a current user first."}
+        self._ensure_authenticated()
         
-        channel_data = self._get_channel_data(channel_id)
-        if channel_data:
-            if channel_data.get("owner_id") == self.current_user:
-                self.current_channel = channel_id
-                return {"status": True, "message": f"Current channel set to {channel_data['title']} (ID: {channel_id})."}
-            return {"status": False, "message": "You do not own this channel."}
-        return {"status": False, "message": f"Channel with ID {channel_id} not found."}
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        # Get user's first channel (primary channel)
+        user_channels = user_data.get("channels", [])
+        if not user_channels:
+            raise Exception("No channel found for authenticated user")
+        
+        primary_channel_id = user_channels[0]
+        channel_data = self._get_channel_data(primary_channel_id)
+        
+        if not channel_data:
+            raise Exception("Channel data not found")
+        
+        return {
+            "kind": "youtube#channel",
+            "etag": f"etag_{channel_data['id']}",
+            "id": channel_data["id"],
+            "snippet": {
+                "title": channel_data.get("title"),
+                "description": channel_data.get("description"),
+                "publishedAt": channel_data.get("created_at"),
+                "country": channel_data.get("country", "US")
+            },
+            "statistics": {
+                "viewCount": str(channel_data.get("view_count", 0)),
+                "subscriberCount": str(channel_data.get("subscriber_count", 0)),
+                "videoCount": str(channel_data.get("video_count", 0))
+            }
+        }
 
-    def get_user_profile(self, user_id: str) -> Dict[str, Any]:
+    def list_my_subscriptions(self, maxResults: int = 25, pageToken: Optional[str] = None) -> Dict[str, Any]:
         """
-        Get the profile information for a specific user.
+        List channels the authenticated user is subscribed to.
 
         Args:
-            user_id (str): The ID (UUID) of the user whose profile is to be retrieved.
+            maxResults (int): Maximum number of results to return (default: 25)
+            pageToken (Optional[str]): Token for pagination
 
         Returns:
-            Dict: A dictionary containing the user's profile data.
+            Dict[str, Any]: Subscriptions with YouTube API v3 pagination
+
+        Raises:
+            Exception: If not authenticated
         """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            return {"data": copy.deepcopy(user_data)}
-        return {"data": None, "message": "User not found"}
-
-    def get_watch_history(self, user_id: str) -> Dict[str, Any]:
-        """
-        Get the watch history for a specific user.
-
-        Args:
-            user_id (str): The ID (UUID) of the user whose watch history is to be retrieved.
-
-        Returns:
-            Dict: A dictionary containing a list of video IDs in the watch history.
-        """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            watched_videos = []
-            for video_uuid in user_data.get("watch_history", []):
-                video_details = self._get_video_data(video_uuid)
-                if video_details:
-                    watched_videos.append(copy.deepcopy(video_details))
-            return {"data": watched_videos}
-        return {"data": None, "message": "User not found"}
-
-    def list_subscriptions(self, user_id: str) -> Dict[str, Any]:
-        """
-        List the channels a specific user is subscribed to.
-
-        Args:
-            user_id (str): The ID (UUID) of the user whose subscriptions are to be listed.
-
-        Returns:
-            Dict: A dictionary containing a list of subscribed channel IDs.
-        """
-        user_data = self._get_user_data(user_id)
-        if user_data:
-            subscribed_channels = []
-            for channel_uuid in user_data.get("subscriptions", []):
-                channel_details = self._get_channel_data(channel_uuid)
-                if channel_details:
-                    subscribed_channels.append(copy.deepcopy(channel_details))
-            return {"data": subscribed_channels}
-        return {"data": None, "message": "User not found"}
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        subscribed_channel_ids = user_data.get("subscriptions", [])
+        
+        # Simple pagination (offset-based)
+        offset = int(pageToken) if pageToken else 0
+        paginated_ids = subscribed_channel_ids[offset:offset + maxResults]
+        
+        items = []
+        for channel_uuid in paginated_ids:
+            channel_details = self._get_channel_data(channel_uuid)
+            if channel_details:
+                items.append({
+                    "kind": "youtube#subscription",
+                    "etag": f"etag_{channel_uuid}",
+                    "id": channel_uuid,
+                    "snippet": {
+                        "publishedAt": channel_details.get("created_at"),
+                        "title": channel_details.get("title"),
+                        "description": channel_details.get("description"),
+                        "resourceId": {
+                            "kind": "youtube#channel",
+                            "channelId": channel_uuid
+                        }
+                    }
+                })
+        
+        result = {
+            "kind": "youtube#subscriptionListResponse",
+            "etag": "etag_subscriptions",
+            "pageInfo": {
+                "totalResults": len(subscribed_channel_ids),
+                "resultsPerPage": maxResults
+            },
+            "items": items
+        }
+        
+        # Add nextPageToken if there are more results
+        if offset + maxResults < len(subscribed_channel_ids):
+            result["nextPageToken"] = str(offset + maxResults)
+        
+        return result
     
-    def youtube_subscriptions_insert(self, channel_id: str, user_id: str) -> Dict[str, Any]:
+    def subscribe(self, channel_id: str) -> Dict[str, Any]:
         """
-        Subscribes a user to a channel.
+        Subscribe the authenticated user to a channel.
 
-        Parameters:
-            channel_id (str): The ID (UUID) of the channel to subscribe to.
-            user_id (str): The ID (UUID) of the user subscribing.
+        Args:
+            channel_id (str): The ID of the channel to subscribe to
 
         Returns:
-            Dict[str, Any]: A dictionary indicating the success or failure of the subscription.
+            Dict[str, Any]: Subscription resource
+
+        Raises:
+            Exception: If not authenticated, channel not found, or already subscribed
         """
-        user_data = self._get_user_data(user_id)
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
         channel_data = self._get_channel_data(channel_id)
 
         if not user_data:
-            return {"status": False, "message": "User not found."}
+            raise Exception("User data not found")
         if not channel_data:
-            return {"status": False, "message": "Channel not found."}
+            raise Exception("Channel not found")
         
         if channel_id in user_data.get("subscriptions", []):
-            return {"status": False, "message": "Already subscribed."}
+            raise Exception("Already subscribed to this channel")
         
         user_data["subscriptions"].append(channel_id)
-        channel_data["subscribers"].append(user_id)
+        channel_data["subscribers"].append(self.current_user_id)
         channel_data["subscriber_count"] = channel_data.get("subscriber_count", 0) + 1
         
-        return {"status": True, "message": f"Successfully subscribed to channel {channel_id}"}
+        return {
+            "kind": "youtube#subscription",
+            "etag": f"etag_{channel_id}",
+            "id": self._generate_unique_id(),
+            "snippet": {
+                "publishedAt": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+                "title": channel_data.get("title"),
+                "description": channel_data.get("description"),
+                "resourceId": {
+                    "kind": "youtube#channel",
+                    "channelId": channel_id
+                }
+            }
+        }
 
-    def youtube_subscriptions_delete(self, channel_id: str, user_id: str) -> Dict[str, Any]:
+    def unsubscribe(self, channel_id: str) -> None:
         """
-        Unsubscribes a user from a channel.
+        Unsubscribe the authenticated user from a channel.
 
-        Parameters:
-            channel_id (str): The ID (UUID) of the channel to unsubscribe from.
-            user_id (str): The ID (UUID) of the user unsubscribing.
+        Args:
+            channel_id (str): The ID of the channel to unsubscribe from
 
-        Returns:
-            Dict[str, Any]: A dictionary indicating the success or failure of the unsubscription.
+        Raises:
+            Exception: If not authenticated, channel not found, or not subscribed
         """
-        user_data = self._get_user_data(user_id)
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
         channel_data = self._get_channel_data(channel_id)
 
         if not user_data:
-            return {"status": False, "message": "User not found."}
+            raise Exception("User data not found")
         if not channel_data:
-            return {"status": False, "message": "Channel not found."}
+            raise Exception("Channel not found")
         
         if channel_id not in user_data.get("subscriptions", []):
-            return {"status": False, "message": "Not subscribed to this channel."}
+            raise Exception("Not subscribed to this channel")
         
         user_data["subscriptions"].remove(channel_id)
-        if user_id in channel_data.get("subscribers", []):
-            channel_data["subscribers"].remove(user_id)
+        if self.current_user_id in channel_data.get("subscribers", []):
+            channel_data["subscribers"].remove(self.current_user_id)
         channel_data["subscriber_count"] = max(0, channel_data.get("subscriber_count", 0) - 1)
         
-        return {"status": True, "message": f"Successfully unsubscribed from channel {channel_id}"}
+        print(f"Unsubscribed from channel {channel_id}")
 
-    def list_channels_for_user(self, user_id: str) -> Dict[str, Any]:
+    def list_my_channels(self) -> Dict[str, Any]:
         """
-        List all channels owned by a specific user.
-
-        Args:
-            user_id (str): The ID (UUID) of the user whose channels are to be listed.
+        List all channels owned by the authenticated user.
 
         Returns:
-            Dict: A dictionary containing a list of channels.
+            Dict[str, Any]: Channel list with YouTube API v3 structure
+
+        Raises:
+            Exception: If not authenticated
         """
-        user_data = self._get_user_data(user_id)
-        if not user_data:
-            return {"data": None, "message": "User not found"}
+        self._ensure_authenticated()
         
-        user_channels = []
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        items = []
         for channel_uuid in user_data.get("channels", []):
             channel_details = self._get_channel_data(channel_uuid)
             if channel_details:
-                user_channels.append(copy.deepcopy(channel_details))
-        return {"data": user_channels}
+                items.append({
+                    "kind": "youtube#channel",
+                    "etag": f"etag_{channel_uuid}",
+                    "id": channel_uuid,
+                    "snippet": {
+                        "title": channel_details.get("title"),
+                        "description": channel_details.get("description"),
+                        "publishedAt": channel_details.get("created_at"),
+                        "country": channel_details.get("country", "US")
+                    },
+                    "statistics": {
+                        "viewCount": str(channel_details.get("view_count", 0)),
+                        "subscriberCount": str(channel_details.get("subscriber_count", 0)),
+                        "videoCount": str(channel_details.get("video_count", 0))
+                    }
+                })
+        
+        return {
+            "kind": "youtube#channelListResponse",
+            "etag": "etag_channels",
+            "pageInfo": {
+                "totalResults": len(items),
+                "resultsPerPage": len(items)
+            },
+            "items": items
+        }
 
-    def get_channel_details(self, channel_id: str) -> Dict[str, Any]:
+    def get_channel(self, channel_id: str) -> Dict[str, Any]:
         """
-        Get the details of a specific channel.
+        Get the details of a specific channel (public endpoint, no auth required).
 
         Args:
-            channel_id (str): The ID (UUID) of the channel to retrieve.
+            channel_id (str): The ID of the channel to retrieve
 
         Returns:
-            Dict: A dictionary containing the channel's data.
+            Dict[str, Any]: Channel data with YouTube API v3 structure
+
+        Raises:
+            Exception: If channel not found
         """
         channel_data = self._get_channel_data(channel_id)
-        if channel_data:
-            return {"data": copy.deepcopy(channel_data)}
-        return {"data": None, "message": "Channel not found"}
+        if not channel_data:
+            raise Exception("Channel not found")
+        
+        return {
+            "kind": "youtube#channel",
+            "etag": f"etag_{channel_id}",
+            "id": channel_id,
+            "snippet": {
+                "title": channel_data.get("title"),
+                "description": channel_data.get("description"),
+                "publishedAt": channel_data.get("created_at"),
+                "country": channel_data.get("country", "US")
+            },
+            "statistics": {
+                "viewCount": str(channel_data.get("view_count", 0)),
+                "subscriberCount": str(channel_data.get("subscriber_count", 0)),
+                "videoCount": str(channel_data.get("video_count", 0))
+            }
+        }
 
-    def create_channel(self, user_id: str, title: str, description: str = "") -> Dict[str, Any]:
+    def create_channel(self, title: str, description: str = "") -> Dict[str, Any]:
         """
-        Create a new channel for a specific user.
+        Create a new channel for the authenticated user.
 
         Args:
-            user_id (str): The ID (UUID) of the user creating the channel.
-            title (str): The title of the new channel.
-            description (str, optional): The description of the new channel. Defaults to "".
+            title (str): The title of the new channel
+            description (str, optional): The description of the new channel
 
         Returns:
-            Dict: A dictionary containing the newly created channel's data.
+            Dict[str, Any]: Newly created channel with YouTube API v3 structure
+
+        Raises:
+            Exception: If not authenticated
         """
-        if user_id not in self.users:
-            return {"data": None, "message": "User not found"}
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
 
         channel_uuid = self._generate_unique_id()
+        created_at = datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
         new_channel = {
             "id": channel_uuid,
             "title": title,
             "description": description,
-            "owner_id": user_id,
-            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+            "owner_id": self.current_user_id,
+            "created_at": created_at,
             "subscribers": [],
             "videos": [],
             "playlists": [],
-            "country": "US", # Default country
+            "country": "US",
             "view_count": 0,
             "subscriber_count": 0,
             "video_count": 0,
             "banner_image_path": "https://YouTube.com/default_banner.jpg"
         }
         self.channels[channel_uuid] = new_channel
-        self.users[user_id]["channels"].append(channel_uuid)
-        print(f"Channel created: ID={channel_uuid} by {self.users[user_id]['display_name']}")
-        return {"data": copy.deepcopy(new_channel)}
-
-    def youtube_channels_update(self, channel_id: str, updates: Dict[str, Any], user_id: str) -> Dict[str, Any]:
-        """
-        Updates a channel's properties.
-
-        Parameters:
-            channel_id (str): The ID (UUID) of the channel to update.
-            updates (Dict[str, Any]): A dictionary containing the fields to update (e.g., {"title": "New Title", "description": "New Description"}).
-            user_id (str): The ID (UUID) of the user requesting the update. Must be the channel owner.
-
-        Returns:
-            Dict[str, Any]: The updated channel information.
-        """
-        channel_data = self._get_channel_data(channel_id)
-        if not channel_data:
-            return {"status": False, "message": "Channel not found."}
+        user_data["channels"].append(channel_uuid)
         
-        if channel_data.get("owner_id") != user_id:
-            return {"status": False, "message": "User is not the owner of this channel."}
-
-        for key, value in updates.items():
-            if key in channel_data: # Only allow updating existing fields for simplicity
-                channel_data[key] = value
+        print(f"Channel created: ID={channel_uuid} by {user_data['display_name']}")
         
-        return {"data": copy.deepcopy(channel_data)}
+        return {
+            "kind": "youtube#channel",
+            "etag": f"etag_{channel_uuid}",
+            "id": channel_uuid,
+            "snippet": {
+                "title": title,
+                "description": description,
+                "publishedAt": created_at,
+                "country": "US"
+            },
+            "statistics": {
+                "viewCount": "0",
+                "subscriberCount": "0",
+                "videoCount": "0"
+            }
+        }
 
-    def youtube_channel_banners_insert(self, image_path: str, channel_id: str) -> Dict[str, Any]:
+    def update_channel(self, channel_id: str, title: Optional[str] = None, description: Optional[str] = None) -> Dict[str, Any]:
         """
-        Uploads a channel banner image to YouTube for a specific channel.
-
-        Parameters:
-            image_path (str): The path to the banner image file.
-            channel_id (str): The ID (UUID) of the channel to upload the banner for.
-
-        Returns:
-            Dict[str, Any]: A dictionary containing information about the uploaded banner.
-        """
-        channel_data = self._get_channel_data(channel_id)
-        if not channel_data:
-            return {"message": "Channel not found."}
-        
-        channel_data["banner_image_path"] = image_path
-        return {"status": True, "image_path": image_path, "channel_id": channel_id}
-
-    def list_videos_in_channel(self, channel_id: str) -> Dict[str, Any]:
-        """
-        List all videos belonging to a specific channel.
+        Update a channel's properties (must be owner).
 
         Args:
-            channel_id (str): The ID (UUID) of the channel whose videos are to be listed.
+            channel_id (str): The ID of the channel to update
+            title (Optional[str]): New title
+            description (Optional[str]): New description
 
         Returns:
-            Dict: A dictionary containing a list of videos.
+            Dict[str, Any]: Updated channel with YouTube API v3 structure
+
+        Raises:
+            Exception: If not authenticated, channel not found, or not owner
+        """
+        self._ensure_authenticated()
+        
+        channel_data = self._get_channel_data(channel_id)
+        if not channel_data:
+            raise Exception("Channel not found")
+        
+        if channel_data.get("owner_id") != self.current_user_id:
+            raise Exception("User is not the owner of this channel")
+
+        if title is not None:
+            channel_data["title"] = title
+        if description is not None:
+            channel_data["description"] = description
+        
+        return {
+            "kind": "youtube#channel",
+            "etag": f"etag_{channel_id}",
+            "id": channel_id,
+            "snippet": {
+                "title": channel_data.get("title"),
+                "description": channel_data.get("description"),
+                "publishedAt": channel_data.get("created_at"),
+                "country": channel_data.get("country", "US")
+            },
+            "statistics": {
+                "viewCount": str(channel_data.get("view_count", 0)),
+                "subscriberCount": str(channel_data.get("subscriber_count", 0)),
+                "videoCount": str(channel_data.get("video_count", 0))
+            }
+        }
+
+    def list_channel_videos(self, channel_id: str, maxResults: int = 25, pageToken: Optional[str] = None) -> Dict[str, Any]:
+        """
+        List all videos in a specific channel (public endpoint).
+
+        Args:
+            channel_id (str): The ID of the channel
+            maxResults (int): Maximum number of results to return
+            pageToken (Optional[str]): Token for pagination
+
+        Returns:
+            Dict[str, Any]: Video list with YouTube API v3 pagination
+
+        Raises:
+            Exception: If channel not found
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "message": "Channel not found"}
+            raise Exception("Channel not found")
         
-        channel_videos = []
-        for video_uuid in channel_data.get("videos", []):
+        video_ids = channel_data.get("videos", [])
+        
+        # Simple pagination
+        offset = int(pageToken) if pageToken else 0
+        paginated_ids = video_ids[offset:offset + maxResults]
+        
+        items = []
+        for video_uuid in paginated_ids:
             video_details = self._get_video_data(video_uuid)
             if video_details:
-                channel_videos.append(copy.deepcopy(video_details))
-        return {"data": channel_videos}
+                items.append({
+                    "kind": "youtube#video",
+                    "etag": f"etag_{video_uuid}",
+                    "id": video_uuid,
+                    "snippet": {
+                        "publishedAt": video_details.get("uploaded_at"),
+                        "channelId": channel_id,
+                        "title": video_details.get("title"),
+                        "description": video_details.get("description")
+                    },
+                    "statistics": {
+                        "viewCount": str(video_details.get("view_count", 0)),
+                        "likeCount": str(video_details.get("like_count", 0)),
+                        "commentCount": str(video_details.get("comment_count", 0))
+                    }
+                })
+        
+        result = {
+            "kind": "youtube#videoListResponse",
+            "etag": "etag_videos",
+            "pageInfo": {
+                "totalResults": len(video_ids),
+                "resultsPerPage": maxResults
+            },
+            "items": items
+        }
+        
+        if offset + maxResults < len(video_ids):
+            result["nextPageToken"] = str(offset + maxResults)
+        
+        return result
 
-    def get_video_details(self, video_id: str) -> Dict[str, Any]:
+    def get_video(self, video_id: str) -> Dict[str, Any]:
         """
-        Get the details of a specific video.
+        Get the details of a specific video (public endpoint, no auth required).
 
         Args:
-            video_id (str): The ID (UUID) of the video to retrieve.
+            video_id (str): The ID of the video to retrieve
 
         Returns:
-            Dict: A dictionary containing the video's data.
+            Dict[str, Any]: Video data with YouTube API v3 structure
+
+        Raises:
+            Exception: If video not found
         """
         video_data = self._get_video_data(video_id)
-        if video_data:
-            # Increment view count for realism
-            video_data["views"] = video_data.get("views", 0) + 1 
-            return {"data": copy.deepcopy(video_data)}
-        return {"data": None, "message": "Video not found"}
+        if not video_data:
+            raise Exception("Video not found")
+        
+        # Increment view count for realism
+        video_data["views"] = video_data.get("views", 0) + 1
+        
+        return {
+            "kind": "youtube#video",
+            "etag": f"etag_{video_id}",
+            "id": video_id,
+            "snippet": {
+                "publishedAt": video_data.get("published_at"),
+                "channelId": video_data.get("channel_id"),
+                "title": video_data.get("title"),
+                "description": video_data.get("description"),
+                "tags": video_data.get("tags", [])
+            },
+            "contentDetails": {
+                "duration": f"PT{video_data.get('duration_seconds', 0)}S"
+            },
+            "statistics": {
+                "viewCount": str(video_data.get("views", 0)),
+                "likeCount": str(video_data.get("likes", 0)),
+                "commentCount": str(len(video_data.get("comments", {})))
+            }
+        }
     
-    def upload_video(self, channel_id: str, title: str, description: str = "", duration_seconds: int = 0, tags: Optional[List[str]] = None) -> Dict[str, Any]:
+    def upload_video(self, title: str, description: str = "", duration_seconds: int = 0, tags: Optional[List[str]] = None) -> Dict[str, Any]:
         """
-        Upload a new video to a specified channel.
+        Upload a new video to the authenticated user's primary channel.
 
         Args:
-            channel_id (str): The ID (UUID) of the channel to upload the video to.
-            title (str): The title of the video.
-            description (str, optional): The description of the video. Defaults to "".
-            duration_seconds (int, optional): The duration of the video in seconds. Defaults to 0.
-            tags (Optional[List[str]], optional): A list of tags for the video. Defaults to None.
+            title (str): The title of the video
+            description (str, optional): The description of the video
+            duration_seconds (int, optional): The duration of the video in seconds
+            tags (Optional[List[str]], optional): A list of tags for the video
 
         Returns:
-            Dict: A dictionary containing the newly created video's data.
+            Dict[str, Any]: Newly created video with YouTube API v3 structure
+
+        Raises:
+            Exception: If not authenticated or no channel found
         """
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        # Get user's primary channel
+        user_channels = user_data.get("channels", [])
+        if not user_channels:
+            raise Exception("No channel found for authenticated user")
+        
+        channel_id = user_channels[0]
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "message": "Channel not found"}
-        
-        uploader_id = channel_data["owner_id"]
-        if not uploader_id or uploader_id not in self.users:
-            return {"data": None, "message": "Uploader user not found for this channel."}
+            raise Exception("Channel data not found")
 
         video_uuid = self._generate_unique_id()
+        published_at = datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+        
         new_video = {
             "id": video_uuid,
             "title": title,
             "description": description,
             "channel_id": channel_id,
-            "uploader_id": uploader_id,
-            "published_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+            "uploader_id": self.current_user_id,
+            "published_at": published_at,
             "duration_seconds": duration_seconds,
             "views": 0,
             "likes": 0,
             "dislikes": 0,
             "comments": {},
             "tags": tags if tags is not None else [],
-            "liked_by": [] # Keep track of users who liked this video
+            "liked_by": []
         }
         self.videos[video_uuid] = new_video
-        self.channels[channel_id]["videos"].append(video_uuid)
-        self.channels[channel_id]["video_count"] = self.channels[channel_id].get("video_count", 0) + 1
+        channel_data["videos"].append(video_uuid)
+        channel_data["video_count"] = channel_data.get("video_count", 0) + 1
+        
         print(f"Video uploaded: ID={video_uuid} to channel {channel_data['title']}")
-        return {"data": copy.deepcopy(new_video)}
+        
+        return {
+            "kind": "youtube#video",
+            "etag": f"etag_{video_uuid}",
+            "id": video_uuid,
+            "snippet": {
+                "publishedAt": published_at,
+                "channelId": channel_id,
+                "title": title,
+                "description": description,
+                "tags": tags if tags is not None else []
+            },
+            "contentDetails": {
+                "duration": f"PT{duration_seconds}S"
+            },
+            "statistics": {
+                "viewCount": "0",
+                "likeCount": "0",
+                "commentCount": "0"
+            }
+        }
 
-    def delete_video(self, video_id: str, channel_id: str, user_id: str) -> Dict[str, bool]:
+    def delete_video(self, video_id: str) -> None:
         """
-        Delete a video. Only the uploader (channel owner) can delete their video.
+        Delete a video (must be the channel owner).
 
         Args:
-            video_id (str): The ID (UUID) of the video to delete.
-            channel_id (str): The ID (UUID) of the channel the video belongs to.
-            user_id (str): The ID (UUID) of the user attempting to delete (must be channel owner).
+            video_id (str): The ID of the video to delete
 
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+        Raises:
+            Exception: If not authenticated, video not found, or not owner
         """
-        video_data = self._get_video_data(video_id)
-        channel_data = self._get_channel_data(channel_id)
-
-        if not video_data:
-            return {"status": False, "message": "Video not found"}
-        if not channel_data:
-            return {"status": False, "message": "Channel not found"}
+        self._ensure_authenticated()
         
-        if video_data.get("channel_id") != channel_id:
-            return {"status": False, "message": "Video does not belong to the specified channel"}
-        if channel_data.get("owner_id") != user_id:
-            return {"status": False, "message": "User is not the owner of this channel and cannot delete videos"}
+        video_data = self._get_video_data(video_id)
+        if not video_data:
+            raise Exception("Video not found")
+        
+        channel_id = video_data.get("channel_id")
+        channel_data = self._get_channel_data(channel_id)
+        if not channel_data:
+            raise Exception("Channel not found")
+        
+        if channel_data.get("owner_id") != self.current_user_id:
+            raise Exception("User is not the owner of this channel and cannot delete videos")
 
         if video_id in self.videos:
             del self.videos[video_id]
+            
             # Remove from channel's video list
-            if video_id in self.channels[channel_id].get("videos", []):
-                self.channels[channel_id]["videos"].remove(video_id)
-                self.channels[channel_id]["video_count"] = max(0, self.channels[channel_id].get("video_count", 0) - 1)
+            if video_id in channel_data.get("videos", []):
+                channel_data["videos"].remove(video_id)
+                channel_data["video_count"] = max(0, channel_data.get("video_count", 0) - 1)
             
             # Remove from any user's watch history or liked videos
             for u_data in self.users.values():
@@ -551,385 +797,580 @@ class YouTubeApis:
                     p_data["video_ids"].remove(video_id)
                     p_data["item_count"] = max(0, p_data.get("item_count", 0) - 1)
             
-            # Comments are now stored directly in videos, so they get deleted with the video
+            print(f"Video deleted: ID={video_id}")
 
-            return {"status": True, "message": "Video deleted successfully"}
-        return {"status": False, "message": "Video not found or internal error"}
-
-    def youtube_videos_rate(self, video_id: str, rating: str, user_id: str) -> Dict[str, Any]:
+    def rate_video(self, video_id: str, rating: str) -> None:
         """
-        Rates a video (like or dislike).
+        Rate a video (like or none).
 
-        Parameters:
-            video_id (str): The ID (UUID) of the video to rate.
-            rating (str): The rating to apply ("like" or "dislike").
-            user_id (str): The ID (UUID) of the user rating the video.
+        Args:
+            video_id (str): The ID of the video to rate
+            rating (str): The rating to apply ("like" or "none")
 
-        Returns:
-            Dict[str, Any]: A dictionary indicating the success or failure of the rating.
+        Raises:
+            Exception: If not authenticated, video not found, or invalid rating
         """
+        self._ensure_authenticated()
+        
         video_data = self._get_video_data(video_id)
-        user_data = self._get_user_data(user_id)
+        user_data = self._get_user_data(self.current_user_id)
 
         if not video_data:
-            return {"message": "Video not found.", "status": False}
+            raise Exception("Video not found")
         if not user_data:
-            return {"message": "User not found.", "status": False}
+            raise Exception("User data not found")
 
         liked_by_list = video_data.get("liked_by", [])
         
         if rating == "like":
-            if user_id not in liked_by_list:
+            if self.current_user_id not in liked_by_list:
                 video_data["likes"] = video_data.get("likes", 0) + 1
-                liked_by_list.append(user_id)
+                liked_by_list.append(self.current_user_id)
                 if video_id not in user_data.get("liked_videos", []):
                     user_data["liked_videos"].append(video_id)
-            return {"status": True, "message": f"Video {video_id} liked by {user_id}."}
-        elif rating == "dislike":
-            if user_id in liked_by_list:
+                print(f"Video {video_id} liked by user {self.current_user_id}")
+        elif rating == "none":
+            # Remove like
+            if self.current_user_id in liked_by_list:
                 video_data["likes"] = max(0, video_data.get("likes", 0) - 1)
-                liked_by_list.remove(user_id)
-            video_data["dislikes"] = video_data.get("dislikes", 0) + 1
-            if video_id in user_data.get("liked_videos", []):
-                user_data["liked_videos"].remove(video_id) # Remove from liked if disliked
-            return {"status": True, "message": f"Video {video_id} disliked by {user_id}."}
+                liked_by_list.remove(self.current_user_id)
+                if video_id in user_data.get("liked_videos", []):
+                    user_data["liked_videos"].remove(video_id)
+                print(f"Like removed from video {video_id}")
         else:
-            return {"message": "Invalid rating. Must be 'like' or 'dislike'.", "status": False}
+            raise Exception("Invalid rating. Must be 'like' or 'none'")
 
-    def like_video(self, video_id: str, user_id: str) -> Dict[str, bool]:
+    def search_videos(self, query: str, maxResults: int = 10, pageToken: Optional[str] = None) -> Dict[str, Any]:
         """
-        Mark a video as liked by the user. This is a simplified wrapper around youtube_videos_rate.
-        """
-        result = self.youtube_videos_rate(video_id, "like", user_id)
-        return result
-
-    def unlike_video(self, video_id: str, user_id: str) -> Dict[str, bool]:
-        """
-        Mark a video as unliked by the user (effectively a dislike in this dummy, or just removal of like).
-        """
-        # For simplicity, if unliking means removing the like without adding a dislike, adjust logic.
-        # Current youtube_videos_rate("dislike") increments dislike.
-        # Let's adjust this to specifically "unlike" without necessarily "disliking" for this wrapper.
-        video_data = self._get_video_data(video_id)
-        user_data = self._get_user_data(user_id)
-        if not video_data or not user_data:
-            return {"status": False, "message": "Video or user not found."}
-        
-        liked_by_list = video_data.get("liked_by", [])
-        if user_id in liked_by_list:
-            video_data["likes"] = max(0, video_data.get("likes", 0) - 1)
-            liked_by_list.remove(user_id)
-            if video_id in user_data.get("liked_videos", []):
-                user_data["liked_videos"].remove(video_id)
-            return {"status": True, "message": "Video unliked successfully."}
-        return {"status": False, "message": "Video not previously liked by this user."}
-
-    def search_videos(self, query: str, max_results: int = 10) -> Dict[str, Any]:
-        """
-        Search for videos based on a query string in titles or descriptions.
+        Search for videos based on a query string.
+        Public endpoint - no authentication required.
 
         Args:
-            query (str): The search query.
-            max_results (int): The maximum number of results to return.
+            query (str): The search query
+            maxResults (int): Maximum number of results to return (default 10)
+            pageToken (str): Token for pagination
 
         Returns:
-            Dict: A dictionary containing a list of matching video data.
+            Dict: YouTube searchListResponse structure
+
+        Raises:
+            Exception: If query is empty
         """
+        if not query or not query.strip():
+            raise Exception("Query parameter is required")
+        
         query_lower = query.lower()
         matching_videos = []
+        
         for video_uuid, video_data in self.videos.items():
             if query_lower in video_data.get("title", "").lower() or \
                query_lower in video_data.get("description", "").lower() or \
                any(query_lower in tag.lower() for tag in video_data.get("tags", [])):
-                matching_videos.append(copy.deepcopy(video_data))
+                matching_videos.append((video_uuid, video_data))
         
-        # Sort by views (most popular first) for a more realistic search result
-        matching_videos.sort(key=lambda x: x.get("views", 0), reverse=True)
-        return {"data": matching_videos[:max_results]}
+        # Sort by views (most popular first)
+        matching_videos.sort(key=lambda x: x[1].get("views", 0), reverse=True)
+        
+        # Pagination
+        offset = 0
+        if pageToken:
+            try:
+                offset = int(pageToken.split("_")[1])
+            except:
+                offset = 0
+        
+        total_results = len(matching_videos)
+        paginated_videos = matching_videos[offset:offset + maxResults]
+        
+        items = []
+        for video_id, video_data in paginated_videos:
+            items.append({
+                "kind": "youtube#searchResult",
+                "etag": f"etag_{video_id}",
+                "id": {
+                    "kind": "youtube#video",
+                    "videoId": video_id
+                },
+                "snippet": {
+                    "publishedAt": video_data.get("published_at", datetime.now(timezone.utc).isoformat()),
+                    "channelId": video_data.get("channel_id"),
+                    "title": video_data.get("title"),
+                    "description": video_data.get("description"),
+                    "channelTitle": self._get_channel_data(video_data.get("channel_id", "")).get("title", "") if video_data.get("channel_id") else ""
+                }
+            })
+        
+        response = {
+            "kind": "youtube#searchListResponse",
+            "etag": f"etag_search_{hash(query)}",
+            "pageInfo": {
+                "totalResults": total_results,
+                "resultsPerPage": maxResults
+            },
+            "items": items
+        }
+        
+        if offset + maxResults < total_results:
+            response["nextPageToken"] = f"offset_{offset + maxResults}"
+        
+        return response
 
-    def list_playlists_in_channel(self, channel_id: str) -> Dict[str, Any]:
+    def list_playlists_in_channel(self, channel_id: str, maxResults: int = 25, pageToken: Optional[str] = None) -> Dict[str, Any]:
         """
-        List all playlists belonging to a specific channel.
+        List all playlists in a channel.
+        Public endpoint - no authentication required.
 
         Args:
-            channel_id (str): The ID (UUID) of the channel whose playlists are to be listed.
+            channel_id (str): The channel ID
+            maxResults (int): Maximum results per page
+            pageToken (str): Pagination token
 
         Returns:
-            Dict: A dictionary containing a list of playlists.
+            Dict: YouTube playlistListResponse structure
+
+        Raises:
+            Exception: If channel not found
         """
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "message": "Channel not found"}
+            raise Exception("Channel not found")
         
-        channel_playlists = []
-        for playlist_uuid in channel_data.get("playlists", []):
-            playlist_details = self._get_playlist_data(playlist_uuid)
-            if playlist_details:
-                channel_playlists.append(copy.deepcopy(playlist_details))
-        return {"data": channel_playlists}
+        playlist_ids = channel_data.get("playlists", [])
+        
+        # Pagination
+        offset = 0
+        if pageToken:
+            try:
+                offset = int(pageToken.split("_")[1])
+            except:
+                offset = 0
+        
+        total_results = len(playlist_ids)
+        paginated_ids = playlist_ids[offset:offset + maxResults]
+        
+        items = []
+        for playlist_id in paginated_ids:
+            playlist_data = self._get_playlist_data(playlist_id)
+            if playlist_data:
+                items.append({
+                    "kind": "youtube#playlist",
+                    "etag": f"etag_{playlist_id}",
+                    "id": playlist_id,
+                    "snippet": {
+                        "publishedAt": playlist_data.get("created_at", datetime.now(timezone.utc).isoformat()),
+                        "channelId": channel_id,
+                        "title": playlist_data.get("title"),
+                        "description": playlist_data.get("description", "")
+                    },
+                    "contentDetails": {
+                        "itemCount": playlist_data.get("item_count", 0)
+                    }
+                })
+        
+        response = {
+            "kind": "youtube#playlistListResponse",
+            "etag": f"etag_playlists_{channel_id}",
+            "pageInfo": {
+                "totalResults": total_results,
+                "resultsPerPage": maxResults
+            },
+            "items": items
+        }
+        
+        if offset + maxResults < total_results:
+            response["nextPageToken"] = f"offset_{offset + maxResults}"
+        
+        return response
 
     def get_playlist_details(self, playlist_id: str) -> Dict[str, Any]:
         """
-        Get the details of a specific playlist, including its videos.
+        Get playlist details including videos.
+        Public endpoint - no authentication required.
 
         Args:
-            playlist_id (str): The ID (UUID) of the playlist to retrieve.
+            playlist_id (str): The playlist ID
 
         Returns:
-            Dict: A dictionary containing the playlist's data.
+            Dict: YouTube playlist resource with videos
+
+        Raises:
+            Exception: If playlist not found
         """
         playlist_data = self._get_playlist_data(playlist_id)
-        if playlist_data:
-            playlist_copy = copy.deepcopy(playlist_data)
-            # Replace video_ids with full video details
-            playlist_copy["videos"] = []
-            for video_uuid in playlist_data.get("video_ids", []):
-                video_details = self._get_video_data(video_uuid)
-                if video_details:
-                    playlist_copy["videos"].append(video_details)
-            return {"data": playlist_copy}
-        return {"data": None, "message": "Playlist not found"}
+        if not playlist_data:
+            raise Exception("Playlist not found")
+        
+        # Get video details
+        videos = []
+        for video_id in playlist_data.get("video_ids", []):
+            video_data = self._get_video_data(video_id)
+            if video_data:
+                videos.append({
+                    "kind": "youtube#playlistItem",
+                    "etag": f"etag_{video_id}",
+                    "id": f"{playlist_id}_{video_id}",
+                    "snippet": {
+                        "publishedAt": video_data.get("published_at", datetime.now(timezone.utc).isoformat()),
+                        "channelId": playlist_data.get("channel_id"),
+                        "title": video_data.get("title"),
+                        "description": video_data.get("description"),
+                        "resourceId": {
+                            "kind": "youtube#video",
+                            "videoId": video_id
+                        }
+                    }
+                })
+        
+        return {
+            "kind": "youtube#playlist",
+            "etag": f"etag_{playlist_id}",
+            "id": playlist_id,
+            "snippet": {
+                "publishedAt": playlist_data.get("created_at", datetime.now(timezone.utc).isoformat()),
+                "channelId": playlist_data.get("channel_id"),
+                "title": playlist_data.get("title"),
+                "description": playlist_data.get("description", "")
+            },
+            "contentDetails": {
+                "itemCount": playlist_data.get("item_count", 0)
+            },
+            "items": videos
+        }
 
-    def create_playlist(self, channel_id: str, title: str, description: str = "", privacy_status: str = "public") -> Dict[str, Any]:
+    def create_playlist(self, title: str, description: str = "", privacy_status: str = "public") -> Dict[str, Any]:
         """
-        Create a new playlist for a specified channel.
+        Create a new playlist for the authenticated user's channel.
 
         Args:
-            channel_id (str): The ID (UUID) of the channel creating the playlist.
-            title (str): The title of the new playlist.
-            description (str, optional): The description of the new playlist. Defaults to "".
-            privacy_status (str, optional): The privacy status of the playlist ("public", "unlisted", "private"). Defaults to "public".
+            title (str): Playlist title
+            description (str): Playlist description
+            privacy_status (str): "public", "unlisted", or "private"
 
         Returns:
-            Dict: A dictionary containing the newly created playlist's data.
+            Dict: YouTube playlist resource
+
+        Raises:
+            Exception: If not authenticated, channel not found, or invalid privacy status
         """
+        self._ensure_authenticated()
+        
+        user_data = self._get_user_data(self.current_user_id)
+        if not user_data:
+            raise Exception("User data not found")
+        
+        # Get user's primary channel
+        if not user_data.get("channels"):
+            raise Exception("User has no channels")
+        
+        channel_id = user_data["channels"][0]
         channel_data = self._get_channel_data(channel_id)
         if not channel_data:
-            return {"data": None, "message": "Channel not found"}
+            raise Exception("Channel not found")
         
-        owner_id = channel_data["owner_id"]
-        if not owner_id or owner_id not in self.users:
-            return {"data": None, "message": "Owner user not found for this channel."}
-
-        playlist_uuid = self._generate_unique_id()
+        if privacy_status not in ["public", "unlisted", "private"]:
+            raise Exception("Invalid privacy status. Must be 'public', 'unlisted', or 'private'")
+        
+        playlist_id = self._generate_unique_id()
+        created_at = datetime.now(timezone.utc).isoformat()
+        
         new_playlist = {
-            "id": playlist_uuid,
+            "id": playlist_id,
             "title": title,
             "description": description,
-            "owner_id": owner_id,
+            "owner_id": self.current_user_id,
             "channel_id": channel_id,
             "video_ids": [],
-            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+            "created_at": created_at,
             "privacy_status": privacy_status,
             "item_count": 0
         }
-        self.playlists[playlist_uuid] = new_playlist
-        self.channels[channel_id]["playlists"].append(playlist_uuid)
-        print(f"Playlist created: ID={playlist_uuid} in channel {channel_data['title']}")
-        return {"data": copy.deepcopy(new_playlist)}
+        
+        self.playlists[playlist_id] = new_playlist
+        self.channels[channel_id]["playlists"].append(playlist_id)
+        
+        print(f"Playlist created: ID={playlist_id} in channel {channel_data['title']}")
+        
+        return {
+            "kind": "youtube#playlist",
+            "etag": f"etag_{playlist_id}",
+            "id": playlist_id,
+            "snippet": {
+                "publishedAt": created_at,
+                "channelId": channel_id,
+                "title": title,
+                "description": description
+            },
+            "status": {
+                "privacyStatus": privacy_status
+            },
+            "contentDetails": {
+                "itemCount": 0
+            }
+        }
 
-    def add_video_to_playlist(self, playlist_id: str, video_id: str, user_id: str) -> Dict[str, bool]:
+    def add_video_to_playlist(self, playlist_id: str, video_id: str) -> Dict[str, Any]:
         """
-        Add a video to a specific playlist. Only the playlist owner can modify it.
+        Add a video to a playlist.
+        Only the playlist owner can add videos.
 
         Args:
-            playlist_id (str): The ID (UUID) of the playlist to add the video to.
-            video_id (str): The ID (UUID) of the video to add.
-            user_id (str): The ID (UUID) of the user performing the action (must be playlist owner).
+            playlist_id (str): The playlist ID
+            video_id (str): The video ID
 
         Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+            Dict: YouTube playlistItem resource
+
+        Raises:
+            Exception: If not authenticated, not owner, or video/playlist not found
         """
+        self._ensure_authenticated()
+        
         playlist_data = self._get_playlist_data(playlist_id)
         video_data = self._get_video_data(video_id)
 
         if not playlist_data:
-            return {"status": False, "message": "Playlist not found"}
+            raise Exception("Playlist not found")
         if not video_data:
-            return {"status": False, "message": "Video not found"}
+            raise Exception("Video not found")
         
-        if playlist_data.get("owner_id") != user_id:
-            return {"status": False, "message": "User is not the owner of this playlist."}
-
-        if video_id not in playlist_data.get("video_ids", []):
-            playlist_data["video_ids"].append(video_id)
-            playlist_data["item_count"] = playlist_data.get("item_count", 0) + 1
-            return {"status": True}
-        return {"status": False, "message": "Video already in playlist"}
-
-    def remove_video_from_playlist(self, playlist_id: str, video_id: str, user_id: str) -> Dict[str, bool]:
-        """
-        Remove a video from a specific playlist. Only the playlist owner can modify it.
-
-        Args:
-            playlist_id (str): The ID (UUID) of the playlist to remove the video from.
-            video_id (str): The ID (UUID) of the video to remove.
-            user_id (str): The ID (UUID) of the user performing the action (must be playlist owner).
-
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
-        """
-        playlist_data = self._get_playlist_data(playlist_id)
-        video_data = self._get_video_data(video_id) # Just to check if video exists, not strictly needed but good practice
-
-        if not playlist_data:
-            return {"status": False, "message": "Playlist not found"}
-        if not video_data: # If video doesn't exist anymore, it's implicitly not in playlist
-            pass # Continue to try removing it
-        
-        if playlist_data.get("owner_id") != user_id:
-            return {"status": False, "message": "User is not the owner of this playlist."}
+        if playlist_data.get("owner_id") != self.current_user_id:
+            raise Exception("Only the playlist owner can add videos")
 
         if video_id in playlist_data.get("video_ids", []):
-            playlist_data["video_ids"].remove(video_id)
-            playlist_data["item_count"] = max(0, playlist_data.get("item_count", 0) - 1)
-            return {"status": True}
-        return {"status": False, "message": "Video not found in playlist"}
-    
-    def youtube_playlistItems_insert(self, playlist_id: str, video_id: str, user_id: str) -> Dict[str, Any]:
-        """
-        Adds a video to a playlist. This is a wrapper for add_video_to_playlist.
-
-        Parameters:
-            playlist_id (str): The ID (UUID) of the playlist to add the video to.
-            video_id (str): The ID (UUID) of the video to add.
-            user_id (str): The ID (UUID) of the user requesting the action (must be playlist owner).
-
-        Returns:
-            Dict[str, Any]: Result of the operation.
-        """
-        return self.add_video_to_playlist(playlist_id, video_id, user_id)
-
-    def youtube_playlistItems_delete(self, playlist_item_id: str, user_id: str) -> Dict[str, Any]:
-        """
-        Deletes a playlist item. Note: Dummy API treats playlist_item_id as video_id for simplicity.
-
-        Parameters:
-            playlist_item_id (str): The ID (UUID) of the video (which acts as the playlist item ID in this dummy).
-            user_id (str): The ID (UUID) of the user requesting the action (must be playlist owner of relevant playlist).
-
-        Returns:
-            Dict[str, Any]: Result of the operation.
-        """
-        target_video_id = playlist_item_id
+            raise Exception("Video already in playlist")
         
-        for p_id, playlist_data in self.playlists.items():
-            if playlist_data.get("owner_id") == user_id and target_video_id in playlist_data.get("video_ids", []):
-                playlist_data["video_ids"].remove(target_video_id)
-                playlist_data["item_count"] = max(0, playlist_data.get("item_count", 0) - 1)
-                return {"status": True, "message": f"Video {target_video_id} removed from playlist {p_id}."}
+        playlist_data["video_ids"].append(video_id)
+        playlist_data["item_count"] = playlist_data.get("item_count", 0) + 1
         
-        return {"message": "Playlist item not found or user not authorized.", "status": False}
+        return {
+            "kind": "youtube#playlistItem",
+            "etag": f"etag_{playlist_id}_{video_id}",
+            "id": f"{playlist_id}_{video_id}",
+            "snippet": {
+                "publishedAt": datetime.now(timezone.utc).isoformat(),
+                "channelId": playlist_data.get("channel_id"),
+                "title": video_data.get("title"),
+                "description": video_data.get("description"),
+                "playlistId": playlist_id,
+                "resourceId": {
+                    "kind": "youtube#video",
+                    "videoId": video_id
+                }
+            }
+        }
 
-    def add_comment_to_video(self, video_id: str, author_id: str, text: str) -> Dict[str, Any]:
+    def remove_video_from_playlist(self, playlist_id: str, video_id: str) -> None:
         """
-        Add a new comment to a specific video.
+        Remove a video from a playlist.
+        Only the playlist owner can remove videos.
 
         Args:
-            video_id (str): The ID (UUID) of the video to comment on.
-            author_id (str): The ID (UUID) of the user posting the comment.
-            text (str): The content of the comment.
+            playlist_id (str): The playlist ID
+            video_id (str): The video ID
+
+        Raises:
+            Exception: If not authenticated, not owner, or video/playlist not found
+        """
+        self._ensure_authenticated()
+        
+        playlist_data = self._get_playlist_data(playlist_id)
+
+        if not playlist_data:
+            raise Exception("Playlist not found")
+        
+        if playlist_data.get("owner_id") != self.current_user_id:
+            raise Exception("Only the playlist owner can remove videos")
+
+        if video_id not in playlist_data.get("video_ids", []):
+            raise Exception("Video not found in playlist")
+        
+        playlist_data["video_ids"].remove(video_id)
+        playlist_data["item_count"] = max(0, playlist_data.get("item_count", 0) - 1)
+
+    def add_comment_to_video(self, video_id: str, text: str) -> Dict[str, Any]:
+        """
+        Add a comment to a video.
+
+        Args:
+            video_id (str): The video ID
+            text (str): Comment text
 
         Returns:
-            Dict: A dictionary containing the newly created comment's data.
+            Dict: YouTube comment resource
+
+        Raises:
+            Exception: If not authenticated, video not found, or comment text empty
         """
+        self._ensure_authenticated()
+        
+        if not text or not text.strip():
+            raise Exception("Comment text cannot be empty")
+        
         video_data = self._get_video_data(video_id)
-        author_data = self._get_user_data(author_id)
+        user_data = self._get_user_data(self.current_user_id)
 
         if not video_data:
-            return {"data": None, "message": "Video not found"}
-        if not author_data:
-            return {"data": None, "message": "Author user not found"}
+            raise Exception("Video not found")
+        if not user_data:
+            raise Exception("User data not found")
 
         # Ensure comments is a dictionary
         if not isinstance(self.videos[video_id]["comments"], dict):
-            # Convert old list format to dict format
             self.videos[video_id]["comments"] = {}
         
-        # Add comment directly to video's comments dictionary
-        self.videos[video_id]["comments"][author_id] = text
-        print(f"Comment added on video {video_id} by {author_data['display_name']}: {text}")
-        return {"data": {"video_id": video_id, "author_id": author_id, "text": text}}
+        # Add comment
+        comment_id = self._generate_unique_id()
+        published_at = datetime.now(timezone.utc).isoformat()
+        
+        self.videos[video_id]["comments"][self.current_user_id] = {
+            "id": comment_id,
+            "text": text,
+            "published_at": published_at
+        }
+        
+        # Increment comment count
+        self.videos[video_id]["comments_count"] = self.videos[video_id].get("comments_count", 0) + 1
+        
+        print(f"Comment added on video {video_id} by {user_data['display_name']}: {text}")
+        
+        return {
+            "kind": "youtube#comment",
+            "etag": f"etag_{comment_id}",
+            "id": comment_id,
+            "snippet": {
+                "authorDisplayName": user_data.get("display_name", "Unknown"),
+                "authorChannelId": user_data.get("channels", [""])[0] if user_data.get("channels") else "",
+                "videoId": video_id,
+                "textDisplay": text,
+                "textOriginal": text,
+                "canRate": True,
+                "likeCount": 0,
+                "publishedAt": published_at,
+                "updatedAt": published_at
+            }
+        }
 
-    def list_comments_for_video(self, video_id: str) -> Dict[str, Any]:
+    def list_comments_for_video(self, video_id: str, maxResults: int = 20, pageToken: Optional[str] = None) -> Dict[str, Any]:
         """
-        List all comments for a specific video.
+        List comments for a video.
+        Public endpoint - no authentication required.
 
         Args:
-            video_id (str): The ID (UUID) of the video whose comments are to be listed.
+            video_id (str): The video ID
+            maxResults (int): Maximum results per page
+            pageToken (str): Pagination token
 
         Returns:
-            Dict: A dictionary containing a list of comments.
+            Dict: YouTube commentThreadListResponse structure
+
+        Raises:
+            Exception: If video not found
         """
         video_data = self._get_video_data(video_id)
         if not video_data:
-            return {"data": None, "message": "Video not found"}
+            raise Exception("Video not found")
 
-        video_comments = []
         comments_data = video_data.get("comments", {})
-        if isinstance(comments_data, dict):
-            # New format: {user_id: comment_text}
-            for author_id, comment_text in comments_data.items():
-                author_info = self._get_user_data(author_id)
-                comment_data = {
-                    "author_id": author_id,
-                    "text": comment_text,
-                    "author_display_name": author_info["display_name"] if author_info else "Unknown User"
-                }
-                video_comments.append(comment_data)
-        elif isinstance(comments_data, list):
-            # Old format: [comment_uuid1, comment_uuid2, ...]
-            for comment_uuid in comments_data:
-                comment_details = self._get_comment_data(comment_uuid)
-                if comment_details:
-                    author_info = self._get_user_data(comment_details.get("author_id"))
-                    comment_copy = copy.deepcopy(comment_details)
-                    comment_copy["author_display_name"] = author_info["display_name"] if author_info else "Unknown User"
-                    video_comments.append(comment_copy)
+        comment_items = []
         
-        return {"data": video_comments}
+        if isinstance(comments_data, dict):
+            for author_id, comment_info in comments_data.items():
+                author_info = self._get_user_data(author_id)
+                
+                # Handle both old simple dict and new structured format
+                if isinstance(comment_info, dict):
+                    comment_id = comment_info.get("id", self._generate_unique_id())
+                    text = comment_info.get("text", "")
+                    published_at = comment_info.get("published_at", datetime.now(timezone.utc).isoformat())
+                else:
+                    comment_id = self._generate_unique_id()
+                    text = str(comment_info)
+                    published_at = datetime.now(timezone.utc).isoformat()
+                
+                comment_items.append({
+                    "kind": "youtube#commentThread",
+                    "etag": f"etag_{comment_id}",
+                    "id": comment_id,
+                    "snippet": {
+                        "videoId": video_id,
+                        "topLevelComment": {
+                            "kind": "youtube#comment",
+                            "etag": f"etag_{comment_id}",
+                            "id": comment_id,
+                            "snippet": {
+                                "authorDisplayName": author_info.get("display_name", "Unknown") if author_info else "Unknown",
+                                "authorChannelId": author_info.get("channels", [""])[0] if author_info and author_info.get("channels") else "",
+                                "videoId": video_id,
+                                "textDisplay": text,
+                                "textOriginal": text,
+                                "canRate": True,
+                                "likeCount": 0,
+                                "publishedAt": published_at,
+                                "updatedAt": published_at
+                            }
+                        },
+                        "canReply": True,
+                        "totalReplyCount": 0,
+                        "isPublic": True
+                    }
+                })
+        
+        # Pagination
+        offset = 0
+        if pageToken:
+            try:
+                offset = int(pageToken.split("_")[1])
+            except:
+                offset = 0
+        
+        total_results = len(comment_items)
+        paginated_comments = comment_items[offset:offset + maxResults]
+        
+        response = {
+            "kind": "youtube#commentThreadListResponse",
+            "etag": f"etag_comments_{video_id}",
+            "pageInfo": {
+                "totalResults": total_results,
+                "resultsPerPage": maxResults
+            },
+            "items": paginated_comments
+        }
+        
+        if offset + maxResults < total_results:
+            response["nextPageToken"] = f"offset_{offset + maxResults}"
+        
+        return response
 
-    def delete_comment(self, video_id: str, user_id: str) -> Dict[str, bool]:
+    def delete_comment(self, comment_id: str) -> None:
         """
-        Delete a comment from a video. Only the author of the comment can delete it.
+        Delete a comment.
+        Only the comment author can delete it.
 
         Args:
-            video_id (str): The ID (UUID) of the video containing the comment.
-            user_id (str): The ID (UUID) of the user who authored the comment.
+            comment_id (str): The comment ID
 
-        Returns:
-            Dict[str, bool]: A dictionary with a "success" key indicating the operation's outcome.
+        Raises:
+            Exception: If not authenticated, comment not found, or not the author
         """
-        video_data = self._get_video_data(video_id)
-        if not video_data:
-            return {"status": False, "message": "Video not found"}
+        self._ensure_authenticated()
         
-        comments = video_data.get("comments", {})
+        # Find comment across all videos
+        comment_found = False
+        for video_id, video_data in self.videos.items():
+            comments = video_data.get("comments", {})
+            if isinstance(comments, dict):
+                # Check if current user has a comment
+                if self.current_user_id in comments:
+                    comment_info = comments[self.current_user_id]
+                    # Check if this is the comment to delete
+                    if isinstance(comment_info, dict) and comment_info.get("id") == comment_id:
+                        del comments[self.current_user_id]
+                        self.videos[video_id]["comments_count"] = max(0, self.videos[video_id].get("comments_count", 1) - 1)
+                        comment_found = True
+                        break
         
-        # Handle both dict and list formats
-        if isinstance(comments, dict):
-            if user_id not in comments:
-                return {"status": False, "message": "Comment not found"}
-            del comments[user_id]
-        elif isinstance(comments, list):
-            # For old format, we can't easily delete by user_id since we don't know which UUID belongs to which user
-            return {"status": False, "message": "Cannot delete comments from old format videos"}
-        
-        return {"status": True, "message": "Comment deleted successfully"}
-
-    def youtube_comments_insert(self, video_id: str, text: str, author_id: str) -> Dict[str, Any]:
-        """
-        Adds a comment to a video. This is a wrapper for add_comment_to_video.
-
-        Parameters:
-            video_id (str): The ID (UUID) of the video to comment on.
-            text (str): The content of the comment.
-            author_id (str): The ID (UUID) of the user posting the comment.
-
-        Returns:
-            Dict[str, Any]: Result of the operation.
-        """
-        return self.add_comment_to_video(video_id, author_id, text)
+        if not comment_found:
+            raise Exception("Comment not found or you are not the author")
 
     def youtube_captions_insert(self, video_id: str, language: str, track_content: str) -> Dict[str, Any]:
         """
@@ -1331,14 +1772,12 @@ class YouTubeApis:
         
         return {"data": matching_users, "count": len(matching_users)}
 
-    def reset_data(self) -> Dict[str, bool]:
+    def reset_data(self) -> None:
         """
-        Resets all simulated data in the dummy backend to its default state.
-        This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
+        Reset all data to default state.
+        Clears authentication and reloads default scenario.
         """
+        self.access_token = None
+        self.current_user_id = None
         self._load_scenario(DEFAULT_STATE)
-        print("YouTubeApis: All dummy data reset to default state.")
-        return {"reset_status": True}
+        print("YouTubeApis: All data reset to default state.")
