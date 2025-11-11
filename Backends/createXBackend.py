@@ -4,7 +4,9 @@ import copy
 import uuid
 import random
 from typing import Dict, Any
-from .fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names
+from .fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names, x_conversations
+
+print("Running createXBackend with x_conversations support")
 
 _initial_user_id_map = {}
 _initial_post_id_map = {}
@@ -341,7 +343,7 @@ RAW_DEFAULT_STATE = {
             "messages": [
                 {
                     "sender_id": "usr_alice_smith",
-                    "text": "Hey John, did you see the latest tech news?",
+                    "text": "yo u free friday?",
                     "timestamp": (
                         datetime.datetime.now(datetime.timezone.utc)
                         - datetime.timedelta(days=2)
@@ -350,7 +352,7 @@ RAW_DEFAULT_STATE = {
                 },
                 {
                     "sender_id": "usr_john_doe",
-                    "text": "Not yet, Alice! Anything exciting happening?",
+                    "text": "I think so! What's up?",
                     "timestamp": (
                         datetime.datetime.now(datetime.timezone.utc)
                         - datetime.timedelta(days=2, minutes=5)
@@ -359,10 +361,37 @@ RAW_DEFAULT_STATE = {
                 },
                 {
                     "sender_id": "usr_alice_smith",
-                    "text": "Just read about a breakthrough in AI ethics!",
+                    "text": "wanna grab dinner at that new taco place downtown? 🌮",
                     "timestamp": (
                         datetime.datetime.now(datetime.timezone.utc)
-                        - datetime.timedelta(days=1)
+                        - datetime.timedelta(days=2, minutes=10)
+                    ).isoformat(timespec="milliseconds")
+                    + "Z",
+                },
+                {
+                    "sender_id": "usr_john_doe",
+                    "text": "omg YES i've been wanting to try it. what time?",
+                    "timestamp": (
+                        datetime.datetime.now(datetime.timezone.utc)
+                        - datetime.timedelta(days=2, minutes=15)
+                    ).isoformat(timespec="milliseconds")
+                    + "Z",
+                },
+                {
+                    "sender_id": "usr_alice_smith",
+                    "text": "like 7?",
+                    "timestamp": (
+                        datetime.datetime.now(datetime.timezone.utc)
+                        - datetime.timedelta(days=2, minutes=20)
+                    ).isoformat(timespec="milliseconds")
+                    + "Z",
+                },
+                {
+                    "sender_id": "usr_john_doe",
+                    "text": "perfect see u then!",
+                    "timestamp": (
+                        datetime.datetime.now(datetime.timezone.utc)
+                        - datetime.timedelta(days=2, minutes=25)
                     ).isoformat(timespec="milliseconds")
                     + "Z",
                 },
@@ -528,7 +557,7 @@ for i in range(num_posts_to_add):
         )
 
 
-num_dm_convs_to_add = 30
+num_dm_convs_to_add = min(30, len(x_conversations))
 
 for i in range(num_dm_convs_to_add):
 
@@ -540,19 +569,47 @@ for i in range(num_dm_convs_to_add):
 
     dm_conv_uuid = str(uuid.uuid4())
 
-    num_messages = random.randint(2, 15)
-    messages = []
-    for m_idx in range(num_messages):
-        sender_id = random.choice([p1_id, p2_id])
-        timestamp = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30)
-        messages.append(
-            {
-                "id": str(uuid.uuid4()),
-                "sender_id": sender_id,
-                "text": random.choice(dm_messages),
-                "timestamp": timestamp,
-            }
-        )
+    # Use a structured conversation from x_conversations
+    conv_key = f"conversation_{i+1}"
+    if conv_key in x_conversations:
+        conversation = x_conversations[conv_key]
+        messages = []
+        base_timestamp = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30)
+        
+        for msg_idx, (user_label, text) in enumerate(conversation):
+            # Map user_1 and user_2 to actual participant IDs
+            if user_label == "user_1":
+                sender_id = p1_id
+            else:
+                sender_id = p2_id
+            
+            # Add some time progression between messages
+            time_offset = datetime.timedelta(minutes=msg_idx * random.randint(5, 30))
+            msg_timestamp = (datetime.datetime.fromisoformat(base_timestamp.replace('Z', '+00:00')) + time_offset).isoformat(timespec="milliseconds") + "Z"
+            
+            messages.append(
+                {
+                    "id": str(uuid.uuid4()),
+                    "sender_id": sender_id,
+                    "text": text,
+                    "timestamp": msg_timestamp,
+                }
+            )
+    else:
+        # Fallback to random messages if conversation not found
+        num_messages = random.randint(2, 15)
+        messages = []
+        for m_idx in range(num_messages):
+            sender_id = random.choice([p1_id, p2_id])
+            timestamp = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30)
+            messages.append(
+                {
+                    "id": str(uuid.uuid4()),
+                    "sender_id": sender_id,
+                    "text": random.choice(dm_messages),
+                    "timestamp": timestamp,
+                }
+            )
 
     messages.sort(key=lambda x: x["timestamp"])
 

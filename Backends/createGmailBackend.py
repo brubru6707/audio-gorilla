@@ -4,9 +4,9 @@ import copy
 import uuid
 import random
 import json
+import base64
 from typing import Dict, Any, List, Tuple
 
-# Assuming fake_data.py contains these lists
 from .fake_data import first_names, last_names, email_bodies, email_subjects, email_snippets, domains, timezones, first_and_last_names, user_count
 
 # Set a fixed start time for consistent "now" across the script
@@ -16,6 +16,14 @@ DEFAULT_STATE: Dict[str, Any] = {
     "users": {},
 }
 _user_email_to_uuid_map: Dict[str, str] = {}
+
+def generate_gmail_id() -> str:
+    """Generates a Gmail-style hex ID (16 characters)."""
+    return ''.join(random.choices('0123456789abcdef', k=16))
+
+def generate_history_id() -> str:
+    """Generates a history ID (large integer string)."""
+    return str(random.randint(10**12, 10**13 - 1))
 
 def generate_random_past_timestamp(max_days_ago=365) -> str:
     """Generates a random timestamp string in milliseconds from the past."""
@@ -39,25 +47,72 @@ def _create_user_data(email: str, first_name: str, last_name: str, recipients_em
 
     processed_gmail_data = copy.deepcopy(gmail_data)
 
-    # --- Process Messages: Assign final UUIDs ---
+    # --- Process Messages: Assign final Gmail-style hex IDs ---
     new_messages = {}
     for _, msg_data in processed_gmail_data.get("messages", {}).items():
-        new_msg_id = str(uuid.uuid4())
+        new_msg_id = generate_gmail_id()
         msg_data["id"] = new_msg_id
+        
+        # Add missing realistic fields
+        msg_data["historyId"] = generate_history_id()
+        
+        # Calculate size estimate
+        body_data = msg_data.get("payload", {}).get("body", {}).get("data", "")
+        headers = msg_data.get("payload", {}).get("headers", [])
+        body_size = len(body_data)
+        headers_size = sum(len(h.get("name", "") + h.get("value", "")) for h in headers)
+        msg_data["sizeEstimate"] = body_size + headers_size + 100
+        
+        # Ensure payload has mimeType
+        if "payload" in msg_data:
+            msg_data["payload"]["mimeType"] = msg_data["payload"].get("mimeType", "text/plain")
+            
+            # Add Message-ID and Date headers if missing
+            header_names = {h["name"] for h in headers}
+            if "Message-ID" not in header_names:
+                msg_data["payload"]["headers"].append({
+                    "name": "Message-ID",
+                    "value": f"<{new_msg_id}@mail.gmail.com>"
+                })
+            if "Date" not in header_names:
+                msg_timestamp = int(msg_data.get("internalDate", "0"))
+                date_str = datetime.datetime.fromtimestamp(msg_timestamp / 1000).strftime("%a, %d %b %Y %H:%M:%S %z")
+                msg_data["payload"]["headers"].append({
+                    "name": "Date",
+                    "value": date_str
+                })
+            
+            # Encode body data in base64url if not already
+            if "body" in msg_data["payload"] and "data" in msg_data["payload"]["body"]:
+                body_text = msg_data["payload"]["body"]["data"]
+                if body_text and not all(c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_=' for c in body_text):
+                    msg_data["payload"]["body"]["data"] = base64.urlsafe_b64encode(body_text.encode('utf-8')).decode('utf-8')
+                msg_data["payload"]["body"]["size"] = len(msg_data["payload"]["body"]["data"])
+        
         # internalDate is already a string from generate_random_past_timestamp
         new_messages[new_msg_id] = msg_data
     processed_gmail_data["messages"] = new_messages
 
-    # --- Process Threads: Group messages by their existing threadId ---
+    # --- Process Threads: Group messages by their existing threadId, use hex IDs ---
     final_threads = {}
+    thread_id_mapping = {}  # Map old thread IDs to new hex IDs
+    
     for msg_id, msg_data in processed_gmail_data["messages"].items():
-        thread_id = msg_data["threadId"]
+        old_thread_id = msg_data["threadId"]
+        
+        # Create new hex thread ID if we haven't seen this thread before
+        if old_thread_id not in thread_id_mapping:
+            thread_id_mapping[old_thread_id] = generate_gmail_id()
+        
+        thread_id = thread_id_mapping[old_thread_id]
+        msg_data["threadId"] = thread_id  # Update message with new thread ID
+        
         if thread_id not in final_threads:
             final_threads[thread_id] = {
                 "id": thread_id,
                 "messages": [],
                 "snippet": "", # We'll set this to the latest message's snippet
-                "historyId": str(random.randint(10**12, 10**13 - 1)),
+                "historyId": generate_history_id(),
                 "_latest_timestamp": 0
             }
         final_threads[thread_id]["messages"].append({"id": msg_id})
@@ -74,18 +129,33 @@ def _create_user_data(email: str, first_name: str, last_name: str, recipients_em
 
     processed_gmail_data["threads"] = final_threads
     
-    # --- Process Drafts and Labels ---
-    processed_gmail_data["drafts"] = {str(uuid.uuid4()): d for d in processed_gmail_data.get("drafts", {}).values()}
-    processed_gmail_data["labels"] = {str(uuid.uuid4()): l for l in processed_gmail_data.get("labels", {}).values()}
+    # --- Process Drafts and Labels with hex IDs ---
+    new_drafts = {}
+    for draft_data in processed_gmail_data.get("drafts", {}).values():
+        draft_id = generate_gmail_id()
+        draft_data["id"] = draft_id
+        new_drafts[draft_id] = draft_data
+    processed_gmail_data["drafts"] = new_drafts
+    
+    new_labels = {}
+    for label_data in processed_gmail_data.get("labels", {}).values():
+        label_id = generate_gmail_id()
+        label_data["id"] = label_id
+        new_labels[label_id] = label_data
+    processed_gmail_data["labels"] = new_labels
     
     # Ensure default system labels exist
     default_system_labels = ["INBOX", "STARRED", "SPAM", "TRASH", "DRAFT", "SENT", "IMPORTANT", "UNREAD"]
     existing_label_names = {lbl["name"] for lbl in processed_gmail_data["labels"].values()}
     for label_name in default_system_labels:
         if label_name not in existing_label_names:
-            label_id = str(uuid.uuid4())
+            label_id = generate_gmail_id()
             processed_gmail_data["labels"][label_id] = {
-                "id": label_id, "name": label_name, "type": "system"
+                "id": label_id, 
+                "name": label_name, 
+                "type": "system",
+                "messageListVisibility": "show",
+                "labelListVisibility": "labelShow"
             }
 
     # --- Final User Object ---

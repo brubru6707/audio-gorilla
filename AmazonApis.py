@@ -1,3 +1,4 @@
+# Inspired by https://appworld.dev/
 import uuid
 from typing import Dict, List, Union, Literal, Any
 from datetime import datetime, timedelta

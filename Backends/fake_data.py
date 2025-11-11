@@ -18767,7 +18767,6 @@ product_reviews_based_on_categories = {
     ]
 }
 
-# Tesla Supercharger locations data
 tesla_superchargers = [
     # California
     {"name": "Tesla Supercharger - Los Angeles Convention Center", "latitude": 34.0407, "longitude": -118.2468, "address": "1201 S Figueroa St, Los Angeles, CA 90015", "total_stalls": 24},

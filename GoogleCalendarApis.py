@@ -1,4 +1,5 @@
 # Inspired by https://developers.google.com/workspace/calendar/api/guides/overview
+
 import copy
 import uuid
 from typing import Dict, Union, Any, Optional, List

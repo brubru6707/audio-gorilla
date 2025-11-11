@@ -1,4 +1,5 @@
 # Inspired by https://developers.google.com/workspace/gmail/api/guides
+
 import datetime
 import copy
 import uuid
@@ -31,12 +32,83 @@ class GmailApis:
 
     def _generate_id(self) -> str:
         """
-        Generate a unique ID.
+        Generate a unique ID in Gmail format (hex string).
 
         Returns:
-            str: Generated UUID.
+            str: Generated hex ID (16 characters).
         """
-        return str(uuid.uuid4())
+        import random
+        return ''.join(random.choices('0123456789abcdef', k=16))
+    
+    def _generate_history_id(self) -> str:
+        """
+        Generate a history ID (sequential-looking number).
+
+        Returns:
+            str: Generated history ID.
+        """
+        return str(int(datetime.datetime.now().timestamp() * 1000))
+
+    def _parse_gmail_query(self, query: str, message: Dict[str, Any]) -> bool:
+        """
+        Parse Gmail search query operators and match against message.
+        Supports: from:, to:, subject:, after:, before:, has:attachment, is:unread, etc.
+
+        Args:
+            query (str): Gmail search query string.
+            message (Dict[str, Any]): Message to match against.
+
+        Returns:
+            bool: True if message matches query, False otherwise.
+        """
+        if not query:
+            return True
+        
+        query_lower = query.lower()
+        
+        # Extract headers for searching
+        headers = {h["name"].lower(): h["value"].lower() for h in message.get("payload", {}).get("headers", [])}
+        snippet = message.get("snippet", "").lower()
+        label_ids = [lid.lower() for lid in message.get("labelIds", [])]
+        
+        # Simple keyword search (no operators)
+        if ':' not in query_lower and not query_lower.startswith('-'):
+            return query_lower in snippet or query_lower in headers.get("subject", "")
+        
+        # Parse operators
+        tokens = query_lower.split()
+        for token in tokens:
+            if ':' in token:
+                operator, value = token.split(':', 1)
+                value = value.strip('"')
+                
+                if operator == 'from':
+                    if value not in headers.get("from", ""):
+                        return False
+                elif operator == 'to':
+                    if value not in headers.get("to", ""):
+                        return False
+                elif operator == 'subject':
+                    if value not in headers.get("subject", ""):
+                        return False
+                elif operator == 'has' and value == 'attachment':
+                    # Check if message has attachment (simplified)
+                    if not message.get("payload", {}).get("parts"):
+                        return False
+                elif operator == 'is':
+                    if value == 'unread' and 'unread' not in label_ids:
+                        return False
+                    elif value == 'read' and 'unread' in label_ids:
+                        return False
+                    elif value == 'starred' and 'starred' not in label_ids:
+                        return False
+            elif token.startswith('-'):
+                # Negation operator
+                neg_term = token[1:]
+                if neg_term in snippet:
+                    return False
+        
+        return True
 
     def _decode_raw_message(self, raw_content: str) -> Dict[str, str]:
         """
@@ -244,10 +316,10 @@ class GmailApis:
         for msg_id, msg_data in messages.items():
             match = True
             
-            # Filter by query
-            if q and q.lower() not in msg_data.get("snippet", "").lower() and \
-               q.lower() not in msg_data.get("payload", {}).get("headers", [{"value":""}])[0].get("value", "").lower():
-                match = False
+            # Filter by query using Gmail query parser
+            if q:
+                if not self._parse_gmail_query(q, msg_data):
+                    match = False
                 
             # Filter by label IDs
             if label_ids:
@@ -264,9 +336,7 @@ class GmailApis:
             if match:
                 filtered_messages.append({
                     "id": msg_data["id"],
-                    "threadId": msg_data["threadId"],
-                    "snippet": msg_data["snippet"],
-                    "labelIds": msg_data["labelIds"]
+                    "threadId": msg_data["threadId"]
                 })
 
         start_index = 0
@@ -304,9 +374,33 @@ class GmailApis:
         message = messages.get(id)
         if message:
             if format == "minimal":
-                return {"id": message["id"], "threadId": message["threadId"], "snippet": message["snippet"]}
+                return {
+                    "id": message["id"], 
+                    "threadId": message["threadId"]
+                }
+            elif format == "metadata":
+                return {
+                    "id": message["id"],
+                    "threadId": message["threadId"],
+                    "labelIds": message.get("labelIds", []),
+                    "snippet": message.get("snippet", ""),
+                    "historyId": message.get("historyId", ""),
+                    "internalDate": message.get("internalDate", ""),
+                    "payload": {
+                        "mimeType": message.get("payload", {}).get("mimeType", "text/plain"),
+                        "headers": message.get("payload", {}).get("headers", [])
+                    },
+                    "sizeEstimate": message.get("sizeEstimate", 0)
+                }
             elif format == "raw":
-                return {"id": message["id"], "raw": "dummy_raw_content_for_" + message["id"]}
+                return {
+                    "id": message["id"],
+                    "threadId": message["threadId"],
+                    "historyId": message.get("historyId", ""),
+                    "internalDate": message.get("internalDate", ""),
+                    "raw": "dummy_raw_content_for_" + message["id"]
+                }
+            # Full format
             return copy.deepcopy(message)
         return None
 
@@ -352,35 +446,52 @@ class GmailApis:
         new_msg_id = self._generate_id()
         if not thread_id:
             thread_id = self._generate_id()
+        
+        history_id = self._generate_history_id()
+        internal_date = str(int(datetime.datetime.now().timestamp() * 1000))
+        
+        # Calculate size estimate (rough approximation)
+        body_size = len(body)
+        headers_size = len(to) + len(subject) + len(user_email or "") + 100
+        size_estimate = body_size + headers_size
 
         new_message = {
             "id": new_msg_id,
             "threadId": thread_id,
-            "snippet": body[:100] + "..." if len(body) > 100 else body,
+            "snippet": body[:100] if len(body) > 100 else body,
+            "historyId": history_id,
+            "internalDate": internal_date,
+            "sizeEstimate": size_estimate,
             "payload": {
+                "mimeType": "text/plain",
                 "headers": [
                     {"name": "To", "value": to},
                     {"name": "From", "value": user_email},
-                    {"name": "Subject", "value": subject}
+                    {"name": "Subject", "value": subject},
+                    {"name": "Date", "value": datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S %z")},
+                    {"name": "Message-ID", "value": f"<{new_msg_id}@mail.gmail.com>"}
                 ],
-                "body": {"data": body}
+                "body": {
+                    "size": body_size,
+                    "data": base64.urlsafe_b64encode(body.encode('utf-8')).decode('utf-8') if body else ""
+                }
             },
-            "internalDate": str(int(datetime.datetime.now().timestamp() * 1000)),
             "labelIds": ["SENT", "INBOX"]
         }
         gmail_data["messages"][new_msg_id] = new_message
         
-        # Create or update thread with snippet
+        # Create or update thread with snippet and historyId
         if thread_id not in gmail_data["threads"]:
             gmail_data["threads"][thread_id] = {
                 "id": thread_id, 
                 "messages": [],
                 "snippet": new_message["snippet"],
-                "historyId": str(int(datetime.datetime.now().timestamp() * 1000))
+                "historyId": history_id
             }
         else:
-            # Update thread snippet with latest message
+            # Update thread snippet and historyId with latest message
             gmail_data["threads"][thread_id]["snippet"] = new_message["snippet"]
+            gmail_data["threads"][thread_id]["historyId"] = history_id
             
         gmail_data["threads"][thread_id]["messages"].append({"id": new_msg_id})
         gmail_data["profile"]["messagesTotal"] = gmail_data["profile"].get("messagesTotal", 0) + 1
@@ -394,17 +505,18 @@ class GmailApis:
                 recipient_message["labelIds"] = ["INBOX", "UNREAD"]
                 recipient_gmail_data["messages"][new_msg_id] = recipient_message
                 
-                # Create or update thread for recipient with snippet
+                # Create or update thread for recipient with snippet and historyId
                 if thread_id not in recipient_gmail_data["threads"]:
                     recipient_gmail_data["threads"][thread_id] = {
                         "id": thread_id, 
                         "messages": [],
                         "snippet": new_message["snippet"],
-                        "historyId": str(int(datetime.datetime.now().timestamp() * 1000))
+                        "historyId": history_id
                     }
                 else:
-                    # Update thread snippet with latest message
+                    # Update thread snippet and historyId with latest message
                     recipient_gmail_data["threads"][thread_id]["snippet"] = new_message["snippet"]
+                    recipient_gmail_data["threads"][thread_id]["historyId"] = history_id
                     
                 recipient_gmail_data["threads"][thread_id]["messages"].append({"id": new_msg_id})
                 recipient_gmail_data["profile"]["messagesTotal"] = recipient_gmail_data["profile"].get("messagesTotal", 0) + 1
@@ -859,6 +971,83 @@ class GmailApis:
         
         print(f"Dummy thread modified: ID={thread_id} for user {user_id}. Labels applied to contained messages.")
         return self.get_thread(user_id, thread_id, format="full")
+
+    def batch_delete_messages(self, user_id: str, ids: List[str]) -> Dict[str, Union[bool, str, int]]:
+        """
+        Delete multiple messages in a single batch operation.
+        Args:
+            user_id (str): The internal user ID (UUID).
+            ids (List[str]): List of message IDs to delete.
+        Returns:
+            Dict[str, Union[bool, str, int]]: Dictionary with success status and count of deleted messages.
+        """
+        deleted_count = 0
+        for msg_id in ids:
+            result = self.delete_message(user_id, msg_id)
+            if result.get("success"):
+                deleted_count += 1
+        
+        print(f"Batch delete: {deleted_count}/{len(ids)} messages deleted for user {user_id}")
+        return {
+            "success": True,
+            "message": f"Deleted {deleted_count} out of {len(ids)} messages.",
+            "deleted_count": deleted_count
+        }
+
+    def batch_modify_messages(
+        self, user_id: str, ids: List[str], modify_request: Dict[str, List[str]]
+    ) -> Dict[str, Union[bool, str, int]]:
+        """
+        Modify multiple messages in a single batch operation.
+        Args:
+            user_id (str): The internal user ID (UUID).
+            ids (List[str]): List of message IDs to modify.
+            modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
+        Returns:
+            Dict[str, Union[bool, str, int]]: Dictionary with success status and count of modified messages.
+        """
+        modified_count = 0
+        for msg_id in ids:
+            result = self.modify_message(user_id, msg_id, modify_request)
+            if result is not None:
+                modified_count += 1
+        
+        print(f"Batch modify: {modified_count}/{len(ids)} messages modified for user {user_id}")
+        return {
+            "success": True,
+            "message": f"Modified {modified_count} out of {len(ids)} messages.",
+            "modified_count": modified_count
+        }
+
+    def get_attachment(self, user_id: str, message_id: str, attachment_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get a message attachment.
+        Args:
+            user_id (str): The internal user ID (UUID).
+            message_id (str): The message ID containing the attachment.
+            attachment_id (str): The attachment ID.
+        Returns:
+            Optional[Dict[str, Any]]: Attachment data if found, None otherwise.
+        """
+        messages = self._get_user_messages_data(user_id)
+        if messages is None:
+            return None
+        
+        message = messages.get(message_id)
+        if not message:
+            return None
+        
+        # Look for attachment in message parts
+        parts = message.get("payload", {}).get("parts", [])
+        for part in parts:
+            if part.get("body", {}).get("attachmentId") == attachment_id:
+                return {
+                    "attachmentId": attachment_id,
+                    "size": part.get("body", {}).get("size", 0),
+                    "data": f"dummy_attachment_data_for_{attachment_id}"
+                }
+        
+        return None
 
     def reset_data(self) -> Dict[str, bool]:
         """
