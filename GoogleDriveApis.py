@@ -1,4 +1,5 @@
-# Inspired by https://developers.google.com/workspace/drive/api/quickstart/nodejs
+# Inspired by https://developers.google.com/workspace/drive/api/reference/rest/v3
+
 import copy
 import copy
 import uuid

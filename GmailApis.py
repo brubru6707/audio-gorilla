@@ -18,6 +18,7 @@ class GmailApis:
     def __init__(self):
         self.users: Dict[str, Any] = {}
         self._api_description = "This tool belongs to the Gmail API, which provides core functionality for managing emails, drafts, and labels."
+        self.current_user: Optional[str] = None  # Currently authenticated user ID
         self._load_scenario(DEFAULT_STATE)
 
     def _load_scenario(self, scenario: Dict) -> None:
@@ -28,7 +29,40 @@ class GmailApis:
         """
         DEFAULT_STATE_COPY = copy.deepcopy(DEFAULT_STATE)
         self.users = scenario.get("users", DEFAULT_STATE_COPY["users"])
+        # Set first user as authenticated user by default
+        if self.users and not self.current_user:
+            self.current_user = next(iter(self.users.keys()))
         print("GmailApis: Loaded scenario with users and their UUIDs.")
+
+    def authenticate(self, email: str) -> Dict[str, Union[bool, str]]:
+        """
+        Authenticate a user and set them as the current user.
+        Args:
+            email (str): The user's email address to authenticate.
+        Returns:
+            Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
+        """
+        user_id = self._get_user_id_by_email(email)
+        if not user_id:
+            return {"success": False, "message": "User not found."}
+        
+        self.current_user = user_id
+        print(f"GmailApis: Authenticated as {email}")
+        return {"success": True, "message": f"Authenticated as {email}"}
+
+    def _resolve_user_id(self, user_id: str) -> Optional[str]:
+        """
+        Resolve 'me' to current authenticated user, or email to internal user ID.
+        Args:
+            user_id (str): User's email address or the special value 'me'.
+        Returns:
+            Optional[str]: Resolved internal user ID, or None if not found.
+        """
+        if user_id == "me":
+            return self.current_user
+        
+        # Must be an email address
+        return self._get_user_id_by_email(user_id)
 
     def _generate_id(self) -> str:
         """
@@ -277,11 +311,12 @@ class GmailApis:
         """
         Get the Gmail profile for a user.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
         Returns:
             Optional[Dict[str, Any]]: User's profile data if found, None otherwise.
         """
-        if user_id not in self.users:
+        user_id = self._resolve_user_id(user_id)
+        if not user_id or user_id not in self.users:
             return None
         
         user_data = self.users.get(user_id)
@@ -299,7 +334,7 @@ class GmailApis:
         """
         List messages matching criteria.
         Args:
-            user_id (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             q (Optional[str]): Only return messages matching the specified query. Supports the same query format as the Gmail search box.
             label_ids (Optional[List[str]]): Only return messages with labels that match all of the specified label IDs.
             page_token (Optional[str]): Page token to retrieve a specific page of results in the list.
@@ -308,6 +343,10 @@ class GmailApis:
         Returns:
             Dict[str, Union[List[Dict], str, int]]: Dictionary containing messages, pagination token, and result count.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"messages": [], "resultSizeEstimate": 0}
+        
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return {"messages": [], "resultSizeEstimate": 0}
@@ -361,12 +400,16 @@ class GmailApis:
         """
         Get a specific message.
         Args:
-            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            userId (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             id (str): The ID of the message to retrieve.
             format (str): The format to return the message in.
         Returns:
             Optional[Dict[str, Any]]: Message data if found, None otherwise.
         """
+        userId = self._resolve_user_id(userId)
+        if not userId:
+            return None
+        
         messages = self._get_user_messages_data(userId)
         if messages is None:
             return None
@@ -410,12 +453,13 @@ class GmailApis:
         """
         Send a message.
         Args:
-            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            userId (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             message (Dict[str, Any]): The message to send. Must contain 'raw' field with base64url encoded email.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
         """
-        if userId not in self.users:
+        userId = self._resolve_user_id(userId)
+        if not userId or userId not in self.users:
             return {"error": "User not found."}
 
         gmail_data = self.users[userId].get("gmail_data")
@@ -529,11 +573,15 @@ class GmailApis:
         """
         Delete a message.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             msg_id (str): Message ID to delete.
         Returns:
             Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"success": False, "message": "User not found."}
+        
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return {"success": False, "message": "User not found or no messages data."}
@@ -569,12 +617,16 @@ class GmailApis:
         """
         List drafts.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             page_token (Optional[str]): Pagination token.
             max_results (int): Maximum number of results to return.
         Returns:
             Dict[str, Union[List[Dict], str, int]]: Dictionary containing drafts, pagination token, and result count.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"drafts": [], "resultSizeEstimate": 0}
+        
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return {"drafts": [], "resultSizeEstimate": 0}
@@ -603,11 +655,15 @@ class GmailApis:
         """
         Get a specific draft.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             draft_id (str): Draft ID.
         Returns:
             Optional[Dict[str, Any]]: Draft data if found, None otherwise.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return None
+        
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return None
@@ -623,12 +679,13 @@ class GmailApis:
         """
         Create a draft.
         Args:
-            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            userId (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             draft (Dict[str, Any]): The draft to create. Must contain 'message' field with Message object.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
         """
-        if userId not in self.users:
+        userId = self._resolve_user_id(userId)
+        if not userId or userId not in self.users:
             return {"error": "User not found."}
 
         gmail_data = self.users[userId].get("gmail_data")
@@ -670,12 +727,16 @@ class GmailApis:
         """
         Update a draft.
         Args:
-            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            userId (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             id (str): The ID of the draft to update.
             draft (Dict[str, Any]): The draft to update. Must contain 'message' field with Message object.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing draft ID and message, or error message.
         """
+        userId = self._resolve_user_id(userId)
+        if not userId:
+            return {"error": "User not found or no drafts data."}
+        
         drafts = self._get_user_drafts_data(userId)
         if drafts is None:
             return {"error": "User not found or no drafts data."}
@@ -708,11 +769,15 @@ class GmailApis:
         """
         Delete a draft.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             draft_id (str): Draft ID to delete.
         Returns:
             Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"success": False, "message": "User not found or no drafts data."}
+        
         drafts = self._get_user_drafts_data(user_id)
         if drafts is None:
             return {"success": False, "message": "User not found or no drafts data."}
@@ -727,11 +792,15 @@ class GmailApis:
         """
         Send a draft as a message.
         Args:
-            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            userId (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             id (str): The ID of the draft to send.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing message ID and thread ID, or error message.
         """
+        userId = self._resolve_user_id(userId)
+        if not userId:
+            return {"error": "User not found or no drafts data."}
+        
         drafts = self._get_user_drafts_data(userId)
         if drafts is None:
             return {"error": "User not found or no drafts data."}
@@ -750,17 +819,22 @@ class GmailApis:
         if not to:
             return {"error": "Draft has no recipient specified."}
         
-        # Send the draft as a regular message using the new send_message signature
+        # Send the draft as a regular message
+        # Use internal method directly since we already have the resolved userId
+        user_email = self._get_user_email_by_id(userId)
+        if not user_email:
+            return {"error": "User not found."}
+            
         message = {
             "to": to,
             "subject": subject,
             "body": body
         }
-        result = self.send_message(userId, message)
+        result = self.send_message(user_email, message)
         
         # If message was sent successfully, delete the draft
         if "id" in result and "error" not in result:
-            self.delete_draft(userId, id)
+            self.delete_draft(user_email, id)
             print(f"Dummy draft sent and deleted: draft ID={id}, message ID={result['id']}")
         
         return result
@@ -769,10 +843,14 @@ class GmailApis:
         """
         List labels.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
         Returns:
             Dict[str, Union[List[Dict], str]]: Dictionary containing labels.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"labels": []}
+        
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return {"labels": []}
@@ -784,11 +862,15 @@ class GmailApis:
         """
         Get a specific label.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             label_id (str): Label ID.
         Returns:
             Optional[Dict[str, Any]]: Label data if found, None otherwise.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return None
+        
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return None
@@ -802,12 +884,13 @@ class GmailApis:
         """
         Create a label.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             label_name (str): Name for the new label.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.
         """
-        if user_id not in self.users:
+        user_id = self._resolve_user_id(user_id)
+        if not user_id or user_id not in self.users:
             return {"error": "User not found."}
 
         gmail_data = self.users[user_id].get("gmail_data")
@@ -835,12 +918,16 @@ class GmailApis:
         """
         Update a label.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             label_id (str): Label ID to update.
             new_label_name (str): New name for the label.
         Returns:
             Dict[str, Union[str, Dict]]: Dictionary containing label ID and name, or error message.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"error": "User not found or no labels data."}
+        
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return {"error": "User not found or no labels data."}
@@ -855,11 +942,15 @@ class GmailApis:
         """
         Delete a label.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             label_id (str): Label ID to delete.
         Returns:
             Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"success": False, "message": "User not found or no labels data."}
+        
         labels = self._get_user_labels_data(user_id)
         if labels is None:
             return {"success": False, "message": "User not found or no labels data."}
@@ -876,12 +967,16 @@ class GmailApis:
         """
         Modify a message (e.g., add/remove labels).
         Args:
-            userId (str): The user's email address. The special value me can be used to indicate the authenticated user.
+            userId (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             id (str): The ID of the message to modify.
             modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
         Returns:
             Optional[Dict[str, Any]]: Modified message data if found, None otherwise.
         """
+        userId = self._resolve_user_id(userId)
+        if not userId:
+            return None
+        
         messages = self._get_user_messages_data(userId)
         if messages is None:
             return None
@@ -907,12 +1002,16 @@ class GmailApis:
         """
         Get a thread with its messages.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             thread_id (str): Thread ID.
             format (str): Format of the messages ('minimal', 'full', or 'raw').
         Returns:
             Optional[Dict[str, Any]]: Thread data if found, None otherwise.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return None
+        
         threads = self._get_user_threads_data(user_id)
         messages_data = self._get_user_messages_data(user_id)
         if threads is None or messages_data is None:
@@ -944,12 +1043,16 @@ class GmailApis:
         """
         Modify a thread (e.g., add/remove labels to all messages in thread).
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             thread_id (str): Thread ID to modify.
             modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
         Returns:
             Optional[Dict[str, Any]]: Modified thread data if found, None otherwise.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return None
+        
         threads = self._get_user_threads_data(user_id)
         messages = self._get_user_messages_data(user_id)
         if threads is None or messages is None:
@@ -970,17 +1073,24 @@ class GmailApis:
                 messages[msg_id]["labelIds"] = list(set(messages[msg_id]["labelIds"]) - remove_labels)
         
         print(f"Dummy thread modified: ID={thread_id} for user {user_id}. Labels applied to contained messages.")
-        return self.get_thread(user_id, thread_id, format="full")
+        
+        # Get user email to call get_thread (which expects email or 'me')
+        user_email = self._get_user_email_by_id(user_id)
+        return self.get_thread(user_email, thread_id, format="full") if user_email else None
 
     def batch_delete_messages(self, user_id: str, ids: List[str]) -> Dict[str, Union[bool, str, int]]:
         """
         Delete multiple messages in a single batch operation.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             ids (List[str]): List of message IDs to delete.
         Returns:
             Dict[str, Union[bool, str, int]]: Dictionary with success status and count of deleted messages.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"success": False, "message": "User not found.", "deleted_count": 0}
+        
         deleted_count = 0
         for msg_id in ids:
             result = self.delete_message(user_id, msg_id)
@@ -1000,12 +1110,16 @@ class GmailApis:
         """
         Modify multiple messages in a single batch operation.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             ids (List[str]): List of message IDs to modify.
             modify_request (Dict[str, List[str]]): Dictionary with 'addLabelIds' and 'removeLabelIds'.
         Returns:
             Dict[str, Union[bool, str, int]]: Dictionary with success status and count of modified messages.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return {"success": False, "message": "User not found.", "modified_count": 0}
+        
         modified_count = 0
         for msg_id in ids:
             result = self.modify_message(user_id, msg_id, modify_request)
@@ -1023,12 +1137,16 @@ class GmailApis:
         """
         Get a message attachment.
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The user's email address. The special value 'me' can be used to indicate the authenticated user.
             message_id (str): The message ID containing the attachment.
             attachment_id (str): The attachment ID.
         Returns:
             Optional[Dict[str, Any]]: Attachment data if found, None otherwise.
         """
+        user_id = self._resolve_user_id(user_id)
+        if not user_id:
+            return None
+        
         messages = self._get_user_messages_data(user_id)
         if messages is None:
             return None
