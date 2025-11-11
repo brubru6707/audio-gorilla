@@ -1,14 +1,15 @@
 import datetime
 import copy
 import uuid
-from typing import Dict, Any, Optional, Literal
+from typing import Dict, Any, Optional, Literal, List
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("SpotifyApis")
 class SpotifyApis:
     """
-    A dummy API class for simulating Spotify operations.
+    A dummy API class for simulating Spotify Web API operations.
     This class provides an in-memory backend for development and testing purposes.
+    Matches the real Spotify Web API structure and authentication.
     """
 
     def __init__(self):
@@ -19,15 +20,14 @@ class SpotifyApis:
         self._api_description = "This tool belongs to the Spotify API, which provides core functionality for managing music, playlists, and user profiles."
         self.users: Dict[str, Any] = {}
         self.payment_cards: Dict[str, Any] = {}
-        self.songs: Dict[str, Any] = {}
+        self.tracks: Dict[str, Any] = {}  # Changed from songs to tracks
         self.albums: Dict[str, Any] = {}
         self.playlists: Dict[str, Any] = {}
         self.artists: Dict[str, Any] = {}
-        self.username: Optional[str] = None
+        self.access_token: Optional[str] = None  # OAuth token instead of username
+        self.current_user_id: Optional[str] = None  # User ID for authenticated user
 
         self._load_scenario(DEFAULT_STATE)
-        if DEFAULT_STATE.get("username"):
-            self.username = DEFAULT_STATE["username"]
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
@@ -35,16 +35,16 @@ class SpotifyApis:
 
         Args:
             scenario (Dict): A dictionary representing the state to load.
-                             It should contain "users", "payment_cards", "songs", etc.
+                             It should contain "users", "payment_cards", "tracks", etc.
         """
         scenario_copy = copy.deepcopy(scenario)
         self.users = scenario_copy.get("users", {})
         self.payment_cards = scenario_copy.get("payment_cards", {})
-        self.songs = scenario_copy.get("songs", {})
+        # Handle both 'songs' and 'tracks' for backward compatibility
+        self.tracks = scenario_copy.get("tracks", scenario_copy.get("songs", {}))
         self.albums = scenario_copy.get("albums", {})
         self.playlists = scenario_copy.get("playlists", {})
         self.artists = scenario_copy.get("artists", {})
-        self.username = scenario_copy.get("username")
         print("SpotifyApis: Loaded scenario with UUIDs for all entities.")
 
     def _generate_unique_id(self) -> str:
@@ -52,6 +52,42 @@ class SpotifyApis:
         Generates a unique UUID for dummy entities.
         """
         return str(uuid.uuid4())
+    
+    def _generate_spotify_uri(self, resource_type: str, resource_id: str) -> str:
+        """
+        Generates a Spotify URI for a resource.
+        
+        Args:
+            resource_type (str): Type of resource (track, album, playlist, artist, user).
+            resource_id (str): ID of the resource.
+        Returns:
+            str: Spotify URI (e.g., spotify:track:xxxxx).
+        """
+        return f"spotify:{resource_type}:{resource_id}"
+    
+    def _generate_api_href(self, resource_type: str, resource_id: str) -> str:
+        """
+        Generates an API href URL for a resource.
+        
+        Args:
+            resource_type (str): Type of resource (tracks, albums, playlists, artists, users).
+            resource_id (str): ID of the resource.
+        Returns:
+            str: API href URL.
+        """
+        return f"https://api.spotify.com/v1/{resource_type}/{resource_id}"
+    
+    def _generate_external_url(self, resource_type: str, resource_id: str) -> str:
+        """
+        Generates an external Spotify URL for a resource.
+        
+        Args:
+            resource_type (str): Type of resource (track, album, playlist, artist, user).
+            resource_id (str): ID of the resource.
+        Returns:
+            str: External Spotify URL.
+        """
+        return f"https://open.spotify.com/{resource_type}/{resource_id}"
 
     def _get_user_id_by_email(self, email: str) -> Optional[str]:
         """
@@ -79,19 +115,51 @@ class SpotifyApis:
         user_data = self.users.get(user_id)
         return user_data.get("email") if user_data else None
 
+    def authenticate(self, access_token: str) -> None:
+        """
+        Authenticates a user with an OAuth access token.
+        In a real implementation, this would validate the token with Spotify's servers.
+        For this simulation, the token format is: "token_{user_email}".
+
+        Args:
+            access_token (str): OAuth 2.0 access token (format: "token_{user_email}").
+        
+        Raises:
+            Exception: If the token is invalid or user not found.
+        """
+        if not access_token or not access_token.startswith("token_"):
+            raise Exception("Invalid access token format")
+        
+        # Extract email from token (simulation)
+        email = access_token.replace("token_", "")
+        user_id = self._get_user_id_by_email(email)
+        
+        if not user_id:
+            raise Exception(f"User with email {email} not found")
+        
+        self.access_token = access_token
+        self.current_user_id = user_id
+
+    def _ensure_authenticated(self) -> None:
+        """
+        Ensures that a user is authenticated before performing operations.
+        
+        Raises:
+            Exception: If no user is authenticated.
+        """
+        if not self.access_token or not self.current_user_id:
+            raise Exception("No access token provided. Authentication required.")
+
     def _get_current_user_data(self) -> Optional[Dict]:
         """
-        Helper to get the data of the currently logged-in user (identified by self.username UUID).
+        Helper to get the data of the currently authenticated user.
 
         Returns:
             Optional[Dict]: Current user's data if authenticated, None otherwise.
         """
-        if not self.username:
-            # Auto-login the first user if no user is authenticated
-            if self.users:
-                self.username = next(iter(self.users.keys()))
-        
-        return self.users.get(self.username) if self.username else None
+        if not self.current_user_id:
+            return None
+        return self.users.get(self.current_user_id)
 
     def _get_user_payment_cards(self, user_id: str) -> Dict[str, Any]:
         """
@@ -108,34 +176,46 @@ class SpotifyApis:
                 cards[card_id] = card_data
         return cards
 
-    def set_current_user(self, user_email: str) -> Dict[str, bool]:
+    def get_current_user_profile(self) -> Dict[str, Any]:
         """
-        Sets the current authenticated user for the API session.
-
-        Args:
-            user_email (str): The email address of the user to set as current.
+        Get detailed profile information about the current user (including the current user's username).
+        Endpoint: GET https://api.spotify.com/v1/me
+        
         Returns:
-            Dict[str, bool]: A dictionary with 'status' indicating success or failure.
+            Dict[str, Any]: User profile object with Spotify standard fields.
+        
+        Raises:
+            Exception: If not authenticated.
         """
-        user_id = self._get_user_id_by_email(user_email)
-        if user_id:
-            self.username = user_id
-            return {"status": True, "message": f"User set to {user_email} (ID: {user_id})."}
-        return {"status": False, "message": f"User with email {user_email} not found."}
-
-    def show_account(self) -> Dict[str, Any]:
-        """
-        Shows the account information for the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing user profile information or error message.
-        """
+        self._ensure_authenticated()
         user_data = self._get_current_user_data()
-        if user_data:
-            profile = {k: v for k, v in user_data.items() if k not in ["id"]}
-            profile["email"] = self._get_user_email_by_id(self.username)
-            return {"status": "success", "profile": profile}
-        return {"status": "error", "message": "User not authenticated or not found."}
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        user_id = user_data["id"]
+        email = self._get_user_email_by_id(user_id)
+        
+        profile = {
+            "id": user_id,
+            "type": "user",
+            "uri": self._generate_spotify_uri("user", user_id),
+            "href": self._generate_api_href("users", user_id),
+            "external_urls": {
+                "spotify": self._generate_external_url("user", user_id)
+            },
+            "display_name": f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip() or email,
+            "email": email,
+            "country": user_data.get("country", "US"),
+            "product": "premium" if user_data.get("premium", False) else "free",
+            "followers": {
+                "href": None,
+                "total": user_data.get("followers_count", 0)
+            },
+            "images": user_data.get("images", [])
+        }
+        
+        return profile
 
     def add_payment_method(
         self,
@@ -148,6 +228,7 @@ class SpotifyApis:
     ) -> Dict[str, Any]:
         """
         Adds a new payment method for the current user.
+        Note: This is a simulation - real Spotify uses external payment processors.
 
         Args:
             card_name (str): Name on the card.
@@ -157,11 +238,16 @@ class SpotifyApis:
             cvv_number (str): CVV security code.
             is_default (bool): Whether to set as default payment method.
         Returns:
-            Dict[str, Any]: Dictionary containing new payment method details or error message.
+            Dict[str, Any]: Payment method object.
+        
+        Raises:
+            Exception: If not authenticated.
         """
+        self._ensure_authenticated()
         user_data = self._get_current_user_data()
+        
         if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+            raise Exception("User not found")
 
         new_card_id = self._generate_unique_id()
         user_id = user_data["id"]
@@ -183,18 +269,24 @@ class SpotifyApis:
             "is_default": is_default,
         }
         self.payment_cards[new_card_id] = new_card
-        return {"status": "success", "payment_method": copy.deepcopy(new_card)}
+        return copy.deepcopy(new_card)
 
-    def show_payment_methods(self) -> Dict[str, Any]:
+    def show_payment_methods(self) -> List[Dict[str, Any]]:
         """
         Shows all payment methods associated with the current user.
+        Note: This is a simulation - real Spotify uses external payment processors.
 
         Returns:
-            Dict[str, Any]: Dictionary containing list of payment methods or error message.
+            List[Dict[str, Any]]: List of payment method objects.
+        
+        Raises:
+            Exception: If not authenticated.
         """
+        self._ensure_authenticated()
         user_data = self._get_current_user_data()
+        
         if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+            raise Exception("User not found")
 
         user_id = user_data["id"]
         payment_methods = [
@@ -202,26 +294,30 @@ class SpotifyApis:
             for card_id, card_info in self.payment_cards.items()
             if card_info.get("user_id") == user_id
         ]
-        return {"status": "success", "payment_methods": payment_methods}
+        return payment_methods
 
-    def set_default_payment_method(self, payment_method_id: str) -> Dict[str, bool]:
+    def set_default_payment_method(self, payment_method_id: str) -> None:
         """
         Set a specific payment method as the default for the current user.
+        Note: This is a simulation - real Spotify uses external payment processors.
 
         Args:
-            payment_method_id (str): The ID (UUID) of the payment method to set as default.
-        Returns:
-            Dict[str, bool]: {"set_default_status": True} if successful, {"set_default_status": False} otherwise.
+            payment_method_id (str): The ID of the payment method to set as default.
+        
+        Raises:
+            Exception: If not authenticated or payment method not found.
         """
+        self._ensure_authenticated()
         user_data = self._get_current_user_data()
+        
         if not user_data:
-            return {"set_default_status": False, "message": "User not authenticated."}
+            raise Exception("User not found")
 
         if payment_method_id not in self.payment_cards:
-            return {"set_default_status": False, "message": f"Payment method with ID {payment_method_id} not found."}
+            raise Exception(f"Payment method with ID {payment_method_id} not found")
 
         if self.payment_cards[payment_method_id]["user_id"] != user_data["id"]:
-            return {"set_default_status": False, "message": "You do not have permission to set this as default."}
+            raise Exception("You do not have permission to modify this payment method")
 
         for card_id, card_info in self.payment_cards.items():
             if card_info["user_id"] == user_data["id"] and card_info["is_default"]:
@@ -229,372 +325,498 @@ class SpotifyApis:
                 break
 
         self.payment_cards[payment_method_id]["is_default"] = True
-        return {"set_default_status": True, "message": f"Payment method {payment_method_id} set as default."}
 
-    def get_user_liked_songs(self) -> Dict[str, Any]:
+    def _enrich_track(self, track_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Retrieves the list of songs liked by the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of liked songs or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        Enriches a track object with Spotify standard fields.
         
-        liked_songs_ids = user_data.get("liked_songs", [])
-        liked_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in liked_songs_ids if s_id in self.songs]
-        return {"status": "success", "liked_songs": liked_songs_details}
-
-    def like_song(self, song_id: str) -> Dict[str, bool]:
-        """
-        Adds a song to the current user's liked songs.
-
         Args:
-            song_id (str): ID of the song to like.
+            track_data (Dict[str, Any]): Raw track data.
         Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
+            Dict[str, Any]: Enriched track object with standard Spotify fields.
         """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if song_id not in self.songs:
-            return {"status": False, "message": f"Song with ID {song_id} not found."}
-
-        if song_id not in user_data.get("liked_songs", []):
-            user_data.setdefault("liked_songs", []).append(song_id)
-            return {"status": True, "message": f"Song {song_id} liked."}
-        return {"status": False, "message": f"Song {song_id} already liked."}
-
-    def unlike_song(self, song_id: str) -> Dict[str, bool]:
-        """
-        Removes a song from the current user's liked songs.
-
-        Args:
-            song_id (str): ID of the song to unlike.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if song_id not in self.songs:
-            return {"status": False, "message": f"Song with ID {song_id} not found."}
-
-        if song_id in user_data.get("liked_songs", []):
-            user_data["liked_songs"].remove(song_id)
-            return {"status": True, "message": f"Song {song_id} unliked."}
-        return {"status": False, "message": f"Song {song_id} not in liked songs."}
-
-    def get_user_library_songs(self) -> Dict[str, Any]:
-        """
-        Retrieves the list of songs in the current user's library.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of library songs or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        track_id = track_data["id"]
+        enriched = copy.deepcopy(track_data)
         
-        library_songs_ids = user_data.get("library_songs", [])
-        library_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in library_songs_ids if s_id in self.songs]
-        return {"status": "success", "library_songs": library_songs_details}
-
-    def add_song_to_library(self, song_id: str) -> Dict[str, bool]:
-        """
-        Adds a song to the current user's library.
-
-        Args:
-            song_id (str): ID of the song to add.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if song_id not in self.songs:
-            return {"status": False, "message": f"Song with ID {song_id} not found."}
-
-        if song_id not in user_data.get("library_songs", []):
-            user_data.setdefault("library_songs", []).append(song_id)
-            return {"status": True, "message": f"Song {song_id} added to library."}
-        return {"status": False, "message": f"Song {song_id} already in library."}
-
-    def remove_song_from_library(self, song_id: str) -> Dict[str, bool]:
-        """
-        Removes a song from the current user's library.
-
-        Args:
-            song_id (str): ID of the song to remove.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if song_id not in self.songs:
-            return {"status": False, "message": f"Song with ID {song_id} not found."}
-
-        if song_id in user_data.get("library_songs", []):
-            user_data["library_songs"].remove(song_id)
-            return {"status": True, "message": f"Song {song_id} removed from library."}
-        return {"status": False, "message": f"Song {song_id} not in library."}
-
-    def get_user_downloaded_songs(self) -> Dict[str, Any]:
-        """
-        Retrieves the list of songs downloaded by the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of downloaded songs or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        # Add Spotify standard fields
+        enriched["type"] = "track"
+        enriched["uri"] = self._generate_spotify_uri("track", track_id)
+        enriched["href"] = self._generate_api_href("tracks", track_id)
+        enriched["external_urls"] = {
+            "spotify": self._generate_external_url("track", track_id)
+        }
         
-        downloaded_songs_ids = user_data.get("downloaded_songs", [])
-        downloaded_songs_details = [copy.deepcopy(self.songs[s_id]) for s_id in downloaded_songs_ids if s_id in self.songs]
-        return {"status": "success", "downloaded_songs": downloaded_songs_details}
-
-    def get_user_liked_albums(self) -> Dict[str, Any]:
-        """
-        Retrieves the list of albums liked by the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of liked albums or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        # Ensure duration_ms exists
+        if "duration_ms" not in enriched:
+            enriched["duration_ms"] = enriched.get("duration", 0) * 1000 if "duration" in enriched else 180000
         
-        liked_albums_ids = user_data.get("liked_albums", [])
-        liked_albums_details = [copy.deepcopy(self.albums[a_id]) for a_id in liked_albums_ids if a_id in self.albums]
-        return {"status": "success", "liked_albums": liked_albums_details}
-
-    def like_album(self, album_id: str) -> Dict[str, bool]:
-        """
-        Adds an album to the current user's liked albums.
-
-        Args:
-            album_id (str): ID of the album to like.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if album_id not in self.albums:
-            return {"status": False, "message": f"Album with ID {album_id} not found."}
-
-        if album_id not in user_data.get("liked_albums", []):
-            user_data.setdefault("liked_albums", []).append(album_id)
-            return {"status": True, "message": f"Album {album_id} liked."}
-        return {"status": False, "message": f"Album {album_id} already liked."}
-
-    def unlike_album(self, album_id: str) -> Dict[str, bool]:
-        """
-        Removes an album from the current user's liked albums.
-
-        Args:
-            album_id (str): ID of the album to unlike.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if album_id not in self.albums:
-            return {"status": False, "message": f"Album with ID {album_id} not found."}
-
-        if album_id in user_data.get("liked_albums", []):
-            user_data["liked_albums"].remove(album_id)
-            return {"status": True, "message": f"Album {album_id} unliked."}
-        return {"status": False, "message": f"Album {album_id} not in liked albums."}
-
-    def get_user_library_albums(self) -> Dict[str, Any]:
-        """
-        Retrieves the list of albums in the current user's library.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of library albums or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        # Add track-specific fields
+        enriched.setdefault("explicit", False)
+        enriched.setdefault("popularity", 50)
+        enriched.setdefault("track_number", 1)
+        enriched.setdefault("disc_number", 1)
+        enriched.setdefault("is_local", False)
+        enriched.setdefault("preview_url", f"https://p.scdn.co/mp3-preview/{track_id}")
         
-        library_albums_ids = user_data.get("library_albums", [])
-        library_albums_details = [copy.deepcopy(self.albums[a_id]) for a_id in library_albums_ids if a_id in self.albums]
-        return {"status": "success", "library_albums": library_albums_details}
-
-    def add_album_to_library(self, album_id: str) -> Dict[str, bool]:
-        """
-        Adds an album to the current user's library.
-
-        Args:
-            album_id (str): ID of the album to add.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if album_id not in self.albums:
-            return {"status": False, "message": f"Album with ID {album_id} not found."}
-
-        if album_id not in user_data.get("library_albums", []):
-            user_data.setdefault("library_albums", []).append(album_id)
-            return {"status": True, "message": f"Album {album_id} added to library."}
-        return {"status": False, "message": f"Album {album_id} already in library."}
-
-    def remove_album_from_library(self, album_id: str) -> Dict[str, bool]:
-        """
-        Removes an album from the current user's library.
-
-        Args:
-            album_id (str): ID of the album to remove.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if album_id not in self.albums:
-            return {"status": False, "message": f"Album with ID {album_id} not found."}
-
-        if album_id in user_data.get("library_albums", []):
-            user_data["library_albums"].remove(album_id)
-            return {"status": True, "message": f"Album {album_id} removed from library."}
-        return {"status": False, "message": f"Album {album_id} not in library."}
-
-    def get_user_liked_playlists(self) -> Dict[str, Any]:
-        """
-        Retrieves the list of playlists liked by the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of liked playlists or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        # Rename 'title' to 'name' if needed
+        if "title" in enriched and "name" not in enriched:
+            enriched["name"] = enriched["title"]
         
-        liked_playlists_ids = user_data.get("liked_playlists", [])
-        liked_playlists_details = [copy.deepcopy(self.playlists[p_id]) for p_id in liked_playlists_ids if p_id in self.playlists]
-        return {"status": "success", "liked_playlists": liked_playlists_details}
-
-    def like_playlist(self, playlist_id: str) -> Dict[str, bool]:
+        return enriched
+    
+    def _enrich_album(self, album_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Adds a playlist to the current user's liked playlists.
-
-        Args:
-            playlist_id (str): ID of the playlist to like.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if playlist_id not in self.playlists:
-            return {"status": False, "message": f"Playlist with ID {playlist_id} not found."}
-
-        if playlist_id not in user_data.get("liked_playlists", []):
-            user_data.setdefault("liked_playlists", []).append(playlist_id)
-            return {"status": True, "message": f"Playlist {playlist_id} liked."}
-        return {"status": False, "message": f"Playlist {playlist_id} already liked."}
-
-    def unlike_playlist(self, playlist_id: str) -> Dict[str, bool]:
-        """
-        Removes a playlist from the current user's liked playlists.
-
-        Args:
-            playlist_id (str): ID of the playlist to unlike.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if playlist_id not in self.playlists:
-            return {"status": False, "message": f"Playlist with ID {playlist_id} not found."}
-
-        if playlist_id in user_data.get("liked_playlists", []):
-            user_data["liked_playlists"].remove(playlist_id)
-            return {"status": True, "message": f"Playlist {playlist_id} unliked."}
-        return {"status": False, "message": f"Playlist {playlist_id} not in liked playlists."}
-
-    def get_user_following_artists(self) -> Dict[str, Any]:
-        """
-        Retrieves the list of artists followed by the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of followed artists or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        Enriches an album object with Spotify standard fields.
         
-        following_artists_ids = user_data.get("following_artists", [])
-        following_artists_details = [copy.deepcopy(self.artists[a_id]) for a_id in following_artists_ids if a_id in self.artists]
-        return {"status": "success", "following_artists": following_artists_details}
-
-    def follow_artist(self, artist_id: str) -> Dict[str, bool]:
-        """
-        Adds an artist to the current user's followed artists.
-
         Args:
-            artist_id (str): ID of the artist to follow.
+            album_data (Dict[str, Any]): Raw album data.
         Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
+            Dict[str, Any]: Enriched album object with standard Spotify fields.
         """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if artist_id not in self.artists:
-            return {"status": False, "message": f"Artist with ID {artist_id} not found."}
-
-        if artist_id not in user_data.get("following_artists", []):
-            user_data.setdefault("following_artists", []).append(artist_id)
-            return {"status": True, "message": f"Artist {artist_id} followed."}
-        return {"status": False, "message": f"Artist {artist_id} already followed."}
-
-    def unfollow_artist(self, artist_id: str) -> Dict[str, bool]:
+        album_id = album_data["id"]
+        enriched = copy.deepcopy(album_data)
+        
+        enriched["type"] = "album"
+        enriched["uri"] = self._generate_spotify_uri("album", album_id)
+        enriched["href"] = self._generate_api_href("albums", album_id)
+        enriched["external_urls"] = {
+            "spotify": self._generate_external_url("album", album_id)
+        }
+        
+        enriched.setdefault("album_type", "album")
+        enriched.setdefault("total_tracks", len(enriched.get("tracks", [])))
+        enriched.setdefault("release_date", "2024-01-01")
+        enriched.setdefault("release_date_precision", "day")
+        enriched.setdefault("images", [])
+        enriched.setdefault("label", "Independent")
+        enriched.setdefault("popularity", 50)
+        
+        # Rename 'title' to 'name' if needed
+        if "title" in enriched and "name" not in enriched:
+            enriched["name"] = enriched["title"]
+        
+        return enriched
+    
+    def _enrich_playlist(self, playlist_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Removes an artist from the current user's followed artists.
-
+        Enriches a playlist object with Spotify standard fields.
+        
         Args:
-            artist_id (str): ID of the artist to unfollow.
+            playlist_data (Dict[str, Any]): Raw playlist data.
         Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
+            Dict[str, Any]: Enriched playlist object with standard Spotify fields.
         """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
-        if artist_id not in self.artists:
-            return {"status": False, "message": f"Artist with ID {artist_id} not found."}
+        playlist_id = playlist_data["id"]
+        enriched = copy.deepcopy(playlist_data)
+        
+        enriched["type"] = "playlist"
+        enriched["uri"] = self._generate_spotify_uri("playlist", playlist_id)
+        enriched["href"] = self._generate_api_href("playlists", playlist_id)
+        enriched["external_urls"] = {
+            "spotify": self._generate_external_url("playlist", playlist_id)
+        }
+        
+        enriched.setdefault("collaborative", False)
+        enriched.setdefault("images", [])
+        enriched.setdefault("snapshot_id", self._generate_unique_id())
+        enriched.setdefault("followers", {"href": None, "total": 0})
+        
+        # Handle tracks field
+        track_ids = enriched.get("tracks", [])
+        if isinstance(track_ids, list) and track_ids and isinstance(track_ids[0], str):
+            # Convert track IDs to track objects
+            enriched["tracks"] = {
+                "href": f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks",
+                "total": len(track_ids),
+                "items": []  # Simplified - would contain track objects in real API
+            }
+        
+        return enriched
+    
+    def _enrich_artist(self, artist_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Enriches an artist object with Spotify standard fields.
+        
+        Args:
+            artist_data (Dict[str, Any]): Raw artist data.
+        Returns:
+            Dict[str, Any]: Enriched artist object with standard Spotify fields.
+        """
+        artist_id = artist_data["id"]
+        enriched = copy.deepcopy(artist_data)
+        
+        enriched["type"] = "artist"
+        enriched["uri"] = self._generate_spotify_uri("artist", artist_id)
+        enriched["href"] = self._generate_api_href("artists", artist_id)
+        enriched["external_urls"] = {
+            "spotify": self._generate_external_url("artist", artist_id)
+        }
+        
+        enriched.setdefault("genres", [])
+        enriched.setdefault("popularity", 50)
+        enriched.setdefault("followers", {"href": None, "total": 0})
+        enriched.setdefault("images", [])
+        
+        return enriched
 
-        if artist_id in user_data.get("following_artists", []):
-            user_data["following_artists"].remove(artist_id)
-            return {"status": True, "message": f"Artist {artist_id} unfollowed."}
-        return {"status": False, "message": f"Artist {artist_id} not followed."}
+    def get_saved_tracks(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
+        """
+        Get a list of the tracks saved in the current user's 'Your Music' library.
+        Endpoint: GET https://api.spotify.com/v1/me/tracks
+        
+        Args:
+            limit (int): Maximum number of items to return (default 20, max 50).
+            offset (int): Index of the first item to return (default 0).
+        
+        Returns:
+            Dict[str, Any]: Paging object containing saved track objects.
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        saved_track_ids = user_data.get("liked_songs", [])
+        total = len(saved_track_ids)
+        
+        # Apply pagination
+        paginated_ids = saved_track_ids[offset:offset + limit]
+        
+        items = []
+        for track_id in paginated_ids:
+            if track_id in self.tracks:
+                track_data = self._enrich_track(self.tracks[track_id])
+                items.append({
+                    "added_at": user_data.get("last_active_date", datetime.datetime.now().isoformat() + "Z"),
+                    "track": track_data
+                })
+        
+        # Build paging object
+        paging = {
+            "href": f"https://api.spotify.com/v1/me/tracks?offset={offset}&limit={limit}",
+            "limit": limit,
+            "offset": offset,
+            "total": total,
+            "items": items,
+            "previous": f"https://api.spotify.com/v1/me/tracks?offset={max(0, offset - limit)}&limit={limit}" if offset > 0 else None,
+            "next": f"https://api.spotify.com/v1/me/tracks?offset={offset + limit}&limit={limit}" if offset + limit < total else None
+        }
+        
+        return paging
+
+    def save_tracks(self, track_ids: List[str]) -> None:
+        """
+        Save one or more tracks to the current user's 'Your Music' library.
+        Endpoint: PUT https://api.spotify.com/v1/me/tracks
+        
+        Args:
+            track_ids (List[str]): List of Spotify track IDs (max 50).
+        
+        Raises:
+            Exception: If not authenticated or track not found.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(track_ids) > 50:
+            raise Exception("Maximum 50 tracks can be saved at once")
+        
+        for track_id in track_ids:
+            if track_id not in self.tracks:
+                raise Exception(f"Track {track_id} not found")
+            
+            if track_id not in user_data.get("liked_songs", []):
+                user_data.setdefault("liked_songs", []).append(track_id)
+
+    def remove_saved_tracks(self, track_ids: List[str]) -> None:
+        """
+        Remove one or more tracks from the current user's 'Your Music' library.
+        Endpoint: DELETE https://api.spotify.com/v1/me/tracks
+        
+        Args:
+            track_ids (List[str]): List of Spotify track IDs (max 50).
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(track_ids) > 50:
+            raise Exception("Maximum 50 tracks can be removed at once")
+        
+        for track_id in track_ids:
+            if track_id in user_data.get("liked_songs", []):
+                user_data["liked_songs"].remove(track_id)
+
+    def check_saved_tracks(self, track_ids: List[str]) -> List[bool]:
+        """
+        Check if one or more tracks is already saved in the current user's 'Your Music' library.
+        Endpoint: GET https://api.spotify.com/v1/me/tracks/contains
+        
+        Args:
+            track_ids (List[str]): List of Spotify track IDs (max 50).
+        
+        Returns:
+            List[bool]: List of boolean values indicating if each track is saved.
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(track_ids) > 50:
+            raise Exception("Maximum 50 tracks can be checked at once")
+        
+        saved_track_ids = user_data.get("liked_songs", [])
+        return [track_id in saved_track_ids for track_id in track_ids]
+
+    def get_saved_albums(self, limit: int = 20, offset: int = 0) -> Dict[str, Any]:
+        """
+        Get a list of the albums saved in the current user's 'Your Music' library.
+        Endpoint: GET https://api.spotify.com/v1/me/albums
+        
+        Args:
+            limit (int): Maximum number of items to return (default 20, max 50).
+            offset (int): Index of the first item to return (default 0).
+        
+        Returns:
+            Dict[str, Any]: Paging object containing saved album objects.
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        saved_album_ids = user_data.get("liked_albums", [])
+        total = len(saved_album_ids)
+        
+        # Apply pagination
+        paginated_ids = saved_album_ids[offset:offset + limit]
+        
+        items = []
+        for album_id in paginated_ids:
+            if album_id in self.albums:
+                album_data = self._enrich_album(self.albums[album_id])
+                items.append({
+                    "added_at": user_data.get("last_active_date", datetime.datetime.now().isoformat() + "Z"),
+                    "album": album_data
+                })
+        
+        # Build paging object
+        paging = {
+            "href": f"https://api.spotify.com/v1/me/albums?offset={offset}&limit={limit}",
+            "limit": limit,
+            "offset": offset,
+            "total": total,
+            "items": items,
+            "previous": f"https://api.spotify.com/v1/me/albums?offset={max(0, offset - limit)}&limit={limit}" if offset > 0 else None,
+            "next": f"https://api.spotify.com/v1/me/albums?offset={offset + limit}&limit={limit}" if offset + limit < total else None
+        }
+        
+        return paging
+
+    def save_albums(self, album_ids: List[str]) -> None:
+        """
+        Save one or more albums to the current user's 'Your Music' library.
+        Endpoint: PUT https://api.spotify.com/v1/me/albums
+        
+        Args:
+            album_ids (List[str]): List of Spotify album IDs (max 50).
+        
+        Raises:
+            Exception: If not authenticated or album not found.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(album_ids) > 20:
+            raise Exception("Maximum 20 albums can be saved at once")
+        
+        for album_id in album_ids:
+            if album_id not in self.albums:
+                raise Exception(f"Album {album_id} not found")
+            
+            if album_id not in user_data.get("liked_albums", []):
+                user_data.setdefault("liked_albums", []).append(album_id)
+
+    def remove_saved_albums(self, album_ids: List[str]) -> None:
+        """
+        Remove one or more albums from the current user's 'Your Music' library.
+        Endpoint: DELETE https://api.spotify.com/v1/me/albums
+        
+        Args:
+            album_ids (List[str]): List of Spotify album IDs (max 50).
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(album_ids) > 20:
+            raise Exception("Maximum 20 albums can be removed at once")
+        
+        for album_id in album_ids:
+            if album_id in user_data.get("liked_albums", []):
+                user_data["liked_albums"].remove(album_id)
+
+    def follow_artists(self, artist_ids: List[str]) -> None:
+        """
+        Add the current user as a follower of one or more artists.
+        Endpoint: PUT https://api.spotify.com/v1/me/following
+        
+        Args:
+            artist_ids (List[str]): List of Spotify artist IDs (max 50).
+        
+        Raises:
+            Exception: If not authenticated or artist not found.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(artist_ids) > 50:
+            raise Exception("Maximum 50 artists can be followed at once")
+        
+        for artist_id in artist_ids:
+            if artist_id not in self.artists:
+                raise Exception(f"Artist {artist_id} not found")
+            
+            if artist_id not in user_data.get("following_artists", []):
+                user_data.setdefault("following_artists", []).append(artist_id)
+
+    def unfollow_artists(self, artist_ids: List[str]) -> None:
+        """
+        Remove the current user as a follower of one or more artists.
+        Endpoint: DELETE https://api.spotify.com/v1/me/following
+        
+        Args:
+            artist_ids (List[str]): List of Spotify artist IDs (max 50).
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if len(artist_ids) > 50:
+            raise Exception("Maximum 50 artists can be unfollowed at once")
+        
+        for artist_id in artist_ids:
+            if artist_id in user_data.get("following_artists", []):
+                user_data["following_artists"].remove(artist_id)
+
+    def get_followed_artists(self, limit: int = 20) -> Dict[str, Any]:
+        """
+        Get the current user's followed artists.
+        Endpoint: GET https://api.spotify.com/v1/me/following
+        
+        Args:
+            limit (int): Maximum number of items to return (default 20, max 50).
+        
+        Returns:
+            Dict[str, Any]: Cursor-based paging object containing artist objects.
+        
+        Raises:
+            Exception: If not authenticated.
+        """
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        following_artist_ids = user_data.get("following_artists", [])
+        total = len(following_artist_ids)
+        
+        # Apply limit
+        paginated_ids = following_artist_ids[:limit]
+        
+        items = []
+        for artist_id in paginated_ids:
+            if artist_id in self.artists:
+                artist_data = self._enrich_artist(self.artists[artist_id])
+                items.append(artist_data)
+        
+        # Build cursor-based paging object (simplified)
+        result = {
+            "artists": {
+                "href": f"https://api.spotify.com/v1/me/following?type=artist&limit={limit}",
+                "limit": limit,
+                "total": total,
+                "items": items,
+                "cursors": {
+                    "after": None,
+                    "before": None
+                },
+                "next": None
+            }
+        }
+        
+        return result
 
     def create_playlist(
         self,
+        user_id: str,
         name: str,
         description: Optional[str] = None,
         public: bool = True,
     ) -> Dict[str, Any]:
         """
-        Creates a new playlist for the current user.
-
+        Create a playlist for a Spotify user.
+        Endpoint: POST https://api.spotify.com/v1/users/{user_id}/playlists
+        
         Args:
+            user_id (str): The user's Spotify user ID.
             name (str): Name of the playlist.
             description (Optional[str]): Description of the playlist.
-            public (bool): Whether the playlist is public.
+            public (bool): Whether the playlist is public (default True).
+        
         Returns:
-            Dict[str, Any]: Dictionary containing new playlist details or error message.
+            Dict[str, Any]: Playlist object.
+        
+        Raises:
+            Exception: If not authenticated or user not found.
         """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+        self._ensure_authenticated()
+        current_user_data = self._get_current_user_data()
+        
+        if not current_user_data:
+            raise Exception("User not found")
+        
+        # In real Spotify API, you can only create playlists for yourself
+        if user_id != current_user_data["id"]:
+            raise Exception("Can only create playlists for the authenticated user")
 
         new_playlist_id = self._generate_unique_id()
         current_time_iso = datetime.datetime.now().isoformat() + "Z"
@@ -602,7 +824,7 @@ class SpotifyApis:
         new_playlist = {
             "id": new_playlist_id,
             "name": name,
-            "user_id": user_data["id"],
+            "user_id": current_user_data["id"],
             "description": description,
             "public": public,
             "tracks": [],
@@ -611,112 +833,69 @@ class SpotifyApis:
         }
         self.playlists[new_playlist_id] = new_playlist
         
-        user_data.setdefault("liked_playlists", []).append(new_playlist_id)
+        current_user_data.setdefault("liked_playlists", []).append(new_playlist_id)
 
-        return {"status": "success", "playlist": copy.deepcopy(new_playlist)}
+        return self._enrich_playlist(new_playlist)
 
-    def delete_playlist(self, playlist_id: str) -> Dict[str, bool]:
+    def get_playlist(self, playlist_id: str) -> Dict[str, Any]:
         """
-        Deletes a playlist owned by the current user.
-
-        Args:
-            playlist_id (str): ID of the playlist to delete.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
+        Get a playlist.
+        Endpoint: GET https://api.spotify.com/v1/playlists/{playlist_id}
         
-        if playlist_id in self.playlists and self.playlists[playlist_id]["user_id"] == user_data["id"]:
-            if playlist_id in user_data.get("liked_playlists", []):
-                user_data["liked_playlists"].remove(playlist_id)
-            del self.playlists[playlist_id]
-            return {"status": True, "message": f"Playlist {playlist_id} deleted."}
-        return {"status": False, "message": f"Playlist {playlist_id} not found or not owned by user."}
-
-    def add_song_to_playlist(self, playlist_id: str, song_id: str) -> Dict[str, bool]:
-        """
-        Adds a song to a specific playlist owned by the current user.
-
         Args:
-            playlist_id (str): ID of the playlist.
-            song_id (str): ID of the song to add.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
+            playlist_id (str): The Spotify ID for the playlist.
         
+        Returns:
+            Dict[str, Any]: Playlist object.
+        
+        Raises:
+            Exception: If playlist not found or access denied.
+        """
         if playlist_id not in self.playlists:
-            return {"status": False, "message": f"Playlist {playlist_id} not found."}
-        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
-            return {"status": False, "message": "You do not own this playlist."}
-        if song_id not in self.songs:
-            return {"status": False, "message": f"Song {song_id} not found."}
-
-        playlist = self.playlists[playlist_id]
-        if song_id not in playlist["tracks"]:
-            playlist["tracks"].append(song_id)
-            playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
-            return {"status": True, "message": f"Song {song_id} added to playlist {playlist_id}."}
-        return {"status": False, "message": f"Song {song_id} already in playlist {playlist_id}."}
-
-    def remove_song_from_playlist(self, playlist_id: str, song_id: str) -> Dict[str, bool]:
-        """
-        Removes a song from a specific playlist owned by the current user.
-
-        Args:
-            playlist_id (str): ID of the playlist.
-            song_id (str): ID of the song to remove.
-        Returns:
-            Dict[str, bool]: Dictionary indicating success status and message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": False, "message": "User not authenticated."}
+            raise Exception(f"Playlist {playlist_id} not found")
         
-        if playlist_id not in self.playlists:
-            return {"status": False, "message": f"Playlist {playlist_id} not found."}
-        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
-            return {"status": False, "message": "You do not own this playlist."}
-        if song_id not in self.songs:
-            return {"status": False, "message": f"Song {song_id} not found."}
-
         playlist = self.playlists[playlist_id]
-        if song_id in playlist["tracks"]:
-            playlist["tracks"].remove(song_id)
-            playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
-            return {"status": True, "message": f"Song {song_id} removed from playlist {playlist_id}."}
-        return {"status": False, "message": f"Song {song_id} not in playlist {playlist_id}."}
+        
+        # Check if user has access (public or owned by current user)
+        if not playlist.get("public"):
+            self._ensure_authenticated()
+            user_data = self._get_current_user_data()
+            if not user_data or playlist.get("user_id") != user_data["id"]:
+                raise Exception("Access denied to private playlist")
+        
+        return self._enrich_playlist(playlist)
 
-    def update_playlist_details(
+    def change_playlist_details(
         self,
         playlist_id: str,
         name: Optional[str] = None,
         description: Optional[str] = None,
         public: Optional[bool] = None,
-    ) -> Dict[str, Any]:
+    ) -> None:
         """
-        Updates details of a playlist owned by the current user.
-
+        Change a playlist's name and public/private state.
+        Endpoint: PUT https://api.spotify.com/v1/playlists/{playlist_id}
+        
         Args:
-            playlist_id (str): ID of the playlist to update.
+            playlist_id (str): The Spotify ID for the playlist.
             name (Optional[str]): New name for the playlist.
             description (Optional[str]): New description for the playlist.
             public (Optional[bool]): New visibility setting for the playlist.
-        Returns:
-            Dict[str, Any]: Dictionary containing updated playlist details or error message.
+        
+        Raises:
+            Exception: If not authenticated or not owner of playlist.
         """
+        self._ensure_authenticated()
         user_data = self._get_current_user_data()
+        
         if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
+            raise Exception("User not found")
         
         if playlist_id not in self.playlists:
-            return {"status": "error", "message": f"Playlist {playlist_id} not found."}
+            raise Exception(f"Playlist {playlist_id} not found")
+        
         if self.playlists[playlist_id]["user_id"] != user_data["id"]:
-            return {"status": "error", "message": "You do not own this playlist."}
+            raise Exception("Can only modify your own playlists")
 
         playlist = self.playlists[playlist_id]
         if name is not None:
@@ -727,278 +906,367 @@ class SpotifyApis:
             playlist["public"] = public
         
         playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
-        return {"status": "success", "playlist": copy.deepcopy(playlist)}
 
-    def get_all_songs(self) -> Dict[str, Any]:
+    def add_items_to_playlist(self, playlist_id: str, track_uris: List[str], position: Optional[int] = None) -> Dict[str, str]:
         """
-        Retrieves a list of all songs available on the platform.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of all songs.
-        """
-        return {"status": "success", "songs": [copy.deepcopy(s) for s in self.songs.values()]}
-
-    def get_song_details(self, song_id: str) -> Dict[str, Any]:
-        """
-        Retrieves details for a specific song.
-
+        Add one or more items to a user's playlist.
+        Endpoint: POST https://api.spotify.com/v1/playlists/{playlist_id}/tracks
+        
         Args:
-            song_id (str): ID of the song to retrieve.
+            playlist_id (str): The Spotify ID for the playlist.
+            track_uris (List[str]): List of Spotify track URIs (max 100).
+            position (Optional[int]): Position to insert tracks.
+        
         Returns:
-            Dict[str, Any]: Dictionary containing song details or error message.
+            Dict[str, str]: Snapshot object with snapshot_id.
+        
+        Raises:
+            Exception: If not authenticated or not owner of playlist.
         """
-        song = self.songs.get(song_id)
-        if song:
-            return {"status": "success", "song": copy.deepcopy(song)}
-        return {"status": "error", "message": f"Song {song_id} not found."}
-
-    def get_all_albums(self) -> Dict[str, Any]:
-        """
-        Retrieves a list of all albums available on the platform.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of all albums.
-        """
-        return {"status": "success", "albums": [copy.deepcopy(a) for a in self.albums.values()]}
-
-    def get_album_details(self, album_id: str) -> Dict[str, Any]:
-        """
-        Retrieves details for a specific album.
-
-        Args:
-            album_id (str): ID of the album to retrieve.
-        Returns:
-            Dict[str, Any]: Dictionary containing album details or error message.
-        """
-        album = self.albums.get(album_id)
-        if album:
-            return {"status": "success", "album": copy.deepcopy(album)}
-        return {"status": "error", "message": f"Album {album_id} not found."}
-
-    def get_all_playlists(self) -> Dict[str, Any]:
-        """
-        Retrieves a list of all public playlists available on the platform.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of public playlists.
-        """
-        public_playlists = [copy.deepcopy(p) for p in self.playlists.values() if p.get("public")]
-        return {"status": "success", "playlists": public_playlists}
-
-    def get_playlist_details(self, playlist_id: str) -> Dict[str, Any]:
-        """
-        Retrieves details for a specific playlist.
-
-        Args:
-            playlist_id (str): ID of the playlist to retrieve.
-        Returns:
-            Dict[str, Any]: Dictionary containing playlist details or error message.
-        """
-        playlist = self.playlists.get(playlist_id)
+        self._ensure_authenticated()
         user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if playlist_id not in self.playlists:
+            raise Exception(f"Playlist {playlist_id} not found")
+        
+        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
+            raise Exception("Can only modify your own playlists")
+        
+        if len(track_uris) > 100:
+            raise Exception("Maximum 100 tracks can be added at once")
 
-        if playlist:
-            if playlist.get("public") or (user_data and playlist.get("user_id") == user_data["id"]):
-                return {"status": "success", "playlist": copy.deepcopy(playlist)}
-            return {"status": "error", "message": "Access denied to private playlist."}
-        return {"status": "error", "message": f"Playlist {playlist_id} not found."}
+        playlist = self.playlists[playlist_id]
+        
+        # Extract track IDs from URIs (format: spotify:track:xxxxx)
+        track_ids = []
+        for uri in track_uris:
+            if uri.startswith("spotify:track:"):
+                track_id = uri.replace("spotify:track:", "")
+                if track_id not in self.tracks:
+                    raise Exception(f"Track {track_id} not found")
+                track_ids.append(track_id)
+            else:
+                raise Exception(f"Invalid track URI format: {uri}")
+        
+        # Add tracks
+        current_tracks = playlist.get("tracks", [])
+        if position is not None:
+            for i, track_id in enumerate(track_ids):
+                current_tracks.insert(position + i, track_id)
+        else:
+            current_tracks.extend(track_ids)
+        
+        playlist["tracks"] = current_tracks
+        playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+        new_snapshot_id = self._generate_unique_id()
+        playlist["snapshot_id"] = new_snapshot_id
+        
+        return {"snapshot_id": new_snapshot_id}
 
-    def get_all_artists(self) -> Dict[str, Any]:
+    def remove_items_from_playlist(self, playlist_id: str, track_uris: List[str]) -> Dict[str, str]:
         """
-        Retrieves a list of all artists available on the platform.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing list of all artists.
-        """
-        return {"status": "success", "artists": [copy.deepcopy(a) for a in self.artists.values()]}
-
-    def get_artist_details(self, artist_id: str) -> Dict[str, Any]:
-        """
-        Retrieves details for a specific artist.
-
+        Remove one or more items from a user's playlist.
+        Endpoint: DELETE https://api.spotify.com/v1/playlists/{playlist_id}/tracks
+        
         Args:
-            artist_id (str): ID of the artist to retrieve.
+            playlist_id (str): The Spotify ID for the playlist.
+            track_uris (List[str]): List of Spotify track URIs to remove (max 100).
+        
         Returns:
-            Dict[str, Any]: Dictionary containing artist details or error message.
+            Dict[str, str]: Snapshot object with snapshot_id.
+        
+        Raises:
+            Exception: If not authenticated or not owner of playlist.
         """
-        artist = self.artists.get(artist_id)
-        if artist:
-            return {"status": "success", "artist": copy.deepcopy(artist)}
-        return {"status": "error", "message": f"Artist {artist_id} not found."}
+        self._ensure_authenticated()
+        user_data = self._get_current_user_data()
+        
+        if not user_data:
+            raise Exception("User not found")
+        
+        if playlist_id not in self.playlists:
+            raise Exception(f"Playlist {playlist_id} not found")
+        
+        if self.playlists[playlist_id]["user_id"] != user_data["id"]:
+            raise Exception("Can only modify your own playlists")
+        
+        if len(track_uris) > 100:
+            raise Exception("Maximum 100 tracks can be removed at once")
 
-    def search_content(self, query: str, content_type: Literal["song", "album", "playlist", "artist", "all"] = "all") -> Dict[str, Any]:
+        playlist = self.playlists[playlist_id]
+        
+        # Extract track IDs from URIs
+        track_ids = []
+        for uri in track_uris:
+            if uri.startswith("spotify:track:"):
+                track_id = uri.replace("spotify:track:", "")
+                track_ids.append(track_id)
+            else:
+                raise Exception(f"Invalid track URI format: {uri}")
+        
+        # Remove tracks
+        current_tracks = playlist.get("tracks", [])
+        for track_id in track_ids:
+            while track_id in current_tracks:
+                current_tracks.remove(track_id)
+        
+        playlist["tracks"] = current_tracks
+        playlist["updated_at"] = datetime.datetime.now().isoformat() + "Z"
+        new_snapshot_id = self._generate_unique_id()
+        playlist["snapshot_id"] = new_snapshot_id
+        
+        return {"snapshot_id": new_snapshot_id}
+
+    def get_track(self, track_id: str) -> Dict[str, Any]:
         """
-        Searches for content (songs, albums, playlists, artists) by a given query.
-
+        Get Spotify catalog information for a single track.
+        Endpoint: GET https://api.spotify.com/v1/tracks/{id}
+        
         Args:
-            query (str): Search query string.
-            content_type (Literal): Type of content to search for ("song", "album", "playlist", "artist", "all").
+            track_id (str): The Spotify ID for the track.
+        
         Returns:
-            Dict[str, Any]: Dictionary containing search results.
+            Dict[str, Any]: Track object.
+        
+        Raises:
+            Exception: If track not found.
         """
+        if track_id not in self.tracks:
+            raise Exception(f"Track {track_id} not found")
+        
+        return self._enrich_track(self.tracks[track_id])
+
+    def get_several_tracks(self, track_ids: List[str]) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Get Spotify catalog information for multiple tracks.
+        Endpoint: GET https://api.spotify.com/v1/tracks
+        
+        Args:
+            track_ids (List[str]): List of Spotify track IDs (max 50).
+        
+        Returns:
+            Dict[str, List[Dict[str, Any]]]: Object containing array of track objects.
+        
+        Raises:
+            Exception: If more than 50 IDs provided.
+        """
+        if len(track_ids) > 50:
+            raise Exception("Maximum 50 tracks can be requested at once")
+        
+        tracks = []
+        for track_id in track_ids:
+            if track_id in self.tracks:
+                tracks.append(self._enrich_track(self.tracks[track_id]))
+            else:
+                tracks.append(None)
+        
+        return {"tracks": tracks}
+
+    def get_album(self, album_id: str) -> Dict[str, Any]:
+        """
+        Get Spotify catalog information for a single album.
+        Endpoint: GET https://api.spotify.com/v1/albums/{id}
+        
+        Args:
+            album_id (str): The Spotify ID for the album.
+        
+        Returns:
+            Dict[str, Any]: Album object.
+        
+        Raises:
+            Exception: If album not found.
+        """
+        if album_id not in self.albums:
+            raise Exception(f"Album {album_id} not found")
+        
+        return self._enrich_album(self.albums[album_id])
+
+    def get_several_albums(self, album_ids: List[str]) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Get Spotify catalog information for multiple albums.
+        Endpoint: GET https://api.spotify.com/v1/albums
+        
+        Args:
+            album_ids (List[str]): List of Spotify album IDs (max 20).
+        
+        Returns:
+            Dict[str, List[Dict[str, Any]]]: Object containing array of album objects.
+        
+        Raises:
+            Exception: If more than 20 IDs provided.
+        """
+        if len(album_ids) > 20:
+            raise Exception("Maximum 20 albums can be requested at once")
+        
+        albums = []
+        for album_id in album_ids:
+            if album_id in self.albums:
+                albums.append(self._enrich_album(self.albums[album_id]))
+            else:
+                albums.append(None)
+        
+        return {"albums": albums}
+
+    def get_artist(self, artist_id: str) -> Dict[str, Any]:
+        """
+        Get Spotify catalog information for a single artist.
+        Endpoint: GET https://api.spotify.com/v1/artists/{id}
+        
+        Args:
+            artist_id (str): The Spotify ID for the artist.
+        
+        Returns:
+            Dict[str, Any]: Artist object.
+        
+        Raises:
+            Exception: If artist not found.
+        """
+        if artist_id not in self.artists:
+            raise Exception(f"Artist {artist_id} not found")
+        
+        return self._enrich_artist(self.artists[artist_id])
+
+    def get_several_artists(self, artist_ids: List[str]) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Get Spotify catalog information for several artists.
+        Endpoint: GET https://api.spotify.com/v1/artists
+        
+        Args:
+            artist_ids (List[str]): List of Spotify artist IDs (max 50).
+        
+        Returns:
+            Dict[str, List[Dict[str, Any]]]: Object containing array of artist objects.
+        
+        Raises:
+            Exception: If more than 50 IDs provided.
+        """
+        if len(artist_ids) > 50:
+            raise Exception("Maximum 50 artists can be requested at once")
+        
+        artists = []
+        for artist_id in artist_ids:
+            if artist_id in self.artists:
+                artists.append(self._enrich_artist(self.artists[artist_id]))
+            else:
+                artists.append(None)
+        
+        return {"artists": artists}
+
+    def search(self, q: str, type: List[str], limit: int = 20, offset: int = 0) -> Dict[str, Any]:
+        """
+        Get Spotify catalog information about albums, artists, playlists, tracks that match a keyword string.
+        Endpoint: GET https://api.spotify.com/v1/search
+        
+        Args:
+            q (str): Search query keywords.
+            type (List[str]): List of item types to search across (album, artist, playlist, track).
+            limit (int): Maximum number of results to return per type (default 20, max 50).
+            offset (int): Index of the first result to return (default 0, max 1000).
+        
+        Returns:
+            Dict[str, Any]: Search response object with paging objects for each type.
+        
+        Raises:
+            Exception: If invalid parameters.
+        """
+        if limit > 50:
+            raise Exception("Maximum limit is 50")
+        if offset > 1000:
+            raise Exception("Maximum offset is 1000")
+        
         results = {}
 
-        if content_type in ["song", "all"]:
-            matched_songs = [copy.deepcopy(s) for s in self.songs.values() if query.lower() in s["title"].lower()]
-            results["songs"] = matched_songs
+        if "track" in type:
+            matched_tracks = []
+            for track in self.tracks.values():
+                track_name = track.get("name", track.get("title", ""))
+                if q.lower() in track_name.lower():
+                    matched_tracks.append(self._enrich_track(track))
+            
+            total = len(matched_tracks)
+            paginated = matched_tracks[offset:offset + limit]
+            
+            results["tracks"] = {
+                "href": f"https://api.spotify.com/v1/search?q={q}&type=track&offset={offset}&limit={limit}",
+                "limit": limit,
+                "offset": offset,
+                "total": total,
+                "items": paginated,
+                "previous": f"https://api.spotify.com/v1/search?q={q}&type=track&offset={max(0, offset - limit)}&limit={limit}" if offset > 0 else None,
+                "next": f"https://api.spotify.com/v1/search?q={q}&type=track&offset={offset + limit}&limit={limit}" if offset + limit < total else None
+            }
         
-        if content_type in ["album", "all"]:
-            matched_albums = [copy.deepcopy(a) for a in self.albums.values() if query.lower() in a["title"].lower()]
-            results["albums"] = matched_albums
-
-        if content_type in ["playlist", "all"]:
-            user_data = self._get_current_user_data()
+        if "album" in type:
+            matched_albums = []
+            for album in self.albums.values():
+                album_name = album.get("name", album.get("title", ""))
+                if q.lower() in album_name.lower():
+                    matched_albums.append(self._enrich_album(album))
+            
+            total = len(matched_albums)
+            paginated = matched_albums[offset:offset + limit]
+            
+            results["albums"] = {
+                "href": f"https://api.spotify.com/v1/search?q={q}&type=album&offset={offset}&limit={limit}",
+                "limit": limit,
+                "offset": offset,
+                "total": total,
+                "items": paginated,
+                "previous": f"https://api.spotify.com/v1/search?q={q}&type=album&offset={max(0, offset - limit)}&limit={limit}" if offset > 0 else None,
+                "next": f"https://api.spotify.com/v1/search?q={q}&type=album&offset={offset + limit}&limit={limit}" if offset + limit < total else None
+            }
+        
+        if "artist" in type:
+            matched_artists = []
+            for artist in self.artists.values():
+                if q.lower() in artist.get("name", "").lower():
+                    matched_artists.append(self._enrich_artist(artist))
+            
+            total = len(matched_artists)
+            paginated = matched_artists[offset:offset + limit]
+            
+            results["artists"] = {
+                "href": f"https://api.spotify.com/v1/search?q={q}&type=artist&offset={offset}&limit={limit}",
+                "limit": limit,
+                "offset": offset,
+                "total": total,
+                "items": paginated,
+                "previous": f"https://api.spotify.com/v1/search?q={q}&type=artist&offset={max(0, offset - limit)}&limit={limit}" if offset > 0 else None,
+                "next": f"https://api.spotify.com/v1/search?q={q}&type=artist&offset={offset + limit}&limit={limit}" if offset + limit < total else None
+            }
+        
+        if "playlist" in type:
             matched_playlists = []
-            for p in self.playlists.values():
-                if query.lower() in p["name"].lower():
-                    if p.get("public") or (user_data and p.get("user_id") == user_data["id"]):
-                        matched_playlists.append(copy.deepcopy(p))
-            results["playlists"] = matched_playlists
+            for playlist in self.playlists.values():
+                if q.lower() in playlist.get("name", "").lower():
+                    # Only include public playlists in search or user's own playlists
+                    if playlist.get("public"):
+                        matched_playlists.append(self._enrich_playlist(playlist))
+            
+            total = len(matched_playlists)
+            paginated = matched_playlists[offset:offset + limit]
+            
+            results["playlists"] = {
+                "href": f"https://api.spotify.com/v1/search?q={q}&type=playlist&offset={offset}&limit={limit}",
+                "limit": limit,
+                "offset": offset,
+                "total": total,
+                "items": paginated,
+                "previous": f"https://api.spotify.com/v1/search?q={q}&type=playlist&offset={max(0, offset - limit)}&limit={limit}" if offset > 0 else None,
+                "next": f"https://api.spotify.com/v1/search?q={q}&type=playlist&offset={offset + limit}&limit={limit}" if offset + limit < total else None
+            }
 
-        if content_type in ["artist", "all"]:
-            matched_artists = [copy.deepcopy(ar) for ar in self.artists.values() if query.lower() in ar["name"].lower()]
-            results["artists"] = matched_artists
+        return results
 
-        return {"status": "success", "results": results}
-
-    def play_content(self, content_type: Literal["song", "album", "playlist"], content_id: str) -> Dict[str, Any]:
-        """
-        Simulates playing a song, album, or playlist.
-
-        Args:
-            content_type (Literal): Type of content to play ("song", "album", "playlist").
-            content_id (str): ID of the content to play.
-        Returns:
-            Dict[str, Any]: Dictionary containing play status or error message.
-        """
-        content = None
-        if content_type == "song":
-            content = self.songs.get(content_id)
-        elif content_type == "album":
-            content = self.albums.get(content_id)
-        elif content_type == "playlist":
-            content = self.playlists.get(content_id)
-            user_data = self._get_current_user_data()
-            if content and not content.get("public") and (not user_data or content.get("user_id") != user_data["id"]):
-                return {"status": "error", "message": "Access denied to private playlist."}
-
-        if content:
-            return {"status": "success", "message": f"Now playing {content_type}: {content.get('title') or content.get('name')} (ID: {content_id})."}
-        return {"status": "error", "message": f"{content_type.capitalize()} with ID {content_id} not found."}
-
-    def get_user_statistics(self) -> Dict[str, Any]:
-        """
-        Retrieves statistics and metadata for the current user.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing user statistics or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
-        
-        stats = {
-            "user_id": user_data["id"],
-            "email": user_data.get("email"),
-            "first_name": user_data.get("first_name"),
-            "last_name": user_data.get("last_name"),
-            "registration_date": user_data.get("registration_date"),
-            "last_active_date": user_data.get("last_active_date"),
-            "preferred_genre": user_data.get("preferred_genre"),
-            "total_play_time_ms": user_data.get("total_play_time_ms", 0),
-            "country": user_data.get("country"),
-            "device_type": user_data.get("device_type"),
-            "premium": user_data.get("premium", False),
-            "total_liked_songs": len(user_data.get("liked_songs", [])),
-            "total_liked_albums": len(user_data.get("liked_albums", [])),
-            "total_liked_playlists": len(user_data.get("liked_playlists", [])),
-            "total_following_artists": len(user_data.get("following_artists", [])),
-            "total_library_songs": len(user_data.get("library_songs", [])),
-            "total_downloaded_songs": len(user_data.get("downloaded_songs", []))
-        }
-        
-        return {"status": "success", "statistics": stats}
-
-    def update_user_preferences(
-        self,
-        preferred_genre: Optional[str] = None,
-        country: Optional[str] = None,
-        device_type: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        Updates user preferences.
-
-        Args:
-            preferred_genre (Optional[str]): New preferred genre.
-            country (Optional[str]): New country setting.
-            device_type (Optional[str]): New device type.
-
-        Returns:
-            Dict[str, Any]: Dictionary indicating success status and updated fields.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
-        
-        updated_fields = []
-        
-        if preferred_genre is not None:
-            user_data["preferred_genre"] = preferred_genre
-            updated_fields.append("preferred_genre")
-        
-        if country is not None:
-            user_data["country"] = country
-            updated_fields.append("country")
-        
-        if device_type is not None:
-            user_data["device_type"] = device_type
-            updated_fields.append("device_type")
-        
-        user_data["last_active_date"] = datetime.datetime.now().isoformat() + "Z"
-        
-        return {
-            "status": "success", 
-            "message": f"Updated fields: {', '.join(updated_fields) if updated_fields else 'none'}",
-            "updated_fields": updated_fields
-        }
-
-    def get_listening_history(self, limit: int = 50) -> Dict[str, Any]:
-        """
-        Retrieves user's listening history based on liked songs and library.
-
-        Args:
-            limit (int): Maximum number of items to return.
-
-        Returns:
-            Dict[str, Any]: Dictionary containing listening history or error message.
-        """
-        user_data = self._get_current_user_data()
-        if not user_data:
-            return {"status": "error", "message": "User not authenticated."}
-        
-        # Combine liked songs and library songs as "history"
-        all_song_ids = list(set(
-            user_data.get("liked_songs", []) + 
-            user_data.get("library_songs", [])
-        ))
-        
-        history = []
-        for song_id in all_song_ids[:limit]:
-            if song_id in self.songs:
-                song_data = copy.deepcopy(self.songs[song_id])
-                song_data["played_at"] = user_data.get("last_active_date", datetime.datetime.now().isoformat() + "Z")
-                history.append(song_data)
-        
-        return {"status": "success", "history": history, "total_items": len(history)}
-
-    def reset_data(self) -> Dict[str, bool]:
+    def reset_data(self) -> None:
         """
         Resets all simulated data in the dummy backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
-
-        Returns:
-            Dict: A dictionary indicating the success of the reset operation.
         """
         self._load_scenario(DEFAULT_STATE)
+        self.access_token = None
+        self.current_user_id = None
         print("SpotifyApis: All dummy data reset to default state.")
-        return {"reset_status": True}

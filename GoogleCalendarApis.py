@@ -731,22 +731,62 @@ class GoogleCalendarApis:
             if calendar_id_resolved in calendars_data:
                 busy_intervals = []
                 
-                check_start = datetime.fromisoformat(time_min.replace('Z', '+00:00'))
-                check_end = datetime.fromisoformat(time_max.replace('Z', '+00:00'))
+                # Parse query time range, ensuring timezone awareness
+                try:
+                    if time_min.endswith('Z'):
+                        check_start = datetime.fromisoformat(time_min.replace('Z', '+00:00'))
+                    else:
+                        check_start = datetime.fromisoformat(time_min)
+                    
+                    if time_max.endswith('Z'):
+                        check_end = datetime.fromisoformat(time_max.replace('Z', '+00:00'))
+                    else:
+                        check_end = datetime.fromisoformat(time_max)
+                except (ValueError, AttributeError):
+                    # If parsing fails, skip this calendar
+                    calendars_result[calendar_id] = {
+                        "errors": [{
+                            "domain": "global",
+                            "reason": "invalid"
+                        }],
+                        "busy": []
+                    }
+                    continue
 
                 for event_id, event in events_data.get(calendar_id_resolved, {}).items():
                     event_start_str = event.get("start", {}).get("dateTime")
                     event_end_str = event.get("end", {}).get("dateTime")
 
                     if event_start_str and event_end_str:
-                        event_start = datetime.fromisoformat(event_start_str.replace('Z', '+00:00') if event_start_str.endswith('Z') else event_start_str)
-                        event_end = datetime.fromisoformat(event_end_str.replace('Z', '+00:00') if event_end_str.endswith('Z') else event_end_str)
+                        try:
+                            # Parse event times, handling various formats
+                            if event_start_str.endswith('Z'):
+                                event_start = datetime.fromisoformat(event_start_str.replace('Z', '+00:00'))
+                            elif '+' in event_start_str or event_start_str.count('-') > 2:
+                                # Has timezone info
+                                event_start = datetime.fromisoformat(event_start_str)
+                            else:
+                                # Naive datetime - make it aware using UTC
+                                event_start = datetime.fromisoformat(event_start_str).replace(tzinfo=check_start.tzinfo)
+                            
+                            if event_end_str.endswith('Z'):
+                                event_end = datetime.fromisoformat(event_end_str.replace('Z', '+00:00'))
+                            elif '+' in event_end_str or event_end_str.count('-') > 2:
+                                # Has timezone info
+                                event_end = datetime.fromisoformat(event_end_str)
+                            else:
+                                # Naive datetime - make it aware using UTC
+                                event_end = datetime.fromisoformat(event_end_str).replace(tzinfo=check_end.tzinfo)
 
-                        if max(check_start, event_start) < min(check_end, event_end):
-                            busy_intervals.append({
-                                "start": event_start_str,
-                                "end": event_end_str
-                            })
+                            # Check for overlap
+                            if max(check_start, event_start) < min(check_end, event_end):
+                                busy_intervals.append({
+                                    "start": event_start_str,
+                                    "end": event_end_str
+                                })
+                        except (ValueError, AttributeError):
+                            # Skip events with invalid datetime formats
+                            continue
                 
                 calendars_result[calendar_id] = {
                     "busy": busy_intervals,

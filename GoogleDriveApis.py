@@ -33,6 +33,7 @@ class GoogleDriveApis:
         """
         self.users: Dict[str, Any] = {}
         self._api_description = "This tool belongs to the Google Drive API, which provides core functionality for managing files and folders."
+        self.current_user: Optional[str] = None  # Currently authenticated user ID
         self._load_scenario(DEFAULT_STATE)
 
     def _load_scenario(self, scenario: Dict) -> None:
@@ -46,13 +47,81 @@ class GoogleDriveApis:
         """
         DEFAULT_STATE_COPY = copy.deepcopy(scenario)
         self.users = DEFAULT_STATE_COPY.get("users", {})
-        print("GoogleDriveApis: Loaded scenario with users and their UUIDs.")
+        # Set first user as authenticated user by default
+        if self.users and not self.current_user:
+            self.current_user = next(iter(self.users.keys()))
+            user_email = self._get_user_email_by_id(self.current_user)
+            print(f"GoogleDriveApis: Loaded scenario with users and their UUIDs.")
+            print(f"API auto-authenticated as: {user_email}")
+        else:
+            print("GoogleDriveApis: Loaded scenario with users and their UUIDs.")
+    
+    def authenticate(self, email: str) -> Dict[str, Union[bool, str]]:
+        """
+        Authenticate a user and set them as the current user.
+        
+        Args:
+            email (str): The user's email address.
+        
+        Returns:
+            Dict[str, Union[bool, str]]: Authentication result.
+        """
+        user_id = self._get_user_id_by_email(email)
+        if user_id:
+            self.current_user = user_id
+            print(f"GoogleDriveApis: Authenticated as {email}")
+            return {"success": True, "message": f"Authenticated as {email}"}
+        return {"success": False, "message": f"User with email {email} not found"}
+    
+    def _ensure_authenticated(self) -> str:
+        """
+        Ensure a user is authenticated before performing operations.
+        
+        Returns:
+            str: The current user ID.
+        
+        Raises:
+            Exception: If no user is authenticated.
+        """
+        if not self.current_user:
+            raise Exception("No authenticated user. Call authenticate() first.")
+        return self.current_user
+    
+    def _get_current_user_id(self) -> Optional[str]:
+        """
+        Get the current authenticated user's ID.
+        
+        Returns:
+            Optional[str]: Current user ID if authenticated, None otherwise.
+        """
+        return self.current_user
 
     def _generate_id(self) -> str:
         """
         Generates a unique UUID for dummy entities (files, folders).
         """
         return str(uuid.uuid4())
+    
+    def _timestamp_to_rfc3339(self, timestamp: Union[int, float]) -> str:
+        """
+        Convert Unix timestamp to RFC3339 format string.
+        
+        Args:
+            timestamp (Union[int, float]): Unix timestamp.
+        
+        Returns:
+            str: RFC3339 formatted datetime string.
+        """
+        return datetime.fromtimestamp(timestamp).isoformat() + 'Z'
+    
+    def _rfc3339_now(self) -> str:
+        """
+        Get current time in RFC3339 format.
+        
+        Returns:
+            str: Current time in RFC3339 format.
+        """
+        return datetime.now().isoformat() + 'Z'
 
     def _get_user_id_by_email(self, email: str) -> Optional[str]:
         """Helper to get user_id from email."""
@@ -95,78 +164,119 @@ class GoogleDriveApis:
         drive_data = self._get_user_drive_data(user_id)
         return drive_data.get("user_info") if drive_data else None
 
-    def get_user_info(self, user_id: str) -> Dict[str, Union[bool, Dict]]:
+    def get_user_info(self) -> Dict[str, Any]:
         """
-        Retrieves information about the user's Drive.
-
-        Args:
-            user_id (str): The internal user ID (UUID).
-
+        Gets information about the user, the user's Drive, and system capabilities.
+        Real API endpoint: GET /drive/v3/about
+        
         Returns:
-            Dict: A dictionary containing 'retrieval_status' (bool) and 'user_info' (Dict) if successful.
+            Dict[str, Any]: About resource containing user and Drive information.
         """
+        user_id = self._ensure_authenticated()
         user_info = self._get_user_info(user_id)
+        user_email = self._get_user_email_by_id(user_id)
+        
         if user_info:
-            return {"retrieval_status": True, "user_info": copy.deepcopy(user_info)}
-        return {"retrieval_status": False, "user_info": {}}
+            user_data = self.users[user_id]
+            return {
+                "kind": "drive#about",
+                "user": {
+                    "kind": "drive#user",
+                    "displayName": user_info.get("name", user_email),
+                    "emailAddress": user_email,
+                    "me": True
+                },
+                "storageQuota": {
+                    "limit": str(user_info.get("storage_quota", {}).get("total", 15000000000)),
+                    "usage": str(user_info.get("storage_quota", {}).get("used", 0)),
+                    "usageInDrive": str(user_info.get("storage_quota", {}).get("used", 0))
+                }
+            }
+        
+        # Return minimal info if no user_info exists
+        return {
+            "kind": "drive#about",
+            "user": {
+                "kind": "drive#user",
+                "displayName": user_email,
+                "emailAddress": user_email,
+                "me": True
+            },
+            "storageQuota": {
+                "limit": "15000000000",
+                "usage": "0",
+                "usageInDrive": "0"
+            }
+        }
 
     def list_files(
         self,
-        user_id: str,
-        query: Optional[str] = None,
-        page_size: int = 10,
+        q: Optional[str] = None,
+        page_size: int = 100,
         page_token: Optional[str] = None,
-    ) -> Dict[str, Union[bool, List[Dict], str]]:
+        order_by: Optional[str] = None,
+        spaces: str = "drive",
+    ) -> Dict[str, Any]:
         """
-        Lists files in the user's Drive.
-
+        Lists the user's files.
+        Real API endpoint: GET /drive/v3/files
+        
         Args:
-            user_id (str): The internal user ID (UUID).
-            query (Optional[str]): A query string to filter results (e.g., "name contains 'report'").
-            page_size (int): The maximum number of files to return per page.
-            page_token (Optional[str]): The token for the next page of results.
-
+            q (Optional[str]): A query for filtering the file results. 
+                              See https://developers.google.com/drive/api/guides/search-files
+            page_size (int): The maximum number of files to return per page. Default 100, max 1000.
+            page_token (Optional[str]): The token for continuing a previous list request.
+            order_by (Optional[str]): A comma-separated list of sort keys. Valid keys are 
+                                     'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime',
+                                     'name', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', 'viewedByMeTime'.
+            spaces (str): A comma-separated list of spaces to query within. Supported values are 'drive' and 'appDataFolder'.
+        
         Returns:
-            Dict: A dictionary containing 'retrieval_status' (bool), 'files' (List[Dict]),
-                  and 'nextPageToken' (str, optional) if successful.
+            Dict[str, Any]: Files list resource.
         """
+        user_id = self._ensure_authenticated()
         files = self._get_user_files(user_id)
+        
         if files is None:
-            return {"retrieval_status": False, "files": []}
+            return {
+                "kind": "drive#fileList",
+                "incompleteSearch": False,
+                "files": []
+            }
 
         all_files = list(files.values())
         filtered_files = []
 
-        if query:
+        if q:
             # Enhanced query parsing to support multiple Google Drive query formats
-            if "name contains '" in query and query.endswith("'"):
-                search_term = query.split("name contains '")[1][:-1].lower()
+            if "name contains '" in q and q.endswith("'"):
+                search_term = q.split("name contains '")[1][:-1].lower()
                 for file_data in all_files:
                     if search_term in file_data.get("name", "").lower():
                         filtered_files.append(file_data)
-            elif "trashed = true" in query.lower():
+            elif "trashed = true" in q.lower():
                 for file_data in all_files:
                     if file_data.get("trashed", False):
                         filtered_files.append(file_data)
-            elif "trashed = false" in query.lower():
+            elif "trashed = false" in q.lower():
                 for file_data in all_files:
                     if not file_data.get("trashed", False):
                         filtered_files.append(file_data)
-            elif "starred = true" in query.lower():
+            elif "starred = true" in q.lower():
                 for file_data in all_files:
                     if file_data.get("starred", False):
                         filtered_files.append(file_data)
-            elif "shared = true" in query.lower():
+            elif "shared = true" in q.lower() or "'me' in owners" in q.lower():
                 for file_data in all_files:
                     if file_data.get("shared", False):
                         filtered_files.append(file_data)
-            elif "mimeType = '" in query and query.endswith("'"):
-                mime_type = query.split("mimeType = '")[1][:-1]
+            elif "mimeType = '" in q and q.endswith("'"):
+                mime_type = q.split("mimeType = '")[1][:-1]
                 for file_data in all_files:
                     if file_data.get("mimeType") == mime_type:
                         filtered_files.append(file_data)
-            elif "'" in query and "' in parents" in query:
-                parent_id = query.split("'")[1]
+            elif "'" in q and "' in parents" in q:
+                parent_id = q.split("'")[1]
                 for file_data in all_files:
                     if parent_id in file_data.get("parents", []):
                         filtered_files.append(file_data)
@@ -176,6 +286,20 @@ class GoogleDriveApis:
         else:
             # Default: exclude trashed files unless specifically requested
             filtered_files = [f for f in all_files if not f.get("trashed", False)]
+
+        # Apply ordering
+        if order_by:
+            sort_key = order_by.split()[0]  # Handle "name desc" or just "name"
+            reverse = "desc" in order_by.lower()
+            
+            if sort_key == "name":
+                filtered_files.sort(key=lambda f: f.get("name", "").lower(), reverse=reverse)
+            elif sort_key == "createdTime":
+                filtered_files.sort(key=lambda f: f.get("createdTime", 0), reverse=reverse)
+            elif sort_key == "modifiedTime":
+                filtered_files.sort(key=lambda f: f.get("modifiedTime", 0), reverse=reverse)
+            elif sort_key == "starred":
+                filtered_files.sort(key=lambda f: f.get("starred", False), reverse=reverse)
 
         start_index = 0
         if page_token:
@@ -187,64 +311,126 @@ class GoogleDriveApis:
         paginated_files = filtered_files[start_index : start_index + page_size]
         next_page_token = str(start_index + page_size) if start_index + page_size < len(filtered_files) else None
 
-        return {
-            "retrieval_status": True,
-            "files": [copy.deepcopy(f) for f in paginated_files],
-            "nextPageToken": next_page_token,
+        # Add standard fields to each file
+        enriched_files = []
+        for file_data in paginated_files:
+            file_copy = copy.deepcopy(file_data)
+            file_copy["kind"] = "drive#file"
+            
+            # Convert timestamps to RFC3339 if they're integers
+            if isinstance(file_copy.get("createdTime"), int):
+                file_copy["createdTime"] = self._timestamp_to_rfc3339(file_copy["createdTime"])
+            if isinstance(file_copy.get("modifiedTime"), int):
+                file_copy["modifiedTime"] = self._timestamp_to_rfc3339(file_copy["modifiedTime"])
+            if isinstance(file_copy.get("viewedByMeTime"), int):
+                file_copy["viewedByMeTime"] = self._timestamp_to_rfc3339(file_copy["viewedByMeTime"])
+            
+            enriched_files.append(file_copy)
+
+        result = {
+            "kind": "drive#fileList",
+            "incompleteSearch": False,
+            "files": enriched_files
         }
+        
+        if next_page_token:
+            result["nextPageToken"] = next_page_token
+        
+        return result
 
-    def get_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, Dict]]:
+    def get_file(self, fileId: str, fields: Optional[str] = "*") -> Dict[str, Any]:
         """
-        Retrieves a file by its ID from the user's Drive.
-
+        Gets a file's metadata by ID.
+        Real API endpoint: GET /drive/v3/files/{fileId}
+        
         Args:
-            fileId (str): The ID of the file to retrieve.
-            user_id (str): The internal user ID (UUID).
-
+            fileId (str): The ID of the file.
+            fields (Optional[str]): The paths of the fields you want included in the response.
+                                   Default is "*" (all fields).
+        
         Returns:
-            Dict: A dictionary containing 'retrieval_status' (bool) and 'file_data' (Dict) if successful.
+            Dict[str, Any]: File resource.
+        
+        Raises:
+            Exception: If file not found.
         """
+        user_id = self._ensure_authenticated()
         files = self._get_user_files(user_id)
+        
         if files is None:
-            return {"retrieval_status": False, "file_data": {}}
+            raise Exception("User data not found")
         
         file_data = files.get(fileId)
-        if file_data:
-            # Update viewing metadata when file is accessed
-            user_email = self._get_user_email_by_id(user_id)
-            file_data["lastViewingUser"] = user_email
-            file_data["viewedByMeTime"] = int(datetime.now().timestamp())
-            return {"retrieval_status": True, "file_data": copy.deepcopy(file_data)}
-        return {"retrieval_status": False, "file_data": {}}
+        if not file_data:
+            raise Exception(f"File not found: {fileId}")
+        
+        # Update viewing metadata when file is accessed
+        user_email = self._get_user_email_by_id(user_id)
+        file_data["lastViewingUser"] = user_email
+        file_data["viewedByMeTime"] = datetime.now().timestamp()
+        
+        file_copy = copy.deepcopy(file_data)
+        file_copy["kind"] = "drive#file"
+        
+        # Convert timestamps to RFC3339
+        if isinstance(file_copy.get("createdTime"), (int, float)):
+            file_copy["createdTime"] = self._timestamp_to_rfc3339(file_copy["createdTime"])
+        if isinstance(file_copy.get("modifiedTime"), (int, float)):
+            file_copy["modifiedTime"] = self._timestamp_to_rfc3339(file_copy["modifiedTime"])
+        if isinstance(file_copy.get("viewedByMeTime"), (int, float)):
+            file_copy["viewedByMeTime"] = self._timestamp_to_rfc3339(file_copy["viewedByMeTime"])
+        
+        # Add capabilities
+        if "capabilities" not in file_copy:
+            file_copy["capabilities"] = {
+                "canEdit": True,
+                "canComment": True,
+                "canShare": True,
+                "canCopy": True,
+                "canDelete": True,
+                "canDownload": True,
+                "canRename": True,
+                "canTrash": True
+            }
+        
+        return file_copy
 
     def create_file(
         self,
         name: str,
-        mimeType: str,
-        user_id: str,
+        mimeType: str = "application/octet-stream",
         parents: Optional[List[str]] = None,
-        content: Optional[str] = None,
-    ) -> Dict[str, Union[bool, Dict]]:
+        description: Optional[str] = None,
+        starred: bool = False,
+    ) -> Dict[str, Any]:
         """
-        Creates a new file in the user's Drive.
-
+        Creates a new file.
+        Real API endpoint: POST /drive/v3/files
+        
         Args:
             name (str): The name of the file.
-            mimeType (str): The MIME type of the file.
-            user_id (str): The internal user ID (UUID).
-            parents (Optional[List[str]]): A list of parent folder IDs. Defaults to root.
-            content (Optional[str]): The content of the file (for simplicity).
-
+            mimeType (str): The MIME type of the file. Defaults to 'application/octet-stream'.
+            parents (Optional[List[str]]): The IDs of the parent folders. If not specified,
+                                          the file will be placed directly in the user's My Drive.
+            description (Optional[str]): A short description of the file.
+            starred (bool): Whether the user has starred the file.
+        
         Returns:
-            Dict: A dictionary containing 'status' (bool) and 'file' (Dict) if successful.
+            Dict[str, Any]: File resource.
         """
-        if user_id not in self.users:
-            return {"status": False, "message": "User not found."}
-
+        user_id = self._ensure_authenticated()
+        
         user_drive_data = self.users[user_id].get("drive_data")
         if user_drive_data is None:
             user_email = self._get_user_email_by_id(user_id)
-            user_drive_data = {"user_info": {"name": "", "email": user_email, "storage_quota": {"total": 0, "used": 0}}, "files": {}}
+            user_drive_data = {
+                "user_info": {
+                    "name": "",
+                    "email": user_email,
+                    "storage_quota": {"total": 15000000000, "used": 0}
+                },
+                "files": {}
+            }
             self.users[user_id]["drive_data"] = user_drive_data
         
         files = user_drive_data.get("files")
@@ -252,73 +438,104 @@ class GoogleDriveApis:
         user_email = self._get_user_email_by_id(user_id)
 
         new_file_id = self._generate_id()
-        current_time = int(datetime.now().timestamp())
+        current_time_rfc = self._rfc3339_now()
         
         new_file = {
+            "kind": "drive#file",
             "id": new_file_id,
             "name": name,
             "mimeType": mimeType,
-            "createdTime": current_time,
-            "modifiedTime": current_time,
-            "owners": [{"displayName": user_info.get("name", user_email), "emailAddress": user_email}],
+            "createdTime": current_time_rfc,
+            "modifiedTime": current_time_rfc,
+            "viewedByMeTime": current_time_rfc,
+            "owners": [{
+                "kind": "drive#user",
+                "displayName": user_info.get("name", user_email),
+                "emailAddress": user_email,
+                "me": True
+            }],
             "parents": parents if parents is not None else ["root"],
-            "size": len(content) if content else 0,
-            "starred": False,
+            "size": "0",
+            "starred": starred,
             "trashed": False,
             "shared": False,
-            "version": 1,
-            "lastViewingUser": user_email,
-            "viewedByMeTime": current_time
+            "capabilities": {
+                "canEdit": True,
+                "canComment": True,
+                "canShare": True,
+                "canCopy": True,
+                "canDelete": True,
+                "canDownload": True,
+                "canRename": True,
+                "canTrash": True
+            }
         }
-        files[new_file_id] = new_file
-
-        user_info["storage_quota"]["used"] += new_file["size"]
         
-        print(f"File '{name}' created for user {user_id} with ID: {new_file_id}")
-        return {"status": True, "file": new_file}
+        if description:
+            new_file["description"] = description
+        
+        files[new_file_id] = new_file
+        
+        user_email_display = self._get_user_email_by_id(user_id)
+        print(f"File '{name}' created for {user_email_display} with ID: {new_file_id}")
+        return new_file
 
     def update_file(
         self,
         fileId: str,
-        user_id: str,
-        addParents: Optional[str] = None,
-        removeParents: Optional[str] = None,
         name: Optional[str] = None,
         mimeType: Optional[str] = None,
+        description: Optional[str] = None,
+        starred: Optional[bool] = None,
+        trashed: Optional[bool] = None,
+        addParents: Optional[str] = None,
+        removeParents: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
-        Update a file's properties in Google Drive for a specific user.
-
+        Updates a file's metadata and/or content.
+        Real API endpoint: PATCH /drive/v3/files/{fileId}
+        
         Args:
-            fileId (str): ID of the file to update.
-            user_id (str): The internal user ID (UUID).
-            addParents (str, optional): Parents to add to the file. Defaults to None.
-            removeParents (str, optional): Parents to remove from the file. Defaults to None.
-            name (str, optional): New name for the file.
-            mimeType (str, optional): New MIME type for the file.
-
+            fileId (str): The ID of the file to update.
+            name (Optional[str]): The new name for the file.
+            mimeType (Optional[str]): The new MIME type for the file.
+            description (Optional[str]): A short description of the file.
+            starred (Optional[bool]): Whether to star or unstar the file.
+            trashed (Optional[bool]): Whether to move the file to trash or restore it.
+            addParents (Optional[str]): Comma-separated list of parent IDs to add.
+            removeParents (Optional[str]): Comma-separated list of parent IDs to remove.
+        
         Returns:
-            Dict: The updated file information if successful,
-                  or an error message if the file or user is not found.
+            Dict[str, Any]: Updated file resource.
+        
+        Raises:
+            Exception: If file not found.
         """
+        user_id = self._ensure_authenticated()
         files = self._get_user_files(user_id)
+        
         if files is None:
-            return {"error": "User data not found"}
+            raise Exception("User data not found")
 
         if fileId not in files:
-            return {"error": "File not found"}
+            raise Exception(f"File not found: {fileId}")
 
         file = files[fileId]
         user_email = self._get_user_email_by_id(user_id)
-        file["modifiedTime"] = int(datetime.now().timestamp())
-        file["version"] = file.get("version", 1) + 1  # Increment version on update
-        file["lastViewingUser"] = user_email
-        file["viewedByMeTime"] = int(datetime.now().timestamp())
+        
+        file["modifiedTime"] = self._rfc3339_now()
+        file["viewedByMeTime"] = self._rfc3339_now()
 
         if name is not None:
             file["name"] = name
         if mimeType is not None:
             file["mimeType"] = mimeType
+        if description is not None:
+            file["description"] = description
+        if starred is not None:
+            file["starred"] = starred
+        if trashed is not None:
+            file["trashed"] = trashed
 
         # Ensure parents is always a list
         if "parents" not in file:
@@ -327,96 +544,253 @@ class GoogleDriveApis:
             file["parents"] = [file["parents"]] if file["parents"] else ["root"]
 
         if addParents:
-            if addParents not in file["parents"]:
-                file["parents"].append(addParents)
+            parents_to_add = addParents.split(',')
+            for parent in parents_to_add:
+                if parent not in file["parents"]:
+                    file["parents"].append(parent)
 
-        if removeParents and "parents" in file:
-            file["parents"] = [p for p in file["parents"] if p != removeParents]
+        if removeParents:
+            parents_to_remove = removeParents.split(',')
+            file["parents"] = [p for p in file["parents"] if p not in parents_to_remove]
             # Ensure at least one parent exists
             if not file["parents"]:
                 file["parents"] = ["root"]
 
-        print(f"File '{fileId}' updated for user {user_id}")
-        return {"updated_file": copy.deepcopy(file), "status": "success"}
+        user_email_display = self._get_user_email_by_id(user_id)
+        print(f"File '{fileId}' updated for {user_email_display}")
+        
+        file_copy = copy.deepcopy(file)
+        file_copy["kind"] = "drive#file"
+        return file_copy
 
-    def delete_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, str]]:
+    def delete_file(self, fileId: str) -> None:
         """
-        Deletes a file by its ID from the user's Drive.
-
+        Permanently deletes a file owned by the user without moving it to the trash.
+        Real API endpoint: DELETE /drive/v3/files/{fileId}
+        
         Args:
             fileId (str): The ID of the file to delete.
-            user_id (str): The internal user ID (UUID).
-
-        Returns:
-            Dict: A dictionary indicating success or failure.
+        
+        Raises:
+            Exception: If file not found.
         """
-        if user_id not in self.users:
-            return {"delete_status": False, "message": "User not found."}
+        user_id = self._ensure_authenticated()
         
         user_drive_data = self.users[user_id].get("drive_data")
         if user_drive_data is None:
-            return {"delete_status": False, "message": "User data not found."}
+            raise Exception("User data not found")
 
         files = user_drive_data.get("files")
         user_info = user_drive_data.get("user_info")
 
-        if fileId in files:
-            deleted_file_size = files[fileId].get("size", 0)
-            del files[fileId]
+        if fileId not in files:
+            raise Exception(f"File not found: {fileId}")
 
+        deleted_file_size = int(files[fileId].get("size", "0")) if isinstance(files[fileId].get("size"), str) else files[fileId].get("size", 0)
+        del files[fileId]
+
+        if user_info and "storage_quota" in user_info:
             user_info["storage_quota"]["used"] -= deleted_file_size
 
-            print(f"File '{fileId}' deleted for user {user_id}")
-            return {"delete_status": True, "message": "File deleted successfully."}
-        return {"delete_status": False, "message": "File not found."}
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"File '{fileId}' deleted for {user_email}")
 
     def copy_file(
-        self, fileId: str, name: str, user_id: str, parents: Optional[List[str]] = None
-    ) -> Dict[str, Union[bool, Dict]]:
+        self,
+        fileId: str,
+        name: Optional[str] = None,
+        parents: Optional[List[str]] = None,
+        description: Optional[str] = None,
+    ) -> Dict[str, Any]:
         """
-        Copies an existing file in the user's Drive.
-
+        Creates a copy of a file.
+        Real API endpoint: POST /drive/v3/files/{fileId}/copy
+        
         Args:
             fileId (str): The ID of the file to copy.
-            name (str): The name for the new copied file.
-            user_id (str): The internal user ID (UUID).
-            parents (Optional[List[str]]): A list of parent folder IDs for the copy. Defaults to root.
-
+            name (Optional[str]): The name of the new file. If not provided, uses "Copy of [original name]".
+            parents (Optional[List[str]]): The IDs of the parent folders containing the file.
+            description (Optional[str]): A short description of the file.
+        
         Returns:
-            Dict: A dictionary containing 'copy_status' (bool) and 'copied_file_data' (Dict) if successful.
+            Dict[str, Any]: The copied file resource.
+        
+        Raises:
+            Exception: If original file not found.
         """
+        user_id = self._ensure_authenticated()
         files = self._get_user_files(user_id)
+        
         if files is None:
-            return {"status": False, "message": "User data not found."}
+            raise Exception("User data not found")
 
         original_file = files.get(fileId)
         if not original_file:
-            return {"status": False, "message": "Original file not found."}
+            raise Exception(f"File not found: {fileId}")
 
         new_file_id = self._generate_id()
-        current_time = int(datetime.now().timestamp())
+        current_time_rfc = self._rfc3339_now()
         user_email = self._get_user_email_by_id(user_id)
 
         copied_file = copy.deepcopy(original_file)
+        copied_file["kind"] = "drive#file"
         copied_file["id"] = new_file_id
-        copied_file["name"] = name
-        copied_file["createdTime"] = current_time
-        copied_file["modifiedTime"] = current_time
-        copied_file["parents"] = parents if parents is not None else ["root"]
-        copied_file["version"] = 1  # Reset version for copy
-        copied_file["lastViewingUser"] = user_email
-        copied_file["viewedByMeTime"] = current_time
+        copied_file["name"] = name if name is not None else f"Copy of {original_file.get('name', 'Untitled')}"
+        copied_file["createdTime"] = current_time_rfc
+        copied_file["modifiedTime"] = current_time_rfc
+        copied_file["viewedByMeTime"] = current_time_rfc
+        copied_file["parents"] = parents if parents is not None else original_file.get("parents", ["root"])
         copied_file["shared"] = False  # Reset sharing for copy
+        
+        if description is not None:
+            copied_file["description"] = description
 
         files[new_file_id] = copied_file
 
         if user_id in self.users:
             user_info = self.users[user_id]["drive_data"].get("user_info")
             if user_info:
-                user_info["storage_quota"]["used"] += copied_file.get("size", 0)
+                file_size = int(copied_file.get("size", "0")) if isinstance(copied_file.get("size"), str) else copied_file.get("size", 0)
+                user_info["storage_quota"]["used"] += file_size
 
-        print(f"File '{fileId}' copied to '{name}' with ID: {new_file_id} for user {user_id}")
-        return {"status": True, "file": copied_file}
+        print(f"File '{fileId}' copied to '{copied_file['name']}' with ID: {new_file_id} for {user_email}")
+        return copied_file
+    
+    def create_permission(
+        self,
+        fileId: str,
+        role: str,
+        type: str,
+        emailAddress: Optional[str] = None,
+        domain: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """
+        Creates a permission for a file or shared drive.
+        Real API endpoint: POST /drive/v3/files/{fileId}/permissions
+        
+        Args:
+            fileId (str): The ID of the file or shared drive.
+            role (str): The role granted by this permission. Valid values are:
+                       'owner', 'organizer', 'fileOrganizer', 'writer', 'commenter', 'reader'.
+            type (str): The type of the grantee. Valid values are:
+                       'user', 'group', 'domain', 'anyone'.
+            emailAddress (Optional[str]): The email address of the user or group to which this permission refers.
+            domain (Optional[str]): The domain to which this permission refers.
+        
+        Returns:
+            Dict[str, Any]: Permission resource.
+        
+        Raises:
+            Exception: If file not found or invalid parameters.
+        """
+        user_id = self._ensure_authenticated()
+        files = self._get_user_files(user_id)
+        
+        if files is None:
+            raise Exception("User data not found")
+
+        if fileId not in files:
+            raise Exception(f"File not found: {fileId}")
+
+        # Validate role
+        valid_roles = ["owner", "organizer", "fileOrganizer", "writer", "commenter", "reader"]
+        if role not in valid_roles:
+            raise Exception(f"Invalid role '{role}'. Valid roles are: {', '.join(valid_roles)}")
+        
+        # Validate type
+        valid_types = ["user", "group", "domain", "anyone"]
+        if type not in valid_types:
+            raise Exception(f"Invalid type '{type}'. Valid types are: {', '.join(valid_types)}")
+
+        file = files[fileId]
+        user_email = self._get_user_email_by_id(user_id)
+        
+        # Create permission
+        permission_id = self._generate_id()
+        permission = {
+            "kind": "drive#permission",
+            "id": permission_id,
+            "type": type,
+            "role": role
+        }
+        
+        if emailAddress:
+            permission["emailAddress"] = emailAddress
+            # Find the user's display name if they exist in our system
+            display_name = "External User"
+            for user_data in self.users.values():
+                if user_data.get("email") == emailAddress:
+                    display_name = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
+                    break
+            permission["displayName"] = display_name
+        
+        if domain:
+            permission["domain"] = domain
+        
+        # Add to file's permissions/owners list
+        if "owners" not in file:
+            file["owners"] = []
+        
+        file["owners"].append({
+            "kind": "drive#user",
+            "displayName": permission.get("displayName", "Unknown"),
+            "emailAddress": emailAddress if emailAddress else "",
+            "role": role
+        })
+        
+        file["shared"] = True
+        file["modifiedTime"] = self._rfc3339_now()
+
+        print(f"Permission created for file '{fileId}': {role} access for {emailAddress or type}")
+        return permission
+
+    def list_revisions(self, fileId: str, page_size: int = 200) -> Dict[str, Any]:
+        """
+        Lists a file's revisions.
+        Real API endpoint: GET /drive/v3/files/{fileId}/revisions
+        
+        Args:
+            fileId (str): The ID of the file.
+            page_size (int): The maximum number of revisions to return per page.
+        
+        Returns:
+            Dict[str, Any]: Revisions list resource.
+        
+        Raises:
+            Exception: If file not found.
+        """
+        user_id = self._ensure_authenticated()
+        files = self._get_user_files(user_id)
+        
+        if files is None:
+            raise Exception("User data not found")
+
+        if fileId not in files:
+            raise Exception(f"File not found: {fileId}")
+
+        file = files[fileId]
+        
+        # Simulate revision history based on creation/modification times
+        revisions = []
+        created_time = file.get("createdTime")
+        modified_time = file.get("modifiedTime")
+        
+        # Always have at least the current version
+        current_revision = {
+            "kind": "drive#revision",
+            "id": "1",
+            "mimeType": file.get("mimeType"),
+            "modifiedTime": modified_time if modified_time else created_time,
+            "size": file.get("size", "0"),
+            "keepForever": False,
+            "published": False
+        }
+        revisions.append(current_revision)
+
+        return {
+            "kind": "drive#revisionList",
+            "revisions": revisions
+        }
 
     def reset_data(self) -> Dict[str, bool]:
         """
@@ -430,177 +804,23 @@ class GoogleDriveApis:
         print("GoogleDriveApis: All dummy data reset to default state.")
         return {"reset_status": True}
 
-    def star_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, str]]:
+    
+    def create_folder(self, name: str, parents: Optional[List[str]] = None, description: Optional[str] = None) -> Dict[str, Any]:
         """
-        Stars or unstars a file in Google Drive.
-
-        Args:
-            fileId (str): The ID of the file to star/unstar.
-            user_id (str): The internal user ID (UUID).
-
-        Returns:
-            Dict: A dictionary indicating success or failure.
-        """
-        files = self._get_user_files(user_id)
-        if files is None:
-            return {"star_status": False, "message": "User data not found."}
-
-        if fileId not in files:
-            return {"star_status": False, "message": "File not found."}
-
-        file = files[fileId]
-        user_email = self._get_user_email_by_id(user_id)
-        file["starred"] = not file.get("starred", False)
-        file["modifiedTime"] = int(datetime.now().timestamp())
-        file["lastViewingUser"] = user_email
-        file["viewedByMeTime"] = int(datetime.now().timestamp())
-
-        status = "starred" if file["starred"] else "unstarred"
-        print(f"File '{fileId}' {status} for user {user_id}")
-        return {"star_status": True, "message": f"File {status} successfully.", "starred": file["starred"]}
-
-    def trash_file(self, fileId: str, user_id: str) -> Dict[str, Union[bool, str]]:
-        """
-        Moves a file to trash or restores it from trash.
-
-        Args:
-            fileId (str): The ID of the file to trash/restore.
-            user_id (str): The internal user ID (UUID).
-
-        Returns:
-            Dict: A dictionary indicating success or failure.
-        """
-        files = self._get_user_files(user_id)
-        if files is None:
-            return {"trash_status": False, "message": "User data not found."}
-
-        if fileId not in files:
-            return {"trash_status": False, "message": "File not found."}
-
-        file = files[fileId]
-        user_email = self._get_user_email_by_id(user_id)
-        file["trashed"] = not file.get("trashed", False)
-        file["modifiedTime"] = int(datetime.now().timestamp())
-        file["lastViewingUser"] = user_email
-        file["viewedByMeTime"] = int(datetime.now().timestamp())
-
-        status = "trashed" if file["trashed"] else "restored"
-        print(f"File '{fileId}' {status} for user {user_id}")
-        return {"trash_status": True, "message": f"File {status} successfully.", "trashed": file["trashed"]}
-
-    def share_file(self, fileId: str, email: str, user_id: str, role: str = "reader") -> Dict[str, Union[bool, str]]:
-        """
-        Shares a file with another user.
-
-        Args:
-            fileId (str): The ID of the file to share.
-            email (str): Email address of the user to share with.
-            user_id (str): The internal user ID (UUID) of the file owner.
-            role (str): The role to grant ("reader", "writer", "owner").
-
-        Returns:
-            Dict: A dictionary indicating success or failure.
-        """
-        # Validate role
-        valid_roles = ["reader", "writer", "owner"]
-        if role not in valid_roles:
-            return {"share_status": False, "message": f"Invalid role '{role}'. Valid roles are: {', '.join(valid_roles)}"}
-
-        files = self._get_user_files(user_id)
-        if files is None:
-            return {"share_status": False, "message": "User data not found."}
-
-        if fileId not in files:
-            return {"share_status": False, "message": "File not found."}
-
-        file = files[fileId]
-        user_email = self._get_user_email_by_id(user_id)
+        Creates a new folder.
+        Real API endpoint: POST /drive/v3/files (with mimeType='application/vnd.google-apps.folder')
         
-        # Add the new owner/collaborator
-        if "owners" not in file:
-            file["owners"] = []
-        
-        # Check if already shared with this user
-        existing_owner = next((owner for owner in file["owners"] if owner.get("emailAddress") == email), None)
-        
-        if existing_owner:
-            return {"share_status": False, "message": "File already shared with this user."}
-
-        # Find the user's display name if they exist in our system
-        shared_user_name = "External User"
-        for user_data in self.users.values():
-            if user_data.get("email") == email:
-                shared_user_name = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
-                break
-
-        file["owners"].append({
-            "displayName": shared_user_name,
-            "emailAddress": email,
-            "role": role
-        })
-        
-        file["shared"] = True
-        file["modifiedTime"] = int(datetime.now().timestamp())
-        file["lastViewingUser"] = user_email
-        file["viewedByMeTime"] = int(datetime.now().timestamp())
-
-        print(f"File '{fileId}' shared with {email} as {role} for user {user_id}")
-        return {"share_status": True, "message": f"File shared with {email} successfully."}
-
-    def get_file_revisions(self, fileId: str, user_id: str) -> Dict[str, Union[bool, List, str]]:
-        """
-        Gets revision history for a file (simulated).
-
-        Args:
-            fileId (str): The ID of the file.
-            user_id (str): The internal user ID (UUID).
-
-        Returns:
-            Dict: A dictionary with revision history.
-        """
-        files = self._get_user_files(user_id)
-        if files is None:
-            return {"retrieval_status": False, "revisions": [], "message": "User data not found."}
-
-        if fileId not in files:
-            return {"retrieval_status": False, "revisions": [], "message": "File not found."}
-
-        file = files[fileId]
-        
-        # Simulate revision history based on version number
-        revisions = []
-        current_version = file.get("version", 1)
-        created_time = file.get("createdTime", int(datetime.now().timestamp()))
-        modified_time = file.get("modifiedTime", int(datetime.now().timestamp()))
-        
-        for v in range(1, current_version + 1):
-            revision_time = created_time + (modified_time - created_time) * (v - 1) / max(1, current_version - 1)
-            revisions.append({
-                "id": f"{fileId}_v{v}",
-                "mimeType": file.get("mimeType"),
-                "modifiedTime": int(revision_time),
-                "size": file.get("size", 0),
-                "version": v
-            })
-
-        return {"retrieval_status": True, "revisions": revisions}
-
-    def create_folder(self, name: str, user_id: str, parents: Optional[List[str]] = None) -> Dict[str, Union[bool, Dict]]:
-        """
-        Creates a new folder in the user's Drive.
-
         Args:
             name (str): The name of the folder.
-            user_id (str): The internal user ID (UUID).
-            parents (Optional[List[str]]): A list of parent folder IDs. Defaults to root.
-
+            parents (Optional[List[str]]): The IDs of the parent folders. Defaults to root.
+            description (Optional[str]): A short description of the folder.
+        
         Returns:
-            Dict: A dictionary containing 'creation_status' (bool) and 'folder_data' (Dict) if successful.
+            Dict[str, Any]: The created folder resource.
         """
         return self.create_file(
             name=name,
             mimeType="application/vnd.google-apps.folder",
-            user_id=user_id,
             parents=parents,
-            content=None,
+            description=description
         )

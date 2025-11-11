@@ -1,3 +1,5 @@
+# Inspired by https://developer.smartthings.com/docs/api/public
+
 import datetime
 import copy
 import uuid
