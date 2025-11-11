@@ -20,6 +20,7 @@ class GoogleCalendarApis:
         """
         self.users: Dict[str, Any] = {}
         self._api_description = "This tool belongs to the Google Calendar API, which provides core functionality for managing calendars and events."
+        self.current_user: Optional[str] = None  # Currently authenticated user ID
         self._load_scenario(DEFAULT_STATE)
 
     def _load_scenario(self, scenario: Dict) -> None:
@@ -29,7 +30,42 @@ class GoogleCalendarApis:
             scenario (Dict): Scenario configuration containing users and their data.
         """
         self.users = copy.deepcopy(scenario).get("users", {})
+        # Set first user as authenticated user by default
+        if self.users and not self.current_user:
+            self.current_user = next(iter(self.users.keys()))
         print("GoogleCalendarApis: Loaded scenario with users and their UUIDs.")
+
+    def authenticate(self, email: str) -> Dict[str, Union[bool, str]]:
+        """
+        Authenticate a user and set them as the current user.
+        Args:
+            email (str): The user's email address to authenticate.
+        Returns:
+            Dict[str, Union[bool, str]]: Dictionary indicating success/failure and message.
+        """
+        user_id = self._get_user_id_by_email(email)
+        if not user_id:
+            return {"success": False, "message": "User not found."}
+        
+        self.current_user = user_id
+        print(f"GoogleCalendarApis: Authenticated as {email}")
+        return {"success": True, "message": f"Authenticated as {email}"}
+
+    def _resolve_calendar_id(self, calendar_id: str) -> Optional[str]:
+        """
+        Resolve "primary" keyword to user's primary calendar ID.
+        Args:
+            calendar_id (str): Calendar ID or "primary" keyword.
+        Returns:
+            Optional[str]: Resolved calendar ID, or None if not found.
+        """
+        if calendar_id == "primary":
+            # Return the first calendar ID (primary calendar) for the authenticated user
+            calendars = self._get_user_calendars(self.current_user) if self.current_user else None
+            if calendars:
+                return next(iter(calendars.keys()))
+            return None
+        return calendar_id
 
     def _generate_id(self) -> str:
         """
@@ -61,19 +97,39 @@ class GoogleCalendarApis:
 
     def _get_user_calendar_data(self, user_id: str) -> Optional[Dict]:
         """
-        Get calendar data for a specific user.
+        Get calendar data for a specific user (internal method).
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The internal user ID.
         Returns:
             Optional[Dict]: User's calendar data if found, None otherwise.
         """
         return self.users.get(user_id, {}).get("calendar_data")
 
+    def _get_current_user_id(self) -> Optional[str]:
+        """
+        Get the current authenticated user ID.
+        Returns:
+            Optional[str]: Current user ID or None if not authenticated.
+        """
+        return self.current_user
+
+    def _ensure_authenticated(self) -> str:
+        """
+        Ensure a user is authenticated and return their ID.
+        Returns:
+            str: Authenticated user ID.
+        Raises:
+            Exception: If no user is authenticated.
+        """
+        if not self.current_user:
+            raise Exception("No authenticated user. Call authenticate() first.")
+        return self.current_user
+
     def _get_user_calendars(self, user_id: str) -> Optional[Dict]:
         """
-        Get calendars for a specific user.
+        Get calendars for a specific user (internal method).
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The internal user ID.
         Returns:
             Optional[Dict]: User's calendars if found, None otherwise.
         """
@@ -82,72 +138,101 @@ class GoogleCalendarApis:
 
     def _get_user_events(self, user_id: str) -> Optional[Dict[str, Dict]]:
         """
-        Get events for a specific user.
+        Get events for a specific user (internal method).
         Args:
-            user_id (str): The internal user ID (UUID).
+            user_id (str): The internal user ID.
         Returns:
             Optional[Dict[str, Dict]]: User's events organized by calendar if found, None otherwise.
         """
         calendar_data = self._get_user_calendar_data(user_id)
         return calendar_data.get("events") if calendar_data else None
 
-    def get_user_profile(self, user_id: str) -> Dict[str, Union[bool, Dict]]:
+    def list_calendar_list(self) -> Dict[str, Any]:
         """
-        Get profile information for a user.
-        Args:
-            user_id (str): The internal user ID (UUID).
-        Returns:
-            Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and profile data.
-        """
-        if user_id not in self.users:
-            return {"retrieval_status": False, "profile_data": {}}
+        Returns the calendars on the user's calendar list.
+        Real API endpoint: GET /users/me/calendarList
         
-        user_data = self.users.get(user_id)
-        return {"retrieval_status": True, "profile_data": {"email": user_data["email"], "first_name": user_data["first_name"], "last_name": user_data["last_name"]}} if user_data else {"retrieval_status": False, "profile_data": {}}
-
-    def list_calendars(self, user_id: str) -> Dict[str, Union[bool, List[Dict]]]:
-        """
-        List all calendars for a user.
-        Args:
-            user_id (str): The internal user ID (UUID).
         Returns:
-            Dict[str, Union[bool, List[Dict]]]: Dictionary with retrieval status and list of calendars.
+            Dict[str, Any]: Calendar list with items array.
         """
+        user_id = self._ensure_authenticated()
         calendars = self._get_user_calendars(user_id)
-        return {"retrieval_status": True, "calendars": list(calendars.values())} if calendars else {"retrieval_status": False, "calendars": []}
-
-    def get_calendar(self, calendar_id: str, user_id: str) -> Dict[str, Union[bool, Dict]]:
-        """
-        Get details for a specific calendar.
-        Args:
-            calendar_id (str): ID of the calendar to retrieve.
-            user_id (str): The internal user ID (UUID).
-        Returns:
-            Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and calendar data.
-        """
-        calendars = self._get_user_calendars(user_id)
+        
         if not calendars:
-            return {"retrieval_status": False, "calendar_data": {}}
+            return {
+                "kind": "calendar#calendarList",
+                "etag": self._generate_id(),
+                "items": []
+            }
         
-        calendar = calendars.get(calendar_id)
-        return {"retrieval_status": True, "calendar_data": copy.deepcopy(calendar)} if calendar else {"retrieval_status": False, "calendar_data": {}}
+        items = []
+        for cal_id, cal_data in calendars.items():
+            items.append({
+                "kind": "calendar#calendarListEntry",
+                "etag": self._generate_id(),
+                "id": cal_id,
+                "summary": cal_data.get("summary", ""),
+                "timeZone": cal_data.get("timeZone", "UTC"),
+                "colorId": cal_data.get("colorId", "1"),
+                "backgroundColor": cal_data.get("backgroundColor", "#9fe1e7"),
+                "foregroundColor": cal_data.get("foregroundColor", "#000000"),
+                "selected": cal_data.get("selected", True),
+                "accessRole": cal_data.get("accessRole", "owner"),
+                "defaultReminders": cal_data.get("defaultReminders", []),
+                "primary": cal_data.get("primary", False)
+            })
+        
+        return {
+            "kind": "calendar#calendarList",
+            "etag": self._generate_id(),
+            "items": items
+        }
 
-    def create_calendar(
-        self, summary: str, time_zone: str, user_id: str
-    ) -> Dict[str, Union[bool, Dict]]:
+    def get_calendar(self, calendar_id: str) -> Dict[str, Any]:
         """
-        Create a new calendar for a user.
+        Returns metadata for a calendar.
+        Real API endpoint: GET /calendars/calendarId
+        
         Args:
-            summary (str): Name/description of the new calendar.
-            time_zone (str): Time zone for the calendar.
-            user_id (str): The internal user ID (UUID).
+            calendar_id (str): Calendar identifier. To retrieve calendar IDs call the calendarList.list method.
+                              If you want to access the primary calendar, use the "primary" keyword.
         Returns:
-            Dict[str, Union[bool, Dict]]: Dictionary with creation status and new calendar data.
+            Dict[str, Any]: Calendar resource.
+        Raises:
+            Exception: If calendar not found.
         """
-        if user_id not in self.users:
-            return {"creation_status": False, "calendar_data": {}}
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        
+        calendars = self._get_user_calendars(user_id)
+        if not calendars or calendar_id not in calendars:
+            raise Exception(f"Calendar not found: {calendar_id}")
+        
+        calendar = calendars[calendar_id]
+        return {
+            "kind": "calendar#calendar",
+            "etag": self._generate_id(),
+            "id": calendar_id,
+            "summary": calendar.get("summary", ""),
+            "description": calendar.get("description", ""),
+            "timeZone": calendar.get("timeZone", "UTC")
+        }
 
+    def insert_calendar(self, summary: str, time_zone: str = "UTC", description: str = "") -> Dict[str, Any]:
+        """
+        Creates a secondary calendar.
+        Real API endpoint: POST /calendars
+        
+        Args:
+            summary (str): Title of the calendar.
+            time_zone (str): The time zone of the calendar. (Optional, defaults to UTC)
+            description (str): Description of the calendar. (Optional)
+        Returns:
+            Dict[str, Any]: Created calendar resource.
+        """
+        user_id = self._ensure_authenticated()
         user_calendar_data = self.users[user_id].get("calendar_data")
+        
         if user_calendar_data is None:
             user_calendar_data = {"calendars": {}, "events": {}}
             self.users[user_id]["calendar_data"] = user_calendar_data
@@ -157,110 +242,180 @@ class GoogleCalendarApis:
 
         new_calendar_id = self._generate_id()
         new_calendar = {
+            "kind": "calendar#calendar",
+            "etag": self._generate_id(),
             "id": new_calendar_id,
             "summary": summary,
-            "timeZone": time_zone,
+            "description": description,
+            "timeZone": time_zone
         }
         calendars[new_calendar_id] = new_calendar
         events[new_calendar_id] = {}
 
         user_email = self._get_user_email_by_id(user_id)
-        print(f"Calendar created: {summary} for user {user_id} ({user_email})")
-        return {"creation_status": True, "calendar_data": new_calendar}
+        print(f"Calendar created: {summary} for {user_email}")
+        return new_calendar
 
-    def update_calendar(
-        self, calendar_id: str, new_summary: str, user_id: str
-    ) -> Dict[str, Union[bool, str]]:
+    def update_calendar(self, calendar_id: str, summary: Optional[str] = None, 
+                       description: Optional[str] = None, time_zone: Optional[str] = None) -> Dict[str, Any]:
         """
-        Update a calendar's summary/name.
-        Args:
-            calendar_id (str): ID of the calendar to update.
-            new_summary (str): New name/description for the calendar.
-            user_id (str): The internal user ID (UUID).
-        Returns:
-            Dict[str, Union[bool, str]]: Dictionary with update status and message.
-        """
-        calendars = self._get_user_calendars(user_id)
-        if calendars is None:
-            return {"update_status": False, "message": "User not found or no calendar data."}
+        Updates metadata for a calendar.
+        Real API endpoint: PUT /calendars/calendarId
         
-        if calendar_id in calendars:
-            calendars[calendar_id]["summary"] = new_summary
-            user_email = self._get_user_email_by_id(user_id)
-            print(f"Calendar '{calendar_id}' updated to '{new_summary}' for user {user_id} ({user_email})")
-            return {"update_status": True, "message": "Calendar updated successfully."}
-        return {"update_status": False, "message": "Calendar not found."}
-
-    def delete_calendar(
-        self, calendar_id: str, user_id: str
-    ) -> Dict[str, Union[bool, str]]:
-        """
-        Delete a calendar and all its events.
         Args:
-            calendar_id (str): ID of the calendar to delete.
-            user_id (str): The internal user ID (UUID).
+            calendar_id (str): Calendar identifier.
+            summary (Optional[str]): Title of the calendar.
+            description (Optional[str]): Description of the calendar.
+            time_zone (Optional[str]): The time zone of the calendar.
         Returns:
-            Dict[str, Union[bool, str]]: Dictionary with deletion status and message.
+            Dict[str, Any]: Updated calendar resource.
+        Raises:
+            Exception: If calendar not found.
         """
-        if user_id not in self.users:
-            return {"delete_status": False, "message": "User not found."}
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        
+        calendars = self._get_user_calendars(user_id)
+        if not calendars or calendar_id not in calendars:
+            raise Exception(f"Calendar not found: {calendar_id}")
+        
+        calendar = calendars[calendar_id]
+        if summary is not None:
+            calendar["summary"] = summary
+        if description is not None:
+            calendar["description"] = description
+        if time_zone is not None:
+            calendar["timeZone"] = time_zone
+        
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Calendar '{calendar_id}' updated for {user_email}")
+        
+        return {
+            "kind": "calendar#calendar",
+            "etag": self._generate_id(),
+            "id": calendar_id,
+            "summary": calendar.get("summary", ""),
+            "description": calendar.get("description", ""),
+            "timeZone": calendar.get("timeZone", "UTC")
+        }
+
+    def delete_calendar(self, calendar_id: str) -> None:
+        """
+        Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
+        Real API endpoint: DELETE /calendars/calendarId
+        
+        Args:
+            calendar_id (str): Calendar identifier.
+        Raises:
+            Exception: If calendar not found or trying to delete primary calendar.
+        """
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
         
         user_calendar_data = self.users[user_id].get("calendar_data")
         if user_calendar_data is None:
-             return {"delete_status": False, "message": "User not found or no calendar data."}
+            raise Exception(f"Calendar not found: {calendar_id}")
 
         calendars = user_calendar_data.get("calendars")
         events_data = user_calendar_data.get("events")
 
-        if calendar_id in calendars:
-            del calendars[calendar_id]
-            if calendar_id in events_data:
-                del events_data[calendar_id]
-            user_email = self._get_user_email_by_id(user_id)
-            print(f"Calendar '{calendar_id}' and its events deleted for user {user_id} ({user_email})")
-            return {"delete_status": True, "message": "Calendar deleted successfully."}
-        return {"delete_status": False, "message": "Calendar not found."}
+        if calendar_id not in calendars:
+            raise Exception(f"Calendar not found: {calendar_id}")
+
+        del calendars[calendar_id]
+        if calendar_id in events_data:
+            del events_data[calendar_id]
+        
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Calendar '{calendar_id}' deleted for {user_email}")
 
     def list_events(
         self,
         calendar_id: str,
-        user_id: str,
         time_min: Optional[str] = None,
         time_max: Optional[str] = None,
-        max_results: int = 10,
+        max_results: int = 250,
         page_token: Optional[str] = None,
-    ) -> Dict[str, Union[bool, List[Dict], str]]:
+        q: Optional[str] = None,
+        order_by: Optional[str] = None,
+        single_events: bool = False,
+    ) -> Dict[str, Any]:
         """
-        List events in a calendar with optional filters and pagination.
+        Returns events on the specified calendar.
+        Real API endpoint: GET /calendars/calendarId/events
+        
         Args:
-            calendar_id (str): ID of the calendar to list events from.
-            user_id (str): The internal user ID (UUID).
-            time_min (Optional[str]): Minimum start time for events (ISO format).
-            time_max (Optional[str]): Maximum end time for events (ISO format).
-            max_results (int): Maximum number of events to return.
-            page_token (Optional[str]): Token for pagination.
+            calendar_id (str): Calendar identifier. To retrieve calendar IDs call the calendarList.list method.
+                              If you want to access the primary calendar, use the "primary" keyword.
+            time_min (Optional[str]): Lower bound (inclusive) for an event's end time to filter by. (ISO format)
+            time_max (Optional[str]): Upper bound (exclusive) for an event's start time to filter by. (ISO format)
+            max_results (int): Maximum number of events returned on one result page. (1-2500, default 250)
+            page_token (Optional[str]): Token specifying which result page to return.
+            q (Optional[str]): Free text search terms to find events that match these terms.
+            order_by (Optional[str]): The order of the events returned in the result. "startTime" or "updated".
+            single_events (bool): Whether to expand recurring events into instances.
         Returns:
-            Dict[str, Union[bool, List[Dict], str]]: Dictionary with retrieval status, events list, and next page token.
+            Dict[str, Any]: Events list resource.
         """
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        
         events_by_calendar = self._get_user_events(user_id)
         if events_by_calendar is None or calendar_id not in events_by_calendar:
-            return {"retrieval_status": False, "events": []}
+            return {
+                "kind": "calendar#events",
+                "etag": self._generate_id(),
+                "summary": "",
+                "updated": datetime.now().isoformat() + "Z",
+                "timeZone": "UTC",
+                "accessRole": "owner",
+                "items": []
+            }
 
         all_events_in_calendar = list(events_by_calendar[calendar_id].values())
         
         filtered_events = []
         for event in all_events_in_calendar:
             match = True
+            
+            # Apply time filters
             if time_min:
-                if event.get("start", {}).get("dateTime") < time_min:
+                event_end = event.get("end", {}).get("dateTime", "")
+                if event_end < time_min:
                     match = False
             if time_max:
-                if event.get("end", {}).get("dateTime") > time_max:
+                event_start = event.get("start", {}).get("dateTime", "")
+                if event_start >= time_max:
+                    match = False
+            
+            # Apply text search
+            if q:
+                summary = event.get("summary", "").lower()
+                description = event.get("description", "").lower()
+                if q.lower() not in summary and q.lower() not in description:
                     match = False
             
             if match:
-                filtered_events.append(copy.deepcopy(event))
+                # Add standard event fields
+                event_copy = copy.deepcopy(event)
+                event_copy["kind"] = "calendar#event"
+                event_copy["etag"] = self._generate_id()
+                if "created" not in event_copy:
+                    event_copy["created"] = datetime.now().isoformat() + "Z"
+                if "updated" not in event_copy:
+                    event_copy["updated"] = datetime.now().isoformat() + "Z"
+                if "status" not in event_copy:
+                    event_copy["status"] = "confirmed"
+                
+                filtered_events.append(event_copy)
 
+        # Apply ordering
+        if order_by == "startTime":
+            filtered_events.sort(key=lambda e: e.get("start", {}).get("dateTime", ""))
+        elif order_by == "updated":
+            filtered_events.sort(key=lambda e: e.get("updated", ""))
+
+        # Apply pagination
         start_index = 0
         if page_token:
             try:
@@ -271,220 +426,315 @@ class GoogleCalendarApis:
         paginated_events = filtered_events[start_index : start_index + max_results]
         next_page_token = str(start_index + max_results) if start_index + max_results < len(filtered_events) else None
 
-        return {
-            "retrieval_status": True,
-            "events": paginated_events,
-            "nextPageToken": next_page_token,
+        result = {
+            "kind": "calendar#events",
+            "etag": self._generate_id(),
+            "summary": "",
+            "updated": datetime.now().isoformat() + "Z",
+            "timeZone": "UTC",
+            "accessRole": "owner",
+            "items": paginated_events
         }
+        
+        if next_page_token:
+            result["nextPageToken"] = next_page_token
+        
+        return result
 
-    def get_event(self, calendar_id: str, event_id: str, user_id: str) -> Dict[str, Union[bool, Dict]]:
+    def get_event(self, calendar_id: str, event_id: str) -> Dict[str, Any]:
         """
-        Get details for a specific event.
+        Returns an event based on its calendar ID and event ID.
+        Real API endpoint: GET /calendars/calendarId/events/eventId
+        
         Args:
-            calendar_id (str): ID of the calendar containing the event.
-            event_id (str): ID of the event to retrieve.
-            user_id (str): The internal user ID (UUID).
+            calendar_id (str): Calendar identifier. To retrieve calendar IDs call the calendarList.list method.
+                              If you want to access the primary calendar, use the "primary" keyword.
+            event_id (str): Event identifier.
         Returns:
-            Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and event data.
+            Dict[str, Any]: Event resource.
+        Raises:
+            Exception: If event not found.
         """
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        
         events_by_calendar = self._get_user_events(user_id)
         if not events_by_calendar or calendar_id not in events_by_calendar:
-            return {"retrieval_status": False, "event_data": {}}
+            raise Exception(f"Calendar not found: {calendar_id}")
 
         event = events_by_calendar[calendar_id].get(event_id)
-        return {"retrieval_status": True, "event_data": copy.deepcopy(event)} if event else {"retrieval_status": False, "event_data": {}}
+        if not event:
+            raise Exception(f"Event not found: {event_id}")
+        
+        event_copy = copy.deepcopy(event)
+        event_copy["kind"] = "calendar#event"
+        event_copy["etag"] = self._generate_id()
+        if "created" not in event_copy:
+            event_copy["created"] = datetime.now().isoformat() + "Z"
+        if "updated" not in event_copy:
+            event_copy["updated"] = datetime.now().isoformat() + "Z"
+        if "status" not in event_copy:
+            event_copy["status"] = "confirmed"
+        
+        return event_copy
 
-    def create_event(
+    def insert_event(
         self,
         calendar_id: str,
         summary: str,
         start_time: str,
         end_time: str,
-        time_zone: str,
-        user_id: str,
+        time_zone: str = "UTC",
         description: Optional[str] = None,
+        location: Optional[str] = None,
         attendees: Optional[List[Dict[str, str]]] = None,
-    ) -> Dict[str, Union[bool, Dict]]:
+    ) -> Dict[str, Any]:
         """
-        Create a new event in a calendar
+        Creates an event.
+        Real API endpoint: POST /calendars/calendarId/events
+        
         Args:
-            calendar_id (str): ID of the calendar to add the event to.
-            summary (str): Title/description of the event.
-            start_time (str): Start time of the event (ISO format).
-            end_time (str): End time of the event (ISO format).
-            time_zone (str): Time zone for the event.
-            user_id (str): The internal user ID (UUID).
-            description (Optional[str]): Additional description for the event.
-            attendees (Optional[List[Dict[str, str]]]): List of attendees forthe event.
+            calendar_id (str): Calendar identifier. To retrieve calendar IDs call the calendarList.list method.
+                              If you want to access the primary calendar, use the "primary" keyword.
+            summary (str): Title of the event.
+            start_time (str): The start time of the event (ISO format).
+            end_time (str): The end time of the event (ISO format).
+            time_zone (str): The time zone of the event. (defaults to UTC)
+            description (Optional[str]): Description of the event.
+            location (Optional[str]): Geographic location of the event as free-form text.
+            attendees (Optional[List[Dict[str, str]]]): The attendees of the event.
         Returns:
-            Dict[str, Union[bool, Dict]]: Dictionary with creation status and event data.
+            Dict[str, Any]: Created event resource.
+        Raises:
+            Exception: If calendar not found.
         """
-        if user_id not in self.users:
-            return {"creation_status": False, "message": "User not found."}
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
         
         user_calendar_data = self.users[user_id].get("calendar_data")
         if user_calendar_data is None:
-            return {"creation_status": False, "message": "User has no calendar data."}
+            raise Exception(f"Calendar not found: {calendar_id}")
 
         calendars = user_calendar_data.get("calendars")
         events_data = user_calendar_data.get("events")
 
         if calendar_id not in calendars:
-            return {"creation_status": False, "message": "Calendar not found."}
+            raise Exception(f"Calendar not found: {calendar_id}")
 
         new_event_id = self._generate_id()
         new_event = {
+            "kind": "calendar#event",
+            "etag": self._generate_id(),
             "id": new_event_id,
+            "status": "confirmed",
             "summary": summary,
             "start": {"dateTime": start_time, "timeZone": time_zone},
             "end": {"dateTime": end_time, "timeZone": time_zone},
+            "created": datetime.now().isoformat() + "Z",
+            "updated": datetime.now().isoformat() + "Z",
         }
         if description:
             new_event["description"] = description
+        if location:
+            new_event["location"] = location
         if attendees:
             new_event["attendees"] = attendees
 
         events_data[calendar_id][new_event_id] = new_event
 
         user_email = self._get_user_email_by_id(user_id)
-        print(f"Event '{summary}' created in calendar '{calendar_id}' for user {user_id} ({user_email})")
-        return {"creation_status": True, "event_data": new_event}
+        print(f"Event '{summary}' created in calendar '{calendar_id}' for {user_email}")
+        return new_event
 
     def update_event(
         self,
         calendar_id: str,
         event_id: str,
-        user_id: str,
         summary: Optional[str] = None,
         start_time: Optional[str] = None,
         end_time: Optional[str] = None,
         time_zone: Optional[str] = None,
         description: Optional[str] = None,
+        location: Optional[str] = None,
         attendees: Optional[List[Dict[str, str]]] = None,
-    ) -> Dict[str, Union[bool, str]]:
+    ) -> Dict[str, Any]:
         """
-        Update an existing event.
+        Updates an event.
+        Real API endpoint: PUT /calendars/calendarId/events/eventId
+        
         Args:
-            calendar_id (str): ID of the calendar containing the event.
-            event_id (str): ID of the event to update.
-            user_id (str): The internal user ID (UUID).
-            summary (Optional[str]): New title/description for the event.
-            start_time (Optional[str]): New start time for the event (ISO format).
-            end_time (Optional[str]): New end time for the event (ISO format).
-            time_zone (Optional[str]): New time zone for the event.
-            description (Optional[str]): New description for the event.
-            attendees (Optional[List[Dict[str, str]]]): Updated list of attendees.
+            calendar_id (str): Calendar identifier. To retrieve calendar IDs call the calendarList.list method.
+                              If you want to access the primary calendar, use the "primary" keyword.
+            event_id (str): Event identifier.
+            summary (Optional[str]): Title of the event.
+            start_time (Optional[str]): The start time of the event (ISO format).
+            end_time (Optional[str]): The end time of the event (ISO format).
+            time_zone (Optional[str]): The time zone of the event.
+            description (Optional[str]): Description of the event.
+            location (Optional[str]): Geographic location of the event as free-form text.
+            attendees (Optional[List[Dict[str, str]]]): The attendees of the event.
         Returns:
-            Dict[str, Union[bool, str]]: Dictionary with update status and message.
+            Dict[str, Any]: Updated event resource.
+        Raises:
+            Exception: If event not found.
         """
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        
         events_by_calendar = self._get_user_events(user_id)
         if not events_by_calendar or calendar_id not in events_by_calendar:
-            return {"update_status": False, "message": "User or calendar not found."}
+            raise Exception(f"Calendar not found: {calendar_id}")
         
         event = events_by_calendar[calendar_id].get(event_id)
         if not event:
-            return {"update_status": False, "message": "Event not found."}
+            raise Exception(f"Event not found: {event_id}")
 
-        if summary: event["summary"] = summary
-        if start_time: event["start"]["dateTime"] = start_time
-        if end_time: event["end"]["dateTime"] = end_time
-        if time_zone:
+        if summary is not None:
+            event["summary"] = summary
+        if start_time is not None:
+            event["start"]["dateTime"] = start_time
+        if end_time is not None:
+            event["end"]["dateTime"] = end_time
+        if time_zone is not None:
             event["start"]["timeZone"] = time_zone
             event["end"]["timeZone"] = time_zone
-        if description is not None: event["description"] = description
-        if attendees is not None: event["attendees"] = attendees
+        if description is not None:
+            event["description"] = description
+        if location is not None:
+            event["location"] = location
+        if attendees is not None:
+            event["attendees"] = attendees
+        
+        event["updated"] = datetime.now().isoformat() + "Z"
+        event["etag"] = self._generate_id()
 
         user_email = self._get_user_email_by_id(user_id)
-        print(f"Event '{event_id}' updated in calendar '{calendar_id}' for user {user_id} ({user_email})")
-        return {"update_status": True, "message": "Event updated successfully."}
+        print(f"Event '{event_id}' updated in calendar '{calendar_id}' for {user_email}")
+        
+        event_copy = copy.deepcopy(event)
+        event_copy["kind"] = "calendar#event"
+        if "status" not in event_copy:
+            event_copy["status"] = "confirmed"
+        
+        return event_copy
 
-    def delete_event(self, calendar_id: str, event_id: str, user_id: str) -> Dict[str, Union[bool, str]]:
+    def delete_event(self, calendar_id: str, event_id: str) -> None:
         """
-        Delete an event from a calendar.
+        Deletes an event.
+        Real API endpoint: DELETE /calendars/calendarId/events/eventId
+        
         Args:
-            calendar_id (str): ID of the calendar containing the event.
-            event_id (str): ID of the event to delete.
-            user_id (str): The internal user ID (UUID).
-        Returns:
-            Dict[str, Union[bool, str]]: Dictionary with deletion status and message.
+            calendar_id (str): Calendar identifier. To retrieve calendar IDs call the calendarList.list method.
+                              If you want to access the primary calendar, use the "primary" keyword.
+            event_id (str): Event identifier.
+        Raises:
+            Exception: If event not found.
         """
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        
         events_by_calendar = self._get_user_events(user_id)
         if not events_by_calendar or calendar_id not in events_by_calendar:
-            return {"delete_status": False, "message": "User or calendar not found."}
+            raise Exception(f"Calendar not found: {calendar_id}")
         
-        if event_id in events_by_calendar[calendar_id]:
-            del events_by_calendar[calendar_id][event_id]
-            user_email = self._get_user_email_by_id(user_id)
-            print(f"Event '{event_id}' deleted from calendar '{calendar_id}' for user {user_id} ({user_email})")
-            return {"delete_status": True, "message": "Event deleted successfully."}
-        return {"delete_status": False, "message": "Event not found."}
+        if event_id not in events_by_calendar[calendar_id]:
+            raise Exception(f"Event not found: {event_id}")
+        
+        del events_by_calendar[calendar_id][event_id]
+        user_email = self._get_user_email_by_id(user_id)
+        print(f"Event '{event_id}' deleted from calendar '{calendar_id}' for {user_email}")
 
     def move_event(
         self,
         calendar_id: str,
         event_id: str,
-        destination_calendar_id: str,
-        user_id: str,
-    ) -> Dict[str, Union[bool, str]]:
+        destination: str,
+    ) -> Dict[str, Any]:
         """
-        Move an event from one calendar to another.
+        Moves an event to another calendar, i.e. changes an event's organizer.
+        Real API endpoint: POST /calendars/calendarId/events/eventId/move
+        
         Args:
-            calendar_id (str): ID of the source calendar.
-            event_id (str): ID of the event to move.
-            destination_calendar_id (str): ID of the destination calendar.
-            user_id (str): The internal user ID (UUID).
+            calendar_id (str): Calendar identifier of the source calendar. To retrieve calendar IDs call 
+                              the calendarList.list method. If you want to access the primary calendar, 
+                              use the "primary" keyword.
+            event_id (str): Event identifier.
+            destination (str): Calendar identifier of the target calendar where the event is to be moved to.
         Returns:
-            Dict[str, Union[bool, str]]: Dictionary with move status and message.
+            Dict[str, Any]: Moved event resource.
+        Raises:
+            Exception: If event or destination calendar not found.
         """
+        user_id = self._ensure_authenticated()
+        calendar_id = self._resolve_calendar_id(calendar_id)
+        destination = self._resolve_calendar_id(destination)
+        
         events_by_calendar = self._get_user_events(user_id)
         calendars = self._get_user_calendars(user_id)
+        
         if not events_by_calendar or not calendars:
-            return {"move_status": False, "message": "User not found or no data."}
+            raise Exception("User calendar data not found")
 
         source_events = events_by_calendar.get(calendar_id)
         if not source_events or event_id not in source_events:
-            return {"move_status": False, "message": "Source calendar or event not found."}
-        if destination_calendar_id not in calendars:
-            return {"move_status": False, "message": "Destination calendar not found."}
+            raise Exception(f"Event not found: {event_id}")
 
-        destination_events = events_by_calendar.setdefault(destination_calendar_id, {})
+        if destination not in calendars:
+            raise Exception(f"Destination calendar not found: {destination}")
 
-        event_to_move = source_events[event_id]
-        
-        destination_events[event_id] = copy.deepcopy(event_to_move)
+        event = source_events[event_id]
         del source_events[event_id]
+        events_by_calendar[destination][event_id] = event
+        
+        event["updated"] = datetime.now().isoformat() + "Z"
+        event["etag"] = self._generate_id()
 
         user_email = self._get_user_email_by_id(user_id)
-        print(f"Event '{event_id}' moved from '{calendar_id}' to '{destination_calendar_id}' for user {user_id} ({user_email})")
-        return {"move_status": True, "message": f"Event '{event_id}' moved successfully from '{calendar_id}' to '{destination_calendar_id}'."}
+        print(f"Event '{event_id}' moved from '{calendar_id}' to '{destination}' for {user_email}")
+        
+        event_copy = copy.deepcopy(event)
+        event_copy["kind"] = "calendar#event"
+        if "status" not in event_copy:
+            event_copy["status"] = "confirmed"
+        
+        return event_copy
 
-    def check_free_busy(self, time_min: str, time_max: str, items: List[Dict], user_id: str) -> Dict[str, Union[bool, Dict]]:
+    def check_free_busy(self, time_min: str, time_max: str, items: List[Dict]) -> Dict[str, Any]:
         """
-        Check free/busy status for multiple calendars within a time range.
+        Returns free/busy information for a set of calendars.
+        Real API endpoint: POST /freeBusy
+        
         Args:
-            time_min (str): Start of time range to check (ISO format).
-            time_max (str): End of time range to check (ISO format).
-            items (List[Dict]): List of calendars to check (each with 'id' field).
-            user_id (str): The internal user ID (UUID).
+            time_min (str): The start of the interval for the query formatted as per RFC3339.
+            time_max (str): The end of the interval for the query formatted as per RFC3339.
+            items (List[Dict]): List of calendars to query. Each item should have an 'id' field.
         Returns:
-            Dict[str, Union[bool, Dict]]: Dictionary with retrieval status and free/busy data.
+            Dict[str, Any]: Free/busy response resource.
         """
+        user_id = self._ensure_authenticated()
         calendars_data = self._get_user_calendars(user_id)
         events_data = self._get_user_events(user_id)
 
         if not calendars_data or not events_data:
-            return {"retrieval_status": False, "free_busy_data": {}}
+            return {
+                "kind": "calendar#freeBusy",
+                "timeMin": time_min,
+                "timeMax": time_max,
+                "calendars": {}
+            }
 
-        free_busy_data = {}
+        calendars_result = {}
         for item in items:
             calendar_id = item.get("id")
-            if calendar_id in calendars_data:
+            calendar_id_resolved = self._resolve_calendar_id(calendar_id)
+            
+            if calendar_id_resolved in calendars_data:
                 busy_intervals = []
                 
                 check_start = datetime.fromisoformat(time_min.replace('Z', '+00:00'))
                 check_end = datetime.fromisoformat(time_max.replace('Z', '+00:00'))
 
-                for event_id, event in events_data.get(calendar_id, {}).items():
+                for event_id, event in events_data.get(calendar_id_resolved, {}).items():
                     event_start_str = event.get("start", {}).get("dateTime")
                     event_end_str = event.get("end", {}).get("dateTime")
 
@@ -498,11 +748,25 @@ class GoogleCalendarApis:
                                 "end": event_end_str
                             })
                 
-                free_busy_data[calendar_id] = {"busy": busy_intervals}
+                calendars_result[calendar_id] = {
+                    "busy": busy_intervals,
+                    "errors": []
+                }
             else:
-                free_busy_data[calendar_id] = {"busy": [], "error": "Calendar not found."}
+                calendars_result[calendar_id] = {
+                    "errors": [{
+                        "domain": "global",
+                        "reason": "notFound"
+                    }],
+                    "busy": []
+                }
 
-        return {"retrieval_status": True, "free_busy_data": free_busy_data}
+        return {
+            "kind": "calendar#freeBusy",
+            "timeMin": time_min,
+            "timeMax": time_max,
+            "calendars": calendars_result
+        }
 
     def reset_data(self) -> Dict[str, bool]:
         """
