@@ -5,17 +5,11 @@ from UnitTests.test_data_helper import BackendDataLoader
 
 DEFAULT_STATE = BackendDataLoader.get_teslafleet_data()
 
-class EmailStr(str):
-    pass
-
-class User:
-    def __init__(self, email: EmailStr):
-        self.email = email
-
 class TeslaFleetApis:
     """
-    A dummy API class for simulating Tesla Fleet operations.
+    A dummy API class for simulating Tesla Fleet API operations.
     This class provides an in-memory backend for development and testing purposes.
+    Matches the real Tesla Fleet API structure and authentication.
     """
 
     def __init__(self):
@@ -25,41 +19,75 @@ class TeslaFleetApis:
         """
         self._api_description = "This tool simulates a Tesla Fleet management system, allowing interaction with various vehicle functionalities."
         self.users: Dict[str, Any] = {}
-        self._current_user_uuid: Optional[str] = None
-
-        self._vehicle_tag_lookup_map: Dict[tuple[str, str], str] = {}
+        self.access_token: Optional[str] = None
+        self.current_user_id: Optional[str] = None
+        self.vehicles: Dict[str, Any] = {}  # Global vehicle registry by vehicle_id
 
         self._load_scenario(DEFAULT_STATE)
 
-        self._populate_vehicle_tag_lookup_map()
-        
-        if self.users:
-            self._current_user_uuid = next(iter(self.users))
-
-
-    def _populate_vehicle_tag_lookup_map(self):
-        """Populates the internal map for looking up vehicle UUIDs by original tag."""
-        self._vehicle_tag_lookup_map = {}
-        for user_uuid, user_data in self.users.items():
-            vehicles = user_data.get("tesla_data", {}).get("vehicles", {})
-            for vehicle_uuid, vehicle_data in vehicles.items():
-                original_tag = vehicle_data.get("original_vehicle_tag")
-                if original_tag:
-                    self._vehicle_tag_lookup_map[(user_uuid, original_tag)] = vehicle_uuid
-
-
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
-        This allows for resetting the state or initializing with specific data.
-
-        Args:
-            scenario (Dict): A dictionary representing the state to load.
-                             It should contain "users" with their tesla_data.
+        Loads a predefined scenario into the in-memory data stores, initializing
+        users and vehicles. Builds global vehicle registry indexed by vehicle_id.
         """
         self.users = copy.deepcopy(scenario.get("users", {}))
-        self._populate_vehicle_tag_lookup_map() 
-        print("TeslaFleetApis: Loaded scenario with UUIDs for users and vehicles.")
+        
+        # Build global vehicle registry indexed by vehicle_id
+        self.vehicles = {}
+        for user_id, user_data in self.users.items():
+            vehicles_dict = user_data.get("tesla_data", {}).get("vehicles", {})
+            for vehicle_uuid, vehicle_data in vehicles_dict.items():
+                # Enrich vehicle with standard Tesla fields
+                enriched_vehicle = self._enrich_vehicle(vehicle_data, user_id, vehicle_uuid)
+                # Use the numeric vehicle_id as the key
+                vehicle_id = str(enriched_vehicle["id"])
+                self.vehicles[vehicle_id] = enriched_vehicle
+
+    def _enrich_vehicle(self, vehicle_data: Dict[str, Any], user_id: str, vehicle_uuid: str) -> Dict[str, Any]:
+        """
+        Enriches vehicle data with standard Tesla Fleet API fields.
+        
+        Args:
+            vehicle_data: Raw vehicle data from backend
+            user_id: Owner user ID
+            vehicle_uuid: Internal vehicle UUID
+            
+        Returns:
+            Enriched vehicle data with standard fields
+        """
+        # Generate numeric vehicle_id from UUID hash (simulates real Tesla vehicle IDs)
+        import hashlib
+        vehicle_id_hash = int(hashlib.md5(vehicle_uuid.encode()).hexdigest()[:15], 16)
+        
+        # Use vehicle_tag as VIN if it looks like a VIN, otherwise generate one
+        vin = vehicle_data.get("vehicle_tag", "5YJ" + vehicle_uuid[:14].replace("-", "").upper())
+        
+        # Create display name from original tag if available
+        original_tag = vehicle_data.get("original_vehicle_tag", "")
+        if original_tag:
+            # Convert "hayden_cybertruck_1" to "Hayden Cybertruck 1"
+            display_name = " ".join(word.capitalize() for word in original_tag.replace("_", " ").split())
+        else:
+            display_name = f"Vehicle {vehicle_uuid[:8]}"
+        
+        # Determine state based on awake field
+        awake = vehicle_data.get("awake", True)
+        state = "online" if awake else "asleep"
+        
+        # Add standard fields
+        enriched = copy.deepcopy(vehicle_data)
+        enriched.update({
+            "id": vehicle_id_hash,  # Numeric vehicle ID
+            "vehicle_id": vehicle_id_hash,  # Same as id for consistency
+            "vin": vin,
+            "display_name": display_name,
+            "state": state,
+            "in_service": False,  # Default to not in service
+            "user_id": user_id,  # Track ownership
+            "_uuid": vehicle_uuid,  # Keep UUID for internal tracking
+        })
+        
+        return enriched
 
     def _generate_unique_id(self) -> str:
         """
@@ -67,720 +95,929 @@ class TeslaFleetApis:
         """
         return str(uuid.uuid4())
 
-    def _get_user_id_by_email(self, email: str) -> Optional[str]:
-        """Helper to get user_id (UUID) from email (string)."""
-        for user_id, user_data in self.users.items():
+    def authenticate(self, access_token: str) -> Dict[str, Any]:
+        """
+        Authenticates with Tesla Fleet API using OAuth 2.0 Bearer token.
+        Simulates token validation and user identification.
+        
+        Args:
+            access_token: OAuth 2.0 access token (format: "token_{email}")
+        
+        Returns:
+            Response object with user information
+            
+        Raises:
+            Exception: If token is invalid
+        """
+        # Validate token format
+        if not access_token or not access_token.startswith("token_"):
+            raise Exception("Invalid access token")
+        
+        # Extract user email from token
+        email = access_token.replace("token_", "")
+        
+        # Find user by email
+        user_id = None
+        for uid, user_data in self.users.items():
             if user_data.get("email") == email:
-                return user_id
-        return None
-
-    def _get_user_email_by_id(self, user_id: str) -> Optional[str]:
-        """Helper to get user email (string) from user_id (UUID)."""
-        user_data = self.users.get(user_id)
-        return user_data.get("email") if user_data else None
-
-    def _get_user_tesla_data(self, user: User) -> Optional[Dict[str, Any]]:
-        """Helper to get a user's Tesla data based on User object."""
-        target_user_uuid = self._get_user_id_by_email(user.email)
+                user_id = uid
+                break
         
-        if not target_user_uuid:
-            return None
+        if not user_id:
+            raise Exception("Invalid access token - user not found")
         
-        return self.users.get(target_user_uuid, {}).get("tesla_data")
+        # Set authenticated user
+        self.access_token = access_token
+        self.current_user_id = user_id
+        
+        # Return user info (matching Tesla API structure)
+        user_data = self.users[user_id]
+        return {
+            "response": {
+                "email": user_data.get("email"),
+                "full_name": user_data.get("full_name", ""),
+                "profile_image_url": user_data.get("profile_image_url", "")
+            },
+            "error": None
+        }
 
-    def _get_user_vehicles(self, user: User) -> Optional[Dict[str, Any]]:
-        """Helper to get a user's vehicles based on User object."""
-        tesla_data = self._get_user_tesla_data(user)
-        return tesla_data.get("vehicles") if tesla_data else None
-
-    def _get_vehicle(self, user: User, vehicle_tag: str) -> Optional[Dict[str, Any]]:
+    def _ensure_authenticated(self) -> None:
         """
-        Helper to get a specific vehicle's data for a user using its original_vehicle_tag.
+        Verifies that a user is authenticated before accessing protected resources.
+        
+        Raises:
+            Exception: If no user is authenticated
         """
-        user_uuid = self._get_user_id_by_email(user.email)
-        if not user_uuid:
-            return None
+        if not self.access_token or not self.current_user_id:
+            raise Exception("Authentication required - call authenticate() first")
 
-        vehicle_uuid = self._vehicle_tag_lookup_map.get((user_uuid, vehicle_tag))
-        if not vehicle_uuid:
-            return None
-
-        vehicles = self._get_user_vehicles(user)
-        return vehicles.get(vehicle_uuid) if vehicles else None
-
-    def set_current_user(self, user_email: str) -> Dict[str, bool]:
+    def _get_user_vehicles(self) -> list:
         """
-        Sets the current authenticated user for the API session.
-
-        Args:
-            user_email (str): The email address of the user to set as current.
-
+        Gets all vehicles owned by the authenticated user.
+        
         Returns:
-            Dict[str, bool]: A dictionary with 'status' indicating success or failure.
+            List of vehicle objects
         """
-        user_id = self._get_user_id_by_email(user_email)
-        if user_id:
-            self._current_user_uuid = user_id
-            return {"status": True, "message": f"Current user set to {user_email} (ID: {user_id})."}
-        return {"status": False, "message": f"User with email {user_email} not found."}
+        self._ensure_authenticated()
+        user_vehicles = []
+        for vehicle_id, vehicle_data in self.vehicles.items():
+            if vehicle_data.get("user_id") == self.current_user_id:
+                user_vehicles.append(vehicle_data)
+        return user_vehicles
 
-    def show_vehicle_info(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def _get_vehicle(self, vehicle_id: int) -> Dict[str, Any]:
         """
-        Retrieve comprehensive information about a specific vehicle.
-
+        Internal helper to get and validate vehicle access.
+        
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier (e.g., model name or VIN) of the vehicle.
-
+            vehicle_id: Numeric vehicle ID
+            
         Returns:
-            Dict[str, Any]: A dictionary containing vehicle details if successful,
-                            or an error message if the vehicle or user is not found.
+            Vehicle data dictionary
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"error": f"Vehicle '{vehicle_tag}' not found for user {user.email}."}
-        return {"vehicle_info": copy.deepcopy(vehicle)}
+        self._ensure_authenticated()
+        
+        vehicle_id_str = str(vehicle_id)
+        vehicle = self.vehicles.get(vehicle_id_str)
+        
+        if not vehicle:
+            raise Exception(f"Vehicle {vehicle_id} not found")
+        
+        if vehicle.get("user_id") != self.current_user_id:
+            raise Exception(f"Vehicle {vehicle_id} not accessible")
+        
+        return vehicle
 
-    def honk_horn(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def list_vehicles(self) -> Dict[str, Any]:
+        """
+        Gets a list of vehicles owned by the authenticated user.
+        Matches GET /api/1/vehicles endpoint.
+        
+        Returns:
+            Response object containing list of vehicles
+        """
+        self._ensure_authenticated()
+        vehicles = self._get_user_vehicles()
+        
+        return {
+            "response": vehicles,
+            "error": None,
+            "count": len(vehicles)
+        }
+
+    def get_vehicle_data(self, vehicle_id: int) -> Dict[str, Any]:
+        """
+        Gets comprehensive data for a specific vehicle.
+        Matches GET /api/1/vehicles/{id}/vehicle_data endpoint.
+        
+        Args:
+            vehicle_id: Numeric vehicle ID
+            
+        Returns:
+            Response object with vehicle data
+            
+        Raises:
+            Exception: If vehicle not found or not owned by authenticated user
+        """
+        self._ensure_authenticated()
+        
+        vehicle_id_str = str(vehicle_id)
+        vehicle = self.vehicles.get(vehicle_id_str)
+        
+        if not vehicle:
+            raise Exception(f"Vehicle {vehicle_id} not found")
+        
+        if vehicle.get("user_id") != self.current_user_id:
+            raise Exception(f"Vehicle {vehicle_id} not accessible")
+        
+        return {
+            "response": copy.deepcopy(vehicle),
+            "error": None
+        }
+
+    def honk_horn(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Honk the horn of the specified vehicle.
+        Matches POST /api/1/vehicles/{id}/command/honk_horn endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["horn"] = True
-        print(f"Vehicle {vehicle_tag}: Horn honked.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def flash_lights(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def flash_lights(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Flash the lights of the specified vehicle.
+        Matches POST /api/1/vehicles/{id}/command/flash_lights endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["lights"]["on"] = True
-        print(f"Vehicle {vehicle_tag}: Lights flashed.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def media_volume_up(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def media_volume_up(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Turns up the volume of the media system.
+        Matches POST /api/1/vehicles/{id}/command/media_volume_up endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         current_volume = vehicle["media"]["volume"]
         vehicle["media"]["volume"] = min(100, current_volume + 1)
-        print(f"Vehicle {vehicle_tag}: Volume increased.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def media_volume_down(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def media_volume_down(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Turns down the volume of the media system.
+        Matches POST /api/1/vehicles/{id}/command/media_volume_down endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         current_volume = vehicle["media"]["volume"]
         vehicle["media"]["volume"] = max(0, current_volume - 1)
-        print(f"Vehicle {vehicle_tag}: Volume decreased.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def door_unlock(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def door_unlock(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Unlocks the doors to the car.
+        Matches POST /api/1/vehicles/{id}/command/door_unlock endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["locks"] = "unlocked"
-        print(f"Vehicle {vehicle_tag}: Doors unlocked.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def door_lock(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def door_lock(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Locks the doors to the car.
+        Matches POST /api/1/vehicles/{id}/command/door_lock endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["locks"] = "locked"
-        print(f"Vehicle {vehicle_tag}: Doors locked.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def media_toggle_playback(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def media_toggle_playback(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Toggles the media between playing and paused.
+        Matches POST /api/1/vehicles/{id}/command/media_toggle_playback endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["media"]["playing"] = not vehicle["media"]["playing"]
-        print(f"Vehicle {vehicle_tag}: Media playback toggled.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def adjust_volume(self, user: User, vehicle_tag: str, volume: int) -> Dict[str, Any]:
+    def adjust_volume(self, vehicle_id: int, volume: int) -> Dict[str, Any]:
         """
         Adjusts the volume of the media system to the desired volume.
+        Matches POST /api/1/vehicles/{id}/command/adjust_volume endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            volume (int): The desired volume level.
+            vehicle_id: Numeric vehicle ID
+            volume: The desired volume level (0-100)
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible or invalid volume
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         if not (0 <= volume <= 100):
-            return {"reason": "Volume level must be between 0 and 100.", "result": False}
+            raise Exception("Volume level must be between 0 and 100")
 
         vehicle["media"]["volume"] = volume
-        print(f"Vehicle {vehicle_tag}: Volume set to {volume}.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def media_next_track(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def media_next_track(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Skips to the next track in the current playlist.
+        Matches POST /api/1/vehicles/{id}/command/media_next_track endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-        
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["media"]["current_track"] = vehicle["media"]["current_track"] + 1
-        print(f"Vehicle {vehicle_tag}: Skipped to next track.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def media_prev_track(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def media_prev_track(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Skips to the previous track in the current playlist.
+        Matches POST /api/1/vehicles/{id}/command/media_prev_track endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-        
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["media"]["current_track"] = max(0, vehicle["media"]["current_track"] - 1)
-        print(f"Vehicle {vehicle_tag}: Skipped to previous track.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def actuate_trunk(self, user: User, vehicle_tag: str, which_trunk: Literal["front", "rear"]) -> Dict[str, Any]:
+    def actuate_trunk(self, vehicle_id: int, which_trunk: Literal["front", "rear"]) -> Dict[str, Any]:
         """
         Opens either the front or rear trunk.
+        Matches POST /api/1/vehicles/{id}/command/actuate_trunk endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            which_trunk (Literal["front", "rear"]): Which trunk to actuate.
+            vehicle_id: Numeric vehicle ID
+            which_trunk: Which trunk to actuate ("front" or "rear")
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["trunk"][which_trunk] = "open"
-        print(f"Vehicle {vehicle_tag}: {which_trunk.capitalize()} trunk opened.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def set_charge_limit(self, user: User, vehicle_tag: str, limit: int) -> Dict[str, Any]:
+    def set_charge_limit(self, vehicle_id: int, limit: int) -> Dict[str, Any]:
         """
         Set the charge limit percentage for the specified vehicle.
+        Matches POST /api/1/vehicles/{id}/command/set_charge_limit endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            limit (int): The desired charge limit percentage (0-100).
+            vehicle_id: Numeric vehicle ID
+            limit: The desired charge limit percentage (0-100)
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible or invalid limit
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         if not (0 <= limit <= 100):
-            return {"reason": "Charge limit must be between 0 and 100.", "result": False}
+            raise Exception("Charge limit must be between 0 and 100")
 
         vehicle["charge"]["limit"] = limit
-        print(f"Vehicle {vehicle_tag}: Charge limit set to {limit}%.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def charge_port_door_open(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def charge_port_door_open(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Opens the charge port or unlocks the cable.
+        Matches POST /api/1/vehicles/{id}/command/charge_port_door_open endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["charge"]["port_open"] = True
-        print(f"Vehicle {vehicle_tag}: Charge port opened.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def charge_port_door_close(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def charge_port_door_close(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Closes the charge port.
+        Matches POST /api/1/vehicles/{id}/command/charge_port_door_close endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["charge"]["port_open"] = False
-        print(f"Vehicle {vehicle_tag}: Charge port closed.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def charge_start(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def charge_start(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Start charging if the car is plugged in but not currently charging.
+        Matches POST /api/1/vehicles/{id}/command/charge_start endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["charge"]["charging"] = True
-        print(f"Vehicle {vehicle_tag}: Charging started.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def charge_stop(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def charge_stop(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Stop charging if the car is currently charging.
+        Matches POST /api/1/vehicles/{id}/command/charge_stop endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["charge"]["charging"] = False
-        print(f"Vehicle {vehicle_tag}: Charging stopped.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def auto_conditioning_start(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def auto_conditioning_start(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Start the climate control (HVAC) system.
+        Matches POST /api/1/vehicles/{id}/command/auto_conditioning_start endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["climate"]["on"] = True
-        print(f"Vehicle {vehicle_tag}: Climate control started.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def auto_conditioning_stop(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def auto_conditioning_stop(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Stop the climate control (HVAC) system.
+        Matches POST /api/1/vehicles/{id}/command/auto_conditioning_stop endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["climate"]["on"] = False
-        print(f"Vehicle {vehicle_tag}: Climate control stopped.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def set_temps(self, user: User, vehicle_tag: str, driver_temp: float, passenger_temp: float) -> Dict[str, Any]:
+    def set_temps(self, vehicle_id: int, driver_temp: float, passenger_temp: float) -> Dict[str, Any]:
         """
         Sets the target temperature for the climate control (HVAC) system.
+        Matches POST /api/1/vehicles/{id}/command/set_temps endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            driver_temp (float): The desired temperature for the driver.
-            passenger_temp (float): The desired temperature for the passenger.
+            vehicle_id: Numeric vehicle ID
+            driver_temp: The desired temperature for the driver (Celsius)
+            passenger_temp: The desired temperature for the passenger (Celsius)
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible or invalid temps
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         if not (15 <= driver_temp <= 30) or not (15 <= passenger_temp <= 30):
-            return {"reason": "Temperatures must be between 15 and 30 Celsius.", "result": False}
+            raise Exception("Temperatures must be between 15 and 30 Celsius")
 
         vehicle["climate"]["driver_temp"] = driver_temp
         vehicle["climate"]["cop_temp"] = passenger_temp
-        print(f"Vehicle {vehicle_tag}: Driver temp set to {driver_temp}°C, Passenger temp set to {passenger_temp}°C.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def set_bioweapon_mode(self, user: User, vehicle_tag: str, on: bool) -> Dict[str, Any]:
+    def set_bioweapon_mode(self, vehicle_id: int, on: bool) -> Dict[str, Any]:
         """
         Enable or disable Bioweapon Defense Mode.
+        Matches POST /api/1/vehicles/{id}/command/set_bioweapon_mode endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): Whether to enable (True) or disable (False) Bioweapon Defense Mode.
+            vehicle_id: Numeric vehicle ID
+            on: Whether to enable (True) or disable (False) Bioweapon Defense Mode
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["climate"]["bioweapon_mode"] = on
-        print(f"Vehicle {vehicle_tag}: Bioweapon Defense Mode turned {'on' if on else 'off'}.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def set_climate_keeper_mode(self, user: User, vehicle_tag: str, climate_keeper_mode: int) -> Dict[str, Any]:
+    def set_climate_keeper_mode(self, vehicle_id: int, climate_keeper_mode: int) -> Dict[str, Any]:
         """
         Set the Climate Keeper mode.
+        Matches POST /api/1/vehicles/{id}/command/set_climate_keeper_mode endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            climate_keeper_mode (int): The Climate Keeper mode (0=off, 1=dog, 2=camp).
+            vehicle_id: Numeric vehicle ID
+            climate_keeper_mode: The Climate Keeper mode (0=off, 1=dog, 2=camp)
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible or invalid mode
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         mode_names = {0: "off", 1: "dog", 2: "camp"}
         if climate_keeper_mode not in mode_names:
-            return {"reason": "Invalid climate keeper mode. Must be 0 (off), 1 (dog), or 2 (camp).", "result": False}
+            raise Exception("Invalid climate keeper mode. Must be 0 (off), 1 (dog), or 2 (camp)")
 
         vehicle["climate"]["climate_keeper_mode"] = mode_names[climate_keeper_mode]
-        print(f"Vehicle {vehicle_tag}: Climate Keeper Mode set to '{mode_names[climate_keeper_mode]}'.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
     
-    def wake_up(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def wake_up(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Wakes up the car from a sleeping state.
+        Matches POST /api/1/vehicles/{id}/wake_up endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["awake"] = True
-        print(f"Vehicle {vehicle_tag}: Vehicle woken up.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def window_control(self, user: User, vehicle_tag: str, command: Literal["vent", "close"]) -> Dict[str, Any]:
+    def window_control(self, vehicle_id: int, command: Literal["vent", "close"]) -> Dict[str, Any]:
         """
         Controls the windows. Will vent or close all windows simultaneously.
+        Matches POST /api/1/vehicles/{id}/command/window_control endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            command (Literal["vent", "close"]): The window control command.
+            vehicle_id: Numeric vehicle ID
+            command: The window control command ("vent" or "close")
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["windows"] = command
-        print(f"Vehicle {vehicle_tag}: Window command '{command}' issued.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def get_vehicle_location(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def get_vehicle_location(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Get the current location of the specified vehicle.
+        Matches GET /api/1/vehicles/{id}/data_request/drive_state endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary containing location information.
+            Response object with location information
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
-
+        vehicle = self._get_vehicle(vehicle_id)
         location = vehicle.get("location", {"latitude": 0, "longitude": 0})
         return {
-            "result": True,
-            "reason": "",
-            "location": {
+            "response": {
                 "latitude": location.get("latitude"),
                 "longitude": location.get("longitude"),
                 "speed": vehicle.get("speed", 0)
-            }
+            },
+            "error": None
         }
 
-    def get_vehicle_status(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def get_vehicle_status(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Get comprehensive status information for the specified vehicle.
+        Matches GET /api/1/vehicles/{id}/vehicle_data endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary containing detailed vehicle status.
+            Response object with detailed vehicle status
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
-
-        status = {
-            "result": True,
-            "reason": "",
-            "vehicle_info": {
+        vehicle = self._get_vehicle(vehicle_id)
+        
+        return {
+            "response": {
                 "id": vehicle.get("id"),
-                "vehicle_tag": vehicle.get("vehicle_tag"),
+                "vehicle_id": vehicle.get("vehicle_id"),
+                "vin": vehicle.get("vin"),
+                "display_name": vehicle.get("display_name"),
+                "state": vehicle.get("state", "online"),
+                "in_service": vehicle.get("in_service", False),
                 "firmware_version": vehicle.get("firmware_version"),
                 "awake": vehicle.get("awake", False),
-                "speed": vehicle.get("speed", 0)
+                "speed": vehicle.get("speed", 0),
+                "location": vehicle.get("location", {}),
+                "charge_state": vehicle.get("charge", {}),
+                "climate_state": vehicle.get("climate", {}),
+                "vehicle_state": {
+                    "locked": vehicle.get("locks") == "locked",
+                    "sentry_mode": vehicle.get("sentry_mode", {}),
+                    "ft": vehicle.get("trunk", {}).get("front", "closed"),
+                    "rt": vehicle.get("trunk", {}).get("rear", "closed"),
+                },
+                "drive_state": vehicle.get("location", {}),
             },
-            "location": vehicle.get("location", {}),
-            "charge": vehicle.get("charge", {}),
-            "climate": vehicle.get("climate", {}),
-            "locks": vehicle.get("locks", {}),
-            "doors": vehicle.get("doors", {}),
-            "trunk": vehicle.get("trunk", {}),
-            "sentry_mode": vehicle.get("sentry_mode", {}),
-            "lights": vehicle.get("lights", {}),
-            "media": vehicle.get("media", {}),
-            "windows": vehicle.get("windows", "closed")
+            "error": None
         }
-        
-        return status
 
-    def set_sentry_mode(self, user: User, vehicle_tag: str, on: bool) -> Dict[str, Any]:
+    def set_sentry_mode(self, vehicle_id: int, on: bool) -> Dict[str, Any]:
         """
         Turns sentry mode on or off.
+        Matches POST /api/1/vehicles/{id}/command/set_sentry_mode endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): Whether to enable (True) or disable (False) sentry mode.
+            vehicle_id: Numeric vehicle ID
+            on: Whether to enable (True) or disable (False) sentry mode
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         sentry_mode = vehicle.get("sentry_mode", {})
         sentry_mode["on"] = on
         vehicle["sentry_mode"] = sentry_mode
         
-        print(f"Vehicle {vehicle_tag}: Sentry mode turned {'on' if on else 'off'}.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def get_firmware_info(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def get_firmware_info(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Get firmware version and update information for the specified vehicle.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary containing firmware information.
+            Response object with firmware information
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         return {
-            "result": True,
-            "reason": "",
-            "firmware": {
+            "response": {
                 "current_version": vehicle.get("firmware_version", "Unknown"),
                 "created_time": vehicle.get("createdTime"),
                 "modified_time": vehicle.get("modifiedTime"),
-                "vehicle_tag": vehicle.get("vehicle_tag")
-            }
+            },
+            "error": None
         }
 
-    def wake_vehicle(self, user: User, vehicle_tag: str) -> Dict[str, Any]:
+    def wake_vehicle(self, vehicle_id: int) -> Dict[str, Any]:
         """
         Wake up the specified vehicle from sleep mode.
+        Matches POST /api/1/vehicles/{id}/wake_up endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
+            vehicle_id: Numeric vehicle ID
 
         Returns:
-            Dict[str, Any]: A dictionary indicating if the wake command was successful.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
         vehicle["awake"] = True
-        print(f"Vehicle {vehicle_tag}: Wake command sent successfully.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def set_speed_limit(self, user: User, vehicle_tag: str, limit_mph: int) -> Dict[str, Any]:
+    def set_speed_limit(self, vehicle_id: int, limit_mph: int) -> Dict[str, Any]:
         """
         Set the speed limit for the specified vehicle.
+        Matches POST /api/1/vehicles/{id}/command/speed_limit_set_limit endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            limit_mph (int): The speed limit in miles per hour (0-140).
+            vehicle_id: Numeric vehicle ID
+            limit_mph: The speed limit in miles per hour (0-140)
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible or invalid limit
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         if not (0 <= limit_mph <= 140):
-            return {"reason": "Speed limit must be between 0 and 140 mph.", "result": False}
+            raise Exception("Speed limit must be between 0 and 140 mph")
 
         vehicle["speed_limit"] = limit_mph
-        print(f"Vehicle {vehicle_tag}: Speed limit set to {limit_mph} mph.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
-    def set_valet_mode(self, user: User, vehicle_tag: str, on: bool, pin: Optional[str] = None) -> Dict[str, Any]:
+    def set_valet_mode(self, vehicle_id: int, on: bool, pin: Optional[str] = None) -> Dict[str, Any]:
         """
         Enable or disable valet mode for the specified vehicle.
+        Matches POST /api/1/vehicles/{id}/command/set_valet_mode endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            on (bool): Whether to enable (True) or disable (False) valet mode.
-            pin (Optional[str]): PIN code for valet mode (required when enabling).
+            vehicle_id: Numeric vehicle ID
+            on: Whether to enable (True) or disable (False) valet mode
+            pin: PIN code for valet mode (required when enabling)
 
         Returns:
-            Dict[str, Any]: A dictionary with "result" indicating success and "reason" for errors.
+            Response object indicating success or failure
+            
+        Raises:
+            Exception: If vehicle not found or not accessible or missing PIN
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"reason": f"Vehicle '{vehicle_tag}' not found.", "result": False}
-
+        vehicle = self._get_vehicle(vehicle_id)
+        
         if on and not pin:
-            return {"reason": "PIN code is required to enable valet mode.", "result": False}
+            raise Exception("PIN code is required to enable valet mode")
 
         vehicle["valet_mode"] = {"on": on, "pin": pin if on else None}
-        print(f"Vehicle {vehicle_tag}: Valet mode {'enabled' if on else 'disabled'}.")
-        return {"reason": "", "result": True}
+        return {
+            "response": {
+                "result": True,
+                "reason": ""
+            },
+            "error": None
+        }
 
     def _calculate_distance(self, lat1: float, lon1: float, lat2: float, lon2: float) -> float:
         """
@@ -813,23 +1050,24 @@ class TeslaFleetApis:
         earth_radius = 3959
         return earth_radius * c
 
-    def get_nearby_charging_sites(self, user: User, vehicle_tag: str, lat: float, lon: float, radius: int = 50) -> Dict[str, Any]:
+    def get_nearby_charging_sites(self, vehicle_id: int, lat: float, lon: float, radius: int = 50) -> Dict[str, Any]:
         """
         Get nearby charging sites (superchargers) for the specified vehicle.
+        Matches GET /api/1/vehicles/{id}/nearby_charging_sites endpoint.
 
         Args:
-            user (User): The current user object.
-            vehicle_tag (str): The unique identifier of the vehicle.
-            lat (float): Latitude coordinate.
-            lon (float): Longitude coordinate.
-            radius (int): Search radius in miles (default 50).
+            vehicle_id: Numeric vehicle ID
+            lat: Latitude coordinate
+            lon: Longitude coordinate
+            radius: Search radius in miles (default 50)
 
         Returns:
-            Dict[str, Any]: A dictionary containing nearby charging sites.
+            Response object with nearby charging sites
+            
+        Raises:
+            Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(user, vehicle_tag)
-        if vehicle is None:
-            return {"result": False, "reason": f"Vehicle '{vehicle_tag}' not found."}
+        vehicle = self._get_vehicle(vehicle_id)
 
         # Get superchargers from the state
         all_superchargers = DEFAULT_STATE.get("superchargers", [])
@@ -860,9 +1098,13 @@ class TeslaFleetApis:
         nearby_sites.sort(key=lambda x: x["distance"])
 
         return {
-            "result": True,
-            "reason": "",
-            "charging_sites": nearby_sites
+            "response": {
+                "congestion_sync_time_utc_secs": 0,
+                "destination_charging": [],
+                "superchargers": nearby_sites,
+                "timestamp": 0
+            },
+            "error": None
         }
 
     def reset_data(self) -> Dict[str, bool]:
@@ -873,6 +1115,7 @@ class TeslaFleetApis:
         Returns:
             Dict: A dictionary indicating the success of the reset operation.
         """
+        self.access_token = None
+        self.current_user_id = None
         self._load_scenario(DEFAULT_STATE)
-        print("TeslaFleetApis: All dummy data reset to default state.")
         return {"reset_status": True}
