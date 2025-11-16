@@ -1,7 +1,9 @@
+# Inspired by AppWorld
+
 import datetime
 import copy
 import uuid
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("VenmoApis")

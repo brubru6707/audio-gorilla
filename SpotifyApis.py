@@ -1,7 +1,7 @@
 import datetime
 import copy
 import uuid
-from typing import Dict, Any, Optional, Literal, List
+from typing import Dict, Any, Optional, List
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("SpotifyApis")

@@ -4,9 +4,8 @@ import datetime
 from datetime import timezone
 import copy
 import uuid
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional
 import sys
-import os
 from pathlib import Path
 
 # Add parent directory to path to import test_data_helper

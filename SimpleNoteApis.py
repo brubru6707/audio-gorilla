@@ -1,3 +1,5 @@
+# Inspired by https://appworld.dev/
+
 import datetime
 import copy
 import uuid
