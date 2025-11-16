@@ -1,6 +1,6 @@
 # Inspired by https://developers.google.com/youtube/v3/docs
 
-import datetime
+from datetime import datetime
 import copy
 import uuid
 from typing import Dict, List, Any, Optional
@@ -302,7 +302,7 @@ class XApis:
             "id": post_uuid,
             "author_id": self.current_user_id,
             "text": text,
-            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+            "created_at": datetime.now().isoformat(timespec='milliseconds') + "Z",
             "lang": "en",
             "possibly_sensitive": False,
             "edit_history_tweet_ids": [post_uuid],
@@ -597,7 +597,7 @@ class XApis:
             "id": self._generate_unique_id(), # Unique ID for the message
             "sender_id": self.current_user_id,
             "text": text,
-            "created_at": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+            "created_at": datetime.now().isoformat(timespec='milliseconds') + "Z"
         }
         self.direct_messages[conversation_id]["messages"].append(new_message)
         
