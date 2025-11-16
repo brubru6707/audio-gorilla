@@ -1,7 +1,6 @@
 # Inspired by https://developers.google.com/youtube/v3/docs
 
-import datetime
-from datetime import timezone
+from datetime import datetime, timezone
 import copy
 import uuid
 from typing import Dict, List, Any, Optional
@@ -346,7 +345,7 @@ class YouTubeApis:
             "etag": f"etag_{channel_id}",
             "id": self._generate_unique_id(),
             "snippet": {
-                "publishedAt": datetime.datetime.now().isoformat(timespec='milliseconds') + "Z",
+                "publishedAt": datetime.now().isoformat(timespec='milliseconds') + "Z",
                 "title": channel_data.get("title"),
                 "description": channel_data.get("description"),
                 "resourceId": {
@@ -488,7 +487,7 @@ class YouTubeApis:
             raise Exception("User data not found")
 
         channel_uuid = self._generate_unique_id()
-        created_at = datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+        created_at = datetime.now().isoformat(timespec='milliseconds') + "Z"
         new_channel = {
             "id": channel_uuid,
             "title": title,
@@ -548,7 +547,7 @@ class YouTubeApis:
             raise Exception("Channel not found")
         
         if channel_data.get("owner_id") != self.current_user_id:
-            raise Exception("User is not the owner of this channel")
+            raise Exception("Only the channel owner can update this channel")
 
         if title is not None:
             channel_data["title"] = title
@@ -707,7 +706,7 @@ class YouTubeApis:
             raise Exception("Channel data not found")
 
         video_uuid = self._generate_unique_id()
-        published_at = datetime.datetime.now().isoformat(timespec='milliseconds') + "Z"
+        published_at = datetime.now().isoformat(timespec='milliseconds') + "Z"
         
         new_video = {
             "id": video_uuid,
@@ -773,7 +772,7 @@ class YouTubeApis:
             raise Exception("Channel not found")
         
         if channel_data.get("owner_id") != self.current_user_id:
-            raise Exception("User is not the owner of this channel and cannot delete videos")
+            raise Exception("Only the video owner can delete this video")
 
         if video_id in self.videos:
             del self.videos[video_id]

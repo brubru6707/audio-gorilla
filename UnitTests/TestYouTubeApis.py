@@ -344,9 +344,15 @@ class TestYouTubeApis(unittest.TestCase):
 
     def test_add_video_to_playlist_not_owner(self):
         """Test adding video to playlist as non-owner fails."""
+        # Create a playlist as Alice
+        self.youtube_api.authenticate(self.alice_token)
+        playlist_result = self.youtube_api.create_playlist(title="Alice's Playlist")
+        alice_playlist_id = playlist_result["id"]
+        
+        # Try to add video as Bob (should fail)
         self.youtube_api.authenticate(self.bob_token)
         with self.assertRaises(Exception) as context:
-            self.youtube_api.add_video_to_playlist(self.REAL_PLAYLIST_ID, self.REAL_VIDEO_ID)
+            self.youtube_api.add_video_to_playlist(alice_playlist_id, self.REAL_VIDEO_ID)
         self.assertIn("only the playlist owner", str(context.exception).lower())
 
     def test_remove_video_from_playlist(self):
