@@ -19,228 +19,77 @@ class TestSpotifyApis(unittest.TestCase):
     user_data = next(iter(real_data.get("users", {}).values()), {})
     REAL_USER_ID = next(iter(real_data.get("users", {})), "user1")
     REAL_EMAIL = user_data.get("email", "real_user@example.com")
-    REAL_USERNAME = user_data.get("username", "real_username")
     
     # Extract real playlist data
     playlist_data = next(iter(real_data.get("playlists", {}).values()), {})
     REAL_PLAYLIST_ID = next(iter(real_data.get("playlists", {})), "playlist1")
-    REAL_PLAYLIST_NAME = playlist_data.get("name", "Real Playlist")
     
-    # Extract real track/song data
-    song_data = next(iter(real_data.get("songs", {}).values()), {})
-    REAL_SONG_ID = next(iter(real_data.get("songs", {})), "song1")
-    REAL_SONG_NAME = song_data.get("name", "Real Song")
-    REAL_ARTIST_NAME = song_data.get("artist", "Real Artist")
+    # Extract real track/song data (handle both 'songs' and 'tracks')
+    tracks_or_songs = real_data.get("tracks", real_data.get("songs", {}))
+    song_data = next(iter(tracks_or_songs.values()), {})
+    REAL_TRACK_ID = next(iter(tracks_or_songs), "track1")
     
     # Extract real album data
     album_data = next(iter(real_data.get("albums", {}).values()), {})
     REAL_ALBUM_ID = next(iter(real_data.get("albums", {})), "album1")
-    REAL_ALBUM_NAME = album_data.get("name", "Real Album")
     
     # Extract real artist data
     artist_data = next(iter(real_data.get("artists", {}).values()), {})
     REAL_ARTIST_ID = next(iter(real_data.get("artists", {})), "artist1")
     
-    # Test user credentials
-    test_user_email = REAL_EMAIL
-    
     def setUp(self):
         """Set up the API instance using real data."""
         self.spotify_api = SpotifyApis()
-        # Set current user for testing
-        if self.test_user_email:
-            self.spotify_api.set_current_user(self.test_user_email)
+        # Authenticate with OAuth token
+        self.access_token = f"token_{self.REAL_EMAIL}"
+        self.spotify_api.authenticate(self.access_token)
 
-    # --- Unit Tests for Core Functions (most important for audio calling) ---
+    # --- Authentication Tests ---
 
-    def test_search_content_songs(self):
-        """Test searching for songs."""
-        result = self.spotify_api.search_content("test", "song")
-        self.assertEqual(result["status"], "success")
-        self.assertIn("results", result)
-        self.assertIn("songs", result["results"])
-
-    def test_search_content_all(self):
-        """Test searching for all content types."""
-        result = self.spotify_api.search_content("test", "all")
-        self.assertEqual(result["status"], "success")
-        self.assertIn("results", result)
-
-    def test_get_song_details_success(self):
-        """Test getting song details for existing song."""
-        result = self.spotify_api.get_song_details(self.REAL_SONG_ID)
-        self.assertEqual(result["status"], "success")
-        self.assertIn("song", result)
-
-    def test_get_song_details_not_found(self):
-        """Test getting song details for non-existent song."""
-        result = self.spotify_api.get_song_details("nonexistent")
-        self.assertEqual(result["status"], "error")
-
-    def test_play_content_song_success(self):
-        """Test playing a song."""
-        result = self.spotify_api.play_content("song", self.REAL_SONG_ID)
-        self.assertEqual(result["status"], "success")
-        self.assertIn("message", result)
-
-    def test_play_content_song_not_found(self):
-        """Test playing a non-existent song."""
-        result = self.spotify_api.play_content("song", "nonexistent")
-        self.assertEqual(result["status"], "error")
-
-    def test_set_current_user_success(self):
-        """Test setting current user successfully."""
-        result = self.spotify_api.set_current_user(self.test_user_email)
-        if "status" in result:
-            self.assertTrue(result["status"])
-        else:
-            self.assertTrue(result.get("success", True))
-
-    def test_set_current_user_not_found(self):
-        """Test setting non-existent user."""
-        result = self.spotify_api.set_current_user("nonexistent@example.com")
-        if "status" in result:
-            self.assertFalse(result["status"])
-        else:
-            self.assertFalse(result.get("success", False))
-
-    def test_show_account_success(self):
-        """Test showing account information."""
-        result = self.spotify_api.show_account()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("profile", result)
-
-    def test_show_account_no_current_user(self):
-        """Test showing account with no current user set."""
-        # Create new instance and clear users so auto-login fails
+    def test_authenticate_success(self):
+        """Test successful authentication."""
         api = SpotifyApis()
-        api.username = None  # Clear the default user
-        api.users = {}  # Clear all users to prevent auto-login
-        result = api.show_account()
-        self.assertEqual(result["status"], "error")
+        api.authenticate(f"token_{self.REAL_EMAIL}")
+        self.assertEqual(api.access_token, f"token_{self.REAL_EMAIL}")
+        self.assertEqual(api.current_user_id, self.REAL_USER_ID)
 
-    def test_create_playlist_success(self):
-        """Test creating a new playlist."""
-        initial_playlist_count = len(self.spotify_api.playlists)
-        result = self.spotify_api.create_playlist("My New Jams", "Test playlist", True)
-        self.assertEqual(result["status"], "success")
-        self.assertIn("playlist", result)
-        self.assertTrue(result["playlist"]["public"])
-        self.assertEqual(result["playlist"]["name"], "My New Jams")
-        self.assertEqual(len(self.spotify_api.playlists), initial_playlist_count + 1)
+    def test_authenticate_invalid_token(self):
+        """Test authentication with invalid token format."""
+        api = SpotifyApis()
+        with self.assertRaises(Exception) as context:
+            api.authenticate("invalid_token")
+        self.assertIn("Invalid access token", str(context.exception))
 
-    def test_like_song_success(self):
-        """Test liking a song."""
-        result = self.spotify_api.like_song(self.REAL_SONG_ID)
-        self.assertTrue(result["status"])
+    def test_authenticate_nonexistent_user(self):
+        """Test authentication with non-existent user."""
+        api = SpotifyApis()
+        with self.assertRaises(Exception) as context:
+            api.authenticate("token_nonexistent@example.com")
+        self.assertIn("not found", str(context.exception).lower())
 
-    def test_unlike_song_success(self):
-        """Test unliking a song."""
-        # First like the song
-        self.spotify_api.like_song(self.REAL_SONG_ID)
-        # Then unlike it
-        result = self.spotify_api.unlike_song(self.REAL_SONG_ID)
-        self.assertTrue(result["status"])
+    def test_unauthenticated_access(self):
+        """Test that protected methods require authentication."""
+        api = SpotifyApis()
+        with self.assertRaises(Exception) as context:
+            api.get_current_user_profile()
+        self.assertIn("authentication required", str(context.exception).lower())
 
-    def test_download_song_premium_required(self):
-        """Test downloading a song when user is not premium."""
-        # Temporarily set user to non-premium for this test
-        user_data = self.spotify_api.users[self.spotify_api.username]
-        user_data["premium"] = False
-        song_id = self.REAL_SONG_ID
-        result = self.spotify_api.get_user_downloaded_songs()
-        # Note: API doesn't have download_song method, just tracks downloaded_songs
-        self.assertEqual(result["status"], "success")
-        # Revert premium status for other tests
-        user_data["premium"] = True
+    # --- User Profile Tests ---
 
-    def test_download_song_success(self):
-        """Test downloading a song successfully (assuming premium)."""
-        user_data = self.spotify_api.users[self.spotify_api.username]
-        initial_downloaded_songs = len(user_data["downloaded_songs"])
-        # Note: API doesn't have download_song method, just add to downloaded_songs list
-        user_data["downloaded_songs"].append(self.REAL_SONG_ID)
-        result = self.spotify_api.get_user_downloaded_songs()
-        self.assertEqual(result["status"], "success")
-        self.assertGreater(len(result["downloaded_songs"]), initial_downloaded_songs)
+    def test_get_current_user_profile(self):
+        """Test getting current user profile."""
+        profile = self.spotify_api.get_current_user_profile()
+        self.assertEqual(profile["id"], self.REAL_USER_ID)
+        self.assertEqual(profile["email"], self.REAL_EMAIL)
+        self.assertEqual(profile["type"], "user")
+        self.assertIn("uri", profile)
+        self.assertIn("href", profile)
+        self.assertIn("external_urls", profile)
 
-    # --- Combined Functionality Tests ---
+    # --- Payment Methods Tests ---
 
-    def test_search_play(self):
-        """
-        Scenario: Search for a song, play it, then get current playback info.
-        Functions: search_content, play_content, get_current_playback_info
-        """
-        # 1. Search for a song
-        search_query = "Rising"
-        search_result = self.spotify_api.search_content(search_query, "song")
-        self.assertIn("results", search_result)
-        self.assertIn("songs", search_result["results"])
-        self.assertGreater(len(search_result["results"]["songs"]), 0)
-        song_to_play = search_result["results"]["songs"][0]
-        song_to_play_id = song_to_play["id"]
-
-        # 2. Play the found song
-        play_result = self.spotify_api.play_content("song", song_to_play_id)
-        self.assertEqual(play_result["status"], "success")
-        # Note: API doesn't have current_song or is_playing attributes
-
-    def test_add_to_queue_skip_and_show_queue(self):
-        """
-        Scenario: Add songs to queue, skip a song, then show the updated queue.
-        Functions: add_song_to_queue, skip_song, show_song_queue
-        """
-        # Note: API doesn't have queue functionality, so this test is skipped
-        self.skipTest("API does not implement queue functionality")
-
-    def test_create_playlist_add_song_and_show_playlist(self):
-        """
-        Scenario: Create a new playlist, add a song to it, then show the playlist.
-        Functions: create_playlist, add_song_to_playlist, get_playlist_details
-        """
-        # 1. Create a new playlist
-        playlist_title = "My Workout Mix"
-        create_playlist_result = self.spotify_api.create_playlist(playlist_title, description=None, public=False)
-        self.assertIn("playlist", create_playlist_result)
-        new_playlist_id = create_playlist_result["playlist"]["id"]
-        self.assertEqual(create_playlist_result["playlist"]["name"], playlist_title)
-        self.assertFalse(create_playlist_result["playlist"]["public"])
-
-        # 2. Add a song to the new playlist
-        song_to_add_id = self.REAL_SONG_ID
-        add_song_result = self.spotify_api.add_song_to_playlist(new_playlist_id, song_to_add_id)
-        self.assertTrue(add_song_result["status"])
-
-        # 3. Show the playlist to verify the added song
-        show_playlist_result = self.spotify_api.get_playlist_details(new_playlist_id)
-        self.assertIn("playlist", show_playlist_result)
-        self.assertEqual(show_playlist_result["playlist"]["id"], new_playlist_id)
-        self.assertIn(song_to_add_id, show_playlist_result["playlist"]["tracks"])
-        self.assertEqual(len(show_playlist_result["playlist"]["tracks"]), 1) # Only the one we added
-
-    def test_check_premium_and_download_song_flow(self):
-        """
-        Scenario: Check premium status, if premium, download a song; if not, attempt download and expect failure.
-        Functions: check_premium_status, download_song
-        """
-        # Note: API does not implement premium/download functionality
-        self.skipTest("API does not implement premium/download functionality")
-
-    # ================ COMPREHENSIVE COVERAGE FOR MISSING METHODS ================
-
-    def test_set_current_user_success(self):
-        """Test setting current user successfully."""
-        result = self.spotify_api.set_current_user(self.test_user_email)
-        self.assertTrue(result["status"])
-        # Note: API uses 'username' attribute, not 'current_user_email'
-
-    def test_set_current_user_not_found(self):
-        """Test setting non-existent user."""
-        result = self.spotify_api.set_current_user("nonexistent@test.com")
-        self.assertFalse(result["status"])
-
-    def test_add_payment_method_with_params(self):
-        """Test adding a payment method with specific parameters."""
+    def test_add_payment_method(self):
+        """Test adding a payment method."""
         result = self.spotify_api.add_payment_method(
             card_name="Test Card",
             card_number="4111111111111111",
@@ -248,221 +97,14 @@ class TestSpotifyApis(unittest.TestCase):
             expiry_month=12,
             cvv_number="123"
         )
-        self.assertEqual(result["status"], "success")
-        self.assertIn("payment_method", result)
+        self.assertIn("id", result)
+        self.assertEqual(result["card_name"], "Test Card")
+        self.assertEqual(result["card_number"], "4111111111111111")
+        self.assertEqual(result["user_id"], self.REAL_USER_ID)
 
-    def test_get_user_liked_songs_success(self):
-        """Test getting user's liked songs."""
-        result = self.spotify_api.get_user_liked_songs()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("liked_songs", result)
-
-    def test_like_unlike_song_operations(self):
-        """Test comprehensive like/unlike song operations."""
-        song_id = self.REAL_SONG_ID
-        
-        # Like song
-        like_result = self.spotify_api.like_song(song_id)
-        self.assertTrue(like_result["status"])
-        
-        # Unlike song
-        unlike_result = self.spotify_api.unlike_song(song_id)
-        self.assertTrue(unlike_result["status"])
-        
-        # Add to library
-        add_result = self.spotify_api.add_song_to_library(song_id)
-        self.assertTrue(add_result["status"])
-        
-        # Check it's in library
-        library_after_add = self.spotify_api.get_user_library_songs()
-        self.assertIn(song_id, [s["id"] for s in library_after_add["library_songs"]])
-        
-        # Remove from library
-        remove_result = self.spotify_api.remove_song_from_library(song_id)
-        self.assertTrue(remove_result["status"])
-        
-        # Check it's no longer in library
-        library_after_remove = self.spotify_api.get_user_library_songs()
-        self.assertNotIn(song_id, [s["id"] for s in library_after_remove["library_songs"]])
-
-    def test_get_user_downloaded_songs_success(self):
-        """Test getting user's downloaded songs."""
-        self.spotify_api.set_current_user(self.test_user_email)
-        result = self.spotify_api.get_user_downloaded_songs()
-        self.assertTrue(result["status"])
-        self.assertIn("downloaded_songs", result)
-
-    def test_album_operations_comprehensive(self):
-        """Test comprehensive album operations."""
-        self.spotify_api.set_current_user(self.test_user_email)
-        album_id = self.REAL_ALBUM_ID
-        
-        # Get initial liked albums
-        initial_liked = self.spotify_api.get_user_liked_albums()
-        self.assertTrue(initial_liked["status"])
-        
-        # Like album
-        like_result = self.spotify_api.like_album(album_id)
-        self.assertTrue(like_result["status"])
-        
-        # Check it's in liked albums
-        liked_after = self.spotify_api.get_user_liked_albums()
-        self.assertIn(album_id, [a["id"] for a in liked_after["liked_albums"]])
-        
-        # Get library albums
-        library_albums = self.spotify_api.get_user_library_albums()
-        self.assertTrue(library_albums["status"])
-        
-        # Add to library
-        add_library_result = self.spotify_api.add_album_to_library(album_id)
-        self.assertTrue(add_library_result["status"])
-        
-        # Remove from library
-        remove_library_result = self.spotify_api.remove_album_from_library(album_id)
-        self.assertTrue(remove_library_result["status"])
-        
-        # Unlike album
-        unlike_result = self.spotify_api.unlike_album(album_id)
-        self.assertTrue(unlike_result["status"])
-        
-        # Check it's no longer in liked albums
-        liked_after_unlike = self.spotify_api.get_user_liked_albums()
-        self.assertNotIn(album_id, [a["id"] for a in liked_after_unlike["liked_albums"]])
-
-    def test_playlist_operations_comprehensive(self):
-        """Test comprehensive playlist operations."""
-        self.spotify_api.set_current_user(self.test_user_email)
-        playlist_id = self.REAL_PLAYLIST_ID  # Use real playlist ID
-        
-        # Get initial liked playlists
-        initial_liked = self.spotify_api.get_user_liked_playlists()
-        self.assertTrue(initial_liked["status"])
-        
-        # Like playlist
-        like_result = self.spotify_api.like_playlist(playlist_id)
-        self.assertTrue(like_result["status"])
-        
-        # Check it's in liked playlists
-        liked_after = self.spotify_api.get_user_liked_playlists()
-        self.assertIn(playlist_id, [p["id"] for p in liked_after["liked_playlists"]])
-        
-        # Unlike playlist
-        unlike_result = self.spotify_api.unlike_playlist(playlist_id)
-        self.assertTrue(unlike_result["status"])
-        
-        # Check it's no longer in liked playlists
-        liked_after_unlike = self.spotify_api.get_user_liked_playlists()
-        self.assertNotIn(playlist_id, [p["id"] for p in liked_after_unlike["liked_playlists"]])
-
-    def test_artist_following_operations(self):
-        """Test comprehensive artist following operations."""
-        self.spotify_api.set_current_user(self.test_user_email)
-        artist_id = self.REAL_ARTIST_ID
-        
-        # Get initial following artists
-        initial_following = self.spotify_api.get_user_following_artists()
-        self.assertTrue(initial_following["status"])
-        
-        # Follow artist
-        follow_result = self.spotify_api.follow_artist(artist_id)
-        self.assertTrue(follow_result["status"])
-        
-        # Check it's in following artists
-        following_after = self.spotify_api.get_user_following_artists()
-        self.assertIn(artist_id, [ar["id"] for ar in following_after["following_artists"]])
-        
-        # Unfollow artist
-        unfollow_result = self.spotify_api.unfollow_artist(artist_id)
-        self.assertTrue(unfollow_result["status"])
-        
-        # Check it's no longer in following artists
-        following_after_unfollow = self.spotify_api.get_user_following_artists()
-        self.assertNotIn(artist_id, [ar["id"] for ar in following_after_unfollow["following_artists"]])
-
-    def test_like_operations_without_current_user(self):
-        """Test like operations without current user set."""
-        self.spotify_api.current_user_email = None
-        
-        # Test various operations fail without current user
-        like_song_result = self.spotify_api.like_song("test_song")
-        self.assertFalse(like_song_result["status"])
-        
-        like_album_result = self.spotify_api.like_album("test_album")
-        self.assertFalse(like_album_result["status"])
-        
-        follow_artist_result = self.spotify_api.follow_artist("test_artist")
-        self.assertFalse(follow_artist_result["status"])
-
-    def test_payment_method_edge_cases(self):
-        """Test payment method edge cases."""
-        self.spotify_api.set_current_user(self.test_user_email)
-        
-        # Test setting non-existent payment method as default
-        invalid_result = self.spotify_api.set_default_payment_method("nonexistent_id")
-        self.assertFalse(invalid_result["set_default_status"])
-
-    def test_comprehensive_user_workflow(self):
-        """Test a complete user workflow with multiple operations."""
-        # Set user
-        self.spotify_api.set_current_user(self.test_user_email)
-        
-        # Show account
-        account_result = self.spotify_api.show_account()
-        self.assertTrue(account_result["status"])
-        
-        # Like some content
-        song_id = self.REAL_SONG_ID
-        album_id = self.REAL_ALBUM_ID
-        artist_id = self.REAL_ARTIST_ID
-        
-        self.spotify_api.like_song(song_id)
-        self.spotify_api.like_album(album_id)
-        self.spotify_api.follow_artist(artist_id)
-        
-        # Add to library
-        self.spotify_api.add_song_to_library(song_id)
-        self.spotify_api.add_album_to_library(album_id)
-        
-        # Verify all operations
-        liked_songs = self.spotify_api.get_user_liked_songs()
-        liked_albums = self.spotify_api.get_user_liked_albums()
-        following_artists = self.spotify_api.get_user_following_artists()
-        library_songs = self.spotify_api.get_user_library_songs()
-        library_albums = self.spotify_api.get_user_library_albums()
-        
-        self.assertIn(song_id, [s["id"] for s in liked_songs["liked_songs"]])
-        self.assertIn(album_id, [a["id"] for a in liked_albums["liked_albums"]])
-        self.assertIn(artist_id, [ar["id"] for ar in following_artists["following_artists"]])
-        self.assertIn(song_id, [s["id"] for s in library_songs["library_songs"]])
-        self.assertIn(album_id, [a["id"] for a in library_albums["library_albums"]])
-
-
-    def test_get_user_statistics_success(self):
-        """Test getting user statistics."""
-        result = self.spotify_api.get_user_statistics()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("statistics", result)
-        stats = result["statistics"]
-        self.assertIn("user_id", stats)
-        self.assertIn("email", stats)
-        self.assertIn("total_liked_songs", stats)
-        self.assertIn("total_liked_albums", stats)
-        self.assertIn("total_following_artists", stats)
-
-    def test_update_user_preferences_success(self):
-        """Test updating user preferences."""
-        result = self.spotify_api.update_user_preferences(
-            preferred_genre="Rock",
-            country="US",
-            device_type="Mobile"
-        )
-        self.assertEqual(result["status"], "success")
-        self.assertIn("updated_fields", result)
-        self.assertEqual(len(result["updated_fields"]), 3)
-
-    def test_show_payment_methods_success(self):
+    def test_show_payment_methods(self):
         """Test showing payment methods."""
-        # First add a payment method
+        # Add a payment method first
         self.spotify_api.add_payment_method(
             card_name="Test Card",
             card_number="4111111111111111",
@@ -470,163 +112,457 @@ class TestSpotifyApis(unittest.TestCase):
             expiry_month=12,
             cvv_number="123"
         )
-        result = self.spotify_api.show_payment_methods()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("payment_methods", result)
-        self.assertGreater(len(result["payment_methods"]), 0)
+        
+        methods = self.spotify_api.show_payment_methods()
+        self.assertIsInstance(methods, list)
+        self.assertGreater(len(methods), 0)
 
-    def test_set_default_payment_method_success(self):
-        """Test setting default payment method successfully."""
-        # First add a payment method
-        add_result = self.spotify_api.add_payment_method(
+    def test_set_default_payment_method(self):
+        """Test setting default payment method."""
+        # Add a payment method
+        result = self.spotify_api.add_payment_method(
             card_name="Default Card",
             card_number="4111111111111111",
             expiry_year=2025,
             expiry_month=12,
-            cvv_number="123"
+            cvv_number="123",
+            is_default=False
         )
-        self.assertEqual(add_result["status"], "success")
-        
-        # Get the payment method ID
-        payment_methods = self.spotify_api.show_payment_methods()["payment_methods"]
-        pm_id = payment_methods[0]["id"]
+        payment_id = result["id"]
         
         # Set as default
-        result = self.spotify_api.set_default_payment_method(pm_id)
-        self.assertTrue(result["set_default_status"])
-
-    def test_delete_playlist_success(self):
-        """Test deleting a playlist."""
-        # Create a playlist first
-        create_result = self.spotify_api.create_playlist("Test Playlist", "For deletion")
-        self.assertEqual(create_result["status"], "success")
-        playlist_id = create_result["playlist"]["id"]
+        self.spotify_api.set_default_payment_method(payment_id)
         
-        # Delete it
-        result = self.spotify_api.delete_playlist(playlist_id)
-        self.assertTrue(result["status"])
+        # Verify it's default
+        methods = self.spotify_api.show_payment_methods()
+        default_method = next((m for m in methods if m["id"] == payment_id), None)
+        self.assertTrue(default_method["is_default"])
 
-    def test_update_playlist_details_success(self):
-        """Test updating playlist details."""
-        # Create a playlist first
-        create_result = self.spotify_api.create_playlist("Original Name", "Original desc", True)
-        self.assertEqual(create_result["status"], "success")
-        playlist_id = create_result["playlist"]["id"]
+    def test_set_default_payment_method_not_found(self):
+        """Test setting non-existent payment method as default."""
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.set_default_payment_method("nonexistent_id")
+        self.assertIn("not found", str(context.exception).lower())
+
+    # --- Track Tests ---
+
+    def test_get_track(self):
+        """Test getting a single track."""
+        track = self.spotify_api.get_track(self.REAL_TRACK_ID)
+        self.assertEqual(track["id"], self.REAL_TRACK_ID)
+        self.assertEqual(track["type"], "track")
+        self.assertIn("uri", track)
+        self.assertIn("href", track)
+
+    def test_get_track_not_found(self):
+        """Test getting non-existent track."""
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.get_track("nonexistent_track")
+        self.assertIn("not found", str(context.exception).lower())
+
+    def test_get_several_tracks(self):
+        """Test getting multiple tracks."""
+        result = self.spotify_api.get_several_tracks([self.REAL_TRACK_ID])
+        self.assertIn("tracks", result)
+        self.assertEqual(len(result["tracks"]), 1)
+        self.assertEqual(result["tracks"][0]["id"], self.REAL_TRACK_ID)
+
+    def test_get_saved_tracks(self):
+        """Test getting user's saved tracks."""
+        result = self.spotify_api.get_saved_tracks(limit=20, offset=0)
+        self.assertIn("items", result)
+        self.assertIn("total", result)
+        self.assertIn("limit", result)
+        self.assertIn("offset", result)
+
+    def test_get_saved_tracks_pagination(self):
+        """Test pagination for saved tracks."""
+        result = self.spotify_api.get_saved_tracks(limit=5, offset=0)
+        self.assertEqual(result["limit"], 5)
+        self.assertEqual(result["offset"], 0)
+
+    def test_save_tracks(self):
+        """Test saving tracks to library."""
+        # Should not raise exception
+        self.spotify_api.save_tracks([self.REAL_TRACK_ID])
+
+    def test_save_tracks_too_many(self):
+        """Test saving too many tracks at once."""
+        track_ids = [f"track_{i}" for i in range(51)]
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.save_tracks(track_ids)
+        self.assertIn("max", str(context.exception).lower())
+
+    def test_remove_saved_tracks(self):
+        """Test removing saved tracks."""
+        # Save first
+        self.spotify_api.save_tracks([self.REAL_TRACK_ID])
+        # Remove
+        self.spotify_api.remove_saved_tracks([self.REAL_TRACK_ID])
+
+    def test_check_saved_tracks(self):
+        """Test checking if tracks are saved."""
+        # Save a track
+        self.spotify_api.save_tracks([self.REAL_TRACK_ID])
+        # Check it
+        result = self.spotify_api.check_saved_tracks([self.REAL_TRACK_ID])
+        self.assertIsInstance(result, list)
+        self.assertEqual(len(result), 1)
+        self.assertTrue(result[0])
+
+    # --- Album Tests ---
+
+    def test_get_album(self):
+        """Test getting a single album."""
+        album = self.spotify_api.get_album(self.REAL_ALBUM_ID)
+        self.assertEqual(album["id"], self.REAL_ALBUM_ID)
+        self.assertEqual(album["type"], "album")
+        self.assertIn("uri", album)
+
+    def test_get_album_not_found(self):
+        """Test getting non-existent album."""
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.get_album("nonexistent_album")
+        self.assertIn("not found", str(context.exception).lower())
+
+    def test_get_several_albums(self):
+        """Test getting multiple albums."""
+        result = self.spotify_api.get_several_albums([self.REAL_ALBUM_ID])
+        self.assertIn("albums", result)
+        self.assertEqual(len(result["albums"]), 1)
+
+    def test_get_saved_albums(self):
+        """Test getting user's saved albums."""
+        result = self.spotify_api.get_saved_albums(limit=20, offset=0)
+        self.assertIn("items", result)
+        self.assertIn("total", result)
+
+    def test_save_albums(self):
+        """Test saving albums to library."""
+        self.spotify_api.save_albums([self.REAL_ALBUM_ID])
+
+    def test_save_albums_too_many(self):
+        """Test saving too many albums at once."""
+        album_ids = [f"album_{i}" for i in range(21)]
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.save_albums(album_ids)
+        self.assertIn("max", str(context.exception).lower())
+
+    def test_remove_saved_albums(self):
+        """Test removing saved albums."""
+        self.spotify_api.save_albums([self.REAL_ALBUM_ID])
+        self.spotify_api.remove_saved_albums([self.REAL_ALBUM_ID])
+
+    # --- Artist Tests ---
+
+    def test_get_artist(self):
+        """Test getting a single artist."""
+        artist = self.spotify_api.get_artist(self.REAL_ARTIST_ID)
+        self.assertEqual(artist["id"], self.REAL_ARTIST_ID)
+        self.assertEqual(artist["type"], "artist")
+
+    def test_get_artist_not_found(self):
+        """Test getting non-existent artist."""
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.get_artist("nonexistent_artist")
+        self.assertIn("not found", str(context.exception).lower())
+
+    def test_get_several_artists(self):
+        """Test getting multiple artists."""
+        result = self.spotify_api.get_several_artists([self.REAL_ARTIST_ID])
+        self.assertIn("artists", result)
+        self.assertEqual(len(result["artists"]), 1)
+
+    def test_follow_artists(self):
+        """Test following artists."""
+        self.spotify_api.follow_artists([self.REAL_ARTIST_ID])
+
+    def test_follow_artists_too_many(self):
+        """Test following too many artists at once."""
+        artist_ids = [f"artist_{i}" for i in range(51)]
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.follow_artists(artist_ids)
+        self.assertIn("max", str(context.exception).lower())
+
+    def test_unfollow_artists(self):
+        """Test unfollowing artists."""
+        self.spotify_api.follow_artists([self.REAL_ARTIST_ID])
+        self.spotify_api.unfollow_artists([self.REAL_ARTIST_ID])
+
+    def test_get_followed_artists(self):
+        """Test getting followed artists."""
+        result = self.spotify_api.get_followed_artists(limit=20)
+        self.assertIn("artists", result)
+        self.assertIn("items", result["artists"])
+
+    # --- Playlist Tests ---
+
+    def test_create_playlist(self):
+        """Test creating a playlist."""
+        playlist = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="My Test Playlist",
+            description="Test description",
+            public=True
+        )
+        self.assertEqual(playlist["name"], "My Test Playlist")
+        self.assertEqual(playlist["description"], "Test description")
+        self.assertTrue(playlist["public"])
+        self.assertEqual(playlist["type"], "playlist")
+
+    def test_create_playlist_for_other_user(self):
+        """Test creating playlist for another user (should fail)."""
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.create_playlist(
+                user_id="other_user_id",
+                name="Test Playlist",
+                public=True
+            )
+        self.assertIn("authenticated user", str(context.exception).lower())
+
+    def test_get_playlist_public(self):
+        """Test getting a public playlist."""
+        # Create public playlist
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Public Playlist",
+            public=True
+        )
         
-        # Update it
-        result = self.spotify_api.update_playlist_details(
-            playlist_id=playlist_id,
-            name="Updated Name",
-            description="Updated desc",
+        # Get it using same API instance (data is in-memory)
+        playlist = self.spotify_api.get_playlist(created["id"])
+        self.assertEqual(playlist["name"], "Public Playlist")
+
+    def test_get_playlist_private_owner(self):
+        """Test getting own private playlist."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Private Playlist",
             public=False
         )
-        self.assertEqual(result["status"], "success")
-        self.assertEqual(result["playlist"]["name"], "Updated Name")
-        self.assertEqual(result["playlist"]["description"], "Updated desc")
-        self.assertFalse(result["playlist"]["public"])
-
-    def test_remove_song_from_playlist_success(self):
-        """Test removing a song from playlist."""
-        # Create playlist and add song
-        create_result = self.spotify_api.create_playlist("Test Playlist")
-        playlist_id = create_result["playlist"]["id"]
         
-        add_result = self.spotify_api.add_song_to_playlist(playlist_id, self.REAL_SONG_ID)
-        self.assertTrue(add_result["status"])
+        playlist = self.spotify_api.get_playlist(created["id"])
+        self.assertEqual(playlist["name"], "Private Playlist")
+
+    def test_get_playlist_private_not_owner(self):
+        """Test getting private playlist as non-owner."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Private Playlist",
+            public=False
+        )
         
-        # Remove the song
-        result = self.spotify_api.remove_song_from_playlist(playlist_id, self.REAL_SONG_ID)
-        self.assertTrue(result["status"])
-
-    def test_get_all_songs_success(self):
-        """Test getting all songs."""
-        result = self.spotify_api.get_all_songs()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("songs", result)
-        self.assertGreater(len(result["songs"]), 0)
-
-    def test_get_all_albums_success(self):
-        """Test getting all albums."""
-        result = self.spotify_api.get_all_albums()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("albums", result)
-        self.assertGreater(len(result["albums"]), 0)
-
-    def test_get_album_details_success(self):
-        """Test getting album details."""
-        result = self.spotify_api.get_album_details(self.REAL_ALBUM_ID)
-        self.assertEqual(result["status"], "success")
-        self.assertIn("album", result)
-
-    def test_get_album_details_not_found(self):
-        """Test getting album details for non-existent album."""
-        result = self.spotify_api.get_album_details("nonexistent")
-        self.assertEqual(result["status"], "error")
-
-    def test_get_all_playlists_success(self):
-        """Test getting all public playlists."""
-        result = self.spotify_api.get_all_playlists()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("playlists", result)
-
-    def test_get_playlist_details_success(self):
-        """Test getting playlist details."""
-        # Create a public playlist first
-        create_result = self.spotify_api.create_playlist("Public Playlist", public=True)
-        playlist_id = create_result["playlist"]["id"]
-        
-        result = self.spotify_api.get_playlist_details(playlist_id)
-        self.assertEqual(result["status"], "success")
-        self.assertIn("playlist", result)
-
-    def test_get_playlist_details_private_not_owner(self):
-        """Test getting private playlist details as non-owner."""
-        # Create a private playlist
-        create_result = self.spotify_api.create_playlist("Private Playlist", public=False)
-        playlist_id = create_result["playlist"]["id"]
-        
-        # Try to access as different user (simulate by clearing current user)
+        # Try to access as different API instance (no shared data)
+        # Private playlist will appear not found to unauthenticated users
         api = SpotifyApis()
-        result = api.get_playlist_details(playlist_id)
-        self.assertEqual(result["status"], "error")
+        with self.assertRaises(Exception) as context:
+            api.get_playlist(created["id"])
+        # Either "not found" or "access denied" is acceptable
+        self.assertTrue("not found" in str(context.exception).lower() or "access denied" in str(context.exception).lower())
 
-    def test_get_all_artists_success(self):
-        """Test getting all artists."""
-        result = self.spotify_api.get_all_artists()
-        self.assertEqual(result["status"], "success")
+    def test_get_playlist_not_found(self):
+        """Test getting non-existent playlist."""
+        with self.assertRaises(Exception) as context:
+            self.spotify_api.get_playlist("nonexistent_playlist")
+        self.assertIn("not found", str(context.exception).lower())
+
+    def test_change_playlist_details(self):
+        """Test changing playlist details."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Original Name",
+            public=True
+        )
+        
+        self.spotify_api.change_playlist_details(
+            playlist_id=created["id"],
+            name="Updated Name",
+            description="New description",
+            public=False
+        )
+        
+        updated = self.spotify_api.get_playlist(created["id"])
+        self.assertEqual(updated["name"], "Updated Name")
+        self.assertEqual(updated["description"], "New description")
+        self.assertFalse(updated["public"])
+
+    def test_change_playlist_not_owner(self):
+        """Test changing playlist as non-owner."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Test Playlist",
+            public=True
+        )
+        
+        # Try to modify as unauthenticated user
+        api = SpotifyApis()
+        with self.assertRaises(Exception):
+            api.change_playlist_details(
+                playlist_id=created["id"],
+                name="Hacked Name"
+            )
+
+    def test_add_items_to_playlist(self):
+        """Test adding tracks to playlist."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Test Playlist",
+            public=True
+        )
+        
+        track_uri = f"spotify:track:{self.REAL_TRACK_ID}"
+        result = self.spotify_api.add_items_to_playlist(
+            playlist_id=created["id"],
+            track_uris=[track_uri]
+        )
+        self.assertIn("snapshot_id", result)
+
+    def test_add_items_to_playlist_with_position(self):
+        """Test adding tracks to playlist at specific position."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Test Playlist",
+            public=True
+        )
+        
+        track_uri = f"spotify:track:{self.REAL_TRACK_ID}"
+        result = self.spotify_api.add_items_to_playlist(
+            playlist_id=created["id"],
+            track_uris=[track_uri],
+            position=0
+        )
+        self.assertIn("snapshot_id", result)
+
+    def test_remove_items_from_playlist(self):
+        """Test removing tracks from playlist."""
+        created = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="Test Playlist",
+            public=True
+        )
+        
+        track_uri = f"spotify:track:{self.REAL_TRACK_ID}"
+        
+        # Add track
+        self.spotify_api.add_items_to_playlist(
+            playlist_id=created["id"],
+            track_uris=[track_uri]
+        )
+        
+        # Remove track
+        result = self.spotify_api.remove_items_from_playlist(
+            playlist_id=created["id"],
+            track_uris=[track_uri]
+        )
+        self.assertIn("snapshot_id", result)
+
+    # --- Search Tests ---
+
+    def test_search_tracks(self):
+        """Test searching for tracks."""
+        result = self.spotify_api.search(q="test", type=["track"], limit=10)
+        self.assertIn("tracks", result)
+        self.assertIn("items", result["tracks"])
+
+    def test_search_albums(self):
+        """Test searching for albums."""
+        result = self.spotify_api.search(q="test", type=["album"], limit=10)
+        self.assertIn("albums", result)
+        self.assertIn("items", result["albums"])
+
+    def test_search_artists(self):
+        """Test searching for artists."""
+        result = self.spotify_api.search(q="test", type=["artist"], limit=10)
         self.assertIn("artists", result)
-        self.assertGreater(len(result["artists"]), 0)
+        self.assertIn("items", result["artists"])
 
-    def test_get_artist_details_success(self):
-        """Test getting artist details."""
-        result = self.spotify_api.get_artist_details(self.REAL_ARTIST_ID)
-        self.assertEqual(result["status"], "success")
-        self.assertIn("artist", result)
+    def test_search_playlists(self):
+        """Test searching for playlists."""
+        result = self.spotify_api.search(q="test", type=["playlist"], limit=10)
+        self.assertIn("playlists", result)
+        self.assertIn("items", result["playlists"])
 
-    def test_get_artist_details_not_found(self):
-        """Test getting artist details for non-existent artist."""
-        result = self.spotify_api.get_artist_details("nonexistent")
-        self.assertEqual(result["status"], "error")
+    def test_search_multiple_types(self):
+        """Test searching for multiple content types."""
+        result = self.spotify_api.search(
+            q="test",
+            type=["track", "album", "artist"],
+            limit=5
+        )
+        self.assertIn("tracks", result)
+        self.assertIn("albums", result)
+        self.assertIn("artists", result)
 
-    def test_get_listening_history_success(self):
-        """Test getting listening history."""
-        result = self.spotify_api.get_listening_history()
-        self.assertEqual(result["status"], "success")
-        self.assertIn("history", result)
-        self.assertIn("total_items", result)
+    def test_search_pagination(self):
+        """Test search with pagination."""
+        result = self.spotify_api.search(
+            q="test",
+            type=["track"],
+            limit=5,
+            offset=10
+        )
+        self.assertEqual(result["tracks"]["limit"], 5)
+        self.assertEqual(result["tracks"]["offset"], 10)
 
-    def test_reset_data_success(self):
+    # --- Workflow Tests ---
+
+    def test_workflow_create_and_populate_playlist(self):
+        """Test workflow: create playlist and add multiple tracks."""
+        # Create playlist
+        playlist = self.spotify_api.create_playlist(
+            user_id=self.REAL_USER_ID,
+            name="My Workout Mix",
+            description="High energy tracks",
+            public=False
+        )
+        
+        # Add tracks
+        track_uri = f"spotify:track:{self.REAL_TRACK_ID}"
+        self.spotify_api.add_items_to_playlist(
+            playlist_id=playlist["id"],
+            track_uris=[track_uri]
+        )
+        
+        # Verify playlist
+        retrieved = self.spotify_api.get_playlist(playlist["id"])
+        self.assertEqual(retrieved["name"], "My Workout Mix")
+        self.assertFalse(retrieved["public"])
+
+    def test_workflow_save_and_check_tracks(self):
+        """Test workflow: save tracks and verify they're saved."""
+        # Save track
+        self.spotify_api.save_tracks([self.REAL_TRACK_ID])
+        
+        # Check it's saved using the check endpoint
+        result = self.spotify_api.check_saved_tracks([self.REAL_TRACK_ID])
+        self.assertTrue(result[0])
+
+    def test_workflow_follow_and_unfollow_artist(self):
+        """Test workflow: follow artist then unfollow."""
+        # Follow artist
+        self.spotify_api.follow_artists([self.REAL_ARTIST_ID])
+        
+        # Verify following
+        followed = self.spotify_api.get_followed_artists()
+        artist_ids = [a["id"] for a in followed["artists"]["items"]]
+        self.assertIn(self.REAL_ARTIST_ID, artist_ids)
+        
+        # Unfollow
+        self.spotify_api.unfollow_artists([self.REAL_ARTIST_ID])
+
+    # --- Reset Data Test ---
+
+    def test_reset_data(self):
         """Test resetting data."""
-        # Modify some data first
-        initial_song_count = len(self.spotify_api.songs)
-        self.spotify_api.like_song(self.REAL_SONG_ID)
+        # Make some changes
+        self.spotify_api.save_tracks([self.REAL_TRACK_ID])
         
         # Reset
-        result = self.spotify_api.reset_data()
-        self.assertTrue(result["reset_status"])
+        self.spotify_api.reset_data()
         
-        # Verify reset (should have same song count)
-        self.assertEqual(len(self.spotify_api.songs), initial_song_count)
+        # Verify authentication cleared
+        self.assertIsNone(self.spotify_api.access_token)
+        self.assertIsNone(self.spotify_api.current_user_id)
 
 
 if __name__ == '__main__':
