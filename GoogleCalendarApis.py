@@ -1,5 +1,7 @@
-# Inspired by https://developers.google.com/workspace/calendar/api/guides/overview
-
+"""
+Inspired by https://developers.google.com/workspace/calendar/api/guides/overview
+Uses
+"""
 import copy
 import uuid
 from typing import Dict, Union, Any, Optional, List
