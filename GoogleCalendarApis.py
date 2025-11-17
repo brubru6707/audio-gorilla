@@ -1,6 +1,13 @@
 """
 Inspired by https://developers.google.com/workspace/calendar/api/guides/overview
-Uses
+
+-Requires the user to be authenticated before making requests, so this implementation
+using a stateful approach. 
+-There are some different naming conventions than in the actual code (e.g., POST /calendars
+and insert_calendar(...)---it's just a prefrence thing (we belive insert_calendar is more descriptive
+than post_calendar))
+-Some parts of Google Calendar aren't implemented here (e.g., ACLs, colors, settings, etc.) for brevity.
+The focus was on core calendar and event management functionality.
 """
 import copy
 import uuid

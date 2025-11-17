@@ -1,5 +1,10 @@
-# Inspired by https://developers.google.com/workspace/drive/api/reference/rest/v3
+"""
+Inspired by https://developers.google.com/workspace/drive/api/reference/rest/v3
 
+-Uses a stateful approach because Google Drive API operations depend on user authentication.
+-Naming conventions differ (e.g., insert_file(...)---it's just a preference thing (we believe 
+insert_file is more descriptive than post_file))
+"""
 import copy
 import copy
 import uuid
@@ -8,17 +13,6 @@ from datetime import datetime
 from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("GoogleDriveApis")
-if not DEFAULT_STATE:
-    import json
-    import os
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    json_file_path = os.path.join(current_dir, 'Backends', 'diverse_googledrive_state.json')
-    try:
-        with open(json_file_path, 'r', encoding='utf-8') as f:
-            DEFAULT_STATE = json.load(f)
-        print(f"Successfully loaded Google Drive state from: {json_file_path}")
-    except:
-        DEFAULT_STATE = {}
 
 class GoogleDriveApis:
     """
