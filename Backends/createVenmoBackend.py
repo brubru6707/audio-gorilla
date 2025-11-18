@@ -25,8 +25,6 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
     _initial_transaction_id_map = {}
     _initial_notification_id_map = {}
 
-    current_time_iso = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='milliseconds') + "Z"
-
     new_users = {}
     for email, user_data in converted_data.get("users", {}).items():
         user_id = str(uuid.uuid4())

@@ -160,7 +160,7 @@ class TeslaFleetApis:
         """
         self._ensure_authenticated()
         user_vehicles = []
-        for vehicle_id, vehicle_data in self.vehicles.items():
+        for _, vehicle_data in self.vehicles.items():
             if vehicle_data.get("user_id") == self.current_user_id:
                 user_vehicles.append(vehicle_data)
         return user_vehicles
@@ -1067,18 +1067,14 @@ class TeslaFleetApis:
         Raises:
             Exception: If vehicle not found or not accessible
         """
-        vehicle = self._get_vehicle(vehicle_id)
-
         # Get superchargers from the state
-        all_superchargers = DEFAULT_STATE.get("superchargers", [])
-        
+        all_superchargers = DEFAULT_STATE.get("superchargers", [])   
         # Find nearby superchargers within the radius
         nearby_sites = []
         for charger in all_superchargers:
             distance = self._calculate_distance(lat, lon, charger["latitude"], charger["longitude"])
             if distance <= radius:
                 # Simulate available stalls (random but realistic)
-                import random
                 total_stalls = charger["total_stalls"]
                 available_stalls = random.randint(max(0, total_stalls - 4), total_stalls)
                 

@@ -171,7 +171,6 @@ class GoogleDriveApis:
         user_email = self._get_user_email_by_id(user_id)
         
         if user_info:
-            user_data = self.users[user_id]
             return {
                 "kind": "drive#about",
                 "user": {
@@ -515,7 +514,6 @@ class GoogleDriveApis:
             raise Exception(f"File not found: {fileId}")
 
         file = files[fileId]
-        user_email = self._get_user_email_by_id(user_id)
         
         file["modifiedTime"] = self._rfc3339_now()
         file["viewedByMeTime"] = self._rfc3339_now()
@@ -697,7 +695,6 @@ class GoogleDriveApis:
             raise Exception(f"Invalid type '{type}'. Valid types are: {', '.join(valid_types)}")
 
         file = files[fileId]
-        user_email = self._get_user_email_by_id(user_id)
         
         # Create permission
         permission_id = self._generate_id()

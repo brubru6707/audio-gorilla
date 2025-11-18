@@ -5,6 +5,7 @@ import copy
 import uuid
 from typing import Dict, List, Any, Optional, Union, Literal
 from state_loader import load_default_state
+import re
 
 DEFAULT_STATE = load_default_state("SimpleNoteApis")
 # If the file doesn't exist with snake_case, try the actual filename
@@ -143,7 +144,7 @@ class SimpleNoteApis:
         notes = user_note_data.get("notes", {})
         filtered_notes = []
 
-        for note_id, note_content in notes.items():
+        for _, note_content in notes.items():
             # Tag filtering
             if tag:
                 note_tags = note_content.get("tags", [])
@@ -566,10 +567,8 @@ class SimpleNoteApis:
         notes = user_note_data.get("notes", {})
         search_query = query if case_sensitive else query.lower()
         matching_notes = []
-
-        import re
         
-        for note_id, note_content in notes.items():
+        for _, note_content in notes.items():
             # Skip archived notes if not included
             if not include_archived and note_content.get("archived", False):
                 continue
@@ -638,7 +637,7 @@ class SimpleNoteApis:
         notes = user_note_data.get("notes", {})
         colored_notes = []
 
-        for note_id, note_content in notes.items():
+        for _, note_content in notes.items():
             if note_content.get("color") == color:
                 colored_notes.append(copy.deepcopy(note_content))
 
@@ -666,7 +665,7 @@ class SimpleNoteApis:
         notes = user_note_data.get("notes", {})
         priority_notes = []
 
-        for note_id, note_content in notes.items():
+        for _, note_content in notes.items():
             if note_content.get("priority") == priority:
                 priority_notes.append(copy.deepcopy(note_content))
 

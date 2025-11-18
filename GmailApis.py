@@ -351,7 +351,7 @@ class GmailApis:
             return {"messages": [], "resultSizeEstimate": 0}
 
         filtered_messages = []
-        for msg_id, msg_data in messages.items():
+        for _, msg_data in messages.items():
             match = True
             
             # Filter by query using Gmail query parser

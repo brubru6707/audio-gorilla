@@ -762,7 +762,7 @@ class GoogleCalendarApis:
                     }
                     continue
 
-                for event_id, event in events_data.get(calendar_id_resolved, {}).items():
+                for _, event in events_data.get(calendar_id_resolved, {}).items():
                     event_start_str = event.get("start", {}).get("dateTime")
                     event_end_str = event.get("end", {}).get("dateTime")
 

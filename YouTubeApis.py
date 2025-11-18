@@ -1414,7 +1414,7 @@ class YouTubeApis:
         Returns:
             Dict[str, Any]: A dictionary indicating the success or failure of the update.
         """
-        for channel_id, channel_data in self.channels.items():
+        for _, channel_data in self.channels.items():
             if "captions" in channel_data and id in channel_data["captions"]:
                 channel_data["captions"][id]["content_snippet"] = track_content[:50] + "..." if len(track_content) > 50 else track_content
                 return {"status": True, "caption_id": id, "message": "Caption updated."}

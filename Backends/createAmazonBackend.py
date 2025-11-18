@@ -316,7 +316,7 @@ def generate_product(product_id):
 
     return product
 
-def generate_review(product_id, reviewer_user_ids, product_name=None):
+def generate_review(reviewer_user_ids, product_name=None):
     review_id = str(uuid.uuid4())
     user_id = random.choice(list(reviewer_user_ids)) if reviewer_user_ids else str(uuid.uuid4())
     
@@ -379,7 +379,7 @@ all_product_ids = list(DEFAULT_STATE["products"].keys())
 all_user_ids = list(DEFAULT_STATE["users"].keys())
 
 def propagate_cart_to_users(product_ids):
-    for user_id, user_data in DEFAULT_STATE["users"].items():
+    for _, user_data in DEFAULT_STATE["users"].items():
         if random.random() < 0.5:
             cart = {}
             num_cart_items = random.randint(1, 5)
@@ -401,7 +401,7 @@ def propagate_cart_to_users(product_ids):
             user_data["cart"] = {}
 
 def propagate_wish_list_to_users(product_ids):
-    for user_id, user_data in DEFAULT_STATE["users"].items():
+    for _, user_data in DEFAULT_STATE["users"].items():
         if random.random() < 0.7:
             wish_list = []
             num_wish_list_items = random.randint(1, 10)
@@ -468,13 +468,13 @@ for product_id in all_product_ids:
         # Add a few more random reviews to make it look natural, also with real user IDs
         num_additional_reviews = random.randint(0, 3)
         for _ in range(num_additional_reviews):
-            additional_review = generate_review(product_id, reviewer_user_ids, None)
+            additional_review = generate_review(reviewer_user_ids, None)
             DEFAULT_STATE["product_reviews"][product_id].append(additional_review)
     else:
         # No manual review available, generate random reviews with real user IDs
         num_reviews = random.randint(0, 5)
         for _ in range(num_reviews):
-            random_review = generate_review(product_id, reviewer_user_ids, None)
+            random_review = generate_review(reviewer_user_ids, None)
             DEFAULT_STATE["product_reviews"][product_id].append(random_review)
 
 # Add any remaining manual reviews as standalone product reviews

@@ -474,7 +474,6 @@ class VenmoApis:
         
         # Mask card number for storage (only last 4 digits visible)
         last_four = card_number[-4:] if len(card_number) >= 4 else card_number
-        masked_card_number = f"**** **** **** {last_four}"
         
         # Determine card type from first digit
         first_digit = card_number[0] if card_number else ""
@@ -546,7 +545,7 @@ class VenmoApis:
             raise Exception(f"Payment method {payment_method_id} not found")
 
         # Clear any existing default
-        for pm_id, pm_data in user_payment_methods.items():
+        for _, pm_data in user_payment_methods.items():
             pm_data["is_default"] = False
 
         # Set new default
