@@ -413,7 +413,7 @@ class SmartThingsApis:
         locations = smartthings_data.get("locations", {})
         
         
-        for loc_id, loc_data in locations.items():
+        for _, loc_data in locations.items():
             if loc_data.get("name") == name:
                 return {"error": f"Location with name '{name}' already exists."}
 
@@ -519,7 +519,7 @@ class SmartThingsApis:
             return []
         
         filtered_rooms = []
-        for room_id, room_data in user_rooms.items():
+        for _, room_data in user_rooms.items():
             if location_id is None or room_data.get("location_id") == location_id:
                 filtered_rooms.append(copy.deepcopy(room_data))
         return filtered_rooms
@@ -568,7 +568,7 @@ class SmartThingsApis:
         locations = smartthings_data.get("locations", {})
 
         
-        for r_id, r_data in rooms.items():
+        for _, r_data in rooms.items():
             if r_data.get("name") == name and (not location_id or r_data.get("location_id") == location_id):
                 return {"error": f"Room with name '{name}' already exists in this location."}
 
@@ -640,7 +640,7 @@ class SmartThingsApis:
             
             user_devices = self._get_user_devices_data(user_id)
             if user_devices:
-                for device_id, device_data in user_devices.items():
+                for _, device_data in user_devices.items():
                     if device_data.get("room") == room_id:
                         device_data["room"] = None 
             

@@ -5,7 +5,7 @@ import uuid
 import random
 import re
 from typing import Dict, Any
-from .fake_data import first_names, last_names, domains, user_count, first_and_last_names
+from fake_data import first_names, last_names, domains, user_count, first_and_last_names
 
 _initial_user_email_to_uuid_map = {}
 _initial_payment_card_id_map = {}

@@ -92,7 +92,7 @@ product_reviews_mapping = {}
 all_manual_reviews = []
 
 def flatten_reviews(data_dict):
-    for key, value in data_dict.items():
+    for _, value in data_dict.items():
         if isinstance(value, dict):
             flatten_reviews(value)
         else:

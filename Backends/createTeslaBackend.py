@@ -38,7 +38,7 @@ def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, An
                 friend_id for friend_id in user_data["friends"] 
                 if friend_id in converted_data["users"] or friend_id in _initial_user_email_to_uuid_map.values()
             ]
-    for user_original_email, user_original_data in initial_data.get("users", {}).items():
+    for user_original_email in initial_data.get("users", {}):
         user_uuid = _initial_user_email_to_uuid_map[user_original_email]
         user_tesla_data = converted_data["users"][user_uuid].get("tesla_data", {})
         old_vehicles = user_tesla_data.get("vehicles", {})

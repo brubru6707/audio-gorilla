@@ -4,7 +4,7 @@ import copy
 import uuid
 import random
 from typing import Dict, Any
-from .fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names, x_conversations
+from fake_data import first_names, last_names, domains, social_media_bios, post_texts, user_count, first_and_last_names, x_conversations
 
 print("Running createXBackend with x_conversations support")
 
@@ -14,7 +14,8 @@ _initial_dm_conv_id_map = {}
 
 
 def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, Any]:
-    """Converts the initial RAW_DEFAULT_STATE data to use UUIDs for all relevant IDs and adds realism."""
+    """Converts the initial RAW_DEFAULT_STATE data to use UUIDs for all 
+    relevant IDs and adds realism."""
 
     converted_data = copy.deepcopy(initial_data)
 

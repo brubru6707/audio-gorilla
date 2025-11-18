@@ -52,7 +52,8 @@ class TestAmazonApis(unittest.TestCase):
             first_name="John",
             last_name="Doe",
             email="john.doe@example.com",
-            password="testpass123"
+            password="testpass123",
+            phone_number="1234567890"
         )
         self.assertTrue(result["register_status"])
         self.assertIn("message", result)
@@ -210,9 +211,9 @@ class TestAmazonApis(unittest.TestCase):
         result_reg = self.amazon_api.register_user(
             first_name="Temp",
             last_name="User",
-
             email="temp_delete_user@example.com",
-            password="temp123"
+            password="temp123",
+            phone_number="1111111111"
         )
         self.assertTrue(result_reg["register_status"])
         # Find the user_id by email
@@ -328,7 +329,8 @@ class TestAmazonApis(unittest.TestCase):
             first_name="Checkout",
             last_name="User",
             email="checkout_user@example.com",
-            password="checkout123"
+            password="checkout123",
+            phone_number="2222222222"
         )
         self.assertTrue(reg_result["register_status"])
         # Find the user_id by email

@@ -46,7 +46,7 @@ class AmazonApis:
             Dict: A dictionary containing registration status and message. If successful,
                   includes the new user ID. If failed, indicates the reason for failure.
         """
-        for user_id, user_data in self.state["users"].items():
+        for _, user_data in self.state["users"].items():
             if user_data["email"] == email:
                 return {"register_status": False, "message": "User with this email already exists."}
 
@@ -79,7 +79,7 @@ class AmazonApis:
                   sets the current user session.
         """
         for user_id, user_data in self.state["users"].items():
-            if user_data["email"] == email:
+            if user_data["email"] == email and user_data["password"] == password:
                 self.state["current_user"] = user_id
                 return {"login_status": True, "message": f"User {email} logged in successfully."}
         return {"login_status": False, "message": "Invalid email or password."}
@@ -891,7 +891,7 @@ class AmazonApis:
         if not user_data:
             return {"subscribe_status": False, "message": "User not found."}
 
-        for sub_id, sub_data in user_data.get("prime_subscriptions", {}).items():
+        for _, sub_data in user_data.get("prime_subscriptions", {}).items():
             if sub_data["status"] == "active" and datetime.strptime(sub_data["end_date"], "%Y-%m-%d") > datetime.now():
                 return {"subscribe_status": False, "message": "You already have an active Prime subscription."}
 
@@ -1015,30 +1015,3 @@ class AmazonApis:
         if seller_info:
             return {"seller_status": True, "seller_info": seller_info}
         return {"seller_status": False, "seller_info": {}}
-        """
-        Retrieves the current status of a previously sent SMS message.
-        Args:
-            message_id (str): The unique ID of the SMS message to check.
-        Returns:
-            Dict: A dictionary representing the SMS message object if found,
-                  or an error dictionary if not found.
-        """
-        time.sleep(0.05)
-        sms = None
-        for user_data in self.users.values():
-            sms = next((msg for msg in user_data["sms_history"] if msg["sms_id"] == message_id), None)
-            if sms:
-                break
-
-        if not sms:
-            return {"code": "SMS_NOT_FOUND", "message": f"SMS message with ID '{message_id}' not found."}
-
-        print(f"Dummy SMS status retrieved for ID={message_id}: {sms['status']}")
-        return {
-            "id": sms["sms_id"],
-            "from": sms["sender"],
-            "to": sms["receiver"],
-            "message": sms["message"],
-            "status": sms["status"],
-            "timestamp": sms["timestamp"]
-        }
