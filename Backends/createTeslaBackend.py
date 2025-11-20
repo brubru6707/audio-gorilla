@@ -84,7 +84,7 @@ def generate_tesla_model():
 def generate_location():
     lat = random.uniform(25.0, 49.0)
     lon = random.uniform(-125.0, -66.0)
-    return {"latitude": round(lat, 4), "longitude": round(lon, 4)}
+    return {"latitude": round(lat, 6), "longitude": round(lon, 6)}
 
 sentry_alerts = [
     "Motion detected near front door", "Object too close to rear bumper",

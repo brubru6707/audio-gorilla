@@ -364,8 +364,13 @@ for i in range(len(channel_names)):
         # If we run out of users without channels, allow users to have multiple channels
         available_user_ids = list(all_user_uuids)
     
-    # Select a random user to own this channel
-    user_id = random.choice(available_user_ids)
+    # For the first 2 channels, assign to the first 2 users (Alice and Bob for tests)
+    if i < 2 and i < len(all_user_uuids):
+        user_id = all_user_uuids[i]
+    else:
+        # Select a random user to own this channel
+        user_id = random.choice(available_user_ids)
+    
     user_data = DEFAULT_STATE["users"][user_id]
     
     channel_id = str(uuid.uuid4())

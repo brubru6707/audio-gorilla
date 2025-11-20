@@ -1,5 +1,6 @@
-# Inspired by https://appworld.dev/
 """
+Inspired by https://appworld.dev/
+
 Amazon this is a simulated implementation of common Amazon-like functionalities.
 It takes inspiration from AppWorld's signature style and output, but not the inside of the code
 """

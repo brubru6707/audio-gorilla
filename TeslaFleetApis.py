@@ -1,5 +1,8 @@
 import copy
+import random
+import math
 import uuid
+import hashlib
 from typing import Dict, Any, Optional, Literal
 from UnitTests.test_data_helper import BackendDataLoader
 
@@ -56,7 +59,6 @@ class TeslaFleetApis:
             Enriched vehicle data with standard fields
         """
         # Generate numeric vehicle_id from UUID hash (simulates real Tesla vehicle IDs)
-        import hashlib
         vehicle_id_hash = int(hashlib.md5(vehicle_uuid.encode()).hexdigest()[:15], 16)
         
         # Use vehicle_tag as VIN if it looks like a VIN, otherwise generate one
@@ -1032,7 +1034,6 @@ class TeslaFleetApis:
         Returns:
             float: Distance in miles
         """
-        import math
         
         # Convert to radians
         lat1_rad = math.radians(lat1)
@@ -1050,15 +1051,14 @@ class TeslaFleetApis:
         earth_radius = 3959
         return earth_radius * c
 
-    def get_nearby_charging_sites(self, vehicle_id: int, lat: float, lon: float, radius: int = 50) -> Dict[str, Any]:
+    def get_nearby_charging_sites(self, vehicle_id: int, radius: int = 50) -> Dict[str, Any]:
         """
         Get nearby charging sites (superchargers) for the specified vehicle.
+        Uses the vehicle's current location to find nearby chargers.
         Matches GET /api/1/vehicles/{id}/nearby_charging_sites endpoint.
 
         Args:
             vehicle_id: Numeric vehicle ID
-            lat: Latitude coordinate
-            lon: Longitude coordinate
             radius: Search radius in miles (default 50)
 
         Returns:
@@ -1067,8 +1067,17 @@ class TeslaFleetApis:
         Raises:
             Exception: If vehicle not found or not accessible
         """
+        # Get the vehicle to access its location
+        vehicle = self._get_vehicle(vehicle_id)
+        vehicle_location = vehicle.get("location", {})
+        lat = vehicle_location.get("latitude")
+        lon = vehicle_location.get("longitude")
+        
+        if lat is None or lon is None:
+            raise Exception(f"Vehicle {vehicle_id} does not have a valid location")
+        
         # Get superchargers from the state
-        all_superchargers = DEFAULT_STATE.get("superchargers", [])   
+        all_superchargers = DEFAULT_STATE.get("superchargers", [])  
         # Find nearby superchargers within the radius
         nearby_sites = []
         for charger in all_superchargers:
@@ -1077,7 +1086,6 @@ class TeslaFleetApis:
                 # Simulate available stalls (random but realistic)
                 total_stalls = charger["total_stalls"]
                 available_stalls = random.randint(max(0, total_stalls - 4), total_stalls)
-                
                 site_data = {
                     "name": charger["name"],
                     "latitude": charger["latitude"],

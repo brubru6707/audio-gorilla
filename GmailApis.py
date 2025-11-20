@@ -408,11 +408,9 @@ class GmailApis:
         userId = self._resolve_user_id(userId)
         if not userId:
             return None
-        
         messages = self._get_user_messages_data(userId)
         if messages is None:
             return None
-        
         message = messages.get(id)
         if message:
             if format == "minimal":

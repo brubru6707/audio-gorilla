@@ -386,9 +386,6 @@ def main():
         import os
         file_size = os.path.getsize(output_filename)
         print(f"✓ File size: {file_size:,} bytes ({file_size/1024/1024:.1f} MB)")
-        
-    except json.JSONEncodeError as e:
-        print(f"✗ JSON encoding error: {e}")
     except Exception as e:
         print(f"✗ Error saving file: {e}")
     

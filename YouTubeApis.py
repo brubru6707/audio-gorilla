@@ -1312,15 +1312,13 @@ class YouTubeApis:
                         "isPublic": True
                     }
                 })
-        
         # Pagination
         offset = 0
         if pageToken:
             try:
                 offset = int(pageToken.split("_")[1])
             except:
-                offset = 0
-        
+                offset = 0       
         total_results = len(comment_items)
         paginated_comments = comment_items[offset:offset + maxResults]
         
