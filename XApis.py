@@ -10,7 +10,7 @@ DEFAULT_STATE = load_default_state("XApis")
 
 class XApis:
     """
-    A dummy API class for simulating X (formerly Twitter) operations.
+    An API class for simulating X (formerly Twitter) operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -30,7 +30,7 @@ class XApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -95,7 +95,7 @@ class XApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities.
+        Generates a unique UUID for entities.
         """
         return str(uuid.uuid4())
 
@@ -111,7 +111,7 @@ class XApis:
     def _get_user_direct_messages_data(self, user_id: str) -> Optional[Dict[str, Any]]:
         """Helper to get a user's direct messages data (conversations)."""
         # This structure needs careful handling as DMs are global, but filtered by user
-        # For this dummy, we'll iterate through global DMs to find user's conversations
+        # For this, we'll iterate through global DMs to find user's conversations
         return {
             conv_id: conv_data for conv_id, conv_data in self.direct_messages.items()
             if user_id in conv_data.get("participants", [])
@@ -825,10 +825,10 @@ class XApis:
 
     def reset_data(self) -> None:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
         """
         self._load_scenario(DEFAULT_STATE)
         self.access_token = None
         self.current_user_id = None
-        print("XApis: All dummy data reset to default state.")
+        print("XApis: All data reset to default state.")

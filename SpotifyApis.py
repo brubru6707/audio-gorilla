@@ -7,7 +7,7 @@ from state_loader import load_default_state
 DEFAULT_STATE = load_default_state("SpotifyApis")
 class SpotifyApis:
     """
-    A dummy API class for simulating Spotify Web API operations.
+    An API class for simulating Spotify Web API operations.
     This class provides an in-memory backend for development and testing purposes.
     Matches the real Spotify Web API structure and authentication.
     """
@@ -31,7 +31,7 @@ class SpotifyApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
 
         Args:
             scenario (Dict): A dictionary representing the state to load.
@@ -49,7 +49,7 @@ class SpotifyApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities.
+        Generates a unique UUID for entities.
         """
         return str(uuid.uuid4())
     
@@ -1263,10 +1263,10 @@ class SpotifyApis:
 
     def reset_data(self) -> None:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
         """
         self._load_scenario(DEFAULT_STATE)
         self.access_token = None
         self.current_user_id = None
-        print("SpotifyApis: All dummy data reset to default state.")
+        print("SpotifyApis: All data reset to default state.")

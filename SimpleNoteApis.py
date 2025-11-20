@@ -23,7 +23,7 @@ if not DEFAULT_STATE:
 
 class SimpleNoteApis:
     """
-    A dummy API class for simulating Simple Note operations.
+    An API class for simulating Simple Note operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -38,7 +38,7 @@ class SimpleNoteApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -51,7 +51,7 @@ class SimpleNoteApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities (notes).
+        Generates a unique UUID for entities (notes).
         """
         return str(uuid.uuid4())
 
@@ -673,12 +673,12 @@ class SimpleNoteApis:
 
     def reset_data(self) -> Dict[str, bool]:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
 
         Returns:
             Dict: A dictionary indicating the success of the reset operation.
         """
         self._load_scenario(DEFAULT_STATE)
-        print("SimpleNoteApis: All dummy data reset to default state.")
+        print("SimpleNoteApis: All data reset to default state.")
         return {"reset_status": True}

@@ -10,7 +10,7 @@ DEFAULT_STATE = load_default_state("GmailApis")
 
 class GmailApis:
     """
-    A dummy API class for simulating Gmail operations.
+    An API class for simulating Gmail operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -438,7 +438,7 @@ class GmailApis:
                     "threadId": message["threadId"],
                     "historyId": message.get("historyId", ""),
                     "internalDate": message.get("internalDate", ""),
-                    "raw": "dummy_raw_content_for_" + message["id"]
+                    "raw": "raw_content_for_" + message["id"]
                 }
             # Full format
             return copy.deepcopy(message)
@@ -563,7 +563,7 @@ class GmailApis:
                 recipient_gmail_data["profile"]["messagesTotal"] = recipient_gmail_data["profile"].get("messagesTotal", 0) + 1
                 recipient_gmail_data["profile"]["threadsTotal"] = len(recipient_gmail_data["threads"])
 
-        print(f"Dummy email sent: from {user_email} to {to}, subject '{subject}'")
+        print(f"Email sent: from {user_email} to {to}, subject '{subject}'")
         return {"id": new_msg_id, "threadId": thread_id}
 
     def delete_message(self, user_id: str, msg_id: str) -> Dict[str, Union[bool, str]]:
@@ -604,7 +604,7 @@ class GmailApis:
                     profile["messagesTotal"] = max(0, profile.get("messagesTotal", 0) - 1)
                     profile["threadsTotal"] = len(threads) if threads else 0
 
-            print(f"Dummy message deleted: ID={msg_id} for user {user_id}")
+            print(f"Message deleted: ID={msg_id} for user {user_id}")
             return {"success": True, "message": f"Message {msg_id} deleted."}
         return {"success": False, "message": f"Message {msg_id} not found."}
 
@@ -715,7 +715,7 @@ class GmailApis:
             }
         }
         gmail_data["drafts"][new_draft_id] = new_draft
-        print(f"Dummy draft created: ID={new_draft_id} for user {userId}")
+        print(f"Draft created: ID={new_draft_id} for user {userId}")
         return {"id": new_draft_id, "message": new_draft["message"]}
 
     def update_draft(
@@ -758,7 +758,7 @@ class GmailApis:
             drafts[id]["message"]["to"] = to
             drafts[id]["message"]["subject"] = subject
             drafts[id]["message"]["body"] = body
-            print(f"Dummy draft updated: ID={id} for user {userId}")
+            print(f"Draft updated: ID={id} for user {userId}")
             return {"id": id, "message": drafts[id]["message"]}
         return {"error": f"Draft {id} not found."}
 
@@ -781,7 +781,7 @@ class GmailApis:
         
         if draft_id in drafts:
             del drafts[draft_id]
-            print(f"Dummy draft deleted: ID={draft_id} for user {user_id}")
+            print(f"Draft deleted: ID={draft_id} for user {user_id}")
             return {"success": True, "message": f"Draft {draft_id} deleted."}
         return {"success": False, "message": f"Draft {draft_id} not found."}
 
@@ -832,7 +832,7 @@ class GmailApis:
         # If message was sent successfully, delete the draft
         if "id" in result and "error" not in result:
             self.delete_draft(user_email, id)
-            print(f"Dummy draft sent and deleted: draft ID={id}, message ID={result['id']}")
+            print(f"Draft sent and deleted: draft ID={id}, message ID={result['id']}")
         
         return result
 
@@ -908,7 +908,7 @@ class GmailApis:
             "type": "user"
         }
         labels[new_label_id] = new_label
-        print(f"Dummy label created: ID={new_label_id}, Name='{label_name}' for user {user_id}")
+        print(f"Label created: ID={new_label_id}, Name='{label_name}' for user {user_id}")
         return {"id": new_label_id, "name": label_name}
 
     def update_label(self, user_id: str, label_id: str, new_label_name: str) -> Dict[str, Union[str, Dict]]:
@@ -931,7 +931,7 @@ class GmailApis:
         
         if label_id in labels:
             labels[label_id]["name"] = new_label_name
-            print(f"Dummy label updated: ID={label_id}, New Name='{new_label_name}' for user {user_id}")
+            print(f"Label updated: ID={label_id}, New Name='{new_label_name}' for user {user_id}")
             return {"id": label_id, "name": new_label_name}
         return {"error": f"Label {label_id} not found."}
 
@@ -954,7 +954,7 @@ class GmailApis:
         
         if label_id in labels:
             del labels[label_id]
-            print(f"Dummy label deleted: ID={label_id} for user {user_id}")
+            print(f"Label deleted: ID={label_id} for user {user_id}")
             return {"success": True, "message": f"Label {label_id} deleted."}
         return {"success": False, "message": f"Label {label_id} not found."}
 
@@ -990,7 +990,7 @@ class GmailApis:
         message["labelIds"] = list(current_labels.union(add_labels))
         message["labelIds"] = list(set(message["labelIds"]) - remove_labels)
 
-        print(f"Dummy message modified: ID={id}, New Labels={message['labelIds']} for user {userId}")
+        print(f"Message modified: ID={id}, New Labels={message['labelIds']} for user {userId}")
         return copy.deepcopy(message)
 
     def get_thread(
@@ -1027,7 +1027,7 @@ class GmailApis:
                 if format == "minimal":
                     detailed_messages.append({"id": message["id"], "threadId": message["threadId"], "snippet": message["snippet"]})
                 elif format == "raw":
-                    detailed_messages.append({"id": message["id"], "raw": "dummy_raw_content_for_" + message["id"]})
+                    detailed_messages.append({"id": message["id"], "raw": "raw_content_for_" + message["id"]})
                 else:
                     detailed_messages.append(copy.deepcopy(message))
         thread_copy["messages"] = detailed_messages
@@ -1069,7 +1069,7 @@ class GmailApis:
                 messages[msg_id]["labelIds"] = list(current_labels.union(add_labels))
                 messages[msg_id]["labelIds"] = list(set(messages[msg_id]["labelIds"]) - remove_labels)
         
-        print(f"Dummy thread modified: ID={thread_id} for user {user_id}. Labels applied to contained messages.")
+        print(f"Thread modified: ID={thread_id} for user {user_id}. Labels applied to contained messages.")
         
         # Get user email to call get_thread (which expects email or 'me')
         user_email = self._get_user_email_by_id(user_id)
@@ -1159,7 +1159,7 @@ class GmailApis:
                 return {
                     "attachmentId": attachment_id,
                     "size": part.get("body", {}).get("size", 0),
-                    "data": f"dummy_attachment_data_for_{attachment_id}"
+                    "data": f"attachment_data_for_{attachment_id}"
                 }
         
         return None
@@ -1172,5 +1172,5 @@ class GmailApis:
             Dict[str, bool]: Dictionary indicating reset status.
         """
         self._load_scenario(DEFAULT_STATE)
-        print("GmailApis: All dummy data reset to default state.")
+        print("GmailApis: All data reset to default state.")
         return {"reset_status": True}

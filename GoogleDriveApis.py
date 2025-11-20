@@ -16,7 +16,7 @@ DEFAULT_STATE = load_default_state("GoogleDriveApis")
 
 class GoogleDriveApis:
     """
-    A dummy API class for simulating Google Drive operations.
+    A API class for simulating Google Drive operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -32,7 +32,7 @@ class GoogleDriveApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -92,7 +92,7 @@ class GoogleDriveApis:
 
     def _generate_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities (files, folders).
+        Generates a unique UUID for entities (files, folders).
         """
         return str(uuid.uuid4())
     
@@ -785,14 +785,14 @@ class GoogleDriveApis:
 
     def reset_data(self) -> Dict[str, bool]:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
 
         Returns:
             Dict: A dictionary indicating the success of the reset operation.
         """
         self._load_scenario(DEFAULT_STATE)
-        print("GoogleDriveApis: All dummy data reset to default state.")
+        print("GoogleDriveApis: All data reset to default state.")
         return {"reset_status": True}
 
     

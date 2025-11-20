@@ -10,7 +10,7 @@ DEFAULT_STATE = load_default_state("VenmoApis")
 
 class VenmoApis:
     """
-    A dummy API class for simulating Venmo operations.
+    An API class for simulating Venmo operations.
     This class provides an in-memory backend for development and testing purposes.
     Matches the real Venmo API structure and authentication.
     """
@@ -31,7 +31,7 @@ class VenmoApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -45,7 +45,7 @@ class VenmoApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities.
+        Generates a unique UUID for entities.
         """
         return str(uuid.uuid4())
 

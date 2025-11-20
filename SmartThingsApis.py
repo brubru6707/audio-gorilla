@@ -20,7 +20,7 @@ def _get_default_users_copy():
 
 class SmartThingsApis:
     """
-    A dummy API class for simulating SmartThings operations.
+    An API class for simulating SmartThings operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -35,7 +35,7 @@ class SmartThingsApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -52,7 +52,7 @@ class SmartThingsApis:
 
     def _generate_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities (devices, locations, rooms).
+        Generates a unique UUID for entities (devices, locations, rooms).
         """
         return str(uuid.uuid4())
 
@@ -802,12 +802,12 @@ class SmartThingsApis:
 
     def reset_data(self) -> Dict[str, bool]:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
 
         Returns:
             Dict: A dictionary indicating the success of the reset operation.
         """
         self._load_scenario(DEFAULT_STATE)
-        print("SmartThingsApis: All dummy data reset to default state.")
+        print("SmartThingsApis: All data reset to default state.")
         return {"reset_status": True}

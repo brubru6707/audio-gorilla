@@ -17,7 +17,7 @@ DEFAULT_STATE = BackendDataLoader.get_youtube_data()
 
 class YouTubeApis:
     """
-    A dummy API class for simulating YouTube operations.
+    An API class for simulating YouTube operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -39,7 +39,7 @@ class YouTubeApis:
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -106,7 +106,7 @@ class YouTubeApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities.
+        Generates a unique UUID for entities.
         """
         return str(uuid.uuid4())
 
@@ -1370,8 +1370,7 @@ class YouTubeApis:
 
     def youtube_captions_insert(self, video_id: str, language: str, track_content: str) -> Dict[str, Any]:
         """
-        Uploads a caption track for a video.
-        In this dummy, it simulates adding a caption, but doesn't store actual files.
+        Uploads a caption track for a video. Simulates adding a caption, but doesn't store actual files.
 
         Parameters:
             video_id (str): The ID (UUID) of the video the caption is for.
@@ -1379,7 +1378,7 @@ class YouTubeApis:
             track_content (str): The content of the caption track (e.g., SRT format string).
 
         Returns:
-            Dict[str, Any]: A dictionary indicating the success or failure of the upload, with a dummy ID.
+            Dict[str, Any]: A dictionary indicating the success or failure of the upload, with an ID.
         """
         video_data = self._get_video_data(video_id)
         if not video_data:
@@ -1402,8 +1401,7 @@ class YouTubeApis:
 
     def youtube_captions_update(self, id: str, track_content: str) -> Dict[str, Any]:
         """
-        Updates a caption track.
-        In this dummy, it simulates updating a caption by its dummy ID.
+        Updates a caption track. Simulates updating a caption by its ID.
 
         Parameters:
             id (str): The ID (UUID) of the caption track to update.

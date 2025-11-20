@@ -138,16 +138,14 @@ class AmazonApis:
 
     def show_account(self) -> Dict[str, Union[bool, str, Dict]]:
         """
-        Retrieves account-specific information including balance, payment cards, and addresses for the currently logged-in user.
+        Retrieves account-specific information including balance, payment cards, and addresses.
+        Args:
+            user_id (str): The unique identifier of the user whose account details to retrieve.
         Returns:
             Dict: A dictionary containing account status, message, and account details including
-                  balance, payment cards, and addresses if the user is logged in.
+                  balance, payment cards, and addresses if the user is found.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"account_status": False, "message": login_check["message"]}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if user_data:
             return {
                 "account_status": True,
@@ -160,21 +158,20 @@ class AmazonApis:
             }
         return {"account_status": False, "message": "User not found."}
 
-    def delete_account(self) -> Dict[str, Union[bool, str]]:
+    def delete_account(self, user_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Permanently removes the currently logged-in user's account from the system.
+        Permanently removes a user account from the system.
+        Args:
+            user_id (str): The unique identifier of the user account to delete.
         Returns:
-            Dict: A dictionary containing deletion status and message. Also clears the current user session.
+            Dict: A dictionary containing deletion status and message. Also clears the current
+                  user session if the deleted user was currently logged in.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"delete_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
         if user_id in self.state["users"]:
             del self.state["users"][user_id]
-            self.state["current_user"] = None
-            return {"delete_status": True, "message": "Account deleted successfully."}
+            if self.state["current_user"] == user_id:
+                self.state["current_user"] = None
+            return {"delete_status": True, "message": f"Account for user ID {user_id} deleted successfully."}
         return {"delete_status": False, "message": "User not found."}
 
     def add_payment_card(
@@ -220,19 +217,15 @@ class AmazonApis:
 
     def remove_payment_card(self, card_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Removes a payment card from the currently logged-in user's account.
+        Removes a payment card from the user's account.
         Args:
+            user_id (str): The unique identifier of the user removing the payment card.
             card_id (str): The unique identifier of the payment card to remove.
         Returns:
             Dict: A dictionary containing removal status and message indicating whether
                   the card was successfully removed or not found.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"remove_card_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"remove_card_status": False, "message": "User not found."}
 
@@ -244,24 +237,21 @@ class AmazonApis:
         return {"remove_card_status": False, "message": "Payment card not found."}
 
     def show_payment_cards(
-        self, page_index: int = 1, page_limit: int = 10
-    ) -> Dict[str, Union[bool, str, List[Dict]]]:
+        self, user_id: str, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves a paginated list of the currently logged-in user's payment cards.
+        Retrieves a paginated list of the user's payment cards.
         Args:
+            user_id (str): The unique identifier of the user whose payment cards to retrieve.
             page_index (int, optional): The page number for pagination (default: 1).
             page_limit (int, optional): The number of items per page (default: 10).
         Returns:
             Dict: A dictionary containing cards status and a list of payment card objects
                   with pagination applied.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"cards_status": False, "message": login_check["message"], "payment_cards": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"cards_status": False, "message": "User not found.", "payment_cards": []}
+            return {"cards_status": False, "payment_cards": []}
 
         all_cards = list(user_data.get("payment_cards", {}).values())
         
@@ -273,6 +263,7 @@ class AmazonApis:
 
     def add_address(
         self,
+        user_id: str,
         name: str,
         street_address: str,
         city: str,
@@ -281,8 +272,9 @@ class AmazonApis:
         zip_code: int,
     ) -> Dict[str, Union[bool, str, int]]:
         """
-        Adds a new shipping address to the currently logged-in user's account.
+        Adds a new shipping address to the user's account.
         Args:
+            user_id (str): The unique identifier of the user adding the address.
             name (str): A descriptive name for the address (e.g., "Home", "Work").
             street_address (str): The street address including house number and street name.
             city (str): The city name.
@@ -293,12 +285,7 @@ class AmazonApis:
             Dict: A dictionary containing add address status, message, and the newly generated
                   address ID if successful.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"add_address_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"add_address_status": False, "message": "User not found."}
 
@@ -315,21 +302,17 @@ class AmazonApis:
         self._update_user_data(user_id, "addresses", user_addresses)
         return {"add_address_status": True, "message": "Address added successfully.", "address_id": new_address_id}
 
-    def remove_address(self, address_id: str) -> Dict[str, Union[bool, str]]:
+    def remove_address(self, user_id: str, address_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Removes a shipping address from the currently logged-in user's account.
+        Removes a shipping address from the user's account.
         Args:
+            user_id (str): The unique identifier of the user removing the address.
             address_id (str): The unique identifier of the address to remove.
         Returns:
             Dict: A dictionary containing removal status and message indicating whether
                   the address was successfully removed or not found.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"remove_address_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"remove_address_status": False, "message": "User not found."}
 
@@ -341,24 +324,21 @@ class AmazonApis:
         return {"remove_address_status": False, "message": "Address not found."}
 
     def show_addresses(
-        self, page_index: int = 1, page_limit: int = 10
-    ) -> Dict[str, Union[bool, str, List[Dict]]]:
+        self, user_id: str, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves a paginated list of the currently logged-in user's shipping addresses.
+        Retrieves a paginated list of the user's shipping addresses.
         Args:
+            user_id (str): The unique identifier of the user whose addresses to retrieve.
             page_index (int, optional): The page number for pagination (default: 1).
             page_limit (int, optional): The number of items per page (default: 10).
         Returns:
             Dict: A dictionary containing addresses status and a list of address objects
                   with pagination applied.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"addresses_status": False, "message": login_check["message"], "addresses": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"addresses_status": False, "message": "User not found.", "addresses": []}
+            return {"addresses_status": False, "addresses": []}
 
         all_addresses = list(user_data.get("addresses", {}).values())
         
@@ -368,22 +348,18 @@ class AmazonApis:
 
         return {"addresses_status": True, "addresses": paginated_addresses}
 
-    def add_to_cart(self, product_id: str, quantity: int) -> Dict[str, Union[bool, str]]:
+    def add_to_cart(self, user_id: str, product_id: str, quantity: int) -> Dict[str, Union[bool, str]]:
         """
-        Adds a product to the currently logged-in user's shopping cart with specified quantity.
+        Adds a product to the user's shopping cart with specified quantity.
         Args:
+            user_id (str): The unique identifier of the user adding to cart.
             product_id (str): The unique identifier of the product to add.
             quantity (int): The quantity of the product to add.
         Returns:
             Dict: A dictionary containing add to cart status and message. Validates product
                   existence and available stock before adding.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"cart_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"cart_status": False, "message": "User not found."}
 
@@ -397,21 +373,17 @@ class AmazonApis:
         self._update_user_data(user_id, "cart", user_cart)
         return {"cart_status": True, "message": "Product added to cart."}
 
-    def remove_from_cart(self, product_id: str) -> Dict[str, Union[bool, str]]:
+    def remove_from_cart(self, user_id: str, product_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Removes a product completely from the currently logged-in user's shopping cart.
+        Removes a product completely from the user's shopping cart.
         Args:
+            user_id (str): The unique identifier of the user removing from cart.
             product_id (str): The unique identifier of the product to remove.
         Returns:
             Dict: A dictionary containing removal status and message indicating whether
                   the product was successfully removed from the cart.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"cart_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"cart_status": False, "message": "User not found."}
 
@@ -422,22 +394,18 @@ class AmazonApis:
             return {"cart_status": True, "message": "Product removed from cart."}
         return {"cart_status": False, "message": "Product not found in cart."}
 
-    def update_cart_item_quantity(self, product_id: str, quantity: int) -> Dict[str, Union[bool, str]]:
+    def update_cart_item_quantity(self, user_id: str, product_id: str, quantity: int) -> Dict[str, Union[bool, str]]:
         """
-        Updates the quantity of a specific product in the currently logged-in user's shopping cart.
+        Updates the quantity of a specific product in the user's shopping cart.
         Args:
+            user_id (str): The unique identifier of the user updating cart quantity.
             product_id (str): The unique identifier of the product to update.
             quantity (int): The new quantity for the product (removes if quantity <= 0).
         Returns:
             Dict: A dictionary containing update status and message. Validates product
                   existence and available stock before updating.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"cart_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"cart_status": False, "message": "User not found."}
 
@@ -454,20 +422,18 @@ class AmazonApis:
         self._update_user_data(user_id, "cart", user_cart)
         return {"cart_status": True, "message": "Cart updated."}
 
-    def show_cart(self) -> Dict[str, Union[bool, str, List[Dict]]]:
+    def show_cart(self, user_id: str) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves the complete contents of the currently logged-in user's shopping cart with product details.
+        Retrieves the complete contents of the user's shopping cart with product details.
+        Args:
+            user_id (str): The unique identifier of the user whose cart to retrieve.
         Returns:
             Dict: A dictionary containing cart status and a list of cart items with
                   product information, quantities, and total prices.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"cart_status": False, "message": login_check["message"], "cart": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"cart_status": False, "message": "User not found.", "cart": []}
+            return {"cart_status": False, "cart": []}
 
         cart_items = []
         for product_id, quantity in user_data.get("cart", {}).items():
@@ -486,21 +452,17 @@ class AmazonApis:
                 )
         return {"cart_status": True, "cart": cart_items}
 
-    def apply_promo_code_to_cart(self, promo_code: str) -> Dict[str, Union[bool, str, float]]:
+    def apply_promo_code_to_cart(self, promo_code: str, user_id: str) -> Dict[str, Union[bool, str, float]]:
         """
-        Applies a promotional code to the currently logged-in user's shopping cart, validating eligibility and calculating discounts.
+        Applies a promotional code to the user's shopping cart, validating eligibility and calculating discounts.
         Args:
             promo_code (str): The promotional code to apply.
+            user_id (str): The unique identifier of the user applying the promo code.
         Returns:
             Dict: A dictionary containing promo status, message, discount amount, and new total.
                   Validates code existence, activation status, expiration, and minimum purchase requirements.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"promo_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"promo_status": False, "message": "User not found."}
         
@@ -552,28 +514,27 @@ class AmazonApis:
             "new_total": new_total,
         }
 
-    def remove_promo_code_from_cart(self) -> Dict[str, Union[bool, str]]:
+    def remove_promo_code_from_cart(self, user_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Removes any applied promotional code from the currently logged-in user's shopping cart.
+        Removes any applied promotional code from the user's shopping cart.
+        Args:
+            user_id (str): The unique identifier of the user removing the promo code.
         Returns:
             Dict: A dictionary containing promo status and message indicating successful removal.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"promo_status": False, "message": login_check["message"]}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"promo_status": False, "message": "User not found."}
 
         return {"promo_status": True, "message": "Promo code removed from cart."}
 
     def checkout(
-        self, delivery_address_id: str, payment_card_id: str, promo_code: Union[str, None] = None
+        self, user_id: str, delivery_address_id: str, payment_card_id: str, promo_code: Union[str, None] = None
     ) -> Dict[str, Union[bool, str, Dict]]:
         """
-        Processes the checkout operation for the currently logged-in user, creating an order, updating inventory, and processing payment.
+        Processes the checkout operation, creating an order, updating inventory, and processing payment.
         Args:
+            user_id (str): The unique identifier of the user checking out.
             delivery_address_id (str): The unique identifier of the delivery address to use.
             payment_card_id (str): The unique identifier of the payment card to use.
             promo_code (Union[str, None], optional): An optional promotional code to apply (default: None).
@@ -581,12 +542,7 @@ class AmazonApis:
             Dict: A dictionary containing checkout status, message, and order details if successful.
                   Validates cart contents, address, payment method, stock availability, and user balance.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"checkout_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"checkout_status": False, "message": "User not found."}
 
@@ -643,24 +599,21 @@ class AmazonApis:
         }
 
     def show_orders(
-        self, page_index: int = 1, page_limit: int = 10
-    ) -> Dict[str, Union[bool, str, List[Dict]]]:
+        self, user_id: str, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves a paginated list of the currently logged-in user's order history.
+        Retrieves a paginated list of the user's order history.
         Args:
+            user_id (str): The unique identifier of the user whose orders to retrieve.
             page_index (int, optional): The page number for pagination (default: 1).
             page_limit (int, optional): The number of items per page (default: 10).
         Returns:
             Dict: A dictionary containing orders status and a list of order objects
                   with pagination applied.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"orders_status": False, "message": login_check["message"], "orders": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"orders_status": False, "message": "User not found.", "orders": []}
+            return {"orders_status": False, "orders": []}
 
         all_orders = list(user_data.get("orders", {}).values())
         
@@ -670,21 +623,17 @@ class AmazonApis:
 
         return {"orders_status": True, "orders": paginated_orders}
 
-    def add_to_wish_list(self, product_id: str) -> Dict[str, Union[bool, str]]:
+    def add_to_wish_list(self, user_id: str, product_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Adds a product to the currently logged-in user's wish list for future reference.
+        Adds a product to the user's wish list for future reference.
         Args:
+            user_id (str): The unique identifier of the user adding to wish list.
             product_id (str): The unique identifier of the product to add.
         Returns:
             Dict: A dictionary containing add status and message. Validates product
                   existence and prevents duplicate entries.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"wishlist_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"wishlist_status": False, "message": "User not found."}
 
@@ -701,21 +650,17 @@ class AmazonApis:
         self._update_user_data(user_id, "wish_list", user_wish_list)
         return {"wishlist_status": True, "message": "Product added to wish list."}
 
-    def remove_from_wish_list(self, product_id: str) -> Dict[str, Union[bool, str]]:
+    def remove_from_wish_list(self, user_id: str, product_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Removes a product from the currently logged-in user's wish list.
+        Removes a product from the user's wish list.
         Args:
+            user_id (str): The unique identifier of the user removing from wish list.
             product_id (str): The unique identifier of the product to remove.
         Returns:
             Dict: A dictionary containing removal status and message indicating whether
                   the product was successfully removed from the wish list.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"wishlist_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"wishlist_status": False, "message": "User not found."}
 
@@ -727,20 +672,18 @@ class AmazonApis:
                 return {"wishlist_status": True, "message": "Product removed from wish list."}
         return {"wishlist_status": False, "message": "Product not found in wish list."}
 
-    def show_wish_list(self) -> Dict[str, Union[bool, str, List[Dict]]]:
+    def show_wish_list(self, user_id: str) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves the complete contents of the currently logged-in user's wish list with product details.
+        Retrieves the complete contents of the user's wish list with product details.
+        Args:
+            user_id (str): The unique identifier of the user whose wish list to retrieve.
         Returns:
             Dict: A dictionary containing wish list status and a list of wish list items
                   with product information and addition dates.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"wishlist_status": False, "message": login_check["message"], "wishlist": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"wishlist_status": False, "message": "User not found.", "wishlist": []}
+            return {"wishlist_status": False, "wishlist": []}
 
         wish_list_items = []
         for item in user_data.get("wish_list", []):
@@ -797,11 +740,12 @@ class AmazonApis:
         return {"product_status": False, "product": {}}
 
     def submit_product_review(
-        self, product_id: str, rating: int, comment: str
+        self, user_id: str, product_id: str, rating: int, comment: str
     ) -> Dict[str, Union[bool, str]]:
         """
-        Submits a product review with rating and comment from the currently logged-in user.
+        Submits a product review with rating and comment from an authenticated user.
         Args:
+            user_id (str): The unique identifier of the user submitting the review.
             product_id (str): The unique identifier of the product being reviewed.
             rating (int): The rating score (typically 1-5 stars).
             comment (str): The detailed review comment text.
@@ -809,12 +753,7 @@ class AmazonApis:
             Dict: A dictionary containing submission status, message, and the newly generated
                   review ID if successful.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"submit_review_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"submit_review_status": False, "message": "User not found."}
 
@@ -866,23 +805,19 @@ class AmazonApis:
         return {"reviews_status": True, "reviews": display_reviews}
 
     def ask_product_question(
-        self, product_id: str, question: str
+        self, user_id: str, product_id: str, question: str
     ) -> Dict[str, Union[bool, str]]:
         """
-        Submits a question about a specific product from the currently logged-in user.
+        Submits a question about a specific product from an authenticated user.
         Args:
+            user_id (str): The unique identifier of the user asking the question.
             product_id (str): The unique identifier of the product being questioned.
             question (str): The question text to submit.
         Returns:
             Dict: A dictionary containing question submission status, message, and the newly
                   generated question ID if successful.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"ask_question_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"ask_question_status": False, "message": "User not found."}
 
@@ -904,11 +839,12 @@ class AmazonApis:
         return {"ask_question_status": True, "message": "Question submitted successfully.", "question_id": new_question_id}
 
     def answer_product_question(
-            self, product_id: str, question_id: str, answer: str
+            self, user_id: str, product_id: str, question_id: str, answer: str
         ) -> Dict[str, Union[bool, str]]:
         """
-        Answers a previously asked product question from the currently logged-in user.
+        Answers a previously asked product question from an authenticated user.
         Args:
+            user_id (str): The unique identifier of the user answering the question.
             product_id (str): The unique identifier of the product the question is about.
             question_id (str): The unique identifier of the question to answer.
             answer (str): The answer text to submit.
@@ -916,12 +852,7 @@ class AmazonApis:
             Dict: A dictionary containing answer submission status, message, and the question ID
                   if successfully answered.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"answer_question_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"answer_question_status": False, "message": "User not found."}
 
@@ -986,22 +917,18 @@ class AmazonApis:
         return {"questions_status": True, "questions": display_questions}
 
     def subscribe_prime(
-        self, duration: Literal["monthly", "yearly"]
+        self, user_id: str, duration: Literal["monthly", "yearly"]
     ) -> Dict[str, Union[bool, str, str]]:
         """
-        Subscribes the currently logged-in user to an Amazon Prime membership with the specified duration.
+        Subscribes the user to an Amazon Prime membership with the specified duration.
         Args:
+            user_id (str): The unique identifier of the user subscribing to Prime.
             duration (Literal["monthly", "yearly"]): The subscription duration period.
         Returns:
             Dict: A dictionary containing subscription status, message, and the newly generated
                   subscription ID if successful. Validates against existing active subscriptions.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"subscribe_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"subscribe_status": False, "message": "User not found."}
 
@@ -1030,24 +957,21 @@ class AmazonApis:
         return {"subscribe_status": True, "message": f"Successfully subscribed to {duration} Prime plan.", "prime_subscription_id": new_subscription_id}
 
     def show_prime_subscriptions(
-        self, page_index: int = 1, page_limit: int = 10
-    ) -> Dict[str, Union[bool, str, List[Dict]]]:
+        self, user_id: str, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves a paginated list of the currently logged-in user's Amazon Prime subscription history.
+        Retrieves a paginated list of the user's Amazon Prime subscription history.
         Args:
+            user_id (str): The unique identifier of the user whose Prime subscriptions to retrieve.
             page_index (int, optional): The page number for pagination (default: 1).
             page_limit (int, optional): The number of items per page (default: 10).
         Returns:
             Dict: A dictionary containing subscriptions status and a list of Prime subscription
                   objects with pagination applied.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"subscriptions_status": False, "message": login_check["message"], "prime_subscriptions": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"subscriptions_status": False, "message": "User not found.", "prime_subscriptions": []}
+            return {"subscriptions_status": False, "prime_subscriptions": []}
 
         all_subscriptions = list(user_data.get("prime_subscriptions", {}).values())
         
@@ -1058,11 +982,12 @@ class AmazonApis:
         return {"subscriptions_status": True, "prime_subscriptions": paginated_subscriptions}
 
     def request_return(
-        self, order_id: str, product_id: str, reason: str
+        self, user_id: str, order_id: str, product_id: str, reason: str
     ) -> Dict[str, Union[bool, str, str]]:
         """
-        Initiates a return request for a product from a specific order for the currently logged-in user.
+        Initiates a return request for a product from a specific order.
         Args:
+            user_id (str): The unique identifier of the user requesting the return.
             order_id (str): The unique identifier of the order containing the product.
             product_id (str): The unique identifier of the product to return.
             reason (str): The reason for the return request.
@@ -1070,12 +995,7 @@ class AmazonApis:
             Dict: A dictionary containing return status, message, and the newly generated
                   return ID if successful. Validates order and product existence.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"return_status": False, "message": login_check["message"]}
-        
-        user_id = self._get_current_user_id()
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
             return {"return_status": False, "message": "User not found."}
 
@@ -1100,24 +1020,21 @@ class AmazonApis:
         return {"return_status": True, "message": "Return request submitted.", "return_id": new_return_id}
 
     def show_returns(
-        self, page_index: int = 1, page_limit: int = 10
-    ) -> Dict[str, Union[bool, str, List[Dict]]]:
+        self, user_id: str, page_index: int = 1, page_limit: int = 10
+    ) -> Dict[str, Union[bool, List[Dict]]]:
         """
-        Retrieves a paginated list of the currently logged-in user's return request history.
+        Retrieves a paginated list of the user's return request history.
         Args:
+            user_id (str): The unique identifier of the user whose returns to retrieve.
             page_index (int, optional): The page number for pagination (default: 1).
             page_limit (int, optional): The number of items per page (default: 10).
         Returns:
             Dict: A dictionary containing returns status and a list of return request objects
                   with pagination applied.
         """
-        login_check = self._require_login()
-        if login_check:
-            return {"returns_status": False, "message": login_check["message"], "returns": []}
-        
-        user_data = self._get_current_user_data()
+        user_data = self._get_user_data(user_id)
         if not user_data:
-            return {"returns_status": False, "message": "User not found.", "returns": []}
+            return {"returns_status": False, "returns": []}
 
         all_returns = list(user_data.get("returns", {}).values())
         

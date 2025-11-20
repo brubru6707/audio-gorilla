@@ -1,6 +1,7 @@
-# Inspired by https://appworld.dev/
 """
+Inspired by https://appworld.dev/
 
+Uses stateful design
 """
 import time
 import random
@@ -14,7 +15,7 @@ DEFAULT_COMMUNILINK_STATE = load_default_state("CommuniLinkApis")
 
 class CommuniLinkApis:
     """
-    A dummy API class for CommuniLink, simulating SMS messaging and voice calling
+    An API class for CommuniLink, simulating SMS messaging and voice calling
     functionality.
     """
     def __init__(self):
@@ -79,7 +80,7 @@ class CommuniLinkApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities.
+        Generates a unique UUID for entities.
         """
         return str(uuid.uuid4())
 
@@ -97,7 +98,6 @@ class CommuniLinkApis:
         """
         Simulates sending an SMS message. The message status progresses
         from 'queued' to 'sent' and then 'delivered' over a short simulated time.
-
         Args:
             from_number (str): The sender's phone number (E.164 format, e.g., "+15551234567").
             to_number (str): The recipient's phone number (E.164 format, e.g., "+15559876543").
@@ -107,7 +107,6 @@ class CommuniLinkApis:
             schedule_time (Optional[str]): ISO timestamp to schedule message for future delivery. Default is None (send immediately).
             max_retries (int): Maximum number of retry attempts if delivery fails. Default is 3.
             message_type (str): Type of message - "text", "marketing", or "transactional". Default is "text".
-
         Returns:
             Dict: A dictionary representing the simulated SMS message object,
                   including 'id', 'from', 'to', 'message', 'status', and 'timestamp'.
@@ -169,13 +168,13 @@ class CommuniLinkApis:
         if receiver_user_id:
             receiver_user = self.users[receiver_user_id]
             receiver_user["sms_history"].append(new_sms)
-            print(f"Dummy SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to {receiver_user['email']} (priority: {priority})")
+            print(f"SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to {receiver_user['email']} (priority: {priority})")
         else:
-            print(f"Dummy SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to external number {to_number} (priority: {priority})")
+            print(f"SMS queued: ID={new_sms['sms_id']} from {sender_user['email']} to external number {to_number} (priority: {priority})")
 
         # If scheduled, don't progress status yet
         if schedule_time:
-            print(f"Dummy SMS ID={new_sms['sms_id']} scheduled for {schedule_time}")
+            print(f"SMS ID={new_sms['sms_id']} scheduled for {schedule_time}")
             return {
                 "id": new_sms["sms_id"],
                 "from": new_sms["sender"],
@@ -191,7 +190,7 @@ class CommuniLinkApis:
         # new_sms["status"] = "sent"
         # time.sleep(0.2)
         new_sms["status"] = "delivered"
-        print(f"Dummy SMS ID={new_sms['sms_id']} status updated to 'delivered'")
+        print(f"SMS ID={new_sms['sms_id']} status updated to 'delivered'")
 
         return {
             "id": new_sms["sms_id"],
@@ -207,10 +206,8 @@ class CommuniLinkApis:
     def get_sms_status(self, message_id: str) -> Dict[str, Union[str, int]]:
         """
         Retrieves the current status of a previously sent SMS message.
-
         Args:
             message_id (str): The unique ID of the SMS message to check.
-
         Returns:
             Dict: A dictionary representing the SMS message object if found,
                   or an error dictionary if not found.
@@ -222,11 +219,9 @@ class CommuniLinkApis:
             sms = next((msg for msg in user_data["sms_history"] if msg["sms_id"] == message_id), None)
             if sms:
                 break
-
         if not sms:
             return {"code": "SMS_NOT_FOUND", "message": f"SMS message with ID '{message_id}' not found."}
-
-        print(f"Dummy SMS status retrieved for ID={message_id}: {sms['status']}")
+        print(f"SMS status retrieved for ID={message_id}: {sms['status']}")
         return {
             "id": sms["sms_id"],
             "from": sms["sender"],
@@ -251,7 +246,6 @@ class CommuniLinkApis:
         Simulates initiating an outbound voice call. The call status progresses
         from 'initiated' to 'ringing', 'in-progress', and then 'completed'
         over a simulated time.
-
         Args:
             from_number (str): The caller's phone number (E.164 format).
             to_number (str): The recipient's phone number (E.164 format).
@@ -311,9 +305,9 @@ class CommuniLinkApis:
         if receiver_user_id:
             receiver_user = self.users[receiver_user_id]
             receiver_user["call_history"].append(new_call)
-            print(f"Dummy Call initiated: ID={new_call['call_id']} from {caller_user['email']} to {receiver_user['email']}")
+            print(f"Call initiated: ID={new_call['call_id']} from {caller_user['email']} to {receiver_user['email']}")
         else:
-            print(f"Dummy Call initiated: ID={new_call['call_id']} from {caller_user['email']} to external number {to_number}")
+            print(f"Call initiated: ID={new_call['call_id']} from {caller_user['email']} to external number {to_number}")
 
         # time.sleep(0.15)
         # new_call["status"] = "ringing"
@@ -340,7 +334,7 @@ class CommuniLinkApis:
         
         if caller_user["balance"] < call_cost:
             new_call["status"] = "failed_insufficient_balance"
-            print(f"Dummy Call ID={new_call['call_id']} failed due to insufficient balance.")
+            print(f"Call ID={new_call['call_id']} failed due to insufficient balance.")
             return {"code": "INSUFFICIENT_BALANCE", "message": "Insufficient balance to make call."}
 
         caller_user["balance"] -= call_cost
@@ -354,7 +348,7 @@ class CommuniLinkApis:
         })
         
         new_call["status"] = "completed"
-        print(f"Dummy Call ID={new_call['call_id']} status updated to 'completed'")
+        print(f"Call ID={new_call['call_id']} status updated to 'completed'")
         
         # attach a mock audio URL for the call
         new_call["audioUrl"] = f"https://audio.mock/{new_call_id}.mp3"
@@ -376,6 +370,7 @@ class CommuniLinkApis:
             "recording_url": new_call.get("recordingUrl")
         }
 
+    # shouldn't be able to work b/c of time.sleep removal, but keeping for structure and realism
     def get_voice_call_status(self, call_id: str) -> Dict[str, Union[str, int, float]]:
         """
         Retrieves the current status of a previously initiated voice call.
@@ -397,7 +392,7 @@ class CommuniLinkApis:
         if not call:
             return {"code": "CALL_NOT_FOUND", "message": f"Voice call with ID '{call_id}' not found."}
 
-        print(f"Dummy Call status retrieved for ID={call_id}: {call['status']}")
+        print(f"Call status retrieved for ID={call_id}: {call['status']}")
         return {
             "call_id": call["call_id"],
             "from": call["caller"],
@@ -410,7 +405,7 @@ class CommuniLinkApis:
 
     def get_all_sms_messages(self, user_email: Optional[str] = None) -> Dict[str, Union[List[Dict], str]]:
         """
-        Retrieves all simulated SMS messages stored in the dummy backend,
+        Retrieves all simulated SMS messages stored in the backend,
         optionally filtered by user email.
 
         Args:
@@ -477,7 +472,7 @@ class CommuniLinkApis:
 
     def get_all_voice_calls(self, user_email: Optional[str] = None) -> Dict[str, Union[List[Dict], str]]:
         """
-        Retrieves all simulated voice calls stored in the dummy backend,
+        Retrieves all simulated voice calls stored in the backend,
         optionally filtered by user email.
 
         Args:
@@ -751,12 +746,12 @@ class CommuniLinkApis:
 
     def reset_data(self) -> Dict[str, bool]:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
 
         Returns:
             Dict: A dictionary indicating the success of the reset operation.
         """
         self._load_scenario(DEFAULT_COMMUNILINK_STATE)
-        print("CommuniLinkApis: All dummy data reset to default state.")
+        print("CommuniLinkApis: All data reset to default state.")
         return {"success": True, "status": True}

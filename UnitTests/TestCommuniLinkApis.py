@@ -199,7 +199,7 @@ if __name__ == '__main__':
         self.assertEqual(all_calls_result["voice_calls"][-1]["to"], self.user2_phone)
 
     def test_update_settings_and_make_call(self):
-        """Test updating call forwarding settings and then attempting a call (though call forwarding doesn't prevent calls in this dummy API)."""
+        """Test updating call forwarding settings and then attempting a call (though call forwarding doesn't prevent calls in this API)."""
         # User1 initially has call forwarding disabled
         initial_settings = self.communilink_api.users[self.user1_email]["settings"]
         self.assertFalse(initial_settings["call_forwarding_enabled"])

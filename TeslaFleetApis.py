@@ -10,7 +10,7 @@ DEFAULT_STATE = BackendDataLoader.get_teslafleet_data()
 
 class TeslaFleetApis:
     """
-    A dummy API class for simulating Tesla Fleet API operations.
+    An API class for simulating Tesla Fleet API operations.
     This class provides an in-memory backend for development and testing purposes.
     Matches the real Tesla Fleet API structure and authentication.
     """
@@ -93,7 +93,7 @@ class TeslaFleetApis:
 
     def _generate_unique_id(self) -> str:
         """
-        Generates a unique UUID for dummy entities.
+        Generates a unique UUID for entities.
         """
         return str(uuid.uuid4())
 
@@ -1113,7 +1113,7 @@ class TeslaFleetApis:
 
     def reset_data(self) -> Dict[str, bool]:
         """
-        Resets all simulated data in the dummy backend to its default state.
+        Resets all simulated data in the backend to its default state.
         This is a utility function for testing and not a standard API endpoint.
 
         Returns:

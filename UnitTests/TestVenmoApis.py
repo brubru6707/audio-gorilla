@@ -95,7 +95,7 @@ class TestVenmoApis(unittest.TestCase):
 
     def test_show_my_transactions_all(self):
         """Test showing all transactions for the current user."""
-        # Add some dummy transactions
+        # Add some transactions
         self.venmo_api.send_money(self.user1, self.user2_email, 10.00, "Coffee")
         self.venmo_api.set_current_user(self.user2_email)
         self.venmo_api.send_money(self.user2, self.user1_email, 5.00, "Snacks")
@@ -115,7 +115,7 @@ class TestVenmoApis(unittest.TestCase):
         """Test adding a new friend."""
         # NOTE: add_a_friend method doesn't exist in current API
         self.skipTest("add_a_friend functionality not implemented in current API")
-        # # Create a third dummy user to add as a friend
+        # # Create a third user to add as a friend
         # self.venmo_api.users["user3@example.com"] = {
         #     "first_name": "Charlie", "last_name": "Brown", "email": "user3@example.com", "balance": 0.0, "friends": [], "payment_cards": {}
         # }

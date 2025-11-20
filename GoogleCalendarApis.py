@@ -19,7 +19,7 @@ DEFAULT_STATE = load_default_state("GoogleCalendarApis")
 
 class GoogleCalendarApis:
     """
-    A dummy API class for simulating Google Calendar operations.
+    A API class for simulating Google Calendar operations.
     This class provides an in-memory backend for development and testing purposes.
     """
 
@@ -824,5 +824,5 @@ class GoogleCalendarApis:
             Dict[str, bool]: Dictionary with reset status.
         """
         self._load_scenario(DEFAULT_STATE)
-        print("GoogleCalendarApis: All dummy data reset to default state.")
+        print("GoogleCalendarApis: All data reset to default state.")
         return {"reset_status": True}
