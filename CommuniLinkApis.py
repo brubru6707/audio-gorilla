@@ -115,15 +115,12 @@ class CommuniLinkApis:
         """
         if not from_number or not to_number or not message:
             return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number, to_number, and message."}
-
         # Validate priority
         if priority not in ["low", "normal", "high"]:
             return {"code": "INVALID_PRIORITY", "message": "Priority must be 'low', 'normal', or 'high'."}
-        
         # Validate message_type
         if message_type not in ["text", "marketing", "transactional"]:
             return {"code": "INVALID_MESSAGE_TYPE", "message": "Message type must be 'text', 'marketing', or 'transactional'."}
-
         sender_user_id = self._get_user_id_by_phone(from_number)
         if not sender_user_id:
             return {"code": "INVALID_FROM_NUMBER", "message": "Sender phone number not associated with any user."}
@@ -153,7 +150,8 @@ class CommuniLinkApis:
             "sender_id": sender_user_id,
             "receiver": to_number,
             "message": message,
-            "status": "queued" if not schedule_time else "scheduled",
+            "status": "queued" if not schedule_time else "scheduled", 
+            # ^ can't necessarily queue for actual phones, but can for APIs
             "timestamp": datetime.now().isoformat(),
             "priority": priority,
             "delivery_receipt": delivery_receipt,
@@ -164,7 +162,7 @@ class CommuniLinkApis:
         }
         
         receiver_user_id = self._get_user_id_by_phone(to_number)
-        is_external = receiver_user_id is None
+        is_external = receiver_user_id is None # potentially sends to a 'none' external user
         new_sms["is_external"] = is_external
 
         sender_user["sms_history"].append(new_sms)
@@ -188,10 +186,10 @@ class CommuniLinkApis:
                 "schedule_time": schedule_time,
                 "priority": priority
             }
-
-        time.sleep(0.1)
-        new_sms["status"] = "sent"
-        time.sleep(0.2)
+        # simulate status progression
+        # time.sleep(0.1)
+        # new_sms["status"] = "sent"
+        # time.sleep(0.2)
         new_sms["status"] = "delivered"
         print(f"Dummy SMS ID={new_sms['sms_id']} status updated to 'delivered'")
 
@@ -217,7 +215,8 @@ class CommuniLinkApis:
             Dict: A dictionary representing the SMS message object if found,
                   or an error dictionary if not found.
         """
-        time.sleep(0.05)
+        # simulate status progression
+        # time.sleep(0.05)
         sms = None
         for user_data in self.users.values():
             sms = next((msg for msg in user_data["sms_history"] if msg["sms_id"] == message_id), None)
@@ -316,13 +315,13 @@ class CommuniLinkApis:
         else:
             print(f"Dummy Call initiated: ID={new_call['call_id']} from {caller_user['email']} to external number {to_number}")
 
-        time.sleep(0.15)
-        new_call["status"] = "ringing"
-        time.sleep(0.5)
+        # time.sleep(0.15)
+        # new_call["status"] = "ringing"
+        # time.sleep(0.5)
         new_call["status"] = "in-progress"
         
         call_duration_ = round(random.uniform(30, 120))
-        time.sleep(min(call_duration_ / 10, 2))
+        # time.sleep(min(call_duration_ / 10, 2))
 
         new_call["duration"] = call_duration_
 
@@ -388,7 +387,7 @@ class CommuniLinkApis:
             Dict: A dictionary representing the voice call object if found,
                   or an error dictionary if not found.
         """
-        time.sleep(0.05)
+        # time.sleep(0.05)
         call = None
         for user_data in self.users.values():
             call = next((c for c in user_data["call_history"] if c["call_id"] == call_id), None)
@@ -421,7 +420,7 @@ class CommuniLinkApis:
             Dict: A dictionary containing a list of all SMS messages,
                   or an error dictionary if user not found.
         """
-        time.sleep(0.05)
+        # time.sleep(0.05)
         all_sms_messages = []
 
         if user_email:
@@ -488,7 +487,7 @@ class CommuniLinkApis:
             Dict: A dictionary containing a list of all voice calls,
                   or an error dictionary if user not found.
         """
-        time.sleep(0.05)
+        # time.sleep(0.05)
         all_voice_calls = []
 
         if user_email:
@@ -628,7 +627,7 @@ class CommuniLinkApis:
             Dict: A dictionary containing a list of billing records,
                   or an error dictionary if user not found.
         """
-        time.sleep(0.05)
+        # time.sleep(0.05)
         filtered_history = []
         if user_email:
             user_id = self._get_user_id_by_email(user_email)
@@ -747,7 +746,7 @@ class CommuniLinkApis:
         Returns:
             Dict: A dictionary indicating the network status.
         """
-        time.sleep(0.05)
+        # time.sleep(0.05)
         return {"status": "success", "message": self.network_status}
 
     def reset_data(self) -> Dict[str, bool]:
