@@ -39,9 +39,27 @@ class TestAmazonApis(unittest.TestCase):
     
     REAL_ORDER_ID_1 = order_id
     
+    # Test user credentials for login
+    TEST_EMAIL = user_data.get("email", "test@example.com")
+    TEST_PASSWORD = user_data.get("password", "password123")
+    
     def setUp(self):
         """Set up the API instance using real data."""
         self.amazon_api = AmazonApis()
+    
+    def _login_as_real_user(self):
+        """Helper to login as the real test user."""
+        result = self.amazon_api.login_user(self.TEST_EMAIL, self.TEST_PASSWORD)
+        if not result["login_status"]:
+            # If login fails, the user might not exist in state, register them
+            self.amazon_api.register_user(
+                first_name=self.REAL_FIRST_NAME_1,
+                last_name=self.REAL_LAST_NAME_1,
+                email=self.TEST_EMAIL,
+                password=self.TEST_PASSWORD,
+                phone_number="1234567890"
+            )
+            self.amazon_api.login_user(self.TEST_EMAIL, self.TEST_PASSWORD)
 
     # --- User Authentication and Account Management Tests ---
 
@@ -80,26 +98,28 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_show_profile_success(self):
         """Test showing user profile."""
-        result = self.amazon_api.show_profile(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_profile()
         self.assertTrue(result["profile_status"])
         self.assertIn("profile", result)
         self.assertIsInstance(result["profile"], dict)
 
     def test_show_profile_user_not_found(self):
-        """Test showing profile for non-existent user."""
-        result = self.amazon_api.show_profile("nonexistent_user")
+        """Test showing profile when not logged in."""
+        result = self.amazon_api.show_profile()
         self.assertFalse(result["profile_status"])
-        self.assertEqual(result["profile"], {})
+        self.assertIn("message", result)
 
     def test_show_account_success(self):
         """Test showing account information."""
-        result = self.amazon_api.show_account(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_account()
         self.assertTrue(result["account_status"])
         self.assertIn("account", result)
 
     def test_show_account_user_not_found(self):
-        """Test showing account for non-existent user."""
-        result = self.amazon_api.show_account("nonexistent_user")
+        """Test showing account when not logged in."""
+        result = self.amazon_api.show_account()
         self.assertFalse(result["account_status"])
 
     # --- Product Search and Details Tests ---
@@ -138,45 +158,51 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_add_to_cart_success(self):
         """Test adding product to cart."""
-        result = self.amazon_api.add_to_cart(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1, 2)
+        self._login_as_real_user()
+        result = self.amazon_api.add_to_cart(self.REAL_PRODUCT_ID_1, 2)
         self.assertTrue(result["cart_status"])
         self.assertIn("message", result)
 
     def test_remove_from_cart_success(self):
         """Test removing product from cart."""
+        self._login_as_real_user()
         # First add to cart
-        self.amazon_api.add_to_cart(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1, 1)
+        self.amazon_api.add_to_cart(self.REAL_PRODUCT_ID_1, 1)
         # Then remove
-        result = self.amazon_api.remove_from_cart(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1)
+        result = self.amazon_api.remove_from_cart(self.REAL_PRODUCT_ID_1)
         self.assertTrue(result["cart_status"])
 
     def test_show_cart_success(self):
         """Test showing cart contents."""
-        result = self.amazon_api.show_cart(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_cart()
         self.assertTrue(result["cart_status"])
         self.assertIn("cart", result)
         self.assertIsInstance(result["cart"], list)
 
     def test_update_cart_item_quantity_success(self):
         """Test updating cart item quantity."""
+        self._login_as_real_user()
         # First add to cart
-        self.amazon_api.add_to_cart(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1, 1)
+        self.amazon_api.add_to_cart(self.REAL_PRODUCT_ID_1, 1)
         # Then update quantity
-        result = self.amazon_api.update_cart_item_quantity(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1, 3)
+        result = self.amazon_api.update_cart_item_quantity(self.REAL_PRODUCT_ID_1, 3)
         self.assertTrue(result["cart_status"])
 
     # --- Order Management Tests ---
 
     def test_show_orders_success(self):
         """Test showing user orders."""
-        result = self.amazon_api.show_orders(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_orders()
         self.assertTrue(result["orders_status"])
         self.assertIn("orders", result)
         self.assertIsInstance(result["orders"], list)
 
     def test_show_orders_with_pagination(self):
         """Test showing orders with pagination."""
-        result = self.amazon_api.show_orders(self.REAL_USER_ID_1, page_index=1, page_limit=5)
+        self._login_as_real_user()
+        result = self.amazon_api.show_orders(page_index=1, page_limit=5)
         self.assertTrue(result["orders_status"])
         self.assertIn("orders", result)
 
@@ -184,20 +210,23 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_add_to_wish_list_success(self):
         """Test adding product to wishlist."""
-        result = self.amazon_api.add_to_wish_list(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.add_to_wish_list(self.REAL_PRODUCT_ID_1)
         self.assertTrue(result["wishlist_status"])
 
     def test_remove_from_wish_list_success(self):
         """Test removing product from wishlist."""
+        self._login_as_real_user()
         # First add to wishlist
-        self.amazon_api.add_to_wish_list(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1)
+        self.amazon_api.add_to_wish_list(self.REAL_PRODUCT_ID_1)
         # Then remove
-        result = self.amazon_api.remove_from_wish_list(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1)
+        result = self.amazon_api.remove_from_wish_list(self.REAL_PRODUCT_ID_1)
         self.assertTrue(result["wishlist_status"])
 
     def test_show_wish_list_success(self):
         """Test showing wishlist."""
-        result = self.amazon_api.show_wish_list(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_wish_list()
         self.assertTrue(result["wishlist_status"])
         self.assertIn("wishlist", result)
         self.assertIsInstance(result["wishlist"], list)
@@ -215,24 +244,17 @@ class TestAmazonApis(unittest.TestCase):
             phone_number="1111111111"
         )
         self.assertTrue(result_reg["register_status"])
-        # Find the user_id by email
-        user_id = None
-        for uid, u_data in self.amazon_api.state["users"].items():
-            if u_data["email"] == "temp_delete_user@example.com":
-                user_id = uid
-                break
-        self.assertIsNotNone(user_id)  # Extract user ID from message
-        # Ensure current_user key exists to avoid KeyError
-        self.amazon_api.state["current_user"] = None
+        # Login as that user
+        self.amazon_api.login_user("temp_delete_user@example.com", "temp123")
         # Delete the account
-        result = self.amazon_api.delete_account(user_id)
+        result = self.amazon_api.delete_account()
         self.assertTrue(result["delete_status"])
         self.assertIn("message", result)
 
     def test_add_payment_card_success(self):
         """Test adding a payment card."""
+        self._login_as_real_user()
         result = self.amazon_api.add_payment_card(
-            user_id=self.REAL_USER_ID_1,
             card_name="Test Card",
             owner_name="Test Owner",
             card_number=1234567890123456,
@@ -244,9 +266,9 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_remove_payment_card_success(self):
         """Test removing a payment card."""
+        self._login_as_real_user()
         # First add a card
         add_result = self.amazon_api.add_payment_card(
-            user_id=self.REAL_USER_ID_1,
             card_name="Temp Card",
             owner_name="Temp Owner",
             card_number=1234567890123456,
@@ -255,20 +277,21 @@ class TestAmazonApis(unittest.TestCase):
         )
         card_id = add_result["card_id"]
         # Then remove it
-        result = self.amazon_api.remove_payment_card(self.REAL_USER_ID_1, card_id)
+        result = self.amazon_api.remove_payment_card(card_id)
         self.assertTrue(result["remove_card_status"])
 
     def test_show_payment_cards_success(self):
         """Test showing payment cards."""
-        result = self.amazon_api.show_payment_cards(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_payment_cards()
         self.assertTrue(result["cards_status"])
         self.assertIn("payment_cards", result)
         self.assertIsInstance(result["payment_cards"], list)
 
     def test_add_address_success(self):
         """Test adding an address."""
+        self._login_as_real_user()
         result = self.amazon_api.add_address(
-            user_id=self.REAL_USER_ID_1,
             name="Home",
             street_address="123 Test St",
             city="Test City",
@@ -281,9 +304,9 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_remove_address_success(self):
         """Test removing an address."""
+        self._login_as_real_user()
         # First add an address
         add_result = self.amazon_api.add_address(
-            user_id=self.REAL_USER_ID_1,
             name="Temp Address",
             street_address="456 Temp St",
             city="Temp City",
@@ -293,32 +316,35 @@ class TestAmazonApis(unittest.TestCase):
         )
         address_id = add_result["address_id"]
         # Then remove it
-        result = self.amazon_api.remove_address(self.REAL_USER_ID_1, address_id)
+        result = self.amazon_api.remove_address(address_id)
         self.assertTrue(result["remove_address_status"])
 
     def test_show_addresses_success(self):
         """Test showing addresses."""
-        result = self.amazon_api.show_addresses(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_addresses()
         self.assertTrue(result["addresses_status"])
         self.assertIn("addresses", result)
         self.assertIsInstance(result["addresses"], list)
 
     def test_apply_promo_code_to_cart_success(self):
         """Test applying promo code to cart."""
+        self._login_as_real_user()
         # Add item to cart first
-        self.amazon_api.add_to_cart(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1, 1)
+        self.amazon_api.add_to_cart(self.REAL_PRODUCT_ID_1, 1)
         # Apply promo code
-        result = self.amazon_api.apply_promo_code_to_cart("NEWCUSTOMER20", self.REAL_USER_ID_1)
+        result = self.amazon_api.apply_promo_code_to_cart("NEWCUSTOMER20")
         self.assertTrue(result["promo_status"])
         self.assertIn("discount_amount", result)
 
     def test_remove_promo_code_from_cart_success(self):
         """Test removing promo code from cart."""
+        self._login_as_real_user()
         # Add item and apply promo first
-        self.amazon_api.add_to_cart(self.REAL_USER_ID_1, self.REAL_PRODUCT_ID_1, 1)
-        self.amazon_api.apply_promo_code_to_cart("NEWCUSTOMER20", self.REAL_USER_ID_1)
+        self.amazon_api.add_to_cart(self.REAL_PRODUCT_ID_1, 1)
+        self.amazon_api.apply_promo_code_to_cart("NEWCUSTOMER20")
         # Remove promo
-        result = self.amazon_api.remove_promo_code_from_cart(self.REAL_USER_ID_1)
+        result = self.amazon_api.remove_promo_code_from_cart()
         self.assertTrue(result["promo_status"])
 
     def test_checkout_success(self):
@@ -332,22 +358,18 @@ class TestAmazonApis(unittest.TestCase):
             phone_number="2222222222"
         )
         self.assertTrue(reg_result["register_status"])
-        # Find the user_id by email
-        user_id = None
-        for uid, u_data in self.amazon_api.state["users"].items():
-            if u_data["email"] == "checkout_user@example.com":
-                user_id = uid
-                break
-        self.assertIsNotNone(user_id)
+        # Login as that user
+        self.amazon_api.login_user("checkout_user@example.com", "checkout123")
+        # Get the user_id to set balance
+        user_id = self.amazon_api.state["current_user"]
         # Set balance for checkout
         self.amazon_api.state["users"][user_id]["balance"] = 10000.0
         # Ensure stock is available
         self.amazon_api.state["products"][self.REAL_PRODUCT_ID_1]["stock"] = 10
         # Add to cart
-        self.amazon_api.add_to_cart(user_id, self.REAL_PRODUCT_ID_1, 1)
+        self.amazon_api.add_to_cart(self.REAL_PRODUCT_ID_1, 1)
         # Add address
         address_result = self.amazon_api.add_address(
-            user_id=user_id,
             name="Checkout Address",
             street_address="789 Checkout St",
             city="Checkout City",
@@ -358,7 +380,6 @@ class TestAmazonApis(unittest.TestCase):
         address_id = address_result["address_id"]
         # Add payment card
         card_result = self.amazon_api.add_payment_card(
-            user_id=user_id,
             card_name="Checkout Card",
             owner_name="Checkout Owner",
             card_number=1234567890123456,
@@ -367,14 +388,14 @@ class TestAmazonApis(unittest.TestCase):
         )
         card_id = card_result["card_id"]
         # Checkout
-        result = self.amazon_api.checkout(user_id, address_id, card_id)
+        result = self.amazon_api.checkout(address_id, card_id)
         self.assertTrue(result["checkout_status"])
         self.assertIn("order", result)
 
     def test_submit_product_review_success(self):
         """Test submitting a product review."""
+        self._login_as_real_user()
         result = self.amazon_api.submit_product_review(
-            user_id=self.REAL_USER_ID_1,
             product_id=self.REAL_PRODUCT_ID_1,
             rating=5,
             comment="Great product!"
@@ -391,8 +412,8 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_ask_product_question_success(self):
         """Test asking a product question."""
+        self._login_as_real_user()
         result = self.amazon_api.ask_product_question(
-            user_id=self.REAL_USER_ID_1,
             product_id=self.REAL_PRODUCT_ID_1,
             question="Does this work well?"
         )
@@ -401,16 +422,15 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_answer_product_question_success(self):
         """Test answering a product question."""
+        self._login_as_real_user()
         # First ask a question
         ask_result = self.amazon_api.ask_product_question(
-            user_id=self.REAL_USER_ID_1,
             product_id=self.REAL_PRODUCT_ID_1,
             question="Test question?"
         )
         question_id = ask_result["question_id"]
         # Then answer it
         result = self.amazon_api.answer_product_question(
-            user_id=self.REAL_USER_ID_1,
             product_id=self.REAL_PRODUCT_ID_1,
             question_id=question_id,
             answer="Yes, it works great!"
@@ -426,25 +446,24 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_subscribe_prime_success(self):
         """Test subscribing to Prime."""
-        result = self.amazon_api.subscribe_prime(self.REAL_USER_ID_1, "monthly")
+        self._login_as_real_user()
+        result = self.amazon_api.subscribe_prime(duration="monthly")
         self.assertTrue(result["subscribe_status"])
         self.assertIn("prime_subscription_id", result)
 
     def test_show_prime_subscriptions_success(self):
         """Test showing Prime subscriptions."""
-        result = self.amazon_api.show_prime_subscriptions(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_prime_subscriptions()
         self.assertTrue(result["subscriptions_status"])
         self.assertIn("prime_subscriptions", result)
         self.assertIsInstance(result["prime_subscriptions"], list)
 
     def test_request_return_success(self):
         """Test requesting a return."""
-        # Need an order first - this might be complex, so using a mock approach
-        # For simplicity, assume an order exists or create one via checkout
-        # But to keep it simple, we'll skip detailed setup and just test the method exists
-        # Actually, let's assume REAL_ORDER_ID_1 exists
+        self._login_as_real_user()
+        # Assume REAL_ORDER_ID_1 exists or test will validate error handling
         result = self.amazon_api.request_return(
-            user_id=self.REAL_USER_ID_1,
             order_id=self.REAL_ORDER_ID_1,
             product_id=self.REAL_PRODUCT_ID_1,
             reason="Defective product"
@@ -454,7 +473,8 @@ class TestAmazonApis(unittest.TestCase):
 
     def test_show_returns_success(self):
         """Test showing returns."""
-        result = self.amazon_api.show_returns(self.REAL_USER_ID_1)
+        self._login_as_real_user()
+        result = self.amazon_api.show_returns()
         self.assertTrue(result["returns_status"])
         self.assertIn("returns", result)
         self.assertIsInstance(result["returns"], list)
