@@ -84,9 +84,137 @@ class CommuniLinkApis:
         """
         return str(uuid.uuid4())
 
+    def _require_login(self) -> Optional[Dict[str, Union[bool, str]]]:
+        """Check if user is logged in. Returns error dict if not logged in, None if logged in."""
+        if not self.current_user_id:
+            return {"status": False, "message": "User must be logged in to perform this action."}
+        if self.current_user_id not in self.users:
+            self.current_user_id = None
+            return {"status": False, "message": "Invalid session. Please log in again."}
+        return None
+
+    def _get_current_user_id(self) -> Optional[str]:
+        """Get the current logged-in user's ID."""
+        return self.current_user_id
+
+    def _get_current_user_data(self) -> Optional[Dict]:
+        """Get the current logged-in user's data."""
+        if not self.current_user_id:
+            return None
+        return self.users.get(self.current_user_id)
+
+    def _get_current_user_phone(self) -> Optional[str]:
+        """Get the current logged-in user's phone number."""
+        user_data = self._get_current_user_data()
+        return user_data.get("phone_number") if user_data else None
+
+    def login_user(self, email: str, password: str) -> Dict[str, Union[bool, str]]:
+        """
+        Authenticates a user and creates a session.
+        
+        Args:
+            email (str): The user's email address.
+            password (str): The user's password.
+        
+        Returns:
+            Dict: Success status and message, along with user info if successful.
+        """
+        user_id = self._get_user_id_by_email(email)
+        if not user_id:
+            return {"login_status": False, "message": "Invalid email or password."}
+        
+        user_data = self.users[user_id]
+        # Simple password verification (in production, use proper hashing)
+        password_hash = str(hash(password))[-48:]  # Match hash format
+        if user_data.get("password_hash") != password_hash:
+            return {"login_status": False, "message": "Invalid email or password."}
+        
+        self.current_user_id = user_id
+        print(f"CommuniLinkApis: User logged in - {email}")
+        
+        return {
+            "login_status": True,
+            "message": "Login successful.",
+            "user_id": user_id,
+            "phone_number": user_data.get("phone_number")
+        }
+
+    def logout_user(self) -> Dict[str, Union[bool, str]]:
+        """
+        Logs out the current user by clearing the session.
+        
+        Returns:
+            Dict: Success status and message.
+        """
+        if not self.current_user_id:
+            return {"logout_status": False, "message": "No user is currently logged in."}
+        
+        print(f"CommuniLinkApis: User logged out - {self._get_user_email_by_id(self.current_user_id)}")
+        self.current_user_id = None
+        
+        return {"logout_status": True, "message": "Logout successful."}
+
+    def register_user(
+        self,
+        first_name: str,
+        last_name: str,
+        email: str,
+        password: str,
+        phone_number: str
+    ) -> Dict[str, Union[bool, str]]:
+        """
+        Registers a new user and creates their account.
+        
+        Args:
+            first_name (str): User's first name.
+            last_name (str): User's last name.
+            email (str): User's email address.
+            password (str): User's password.
+            phone_number (str): User's phone number in E.164 format.
+        
+        Returns:
+            Dict: Success status, message, and user_id if successful.
+        """
+        # Check if email already exists
+        if self._get_user_id_by_email(email):
+            return {"register_status": False, "message": "Email already registered."}
+        
+        # Check if phone number already exists
+        if self._get_user_id_by_phone(phone_number):
+            return {"register_status": False, "message": "Phone number already registered."}
+        
+        # Create new user
+        new_user_id = self._generate_unique_id()
+        password_hash = str(hash(password))[-48:]  # Simple hash (in production, use proper hashing)
+        
+        self.users[new_user_id] = {
+            "user_id": new_user_id,
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "phone_number": phone_number,
+            "password_hash": password_hash,
+            "balance": 0.0,
+            "sms_history": [],
+            "call_history": [],
+            "friends": [],
+            "settings": {
+                "sms_notifications": True,
+                "call_notifications": True,
+                "voicemail_enabled": True
+            }
+        }
+        
+        print(f"CommuniLinkApis: New user registered - {email}")
+        
+        return {
+            "register_status": True,
+            "message": "Registration successful.",
+            "user_id": new_user_id
+        }
+
     def send_sms(
         self, 
-        from_number: str, 
         to_number: str, 
         message: str,
         priority: str = "normal",
@@ -96,10 +224,9 @@ class CommuniLinkApis:
         message_type: str = "text"
     ) -> Dict[str, Union[str, int]]:
         """
-        Simulates sending an SMS message. The message status progresses
-        from 'queued' to 'sent' and then 'delivered' over a short simulated time.
+        Sends an SMS message from the currently logged-in user to the specified recipient.
+        
         Args:
-            from_number (str): The sender's phone number (E.164 format, e.g., "+15551234567").
             to_number (str): The recipient's phone number (E.164 format, e.g., "+15559876543").
             message (str): The text content of the SMS.
             priority (str): Message priority level - "low", "normal", or "high". Default is "normal".
@@ -107,24 +234,30 @@ class CommuniLinkApis:
             schedule_time (Optional[str]): ISO timestamp to schedule message for future delivery. Default is None (send immediately).
             max_retries (int): Maximum number of retry attempts if delivery fails. Default is 3.
             message_type (str): Type of message - "text", "marketing", or "transactional". Default is "text".
+        
         Returns:
             Dict: A dictionary representing the simulated SMS message object,
                   including 'id', 'from', 'to', 'message', 'status', and 'timestamp'.
-                  Returns an error dictionary if parameters are missing.
+                  Returns an error dictionary if user not logged in or parameters invalid.
         """
-        if not from_number or not to_number or not message:
-            return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number, to_number, and message."}
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"]}
+        
+        if not to_number or not message:
+            return {"code": "MISSING_PARAMS", "message": "Missing required parameters: to_number and message."}
+        
         # Validate priority
         if priority not in ["low", "normal", "high"]:
             return {"code": "INVALID_PRIORITY", "message": "Priority must be 'low', 'normal', or 'high'."}
+        
         # Validate message_type
         if message_type not in ["text", "marketing", "transactional"]:
             return {"code": "INVALID_MESSAGE_TYPE", "message": "Message type must be 'text', 'marketing', or 'transactional'."}
-        sender_user_id = self._get_user_id_by_phone(from_number)
-        if not sender_user_id:
-            return {"code": "INVALID_FROM_NUMBER", "message": "Sender phone number not associated with any user."}
         
-        sender_user = self.users[sender_user_id]
+        sender_user_id = self._get_current_user_id()
+        sender_user = self._get_current_user_data()
+        from_number = self._get_current_user_phone()
 
         # Apply priority-based cost multiplier
         cost_multiplier = {"low": 0.8, "normal": 1.0, "high": 1.5}
@@ -233,7 +366,6 @@ class CommuniLinkApis:
 
     def make_voice_call(
         self, 
-        from_number: str, 
         to_number: str,
         call_type: str = "voice",
         recording_enabled: bool = False,
@@ -243,11 +375,9 @@ class CommuniLinkApis:
         call_quality: str = "standard"
     ) -> Dict[str, Union[str, int, float]]:
         """
-        Simulates initiating an outbound voice call. The call status progresses
-        from 'initiated' to 'ringing', 'in-progress', and then 'completed'
-        over a simulated time.
+        Initiates an outbound voice call from the currently logged-in user.
+        
         Args:
-            from_number (str): The caller's phone number (E.164 format).
             to_number (str): The recipient's phone number (E.164 format).
             call_type (str): Type of call - "voice", "video", or "conference". Default is "voice".
             recording_enabled (bool): Whether to record the call. Default is False.
@@ -260,10 +390,14 @@ class CommuniLinkApis:
             Dict: A dictionary representing the simulated voice call object,
                   including 'id', 'from', 'to', 'status', 'timestamp',
                   and 'duration' (if completed). Returns an error dictionary
-                  if parameters are missing.
+                  if user not logged in or parameters invalid.
         """
-        if not from_number or not to_number:
-            return {"code": "MISSING_PARAMS", "message": "Missing required parameters: from_number and to_number."}
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"]}
+        
+        if not to_number:
+            return {"code": "MISSING_PARAMS", "message": "Missing required parameter: to_number."}
 
         # Validate call_type
         if call_type not in ["voice", "video", "conference"]:
@@ -273,11 +407,9 @@ class CommuniLinkApis:
         if call_quality not in ["standard", "hd", "premium"]:
             return {"code": "INVALID_CALL_QUALITY", "message": "Call quality must be 'standard', 'hd', or 'premium'."}
 
-        caller_user_id = self._get_user_id_by_phone(from_number)
-        if not caller_user_id:
-            return {"code": "INVALID_FROM_NUMBER", "message": "Caller phone number not associated with any user."}
-        
-        caller_user = self.users[caller_user_id]
+        caller_user_id = self._get_current_user_id()
+        caller_user = self._get_current_user_data()
+        from_number = self._get_current_user_phone()
 
         new_call_id = self._generate_unique_id()
         new_call = {
@@ -403,153 +535,75 @@ class CommuniLinkApis:
             "duration": call.get("duration")
         }
 
-    def get_all_sms_messages(self, user_email: Optional[str] = None) -> Dict[str, Union[List[Dict], str]]:
+    def get_all_sms_messages(self) -> Dict[str, Union[List[Dict], str]]:
         """
-        Retrieves all simulated SMS messages stored in the backend,
-        optionally filtered by user email.
-
-        Args:
-            user_email (Optional[str]): If provided, only SMS messages for this user will be returned.
+        Retrieves all SMS messages for the currently logged-in user.
 
         Returns:
-            Dict: A dictionary containing a list of all SMS messages,
-                  or an error dictionary if user not found.
+            Dict: A dictionary containing a list of the user's SMS messages,
+                  or an error dictionary if user not logged in.
         """
-        # time.sleep(0.05)
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"], "sms_messages": []}
+        
+        user_id = self._get_current_user_id()
+        user_data = self._get_current_user_data()
         all_sms_messages = []
 
-        if user_email:
-            user_id = self._get_user_id_by_email(user_email)
-            if not user_id:
-                return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
-            user_data = self.users[user_id]
-            for msg in user_data["sms_history"]:
-                msg_copy = deepcopy(msg)
-                if "sender_id" in msg_copy and not msg_copy.get("is_external"):
-                    msg_copy["sender_email"] = self._get_user_email_by_id(msg_copy["sender_id"])
-                if not msg_copy.get("is_external"):
-                    receiver_user_id = self._get_user_id_by_email(msg_copy["receiver"])
-                    if receiver_user_id:
-                        msg_copy["receiver_email"] = msg_copy["receiver"]
-                    else:
-                        receiver_user_id_from_phone = None
-                        for u_id, u_data in self.users.items():
-                            if u_data["phone_number"] == msg_copy["receiver"]:
-                                receiver_user_id_from_phone = u_id
-                                break
-                        if receiver_user_id_from_phone:
-                            msg_copy["receiver_email"] = self._get_user_email_by_id(receiver_user_id_from_phone)
+        for msg in user_data["sms_history"]:
+            msg_copy = deepcopy(msg)
+            if "sender_id" in msg_copy and not msg_copy.get("is_external"):
+                msg_copy["sender_email"] = self._get_user_email_by_id(msg_copy["sender_id"])
+            if not msg_copy.get("is_external"):
+                receiver_user_id = self._get_user_id_by_phone(msg_copy["receiver"])
+                if receiver_user_id:
+                    msg_copy["receiver_email"] = self._get_user_email_by_id(receiver_user_id)
+            all_sms_messages.append(msg_copy)
 
-                all_sms_messages.append(msg_copy)
-        else:
-            for user_data in self.users.values():
-                for msg in user_data["sms_history"]:
-                    msg_copy = deepcopy(msg)
-                    if "sender_id" in msg_copy and not msg_copy.get("is_external"):
-                        msg_copy["sender_email"] = self._get_user_email_by_id(msg_copy["sender_id"])
-                    if not msg_copy.get("is_external"):
-                        receiver_user_id = self._get_user_id_by_email(msg_copy["receiver"])
-                        if receiver_user_id:
-                            msg_copy["receiver_email"] = msg_copy["receiver"]
-                        else:
-                            receiver_user_id_from_phone = None
-                            for u_id, u_data in self.users.items():
-                                if u_data["phone_number"] == msg_copy["receiver"]:
-                                    receiver_user_id_from_phone = u_id
-                                    break
-                            if receiver_user_id_from_phone:
-                                msg_copy["receiver_email"] = self._get_user_email_by_id(receiver_user_id_from_phone)
-                    all_sms_messages.append(msg_copy)
-        
-        unique_sms = []
-        seen_sms_ids = set()
-        for sms in all_sms_messages:
-            if sms["sms_id"] not in seen_sms_ids:
-                unique_sms.append(sms)
-                seen_sms_ids.add(sms["sms_id"])
+        return {"sms_messages": all_sms_messages, "status": "success"}
 
-        return {"sms_messages": unique_sms, "status": "success"}
-
-    def get_all_voice_calls(self, user_email: Optional[str] = None) -> Dict[str, Union[List[Dict], str]]:
+    def get_all_voice_calls(self) -> Dict[str, Union[List[Dict], str]]:
         """
-        Retrieves all simulated voice calls stored in the backend,
-        optionally filtered by user email.
-
-        Args:
-            user_email (Optional[str]): If provided, only voice calls for this user will be returned.
+        Retrieves all voice calls for the currently logged-in user.
 
         Returns:
-            Dict: A dictionary containing a list of all voice calls,
-                  or an error dictionary if user not found.
+            Dict: A dictionary containing a list of the user's voice calls,
+                  or an error dictionary if user not logged in.
         """
-        # time.sleep(0.05)
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"], "voice_calls": []}
+        
+        user_id = self._get_current_user_id()
+        user_data = self._get_current_user_data()
         all_voice_calls = []
 
-        if user_email:
-            user_id = self._get_user_id_by_email(user_email)
-            if not user_id:
-                return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
-            user_data = self.users[user_id]
-            for call in user_data["call_history"]:
-                call_copy = deepcopy(call)
-                if "caller_id" in call_copy and not call_copy.get("is_external"):
-                    call_copy["caller_email"] = self._get_user_email_by_id(call_copy["caller_id"])
-                if not call_copy.get("is_external"):
-                    receiver_user_id = self._get_user_id_by_email(call_copy["receiver"])
-                    if receiver_user_id:
-                        call_copy["receiver_email"] = call_copy["receiver"]
-                    else:
-                        receiver_user_id_from_phone = None
-                        for u_id, u_data in self.users.items():
-                            if u_data["phone_number"] == call_copy["receiver"]:
-                                receiver_user_id_from_phone = u_id
-                                break
-                        if receiver_user_id_from_phone:
-                            call_copy["receiver_email"] = self._get_user_email_by_id(receiver_user_id_from_phone)
-                all_voice_calls.append(call_copy)
-        else:
-            for user_data in self.users.values():
-                for call in user_data["call_history"]:
-                    call_copy = deepcopy(call)
-                    if "caller_id" in call_copy and not call_copy.get("is_external"):
-                        call_copy["caller_email"] = self._get_user_email_by_id(call_copy["caller_id"])
-                    if not call_copy.get("is_external"):
-                        receiver_user_id = self._get_user_id_by_email(call_copy["receiver"])
-                        if receiver_user_id:
-                            call_copy["receiver_email"] = call_copy["receiver"]
-                        else:
-                            receiver_user_id_from_phone = None
-                            for u_id, u_data in self.users.items():
-                                if u_data["phone_number"] == call_copy["receiver"]:
-                                    receiver_user_id_from_phone = u_id
-                                    break
-                            if receiver_user_id_from_phone:
-                                call_copy["receiver_email"] = self._get_user_email_by_id(receiver_user_id_from_phone)
-                    all_voice_calls.append(call_copy)
+        for call in user_data["call_history"]:
+            call_copy = deepcopy(call)
+            if "caller_id" in call_copy and not call_copy.get("is_external"):
+                call_copy["caller_email"] = self._get_user_email_by_id(call_copy["caller_id"])
+            if not call_copy.get("is_external"):
+                receiver_user_id = self._get_user_id_by_phone(call_copy["receiver"])
+                if receiver_user_id:
+                    call_copy["receiver_email"] = self._get_user_email_by_id(receiver_user_id)
+            all_voice_calls.append(call_copy)
         
-        unique_calls = []
-        seen_call_ids = set()
-        for call in all_voice_calls:
-            if call["call_id"] not in seen_call_ids:
-                unique_calls.append(call)
-                seen_call_ids.add(call["call_id"])
-        return {"voice_calls": unique_calls, "status": "success"}
+        return {"voice_calls": all_voice_calls, "status": "success"}
 
-    def get_user_info(self, user_email: str) -> Dict[str, Union[Dict, str]]:
+    def get_user_info(self) -> Dict[str, Union[Dict, str]]:
         """
-        Retrieves detailed information for a specific user.
-
-        Args:
-            user_email (str): The email of the user to retrieve information for.
+        Retrieves detailed information for the currently logged-in user.
 
         Returns:
             Dict: A dictionary containing the user's information,
-                  or an error dictionary if user not found.
+                  or an error dictionary if user not logged in.
         """
-        user_id = self._get_user_id_by_email(user_email)
-        if not user_id:
-            return {"error": "User not found"}
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"]}
 
+        user_id = self._get_current_user_id()
         user_info_copy = deepcopy(self.users[user_id])
         
         friend_emails = []
@@ -564,27 +618,27 @@ class CommuniLinkApis:
 
     def update_user_settings(
         self, 
-        user_email: str, 
         settings: Dict,
         validate_settings: bool = True,
         merge_with_existing: bool = True
     ) -> Dict[str, Union[Dict, str]]:
         """
-        Updates the settings for a specific user.
+        Updates the settings for the currently logged-in user.
 
         Args:
-            user_email (str): The email of the user whose settings are to be updated.
             settings (Dict): A dictionary containing the settings to update (e.g., {"sms_notifications": False}).
             validate_settings (bool): Whether to validate settings before applying. Default is True.
             merge_with_existing (bool): Whether to merge with existing settings or replace. Default is True.
 
         Returns:
             Dict: A dictionary containing the updated user's settings,
-                  or an error dictionary if user not found.
+                  or an error dictionary if user not logged in.
         """
-        user_id = self._get_user_id_by_email(user_email)
-        if not user_id:
-            return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"]}
+
+        user_id = self._get_current_user_id()
 
         # Validate settings if requested
         if validate_settings:
@@ -601,18 +655,16 @@ class CommuniLinkApis:
         return {"updated_settings": deepcopy(self.users[user_id]["settings"]), "status": "success", "message": "User settings updated successfully."}
 
     def get_billing_history(
-        self, 
-        user_email: Optional[str] = None,
+        self,
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
         transaction_type: Optional[str] = None,
         limit: int = 100
     ) -> Dict[str, Union[List[Dict], str]]:
         """
-        Retrieves the billing history for all users or a specific user.
+        Retrieves the billing history for the currently logged-in user.
 
         Args:
-            user_email (Optional[str]): If provided, filters billing history for this user.
             start_date (Optional[str]): ISO timestamp to filter records from this date. Default is None.
             end_date (Optional[str]): ISO timestamp to filter records up to this date. Default is None.
             transaction_type (Optional[str]): Filter by type - "sms_charge", "voice_call_charge", "refund". Default is None.
@@ -620,49 +672,34 @@ class CommuniLinkApis:
 
         Returns:
             Dict: A dictionary containing a list of billing records,
-                  or an error dictionary if user not found.
+                  or an error dictionary if user not logged in.
         """
-        # time.sleep(0.05)
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"], "billing_history": []}
+        
+        user_id = self._get_current_user_id()
+        user_email = self._get_user_email_by_id(user_id)
         filtered_history = []
-        if user_email:
-            user_id = self._get_user_id_by_email(user_email)
-            if not user_id:
-                return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
+        
+        for record in self.billing_history:
+            if record.get("user_id") != user_id:
+                continue
             
-            for record in self.billing_history:
-                if record.get("user_id") != user_id:
-                    continue
-                
-                # Apply date filters
-                record_date = record.get("date", "")
-                if start_date and record_date < start_date:
-                    continue
-                if end_date and record_date > end_date:
-                    continue
-                
-                # Apply transaction type filter
-                if transaction_type and record.get("type") != transaction_type:
-                    continue
-                
-                record_copy = deepcopy(record)
-                record_copy["user_email"] = user_email
-                filtered_history.append(record_copy)
-        else:
-            for record in self.billing_history:
-                # Apply date filters
-                record_date = record.get("date", "")
-                if start_date and record_date < start_date:
-                    continue
-                if end_date and record_date > end_date:
-                    continue
-                
-                # Apply transaction type filter
-                if transaction_type and record.get("type") != transaction_type:
-                    continue
-                
-                record_copy = deepcopy(record)
-                record_copy["user_email"] = self._get_user_email_by_id(record_copy.get("user_id"))
-                filtered_history.append(record_copy)
+            # Apply date filters
+            record_date = record.get("date", "")
+            if start_date and record_date < start_date:
+                continue
+            if end_date and record_date > end_date:
+                continue
+            
+            # Apply transaction type filter
+            if transaction_type and record.get("type") != transaction_type:
+                continue
+            
+            record_copy = deepcopy(record)
+            record_copy["user_email"] = user_email
+            filtered_history.append(record_copy)
         
         # Apply limit
         filtered_history = filtered_history[:limit]
@@ -671,7 +708,6 @@ class CommuniLinkApis:
 
     def create_support_ticket(
         self, 
-        user_email: str, 
         subject: str, 
         description: str,
         priority: str = "medium",
@@ -680,10 +716,9 @@ class CommuniLinkApis:
         preferred_contact_method: str = "email"
     ) -> Dict[str, Union[Dict, str]]:
         """
-        Creates a new support ticket for a user.
+        Creates a new support ticket for the currently logged-in user.
 
         Args:
-            user_email (str): The email of the user creating the ticket.
             subject (str): The subject of the support ticket.
             description (str): A detailed description of the issue.
             priority (str): Priority level - "low", "medium", "high", or "urgent". Default is "medium".
@@ -693,11 +728,14 @@ class CommuniLinkApis:
 
         Returns:
             Dict: A dictionary representing the created support ticket,
-                  or an error dictionary if user not found.
+                  or an error dictionary if user not logged in.
         """
-        user_id = self._get_user_id_by_email(user_email)
-        if not user_id:
-            return {"code": "USER_NOT_FOUND", "message": f"User with email '{user_email}' not found."}
+        login_check = self._require_login()
+        if login_check:
+            return {"code": "NOT_AUTHENTICATED", "message": login_check["message"]}
+
+        user_id = self._get_current_user_id()
+        user_email = self._get_user_email_by_id(user_id)
 
         # Validate priority
         if priority not in ["low", "medium", "high", "urgent"]:
