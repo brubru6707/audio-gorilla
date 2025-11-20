@@ -69,7 +69,7 @@ class TestCommuniLinkApis(unittest.TestCase):
     def test_get_sms_status_success(self):
         """Test retrieving SMS status successfully."""
         sent_sms = self.communilink_api.send_sms(self.REAL_PHONE, self.SECOND_USER_PHONE, "Status check")
-        time.sleep(0.5)  # Allow status to update
+        # time.sleep(0.5)  # Allow status to update
         
         status_result = self.communilink_api.get_sms_status(sent_sms["id"])
         self.assertEqual(status_result["id"], sent_sms["id"])
@@ -192,7 +192,7 @@ if __name__ == '__main__':
         initial_call_count_user1 = len(self.communilink_api.users[self.user1_email]["call_history"])
         
         made_call = self.communilink_api.make_voice_call(self.user1_phone, self.user2_phone)
-        time.sleep(made_call["duration"] / 1000 + 0.5) # Ensure call completes
+        # time.sleep(made_call["duration"] / 1000 + 0.5) # Ensure call completes
         
         all_calls_result = self.communilink_api.get_all_voice_calls(self.user1_email)
         self.assertEqual(len(all_calls_result["voice_calls"]), initial_call_count_user1 + 1)
@@ -212,7 +212,7 @@ if __name__ == '__main__':
         # Make a call from user1 after updating settings
         initial_balance = self.communilink_api.users[self.user1_email]["balance"]
         made_call = self.communilink_api.make_voice_call(self.user1_phone, self.user3_phone)
-        time.sleep(made_call["duration"] / 1000 + 0.5) # Ensure call completes
+        # time.sleep(made_call["duration"] / 1000 + 0.5) # Ensure call completes
         
         self.assertEqual(made_call["status"], "completed")
         # Verify balance deduction still occurs
@@ -292,7 +292,7 @@ if __name__ == '__main__':
             status_result = self.communilink_api.get_sms_status(sent_sms["id"])
             self.assertEqual(status_result["id"], sent_sms["id"])
             self.assertIn(status_result["status"], ["sent", "delivered", "failed"])
-            time.sleep(0.1)
+            # time.sleep(0.1)
 
     def test_get_sms_status_edge_cases(self):
         """Test SMS status checking edge cases."""
@@ -362,7 +362,7 @@ if __name__ == '__main__':
         immediate_status = self.communilink_api.get_voice_call_status(call_id)
         self.assertEqual(immediate_status["id"], call_id)
         
-        time.sleep(0.5)
+        # time.sleep(0.5)
         final_status = self.communilink_api.get_voice_call_status(call_id)
         self.assertEqual(final_status["status"], "completed")
 
