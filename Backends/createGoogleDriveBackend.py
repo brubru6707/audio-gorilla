@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
-from .fake_data import first_names, last_names, domains, first_and_last_names, user_count
+from fake_data import first_names, last_names, domains, first_and_last_names, user_count
 
 current_timestamp_s = int(datetime.now().timestamp())
 
@@ -236,7 +236,7 @@ for i in range(user_count + len(first_and_last_names)):
 
 print(f"Total number of users generated: {len(DEFAULT_STATE['users'])}")
 
-output_filename = 'diverse_googledrive_state.json'
+output_filename = 'diverse_google_drive_state.json'
 with open(output_filename, 'w') as f:
     json.dump(DEFAULT_STATE, f, indent=2)
 

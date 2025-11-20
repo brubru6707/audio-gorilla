@@ -16,33 +16,42 @@ class TestGoogleDriveApis(unittest.TestCase):
     Unit tests for the GoogleDriveApis class with OAuth authentication.
     """
 
-    # Load real data from backend
-    real_data = BackendDataLoader.get_googledrive_data()
+    # These will be populated in setUpClass
+    EMAIL_ALICE = None
+    EMAIL_BOB = None
+    user_id_alice = None
+    user_id_bob = None
     
-    # Extract real user data
-    user_ids = list(real_data.get("users", {}).keys())
-    user_id_alice = user_ids[0] if user_ids else "user_001"
-    user_id_bob = user_ids[1] if len(user_ids) > 1 else user_id_alice
-    
-    # Get user data for reference
-    user_data_alice = real_data.get("users", {}).get(user_id_alice, {})
-    user_data_bob = real_data.get("users", {}).get(user_id_bob, {})
-    
-    # Get email addresses for authentication
-    EMAIL_ALICE = user_data_alice.get("email", "alice@example.com")
-    EMAIL_BOB = user_data_bob.get("email", "bob@example.com")
-    
-    # Extract real file data
-    files_alice = user_data_alice.get("drive_data", {}).get("files", {})
-    REAL_FILE_ID = next(iter(files_alice), "file1")
-    file_data = files_alice.get(REAL_FILE_ID, {})
-    REAL_FILE_NAME = file_data.get("name", "Test File")
+    @classmethod
+    def setUpClass(cls):
+        """Load backend data once for all tests."""
+        # Create temporary API instance to load backend data
+        temp_api = GoogleDriveApis()
+        
+        # Extract real user data from loaded backend
+        user_ids = list(temp_api.users.keys())
+        cls.user_id_alice = user_ids[0] if user_ids else "user_001"
+        cls.user_id_bob = user_ids[1] if len(user_ids) > 1 else cls.user_id_alice
+        
+        # Get user data for reference
+        user_data_alice = temp_api.users.get(cls.user_id_alice, {})
+        user_data_bob = temp_api.users.get(cls.user_id_bob, {})
+        
+        # Get email addresses for authentication
+        cls.EMAIL_ALICE = user_data_alice.get("email", "alice@example.com")
+        cls.EMAIL_BOB = user_data_bob.get("email", "bob@example.com")
+        
+        # Extract real file data
+        files_alice = user_data_alice.get("drive_data", {}).get("files", {})
+        cls.REAL_FILE_ID = next(iter(files_alice), "file1")
+        file_data = files_alice.get(cls.REAL_FILE_ID, {})
+        cls.REAL_FILE_NAME = file_data.get("name", "Test File")
     
     def setUp(self):
         """Set up the API instance using real data."""
         self.drive_api = GoogleDriveApis()
-        # Authenticate as Alice by default
-        self.drive_api.authenticate(self.EMAIL_ALICE)
+        # Set current user to Alice (already authenticated by default, but ensure it's Alice)
+        self.drive_api.current_user = self.user_id_alice
 
     # --- Authentication Tests ---
     

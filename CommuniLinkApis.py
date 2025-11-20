@@ -15,8 +15,7 @@ DEFAULT_COMMUNILINK_STATE = load_default_state("CommuniLinkApis")
 class CommuniLinkApis:
     """
     A dummy API class for CommuniLink, simulating SMS messaging and voice calling
-    functionality. This class provides an in-memory backend for development
-    and testing purposes without making actual API calls.
+    functionality.
     """
     def __init__(self):
         """
@@ -31,13 +30,12 @@ class CommuniLinkApis:
         self.service_plans: Dict = {}
         self.active_plan: str = ""
         self.network_status: str = ""
-
         self._api_description = "This tool belongs to the CommuniLink API, which provides core functionality for SMS messaging and voice calls."
         self._load_scenario(DEFAULT_COMMUNILINK_STATE)
 
     def _load_scenario(self, scenario: Dict) -> None:
         """
-        Loads a predefined scenario into the dummy backend's state.
+        Loads a predefined scenario into the backend's state.
         This allows for resetting the state or initializing with specific data.
 
         Args:
@@ -45,7 +43,6 @@ class CommuniLinkApis:
                              It should contain keys like "users", "current_user_id", etc.
         """
         DEFAULT_STATE_COPY = deepcopy(DEFAULT_COMMUNILINK_STATE)
-
         self.users = scenario.get("users", DEFAULT_STATE_COPY["users"])
         self.current_user_id = scenario.get("current_user_id", DEFAULT_STATE_COPY["current_user_id"])
         self.billing_history = scenario.get("billing_history", DEFAULT_STATE_COPY["billing_history"])
