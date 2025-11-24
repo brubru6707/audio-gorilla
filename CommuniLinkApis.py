@@ -575,7 +575,6 @@ class CommuniLinkApis:
         if login_check:
             return {"code": "NOT_AUTHENTICATED", "message": login_check["message"], "voice_calls": []}
         
-        user_id = self._get_current_user_id()
         user_data = self._get_current_user_data()
         all_voice_calls = []
 

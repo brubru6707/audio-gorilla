@@ -87,30 +87,41 @@ def flatten_descriptions(data_dict):
 flatten_categories(products_based_on_categories)
 flatten_descriptions(product_descriptions_based_on_categories)
 
-# Flatten product reviews and create a mapping from product name to review data
-product_reviews_mapping = {}
-all_manual_reviews = []
+# Build product-to-reviews mapping by matching hierarchical structure
+# Each product list in products_based_on_categories corresponds to a review list in product_reviews_based_on_categories
+product_index_to_reviews = {}
 
-def flatten_reviews(data_dict):
-    for _, value in data_dict.items():
-        if isinstance(value, dict):
-            flatten_reviews(value)
-        else:
-            # value is a list of review objects
-            for review in value:
-                product_name = review["product_name"]
-                product_reviews_mapping[product_name] = {
-                    "rating": review["rating"],
-                    "comment": review["review"]
-                }
-                # Also collect all manual reviews for direct insertion
-                all_manual_reviews.append({
-                    "product_name": product_name,
-                    "rating": review["rating"],
-                    "comment": review["review"]
-                })
+def build_product_review_mapping(products_dict, reviews_dict):
+    """
+    Traverse both dictionaries simultaneously and match products to reviews by their index position.
+    Returns a mapping from flattened product index to list of review comments.
+    """
+    global product_index_to_reviews
+    product_index = 0
+    
+    def traverse(prod_data, rev_data):
+        nonlocal product_index
+        for key in prod_data.keys():
+            prod_value = prod_data[key]
+            rev_value = rev_data.get(key, [])
+            
+            if isinstance(prod_value, dict):
+                # Recurse into subcategories
+                traverse(prod_value, rev_value if isinstance(rev_value, dict) else {})
+            else:
+                # prod_value is a list of product names
+                # rev_value should be a list of review lists (each inner list has 0-5 review strings)
+                for i, _ in enumerate(prod_value):
+                    review_comments = []
+                    if isinstance(rev_value, list) and i < len(rev_value):
+                        # rev_value[i] is a list of review comment strings
+                        review_comments = rev_value[i] if isinstance(rev_value[i], list) else []
+                    product_index_to_reviews[product_index] = review_comments
+                    product_index += 1
+    
+    traverse(products_dict, reviews_dict)
 
-flatten_reviews(product_reviews_based_on_categories)
+build_product_review_mapping(products_based_on_categories, product_reviews_based_on_categories)
 
 def get_all_values(d):
     values = []
@@ -316,34 +327,35 @@ def generate_product(product_id):
 
     return product
 
-def generate_review(reviewer_user_ids, product_name=None):
+def generate_review(reviewer_user_ids, review_comment=None):
+    """
+    Generate a review with a real user ID.
+    If review_comment is provided, use it; otherwise generate a random comment.
+    """
     review_id = str(uuid.uuid4())
     user_id = random.choice(list(reviewer_user_ids)) if reviewer_user_ids else str(uuid.uuid4())
     
-    # Try to use real review data if product name is available
-    if product_name and product_name in product_reviews_mapping:
-        review_data = product_reviews_mapping[product_name]
-        return {
-            "review_id": review_id,
-            "user_id": user_id,
-            "rating": review_data["rating"],
-            "comment": review_data["comment"],
-            "date": generate_random_date(2023, 2025),
-        }
+    # Generate a random rating (1-5 stars)
+    rating = random.randint(1, 5)
+    
+    # Use provided comment or generate a random one
+    if review_comment:
+        comment = review_comment
     else:
-        # Fallback to random generation if no review data found
-        return {
-            "review_id": review_id,
-            "user_id": user_id,
-            "rating": random.randint(1, 5),
-            "comment": random.choice([
-                "Absolutely fantastic!", "Works great, highly recommend.",
-                "Good value for money.", "Decent product, met expectations.",
-                "It's okay, but could be better.", "Not impressed, had issues.",
-                "Loved it!", "Could be improved.", "Very satisfied."
-            ]),
-            "date": generate_random_date(2023, 2025),
-        }
+        comment = random.choice([
+            "Absolutely fantastic!", "Works great, highly recommend.",
+            "Good value for money.", "Decent product, met expectations.",
+            "It's okay, but could be better.", "Not impressed, had issues.",
+            "Loved it!", "Could be improved.", "Very satisfied."
+        ])
+    
+    return {
+        "review_id": review_id,
+        "user_id": user_id,
+        "rating": rating,
+        "comment": comment,
+        "date": generate_random_date(2023, 2025),
+    }
 
 def generate_question(product_id, existing_user_ids, index):
     question_id = str(uuid.uuid4())
@@ -448,67 +460,25 @@ num_reviewers = max(1, len(all_user_ids) // 4)
 reviewer_user_ids = random.sample(all_user_ids, num_reviewers)
 print(f"Selected {num_reviewers} users out of {len(all_user_ids)} to write reviews")
 
-# Now generate product reviews with real user IDs
-for product_id in all_product_ids:
-    product_name = DEFAULT_STATE["products"][product_id]["name"] if product_id in DEFAULT_STATE["products"] else None
+# Now generate product reviews with real user IDs using the structured review data
+print(f"Generating reviews from structured product_reviews_based_on_categories...")
+for i, product_id in enumerate(all_product_ids):
+    # Get the review comments for this product from our index mapping
+    review_comments = product_index_to_reviews.get(i, [])
     
-    # First, check if we have manual reviews for this product
-    if product_name and product_name in product_reviews_mapping:
-        # Add the manual review directly with a real reviewer user ID
-        manual_review_data = product_reviews_mapping[product_name]
-        manual_review = {
-            "review_id": str(uuid.uuid4()),
-            "user_id": random.choice(reviewer_user_ids),  # Use real reviewer ID
-            "rating": manual_review_data["rating"],
-            "comment": manual_review_data["comment"],
-            "date": generate_random_date(2023, 2025),
-        }
-        DEFAULT_STATE["product_reviews"][product_id].append(manual_review)
-        
-        # Add a few more random reviews to make it look natural, also with real user IDs
-        num_additional_reviews = random.randint(0, 3)
-        for _ in range(num_additional_reviews):
-            additional_review = generate_review(reviewer_user_ids, None)
-            DEFAULT_STATE["product_reviews"][product_id].append(additional_review)
+    # Generate reviews from the structured data
+    if review_comments:
+        for comment in review_comments:
+            review = generate_review(reviewer_user_ids, review_comment=comment)
+            DEFAULT_STATE["product_reviews"][product_id].append(review)
     else:
-        # No manual review available, generate random reviews with real user IDs
-        num_reviews = random.randint(0, 5)
+        # If no structured reviews, generate 0-3 random reviews
+        num_reviews = random.randint(0, 3)
         for _ in range(num_reviews):
-            random_review = generate_review(reviewer_user_ids, None)
-            DEFAULT_STATE["product_reviews"][product_id].append(random_review)
+            review = generate_review(reviewer_user_ids, review_comment=None)
+            DEFAULT_STATE["product_reviews"][product_id].append(review)
 
-# Add any remaining manual reviews as standalone product reviews
-print(f"Adding manual reviews directly to product_reviews...")
-manual_reviews_added = 0
-
-for manual_review in all_manual_reviews:
-    product_name = manual_review["product_name"]
-    
-    # Check if this product already exists in our products
-    product_found = False
-    for product_id, product_data in DEFAULT_STATE["products"].items():
-        if product_data["name"] == product_name:
-            product_found = True
-            break
-    
-    # If product doesn't exist, create a standalone review entry
-    if not product_found:
-        # Create a unique product ID for this manual review
-        review_product_id = f"manual_review_{uuid.uuid4()}"
-        
-        # Add the manual review with a real reviewer user ID
-        manual_review_entry = {
-            "review_id": str(uuid.uuid4()),
-            "user_id": random.choice(reviewer_user_ids),  # Use real reviewer ID
-            "rating": manual_review["rating"],
-            "comment": manual_review["comment"],
-            "date": generate_random_date(2023, 2025),
-        }
-        
-        DEFAULT_STATE["product_reviews"][review_product_id] = [manual_review_entry]
-        manual_reviews_added += 1
-
-print(f"Added {manual_reviews_added} standalone manual reviews")   
+print(f"Generated reviews for {len(all_product_ids)} products")
 
 propagate_cart_to_users(list(DEFAULT_STATE["products"].keys()))
 propagate_wish_list_to_users(list(DEFAULT_STATE["products"].keys()))
