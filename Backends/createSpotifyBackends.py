@@ -5,7 +5,7 @@ import random
 import json
 from typing import Dict, Any
 # Assuming fake_data.py contains the necessary lists (first_names, etc.)
-from fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artist_names, countries, artist_bios, user_count, first_and_last_names
+from fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artist_names, countries, artist_bios, user_count, first_and_last_names, music_genres, album_types, card_types, device_types, languages
 
 # --- MAPPING AND STATE INITIALIZATION ---
 _initial_user_email_to_uuid_map = {}
@@ -25,12 +25,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
                                      seconds=random.randint(0, 59))
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
-
-music_genres = ["Pop", "Electronic", "Acoustic", "Folk", "Funk", "Rock", "Hip Hop", "R&B", "Jazz", "Classical", "Country", "Indie", "Blues", "Metal", "Reggae", "Dance", "Ambient", "Soul", "Gospel", "Latin"]
-album_types = ["album", "single", "ep", "compilation", "live"]
-card_types = ["Visa", "Mastercard", "Amex", "Discover", "JCB"]
-device_types = ["mobile", "web", "desktop", "smart_speaker", "tablet", "car_audio"]
-languages = ["en", "es", "fr", "de", "jp", "ko", "zh", "pt", "it"]
 
 def _convert_initial_data_to_uuids(initial_data: Dict[str, Any]) -> Dict[str, Any]:
     """Processes an initial data structure, converting IDs to UUIDs and filling in missing fields."""

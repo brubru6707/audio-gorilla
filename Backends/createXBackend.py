@@ -215,7 +215,7 @@ for i in range(user_count + len(first_and_last_names)):
             days_ago_min=365, days_ago_max=365 * 4
         ),
         "bio": random.choice(social_media_bios),
-        "profile_picture_url": f"[https://x.com/profiles/](https://x.com/profiles/){username}.jpg",
+        "profile_picture_url": f"https://x.com/profiles/{username}.jpg",
         "followers": [],
         "following": [],
         "liked_posts": [],

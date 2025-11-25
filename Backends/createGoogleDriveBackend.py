@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
-from fake_data import first_names, last_names, domains, first_and_last_names, user_count
+from fake_data import first_names, last_names, domains, first_and_last_names, user_count, file_mimetypes, file_names_base
 
 current_timestamp_s = int(datetime.now().timestamp())
 
@@ -98,29 +98,6 @@ def _create_user_data(email: str, first_name: str, last_name: str, drive_data: D
         "drive_last_activity": generate_random_past_timestamp(7),
         "drive_folder_count": len([f for f in processed_drive_data["files"].values() if f.get("mimeType") == "application/vnd.google-apps.folder"])
     }
-
-file_mimetypes = {
-    "document": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "spreadsheet": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "presentation": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-    "pdf": "application/pdf",
-    "image_jpeg": "image/jpeg",
-    "image_png": "image/png",
-    "code_py": "text/x-python",
-    "code_js": "application/javascript",
-    "text": "text/plain"
-}
-file_names_base = {
-    "document": ["Report", "Minutes", "Proposal", "Contract", "Draft"],
-    "spreadsheet": ["Budget", "Tracker", "Data Analysis", "Invoice", "Inventory"],
-    "presentation": ["Quarterly Review", "Pitch Deck", "Training", "Strategy"],
-    "pdf": ["Manual", "Ebook", "Whitepaper", "Brochure"],
-    "image_jpeg": ["Photo", "Screenshot", "Design"],
-    "image_png": ["Diagram", "Logo", "Icon"],
-    "code_py": ["script", "model"],
-    "code_js": ["frontend", "backend"],
-    "text": ["Notes", "Log", "Readme"]
-}
 
 current_user_emails = list(_user_email_to_uuid_map.keys())
 

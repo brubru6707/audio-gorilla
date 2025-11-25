@@ -20798,3 +20798,8 @@ common_tags = [
 ]
 note_colors = ["yellow", "blue", "green", "pink", "white", "purple"]
 note_priorities = ["low", "medium", "high"]
+music_genres = ["Pop", "Electronic", "Acoustic", "Folk", "Funk", "Rock", "Hip Hop", "R&B", "Jazz", "Classical", "Country", "Indie", "Blues", "Metal", "Reggae", "Dance", "Ambient", "Soul", "Gospel", "Latin"]
+album_types = ["album", "single", "ep", "compilation", "live"]
+card_types = ["Visa", "Mastercard", "Amex", "Discover", "JCB"]
+device_types = ["mobile", "web", "desktop", "smart_speaker", "tablet", "car_audio"]
+languages = ["en", "es", "fr", "de", "jp", "ko", "zh", "pt", "it"]
