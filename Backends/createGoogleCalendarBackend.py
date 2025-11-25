@@ -5,7 +5,7 @@ import datetime
 from datetime import datetime, timedelta
 from typing import Dict, Any
 import copy
-from .fake_data import first_names, last_names, domains, event_descriptions, event_locations, timezones, user_count, first_and_last_names
+from fake_data import first_names, last_names, domains, event_descriptions, event_locations, timezones, user_count, first_and_last_names
 
 current_datetime = datetime.now()
 

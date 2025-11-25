@@ -8890,7 +8890,384 @@ note_title_and_content = [
         "title": "I should probably go to the dentist",
         "content": "It's been a while since my last check-up. I should probably call and make an appointment.",
     },
+    {
+        "title": "Weekend hiking trip plans",
+        "content": "Planning to hit the trail early Saturday morning. Need to pack water, snacks, and my camera. The fall colors should be amazing right now.",
+    },
+    {
+        "title": "New recipe to try",
+        "content": "Found this incredible pasta recipe online. Need: tomatoes, garlic, basil, olive oil, parmesan. Looks simple but delicious.",
+    },
+    {
+        "title": "Car maintenance reminder",
+        "content": "Oil change is overdue by 500 miles. Also need to check tire pressure and get that weird noise looked at.",
+    },
+    {
+        "title": "Birthday gift ideas for Mom",
+        "content": "Maybe a spa day? Or that gardening book she mentioned. Could also do a nice dinner at her favorite restaurant.",
+    },
+    {
+        "title": "Workout routine adjustments",
+        "content": "Need to add more cardio. Thinking of joining that spin class on Tuesdays. Also want to work on flexibility.",
+    },
+    {
+        "title": "Dream vacation destinations",
+        "content": "Iceland for the northern lights. New Zealand for hiking. Japan for the culture and food. So many places to see!",
+    },
+    {
+        "title": "Home improvement ideas",
+        "content": "Paint the living room walls. Replace the kitchen faucet. Add some plants to the bedroom. Maybe new curtains?",
+    },
+    {
+        "title": "Book club meeting notes",
+        "content": "Next meeting is the 15th. We're reading 'The Night Circus'. Need to finish chapters 10-15 before then.",
+    },
+    {
+        "title": "Meal prep for the week",
+        "content": "Monday: chicken stir fry. Tuesday: tacos. Wednesday: soup. Thursday: salmon. Friday: pizza night!",
+    },
+    {
+        "title": "Garden planning for spring",
+        "content": "Want to plant tomatoes, cucumbers, and herbs. Need to prepare the soil and buy seeds soon.",
+    },
+    {
+        "title": "Learning Spanish progress",
+        "content": "Completed lesson 12 today. Verb conjugations are getting easier. Need to practice more speaking.",
+    },
+    {
+        "title": "Movie watchlist",
+        "content": "The new Marvel film, that documentary about octopuses, the Oscar winner from last year. So much to watch!",
+    },
+    {
+        "title": "Budget review for this month",
+        "content": "Spent too much on eating out. Need to cut back next month. Savings goal is on track though.",
+    },
+    {
+        "title": "Pet adoption research",
+        "content": "Thinking about getting a cat. Need to check shelter hours and what supplies I'll need first.",
+    },
+    {
+        "title": "Photography project ideas",
+        "content": "52 weeks of sunrise photos? Or maybe street photography downtown? Need to pick one and commit.",
+    },
+    {
+        "title": "Closet organization plan",
+        "content": "Donate clothes I haven't worn in a year. Buy some new hangers. Organize by color and season.",
+    },
+    {
+        "title": "Podcast recommendations from friends",
+        "content": "Crime Junkie, Stuff You Should Know, The Daily, How I Built This. Too many good ones to choose from!",
+    },
+    {
+        "title": "Winter holiday planning",
+        "content": "Need to book flights soon. Make a gift list. Start baking cookies early this year.",
+    },
+    {
+        "title": "Side project coding ideas",
+        "content": "Build a budgeting app. Or maybe a recipe organizer? Something that solves a problem I actually have.",
+    },
+    {
+        "title": "Dentist appointment follow-up",
+        "content": "Need to schedule that crown procedure. Also ask about teeth whitening options.",
+    },
+    {
+        "title": "New hobby to explore",
+        "content": "Thinking about pottery classes. Or maybe learning guitar? Both sound fun and challenging.",
+    },
+    {
+        "title": "House cleaning schedule",
+        "content": "Mondays: bathrooms. Wednesdays: vacuum. Fridays: kitchen deep clean. Weekends: laundry.",
+    },
+    {
+        "title": "Concert tickets to buy",
+        "content": "My favorite band is coming in March! Need to set a reminder for when tickets go on sale.",
+    },
+    {
+        "title": "Morning routine optimization",
+        "content": "Wake up 30 minutes earlier. Meditate for 10 minutes. Make a proper breakfast instead of just coffee.",
+    },
+    {
+        "title": "Baby shower gift ideas",
+        "content": "Cute baby clothes, books for bedtime, maybe a gift card? Check the registry first.",
+    },
+    {
+        "title": "Apartment hunting notes",
+        "content": "Need 2 bedrooms, pet-friendly, near public transit. Budget is $1800 max. Start looking in January.",
+    },
+    {
+        "title": "Volunteer opportunities",
+        "content": "Animal shelter on weekends? Food bank during holidays? Want to give back to the community more.",
+    },
+    {
+        "title": "Password updates needed",
+        "content": "Email, bank, social media. Need to use a password manager. Too many to remember.",
+    },
+    {
+        "title": "New year resolutions draft",
+        "content": "Read 24 books. Exercise 3x per week. Learn a new skill. Travel to 2 new places.",
+    },
+    {
+        "title": "Friend's wedding gift",
+        "content": "Check the registry. Maybe contribute to honeymoon fund? They already have everything for the house.",
+    },
+    {
+        "title": "Tax documents to organize",
+        "content": "W2, receipts for donations, medical expenses. Need to find an accountant this year.",
+    },
+    {
+        "title": "Bike repair checklist",
+        "content": "Flat tire needs fixing. Chain is rusty. Brakes are squeaky. Take it to the shop this weekend.",
+    },
+    {
+        "title": "Language exchange partner search",
+        "content": "Want to practice Spanish with a native speaker. Maybe I can help them with English?",
+    },
+    {
+        "title": "Kitchen appliance wish list",
+        "content": "Stand mixer, air fryer, good knife set. Wait for Black Friday sales.",
+    },
+    {
+        "title": "Daily gratitude log",
+        "content": "Grateful for: sunny weather, good health, supportive friends, delicious coffee, my cozy bed.",
+    },
+    {
+        "title": "Professional development goals",
+        "content": "Take that online course. Get a certification. Attend the industry conference in May.",
+    },
+    {
+        "title": "Streaming service evaluation",
+        "content": "Do I really need all four? Cancel the ones I haven't used in two months.",
+    },
+    {
+        "title": "Local restaurants to try",
+        "content": "That new Thai place downtown. The Italian restaurant everyone raves about. BBQ joint on 5th street.",
+    },
+    {
+        "title": "Hair appointment notes",
+        "content": "Thinking about going shorter. Or maybe just highlights? Bring inspiration photos.",
+    },
+    {
+        "title": "Emergency fund progress",
+        "content": "Up to $3000 now. Goal is $10,000. Keep saving $200 per month.",
+    },
+    {
+        "title": "Wardrobe essentials needed",
+        "content": "Black blazer, comfortable dress shoes, quality jeans. Build a capsule wardrobe.",
+    },
+    {
+        "title": "Meditation app comparison",
+        "content": "Headspace vs Calm vs Insight Timer. Need to try free trials before committing.",
+    },
+    {
+        "title": "Running training plan",
+        "content": "Training for a 5K. Week 1: run 10 mins, walk 5 mins, repeat. Gradually increase.",
+    },
+    {
+        "title": "Computer backup reminder",
+        "content": "Haven't backed up in 3 months. Use external hard drive and cloud storage.",
+    },
+    {
+        "title": "Subscription box ideas",
+        "content": "Coffee subscription? Book of the month? Maybe a snack box? Research options.",
+    },
+    {
+        "title": "Farmers market shopping list",
+        "content": "Fresh tomatoes, local honey, sourdough bread, seasonal vegetables, flowers for the table.",
+    },
+    {
+        "title": "Museum exhibit to see",
+        "content": "The Van Gogh exhibit ends next month. Need to go before it's gone!",
+    },
+    {
+        "title": "Phone storage cleanup",
+        "content": "Delete old apps, backup photos to cloud, clear cache. Running out of space.",
+    },
+    {
+        "title": "Furniture shopping list",
+        "content": "New couch, coffee table, bookshelf. Check IKEA and local thrift stores.",
+    },
+    {
+        "title": "Networking event prep",
+        "content": "Update LinkedIn, print business cards, prepare elevator pitch. Event is Thursday.",
+    },
+    {
+        "title": "Skincare routine update",
+        "content": "Add vitamin C serum, switch to gentler cleanser, use sunscreen daily.",
+    },
+    {
+        "title": "Retirement account review",
+        "content": "Check 401k allocation. Increase contribution by 1%. Review beneficiaries.",
+    },
+    {
+        "title": "Dog training goals",
+        "content": "Teach sit, stay, come reliably. Stop pulling on leash. Maybe try agility classes?",
+    },
+    {
+        "title": "Craft project in progress",
+        "content": "Knitting a scarf for Dad. Halfway done. Need more blue yarn.",
+    },
+    {
+        "title": "Insurance policies review",
+        "content": "Auto, health, renters. Make sure coverage is adequate. Shop around for better rates?",
+    },
+    {
+        "title": "Brunch spots to visit",
+        "content": "That place with amazing pancakes. The cafe with outdoor seating. New spot that opened last month.",
+    },
+    {
+        "title": "Vision board ideas",
+        "content": "Travel photos, career goals, fitness inspiration, financial targets. Make it this weekend.",
+    },
+    {
+        "title": "Email inbox zero project",
+        "content": "Unsubscribe from newsletters I don't read. Create folders. Process 50 emails per day.",
+    },
+    {
+        "title": "Plant care schedule",
+        "content": "Water succulents every 2 weeks. Fern needs weekly watering. Rotate plants for sunlight.",
+    },
+    {
+        "title": "Gift wrap supply stock",
+        "content": "Need more wrapping paper, ribbon, gift bags. Stock up after holidays when it's on sale.",
+    },
+    {
+        "title": "Social media detox plan",
+        "content": "Delete apps from phone for a week. Only check on computer once daily.",
+    },
+    {
+        "title": "Coffee shop work locations",
+        "content": "The quiet one on Main St. Place with good wifi near the park. Cozy spot in the bookstore.",
+    },
+    {
+        "title": "Weekly meal planning strategy",
+        "content": "Plan Sunday, shop Monday, prep Tuesday. Saves so much time during the week.",
+    },
+    {
+        "title": "DIY home projects",
+        "content": "Build floating shelves, install smart thermostat, paint accent wall. YouTube tutorials are helpful.",
+    },
+    {
+        "title": "Credit score improvement plan",
+        "content": "Pay bills on time, reduce credit utilization, check report for errors. Current score: 720.",
+    },
+    {
+        "title": "Minimalism challenge",
+        "content": "Get rid of one item per day for 30 days. Donate, sell, or recycle. Declutter life.",
+    },
+    {
+        "title": "Podcast episode ideas",
+        "content": "Interview with local business owner? Deep dive on a historical event? Personal story about change?",
+    },
+    {
+        "title": "Music playlist curation",
+        "content": "Workout playlist, focus playlist, dinner party playlist, road trip playlist. Need variety.",
+    },
+    {
+        "title": "Time management experiments",
+        "content": "Trying Pomodoro technique. 25 min work, 5 min break. Seems to help with focus.",
+    },
+    {
+        "title": "Local hiking trails map",
+        "content": "Easy: River Trail. Moderate: Forest Loop. Hard: Mountain Peak. Try one each month.",
+    },
+    {
+        "title": "Evening wind-down routine",
+        "content": "No screens after 9pm. Hot tea, light reading, meditation. Sleep quality has improved.",
+    },
+    {
+        "title": "Investment research notes",
+        "content": "Learning about index funds. Roth IRA vs traditional. Diversification is important.",
+    },
+    {
+        "title": "Handwritten letter project",
+        "content": "Write one letter per month to different friend or family. Old school but meaningful.",
+    },
+    {
+        "title": "Productivity app testing",
+        "content": "Tried Notion, Todoist, Trello. Each has pros and cons. Still deciding which to stick with.",
+    },
+    {
+        "title": "Weekend market routine",
+        "content": "Coffee first, then farmers market, then bookstore. Perfect Saturday morning.",
+    },
+    {
+        "title": "Gratitude jar tradition",
+        "content": "Write one thing I'm grateful for daily. Read them all on New Year's Eve.",
+    },
+    {
+        "title": "Career pivot research",
+        "content": "Exploring UX design. Taking free courses online. Might do a bootcamp next year.",
+    },
+    {
+        "title": "Seasonal wardrobe swap",
+        "content": "Pack away summer clothes. Bring out sweaters and jackets. Donate what doesn't fit.",
+    },
+    {
+        "title": "Birthday celebration planning",
+        "content": "Dinner with close friends? Or small party at home? Keep it simple and meaningful.",
+    },
+    {
+        "title": "Tech gadget wish list",
+        "content": "Wireless headphones, smart watch, tablet for reading. Save up over next few months.",
+    },
+    {
+        "title": "Weekly review habit",
+        "content": "Every Sunday: review goals, plan week, clean workspace. Helps start Monday strong.",
+    },
+    {
+        "title": "Date night ideas list",
+        "content": "Cooking class, mini golf, museum, concert, picnic in park. Keep it interesting.",
+    },
+    {
+        "title": "Morning pages practice",
+        "content": "Write 3 pages each morning. Stream of consciousness. Helps clear mind for the day.",
+    },
+    {
+        "title": "Local business support list",
+        "content": "Coffee shop, bookstore, restaurant, gym. Shop local when possible.",
+    },
+    {
+        "title": "Skill development tracker",
+        "content": "Spanish: 15 min daily. Coding: 30 min 3x week. Guitar: 20 min daily. Slow and steady.",
+    },
+    {
+        "title": "Energy level patterns",
+        "content": "Most productive 9am-12pm. Afternoon slump around 2pm. Second wind after 7pm. Plan accordingly.",
+    },
+    {
+        "title": "Random acts of kindness",
+        "content": "Pay for coffee for person behind me. Leave nice note for mail carrier. Compliment strangers.",
+    },
+    {
+        "title": "Book reading log",
+        "content": "Finished 8 books this year. Goal was 12. Still time to catch up! Reading more fiction.",
+    },
+    {
+        "title": "Self-care Sunday rituals",
+        "content": "Face mask, long bath, favorite show, early bedtime. Recharge for the week ahead.",
+    },
+    {
+        "title": "Travel packing list template",
+        "content": "Clothes, toiletries, electronics, documents, medications, snacks. Save for future trips.",
+    },
+    {
+        "title": "Kitchen pantry staples",
+        "content": "Always keep: pasta, rice, canned beans, olive oil, spices. Makes cooking easier.",
+    },
+    {
+        "title": "Digital declutter plan",
+        "content": "Organize desktop files, delete old emails, clean up downloads folder. One area per week.",
+    },
+    {
+        "title": "Friend catch-up list",
+        "content": "Haven't talked to Sarah in weeks. Need to call Mom. Coffee with Alex soon.",
+    },
+    {
+        "title": "Inspiration quote collection",
+        "content": "'Be yourself.' 'Start where you are.' 'Progress not perfection.' Keep these visible.",
+    },
 ]
+
 
 social_media_bios = [
     "Exploring the intersection of art and technology. Passionate about sustainability.",
@@ -20357,3 +20734,67 @@ manufacturers = ["SmartCorp", "HomeLink", "EvoTech", "ZenithIoT", "AquaSmart", "
 locales = ["en-US", "es-MX", "fr-CA", "en-GB", "de-DE", "ja-JP"]
 timezones = ["America/New_York", "America/Los_Angeles", "America/Chicago", "Europe/London", "Asia/Tokyo", "Europe/Berlin", "Australia/Sydney"]
 subscription_plans = ["Free Tier", "Basic Plan", "Premium Plan", "Family Plan", "Business Tier"]
+common_tags = [
+    {
+        "tag": "work",
+        "words": ["work", "job", "career", "office", "business", "company", "employee", "boss", "colleague", "presentation", "report", "professional", "desk", "email", "tasks"]
+    },
+    {
+        "tag": "personal",
+        "words": ["personal", "private", "family", "mom", "dad", "friend", "thoughts", "feelings", "life", "self", "mind", "soul", "journal", "diary", "hobbies", "recreation"]
+    },
+    {
+        "tag": "project",
+        "words": ["project", "task", "assignment", "report", "deadline", "milestone", "team", "client", "phase", "development", "plan", "update", "notes", "progress", "completion"]
+    },
+    {
+        "tag": "ideas",
+        "words": ["idea", "ideas", "brainstorm", "concept", "thought", "creative", "inspiration", "innovation", "design", "plan", "strategy", "app", "solution", "proposal", "invention"]
+    },
+    {
+        "tag": "urgent",
+        "words": ["urgent", "important", "critical", "immediate", "emergency", "now", "priority", "crucial", "essential", "must", "needed", "fast", "asap", "due"]
+    },
+    {
+        "tag": "todo",
+        "words": ["todo", "to-do", "list", "tasks", "errands", "chores", "schedule", "plan", "checklist", "agenda", "daily", "weekly", "monthly", "routine", "remember", "don't forget"]
+    },
+    {
+        "tag": "finance",
+        "words": ["finance", "financial", "budget", "money", "invest", "save", "expense", "income", "bill", "debt", "loan", "bank", "credit", "tax", "fund", "economy"]
+    },
+    {
+        "tag": "health",
+        "words": ["health", "healthy", "exercise", "workout", "fitness", "diet", "doctor", "dentist", "appointment", "medicine", "symptoms", "illness", "nutrition", "wellness", "mental", "physical"]
+    },
+    {
+        "tag": "travel",
+        "words": ["travel", "trip", "vacation", "journey", "flight", "hotel", "destination", "packing", "itinerary", "explore", "adventure", "tour", "hike", "roadtrip", "abroad", "getaway"]
+    },
+    {
+        "tag": "recipes",
+        "words": ["recipe", "recipes", "cook", "cooking", "bake", "ingredients", "food", "meal", "dinner", "lunch", "breakfast", "dish", "cuisine", "kitchen", "prep", "bake", "delicious"]
+    },
+    {
+        "tag": "meeting",
+        "words": ["meeting", "agenda", "discussion", "notes", "summary", "minutes", "conference", "call", "schedule", "team", "client", "attendees", "topic", "review", "presentation"]
+    },
+    {
+        "tag": "dev",
+        "words": ["dev", "development", "code", "programming", "software", "bug", "release", "test", "feature", "framework", "api", "database", "git", "repo", "script", "app"]
+    },
+    {
+        "tag": "marketing",
+        "words": ["marketing", "campaign", "ads", "social media", "promotion", "brand", "market", "strategy", "audience", "content", "analytics", "seo", "sales", "business", "pr"]
+    },
+    {
+        "tag": "learning",
+        "words": ["learning", "study", "class", "lecture", "school", "course", "notes", "homework", "education", "topic", "subject", "research", "knowledge", "skill", "understand", "read", "book"]
+    },
+    {
+        "tag": "home",
+        "words": ["home", "house", "apartment", "maintenance", "chores", "cleaning", "decor", "living", "kitchen", "room", "garden", "rent", "mortgage", "appliances", "utilities", "bills"]
+    }
+]
+note_colors = ["yellow", "blue", "green", "pink", "white", "purple"]
+note_priorities = ["low", "medium", "high"]

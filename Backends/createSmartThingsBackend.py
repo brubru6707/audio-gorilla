@@ -4,7 +4,7 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from .fake_data import (location_names, domains, first_and_last_names, user_count, first_names, last_names,
+from fake_data import (location_names, domains, first_and_last_names, user_count, first_names, last_names,
                         room_names, country_codes, device_types, device_capabilities_map, device_statuses,
                         health_statuses, power_sources, manufacturers, locales, timezones, subscription_plans)
 

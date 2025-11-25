@@ -4,7 +4,8 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from .fake_data import note_title_and_content, first_names, last_names, domains, first_and_last_names, user_count
+from .fake_data import (note_title_and_content, first_names, last_names, domains, first_and_last_names, user_count,
+                        common_tags, note_colors, note_priorities)
 
 _user_alias_to_uuid_map = {}
 
@@ -18,71 +19,6 @@ def generate_random_datetime_iso(days_ago_min=0, days_ago_max=365):
     )
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='seconds').replace('+00:00', 'Z')
-
-common_tags = [
-    {
-        "tag": "work",
-        "words": ["work", "job", "career", "office", "business", "company", "employee", "boss", "colleague", "presentation", "report", "professional", "desk", "email", "tasks"]
-    },
-    {
-        "tag": "personal",
-        "words": ["personal", "private", "family", "mom", "dad", "friend", "thoughts", "feelings", "life", "self", "mind", "soul", "journal", "diary", "hobbies", "recreation"]
-    },
-    {
-        "tag": "project",
-        "words": ["project", "task", "assignment", "report", "deadline", "milestone", "team", "client", "phase", "development", "plan", "update", "notes", "progress", "completion"]
-    },
-    {
-        "tag": "ideas",
-        "words": ["idea", "ideas", "brainstorm", "concept", "thought", "creative", "inspiration", "innovation", "design", "plan", "strategy", "app", "solution", "proposal", "invention"]
-    },
-    {
-        "tag": "urgent",
-        "words": ["urgent", "important", "critical", "immediate", "emergency", "now", "priority", "crucial", "essential", "must", "needed", "fast", "asap", "due"]
-    },
-    {
-        "tag": "todo",
-        "words": ["todo", "to-do", "list", "tasks", "errands", "chores", "schedule", "plan", "checklist", "agenda", "daily", "weekly", "monthly", "routine", "remember", "don't forget"]
-    },
-    {
-        "tag": "finance",
-        "words": ["finance", "financial", "budget", "money", "invest", "save", "expense", "income", "bill", "debt", "loan", "bank", "credit", "tax", "fund", "economy"]
-    },
-    {
-        "tag": "health",
-        "words": ["health", "healthy", "exercise", "workout", "fitness", "diet", "doctor", "dentist", "appointment", "medicine", "symptoms", "illness", "nutrition", "wellness", "mental", "physical"]
-    },
-    {
-        "tag": "travel",
-        "words": ["travel", "trip", "vacation", "journey", "flight", "hotel", "destination", "packing", "itinerary", "explore", "adventure", "tour", "hike", "roadtrip", "abroad", "getaway"]
-    },
-    {
-        "tag": "recipes",
-        "words": ["recipe", "recipes", "cook", "cooking", "bake", "ingredients", "food", "meal", "dinner", "lunch", "breakfast", "dish", "cuisine", "kitchen", "prep", "bake", "delicious"]
-    },
-    {
-        "tag": "meeting",
-        "words": ["meeting", "agenda", "discussion", "notes", "summary", "minutes", "conference", "call", "schedule", "team", "client", "attendees", "topic", "review", "presentation"]
-    },
-    {
-        "tag": "dev",
-        "words": ["dev", "development", "code", "programming", "software", "bug", "release", "test", "feature", "framework", "api", "database", "git", "repo", "script", "app"]
-    },
-    {
-        "tag": "marketing",
-        "words": ["marketing", "campaign", "ads", "social media", "promotion", "brand", "market", "strategy", "audience", "content", "analytics", "seo", "sales", "business", "pr"]
-    },
-    {
-        "tag": "learning",
-        "words": ["learning", "study", "class", "lecture", "school", "course", "notes", "homework", "education", "topic", "subject", "research", "knowledge", "skill", "understand", "read", "book"]
-    },
-    {
-        "tag": "home",
-        "words": ["home", "house", "apartment", "maintenance", "chores", "cleaning", "decor", "living", "kitchen", "room", "garden", "rent", "mortgage", "appliances", "utilities", "bills"]
-    }
-]
-note_colors = ["yellow", "blue", "green", "pink", "white", "purple"]
-note_priorities = ["low", "medium", "high"]
 
 def get_note_tags(note):
     all_note_words = set((note['title'] + " " + note['content']).lower().split())

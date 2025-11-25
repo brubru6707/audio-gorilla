@@ -305,8 +305,6 @@ RAW_DEFAULT_STATE = {
     "videos": {
     },
     "playlists": {
-    },
-    "comments": {
     }
 }
 
@@ -586,6 +584,8 @@ for video_id, video_data in DEFAULT_STATE["videos"].items():
 
     possible_commenters = [uid for uid in all_user_uuids if uid != video_data["uploader_id"]] 
     
+    video_category = video_data.get("category", "")
+    
     for _ in range(num_comments_to_add):
         if not possible_commenters:
             break
@@ -593,8 +593,15 @@ for video_id, video_data in DEFAULT_STATE["videos"].items():
         comment_uuid = str(uuid.uuid4())
         author_id = random.choice(possible_commenters)
         
-        # Add comment directly to video's comments dictionary
-        video_data["comments"][author_id] = random.choice(youtube_comments)
+        # Add comment directly to video's comments dictionary using the video's category
+        if video_category in youtube_comments and youtube_comments[video_category]:
+            video_data["comments"][author_id] = random.choice(youtube_comments[video_category])
+        else:
+            # Fallback to any available category if the video's category doesn't have comments
+            available_categories = [cat for cat in youtube_comments.keys() if youtube_comments[cat]]
+            if available_categories:
+                fallback_category = random.choice(available_categories)
+                video_data["comments"][author_id] = random.choice(youtube_comments[fallback_category])
 
 output_filename = 'diverse_youtube_state.json'
 with open(output_filename, 'w') as f:
@@ -604,5 +611,4 @@ print(f"Total number of users: {len(DEFAULT_STATE['users'])}")
 print(f"Total number of channels: {len(DEFAULT_STATE['channels'])}")
 print(f"Total number of videos: {len(DEFAULT_STATE['videos'])}")
 print(f"Total number of playlists: {len(DEFAULT_STATE['playlists'])}")
-print(f"Total number of comments: {len(DEFAULT_STATE['comments'])}")
 print(f"Generated DEFAULT_STATE saved to '{output_filename}'")

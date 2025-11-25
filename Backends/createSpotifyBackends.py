@@ -5,7 +5,7 @@ import random
 import json
 from typing import Dict, Any
 # Assuming fake_data.py contains the necessary lists (first_names, etc.)
-from .fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artist_names, countries, artist_bios, user_count, first_and_last_names
+from fake_data import first_names, last_names, domains, playlist_bios, playlist_titles, artist_names, countries, artist_bios, user_count, first_and_last_names
 
 # --- MAPPING AND STATE INITIALIZATION ---
 _initial_user_email_to_uuid_map = {}
