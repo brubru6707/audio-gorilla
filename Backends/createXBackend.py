@@ -168,29 +168,6 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365 * 5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
-dm_messages = [
-    "Hey, how have you been?",
-    "Did you see that article I sent you?",
-    "What are you up to this weekend?",
-    "Can you help me with something?",
-    "Just wanted to say hi!",
-    "Thinking of you.",
-    "Let's catch up soon.",
-    "Got any recommendations?",
-    "That was hilarious!",
-    "I agree with you.",
-    "Thanks for the help!",
-    "No problem, happy to assist.",
-    "I'll get back to you on that.",
-    "Sounds good!",
-    "See you later!",
-    "Hope you're having a great day.",
-    "I just saw your latest post, amazing!",
-    "Thinking of getting into a new hobby, any suggestions?",
-    "Need to vent for a second...",
-    "Just wanted to share some good news!",
-]
-
 
 RAW_DEFAULT_STATE = {
     "users": {},

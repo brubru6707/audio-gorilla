@@ -4,7 +4,7 @@ import json
 import uuid
 import random
 from typing import Dict, Any
-from fake_data import first_names, last_names, comment_texts, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries, first_and_last_names, user_count, channel_names, channel_bios, channel_categories
+from fake_data import first_names, last_names, youtube_comments, youtube_titles, domains, youtube_comments, youtube_video_descriptions, countries, first_and_last_names, user_count, channel_names, channel_bios, channel_categories
 
 _initial_user_id_map = {}
 _initial_channel_id_map = {}
@@ -594,7 +594,7 @@ for video_id, video_data in DEFAULT_STATE["videos"].items():
         author_id = random.choice(possible_commenters)
         
         # Add comment directly to video's comments dictionary
-        video_data["comments"][author_id] = random.choice(comment_texts)
+        video_data["comments"][author_id] = random.choice(youtube_comments)
 
 output_filename = 'diverse_youtube_state.json'
 with open(output_filename, 'w') as f:

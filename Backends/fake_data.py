@@ -14755,14 +14755,6 @@ youtube_video_descriptions = {
     ]
 }
 
-comment_texts = [
-    "Great video! Very informative.", "Loved this! Subscribed!", "Can't wait for your next upload!",
-    "So helpful, thank you for sharing!", "This made my day! 😂", "What camera do you use?",
-    "Amazing content as always!", "You inspire me so much!", "Could you do a video on X next?",
-    "First!", "Just discovered your channel, instantly hooked!", "Totally agree with you.",
-    "Mind-blowing stuff!", "This is exactly what I needed.", "Thanks for the laugh!"
-]
-
 x_conversations = {
     "conversation_1": [
         ("user_1", "yo u free friday?"),
