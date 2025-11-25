@@ -20803,3 +20803,25 @@ album_types = ["album", "single", "ep", "compilation", "live"]
 card_types = ["Visa", "Mastercard", "Amex", "Discover", "JCB"]
 device_types = ["mobile", "web", "desktop", "smart_speaker", "tablet", "car_audio"]
 languages = ["en", "es", "fr", "de", "jp", "ko", "zh", "pt", "it"]
+file_mimetypes = {
+    "document": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "spreadsheet": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "presentation": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "pdf": "application/pdf",
+    "image_jpeg": "image/jpeg",
+    "image_png": "image/png",
+    "code_py": "text/x-python",
+    "code_js": "application/javascript",
+    "text": "text/plain"
+}
+file_names_base = {
+    "document": ["Report", "Minutes", "Proposal", "Contract", "Draft"],
+    "spreadsheet": ["Budget", "Tracker", "Data Analysis", "Invoice", "Inventory"],
+    "presentation": ["Quarterly Review", "Pitch Deck", "Training", "Strategy"],
+    "pdf": ["Manual", "Ebook", "Whitepaper", "Brochure"],
+    "image_jpeg": ["Photo", "Screenshot", "Design"],
+    "image_png": ["Diagram", "Logo", "Icon"],
+    "code_py": ["script", "model"],
+    "code_js": ["frontend", "backend"],
+    "text": ["Notes", "Log", "Readme"]
+}
