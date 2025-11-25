@@ -5,7 +5,7 @@ import uuid
 import random
 import re
 from typing import Dict, Any
-from fake_data import first_names, last_names, domains, user_count, first_and_last_names
+from fake_data import first_names, last_names, domains, user_count, first_and_last_names, states, card_names, transaction_notes
 
 _initial_user_email_to_uuid_map = {}
 _initial_payment_card_id_map = {}
@@ -226,15 +226,7 @@ def generate_random_iso_timestamp(days_ago_min=0, days_ago_max=365*5):
     dt = datetime.datetime.now(datetime.timezone.utc) - time_offset
     return dt.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
 
-card_names = ["Personal Card", "Work Card", "Travel Card", "Savings Card", "Main Account"]
 billing_cities = ["Orlando", "Miami", "Tampa", "Jacksonville", "Atlanta", "Charlotte", "Nashville", "New Orleans"]
-billing_states = ["FL", "GA", "AL", "NC", "SC", "MS", "TN"]
-transaction_notes = [
-    "Dinner with friends", "Groceries", "Online shopping", "Rent payment",
-    "Coffee break", "Subscription service", "Movie tickets", "Gas refill",
-    "Utilities bill", "Gift for birthday", "Lunch meeting", "Gym membership",
-    "Car maintenance", "Donation", "Book purchase", "Travel expenses"
-]
 notification_messages = {
     "payment_received": ["You received ${amount:.2f} from {sender_name}.", "${sender_name} sent you ${amount:.2f}.", "A payment of ${amount:.2f} arrived from {sender_name}."],
     "payment_sent": ["You sent ${amount:.2f} to {receiver_name}.", "Payment of ${amount:.2f} to {receiver_name} completed.", "Your transaction to {receiver_name} for ${amount:.2f} was successful."],
@@ -298,7 +290,7 @@ for i in range(len(first_and_last_names) + user_count):
             return formatted_card
         
         card_number_fake = generate_fake_card_number(card_type)
-
+        random_state = random.choice(states)
         user_payment_cards[card_uuid] = {
             "id": card_uuid,
             "card_name": f"{random.choice(card_names)} ({card_type})",
@@ -308,7 +300,7 @@ for i in range(len(first_and_last_names) + user_count):
             "expiry_month": expiry_month,
             "is_default": (c_idx == 0),
             "card_type": card_type,
-            "billing_address": f"{random.randint(100, 999)} {random.choice(['Park', 'Lake', 'Main', 'Cedar'])} Ave, {random.choice(billing_cities)}, {random.choice(billing_states)} {random.randint(10000, 99999)}",
+            "billing_address": f"{random.randint(100, 999)} {random.choice(['Park', 'Lake', 'Main', 'Cedar'])} Ave, {random.choice(billing_cities[random_state])}, {random_state} {random.randint(10000, 99999)}",
             "created_at": generate_random_iso_timestamp(days_ago_min=365, days_ago_max=365*3),
             "last_modified": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=90)
         }

@@ -17513,6 +17513,309 @@ states = [
     "West Virginia", "Wisconsin", "Wyoming"
 ]
 
+us_cities = {
+    "Alabama": [
+        "Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa",
+        "Hoover", "Dothan", "Auburn", "Decatur", "Madison",
+        "Florence", "Gadsden", "Vestavia Hills", "Prattville", "Phenix City",
+        "Alabaster", "Bessemer", "Enterprise", "Opelika", "Cullman"
+    ],
+    "Alaska": [
+        "Anchorage", "Fairbanks", "Juneau", "Sitka", "Ketchikan",
+        "Wasilla", "Kenai", "Kodiak", "Palmer", "Bethel",
+        "Homer", "Soldotna", "Unalaska", "Valdez", "Nome",
+        "Petersburg", "Kotzebue", "Seward", "Dillingham", "Cordova"
+    ],
+    "Arizona": [
+        "Phoenix", "Tucson", "Mesa", "Chandler", "Glendale",
+        "Scottsdale", "Gilbert", "Tempe", "Peoria", "Surprise",
+        "Yuma", "Avondale", "Flagstaff", "Goodyear", "Lake Havasu City",
+        "Buckeye", "Casa Grande", "Sierra Vista", "Maricopa", "Bullhead City"
+    ],
+    "Arkansas": [
+        "Little Rock", "Fayetteville", "Fort Smith", "Springdale", "Jonesboro",
+        "North Little Rock", "Conway", "Rogers", "Bentonville", "Pine Bluff",
+        "Hot Springs", "Benton", "Texarkana", "Jacksonville", "Bella Vista",
+        "West Memphis", "Russellville", "Paragould", "Sherwood", "Cabot"
+    ],
+    "California": [
+        "Los Angeles", "San Diego", "San Jose", "San Francisco", "Fresno",
+        "Sacramento", "Long Beach", "Oakland", "Bakersfield", "Anaheim",
+        "Santa Ana", "Riverside", "Stockton", "Irvine", "Chula Vista",
+        "Fremont", "San Bernardino", "Modesto", "Fontana", "Santa Clarita"
+    ],
+    "Colorado": [
+        "Denver", "Colorado Springs", "Aurora", "Fort Collins", "Lakewood",
+        "Thornton", "Arvada", "Westminster", "Pueblo", "Centennial",
+        "Boulder", "Greeley", "Longmont", "Loveland", "Broomfield",
+        "Castle Rock", "Grand Junction", "Commerce City", "Parker", "Littleton"
+    ],
+    "Connecticut": [
+        "Bridgeport", "New Haven", "Stamford", "Hartford", "Waterbury",
+        "Norwalk", "Danbury", "New Britain", "West Hartford", "Bristol",
+        "Meriden", "Milford", "Hamden", "Fairfield", "Enfield",
+        "Southington", "Middletown", "Wallingford", "Norwich", "Torrington"
+    ],
+    "Delaware": [
+        "Wilmington", "Dover", "Newark", "Middletown", "Milford",
+        "Seaford", "Georgetown", "Elsmere", "Smyrna", "New Castle",
+        "Lewes", "Rehoboth Beach", "Claymont", "Pike Creek", "Bear",
+        "Glasgow", "Hockessin", "Brookside", "North Star", "Camden"
+    ],
+    "Florida": [
+        "Jacksonville", "Miami", "Tampa", "Orlando", "St. Petersburg",
+        "Hialeah", "Port St. Lucie", "Tallahassee", "Cape Coral", "Fort Lauderdale",
+        "Pembroke Pines", "Hollywood", "Miramar", "Coral Springs", "Gainesville",
+        "Miami Gardens", "Clearwater", "Palm Bay", "Pompano Beach", "Lakeland"
+    ],
+    "Georgia": [
+        "Atlanta", "Augusta", "Columbus", "Macon", "Savannah",
+        "Athens", "Sandy Springs", "South Fulton", "Roswell", "Johns Creek",
+        "Alpharetta", "Warner Robins", "Marietta", "Valdosta", "Smyrna",
+        "Dunwoody", "Newnan", "Peachtree Corners", "Gainesville", "Mableton"
+    ],
+    "Hawaii": [
+        "Honolulu", "Pearl City", "Hilo", "Kailua", "Waipahu",
+        "Kaneohe", "Mililani Town", "Kahului", "Ewa Gentry", "Kihei",
+        "Kapolei", "Makakilo", "Wahiawa", "Lihue", "Wailuku",
+        "Schofield Barracks", "Waihee-Waiehu", "Kapaa", "Waianae", "Village Park"
+    ],
+    "Idaho": [
+        "Boise", "Meridian", "Nampa", "Idaho Falls", "Pocatello",
+        "Caldwell", "Coeur d'Alene", "Twin Falls", "Lewiston", "Rexburg",
+        "Post Falls", "Moscow", "Eagle", "Kuna", "Ammon",
+        "Hailey", "Mountain Home", "Jerome", "Burley", "Chubbuck"
+    ],
+    "Illinois": [
+        "Chicago", "Aurora", "Joliet", "Naperville", "Rockford",
+        "Springfield", "Peoria", "Elgin", "Waukegan", "Cicero",
+        "Champaign", "Bloomington", "Evanston", "Schaumburg", "Bolingbrook",
+        "Palatine", "Skokie", "Des Plaines", "Orland Park", "Tinley Park"
+    ],
+    "Indiana": [
+        "Indianapolis", "Fort Wayne", "Evansville", "South Bend", "Carmel",
+        "Bloomington", "Fishers", "Hammond", "Gary", "Lafayette",
+        "Muncie", "Terre Haute", "Kokomo", "Greenwood", "Noblesville",
+        "Anderson", "Elkhart", "Mishawaka", "Lawrence", "Jeffersonville"
+    ],
+    "Iowa": [
+        "Des Moines", "Cedar Rapids", "Davenport", "Sioux City", "Iowa City",
+        "Waterloo", "Ames", "Council Bluffs", "Dubuque", "West Des Moines",
+        "Ankeny", "Urbandale", "Cedar Falls", "Marion", "Bettendorf",
+        "Mason City", "Marshalltown", "Waukee", "Clive", "Johnston"
+    ],
+    "Kansas": [
+        "Wichita", "Overland Park", "Kansas City", "Olathe", "Topeka",
+        "Lawrence", "Shawnee", "Lenexa", "Manhattan", "Salina",
+        "Hutchinson", "Leavenworth", "Leawood", "Garden City", "Derby",
+        "Emporia", "Junction City", "Dodge City", "Great Bend", "Newton"
+    ],
+    "Kentucky": [
+        "Louisville", "Lexington", "Bowling Green", "Owensboro", "Covington",
+        "Richmond", "Georgetown", "Florence", "Nicholasville", "Elizabethtown",
+        "Henderson", "Paducah", "Frankfort", "Murray", "Radcliff",
+        "Ashland", "Hopkinsville", "Erlanger", "Independence", "Jeffersontown"
+    ],
+    "Louisiana": [
+        "New Orleans", "Baton Rouge", "Shreveport", "Lafayette", "Lake Charles",
+        "Bossier City", "Kenner", "Monroe", "Houma", "Alexandria",
+        "Metairie", "Hammond", "Terrytown", "Central", "Slidell",
+        "New Iberia", "Opelousas", "Ruston", "Gretna", "Harvey"
+    ],
+    "Maine": [
+        "Portland", "Lewiston", "Bangor", "South Portland", "Auburn",
+        "Biddeford", "Sanford", "Saco", "Westbrook", "Augusta",
+        "Waterville", "Presque Isle", "Brewer", "Bath", "Ellsworth",
+        "Caribou", "Gardiner", "Old Town", "Scarborough", "Kennebunk"
+    ],
+    "Maryland": [
+        "Baltimore", "Columbia", "Germantown", "Silver Spring", "Waldorf",
+        "Frederick", "Glen Burnie", "Rockville", "Gaithersburg", "Ellicott City",
+        "Dundalk", "Bethesda", "Laurel", "Bowie", "Towson",
+        "Aspen Hill", "Wheaton", "Bel Air South", "Severn", "North Bethesda"
+    ],
+    "Massachusetts": [
+        "Boston", "Worcester", "Springfield", "Cambridge", "Lowell",
+        "Brockton", "Quincy", "Lynn", "New Bedford", "Fall River",
+        "Newton", "Lawrence", "Somerville", "Waltham", "Haverhill",
+        "Malden", "Revere", "Plymouth", "Medford", "Taunton"
+    ],
+    "Michigan": [
+        "Detroit", "Grand Rapids", "Warren", "Sterling Heights", "Ann Arbor",
+        "Lansing", "Dearborn", "Clinton Township", "Canton Township", "Livonia",
+        "Troy", "Westland", "Farmington Hills", "Kalamazoo", "Wyoming",
+        "Southfield", "Rochester Hills", "Taylor", "Pontiac", "St. Clair Shores"
+    ],
+    "Minnesota": [
+        "Minneapolis", "St. Paul", "Rochester", "Duluth", "Bloomington",
+        "Brooklyn Park", "Plymouth", "St. Cloud", "Woodbury", "Eagan",
+        "Eden Prairie", "Coon Rapids", "Burnsville", "Maple Grove", "Blaine",
+        "Lakeville", "Minnetonka", "Apple Valley", "Edina", "St. Louis Park"
+    ],
+    "Mississippi": [
+        "Jackson", "Gulfport", "Southaven", "Hattiesburg", "Biloxi",
+        "Meridian", "Tupelo", "Greenville", "Olive Branch", "Horn Lake",
+        "Clarksdale", "Pearl", "Madison", "Starkville", "Vicksburg",
+        "Laurel", "Ridgeland", "Gautier", "Corinth", "Ocean Springs"
+    ],
+    "Missouri": [
+        "Kansas City", "St. Louis", "Springfield", "Columbia", "Independence",
+        "Lee's Summit", "O'Fallon", "St. Joseph", "St. Charles", "St. Peters",
+        "Blue Springs", "Florissant", "Joplin", "Chesterfield", "Jefferson City",
+        "Wentzville", "Cape Girardeau", "Wildwood", "University City", "Ballwin"
+    ],
+    "Montana": [
+        "Billings", "Missoula", "Great Falls", "Bozeman", "Butte",
+        "Helena", "Kalispell", "Havre", "Anaconda", "Livingston",
+        "Miles City", "Laurel", "Whitefish", "Belgrade", "Polson",
+        "Sidney", "Columbia Falls", "Lewistown", "Glasgow", "Glendive"
+    ],
+    "Nebraska": [
+        "Omaha", "Lincoln", "Bellevue", "Grand Island", "Kearney",
+        "Fremont", "Hastings", "North Platte", "Norfolk", "Columbus",
+        "Papillion", "La Vista", "Gering", "South Sioux City", "Scottsbluff",
+        "Lexington", "Alliance", "Blair", "York", "McCook"
+    ],
+    "Nevada": [
+        "Las Vegas", "Henderson", "Reno", "North Las Vegas", "Sparks",
+        "Carson City", "Fernley", "Elko", "Mesquite", "Boulder City",
+        "Lovelock", "Fallon", "Winnemucca", "Gardnerville Ranchos", "Sunrise Manor",
+        "Paradise", "Spring Valley", "Enterprise", "Whitney", "Pahrump"
+    ],
+    "New Hampshire": [
+        "Manchester", "Nashua", "Concord", "Derry", "Dover",
+        "Rochester", "Salem", "Merrimack", "Londonderry", "Hudson",
+        "Keene", "Portsmouth", "Laconia", "Bedford", "Lebanon",
+        "Claremont", "Exeter", "Hampton", "Milford", "Windham"
+    ],
+    "New Jersey": [
+        "Newark", "Jersey City", "Paterson", "Elizabeth", "Toms River",
+        "Clifton", "Trenton", "Camden", "Passaic", "Union City",
+        "Bayonne", "East Orange", "Vineland", "New Brunswick", "Hackensack",
+        "Perth Amboy", "Old Bridge", "Plainfield", "Edison", "Township of Hamilton"
+    ],
+    "New Mexico": [
+        "Albuquerque", "Las Cruces", "Rio Rancho", "Santa Fe", "Roswell",
+        "Farmington", "Clovis", "Hobbs", "South Valley", "Alamogordo",
+        "Carlsbad", "Gallup", "Los Lunas", "Deming", "Las Vegas",
+        "Ruidoso", "Espanola", "Corrales", "Silver City", "Bernalillo"
+    ],
+    "New York": [
+        "New York City", "Buffalo", "Rochester", "Yonkers", "Syracuse",
+        "Albany", "New Rochelle", "Mount Vernon", "Schenectady", "Utica",
+        "White Plains", "Hempstead", "Troy", "Niagara Falls", "Binghamton",
+        "Freeport", "Lindenhurst", "Valley Stream", "Long Beach", "Poughkeepsie"
+    ],
+    "North Carolina": [
+        "Charlotte", "Raleigh", "Greensboro", "Durham", "Winston-Salem",
+        "Fayetteville", "Cary", "Wilmington", "High Point", "Concord",
+        "Asheville", "Greenville", "Gastonia", "Jacksonville", "Apex",
+        "Huntersville", "Chapel Hill", "Rocky Mount", "Burlington", "Wilson"
+    ],
+    "North Dakota": [
+        "Fargo", "Bismarck", "Grand Forks", "Minot", "West Fargo",
+        "Dickinson", "Mandan", "Williston", "Jamestown", "Wahpeton",
+        "Devils Lake", "Valley City", "Garrison", "Bottineau", "Casselton",
+        "Lisbon", "New Rockford", "Rugby", "Beulah", "Tioga"
+    ],
+    "Ohio": [
+        "Columbus", "Cleveland", "Cincinnati", "Toledo", "Akron",
+        "Dayton", "Parma", "Canton", "Youngstown", "Lorain",
+        "Hamilton", "Springfield", "Kettering", "Elyria", "Lakewood",
+        "Middletown", "Cuyahoga Falls", "Euclid", "Newark", "Mentor"
+    ],
+    "Oklahoma": [
+        "Oklahoma City", "Tulsa", "Norman", "Broken Arrow", "Edmond",
+        "Lawton", "Moore", "Midwest City", "Enid", "Stillwater",
+        "Muskogee", "Bartlesville", "Shawnee", "Bixby", "Ardmore",
+        "Ponca City", "Del City", "Owasso", "Duncan", "Yukon"
+    ],
+    "Oregon": [
+        "Portland", "Salem", "Eugene", "Gresham", "Hillsboro",
+        "Beaverton", "Bend", "Medford", "Springfield", "Corvallis",
+        "Albany", "Tigard", "Lake Oswego", "Keizer", "Grants Pass",
+        "Oregon City", "McMinnville", "Redmond", "Troutdale", "Forest Grove"
+    ],
+    "Pennsylvania": [
+        "Philadelphia", "Pittsburgh", "Allentown", "Erie", "Reading",
+        "Scranton", "Bethlehem", "Lancaster", "Harrisburg", "York",
+        "Wilkes-Barre", "Altoona", "State College", "Norristown", "Chester",
+        "Bethel Park", "Havertown", "Drexel Hill", "Monroeville", "Mount Lebanon"
+    ],
+    "Rhode Island": [
+        "Providence", "Warwick", "Cranston", "Pawtucket", "East Providence",
+        "Woonsocket", "Newport", "Central Falls", "North Providence", "Johnston",
+        "Westerly", "Bristol", "Tiverton", "Cumberland", "Coventry",
+        "Lincoln", "North Kingstown", "Middletown", "Portsmouth", "Smithfield"
+    ],
+    "South Carolina": [
+        "Charleston", "Columbia", "North Charleston", "Mount Pleasant", "Rock Hill",
+        "Greenville", "Summerville", "Goose Creek", "Hilton Head Island", "Florence",
+        "Spartanburg", "Sumter", "Myrtle Beach", "Anderson", "Greer",
+        "Ladson", "St. Andrews", "Socastee", "Hanahan", "Lexington"
+    ],
+    "South Dakota": [
+        "Sioux Falls", "Rapid City", "Aberdeen", "Brookings", "Watertown",
+        "Mitchell", "Yankton", "Pierre", "Huron", "Spearfish",
+        "Brandon", "Vermillion", "Sturgis", "Harrisburg", "Box Elder",
+        "Belle Fourche", "Hot Springs", "Tea", "Madison", "Dell Rapids"
+    ],
+    "Tennessee": [
+        "Nashville", "Memphis", "Knoxville", "Chattanooga", "Clarksville",
+        "Murfreesboro", "Franklin", "Johnson City", "Jackson", "Hendersonville",
+        "Bartlett", "Columbia", "Smyrna", "Spring Hill", "La Vergne",
+        "Gallatin", "Cleveland", "Brentwood", "Maryville", "Farragut"
+    ],
+    "Texas": [
+        "Houston", "San Antonio", "Dallas", "Austin", "Fort Worth",
+        "El Paso", "Arlington", "Corpus Christi", "Plano", "Laredo",
+        "Lubbock", "Garland", "Irving", "Amarillo", "Grand Prairie",
+        "Frisco", "McKinney", "Killeen", "Denton", "Waco"
+    ],
+    "Utah": [
+        "Salt Lake City", "West Valley City", "Provo", "West Jordan", "Orem",
+        "Sandy", "St. George", "Ogden", "Layton", "South Jordan",
+        "Lehi", "Taylorsville", "Logan", "Murray", "Draper",
+        "Riverton", "Bountiful", "Spanish Fork", "Pleasant Grove", "Cedar City"
+    ],
+    "Vermont": [
+        "Burlington", "Essex Junction", "South Burlington", "Colchester", "Rutland",
+        "Bennington", "Brattleboro", "Milton", "Hartford", "Middlebury",
+        "St. Albans", "Williston", "Winooski", "Barre", "Montpelier",
+        "Shelburne", "Swanton", "St. Johnsbury", "Derby", "Vergennes"
+    ],
+    "Virginia": [
+        "Virginia Beach", "Chesapeake", "Norfolk", "Richmond", "Newport News",
+        "Alexandria", "Hampton", "Roanoke", "Portsmouth", "Suffolk",
+        "Lynchburg", "Harrisonburg", "Leesburg", "Charlottesville", "Blacksburg",
+        "Danville", "Manassas", "Fairfax", "Petersburg", "Winchester"
+    ],
+    "Washington": [
+        "Seattle", "Spokane", "Tacoma", "Vancouver", "Bellevue",
+        "Kent", "Everett", "Renton", "Federal Way", "Yakima",
+        "Bellingham", "Auburn", "Marysville", "Pasco", "Lakewood",
+        "Redmond", "Sammamish", "Kirkland", "Richland", "Bremerton"
+    ],
+    "West Virginia": [
+        "Charleston", "Huntington", "Morgantown", "Parkersburg", "Wheeling",
+        "Weirton", "Fairmont", "Beckley", "Martinsburg", "Clarksburg",
+        "Teays Valley", "South Charleston", "Vienna", "St. Albans", "Nitro",
+        "Hurricane", "Oak Hill", "Dunbar", "Princeton", "Bluefield"
+    ],
+    "Wisconsin": [
+        "Milwaukee", "Madison", "Green Bay", "Kenosha", "Racine",
+        "Appleton", "Waukesha", "Oshkosh", "Eau Claire", "Janesville",
+        "West Allis", "La Crosse", "Sheboygan", "Fond du Lac", "Wausau",
+        "Brookfield", "New Berlin", "Beloit", "Greenfield", "Franklin"
+    ],
+    "Wyoming": [
+        "Cheyenne", "Casper", "Gillette", "Laramie", "Rock Springs",
+        "Sheridan", "Evanston", "Green River", "Cody", "Rawlins",
+        "Riverton", "Jackson", "Powell", "Lander", "Torrington",
+        "Worland", "Douglas", "Newcastle", "Pinedale", "Buffalo"
+    ]
+}
+
 countries = [
     "Afghanistan", "Albania", "Algeria", "Argentina", "Australia",
     "Austria", "Bangladesh", "Belarus", "Belgium", "Bolivia", "Brazil",
@@ -19926,3 +20229,93 @@ tesla_superchargers = [
     {"name": "Tesla Supercharger - Anchorage Dimond Center", "latitude": 61.1389, "longitude": -149.8283, "address": "800 E Dimond Blvd, Anchorage, AK 99515", "total_stalls": 6},
     {"name": "Tesla Supercharger - Honolulu Ala Moana", "latitude": 21.2917, "longitude": -157.8433, "address": "1450 Ala Moana Blvd, Honolulu, HI 96814", "total_stalls": 8}
 ]
+
+transaction_notes = [
+    "Dinner with friends", "groceries", "RENT IS DUE", "Coffee ☕", 
+    "thx for the ride!", "Movie tix from last week", "GAS MONEY",
+    "utilities", "Happy Birthday! 🎂", "lunch", "Gym membership split",
+    "car stuff", "donation for charity", "Books", "trip expenses",
+    "Pizza party!", "UBER HOME", "Thanks bro", "concert tickets!!",
+    "wedding gift", "Drinks last night lol", "fantasy football winnings",
+    "splitting the bill", "Hotel room", "thanks!!", "airbnb",
+    "groceries from costco", "Venmo me back when u can", "tacos 🌮",
+    "Your half of the check", "URGENT NEED $ BACK", "Netflix account",
+    "spotify premium", "dog sitting", "fixing ur computer",
+    "Lawn mowing service", "thanks for dinner", "IOU from poker night",
+    "Gas for road trip", "Concert tix face value", "ELECTRICITY BILL",
+    "Internet this month", "Phone bill ur share", "Parking ticket split",
+    "Thanks for covering me", "breakfast", "Late night snacks",
+    "Bday present for mom", "Secret santa", "Office supplies",
+    "Storage unit monthly", "Disney tickets", "souvenirs",
+    "Vet bill split", "Moving help ty", "Paint supplies",
+    "tools i borrowed", "Game night snacks", "BBQ stuff",
+    "Beach trip expenses", "Ski pass", "Equipment rental",
+    "Textbooks", "Study group food", "Lab fees",
+    "Event tickets resale", "Hair appt", "Nails 💅",
+    "Tattoo deposit", "Piercing", "Barber",
+    "Cat food", "Dog toys", "Fish tank supplies",
+    "Plant pots", "Garden seeds", "Mulch delivery",
+    "Painting class", "Yoga retreat", "Massage therapy",
+    "Chiropractor", "Dental cleaning", "Eye exam",
+    "Prescription pickup", "Vitamins", "First aid kit",
+    "bubble tea", "FINALLY PAYING U BACK", "sushi dinner 🍣",
+    "laundry quarters", "Tolls from yesterday", "bike repair",
+    "Steam game we bought", "minecraft realm", "roblox",
+    "fortnite skins lmao", "Apple Music family plan", "icloud storage",
+    "hulu + disney bundle", "HBO Max account", "paramount plus",
+    "Peacock subscription", "crunchyroll anime", "Vrbo cleaning fee",
+    "damage deposit back", "Security deposit return", "Last months rent",
+    "AC repair split", "Plumber bill", "Electrician费用",
+    "Window cleaning", "Gutter service", "Pest control",
+    "HOA dues ur part", "Property tax share", "homeowners insurance",
+    "Car insurance this month", "Health insurance premium", "Life insurance",
+    "Dental insurance", "Vision coverage", "Pet insurance for fluffy",
+    "April rent", "May RENT", "june rent sorry its late",
+    "JULY RENT", "August rent finally", "September rent on time!",
+    "Brunch yesterday", "Mimosas 🥂", "bottomless mimosas",
+    "Wine tasting tour", "Brewery hop", "Distillery tickets",
+    "Club cover charge", "Bar tab from sat", "drinks at happy hour",
+    "Karaoke room rental", "Bowling alley", "Mini golf",
+    "Escape room", "Laser tag", "Go karts",
+    "Paintball session", "Axe throwing", "Trampoline park",
+    "Rock climbing gym", "Ice skating", "Roller skating",
+    "Comedy show tix", "Magic show", "Circus tickets",
+    "Festival wristband", "Rave ticket", "EDM concert",
+    "Country concert", "Rock show", "Jazz club cover",
+    "Symphony tickets", "Opera house", "Ballet show",
+    "Broadway musical", "Theater production", "Improv show",
+    "Art museum entry", "Science center", "Aquarium visit",
+    "Zoo admission", "Theme park fast pass", "Water park day",
+    "Camping fees", "State park permit", "National park pass",
+    "Fishing license split", "Hunting permit", "Boat rental",
+    "Kayak rental", "Paddleboard", "Jet ski hour",
+    "Scuba diving lesson", "Snorkeling gear", "Surfboard rental",
+    "Snowboard rental", "Ski lift ticket", "Snow tube session",
+    "Ice fishing shanty", "ATV tour", "Helicopter ride",
+    "Hot air balloon", "Skydiving deposit", "Bungee jump",
+    "Ziplining adventure", "Parasailing", "Hang gliding",
+    "Motorcycle rental", "Uber eats order", "doordash split",
+    "grubhub delivery", "Postmates fee", "instacart tip",
+    "Amazon fresh", "Whole foods delivery", "target order",
+    "Chewy dog food", "PetSmart grooming", "vet emergency visit",
+    "Animal hospital bill", "Pet boarding", "Dog walker this week",
+    "Cat sitter", "Fish tank cleaning", "Horse boarding",
+    "Farrier service", "Saddle repair", "riding lessons",
+    "Piano lessons", "Guitar lessons", "Drum lessons",
+    "Voice coaching", "Dance classes", "Ballet lessons",
+    "Martial arts class", "Boxing gym", "CrossFit membership",
+    "Personal trainer", "Nutritionist consult", "Therapy session",
+    "Couples counseling", "Life coach meeting", "Career coaching",
+    "Resume service", "LinkedIn photo", "Headshots professional",
+    "Passport photos", "Passport renewal", "Visa application fee",
+    "TSA precheck", "Global entry", "Airport parking",
+    "Long term parking", "Valet tip", "Car wash detail",
+    "Oil change", "Tire rotation", "Brake pads",
+    "New tires", "Transmission fluid", "Coolant flush",
+    "Battery replacement", "Alternator repair", "Starter motor",
+    "Windshield chip fix", "Dent removal", "Scratch buffing",
+    "Detailing service", "Ceramic coating", "Window tinting",
+    "Roof rack install", "Hitch installation", "Dash cam"
+]
+
+card_names = ["Personal Card", "Work Card", "Travel Card", "Savings Card", "Main Account"]

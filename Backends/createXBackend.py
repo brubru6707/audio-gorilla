@@ -280,18 +280,21 @@ for i in range(num_posts_to_add):
     num_reposts = random.choices([0, 1, 2, 3], weights=[0.6, 0.2, 0.1, 0.1], k=1)[0]
     num_replies = random.choices([0, 1, 2, 3], weights=[0.5, 0.25, 0.15, 0.1], k=1)[0]
 
+    # Generate reposts (users who reposted this post)
+    possible_reposters = [uid for uid in all_user_uuids if uid != author_id]
+    reposts = random.sample(possible_reposters, min(num_reposts, len(possible_reposters)))
+
     post_data = {
         "id": post_uuid,
         "author_id": author_id,
         "text": random.choice(post_texts),
         "created_at": created_at,
         "likes": likes,
-        "reposts": [],
-        "replies": [],
+        "reposts": reposts,
         "metrics": {
             "views": random.randint(10, 2000),
             "likes": len(likes),
-            "reposts": num_reposts,
+            "reposts": len(reposts),
             "replies": num_replies,
         },
     }
@@ -344,21 +347,6 @@ for i in range(num_dm_convs_to_add):
                     "sender_id": sender_id,
                     "text": text,
                     "timestamp": msg_timestamp,
-                }
-            )
-    else:
-        # Fallback to random messages if conversation not found
-        num_messages = random.randint(2, 15)
-        messages = []
-        for m_idx in range(num_messages):
-            sender_id = random.choice([p1_id, p2_id])
-            timestamp = generate_random_iso_timestamp(days_ago_min=0, days_ago_max=30)
-            messages.append(
-                {
-                    "id": str(uuid.uuid4()),
-                    "sender_id": sender_id,
-                    "text": random.choice(dm_messages),
-                    "timestamp": timestamp,
                 }
             )
 
