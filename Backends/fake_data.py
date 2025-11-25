@@ -20319,3 +20319,41 @@ transaction_notes = [
 ]
 
 card_names = ["Personal Card", "Work Card", "Travel Card", "Savings Card", "Main Account"]
+
+room_names = [
+    "Living Room", "Kitchen", "Bedroom", "Bathroom", "Hallway", "Garage", "Dining Room", "Kids Room", "Guest Room", "Patio", "Office",
+    "Master Bedroom", "Master Bathroom", "Family Room", "Game Room", "Home Theater", "Library", "Study", "Den", "Sunroom", "Laundry Room",
+    "Mudroom", "Pantry", "Walk-in Closet", "Attic", "Basement", "Gym", "Yoga Room", "Music Room", "Art Studio", "Craft Room",
+    "Workshop", "Tool Room", "Wine Cellar", "Home Bar", "Nursery", "Playroom", "Teen Room", "Guest Bedroom", "Guest Bathroom", "Powder Room",
+    "Utility Room", "Storage Room", "Foyer", "Entryway", "Sitting Room", "Breakfast Nook", "Butler's Pantry", "Conservatory", "Solarium", "Balcony",
+    "Deck", "Terrace", "Pool House", "Cabana", "Sauna", "Steam Room", "Home Spa", "Media Room", "Recording Studio", "Home Office", "Server Room"
+]
+
+country_codes = [
+    "US", "CA", "GB", "MX", "DE", "JP", "FR", "IT", "ES", "AU", "BR", "AR", "IN", "CN", "RU", "KR",
+    "NL", "SE", "NO", "DK", "FI", "PL", "BE", "AT", "CH", "PT", "GR", "IE", "NZ", "SG", "HK", "TW",
+    "MY", "TH", "ID", "PH", "VN", "ZA", "EG", "NG", "KE", "SA", "AE", "IL", "TR", "CZ", "HU", "RO",
+    "CL", "CO", "PE", "VE", "UY", "CR", "PA", "IS", "LU"
+]
+
+device_types = ["light", "thermostat", "lock", "motionSensor", "contactSensor", "camera", "smartPlug", "speaker", "waterLeakSensor", "garageDoorOpener", "fan"]
+device_capabilities_map = {
+    "light": ["switch", "level", "colorTemperature", "colorControl"],
+    "thermostat": ["temperatureMeasurement", "thermostatMode", "thermostatFanMode", "relativeHumidityMeasurement"],
+    "lock": ["lock", "battery"],
+    "motionSensor": ["motionSensor", "battery"],
+    "contactSensor": ["contactSensor", "battery"],
+    "camera": ["imageCapture", "motionSensor"],
+    "smartPlug": ["switch", "powerMeter"],
+    "speaker": ["audioVolume", "mediaPlayback"],
+    "waterLeakSensor": ["waterSensor", "battery"],
+    "garageDoorOpener": ["garageDoorControl", "contactSensor"],
+    "fan": ["switch", "fanSpeed"]
+}
+device_statuses = ["online", "offline"]
+health_statuses = ["healthy", "degraded", "error"]
+power_sources = ["battery", "mains", "solar"]
+manufacturers = ["SmartCorp", "HomeLink", "EvoTech", "ZenithIoT", "AquaSmart", "BrightFuture", "SecureHome"]
+locales = ["en-US", "es-MX", "fr-CA", "en-GB", "de-DE", "ja-JP"]
+timezones = ["America/New_York", "America/Los_Angeles", "America/Chicago", "Europe/London", "Asia/Tokyo", "Europe/Berlin", "Australia/Sydney"]
+subscription_plans = ["Free Tier", "Basic Plan", "Premium Plan", "Family Plan", "Business Tier"]

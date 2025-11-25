@@ -4,7 +4,9 @@ import uuid
 import random
 import json
 from typing import Dict, Any
-from .fake_data import location_names, domains, first_and_last_names, user_count
+from .fake_data import (location_names, domains, first_and_last_names, user_count, first_names, last_names,
+                        room_names, country_codes, device_types, device_capabilities_map, device_statuses,
+                        health_statuses, power_sources, manufacturers, locales, timezones, subscription_plans)
 
 current_time_edt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=4)
 
@@ -264,33 +266,6 @@ DEFAULT_STATE: Dict[str, Any] = {
 for email, first_name, last_name, smartthings_data in users_initial_data:
     user_id, user_data = _create_user_data(email, first_name, last_name, smartthings_data)
     DEFAULT_STATE["users"][user_id] = user_data
-
-first_names = ["Sophia", "Liam", "Olivia", "Noah", "Ava", "Jackson", "Isabella", "Aiden", "Mia", "Lucas", "Harper", "Ethan", "Evelyn", "Mason", "Abigail", "Caleb", "Charlotte", "Logan", "Amelia", "Michael", "Ella", "Jacob", "Aria", "Daniel", "Chloe", "Samuel", "Grace", "David", "Victoria", "Joseph", "Penelope", "Matthew", "Riley", "Benjamin", "Layla", "Andrew", "Lily", "Gabriel", "Natalie", "Christopher", "Hannah", "James", "Zoe", "Ryan", "Scarlett", "Nathan", "Addison", "Christian", "Aubrey", "Joshua"]
-last_names = ["Chen", "Kim", "Singh", "Lopez", "Garcia", "Nguyen", "Davis", "Jackson", "Harris", "White", "Moore", "Clark", "Lewis", "Baker", "Adams", "Hill", "Nelson", "Carter", "Mitchell", "Roberts", "Phillips", "Campbell", "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan", "Bell", "Murphy", "Bailey", "Rivera", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Torres", "Peterson", "Gray", "Ramirez", "James", "Watson", "Brooks", "Kelly", "Sanders"]
-email_domains = ["smart-home.com", "iotcentral.net", "connected-living.org", "automata.co", "techtopia.app"]
-room_names = ["Living Room", "Kitchen", "Bedroom", "Bathroom", "Hallway", "Garage", "Dining Room", "Kids Room", "Guest Room", "Patio", "Office"]
-device_types = ["light", "thermostat", "lock", "motionSensor", "contactSensor", "camera", "smartPlug", "speaker", "waterLeakSensor", "garageDoorOpener", "fan"]
-device_capabilities_map = {
-    "light": ["switch", "level", "colorTemperature", "colorControl"],
-    "thermostat": ["temperatureMeasurement", "thermostatMode", "thermostatFanMode", "relativeHumidityMeasurement"],
-    "lock": ["lock", "battery"],
-    "motionSensor": ["motionSensor", "battery"],
-    "contactSensor": ["contactSensor", "battery"],
-    "camera": ["imageCapture", "motionSensor"],
-    "smartPlug": ["switch", "powerMeter"],
-    "speaker": ["audioVolume", "mediaPlayback"],
-    "waterLeakSensor": ["waterSensor", "battery"],
-    "garageDoorOpener": ["garageDoorControl", "contactSensor"],
-    "fan": ["switch", "fanSpeed"]
-}
-device_statuses = ["online", "offline"]
-health_statuses = ["healthy", "degraded", "error"]
-power_sources = ["battery", "mains", "solar"]
-manufacturers = ["SmartCorp", "HomeLink", "EvoTech", "ZenithIoT", "AquaSmart", "BrightFuture", "SecureHome"]
-locales = ["en-US", "es-MX", "fr-CA", "en-GB", "de-DE", "ja-JP"]
-country_codes = ["US", "CA", "GB", "MX", "DE", "JP"]
-timezones = ["America/New_York", "America/Los_Angeles", "America/Chicago", "Europe/London", "Asia/Tokyo", "Europe/Berlin", "Australia/Sydney"]
-subscription_plans = ["Free Tier", "Basic Plan", "Premium Plan", "Family Plan", "Business Tier"]
 
 def generate_user(first_name=None, last_name=None, email=None, balance=None):
     first = random.choice(first_names) if first_name is None else first_name
