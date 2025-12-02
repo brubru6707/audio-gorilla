@@ -25,6 +25,9 @@ scripts_to_run = [
     "createYouTubeBackend.py",
 ]
 
+# NOTE: For more granular control (updating specific sections instead of replacing entire backends),
+# use the updateBackends.py script instead of this one.
+
 def run_scripts():
     print("--- Starting script execution ---")
     print(f"Running from directory: {backends_dir}")

@@ -124,8 +124,7 @@ class CommuniLinkApis:
             return {"login_status": False, "message": "Invalid email or password."}
         
         user_data = self.users[user_id]
-        # Simple password verification (in production, use proper hashing)
-        password_hash = str(hash(password))[-48:]  # Match hash format
+        password_hash = str(hash(password))[-48:]
         if user_data.get("password_hash") != password_hash:
             return {"login_status": False, "message": "Invalid email or password."}
         
@@ -185,7 +184,7 @@ class CommuniLinkApis:
         
         # Create new user
         new_user_id = self._generate_unique_id()
-        password_hash = str(hash(password))[-48:]  # Simple hash (in production, use proper hashing)
+        password_hash = str(hash(password))[-48:]
         
         self.users[new_user_id] = {
             "user_id": new_user_id,

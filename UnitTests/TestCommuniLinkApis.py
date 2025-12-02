@@ -1,6 +1,5 @@
 import unittest
 import sys
-import time
 from pathlib import Path
 
 # Add parent directory to path
@@ -206,7 +205,6 @@ class TestCommuniLinkApis(unittest.TestCase):
         result = self.communilink_api.reset_data()
         self.assertIn("success", result)
         self.assertTrue(result["status"])
-
 
 if __name__ == '__main__':
     unittest.main(argv=['first-arg-is-ignored'], exit=False)

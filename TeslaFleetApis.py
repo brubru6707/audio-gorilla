@@ -8,6 +8,10 @@ from UnitTests.test_data_helper import BackendDataLoader
 
 DEFAULT_STATE = BackendDataLoader.get_teslafleet_data()
 
+class User:
+    def __init__(self, email: str):
+        self.email = email
+
 class TeslaFleetApis:
     """
     An API class for simulating Tesla Fleet API operations.

@@ -1,17 +1,17 @@
 {
     "Multistep": [{
-        "prompt": "Buy me a __ from Amazon and ship it to my work address.",
+        "prompt": "Buy me the first waterproof JBL Bluetooth Speaker you find from Amazon and ship it to my work address.",
         "context": {
-            "user_id": "user_id_1"
+            "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
         },
-        "ground_truth": ["add_to_cart('user_id_1', 'product_id_1', 1)", "checkout('user_id_1', 'home_address_1', 'payment_card_id_1')"]
-    },
+        "ground_truth": ["login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_to_cart('a6a473ee-2dd0-494b-a94b-531d72264b9d', 'a57803bf-db19-4fbd-96a3-2afd19e939b0', 1)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
+    }, 
     {
-        "prompt": "I want to order a __ and a __ from Amazon. Ship them to my home address.",
+        "prompt": "Please add my new Vacation Home address to my Amazon: 778 Brown St, Providence, Rhode Island, 02903.",
         "context": {
-            "user_id": "user_id_2"
+            "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
         },
-        "ground_truth": ["add_to_cart('user_id_2', 'product_id_2', 1)", "add_to_cart('user_id_2', 'product_id_3', 1)", "checkout('user_id_2', 'work_address_1', 'payment_card_id_2')"]
+        "ground_truth": ["login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "add_address('Vacation Home', '778 Brown St','Providence', 'Rhode Island', 'USA', '02903')"]
     },
     {
         "prompt": "Start a new monthly Prime Subscription for me.",

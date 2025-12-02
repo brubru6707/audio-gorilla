@@ -8,6 +8,10 @@ from state_loader import load_default_state
 
 DEFAULT_STATE = load_default_state("VenmoApis")
 
+class User:
+    def __init__(self, email: str):
+        self.email = email
+
 class VenmoApis:
     """
     An API class for simulating Venmo operations.

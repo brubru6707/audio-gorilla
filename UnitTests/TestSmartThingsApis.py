@@ -124,8 +124,8 @@ class TestSmartThingsApis(unittest.TestCase):
 
         # Verify the change
         status = self.smart_things_api.get_device_status(self.first_device_id, user_id=self.user_id)
-        if "switch" in status["component_status"]:
-            self.assertEqual(status["component_status"]["switch"]["switch"], "off")
+        if "main" in status["component_status"] and "switch" in status["component_status"]["main"]:
+            self.assertEqual(status["component_status"]["main"]["switch"]["switch"], "off")
 
     def test_create_device_success(self):
         """Test creating a new device."""
@@ -376,8 +376,8 @@ class TestSmartThingsApis(unittest.TestCase):
 
         # Verify update
         status = self.smart_things_api.get_device_status(device_id, user_id=self.user_id)
-        if "switch" in status["component_status"]:
-            self.assertEqual(status["component_status"]["switch"]["switch"], "on")
+        if "main" in status["component_status"] and "switch" in status["component_status"]["main"]:
+            self.assertEqual(status["component_status"]["main"]["switch"]["switch"], "on")
 
         # Delete device
         delete_result = self.smart_things_api.delete_device(device_id, user_id=self.user_id)
