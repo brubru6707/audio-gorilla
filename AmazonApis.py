@@ -1,9 +1,3 @@
-"""
-Inspired by https://appworld.dev/
-
-Amazon this is a simulated implementation of common Amazon-like functionalities.
-It takes inspiration from AppWorld's signature style and output, but not the inside of the code
-"""
 import uuid
 from typing import Dict, List, Union, Literal, Any
 from datetime import datetime, timedelta
@@ -13,6 +7,13 @@ from state_loader import load_default_state
 DEFAULT_STATE = load_default_state("AmazonApis")
 
 class AmazonApis:
+    """
+    Inspired by https://appworld.dev/
+
+    Amazon this is a simulated implementation of common Amazon-like functionalities.
+    It takes inspiration from AppWorld's signature style and output, but not the inside of the code
+    """
+    
     def __init__(self):
         self.state = deepcopy(DEFAULT_STATE)
         self._api_description = "Amazon API simulation inspired by AppWorld's style."
