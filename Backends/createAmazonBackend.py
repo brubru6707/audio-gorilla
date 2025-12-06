@@ -397,7 +397,7 @@ def propagate_cart_to_users(product_ids):
             num_cart_items = random.randint(1, 5)
             cart["total_price"] = 0.0
             for _ in range(num_cart_items):
-                product_id = product_ids[random.randint(0, len(product_ids) - 1)]
+                product_id = random.choice(product_ids)
                 quantity = random.randint(1, 2)
                 cart[product_id] = quantity
                 cart["total_price"] += DEFAULT_STATE["products"][product_id]["price"] * quantity
@@ -418,7 +418,7 @@ def propagate_wish_list_to_users(product_ids):
             wish_list = []
             num_wish_list_items = random.randint(1, 10)
             for _ in range(num_wish_list_items):
-                product_id = product_ids[random.randint(0, len(product_ids) - 1)]
+                product_id = random.choice(product_ids)
                 wish_list.append({
                     "product_id": product_id,
                     "added_date": generate_random_date(2023, 2025)

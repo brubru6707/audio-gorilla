@@ -180,16 +180,148 @@ def merge_sections(existing_state: Dict[str, Any], new_state: Dict[str, Any], se
     return merged_state
 
 
+def remap_product_ids(data: Any, id_mapping: Dict[str, str]) -> Any:
+    """
+    Recursively remap product IDs in data structures (cart, wish_list, orders, etc.)
+    from new UUIDs to existing UUIDs using the provided mapping.
+    """
+    if not id_mapping:
+        return data
+    
+    if isinstance(data, dict):
+        remapped = {}
+        for key, value in data.items():
+            # Check if the key itself is a product ID that needs remapping
+            new_key = id_mapping.get(key, key)
+            # Recursively remap values
+            remapped[new_key] = remap_product_ids(value, id_mapping)
+        return remapped
+    elif isinstance(data, list):
+        # For lists, remap each item
+        return [remap_product_ids(item, id_mapping) for item in data]
+    elif isinstance(data, str):
+        # Check if this string is a product ID that needs remapping
+        return id_mapping.get(data, data)
+    else:
+        # Return primitive values as-is
+        return data
+
+
+def merge_subsections(existing_state: Dict[str, Any], new_state: Dict[str, Any], 
+                      section: str, subsections: List[str]) -> Dict[str, Any]:
+    """
+    Merge specific subsections within a section (e.g., update only 'cart' within all 'users').
+    
+    Args:
+        existing_state: Current state data
+        new_state: Newly generated state data
+        section: The main section (e.g., 'users')
+        subsections: List of subsection keys to update (e.g., ['cart', 'wish_list'])
+    
+    Returns:
+        Updated state with subsections merged
+    """
+    print(f"\n[DEBUG] Starting merge_subsections for section='{section}', subsections={subsections}")
+    merged_state = existing_state.copy()
+    
+    if section not in existing_state:
+        print(f"  ! Warning: Section '{section}' not found in existing state")
+        return merged_state
+    
+    if section not in new_state:
+        print(f"  ! Warning: Section '{section}' not found in new state")
+        return merged_state
+    
+    # Check if the section contains entities (dict of dicts)
+    if not isinstance(existing_state[section], dict) or not isinstance(new_state[section], dict):
+        print(f"  ! Warning: Section '{section}' is not a dictionary of entities")
+        return merged_state
+    
+    print(f"[DEBUG] Existing state has {len(existing_state[section])} entities in '{section}'")
+    print(f"[DEBUG] New state has {len(new_state[section])} entities in '{section}'")
+    
+    # Build ID remapping for products (new UUID -> old UUID by index)
+    id_remapping = {}
+    if 'products' in existing_state and 'products' in new_state:
+        existing_product_ids = list(existing_state['products'].keys())
+        new_product_ids = list(new_state['products'].keys())
+        for i, new_id in enumerate(new_product_ids):
+            if i < len(existing_product_ids):
+                id_remapping[new_id] = existing_product_ids[i]
+        print(f"[DEBUG] Built product ID remapping: {len(id_remapping)} mappings")
+        if id_remapping:
+            sample_new = list(id_remapping.keys())[0]
+            sample_old = id_remapping[sample_new]
+            print(f"[DEBUG] Sample mapping: {sample_new[:8]}... -> {sample_old[:8]}...")
+    
+    # Get lists of entity IDs
+    existing_entity_ids = list(existing_state[section].keys())
+    new_entity_ids = list(new_state[section].keys())
+    
+    print(f"[DEBUG] First existing entity ID: {existing_entity_ids[0][:16]}...")
+    print(f"[DEBUG] First new entity ID: {new_entity_ids[0][:16]}...")
+    print(f"[DEBUG] Entity IDs match: {existing_entity_ids[0] == new_entity_ids[0]}")
+    
+    # Update subsections for each entity
+    merged_section = {}
+    entities_updated = 0
+    subsection_changes = 0
+    
+    # Match entities by position/index since IDs are regenerated
+    for i, entity_id in enumerate(existing_entity_ids):
+        entity_data = existing_state[section][entity_id]
+        
+        # Deep copy each entity to avoid modifying the original
+        if isinstance(entity_data, dict):
+            merged_section[entity_id] = entity_data.copy()
+        else:
+            merged_section[entity_id] = entity_data
+        
+        # Get the corresponding new entity by index position
+        if i < len(new_entity_ids):
+            new_entity_id = new_entity_ids[i]
+            new_entity_data = new_state[section][new_entity_id]
+            
+            # Merge only the specified subsections
+            for subsection in subsections:
+                if subsection in new_entity_data:
+                    old_value = merged_section[entity_id].get(subsection, "NOT_SET")
+                    new_value = new_entity_data[subsection]
+                    
+                    # Remap product IDs in the subsection if needed
+                    new_value = remap_product_ids(new_value, id_remapping)
+                    
+                    merged_section[entity_id][subsection] = new_value
+                    
+                    # Show first entity's change as example
+                    if entities_updated == 0:
+                        print(f"[DEBUG] First entity ({entity_id[:8]}...) '{subsection}' changed:")
+                        print(f"        OLD: {str(old_value)[:100]}")
+                        print(f"        NEW: {str(new_value)[:100]}")
+                    
+                    subsection_changes += 1
+                else:
+                    print(f"  ! Warning: Subsection '{subsection}' not found in new entity at index {i}")
+            entities_updated += 1
+    
+    merged_state[section] = merged_section
+    print(f"[DEBUG] Total subsection changes made: {subsection_changes}")
+    print(f"  ✓ Updated {len(subsections)} subsection(s) in {entities_updated} entities within '{section}'")
+    
+    return merged_state
+
+
 def display_menu():
     """Display the main menu."""
     print("\n" + "="*60)
     print("Backend Update Tool")
     print("="*60)
     print("1. Update specific sections of a backend")
-    print("2. Replace entire backend")
-    print("3. Replace all backends")
-    print("4. List available backends")
-    print("5. View sections in a backend")
+    print("2. Update specific subsections within entities")
+    print("3. Replace entire backend")
+    print("4. Replace all backends")
+    print("5. List available backends")
+    print("6. View sections in a backend")
     print("0. Exit")
     print("="*60)
 
@@ -399,6 +531,161 @@ def view_backend_sections():
     print("="*60)
 
 
+def get_entity_subsections(backend_name: str, section: str) -> Optional[List[str]]:
+    """Get subsections available within entities of a section."""
+    state = load_state_file(backend_name)
+    
+    if not state or section not in state:
+        return None
+    
+    section_data = state[section]
+    
+    # Check if this section contains entities (dict of dicts)
+    if not isinstance(section_data, dict):
+        return None
+    
+    # Get subsections from the first entity
+    for entity_id, entity_data in section_data.items():
+        if isinstance(entity_data, dict):
+            return list(entity_data.keys())
+        break
+    
+    return None
+
+
+def select_subsections(backend_name: str, section: str) -> Optional[List[str]]:
+    """Prompt user to select subsections within a section."""
+    subsections = get_entity_subsections(backend_name, section)
+    
+    if not subsections:
+        print(f"Could not detect subsections within '{section}' for {backend_name}.")
+        return None
+    
+    print(f"\nAvailable subsections within each entity in '{section}':")
+    for i, subsection in enumerate(subsections, 1):
+        print(f"{i}. {subsection}")
+    
+    print("\nEnter subsection numbers separated by commas (e.g., '1,3,5')")
+    print("Or enter 'all' to update all subsections (equivalent to updating the entire section)")
+    
+    choice = input("Selection: ").strip().lower()
+    
+    if choice == 'all':
+        return subsections
+    
+    try:
+        indices = [int(x.strip()) for x in choice.split(',')]
+        selected = []
+        
+        for idx in indices:
+            if 1 <= idx <= len(subsections):
+                selected.append(subsections[idx - 1])
+            else:
+                print(f"Warning: Invalid subsection number {idx}, skipping.")
+        
+        return selected if selected else None
+    except ValueError:
+        print("Invalid input. Please enter numbers separated by commas.")
+        return None
+
+
+def update_specific_subsections():
+    """Update specific subsections within entities of a section."""
+    backend = select_backend()
+    if not backend:
+        return
+    
+    # First, select the main section
+    sections = get_backend_sections(backend)
+    if not sections:
+        print(f"Could not detect sections for {backend}. Backend may not exist yet.")
+        return
+    
+    print(f"\nAvailable sections in {backend}:")
+    for i, section in enumerate(sections, 1):
+        print(f"{i}. {section}")
+    
+    try:
+        choice = input("\nSelect section number: ").strip()
+        section_idx = int(choice)
+        
+        if not (1 <= section_idx <= len(sections)):
+            print("Invalid selection.")
+            return
+        
+        section = sections[section_idx - 1]
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return
+    
+    # Now select subsections within that section
+    subsections = select_subsections(backend, section)
+    if not subsections:
+        return
+    
+    print(f"\n>>> Will update the following subsections in '{section}' for all entities in {backend}:")
+    for subsection in subsections:
+        print(f"    - {subsection}")
+    
+    confirm = input("\nProceed? (y/n): ").strip().lower()
+    if confirm != 'y':
+        print("Cancelled.")
+        return
+    
+    # Load existing state and save it (since running the script will overwrite it)
+    print("\n[DEBUG] Loading existing state...")
+    existing_state = load_state_file(backend)
+    if existing_state is None:
+        print(f"No existing state found. Cannot update subsections without existing data.")
+        return
+    
+    print(f"[DEBUG] Existing state loaded. Section '{section}' has {len(existing_state.get(section, {}))} entities")
+    
+    # Sample the first entity's subsection value before
+    first_entity_id = list(existing_state[section].keys())[0] if existing_state.get(section) else None
+    if first_entity_id:
+        old_subsection_value = existing_state[section][first_entity_id].get(subsections[0], "NOT_FOUND")
+        print(f"[DEBUG] BEFORE: First entity ({first_entity_id[:8]}...) {subsections[0]} = {str(old_subsection_value)[:100]}")
+    
+    # Make a deep copy to preserve the original data before the script overwrites it
+    import copy
+    print("[DEBUG] Creating deep copy of existing state...")
+    existing_state_backup = copy.deepcopy(existing_state)
+    
+    # Generate new state (this will overwrite the JSON file)
+    print("[DEBUG] Running backend script (this will overwrite the JSON file)...")
+    new_state = run_backend_script(backend)
+    if new_state is None:
+        print("Failed to generate new state.")
+        # Restore the backup
+        print("[DEBUG] Restoring backup...")
+        save_state_file(backend, existing_state_backup)
+        return
+    
+    print(f"[DEBUG] New state loaded. Section '{section}' has {len(new_state.get(section, {}))} entities")
+    
+    # Sample the first entity's subsection value in new state
+    if first_entity_id and first_entity_id in new_state.get(section, {}):
+        new_subsection_value = new_state[section][first_entity_id].get(subsections[0], "NOT_FOUND")
+        print(f"[DEBUG] NEW STATE: First entity ({first_entity_id[:8]}...) {subsections[0]} = {str(new_subsection_value)[:100]}")
+    
+    # Merge subsections using the backed up existing state
+    print("[DEBUG] Calling merge_subsections...")
+    merged_state = merge_subsections(existing_state_backup, new_state, section, subsections)
+    
+    # Check the merged result
+    if first_entity_id:
+        merged_subsection_value = merged_state[section][first_entity_id].get(subsections[0], "NOT_FOUND")
+        print(f"[DEBUG] AFTER MERGE: First entity ({first_entity_id[:8]}...) {subsections[0]} = {str(merged_subsection_value)[:100]}")
+    
+    # Save merged state
+    print("[DEBUG] Saving merged state to file...")
+    if save_state_file(backend, merged_state):
+        print(f"\n✓ Successfully updated {len(subsections)} subsection(s) in '{section}' for {backend} backend")
+    else:
+        print("\n✗ Failed to save updated state")
+
+
 def main():
     """Main program loop."""
     print("Backend Update Tool - Interactive Mode")
@@ -410,12 +697,14 @@ def main():
         if choice == '1':
             update_specific_sections()
         elif choice == '2':
-            replace_entire_backend()
+            update_specific_subsections()
         elif choice == '3':
-            replace_all_backends()
+            replace_entire_backend()
         elif choice == '4':
-            list_backends()
+            replace_all_backends()
         elif choice == '5':
+            list_backends()
+        elif choice == '6':
             view_backend_sections()
         elif choice == '0':
             print("\nGoodbye!")

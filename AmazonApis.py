@@ -749,7 +749,7 @@ class AmazonApis:
             product_info = self.state["products"].get(product_id)
             if product_info:
                 wish_list_items.append(
-                    {
+                    {   
                         "product_id": product_id,
                         "name": product_info["name"],
                         "price": product_info["price"],

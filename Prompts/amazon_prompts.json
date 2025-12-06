@@ -28,11 +28,11 @@
         "ground_truth": ["login_user('john.lane@knitting-patterns.net', '3^8t6vNx')", "add_payment_card('Addition Financial', 'John Lane', '9762-2343-2322-3234', '2029', '12')"]
     }, 
     {
-        "prompt": "I want two instead of one ____ in my Amazon cart.",
+        "prompt": "I want two instead of one Patagonia Baggies Shorts 5 inch in my Amazon cart.",
         "context": {
             "user_id": "1bb40838-3adf-4d32-ab66-46bac09141c1"
         },
-        "ground_truth": ["search_products('product_name_5')", "update_cart_item_quantity('user_id_5', 'product_id_5', 2)"]
+        "ground_truth": ["search_products('Patagonia Baggies Shorts 5')", "update_cart_item_quantity('user_id_5', '4da5dc57-51cc-46d0-bcd9-bf79fa7ef876', 2)"]
         }
     ], 
     "Multiturn": [
