@@ -711,7 +711,7 @@ class TeslaFleetApis:
             raise Exception("Temperatures must be between 15 and 30 Celsius")
 
         vehicle["climate"]["driver_temp"] = driver_temp
-        vehicle["climate"]["cop_temp"] = passenger_temp
+        vehicle["climate"]["passenger_temp"] = passenger_temp
         return {
             "response": {
                 "result": True,
@@ -791,6 +791,7 @@ class TeslaFleetApis:
         """
         vehicle = self._get_vehicle(vehicle_id)
         vehicle["awake"] = True
+        vehicle["state"] = "online"
         return {
             "response": {
                 "result": True,
@@ -958,6 +959,7 @@ class TeslaFleetApis:
         """
         vehicle = self._get_vehicle(vehicle_id)
         vehicle["awake"] = True
+        vehicle["state"] = "online"
         return {
             "response": {
                 "result": True,
