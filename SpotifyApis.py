@@ -651,8 +651,8 @@ class SpotifyApis:
         if not user_data:
             raise Exception("User not found")
         
-        if len(album_ids) > 20:
-            raise Exception("Maximum 20 albums can be saved at once")
+        if len(album_ids) > 50:
+            raise Exception("Maximum 50 albums can be saved at once")
         
         for album_id in album_ids:
             if album_id not in self.albums:
@@ -678,8 +678,8 @@ class SpotifyApis:
         if not user_data:
             raise Exception("User not found")
         
-        if len(album_ids) > 20:
-            raise Exception("Maximum 20 albums can be removed at once")
+        if len(album_ids) > 50:
+            raise Exception("Maximum 50 albums can be removed at once")
         
         for album_id in album_ids:
             if album_id in user_data.get("liked_albums", []):
@@ -1010,7 +1010,7 @@ class SpotifyApis:
         # Remove tracks
         current_tracks = playlist.get("tracks", [])
         for track_id in track_ids:
-            while track_id in current_tracks:
+            if track_id in current_tracks:
                 current_tracks.remove(track_id)
         
         playlist["tracks"] = current_tracks
