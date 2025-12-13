@@ -459,14 +459,15 @@ class SimpleNoteApis:
             "shared_at": datetime.datetime.now().isoformat() + "Z"
         }
         
+        # Convert old string format to dict format if needed
+        if shared_with and isinstance(shared_with[0], str):
+            shared_with = [{"alias": alias, "permissions": "view_only", "allow_reshare": False, "shared_at": datetime.datetime.now().isoformat() + "Z"} for alias in shared_with]
+        
         # Check if already shared and update or add
         existing_share = next((s for s in shared_with if isinstance(s, dict) and s.get("alias") == share_with_alias), None)
         if existing_share:
             existing_share.update(share_info)
         else:
-            # Convert old format if needed
-            if shared_with and isinstance(shared_with[0], str):
-                shared_with = [{"alias": alias, "permissions": "view_only", "allow_reshare": False} for alias in shared_with]
             shared_with.append(share_info)
         
         note["shared_with"] = shared_with
