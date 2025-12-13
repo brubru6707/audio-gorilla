@@ -3,7 +3,6 @@ Inspired by https://appworld.dev/
 
 Uses stateful design
 """
-import time
 import random
 import uuid
 from copy import deepcopy
@@ -432,6 +431,28 @@ class CommuniLinkApis:
         is_external = receiver_user_id is None
         new_call["is_external"] = is_external
 
+        # Generate call duration before initiating to check balance
+        call_duration_ = round(random.uniform(30, 120))
+
+        # Calculate cost before making the call
+        quality_multiplier = {"standard": 1.0, "hd": 1.3, "premium": 1.8}
+        type_multiplier = {"voice": 1.0, "video": 2.0, "conference": 2.5}
+        
+        call_cost = (self.service_plans[self.active_plan]["price_per_minute"] * 
+                     (call_duration_ / 60) * 
+                     quality_multiplier[call_quality] * 
+                     type_multiplier[call_type])
+        
+        # Add recording cost if enabled
+        if recording_enabled:
+            call_cost += 0.05 * (call_duration_ / 60)  # $0.05 per minute for recording
+        
+        # Check balance BEFORE making the call
+        if caller_user["balance"] < call_cost:
+            print(f"Call not initiated due to insufficient balance for user {caller_user['email']}.")
+            return {"code": "INSUFFICIENT_BALANCE", "message": "Insufficient balance to make call."}
+
+        # Now proceed with the call since balance is sufficient
         caller_user["call_history"].append(new_call)
         if receiver_user_id:
             receiver_user = self.users[receiver_user_id]
@@ -444,29 +465,9 @@ class CommuniLinkApis:
         # new_call["status"] = "ringing"
         # time.sleep(0.5)
         new_call["status"] = "in-progress"
-        
-        call_duration_ = round(random.uniform(30, 120))
         # time.sleep(min(call_duration_ / 10, 2))
 
         new_call["duration"] = call_duration_
-
-        # Apply quality-based cost multiplier
-        quality_multiplier = {"standard": 1.0, "hd": 1.3, "premium": 1.8}
-        type_multiplier = {"voice": 1.0, "video": 2.0, "conference": 2.5}
-        
-        call_cost = (self.service_plans[self.active_plan]["price_per_minute"] * 
-                     (new_call["duration"] / 60) * 
-                     quality_multiplier[call_quality] * 
-                     type_multiplier[call_type])
-        
-        # Add recording cost if enabled
-        if recording_enabled:
-            call_cost += 0.05 * (new_call["duration"] / 60)  # $0.05 per minute for recording
-        
-        if caller_user["balance"] < call_cost:
-            new_call["status"] = "failed_insufficient_balance"
-            print(f"Call ID={new_call['call_id']} failed due to insufficient balance.")
-            return {"code": "INSUFFICIENT_BALANCE", "message": "Insufficient balance to make call."}
 
         caller_user["balance"] -= call_cost
         self.billing_history.append({
