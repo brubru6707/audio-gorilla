@@ -1084,17 +1084,22 @@ class GmailApis:
         Returns:
             Dict[str, Union[bool, str, int]]: Dictionary with success status and count of deleted messages.
         """
-        user_id = self._resolve_user_id(user_id)
-        if not user_id:
+        resolved_user_id = self._resolve_user_id(user_id)
+        if not resolved_user_id:
+            return {"success": False, "message": "User not found.", "deleted_count": 0}
+        
+        # Get user email to pass to delete_message (which also calls _resolve_user_id)
+        user_email = self._get_user_email_by_id(resolved_user_id)
+        if not user_email:
             return {"success": False, "message": "User not found.", "deleted_count": 0}
         
         deleted_count = 0
         for msg_id in ids:
-            result = self.delete_message(user_id, msg_id)
+            result = self.delete_message(user_email, msg_id)
             if result.get("success"):
                 deleted_count += 1
         
-        print(f"Batch delete: {deleted_count}/{len(ids)} messages deleted for user {user_id}")
+        print(f"Batch delete: {deleted_count}/{len(ids)} messages deleted for user {resolved_user_id}")
         return {
             "success": True,
             "message": f"Deleted {deleted_count} out of {len(ids)} messages.",
@@ -1113,17 +1118,22 @@ class GmailApis:
         Returns:
             Dict[str, Union[bool, str, int]]: Dictionary with success status and count of modified messages.
         """
-        user_id = self._resolve_user_id(user_id)
-        if not user_id:
+        resolved_user_id = self._resolve_user_id(user_id)
+        if not resolved_user_id:
+            return {"success": False, "message": "User not found.", "modified_count": 0}
+        
+        # Get user email to pass to modify_message (which also calls _resolve_user_id)
+        user_email = self._get_user_email_by_id(resolved_user_id)
+        if not user_email:
             return {"success": False, "message": "User not found.", "modified_count": 0}
         
         modified_count = 0
         for msg_id in ids:
-            result = self.modify_message(user_id, msg_id, modify_request)
+            result = self.modify_message(user_email, msg_id, modify_request)
             if result is not None:
                 modified_count += 1
         
-        print(f"Batch modify: {modified_count}/{len(ids)} messages modified for user {user_id}")
+        print(f"Batch modify: {modified_count}/{len(ids)} messages modified for user {resolved_user_id}")
         return {
             "success": True,
             "message": f"Modified {modified_count} out of {len(ids)} messages.",
