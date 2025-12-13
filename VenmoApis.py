@@ -256,8 +256,8 @@ class VenmoApis:
         
         # Validate payment method if specified
         if payment_method_id:
-            user_payment_cards = sender_data.get("payment_cards", {})
-            if payment_method_id not in user_payment_cards:
+            user_payment_methods = sender_data.get("payment_methods", {})
+            if payment_method_id not in user_payment_methods:
                 raise Exception("Invalid payment method ID")
         
         if sender_data["balance"] < amount:
