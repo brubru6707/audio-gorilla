@@ -26,10 +26,9 @@
         }
       },
       "cart": {
-        "total_price": 3687.87,
-        "4da5dc57-51cc-46d0-bcd9-bf79fa7ef876": 2,
-        "985c9b0c-1a89-44b2-85a6-96a91baa7ba1": 2,
-        "d0737a62-3bc8-4a36-865c-1c6c98e44c0a": 1
+        "total_price": 1649.55,
+        "32d8f20a-9a4a-449c-96ac-c4ef30131385": 1,
+        "1eabd098-5b3f-4d53-94c8-f82bae39ec14": 2
       },
       "wish_list": [
         {
@@ -128,12 +127,7 @@
           "zip_code": 86958
         }
       },
-      "cart": {
-        "total_price": 1389.46,
-        "c3ba847e-e80d-47d7-bdfa-20811cb417b2": 1,
-        "4ccca46d-25b1-4b3f-ad99-9bf0ceecc6d3": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "ba65bac9-8e0e-4e7f-9160-7c21e701165b",
@@ -202,7 +196,10 @@
           "zip_code": 67166
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1132.0,
+        "3c69b941-09b0-4cb5-90d6-3e340eefe8f3": 1
+      },
       "wish_list": [
         {
           "product_id": "fed5d9e7-ab36-4be1-abf9-44cefc88d344",
@@ -316,11 +313,7 @@
           "zip_code": 41055
         }
       },
-      "cart": {
-        "total_price": 5474.24,
-        "81d3474e-3d3a-4cc4-a87d-eaa832247e94": 2,
-        "ed771d6c-7316-41ad-9143-5638aa9c4f74": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "2436afde-0045-4172-a08e-5a91369123b4": {
@@ -466,11 +459,7 @@
           "zip_code": 77877
         }
       },
-      "cart": {
-        "total_price": 2537.83,
-        "d2abf81e-bce0-4b90-967f-d853c91cca4f": 1,
-        "37d6332f-8d8c-419f-a2e5-1b8830029b19": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "75ce9b02-dfec-47e1-8882-82c5a025c988",
@@ -514,10 +503,7 @@
           "zip_code": 42475
         }
       },
-      "cart": {
-        "total_price": 1688.56,
-        "4f60a6cc-51f5-4563-8730-d15250b5caed": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "117f3dcb-ca6d-4f40-95b2-d6010edab17e",
@@ -587,7 +573,11 @@
           "zip_code": 50221
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1278.94,
+        "08b865fa-3fae-47c8-bc6b-efbdd078e3fa": 1,
+        "5e7bf5a7-d162-495e-adb6-554bc5307b3f": 1
+      },
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -626,12 +616,7 @@
           "zip_code": 63590
         }
       },
-      "cart": {
-        "total_price": 4373.41,
-        "142b5431-b1d0-40ea-9570-f0dff4d76571": 2,
-        "7921aaab-fce0-4039-b9bf-22e629949879": 1,
-        "4a7219c9-3bbb-4cdc-893f-6889cc3220c3": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "179c25b8-31ec-4e4c-a709-47c594c50ed7": {
@@ -699,12 +684,7 @@
           "zip_code": 46556
         }
       },
-      "cart": {
-        "total_price": 3866.64,
-        "e072409d-2b8e-41a3-a4ae-f10974a73b71": 1,
-        "f096bc80-4ef8-4b54-88a1-d9b96f317b0b": 2,
-        "5e72a321-5be9-4a33-85d0-00a65f88c78f": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "022659fa-23b6-41b1-a7b1-fb0e6bcacf2c": {
@@ -1067,7 +1047,12 @@
           "zip_code": 90698
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2531.73,
+        "177ad8c1-c819-4e26-91bd-7dbb8e723684": 1,
+        "d2a2774f-3dd2-4849-b7f7-ec8ae6d25337": 2,
+        "afcface4-9cd3-4728-81e8-1c0fe1aaebba": 1
+      },
       "wish_list": [],
       "orders": {
         "9921473d-fdff-4353-a981-bd805940431d": {
@@ -1130,7 +1115,14 @@
           "zip_code": 26169
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 6880.09,
+        "011c8415-9726-4c90-b040-3ca935b66069": 1,
+        "f98b0eee-58f1-4e72-a10f-cd641b3e9aed": 1,
+        "964352fe-3e63-46b0-a09b-24903898247a": 2,
+        "619ff547-3cbf-4a12-a989-85d524bd3592": 2,
+        "52449cdb-4f48-44c4-bc4b-ac7bb85e8539": 1
+      },
       "wish_list": [
         {
           "product_id": "6381abc9-dbdd-45b0-87a7-8a3002e275c4",
@@ -1206,12 +1198,7 @@
           "zip_code": 33901
         }
       },
-      "cart": {
-        "total_price": 5080.33,
-        "49880403-52ed-4785-ad0b-300514acd2c8": 1,
-        "cdd618af-f65d-431d-9fa4-4d4e25aec19f": 2,
-        "ca8b10ba-dbe9-4cca-8268-5a62fd992652": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "89188066-c4ae-4629-82be-f5dad80c20ec",
@@ -1305,11 +1292,7 @@
           "zip_code": 73942
         }
       },
-      "cart": {
-        "total_price": 1834.57,
-        "3833edef-db82-4a05-86f4-138dcc170ca1": 1,
-        "b7420cd7-3dcc-402e-a438-ad2a9238ed23": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "65b66533-b393-48a0-8be5-35f1c32d47f5",
@@ -1560,9 +1543,9 @@
         }
       },
       "cart": {
-        "total_price": 3927.84,
-        "cf0cf1f1-f731-45ad-ab8b-9c22408db934": 2,
-        "da9a9620-a822-40ba-9ad4-b7c517578ee2": 2
+        "total_price": 1484.02,
+        "8cdefbf2-9f67-4e86-81ae-af668e9d1f0c": 2,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
         {
@@ -1652,10 +1635,8 @@
         }
       },
       "cart": {
-        "total_price": 2558.23,
-        "d1dd4327-c20a-4fa8-bdef-a49204e113f0": 1,
-        "37539e7d-9248-4239-ac80-9373868dea7b": 1,
-        "aac970a8-69a9-48e9-820f-b6a1278bfa75": 2
+        "total_price": 2783.94,
+        "43f1d8c6-10e7-400b-ab82-3dac3d04d7e3": 2
       },
       "wish_list": [
         {
@@ -1731,15 +1712,7 @@
           "zip_code": 96114
         }
       },
-      "cart": {
-        "total_price": 4013.79,
-        "8652bb9b-b899-445e-b654-877514a5ac05": 2,
-        "796ce2c8-1340-4c5c-b904-b23848ac46be": 1,
-        "eb495ff6-6999-4355-8c28-2ac5ff509058": 1,
-        "dd3c2d2e-f02c-4bbc-9d02-fae60c4357db": 1,
-        "236048cf-efea-41c8-8ded-9fdeb7c9120d": 2,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "5913a5ba-b409-452f-8a90-553706ee0464",
@@ -1787,7 +1760,13 @@
           "zip_code": 34384
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2348.88,
+        "b0fb4c04-2e98-4fe5-a694-477f12c15351": 1,
+        "02f8372e-d2a6-4d7e-83e9-6417363d13e4": 2,
+        "9b75c047-e5b3-4d74-bfd1-186aa9f081c7": 1,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [
         {
           "product_id": "72a154aa-9da3-48a2-9ab6-fbc21f73ce53",
@@ -1909,7 +1888,14 @@
           "zip_code": 69219
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3707.3,
+        "cc882ba3-4d74-4b43-a984-5bf6864a63d4": 1,
+        "d435d65a-1244-430f-a4a8-1c0ade42feee": 2,
+        "be2a174f-7658-46d9-970b-a795ebef38f0": 2,
+        "933e7e95-3ca8-4a85-af39-d5883733aa6c": 2,
+        "c141533a-62ec-48bd-812b-af3854fd8cf9": 1
+      },
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -2069,14 +2055,7 @@
           "zip_code": 26201
         }
       },
-      "cart": {
-        "total_price": 4001.2,
-        "f3b1222f-c93c-41da-857e-3c0c4867ce57": 1,
-        "442aed43-e391-4375-93fe-fb45d716597e": 2,
-        "8eb5c48c-6bb0-4399-9211-8d0e9696da31": 2,
-        "b0ef9258-6474-4032-9f73-b17542b68aa9": 2,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -2100,11 +2079,8 @@
         }
       },
       "cart": {
-        "total_price": 3763.13,
-        "27ad4cf7-9c31-40c7-96e1-e7eda40fbedc": 1,
-        "e4424d34-d793-466b-8d54-407ede94253d": 2,
-        "9bd2e904-5857-47ac-bf92-ba2b00cf3d14": 1,
-        "561bea8d-e8ac-47d0-b1f2-3cf7dd727a91": 2
+        "total_price": 387.64,
+        "f010855f-21ae-4926-820b-73c21896b158": 2
       },
       "wish_list": [],
       "orders": {
@@ -2192,9 +2168,9 @@
         }
       },
       "cart": {
-        "total_price": 2379.68,
-        "7e520197-e1a5-4840-8f61-d8a115d42be8": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 1463.07,
+        "e57fc80c-b150-4a37-9e69-eaef930b644e": 2,
+        "2d75edf3-bdfc-46b9-ae5b-dbd4b0f0efab": 1
       },
       "wish_list": [],
       "orders": {
@@ -2234,8 +2210,12 @@
         }
       },
       "cart": {
-        "total_price": 987.21,
-        "18555556-3fd8-46f3-895f-339ac96b3609": 1
+        "total_price": 3826.74,
+        "f3a56846-558e-4aae-be25-24d4f7b48b57": 1,
+        "911bba00-295f-434f-8fe7-4af7bf9c1320": 2,
+        "269b8c0d-4e81-4cd3-8463-f718eab6aa1b": 1,
+        "cfb15e3d-a52f-4a3f-b147-4b7cf18a96bf": 2,
+        "c7faba10-4d5b-4ebd-8a0e-2336aadcc724": 2
       },
       "wish_list": [
         {
@@ -2355,7 +2335,14 @@
           "zip_code": 75088
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3441.9,
+        "261c43dd-8c2a-455d-9417-ae3b6b33b6df": 1,
+        "535573a4-2a4b-4257-9790-94945045d955": 2,
+        "441a26f7-23b5-4681-94d9-c40e3eea6eab": 1,
+        "8040bc5c-affd-44b9-a5aa-d6f48227fc7d": 2,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [
         {
           "product_id": "c0126f06-a349-4bca-ae28-933f59b3216b",
@@ -2438,7 +2425,12 @@
           "zip_code": 99434
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1308.3,
+        "ca18adaa-193b-4126-b929-d7ffa9d423b6": 1,
+        "6d611b35-bd4f-4207-b407-f671b794212d": 1,
+        "b17043fb-bba8-4136-85a4-3fdcc251b79a": 2
+      },
       "wish_list": [
         {
           "product_id": "141713f5-88bb-4a8c-ada1-e013cd268156",
@@ -2532,7 +2524,13 @@
           "zip_code": 42294
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 5000.98,
+        "83df3efd-00bb-4c37-a4bb-18f73289d4ca": 1,
+        "c972c821-d911-4296-ad06-2f7295af2d24": 2,
+        "32f66a3a-6019-41c7-848c-94f896c094c6": 1,
+        "3112ac5f-dbe7-4d55-9335-5c94623d51bd": 1
+      },
       "wish_list": [
         {
           "product_id": "33997470-06f5-408f-97ef-776a41067ef1",
@@ -2625,14 +2623,7 @@
           "zip_code": 84069
         }
       },
-      "cart": {
-        "total_price": 3848.03,
-        "f6a5985a-d3f8-43c0-be52-b0a25d86f5c9": 2,
-        "e0cd729f-2595-4e1e-90e2-ecb6dd41bacd": 1,
-        "c4534f68-482f-45c1-b47e-21e9312dcd79": 2,
-        "3d1e1dde-5abb-4c8e-9977-470c99514a93": 2,
-        "dc9e351e-e957-4805-9eb6-931536f76e34": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "fcb65867-7951-4b24-aae3-1bcccfd61759",
@@ -2722,11 +2713,7 @@
           "zip_code": 74690
         }
       },
-      "cart": {
-        "total_price": 882.88,
-        "9b1e009a-c71f-4e66-84a8-b02dda472732": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "24419328-a5cb-4b8a-9056-133afa337838": {
@@ -2794,13 +2781,9 @@
         }
       },
       "cart": {
-        "total_price": 4770.48,
-        "63bc6bd2-eb8f-4987-ab09-c0f6a31d18e5": 1,
-        "0ed0bf2d-b66d-4488-b318-a1a4749b7c9b": 1,
-        "4d1266ca-f13a-49a3-9dac-0b785a1534b0": 1,
-        "6e88484e-793a-41f6-a891-5cd857aabf90": 1,
-        "bfaa4827-28f5-4d25-bc35-40443ca86529": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 4401.44,
+        "83df3efd-00bb-4c37-a4bb-18f73289d4ca": 2,
+        "148f92bc-569d-4db6-b461-7d643afc1d46": 2
       },
       "wish_list": [
         {
@@ -3039,10 +3022,8 @@
         }
       },
       "cart": {
-        "total_price": 4369.39,
-        "e7ae09d2-cc3b-45d0-8b82-d43e3c9d282c": 2,
-        "bcaf4735-284f-4289-a688-2bc4cb041052": 1,
-        "8c702ac0-841a-4e5b-9d49-42343db7abb3": 1
+        "total_price": 1088.82,
+        "dac0ec8d-8d77-4fc0-b8f9-823c1808c497": 2
       },
       "wish_list": [],
       "orders": {
@@ -3132,12 +3113,12 @@
         }
       },
       "cart": {
-        "total_price": 11524.01,
-        "9aac02cc-4147-4af2-871e-2671c034ca18": 2,
-        "fcd4b946-e36a-4ccb-b8a0-c26d4926f2f4": 2,
-        "80875e3a-de91-4108-9785-eff80dedbd1f": 2,
-        "a29f1ea5-fa70-4f89-af9f-4160e3699139": 2,
-        "407286bd-6bb1-4cae-9d9e-baddf8818b98": 1
+        "total_price": 3669.02,
+        "d396f443-d681-4c08-b8ed-9a41668b3e74": 1,
+        "e57fc80c-b150-4a37-9e69-eaef930b644e": 2,
+        "137c5584-151f-4501-bad5-fef76e896e4f": 2,
+        "f8e118fc-6e40-4ab4-9f16-909899074b08": 1,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -3307,12 +3288,8 @@
         }
       },
       "cart": {
-        "total_price": 3991.91,
-        "b2d53e1a-3c47-49d9-9b90-8fb44c80d50f": 2,
-        "142b5431-b1d0-40ea-9570-f0dff4d76571": 1,
-        "a400367c-7304-4395-841e-d0adff862d31": 1,
-        "c5da735a-0493-4b69-9c7e-3c2619c7dc56": 2,
-        "cfb951f0-5532-4c2b-95ed-d77f5e7840ee": 1
+        "total_price": 275.44,
+        "4832d904-1ea2-441f-90ba-6cd714f432a1": 2
       },
       "wish_list": [
         {
@@ -3393,10 +3370,12 @@
         }
       },
       "cart": {
-        "total_price": 1603.2,
-        "ae9fd666-b5f0-49be-b261-145d603ac673": 1,
-        "4f43ab7b-f37a-43d2-aaf7-df9dc70c011c": 1,
-        "53745167-15ae-4cf3-962e-2d4059e6765d": 2
+        "total_price": 3327.82,
+        "1d442671-c5c6-4be6-88d5-d078c92ec6c5": 1,
+        "803dec4c-f59f-4e7c-a75d-e3d7c852234b": 1,
+        "101195fc-8e8e-477b-b957-12d8519bcd5e": 2,
+        "9d99a998-46ae-4405-baf1-2c40482377c4": 2,
+        "da30f3c7-2d06-4d65-8b3e-95998428791a": 2
       },
       "wish_list": [],
       "orders": {},
@@ -3436,10 +3415,8 @@
         }
       },
       "cart": {
-        "total_price": 458.77,
-        "ffdb0802-fadd-4c0f-8902-2d8a09948b1e": 1,
-        "1aca3937-8028-4772-b934-85f967c5ecef": 2,
-        "promo_code": "SUMMERFUN"
+        "total_price": 1725.26,
+        "d641a0a3-1c97-4ea9-9634-fdb0db28d036": 2
       },
       "wish_list": [],
       "orders": {},
@@ -3480,8 +3457,12 @@
         }
       },
       "cart": {
-        "total_price": 650.72,
-        "97fca92d-6158-4c15-86a5-44afbb1e139b": 1
+        "total_price": 5697.88,
+        "ced65c48-7b4c-4391-9cfb-19cb4a4c692c": 1,
+        "25d5cac2-5b3c-4d0c-aa26-bc7087ee0524": 1,
+        "397eede3-ce9a-485b-a87e-961511e59e68": 1,
+        "bb9df714-e4d4-4746-bf9a-6cd11ba0ad00": 2,
+        "09fae97d-7c77-459c-86de-6b386ccabc0a": 2
       },
       "wish_list": [
         {
@@ -3574,7 +3555,13 @@
           "zip_code": 57022
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4779.82,
+        "b17043fb-bba8-4136-85a4-3fdcc251b79a": 1,
+        "fb0bd8bb-e69f-42f2-adae-c216e5673e89": 2,
+        "df746888-95d6-4a0d-b7b5-f84db4182739": 1,
+        "f7d1bad1-0fa9-48bc-b5c1-bb15e6b1d7a4": 2
+      },
       "wish_list": [
         {
           "product_id": "242a7d4e-9fcf-4d5d-913f-da71c4cd40e1",
@@ -3638,7 +3625,11 @@
           "zip_code": 83783
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1913.01,
+        "3756cb21-4b22-476e-b4ad-16cc92d411a6": 1,
+        "935f60b4-439a-4d8b-af38-973db4b3f681": 1
+      },
       "wish_list": [
         {
           "product_id": "f2e2284c-60b0-4400-9c16-9016cd283bcf",
@@ -3708,12 +3699,7 @@
           "zip_code": 24739
         }
       },
-      "cart": {
-        "total_price": 2506.09,
-        "cf6527bb-b5f9-4078-87f9-907dd6d01abe": 1,
-        "b380a781-37f4-430b-9c28-661a846d6896": 1,
-        "ad23e70e-deaf-4bd5-81ce-e3575b8277d2": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "23923bbe-14be-43af-8866-0d696de766aa",
@@ -3753,14 +3739,7 @@
           "zip_code": 25350
         }
       },
-      "cart": {
-        "total_price": 8162.35,
-        "12b703cb-7992-4882-bfea-ba8f6fab2677": 2,
-        "a2cc34f0-ee7b-4459-af81-e9dd8c7f1140": 1,
-        "0289bcf2-c329-4ab6-966a-0408903c553d": 2,
-        "8aa341fb-d179-4392-97ca-c719d213346d": 2,
-        "8327f721-6d18-4b84-aa7e-8bf112a9fad4": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -3799,7 +3778,10 @@
           "zip_code": 75920
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 281.36,
+        "69d8c909-8360-4773-ac5f-9ca4cd2bf1d8": 2
+      },
       "wish_list": [
         {
           "product_id": "6aabeb2a-9bf6-4508-a1a5-cc6ea02dac4c",
@@ -3867,7 +3849,14 @@
           "zip_code": 92076
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 6880.57,
+        "00f5eb4d-5667-42f4-bf0f-5a5871489fb3": 1,
+        "469dd106-2148-4879-84e5-665e0e0173fa": 2,
+        "ee98a2bc-ff76-4501-989d-c6cfe425ff49": 2,
+        "a8b33069-679b-40c2-8a25-36a9ab36d8c3": 1,
+        "95c0c8dc-0356-4994-861d-677471b98747": 2
+      },
       "wish_list": [
         {
           "product_id": "09fae97d-7c77-459c-86de-6b386ccabc0a",
@@ -3969,12 +3958,7 @@
           "zip_code": 54143
         }
       },
-      "cart": {
-        "total_price": 2844.61,
-        "045714b5-d5cc-42f1-8553-81eb1bde3707": 1,
-        "c3e97fab-895e-445b-9253-04971f509700": 2,
-        "4da5dc57-51cc-46d0-bcd9-bf79fa7ef876": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "8410d18a-a8b8-453c-935b-b9e5409183ad",
@@ -4029,11 +4013,7 @@
           "zip_code": 20448
         }
       },
-      "cart": {
-        "total_price": 1086.16,
-        "fbfc9f12-5dc0-47b9-a23c-0079fec81e53": 1,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "5a190d17-fa73-4e57-adc7-774bdb4dec35",
@@ -4243,7 +4223,12 @@
           "zip_code": 24135
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1572.26,
+        "82a3c5be-c28d-4e82-84c2-2d906450b413": 2,
+        "39220877-a032-458d-a261-6e50300ca8f5": 2,
+        "f3a56846-558e-4aae-be25-24d4f7b48b57": 2
+      },
       "wish_list": [
         {
           "product_id": "50f2572b-2528-442b-b62a-be9c8713b785",
@@ -4345,8 +4330,8 @@
         }
       },
       "cart": {
-        "total_price": 1741.86,
-        "790b9309-ddf1-4894-bafc-b8541d3f31df": 2
+        "total_price": 2901.58,
+        "68e5f031-7a97-4267-a06e-97ae0a9d7ff7": 2
       },
       "wish_list": [],
       "orders": {},
@@ -4394,9 +4379,11 @@
         }
       },
       "cart": {
-        "total_price": 3153.23,
-        "58f94795-ad80-4daa-b4fb-136f60f24fbc": 1,
-        "9d5070e4-2d5a-4115-8088-b4021a4aee5d": 2
+        "total_price": 2001.98,
+        "7bcd2096-4d68-4e6e-a67f-fb272c849fc0": 1,
+        "d66b285c-1c27-4dc8-b6b1-45ac9552e864": 2,
+        "8136cd2e-b608-4257-bd31-6315631bb41b": 1,
+        "3d5f70c2-49b3-4227-bd31-972771f4d0d0": 1
       },
       "wish_list": [
         {
@@ -4505,12 +4492,12 @@
         }
       },
       "cart": {
-        "total_price": 6806.8,
-        "ace7fc6b-70ad-43aa-870e-d81457b2d5b2": 2,
-        "28f6f754-8455-4836-9462-785143eb125f": 2,
-        "daa0b69b-2e44-45fa-acd8-2877fb460c41": 1,
-        "e2994c28-0075-41cc-bd16-7f6b20cda38d": 1,
-        "974bae89-9f16-4320-8db3-a431a9609a87": 2
+        "total_price": 2611.18,
+        "f05d7d68-7b4d-45d2-bea0-808ae6dec082": 1,
+        "6af80a9c-c02a-44cb-ad99-496f471b7a6a": 2,
+        "b1f26140-291a-4fb9-a8db-e9e4186f8f19": 1,
+        "f4921e7a-08f7-41e4-97ab-f5556e2e76b4": 2,
+        "c94672c4-0f9f-4122-9371-ea250b803ccf": 2
       },
       "wish_list": [],
       "orders": {
@@ -4658,10 +4645,7 @@
           "zip_code": 58296
         }
       },
-      "cart": {
-        "total_price": 730.44,
-        "70bcbd7a-2c25-4d4b-b67e-9eabe57b3196": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "03f4b5e6-2c12-4a7d-acb7-91cb7679ec5c": {
@@ -4748,10 +4732,7 @@
           "zip_code": 91850
         }
       },
-      "cart": {
-        "total_price": 652.8,
-        "e53307f4-32e1-4e96-a6c4-66f7d5ce3cd4": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "05bd2c98-9f01-4840-8fc1-13c71fc38203",
@@ -4832,10 +4813,11 @@
         }
       },
       "cart": {
-        "total_price": 3609.25,
-        "ccb33315-c0c1-4f6b-9340-b451b77d0c4b": 2,
-        "9f6c1460-5240-4d7b-bd05-ecf0e6c6bb05": 2,
-        "dd3c2d2e-f02c-4bbc-9d02-fae60c4357db": 1
+        "total_price": 2224.91,
+        "103fd179-30bc-4c75-8451-1b4df773c539": 2,
+        "b9c8ccbc-0dea-407d-8a21-7c50295c7831": 1,
+        "f28dd80b-9fde-4f8a-a4a3-87e2d3beae11": 2,
+        "78d39632-80f7-408c-b11c-af8636049f30": 1
       },
       "wish_list": [
         {
@@ -5007,13 +4989,7 @@
           "zip_code": 16315
         }
       },
-      "cart": {
-        "total_price": 4560.41,
-        "a7348bc0-1f4e-45cf-b611-1ffdb552119b": 2,
-        "98f3994b-4756-4f0e-9452-0db0351f3978": 1,
-        "341710d0-da95-4c62-b6b9-aeaec8718271": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "71e33921-bfaa-40f2-96d5-dad8e117d8cf",
@@ -5110,10 +5086,8 @@
         }
       },
       "cart": {
-        "total_price": 1780.94,
-        "a57803bf-db19-4fbd-96a3-2afd19e939b0": 1,
-        "dd4592d7-40b0-441f-8770-242211b1138d": 1,
-        "c47338b7-7a2b-4f8f-b8d4-4b4aa883574a": 2
+        "total_price": 2389.2,
+        "0c3539b4-7b7b-443c-a3e0-2c8454b47a11": 2
       },
       "wish_list": [
         {
@@ -5287,7 +5261,13 @@
           "zip_code": 10483
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3201.62,
+        "ba26f7c6-eace-4da8-9283-1ce6ebcfe300": 2,
+        "2ef7ae50-241a-4584-a246-b6a0f07e5297": 1,
+        "079be2cc-a0ce-4b11-a1ed-545ac754357c": 2,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "a0512eec-70eb-4951-b203-9820f2ea039d",
@@ -5389,10 +5369,12 @@
         }
       },
       "cart": {
-        "total_price": 1687.88,
-        "f63c7fd5-cfbc-4261-8c6c-d06fff2b7634": 1,
-        "4831ca42-a3e2-4961-b7bf-ba5cab7a2dd2": 1,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 5681.29,
+        "f10f2218-7658-4563-bfd8-06ebd3b68563": 2,
+        "da30f3c7-2d06-4d65-8b3e-95998428791a": 2,
+        "f4cfb72c-199e-4333-a5ce-d83ecef84f88": 2,
+        "5ebdb9d9-dd75-450e-a3fa-09d11262852d": 2,
+        "ddde00eb-a625-41c2-b074-aa3028341423": 1
       },
       "wish_list": [
         {
@@ -5494,13 +5476,7 @@
           "zip_code": 54143
         }
       },
-      "cart": {
-        "total_price": 825.88,
-        "65a63890-31b9-466a-bf58-c64fa7f2d3a5": 1,
-        "8bbc4dac-56be-46b3-b253-309606d1e37c": 2,
-        "fc119069-434f-4ce2-88b6-389e1441eca6": 2,
-        "584da0c3-c5d7-49f9-905e-6143fddd0056": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "89121146-483c-4baa-bee4-6403b7c8f04d": {
@@ -5568,10 +5544,9 @@
         }
       },
       "cart": {
-        "total_price": 2941.44,
-        "3821894c-61f2-45ce-a21d-ab72fd851581": 2,
-        "79103481-cfa2-4fcf-b946-32d0fa494e91": 1,
-        "c47338b7-7a2b-4f8f-b8d4-4b4aa883574a": 1
+        "total_price": 401.92,
+        "8fd6995a-5877-4a03-a26e-4af5a092ed9b": 1,
+        "4f4b2fd0-abf0-497d-95fc-e574563b3cce": 1
       },
       "wish_list": [
         {
@@ -5674,10 +5649,8 @@
         }
       },
       "cart": {
-        "total_price": 1250.75,
-        "8a812262-04e1-49ca-9f46-6927313c5218": 1,
-        "30a9982c-30ee-4677-b185-ec7e4b7fc6f5": 1,
-        "69dfa457-fd70-4b6c-9383-fd099089c3aa": 1,
+        "total_price": 1605.02,
+        "0831dd10-c960-4595-90d5-d6073998b952": 2,
         "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
@@ -5774,7 +5747,12 @@
           "zip_code": 72648
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1963.39,
+        "a714c236-92cc-4c12-91f1-b96fb1de372c": 2,
+        "bf923f41-ca4e-4b80-b0b8-61dc0f4358e7": 1,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [],
       "orders": {
         "773e3aff-6d1d-4344-8abc-81a842dbd325": {
@@ -5833,7 +5811,13 @@
           "zip_code": 25357
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4464.31,
+        "079be2cc-a0ce-4b11-a1ed-545ac754357c": 2,
+        "611e32bf-2a84-40b5-8b52-b46e8d642f8b": 1,
+        "54019dab-e6e4-4b6f-940e-b5cd4fabb3ac": 2,
+        "b17043fb-bba8-4136-85a4-3fdcc251b79a": 1
+      },
       "wish_list": [
         {
           "product_id": "e7cf9e82-2c30-423d-aaba-b1105c9b8838",
@@ -5927,7 +5911,11 @@
           "zip_code": 73953
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1631.34,
+        "dbe079a0-df88-49f1-9eb0-eb515edddadb": 2,
+        "9405b227-4a71-4952-aa65-999c5a82ee07": 2
+      },
       "wish_list": [],
       "orders": {
         "759a6fe7-a791-4c7f-8014-247c18a5a7cc": {
@@ -5985,7 +5973,14 @@
           "zip_code": 17836
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3398.79,
+        "05a218d9-b0b8-4903-815b-970361a61e63": 2,
+        "aa56ba62-33b7-4ede-b5b7-d3fdd80a95aa": 2,
+        "db0b0694-02e3-4146-8da3-d2b403ce22fc": 1,
+        "39220877-a032-458d-a261-6e50300ca8f5": 2,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "0c5ae706-f521-4f2f-95b6-bc79185ebe27",
@@ -6190,10 +6185,12 @@
         }
       },
       "cart": {
-        "total_price": 3174.64,
-        "634180a2-1e6a-474a-87d8-1a8168f55631": 1,
-        "9b18c687-d47d-42c2-84e9-8c250535700e": 2,
-        "e57a1af6-940c-4b1b-93fe-e30f42e77665": 2
+        "total_price": 9639.93,
+        "a03b06d6-9768-4f8f-8281-3884b6b4237a": 2,
+        "0de35de1-3562-4272-b2c6-af374038adea": 1,
+        "06d9483a-e1f8-46f4-a6de-2b6cf481f9a0": 2,
+        "fa2a2828-40e3-4cb0-a7ab-55e115b1eb70": 2,
+        "ec2b1430-c52d-4351-a5fe-e3d9cfc19586": 2
       },
       "wish_list": [
         {
@@ -6273,7 +6270,13 @@
           "zip_code": 78424
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1826.75,
+        "c904b275-1cec-43f6-98c8-442d12026d90": 1,
+        "bebd81e5-2476-4015-b372-39086d4b974d": 2,
+        "742c1ba1-1a76-4581-9b29-c389cb02eb6e": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [],
       "orders": {
         "10496c9f-0e2f-4b38-8a95-3491f7e60036": {
@@ -6345,9 +6348,10 @@
         }
       },
       "cart": {
-        "total_price": 2062.87,
-        "0ed0bf2d-b66d-4488-b318-a1a4749b7c9b": 1,
-        "1db5536b-b865-45d3-ac3e-5137c69cf628": 1
+        "total_price": 3969.88,
+        "17791399-7b3f-4283-bf32-b71b286664c4": 2,
+        "0e261e2f-d097-40f9-9c3f-d5eadaef1e46": 1,
+        "8040bc5c-affd-44b9-a5aa-d6f48227fc7d": 1
       },
       "wish_list": [
         {
@@ -6435,12 +6439,7 @@
           "zip_code": 23614
         }
       },
-      "cart": {
-        "total_price": 5079.41,
-        "aa87dc9b-a12a-49b1-ba75-2159f7490f76": 1,
-        "b3ef67c1-e49d-420b-a012-dc856a30bb2e": 2,
-        "a7b85537-86d8-470f-bfb2-3408c673bfba": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "488f1290-2e01-4996-a0a2-dd7a0a339fc6",
@@ -6520,12 +6519,13 @@
         }
       },
       "cart": {
-        "total_price": 4654.94,
-        "bee7131c-4cdb-4fec-92fd-5ab6906cf456": 1,
-        "e3e474b7-ca2c-4819-bd4c-87f986326304": 2,
-        "0f50167c-d8a4-4297-92ba-854f752f9e44": 2,
-        "341710d0-da95-4c62-b6b9-aeaec8718271": 2,
-        "promo_code": "SUMMERFUN"
+        "total_price": 3329.87,
+        "a5cc7899-1d6e-4bbe-a7be-b261b57da57c": 1,
+        "dfd02ae6-bf81-4a25-91e0-0dc337df08f5": 1,
+        "bb53d6bb-8edc-4bb3-942a-9bc56ced6a2b": 1,
+        "9473370b-9a43-4952-9f68-350feac2c007": 2,
+        "6a5ca0a1-09d0-4f19-b278-ab799cb3051a": 1,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [],
       "orders": {},
@@ -6557,7 +6557,13 @@
           "zip_code": 33320
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3717.15,
+        "af4b1c80-a024-4461-bfab-2f69ad41f0aa": 1,
+        "e17b54e9-06e1-4ea8-a69b-1deff2df8f23": 1,
+        "f28dd80b-9fde-4f8a-a4a3-87e2d3beae11": 2,
+        "09f0d668-b685-4990-8cc8-d84014eb8044": 2
+      },
       "wish_list": [],
       "orders": {
         "691008d2-0108-4551-9b8f-7ba78aa9e595": {
@@ -6615,7 +6621,11 @@
           "zip_code": 49294
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 987.9,
+        "9086378a-972b-4952-be8d-c48a59b380a3": 2,
+        "a3a11fc0-a327-41db-b86e-bd5a16eadf9d": 1
+      },
       "wish_list": [],
       "orders": {
         "10983442-aab1-4116-8ebc-4730b7596cfc": {
@@ -6694,7 +6704,12 @@
           "zip_code": 30924
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2314.76,
+        "05cf58c0-ff7b-43ae-9a89-7098e306627c": 2,
+        "da30f3c7-2d06-4d65-8b3e-95998428791a": 1,
+        "68da2a2c-f6c6-421c-9ca9-5260082037c9": 1
+      },
       "wish_list": [
         {
           "product_id": "8d84944d-2d7c-4307-91f0-a900fd639fd7",
@@ -6769,14 +6784,7 @@
           "zip_code": 11992
         }
       },
-      "cart": {
-        "total_price": 5047.68,
-        "243fe3dd-9909-4b9a-bc13-064bd0bfe0a0": 2,
-        "fd230759-8c68-490d-948d-3cdfcb4e1dcf": 1,
-        "e9e031ee-54ce-4d88-a3c9-cf49c1427f59": 1,
-        "3ee00f5c-0b7c-496a-84f2-cc1893fe5c7b": 1,
-        "0289bcf2-c329-4ab6-966a-0408903c553d": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "5f1d76e8-79fa-46b7-b681-c11b962a1326",
@@ -6843,12 +6851,7 @@
           "zip_code": 32150
         }
       },
-      "cart": {
-        "total_price": 1723.77,
-        "c5da735a-0493-4b69-9c7e-3c2619c7dc56": 2,
-        "e1b261f6-44b3-4ffd-8e84-6c5fea4e1107": 1,
-        "58e176db-93c2-4925-94ed-df8af38d2324": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "0c3539b4-7b7b-443c-a3e0-2c8454b47a11",
@@ -7046,7 +7049,12 @@
           "zip_code": 94612
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3001.8,
+        "08ea4e72-596f-46d7-93ac-fd677aff075a": 2,
+        "d43c695e-cf51-4ba0-853d-bc8f66f3fbc9": 2,
+        "d80b6ef9-1c62-4d2d-b0ef-910bb5cd530d": 1
+      },
       "wish_list": [],
       "orders": {
         "c65bbf19-87df-4257-a321-d51ca5876d1f": {
@@ -7164,8 +7172,9 @@
         }
       },
       "cart": {
-        "total_price": 1104.24,
-        "1cdbdbeb-3497-44c4-a03d-f77a9e16739e": 1
+        "total_price": 2349.57,
+        "177ad8c1-c819-4e26-91bd-7dbb8e723684": 2,
+        "9e4e5132-da6f-4852-8e50-edfa0cde8739": 1
       },
       "wish_list": [
         {
@@ -7285,8 +7294,10 @@
         }
       },
       "cart": {
-        "total_price": 638.26,
-        "2e11def2-31c4-4228-aa09-6e73ec06db16": 1
+        "total_price": 1953.12,
+        "2d75edf3-bdfc-46b9-ae5b-dbd4b0f0efab": 2,
+        "f010855f-21ae-4926-820b-73c21896b158": 1,
+        "01daab3e-738c-4300-bb57-e8683f0d21b4": 1
       },
       "wish_list": [],
       "orders": {
@@ -7349,12 +7360,7 @@
           "zip_code": 35983
         }
       },
-      "cart": {
-        "total_price": 3091.06,
-        "d25a1f6a-2a66-4433-bfbc-ef2442754b95": 1,
-        "da680c65-2e83-42c3-b32f-8db229e9d909": 2,
-        "c2f95e07-f23b-4299-b07c-18113b748631": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "8c83c620-c9ca-494a-8c14-f07a3264f71a": {
@@ -7419,7 +7425,12 @@
           "zip_code": 98390
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 747.67,
+        "8d1283cd-339e-45c6-bbdb-61d460045db5": 1,
+        "e1579851-b5d7-462c-89a5-5fb7bc9da6cb": 2,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [
         {
           "product_id": "bc51fcd6-9a44-478a-aeb6-14cd97671927",
@@ -7497,13 +7508,10 @@
         }
       },
       "cart": {
-        "total_price": 5936.23,
-        "e4eeb106-93e7-49c3-bbe3-3ec113b56341": 2,
-        "385530f8-2151-4e1c-875d-e5df174ae2ac": 2,
-        "2f920fb0-5f14-49e1-a8a8-5786757a4683": 2,
-        "dfb90736-0317-42ce-bb0c-815b4b4c5e76": 1,
-        "a8b6656e-48f6-496f-8ace-4dceaebd0dbe": 1,
-        "promo_code": "SUMMERFUN"
+        "total_price": 2229.72,
+        "cd67ce29-7cf6-487a-8a2a-3c7578f40885": 1,
+        "ba65bac9-8e0e-4e7f-9160-7c21e701165b": 2,
+        "b6e8e3df-ab3d-4d82-ba0f-2404a8e99c46": 1
       },
       "wish_list": [
         {
@@ -7611,13 +7619,7 @@
           "zip_code": 47734
         }
       },
-      "cart": {
-        "total_price": 4509.6,
-        "d39511e8-d918-40f2-bb70-457347ce4b31": 2,
-        "f0b9e1bd-3ee4-4190-8207-fee0d3babe68": 1,
-        "a832f860-0834-4600-b48a-ec08d2a6f259": 2,
-        "ce4ad9cb-f706-49f3-8cb7-679dcc6540cc": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "223dd1c2-0f2f-45d2-b27c-32e2079bd997": {
@@ -7683,9 +7685,9 @@
         }
       },
       "cart": {
-        "total_price": 355.73,
-        "0c9de43b-027d-4953-a661-737b53e7ac17": 1,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 4219.5,
+        "b28ad6f9-7f61-4347-a3bc-30701c5db5d7": 2,
+        "48665c08-ae75-43e3-81f0-77b3351edb4c": 2
       },
       "wish_list": [],
       "orders": {},
@@ -7724,15 +7726,7 @@
           "zip_code": 14536
         }
       },
-      "cart": {
-        "total_price": 4934.62,
-        "3d96d56b-b236-46a9-825d-5e9ecf900939": 1,
-        "7bf527f2-4aee-4a0a-8388-14f3c6d287e8": 1,
-        "d7f2434a-2764-45ed-a677-60ef4bc7c77f": 2,
-        "0df4516f-105a-4082-8c4b-3086476e794b": 2,
-        "3237d143-0992-4d8d-a3d2-d2843fcfe7b0": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "e7d7ea9f-da78-4c14-96ce-fcef8ed366df",
@@ -7796,11 +7790,7 @@
           "zip_code": 15961
         }
       },
-      "cart": {
-        "total_price": 2720.94,
-        "f053e624-6b56-4832-9774-09a4e9aa6fca": 2,
-        "f6987dda-8030-4de6-b8bf-d7bf4074c6ed": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "18fca7fb-6133-468c-9513-1b35021af6e6",
@@ -7905,7 +7895,13 @@
           "zip_code": 13438
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 5314.33,
+        "43f1d8c6-10e7-400b-ab82-3dac3d04d7e3": 2,
+        "7504c6b5-8978-4c4a-8037-b6d448df6ff4": 2,
+        "26d0d22a-11d4-41b3-a20a-afaa089310c5": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "aa56ba62-33b7-4ede-b5b7-d3fdd80a95aa",
@@ -7993,10 +7989,11 @@
         }
       },
       "cart": {
-        "total_price": 3244.76,
-        "38718c44-9401-4fc0-a6c0-b1a93ce90ec4": 1,
-        "d0737a62-3bc8-4a36-865c-1c6c98e44c0a": 1,
-        "d452799c-c276-48d9-9812-c396759d359b": 2
+        "total_price": 3992.36,
+        "98ec6542-fe5b-4a4a-9cd7-ff85725d1513": 2,
+        "54019dab-e6e4-4b6f-940e-b5cd4fabb3ac": 2,
+        "9325ce2f-c194-4378-aa6f-75d23f051716": 1,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -8107,10 +8104,10 @@
         }
       },
       "cart": {
-        "total_price": 1108.95,
-        "b38a8284-a3ed-4a0c-bb40-09ee697646cf": 2,
-        "1c3a8d2c-e8e9-4fdd-9263-20cb3ab2d1bd": 1,
-        "a400367c-7304-4395-841e-d0adff862d31": 1
+        "total_price": 2507.09,
+        "aa995259-e886-4223-811f-93833ed3e745": 2,
+        "d2a2774f-3dd2-4849-b7f7-ec8ae6d25337": 1,
+        "8e8321bb-b5ab-4222-969a-c93a542d279d": 1
       },
       "wish_list": [
         {
@@ -8186,7 +8183,10 @@
           "zip_code": 95579
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1311.71,
+        "83d98058-ddf3-4351-a5de-595ef7bc1733": 1
+      },
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -8294,7 +8294,13 @@
           "zip_code": 11321
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3386.25,
+        "45c3830a-8db5-4a22-ae41-f30ef9bd9518": 1,
+        "3756cb21-4b22-476e-b4ad-16cc92d411a6": 1,
+        "696535a1-552f-4284-a056-e890dc4627fa": 2,
+        "51298a6d-9778-49d3-ab43-07fe7ee697d7": 1
+      },
       "wish_list": [],
       "orders": {
         "786873b6-c5f6-430d-b255-8dc912a20c02": {
@@ -8424,14 +8430,7 @@
           "zip_code": 53285
         }
       },
-      "cart": {
-        "total_price": 6171.94,
-        "4c69443d-f51a-49ac-aa8b-da6c7d2028f1": 1,
-        "7770c42b-fbe4-46ac-8def-e31bd3c85493": 1,
-        "c11a6e82-882b-458a-9911-e7395c157005": 2,
-        "1be2d07d-2ab4-40c7-b067-e204da417b44": 2,
-        "1d9529b2-b419-4b4e-9e22-91c2fe5eeeef": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "9bfc997d-2073-4d21-acaf-cb985f25f906",
@@ -8505,12 +8504,7 @@
           "zip_code": 63263
         }
       },
-      "cart": {
-        "total_price": 1327.71,
-        "a621fcc5-4c5d-409e-95d6-1fcec3f99458": 1,
-        "e00b1c1d-28d4-46d6-9af1-636138d02466": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "add5d72b-5cd8-4746-99d5-310f7bfd52c8",
@@ -8575,15 +8569,7 @@
           "zip_code": 38345
         }
       },
-      "cart": {
-        "total_price": 5738.55,
-        "d25a1f6a-2a66-4433-bfbc-ef2442754b95": 2,
-        "f25f1b7a-dee7-4a21-99db-3c2f4aca22c7": 1,
-        "0c365f56-1afb-4ec6-9ab7-04c3dfce7d40": 2,
-        "97cca562-8337-44fa-9252-0f3c9e2110a6": 2,
-        "775c1a14-98cc-4cc7-ab86-9858e8b9e2f2": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "6d9b7be4-6582-4c29-9120-f8dffbe1e1ea",
@@ -8659,13 +8645,12 @@
         }
       },
       "cart": {
-        "total_price": 6223.6,
-        "58f94795-ad80-4daa-b4fb-136f60f24fbc": 1,
-        "0de1bbef-7818-4955-8184-39af91bee437": 2,
-        "1f1951f1-5d0c-489e-8289-577141cdc3ce": 1,
-        "760bc7ce-6591-4b3c-96d2-3b87819b526f": 2,
-        "d7848f9b-951f-4242-8958-be566619711b": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 4846.82,
+        "46093bd9-e9c0-40d6-8523-e7b32d12f144": 1,
+        "6a2dcf4f-7e34-4bfb-9d57-d8ed090b58d3": 1,
+        "b2c3d105-21f7-480a-ac9f-2e939c47a7a3": 1,
+        "5d16e3e8-f139-47ca-9db5-31821032179a": 2,
+        "20cf5491-3179-4d59-825a-a67722cdab0f": 2
       },
       "wish_list": [
         {
@@ -8788,12 +8773,10 @@
         }
       },
       "cart": {
-        "total_price": 2724.69,
-        "95e8003a-89d3-414e-bd45-b0cc10060136": 1,
-        "054fc6e8-ae3c-46dc-a4da-dc8547aeecf3": 1,
-        "b2d53e1a-3c47-49d9-9b90-8fb44c80d50f": 1,
-        "36abb29e-d003-4c2c-b4b2-528df2c5c803": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 1442.41,
+        "b19f5664-106b-4542-a7a9-fd6b1c2d3695": 1,
+        "7a689d92-0e6d-4546-8025-13521ef2f367": 1,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -8843,12 +8826,8 @@
         }
       },
       "cart": {
-        "total_price": 4621.62,
-        "1b9d09f3-b165-46b2-aa4b-567d396d91e2": 2,
-        "616854eb-839d-481e-a245-e5182f73e393": 1,
-        "3d96d56b-b236-46a9-825d-5e9ecf900939": 2,
-        "d39511e8-d918-40f2-bb70-457347ce4b31": 1,
-        "634180a2-1e6a-474a-87d8-1a8168f55631": 1
+        "total_price": 759.96,
+        "e17b54e9-06e1-4ea8-a69b-1deff2df8f23": 2
       },
       "wish_list": [],
       "orders": {
@@ -8928,13 +8907,7 @@
           "zip_code": 27567
         }
       },
-      "cart": {
-        "total_price": 4243.11,
-        "7d9e407e-a0e9-44e4-a5aa-fee849a2efd9": 2,
-        "d438be06-632d-4f69-87bf-21259018d90f": 2,
-        "a1708807-05ca-42a5-b0c1-6bdd65e940e7": 1,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {
@@ -8965,8 +8938,10 @@
         }
       },
       "cart": {
-        "total_price": 753.84,
-        "e45a1dcb-55fc-4ad8-b8a8-f9f8a7e45135": 1
+        "total_price": 5302.55,
+        "fed5d9e7-ab36-4be1-abf9-44cefc88d344": 2,
+        "cb48e115-ce64-4c2f-93e0-7be5d1228af0": 2,
+        "77452f2b-2847-48b7-a808-eb325716263a": 1
       },
       "wish_list": [
         {
@@ -9157,11 +9132,7 @@
           "zip_code": 16732
         }
       },
-      "cart": {
-        "total_price": 2113.21,
-        "08be4ca3-b96b-41d7-ab06-8c58e85df7dc": 1,
-        "3d4f7480-c867-49a1-9d92-d7d5a4054802": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "569bc4f6-ec62-4abc-8069-d21e01eb56db",
@@ -9239,8 +9210,12 @@
         }
       },
       "cart": {
-        "total_price": 693.13,
-        "0f50167c-d8a4-4297-92ba-854f752f9e44": 1
+        "total_price": 4419.89,
+        "be2a174f-7658-46d9-970b-a795ebef38f0": 1,
+        "ab7012b9-8c79-485c-97b8-1c5248bf68c1": 2,
+        "1faff473-1151-4101-b841-0d38fd52cfdc": 2,
+        "b28ad6f9-7f61-4347-a3bc-30701c5db5d7": 2,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
         {
@@ -9534,11 +9509,7 @@
           "zip_code": 90722
         }
       },
-      "cart": {
-        "total_price": 3414.04,
-        "7ac85a85-b2d8-4d3b-9b4f-6d263bf0d2c2": 2,
-        "f0b9e1bd-3ee4-4190-8207-fee0d3babe68": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "b1f26140-291a-4fb9-a8db-e9e4186f8f19",
@@ -9644,7 +9615,12 @@
           "zip_code": 36142
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2788.71,
+        "4c5a875f-e961-49cd-9a4f-0b9a9c9dc9f3": 2,
+        "ca18adaa-193b-4126-b929-d7ffa9d423b6": 2,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [],
       "orders": {
         "ddcf0fbe-2efb-43fc-96de-509fc726e037": {
@@ -9725,13 +9701,7 @@
           "zip_code": 57966
         }
       },
-      "cart": {
-        "total_price": 6857.52,
-        "e6d11c07-027e-44ed-8c0b-25332b6b1593": 2,
-        "8eb5c48c-6bb0-4399-9211-8d0e9696da31": 2,
-        "60edda31-92eb-4665-a829-36c072d11db5": 2,
-        "ae29db76-d023-4ba8-adb9-e573ae6fafbb": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "e35023ec-ba65-4661-b8a9-8dd3611126ee",
@@ -9787,7 +9757,13 @@
           "zip_code": 79948
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3753.35,
+        "f9d2679c-97e4-48f5-9c9d-262ec4022153": 1,
+        "e11a8411-2355-4967-86ca-164b0fa1eece": 2,
+        "07963af8-caeb-4d8a-949a-7fcf141dd9cc": 2,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "ca18adaa-193b-4126-b929-d7ffa9d423b6",
@@ -9837,12 +9813,7 @@
           "zip_code": 21524
         }
       },
-      "cart": {
-        "total_price": 3007.79,
-        "4e62a14a-c91a-4150-b3b6-5b917187f401": 2,
-        "56021239-b0f4-4223-8a45-751f76f72872": 2,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "c8012bbf-7c49-4a65-ad6e-1279b480f0bb",
@@ -9883,8 +9854,8 @@
         }
       },
       "cart": {
-        "total_price": 1188.04,
-        "110238ac-4761-4c4a-bf6a-718937225fb0": 2
+        "total_price": 2529.18,
+        "0ce32f88-c638-4036-b1b2-71e847f1623c": 2
       },
       "wish_list": [
         {
@@ -10004,7 +9975,11 @@
           "zip_code": 82827
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 615.08,
+        "9bd00f31-d733-4a2f-8df4-704c65736413": 1,
+        "ddfa1912-4c22-4b37-b732-0d300105b130": 2
+      },
       "wish_list": [
         {
           "product_id": "933e7e95-3ca8-4a85-af39-d5883733aa6c",
@@ -10295,10 +10270,7 @@
           "zip_code": 52719
         }
       },
-      "cart": {
-        "total_price": 448.41,
-        "55ac88c9-8270-4926-9c36-8e451f785912": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "2581bc3d-f47b-4e70-81fa-6e4b3b2a6d9c": {
@@ -10368,11 +10340,7 @@
           "zip_code": 31073
         }
       },
-      "cart": {
-        "total_price": 3405.47,
-        "55ac88c9-8270-4926-9c36-8e451f785912": 1,
-        "7118283a-da03-4201-b6a1-d915f22a5591": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "543bf125-1486-4731-8f81-6f87e7f1e1b3": {
@@ -10453,9 +10421,12 @@
         }
       },
       "cart": {
-        "total_price": 1830.1,
-        "83df40b5-58bf-4096-a1dd-3b31b9dc049d": 2,
-        "8bbc4dac-56be-46b3-b253-309606d1e37c": 2
+        "total_price": 6500.83,
+        "477409a5-0960-4976-a20a-a89d0d094fce": 1,
+        "bfe6f6f3-106f-43fb-a49c-d7d76ee49607": 2,
+        "e17b54e9-06e1-4ea8-a69b-1deff2df8f23": 2,
+        "7504c6b5-8978-4c4a-8037-b6d448df6ff4": 2,
+        "f740b752-3b09-4ca3-a333-2d1c62196252": 2
       },
       "wish_list": [
         {
@@ -10544,8 +10515,11 @@
         }
       },
       "cart": {
-        "total_price": 543.09,
-        "60636353-7674-40d6-a540-20f7f422d52c": 1
+        "total_price": 3763.27,
+        "8804f5c8-375a-4c1d-bbf5-7de8c2b9a4cd": 1,
+        "54019dab-e6e4-4b6f-940e-b5cd4fabb3ac": 1,
+        "f05d7d68-7b4d-45d2-bea0-808ae6dec082": 2,
+        "70d15dfd-f161-4b91-83bd-17db43c97030": 2
       },
       "wish_list": [],
       "orders": {
@@ -10607,10 +10581,12 @@
         }
       },
       "cart": {
-        "total_price": 1672.38,
-        "1388612c-90f3-483f-918f-8f7a3923683d": 1,
-        "f8b96feb-0b7b-439c-a8ea-1d2e51319d80": 2,
-        "promo_code": "SUMMERFUN"
+        "total_price": 6288.51,
+        "4954b6cd-a722-49bb-b4ec-cf37d61fdc14": 2,
+        "ea40bcfd-52ef-422a-aaeb-1c0df568858a": 1,
+        "a8f966f7-d8a8-430b-808e-c697278cebe2": 1,
+        "f8e118fc-6e40-4ab4-9f16-909899074b08": 1,
+        "7e7c976e-0a73-4749-840f-033a315b27f1": 1
       },
       "wish_list": [
         {
@@ -10909,7 +10885,14 @@
           "zip_code": 64399
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 6281.6,
+        "e4c0988e-3eb1-4f0e-bcca-8519ef95aa08": 2,
+        "d315686d-5d3a-46ef-8578-01d2d637a7b0": 1,
+        "a7d476c3-49d7-4e3a-98d0-28f8f5a69fa7": 1,
+        "3307765f-52ef-4396-a98b-365ea1a5270d": 1,
+        "179b1e11-23cb-4c20-9f4a-5f082fe68a7d": 1
+      },
       "wish_list": [
         {
           "product_id": "b9c8ccbc-0dea-407d-8a21-7c50295c7831",
@@ -11005,8 +10988,10 @@
         }
       },
       "cart": {
-        "total_price": 478.53,
-        "7325f100-d85d-4aaa-a85c-d40faa5fbf33": 2,
+        "total_price": 2275.77,
+        "4f38bcaa-8c1d-4a5f-ae9d-6eab36fa51a1": 1,
+        "c996cfbe-8f0c-49ae-95e8-5f89ff37c874": 2,
+        "a7af4aea-f680-4aeb-9592-03387753921c": 1,
         "promo_code": "SUMMERFUN"
       },
       "wish_list": [],
@@ -11086,7 +11071,12 @@
           "zip_code": 60724
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 664.19,
+        "42d4ab27-aeef-441c-b508-8d796184c094": 1,
+        "8136cd2e-b608-4257-bd31-6315631bb41b": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "d4384777-9cb0-44bf-a851-9d5552d48f74",
@@ -11122,13 +11112,7 @@
           "zip_code": 35049
         }
       },
-      "cart": {
-        "total_price": 2940.74,
-        "0f50167c-d8a4-4297-92ba-854f752f9e44": 1,
-        "f352960f-e2be-4794-867f-5baef4a66482": 2,
-        "7ec0255b-ba01-4d10-87f6-6fcc9f496b23": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "7458a1a4-ff7e-4aa0-ab25-69d2284b6359": {
@@ -11189,14 +11173,7 @@
           "zip_code": 13654
         }
       },
-      "cart": {
-        "total_price": 6322.59,
-        "409e8987-f2df-454f-b8a4-c8f78c88d5da": 2,
-        "e411f15d-84de-4225-8ab1-7255a3f168ab": 2,
-        "e6370d11-df32-4e82-a463-5771df6f2ae8": 1,
-        "f787a6e7-227c-4d61-9b7c-2b86988d8400": 1,
-        "cc905357-4296-4300-9522-b4e2745a7ae0": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "da30f3c7-2d06-4d65-8b3e-95998428791a",
@@ -11388,11 +11365,9 @@
         }
       },
       "cart": {
-        "total_price": 4124.64,
-        "dbce3d1b-bf87-4d64-9ea4-a595a58842f9": 1,
-        "110238ac-4761-4c4a-bf6a-718937225fb0": 2,
-        "4831ca42-a3e2-4961-b7bf-ba5cab7a2dd2": 1,
-        "3009f5c3-aa73-460c-bb58-5e074f8918b1": 1
+        "total_price": 1403.1,
+        "cee30d63-56ed-4cb8-a1c1-dde14c1b5da7": 1,
+        "b9c8ccbc-0dea-407d-8a21-7c50295c7831": 1
       },
       "wish_list": [
         {
@@ -11559,13 +11534,8 @@
         }
       },
       "cart": {
-        "total_price": 3719.24,
-        "9a0e85ae-f148-41cd-bddb-919cf225a746": 2,
-        "73a944ae-b03e-4d09-9d7c-89bb9cd66087": 1,
-        "61636c29-3793-482d-9dbb-97fe83e0162f": 2,
-        "de600332-cef3-4b0c-9f1e-ea9292a528a4": 1,
-        "b8391f66-f08d-47e6-b2e3-b0acb447a8a1": 1,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 570.19,
+        "65353b87-3969-47b4-899c-fff8ae9ce1c7": 1
       },
       "wish_list": [],
       "orders": {},
@@ -11612,14 +11582,7 @@
           "zip_code": 66461
         }
       },
-      "cart": {
-        "total_price": 4865.67,
-        "95e8003a-89d3-414e-bd45-b0cc10060136": 1,
-        "56021239-b0f4-4223-8a45-751f76f72872": 1,
-        "3237d143-0992-4d8d-a3d2-d2843fcfe7b0": 2,
-        "9e9830e3-1d91-4692-b30e-f176557e9b9c": 1,
-        "0a31c03b-a41f-45ba-89e3-ca25bef56432": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "51fcf26d-dc0c-400f-af46-098c075785a8",
@@ -11711,14 +11674,7 @@
           "zip_code": 62167
         }
       },
-      "cart": {
-        "total_price": 1615.21,
-        "2d5bc30c-457d-463e-9050-e040c365c4ba": 1,
-        "584da0c3-c5d7-49f9-905e-6143fddd0056": 2,
-        "0da79f4e-5925-4ba4-bd4b-5de06a32e028": 1,
-        "73e55d72-fbca-4acc-83b5-8ce2dba7e738": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "ceef0668-0818-4f36-b739-7c63280b709a",
@@ -11964,12 +11920,7 @@
           "zip_code": 52946
         }
       },
-      "cart": {
-        "total_price": 2073.7,
-        "6d89ab63-a551-4d3e-8cad-041e3d253e0f": 2,
-        "9a540afb-df75-49bd-b2d6-2ecbf7e1c03d": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "5048b39c-bcd8-40fe-bba1-40e50dd29324",
@@ -12051,13 +12002,11 @@
         }
       },
       "cart": {
-        "total_price": 3726.77,
-        "27e22628-0792-4825-9147-2e51a26a6f91": 2,
-        "46760f05-a071-4107-8769-171775940d54": 2,
-        "66c8baf2-5b89-40bd-9a7f-cea719884ac3": 1,
-        "71830db6-1754-4280-be3d-418fde971fa4": 2,
-        "3ee00f5c-0b7c-496a-84f2-cc1893fe5c7b": 1,
-        "promo_code": "SUMMERFUN"
+        "total_price": 4627.98,
+        "d396f443-d681-4c08-b8ed-9a41668b3e74": 1,
+        "9b202bb4-4382-4240-b3c0-c38208a76263": 2,
+        "c1c0a33a-2b87-44cc-bb7a-feb0d176bb25": 2,
+        "c7faba10-4d5b-4ebd-8a0e-2336aadcc724": 1
       },
       "wish_list": [
         {
@@ -12113,7 +12062,12 @@
           "zip_code": 62354
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2465.88,
+        "66c77503-4802-4a4a-a1d4-d2550aaa3ab3": 2,
+        "6af89af7-c1ac-48c6-848d-fccfe53ee267": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "6ca30a17-8628-43a2-abaa-6e35b7122984",
@@ -12185,11 +12139,7 @@
           "zip_code": 39959
         }
       },
-      "cart": {
-        "total_price": 1374.2,
-        "28064638-5de1-441c-9a75-f61a191abc84": 1,
-        "616854eb-839d-481e-a245-e5182f73e393": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "c22e0f62-d49c-4dfc-8d31-2fa4baeb033e",
@@ -12268,13 +12218,7 @@
           "zip_code": 12600
         }
       },
-      "cart": {
-        "total_price": 6586.09,
-        "dd4592d7-40b0-441f-8770-242211b1138d": 1,
-        "c9e8ac46-07d3-4479-8c50-78e9b4d3c069": 1,
-        "054fc6e8-ae3c-46dc-a4da-dc8547aeecf3": 2,
-        "da04c4b8-4a0a-4d0d-8a54-3587943a87ac": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "364d2c7b-260e-432d-9159-270cba6a9e0a": {
@@ -12328,9 +12272,12 @@
         }
       },
       "cart": {
-        "total_price": 1742.67,
-        "817421ee-66cb-4481-a07c-f92653b5ebae": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 6579.23,
+        "52d7b2ee-2a9e-4107-b288-004b40b17074": 2,
+        "9f0e7305-7296-4411-af28-cee68590c2ba": 1,
+        "f010855f-21ae-4926-820b-73c21896b158": 2,
+        "09a5fe3a-b3d4-4b4c-a5c0-b53fffea1d0c": 2,
+        "6a47850c-cea6-4fb0-8f0e-34f9c87fca37": 1
       },
       "wish_list": [
         {
@@ -12540,12 +12487,13 @@
         }
       },
       "cart": {
-        "total_price": 4691.12,
-        "a7b85537-86d8-470f-bfb2-3408c673bfba": 2,
-        "4481ff3b-b4fb-4455-853b-98cbbe887288": 2,
-        "cf0cf1f1-f731-45ad-ab8b-9c22408db934": 2,
-        "390c5b8e-1635-40ec-83f5-893d004b140d": 1,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 4771.29,
+        "b7d08a56-bd80-4b69-9af1-213e9271df25": 2,
+        "584f976c-0f20-45f2-a4bd-8ca02b62e2f9": 2,
+        "c996cfbe-8f0c-49ae-95e8-5f89ff37c874": 2,
+        "f758c8f8-0802-4884-814b-51cb73054660": 1,
+        "8136cd2e-b608-4257-bd31-6315631bb41b": 2,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -12638,7 +12586,12 @@
           "zip_code": 57448
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2372.43,
+        "ef451f98-d9a6-412a-8fa9-779ee48871bd": 1,
+        "5660c2e5-27bc-4319-8e13-0f23603697a3": 1,
+        "7d3830a4-7c72-4074-ae24-da1264f556be": 2
+      },
       "wish_list": [
         {
           "product_id": "a941f45c-ac5e-432f-935c-356c31de5b57",
@@ -12700,7 +12653,11 @@
           "zip_code": 63009
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 644.03,
+        "8e8321bb-b5ab-4222-969a-c93a542d279d": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "b28ad6f9-7f61-4347-a3bc-30701c5db5d7",
@@ -12782,7 +12739,14 @@
           "zip_code": 31386
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 6070.73,
+        "0cf1224e-48dc-4f2a-bb2d-e2d23969dc08": 1,
+        "24ac9d54-d8e0-4372-a8f9-7013ee8aade3": 2,
+        "eafbd8e6-1701-4dde-af13-cb76f5652f6e": 2,
+        "642d8eff-ec21-4db8-a1bd-cc5e1c9fddb9": 1,
+        "e063f07a-6e53-4f0b-80dd-bf887cbea827": 2
+      },
       "wish_list": [
         {
           "product_id": "e3cdba7e-fe5e-44e8-8486-6b19b47ee94d",
@@ -12857,14 +12821,7 @@
           "zip_code": 69852
         }
       },
-      "cart": {
-        "total_price": 4722.43,
-        "9f045526-9ce1-4621-a6db-f15c3d253803": 1,
-        "b2d5cb7b-a352-4eb3-b75f-87f7fdad1794": 1,
-        "243fe3dd-9909-4b9a-bc13-064bd0bfe0a0": 1,
-        "c472700f-6c75-4f25-b672-6945a291556c": 2,
-        "a3b6e338-f5d5-4ef3-8d85-96db92da1238": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "9b9c55f0-9803-49e8-93a4-fc3a3d1f5fb8": {
@@ -12928,13 +12885,7 @@
           "zip_code": 42397
         }
       },
-      "cart": {
-        "total_price": 3952.16,
-        "d10a2485-f85a-44d8-aae7-74d539feeca9": 1,
-        "e19522b7-c37d-4ea8-864b-37b783e902ea": 2,
-        "e4dc1839-b8dd-4c58-9e8d-7619da331d56": 2,
-        "204e5a9b-55e7-4a52-8610-4efe8d5011a6": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "c3fdf412-a2d8-4e40-9126-ae9b8681dea6": {
@@ -12985,11 +12936,7 @@
           "zip_code": 64638
         }
       },
-      "cart": {
-        "total_price": 1065.03,
-        "3c2970c3-4e0e-43c2-bf14-97bfbacbc687": 2,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "14055047-c9ec-4b35-a132-d5bebeea02ad",
@@ -13053,11 +13000,7 @@
           "zip_code": 62358
         }
       },
-      "cart": {
-        "total_price": 225.09,
-        "cac6e508-4152-4007-800f-680b90544625": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "dfd02ae6-bf81-4a25-91e0-0dc337df08f5",
@@ -13172,9 +13115,11 @@
         }
       },
       "cart": {
-        "total_price": 2381.7,
-        "169e394a-7b26-4c4d-a79a-e4800a0b2270": 1,
-        "ffbd9ae5-24ac-4db6-a8aa-4b466ea18388": 1
+        "total_price": 2435.91,
+        "ee4bbfdc-d451-4df2-9d89-07aa1b24d1d8": 1,
+        "dbc32e49-3757-432b-9dd7-3dfccb3a3f79": 1,
+        "a663614e-ce02-4628-a2db-b365e96a5307": 1,
+        "dfe97b93-4ab0-4c30-b146-55606141d069": 1
       },
       "wish_list": [],
       "orders": {
@@ -13256,7 +13201,12 @@
           "zip_code": 11943
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1081.06,
+        "e4c0988e-3eb1-4f0e-bcca-8519ef95aa08": 1,
+        "812033a8-a561-4e5f-96c6-ef18394654a4": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [],
       "orders": {
         "e90dd83a-d684-4266-84e7-afe0b09a0548": {
@@ -13302,13 +13252,9 @@
         }
       },
       "cart": {
-        "total_price": 5558.22,
-        "5822d46f-40ec-42a3-b963-62a417418961": 1,
-        "05942559-ac24-493f-b4dc-283ace9ae301": 2,
-        "204e5a9b-55e7-4a52-8610-4efe8d5011a6": 2,
-        "83df40b5-58bf-4096-a1dd-3b31b9dc049d": 2,
-        "d000ba69-fba1-4c34-90fe-005d53f39cb1": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 2511.24,
+        "2571b0f0-a8f6-4973-a0ba-e78e95609cc5": 2,
+        "db0b0694-02e3-4146-8da3-d2b403ce22fc": 2
       },
       "wish_list": [
         {
@@ -13418,10 +13364,8 @@
         }
       },
       "cart": {
-        "total_price": 2462.38,
-        "970d8eb1-bee5-4d4a-a150-b26beb2aa9fe": 1,
-        "fd378899-9634-430e-b45c-8557485a93ef": 2,
-        "10da539b-5c26-4a52-9609-23c41352e3fe": 2,
+        "total_price": 689.47,
+        "4f655644-2e36-42ed-a642-f2d96da77097": 1,
         "promo_code": "SUMMERFUN"
       },
       "wish_list": [],
@@ -13468,7 +13412,12 @@
           "zip_code": 31273
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1080.32,
+        "33997470-06f5-408f-97ef-776a41067ef1": 1,
+        "6d611b35-bd4f-4207-b407-f671b794212d": 2,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [],
       "orders": {
         "798d3a27-3d7b-4985-bb5c-b97eecc64577": {
@@ -13545,7 +13494,11 @@
           "zip_code": 96723
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2301.08,
+        "e13c847e-b694-42d7-8fb0-d6399602735f": 1,
+        "4925eaea-44e4-4abd-93ce-69ae8c9b5c63": 1
+      },
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {
@@ -13590,14 +13543,7 @@
           "zip_code": 71012
         }
       },
-      "cart": {
-        "total_price": 3002.3,
-        "c5838005-f16a-4ba2-ab67-b4a2143e89c1": 2,
-        "a3b6e338-f5d5-4ef3-8d85-96db92da1238": 2,
-        "514468c3-ab7c-4597-a00f-049d3b8dca7f": 1,
-        "43669908-e43d-4551-92a3-1332e743fe12": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "68e5f031-7a97-4267-a06e-97ae0a9d7ff7",
@@ -13689,12 +13635,7 @@
           "zip_code": 18561
         }
       },
-      "cart": {
-        "total_price": 4154.1,
-        "054fc6e8-ae3c-46dc-a4da-dc8547aeecf3": 2,
-        "2d65d297-0f48-48ad-b73f-874b1b9eeef7": 2,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "1df2388c-b658-48bd-aa05-77c850418e93",
@@ -13838,7 +13779,15 @@
           "zip_code": 21821
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4310.97,
+        "00b46b46-3cac-4313-b2eb-28d5535ac98b": 1,
+        "be2a174f-7658-46d9-970b-a795ebef38f0": 2,
+        "54019dab-e6e4-4b6f-940e-b5cd4fabb3ac": 1,
+        "e64d4c10-5a1b-4331-bd3b-ee25f7237b79": 2,
+        "b5189070-de02-43ce-8fd7-3f41c120eec8": 2,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [],
       "orders": {
         "a287b577-7e41-46e9-9ccf-ff56690a1dda": {
@@ -13893,11 +13842,12 @@
         }
       },
       "cart": {
-        "total_price": 2742.79,
-        "3b9bebb7-b065-4b09-a7f2-ab04bff30eb7": 2,
-        "760bc7ce-6591-4b3c-96d2-3b87819b526f": 1,
-        "38fe6a37-622f-4eeb-a1a2-67574f7cfa03": 1,
-        "0854d320-d632-40d2-becc-27f7d8d61ce8": 1
+        "total_price": 4527.58,
+        "d4f5dffd-8e57-4005-b530-061cecd40bc2": 2,
+        "83df3efd-00bb-4c37-a4bb-18f73289d4ca": 2,
+        "50f2572b-2528-442b-b62a-be9c8713b785": 1,
+        "37850223-b68a-4a65-92c5-85b140a3bea1": 2,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [],
       "orders": {
@@ -13958,10 +13908,7 @@
           "zip_code": 41090
         }
       },
-      "cart": {
-        "total_price": 480.1,
-        "9bd2e904-5857-47ac-bf92-ba2b00cf3d14": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -14007,13 +13954,7 @@
           "zip_code": 10847
         }
       },
-      "cart": {
-        "total_price": 3563.91,
-        "b25fe0f2-5198-49e4-b335-1154a8095b0a": 1,
-        "b142efe4-d767-45b8-a000-0950a09f3aec": 2,
-        "28f6f754-8455-4836-9462-785143eb125f": 2,
-        "98b6378b-b8bb-450e-9435-213231b3acf4": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "7bc5bcba-142f-4f10-a8ce-b231aab3ab72": {
@@ -14094,7 +14035,10 @@
           "zip_code": 34533
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 459.39,
+        "a250dd97-3ea9-4cf2-8701-ce1fff3bf6f7": 1
+      },
       "wish_list": [
         {
           "product_id": "ecc1b6b9-d8b1-4a10-a2cb-20fb52ec5af2",
@@ -14146,13 +14090,7 @@
           "zip_code": 12171
         }
       },
-      "cart": {
-        "total_price": 2821.82,
-        "c0b39465-3918-4883-8b14-598b0aad3f96": 2,
-        "644ade85-fff3-4762-9b1f-8e2ebd8c690f": 1,
-        "4901fd2d-ef2f-4896-8fee-5797728d4b09": 1,
-        "be01422b-d857-4b9a-b920-14b5036f7eb3": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "42d4ab27-aeef-441c-b508-8d796184c094",
@@ -14260,12 +14198,12 @@
         }
       },
       "cart": {
-        "total_price": 4582.51,
-        "36abb29e-d003-4c2c-b4b2-528df2c5c803": 1,
-        "97cca562-8337-44fa-9252-0f3c9e2110a6": 1,
-        "2da7634d-45a1-42c2-bee7-332ce9155ef1": 2,
-        "aebac267-98fc-4b2e-8f20-abb44adebae4": 2,
-        "3646875c-e13b-41ff-bbec-3ed6cb519d4f": 2,
+        "total_price": 6252.21,
+        "1f5b2f96-289a-4867-844c-415251100a0e": 2,
+        "44a8d05b-4a8e-4677-9393-b34cab9bdfb9": 1,
+        "14055047-c9ec-4b35-a132-d5bebeea02ad": 2,
+        "f853ab70-8ec5-4b38-a48d-f1b7680c59b7": 2,
+        "30336fe8-0f6d-4197-aacf-278e8739343b": 1,
         "promo_code": "SUMMERFUN"
       },
       "wish_list": [
@@ -14439,10 +14377,8 @@
         }
       },
       "cart": {
-        "total_price": 2432.09,
-        "21af5219-0022-4a3a-99d0-bf87a315ecb4": 2,
-        "d3faac05-a157-467e-950d-ea05438334de": 1,
-        "c153ebda-4a24-49c6-8546-aa1e905b7ab1": 1
+        "total_price": 419.54,
+        "86eb30b8-f1fc-46bb-9ebf-0a212e13b2e9": 2
       },
       "wish_list": [
         {
@@ -14541,7 +14477,14 @@
           "zip_code": 87815
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1664.9,
+        "be2a174f-7658-46d9-970b-a795ebef38f0": 2,
+        "2d75edf3-bdfc-46b9-ae5b-dbd4b0f0efab": 1,
+        "10480064-bbdc-432e-a77b-cbf1b3b2aa8b": 1,
+        "9b1c4e68-0d34-49a2-86c8-ca09c9820ce5": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [],
       "orders": {
         "aa9f2d7d-94f7-4edb-ac9a-32fb5f7c9854": {
@@ -14649,10 +14592,7 @@
           "zip_code": 51002
         }
       },
-      "cart": {
-        "total_price": 38.71,
-        "54c083ae-b482-47ec-832d-687d9896f3ef": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "2c1de134-74a6-4ba2-99a0-0e5843e57f94": {
@@ -14717,12 +14657,7 @@
           "zip_code": 69878
         }
       },
-      "cart": {
-        "total_price": 1603.48,
-        "555708ed-e678-4f9f-a381-899cd5a8e1fe": 1,
-        "dfb90736-0317-42ce-bb0c-815b4b4c5e76": 2,
-        "a1bcecfa-e3c3-49c9-ae4f-1a7d4eb98ac5": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {
@@ -14760,7 +14695,12 @@
           "zip_code": 86019
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4519.16,
+        "fc1bea5f-7ea1-4933-8f43-f0d273e5442d": 2,
+        "640b230b-6b77-48cb-8a47-26ae3490e89a": 2,
+        "50ffb661-d07a-4dba-ae04-6023bba9ab34": 2
+      },
       "wish_list": [
         {
           "product_id": "532f7309-8e35-4bc3-a6bb-67692b2465c6",
@@ -14846,10 +14786,8 @@
         }
       },
       "cart": {
-        "total_price": 1474.07,
-        "985c9b0c-1a89-44b2-85a6-96a91baa7ba1": 1,
-        "606ce8ab-3284-4f08-bab3-34d2c842126a": 1,
-        "e4dc1839-b8dd-4c58-9e8d-7619da331d56": 1,
+        "total_price": 1113.58,
+        "43f1d8c6-10e7-400b-ab82-3dac3d04d7e3": 1,
         "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
@@ -15054,7 +14992,13 @@
           "zip_code": 40273
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 6052.79,
+        "3d5f70c2-49b3-4227-bd31-972771f4d0d0": 1,
+        "619ff547-3cbf-4a12-a989-85d524bd3592": 2,
+        "5a190d17-fa73-4e57-adc7-774bdb4dec35": 2,
+        "388aeb9d-f8d5-499d-8d1c-e904b830f1ac": 2
+      },
       "wish_list": [
         {
           "product_id": "f8e118fc-6e40-4ab4-9f16-909899074b08",
@@ -15174,7 +15118,13 @@
           "zip_code": 88123
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3444.84,
+        "402c7b6e-06ef-4e0c-b81e-2f424251f8b4": 1,
+        "7eb6ca1b-e34f-455a-8dce-f2fc889a4973": 1,
+        "95804029-fe8f-4402-93df-bd125b01797f": 2,
+        "df746888-95d6-4a0d-b7b5-f84db4182739": 1
+      },
       "wish_list": [
         {
           "product_id": "f740b752-3b09-4ca3-a333-2d1c62196252",
@@ -15235,12 +15185,7 @@
           "zip_code": 77538
         }
       },
-      "cart": {
-        "total_price": 5016.6,
-        "f8ef63e6-a462-4ddc-801e-f38648b7e263": 1,
-        "356bfc7e-704f-475c-8504-e4946d21d9c9": 2,
-        "60ad5495-bda5-4cce-b0cb-07ed08764b49": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "c1b7025f-5e03-447b-9e0a-1358745d5f38",
@@ -15358,7 +15303,15 @@
           "zip_code": 73961
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4951.89,
+        "4f38bcaa-8c1d-4a5f-ae9d-6eab36fa51a1": 2,
+        "00b46b46-3cac-4313-b2eb-28d5535ac98b": 1,
+        "a1ef9d6b-c513-4225-9a88-963d1a6f4aca": 1,
+        "9eae3fbd-8e1e-49f0-9906-a49330c12825": 1,
+        "d2e3bea9-2bf1-419f-a466-63878e22f89f": 1,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [
         {
           "product_id": "8410d18a-a8b8-453c-935b-b9e5409183ad",
@@ -15444,7 +15397,14 @@
           "zip_code": 94972
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 5607.74,
+        "402c7b6e-06ef-4e0c-b81e-2f424251f8b4": 2,
+        "0cf1224e-48dc-4f2a-bb2d-e2d23969dc08": 1,
+        "9219c40d-c076-4937-97f8-877172dd0ba0": 2,
+        "6a47850c-cea6-4fb0-8f0e-34f9c87fca37": 1,
+        "ed8cc1e4-9129-461a-8843-310426bba8aa": 1
+      },
       "wish_list": [],
       "orders": {
         "b33659f9-4913-49b9-8929-05642d081755": {
@@ -15512,11 +15472,12 @@
         }
       },
       "cart": {
-        "total_price": 6843.78,
-        "bc81002a-100d-404e-9c53-af633bc88e52": 2,
-        "02549fc8-7e75-4371-89d2-2636d8354795": 1,
-        "5f2acc14-09f0-4fc8-a245-5565e25de1d3": 2,
-        "ccd5ce7c-e8ac-4840-9944-1871964ce30f": 2
+        "total_price": 5064.4,
+        "798b7870-81e1-4a4a-b282-f02722c1a4aa": 1,
+        "a88ab657-bed4-41f3-8bd8-916ea7b80d54": 1,
+        "cee30d63-56ed-4cb8-a1c1-dde14c1b5da7": 2,
+        "7eb6ca1b-e34f-455a-8dce-f2fc889a4973": 2,
+        "c52e6089-5163-4fe8-afef-3778756dbbc5": 1
       },
       "wish_list": [
         {
@@ -15595,13 +15556,7 @@
           "zip_code": 36431
         }
       },
-      "cart": {
-        "total_price": 3410.97,
-        "c56289dc-48bb-4cce-bbde-90c8fea86c78": 2,
-        "e072409d-2b8e-41a3-a4ae-f10974a73b71": 2,
-        "d5202bc6-ab4a-4616-8b7b-446dfaafbee2": 1,
-        "4f60a6cc-51f5-4563-8730-d15250b5caed": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "ca61b424-3f13-4fc1-8d21-678ee2a93d7b": {
@@ -15688,12 +15643,9 @@
         }
       },
       "cart": {
-        "total_price": 1947.19,
-        "e411f15d-84de-4225-8ab1-7255a3f168ab": 1,
-        "4b992196-ef15-41d9-ac41-48be4c272c56": 1,
-        "ea230116-26a1-45ee-a8a0-9d6bddf2c4ef": 1,
-        "1aca3937-8028-4772-b934-85f967c5ecef": 1,
-        "1b1141e2-0a02-4ee7-817a-4f15c0071792": 2
+        "total_price": 1467.98,
+        "32f66a3a-6019-41c7-848c-94f896c094c6": 2,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [],
       "orders": {
@@ -15755,8 +15707,13 @@
         }
       },
       "cart": {
-        "total_price": 107.6,
-        "b5cf1442-2593-42b6-b8f7-fbf0b9d45d72": 2
+        "total_price": 5138.84,
+        "95b1420e-c277-4c55-bec9-55c92d0576f7": 2,
+        "e0a229fb-b19c-47a0-af4c-cf2b5ffa77e8": 2,
+        "6cbb8d91-016e-4553-ad76-b7d5a89ccee5": 2,
+        "d8fd8671-6e1d-4488-ac62-916ef997f584": 1,
+        "7b767712-e6de-4797-98b9-808cd353159d": 1,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
         {
@@ -16024,11 +15981,7 @@
           "zip_code": 12649
         }
       },
-      "cart": {
-        "total_price": 2069.36,
-        "f6f9530c-8039-4b19-86b8-a55d4181fad6": 1,
-        "425fdff2-06bd-48ed-88d2-8d30c5f443ee": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "337dbb56-0f89-4edc-88b7-18323891db46": {
@@ -16092,15 +16045,7 @@
           "zip_code": 11839
         }
       },
-      "cart": {
-        "total_price": 4922.34,
-        "84a48f2b-6510-433e-8af8-a5a6d4973cc7": 1,
-        "f053e624-6b56-4832-9774-09a4e9aa6fca": 1,
-        "43669908-e43d-4551-92a3-1332e743fe12": 2,
-        "60709395-407e-4fa2-bc09-2b60f5e634be": 1,
-        "a7b85537-86d8-470f-bfb2-3408c673bfba": 1,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "f9d2679c-97e4-48f5-9c9d-262ec4022153",
@@ -16217,7 +16162,13 @@
           "zip_code": 53059
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3198.93,
+        "5e78e2cb-e92d-4cd2-8d35-1d336e48b242": 1,
+        "71ae6db0-79da-4a55-bf52-525f87ea426c": 2,
+        "95804029-fe8f-4402-93df-bd125b01797f": 1,
+        "d74a6fac-167e-407e-8654-52c924637a10": 2
+      },
       "wish_list": [
         {
           "product_id": "e0c13d14-258d-4cf7-9d07-58fb7c1f28e1",
@@ -16313,9 +16264,11 @@
         }
       },
       "cart": {
-        "total_price": 949.71,
-        "27ad4cf7-9c31-40c7-96e1-e7eda40fbedc": 1,
-        "d85245e8-cb4c-4ecc-bfb1-0c21e1d01248": 1
+        "total_price": 5121.88,
+        "7504c6b5-8978-4c4a-8037-b6d448df6ff4": 2,
+        "50ca05b2-ee8e-43ad-a48c-db634c6edffa": 1,
+        "7b853373-7e13-48d3-bdb0-26d614cd621c": 2,
+        "1020722a-f9fc-45ca-93ab-088b09785517": 1
       },
       "wish_list": [
         {
@@ -16546,7 +16499,14 @@
           "zip_code": 25028
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3666.41,
+        "c996cfbe-8f0c-49ae-95e8-5f89ff37c874": 2,
+        "3296fb89-3815-453a-99c3-81fdf53cec36": 1,
+        "78627a99-2028-45f3-8e30-d76419f08bc1": 1,
+        "ceef0668-0818-4f36-b739-7c63280b709a": 1,
+        "d511b340-24e0-4cd8-bbcc-6be9d9050f55": 1
+      },
       "wish_list": [
         {
           "product_id": "b67c9519-7872-46c0-9d34-7210f8fb7c28",
@@ -16727,7 +16687,11 @@
           "zip_code": 10179
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2014.78,
+        "7e0bc2cb-ad1b-424c-840c-09fa25304720": 2,
+        "bebd81e5-2476-4015-b372-39086d4b974d": 2
+      },
       "wish_list": [
         {
           "product_id": "fab3c9ac-5cbc-49dc-b8d3-0dcdf8d14605",
@@ -16839,13 +16803,7 @@
           "zip_code": 59381
         }
       },
-      "cart": {
-        "total_price": 6175.58,
-        "4a3663c0-1705-4791-a3ab-9839864f0be8": 2,
-        "3833edef-db82-4a05-86f4-138dcc170ca1": 1,
-        "9b18c687-d47d-42c2-84e9-8c250535700e": 1,
-        "22c4ec45-4cd9-4432-b473-0bebb6a126a1": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "2b85f2a4-9faf-4001-9de3-6b0bf7569e62",
@@ -16945,9 +16903,8 @@
         }
       },
       "cart": {
-        "total_price": 2521.54,
-        "c5838005-f16a-4ba2-ab67-b4a2143e89c1": 1,
-        "8eb5c48c-6bb0-4399-9211-8d0e9696da31": 2
+        "total_price": 1686.26,
+        "025bdd53-736f-4abd-8b6d-2f2cbf38b042": 2
       },
       "wish_list": [
         {
@@ -17038,9 +16995,9 @@
         }
       },
       "cart": {
-        "total_price": 877.3,
-        "e747fdf7-a890-4808-8405-1ad62910f789": 1,
-        "c0c6ddc9-26ba-49fe-8a86-89e80d038ded": 1,
+        "total_price": 3048.07,
+        "aa3f8aa5-2544-4966-8c11-195a90f27362": 2,
+        "f4fac232-02bd-4a86-a602-c394f06fe8c2": 2,
         "promo_code": "SUMMERFUN"
       },
       "wish_list": [
@@ -17183,11 +17140,9 @@
         }
       },
       "cart": {
-        "total_price": 3796.86,
-        "81e57ab0-1240-4681-9a8a-b47e371f8b71": 2,
-        "689a1c75-5b8b-4096-9f8f-4935ed9e0c62": 1,
-        "8b211523-76bd-4bf5-a968-a211597c13df": 1,
-        "0c9de43b-027d-4953-a661-737b53e7ac17": 2,
+        "total_price": 1012.22,
+        "b3019b10-d432-4b43-bf5a-d99032c4bbcd": 1,
+        "51fcf26d-dc0c-400f-af46-098c075785a8": 1,
         "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
@@ -17351,12 +17306,13 @@
         }
       },
       "cart": {
-        "total_price": 4821.32,
-        "110238ac-4761-4c4a-bf6a-718937225fb0": 2,
-        "79680bb7-5dee-4080-b012-615a66d3492f": 1,
-        "f23be60d-9c72-4b47-b2af-baba1065ffc8": 1,
-        "c1d5c1c4-9ce6-420e-858d-3706f129a6b6": 1,
-        "3e7085eb-700c-4a1c-8215-2e6c4a36124f": 1
+        "total_price": 3363.89,
+        "66c77503-4802-4a4a-a1d4-d2550aaa3ab3": 1,
+        "9b6b7fe5-c3df-4bfb-9eb0-ca5983c33a00": 1,
+        "b152819a-3959-4771-adad-873603b4c0fb": 1,
+        "805806cd-7a50-411b-8d22-23cc7c43f2ef": 2,
+        "d69b7fa1-3b1b-401c-b552-d81d0d56bf99": 1,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
         {
@@ -17535,14 +17491,7 @@
           "zip_code": 76735
         }
       },
-      "cart": {
-        "total_price": 9279.13,
-        "5f2acc14-09f0-4fc8-a245-5565e25de1d3": 2,
-        "817421ee-66cb-4481-a07c-f92653b5ebae": 1,
-        "a29f1ea5-fa70-4f89-af9f-4160e3699139": 2,
-        "93c728f7-9db5-4746-8e36-72c328daad18": 2,
-        "0d32e9b3-0629-4331-a096-dc8a2c26d7d3": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "1ff7eb5e-3490-4139-a397-4454d816e52c": {
@@ -17730,12 +17679,10 @@
         }
       },
       "cart": {
-        "total_price": 5232.02,
-        "2897d400-0d67-4c61-a1a6-de77a0fc4f15": 1,
-        "84a48f2b-6510-433e-8af8-a5a6d4973cc7": 2,
-        "8652bb9b-b899-445e-b654-877514a5ac05": 1,
-        "640500ef-b7e8-4964-bfbe-e8694aabb0d7": 2,
-        "0163c1f8-01cf-4168-ab8e-39cdea8f8bb7": 1
+        "total_price": 2517.71,
+        "8804f5c8-375a-4c1d-bbf5-7de8c2b9a4cd": 1,
+        "2b5ff715-b7ed-4b45-a689-1d0653966e83": 2,
+        "079be2cc-a0ce-4b11-a1ed-545ac754357c": 2
       },
       "wish_list": [
         {
@@ -17804,11 +17751,9 @@
         }
       },
       "cart": {
-        "total_price": 5179.48,
-        "73700323-cb5d-4e3b-8393-19536d3d4593": 2,
-        "6bd35ffc-29f9-489d-bab3-6af2ba6554dc": 2,
-        "d1ba3ebc-7ae1-4771-bbf0-6c3b026b012e": 1,
-        "4831ca42-a3e2-4961-b7bf-ba5cab7a2dd2": 2
+        "total_price": 425.93,
+        "8ce99cbe-c228-4bf1-b5df-c865020e21b0": 1,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -17885,12 +17830,9 @@
         }
       },
       "cart": {
-        "total_price": 5195.8,
-        "e92433b6-84af-41f1-a3d6-4302617f1087": 2,
-        "aa87dc9b-a12a-49b1-ba75-2159f7490f76": 2,
-        "b84c020c-13c6-4b9b-a3b9-2883d69fddd6": 1,
-        "f6e83436-16a1-4116-8fb7-eb7d43f2895a": 1,
-        "9b4d0ef7-0998-469f-95ce-165913a16a30": 1
+        "total_price": 3331.2,
+        "ea6d8379-4390-403f-aace-6c90d3c8b8d4": 2,
+        "011c8415-9726-4c90-b040-3ca935b66069": 2
       },
       "wish_list": [
         {
@@ -17965,12 +17907,7 @@
           "zip_code": 60379
         }
       },
-      "cart": {
-        "total_price": 2086.66,
-        "a39a125f-1101-45d7-bb12-722b93a0321a": 1,
-        "71830db6-1754-4280-be3d-418fde971fa4": 2,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "e2491512-1083-48cd-98fa-3bc5d8a49863",
@@ -18067,7 +18004,10 @@
           "zip_code": 48385
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1418.96,
+        "69ba0d2d-ae82-4222-b3ae-bb601b6be9f6": 2
+      },
       "wish_list": [],
       "orders": {
         "5430d179-37c6-46fb-9868-2cad080721ef": {
@@ -18317,7 +18257,11 @@
           "zip_code": 21277
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 137.43,
+        "9530a25b-0252-4c41-8b80-7fd254332d69": 1,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [
         {
           "product_id": "b7371712-1324-4da2-a0cb-e64d5c3468b3",
@@ -18403,11 +18347,12 @@
         }
       },
       "cart": {
-        "total_price": 2711.95,
-        "88016c74-2cff-4d07-bb78-026706187043": 1,
-        "863a800e-50d7-4215-b925-ec9cd2d936fb": 1,
-        "ccd5ce7c-e8ac-4840-9944-1871964ce30f": 1,
-        "promo_code": "SUMMERFUN"
+        "total_price": 5291.76,
+        "64514947-66b4-4e62-b395-7e3cd9237574": 1,
+        "1329d590-8b2b-4247-8625-2534cdde828e": 1,
+        "9d99a998-46ae-4405-baf1-2c40482377c4": 1,
+        "cb48e115-ce64-4c2f-93e0-7be5d1228af0": 1,
+        "b36a6eea-f0c4-4c95-a83e-d35fb2a77c25": 2
       },
       "wish_list": [
         {
@@ -18522,11 +18467,7 @@
           "zip_code": 26811
         }
       },
-      "cart": {
-        "total_price": 3924.56,
-        "96063d21-5ca8-426c-91a4-2af4a2ca494b": 2,
-        "1083de5c-3101-4be4-b7b2-ad50048f1a91": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "ee71d9f8-891f-43d2-af80-625fb7674182",
@@ -18617,9 +18558,12 @@
         }
       },
       "cart": {
-        "total_price": 1226.46,
-        "634180a2-1e6a-474a-87d8-1a8168f55631": 2,
-        "83258b9c-943e-4eec-aa2f-ea24d1e68d84": 2
+        "total_price": 4479.7,
+        "7c33a5be-93f8-4b45-9df3-abbdb22e8cf3": 2,
+        "7068db4a-0241-4fad-873a-8b6bfb60c560": 1,
+        "09f11c38-0a28-4842-aeae-57697efd0706": 1,
+        "3a7cf1a2-5691-4b35-a9d0-add2b7fef03b": 2,
+        "promo_code": "NEWCUSTOMER20"
       },
       "wish_list": [
         {
@@ -18727,7 +18671,12 @@
           "zip_code": 14947
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2622.73,
+        "02e80631-cafb-47e2-a573-bc0c5716d273": 2,
+        "bfb336e2-cdc9-4d4e-98d6-fad7b97173d1": 1,
+        "d74a6fac-167e-407e-8654-52c924637a10": 2
+      },
       "wish_list": [],
       "orders": {
         "9fab3ba2-189e-4c48-969d-a8adba6255e1": {
@@ -18792,13 +18741,7 @@
           "zip_code": 24911
         }
       },
-      "cart": {
-        "total_price": 6156.08,
-        "2389c53a-64eb-4bcf-9ad7-91051505a549": 2,
-        "4e4c0584-4713-4a22-ae90-21886e9f92ad": 2,
-        "6fcfc6fd-9c19-4369-bcdb-ce84cfa1dddc": 2,
-        "b84c020c-13c6-4b9b-a3b9-2883d69fddd6": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "49d7e66a-f416-4327-963a-c044e58a68d4": {
@@ -18968,7 +18911,11 @@
           "zip_code": 58156
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3000.56,
+        "952feb10-0af6-4db2-8fc0-a9d8970624a3": 2,
+        "561940bc-8bcb-4c41-9031-21558c74685e": 1
+      },
       "wish_list": [
         {
           "product_id": "7bcd2096-4d68-4e6e-a67f-fb272c849fc0",
@@ -19055,14 +19002,7 @@
           "zip_code": 72876
         }
       },
-      "cart": {
-        "total_price": 4894.9,
-        "ea66a0ff-c378-48a0-a44b-c31111d3eea1": 2,
-        "8b211523-76bd-4bf5-a968-a211597c13df": 1,
-        "a960f4c1-64e4-46a4-bdfd-d98d079f0ec4": 1,
-        "3bc712d5-d9f1-4eb6-8dc8-f7f07db59ca2": 1,
-        "d000ba69-fba1-4c34-90fe-005d53f39cb1": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "c89bf996-73b8-442d-8514-11aa5f52fdd0": {
@@ -19218,7 +19158,12 @@
           "zip_code": 62566
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4387.8,
+        "d80b6ef9-1c62-4d2d-b0ef-910bb5cd530d": 1,
+        "04ded338-b32a-4dae-a373-e1a2d2c47903": 2,
+        "ef1ff1a1-6984-45f0-aee7-6b4b79e42146": 1
+      },
       "wish_list": [],
       "orders": {
         "dd2f0d11-fa59-4f7f-9e97-1007a5d51f49": {
@@ -19329,7 +19274,14 @@
           "zip_code": 95712
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4952.17,
+        "a1dbb9bd-45ea-4c5a-863a-0875dfe04d06": 1,
+        "f4fac232-02bd-4a86-a602-c394f06fe8c2": 2,
+        "45632e3e-e385-4554-b9ed-f587487402e6": 2,
+        "d303db81-d524-44a7-bb73-c7abba53f09c": 2,
+        "promo_code": "NEWCUSTOMER20"
+      },
       "wish_list": [],
       "orders": {
         "c6d56153-27c0-4996-bac5-5ccf951349e2": {
@@ -19546,14 +19498,7 @@
           "zip_code": 17229
         }
       },
-      "cart": {
-        "total_price": 5748.78,
-        "83d426d0-d8dd-48a3-b0c0-2e8feedc7247": 2,
-        "e072409d-2b8e-41a3-a4ae-f10974a73b71": 2,
-        "110238ac-4761-4c4a-bf6a-718937225fb0": 2,
-        "d9a04e9f-3979-404f-a5b7-b2305828410c": 2,
-        "5ffe05b4-e8fa-47b2-8a48-f6bd2726949a": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "619c7896-f45f-4b69-8b40-d57a473d9d03",
@@ -19647,11 +19592,9 @@
         }
       },
       "cart": {
-        "total_price": 2896.92,
-        "0f6ef903-616c-456e-966d-1cac0336949c": 2,
-        "0a405e8b-dc59-45be-a682-16dc15ca155f": 2,
-        "a14714b3-c1f2-498d-bbe0-a628871b9dd9": 2,
-        "60e181e7-5340-4bad-a41e-7f1b99e94b6b": 1
+        "total_price": 2388.62,
+        "7d925cdf-8c79-46f5-9a9d-504111caba3d": 1,
+        "9952f969-ed88-4a42-8f62-f426b69ea358": 1
       },
       "wish_list": [
         {
@@ -19747,11 +19690,9 @@
         }
       },
       "cart": {
-        "total_price": 2843.53,
-        "e4dc1839-b8dd-4c58-9e8d-7619da331d56": 2,
-        "73cb1ec1-c699-4d74-9b22-d1e64fce15fd": 2,
-        "0854d320-d632-40d2-becc-27f7d8d61ce8": 2,
-        "525d03c3-0be4-44a3-9e49-74c65d1793f1": 1
+        "total_price": 3544.18,
+        "ec296055-866d-4bc5-9e34-076196066ebf": 2,
+        "e2491512-1083-48cd-98fa-3bc5d8a49863": 2
       },
       "wish_list": [
         {
@@ -19808,12 +19749,12 @@
         }
       },
       "cart": {
-        "total_price": 5607.15,
-        "d7bfcfdd-1f71-4513-b62b-3561994dd159": 1,
-        "f2803bd3-9464-4cf5-b39b-bb0b5d50af79": 1,
-        "73700323-cb5d-4e3b-8393-19536d3d4593": 2,
-        "2389c53a-64eb-4bcf-9ad7-91051505a549": 1,
-        "8d762f3f-472c-4136-8169-797366feb4c7": 2
+        "total_price": 4109.73,
+        "fb0bd8bb-e69f-42f2-adae-c216e5673e89": 1,
+        "cecd2a86-3599-4c7a-86aa-5b7617cad120": 1,
+        "e1843af6-7cd2-4663-99bc-570fed5ea882": 1,
+        "7d9900ec-ccb3-4c42-87bd-86c3b98cd975": 1,
+        "cd67ce29-7cf6-487a-8a2a-3c7578f40885": 2
       },
       "wish_list": [
         {
@@ -19904,7 +19845,11 @@
           "zip_code": 82540
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2120.58,
+        "5100be68-50bf-451a-a148-85758565c61c": 2,
+        "d8954e43-c56a-4c97-b21c-098ffbe94c32": 1
+      },
       "wish_list": [],
       "orders": {
         "37527d5b-fe1c-4570-bdc7-0d7992e29032": {
@@ -19961,12 +19906,7 @@
           "zip_code": 45748
         }
       },
-      "cart": {
-        "total_price": 5823.37,
-        "32a31993-c87b-4ac7-b5cd-2a86a2053bfa": 2,
-        "dcaf7743-dd18-4122-baf9-167da2a6dd70": 1,
-        "a7b85537-86d8-470f-bfb2-3408c673bfba": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -19997,10 +19937,7 @@
           "zip_code": 11481
         }
       },
-      "cart": {
-        "total_price": 1493.25,
-        "d72492df-097b-459d-a5be-b9d4a760504f": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "5929432c-e3f3-4d65-ac0a-439b3bc0aa00",
@@ -20099,12 +20036,7 @@
           "zip_code": 84104
         }
       },
-      "cart": {
-        "total_price": 4601.74,
-        "b3117ca6-df1c-4380-b519-e76c11df8e92": 1,
-        "2fc251c8-14e0-463a-8055-26d6c723e8b6": 1,
-        "0d32e9b3-0629-4331-a096-dc8a2c26d7d3": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "9aa0a038-e2ba-4dda-b65e-ff09735d8d96": {
@@ -20172,12 +20104,7 @@
           "zip_code": 30826
         }
       },
-      "cart": {
-        "total_price": 1444.8,
-        "5cd0dcb9-6f80-465b-988f-66bf8fd3a095": 2,
-        "a3b6e338-f5d5-4ef3-8d85-96db92da1238": 1,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "16edced4-e8c8-4ad6-9a68-5acab61a44e3": {
@@ -20239,9 +20166,11 @@
         }
       },
       "cart": {
-        "total_price": 2494.03,
-        "60c92cbf-deaf-4a86-8190-ec62903059f7": 2,
-        "b9b0275d-feda-4432-8dd0-d5d401c0de96": 1
+        "total_price": 2541.84,
+        "68ae7e71-fb21-4da5-80d8-d21a853940ba": 1,
+        "b6d1f723-7304-477e-a3bd-57ef3fdc6ad6": 1,
+        "7bcd2096-4d68-4e6e-a67f-fb272c849fc0": 2,
+        "4a0e5d4c-c439-48a2-88b7-66d7b91fa578": 2
       },
       "wish_list": [],
       "orders": {
@@ -20317,11 +20246,7 @@
           "zip_code": 29373
         }
       },
-      "cart": {
-        "total_price": 689.4,
-        "12a3ff6b-af12-4a57-aa6c-3cb5624a1174": 1,
-        "promo_code": "SUMMERFUN"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "f296bfeb-409f-4069-a47b-6d80b1b0a045",
@@ -20372,12 +20297,7 @@
           "zip_code": 13080
         }
       },
-      "cart": {
-        "total_price": 2891.94,
-        "8f3dc62d-6fcf-4d31-8887-b25ce9034954": 2,
-        "8ec07913-4988-41c3-b4c6-05a379cb565d": 2,
-        "fd378899-9634-430e-b45c-8557485a93ef": 2
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -20424,13 +20344,8 @@
         }
       },
       "cart": {
-        "total_price": 2458.81,
-        "200c2840-0d9b-4d69-a075-bc6669a2aca5": 1,
-        "d5d7f5f8-88ae-4db0-9618-3f825d9a28cd": 1,
-        "ac100809-a0c9-40a5-99fa-ce30c8b7a9be": 1,
-        "d7780e95-dc2f-4f0e-90fb-9586c7cd8bc4": 1,
-        "43669908-e43d-4551-92a3-1332e743fe12": 1,
-        "promo_code": "SUMMERFUN"
+        "total_price": 124.11,
+        "71ae6db0-79da-4a55-bf52-525f87ea426c": 1
       },
       "wish_list": [
         {
@@ -20600,12 +20515,7 @@
           "zip_code": 50374
         }
       },
-      "cart": {
-        "total_price": 1711.0,
-        "1e7cb639-1130-4d27-ac34-6c1963961bed": 2,
-        "4feff8a3-f095-4c29-b64f-7dc9f54a6573": 1,
-        "cde181ce-47ff-4ecd-9733-2d12c244722c": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "f28dd80b-9fde-4f8a-a4a3-87e2d3beae11",
@@ -20685,8 +20595,8 @@
         }
       },
       "cart": {
-        "total_price": 1040.36,
-        "daa0b69b-2e44-45fa-acd8-2877fb460c41": 2
+        "total_price": 185.46,
+        "41d149c9-bd55-4ce8-b7b5-081d239be447": 1
       },
       "wish_list": [
         {
@@ -20814,10 +20724,10 @@
         }
       },
       "cart": {
-        "total_price": 1770.35,
-        "05d77428-578f-4874-a5fa-8e72ccf48a9e": 2,
-        "2da3132f-1e04-4f03-8287-b0623d0b0f5e": 1,
-        "promo_code": "SUMMERFUN"
+        "total_price": 1369.39,
+        "80e82436-48d9-4db6-ae32-afd98ce2484b": 1,
+        "0ba72252-486d-4fb9-a043-4232efaa5707": 1,
+        "ced65c48-7b4c-4391-9cfb-19cb4a4c692c": 1
       },
       "wish_list": [],
       "orders": {},
@@ -20857,9 +20767,8 @@
         }
       },
       "cart": {
-        "total_price": 2967.04,
-        "2897d400-0d67-4c61-a1a6-de77a0fc4f15": 2,
-        "c1c2765b-d404-479c-8971-8eda450c1c5d": 2
+        "total_price": 1686.2,
+        "fd73346d-0c3f-492d-b893-6e6556aa30a8": 2
       },
       "wish_list": [
         {
@@ -20925,13 +20834,7 @@
           "zip_code": 72662
         }
       },
-      "cart": {
-        "total_price": 4427.31,
-        "f3b1222f-c93c-41da-857e-3c0c4867ce57": 2,
-        "f6835e33-d1d5-4b93-9f94-f890bd49891f": 2,
-        "fcd4b946-e36a-4ccb-b8a0-c26d4926f2f4": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "6ee585e2-3977-416f-9fc9-f02e1d247473",
@@ -21005,9 +20908,10 @@
         }
       },
       "cart": {
-        "total_price": 1907.34,
-        "ae29db76-d023-4ba8-adb9-e573ae6fafbb": 1,
-        "32c37f0f-e177-4d18-9a74-201da9046374": 1
+        "total_price": 1274.05,
+        "e57fc80c-b150-4a37-9e69-eaef930b644e": 2,
+        "fcd7b42e-6fc9-4044-8f83-e76febdbc560": 1,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -21108,10 +21012,11 @@
         }
       },
       "cart": {
-        "total_price": 5276.66,
-        "2f920fb0-5f14-49e1-a8a8-5786757a4683": 2,
-        "f25f1b7a-dee7-4a21-99db-3c2f4aca22c7": 2,
-        "4a7219c9-3bbb-4cdc-893f-6889cc3220c3": 1
+        "total_price": 5202.44,
+        "9d72d5b4-f454-45e5-a620-6641ab5f1675": 2,
+        "24c21c8f-9dd4-4628-8b12-bf9ba70a4818": 2,
+        "1b9b7117-df95-46c4-9734-49ed7ea3f4b6": 2,
+        "1bba2620-3410-42dd-b9eb-11e21588eebe": 1
       },
       "wish_list": [
         {
@@ -21162,11 +21067,11 @@
         }
       },
       "cart": {
-        "total_price": 1325.6,
-        "c6d0c58d-7250-4808-96cf-ead1603952af": 1,
-        "bb698587-dcb0-4880-a79d-2ffcd9579598": 1,
-        "8bbc4dac-56be-46b3-b253-309606d1e37c": 2,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 4397.92,
+        "ee71d9f8-891f-43d2-af80-625fb7674182": 2,
+        "833ba4e3-9704-4b13-a8d7-4f2a2bf9f6f6": 2,
+        "7d0abae6-d47e-4788-a716-9c2b2984ae81": 2,
+        "fd0eb35b-31b4-4988-bf09-d425c8c7aa6d": 2
       },
       "wish_list": [],
       "orders": {
@@ -21222,10 +21127,9 @@
         }
       },
       "cart": {
-        "total_price": 1692.7,
-        "ff2a8ffa-d2b4-48bc-80d6-d04f6384c120": 2,
-        "44a8b84e-8037-421c-a4a8-4e0a955ec6ab": 1,
-        "promo_code": "NEWCUSTOMER20"
+        "total_price": 2862.21,
+        "5a1bd424-3346-4945-a6af-cb99b3d7822c": 2,
+        "40e2472d-7bfc-4d33-80ed-73fa4050dbbb": 1
       },
       "wish_list": [],
       "orders": {
@@ -21298,14 +21202,7 @@
           "zip_code": 75037
         }
       },
-      "cart": {
-        "total_price": 4916.82,
-        "236048cf-efea-41c8-8ded-9fdeb7c9120d": 2,
-        "df881263-99be-49ca-a036-fae7d2c1661c": 2,
-        "3c2970c3-4e0e-43c2-bf14-97bfbacbc687": 1,
-        "d7bfcfdd-1f71-4513-b62b-3561994dd159": 1,
-        "f053e624-6b56-4832-9774-09a4e9aa6fca": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {},
       "prime_subscriptions": {},
@@ -21352,11 +21249,8 @@
         }
       },
       "cart": {
-        "total_price": 2158.18,
-        "a9ede778-f34c-499c-aedd-99c0f44009f2": 1,
-        "a14714b3-c1f2-498d-bbe0-a628871b9dd9": 1,
-        "87193e2a-1f2d-4b7d-bfee-bc1350729056": 2,
-        "promo_code": "SUMMERFUN"
+        "total_price": 195.79,
+        "3e0e785d-fce8-420a-a599-2f0d4c8d0d6a": 1
       },
       "wish_list": [
         {
@@ -21468,7 +21362,11 @@
           "zip_code": 17686
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1198.71,
+        "a7d8e188-f224-45cf-888a-4804b13c6542": 1,
+        "327a6418-b0dd-4a50-b8aa-35549e469775": 2
+      },
       "wish_list": [],
       "orders": {
         "a1aea01a-2885-4bd6-a8eb-ba1a88e2025e": {
@@ -21529,7 +21427,11 @@
           "zip_code": 38215
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 2915.24,
+        "e13d38c9-75cf-4f31-b27c-26590ef7a239": 2,
+        "d396f443-d681-4c08-b8ed-9a41668b3e74": 2
+      },
       "wish_list": [
         {
           "product_id": "8f25399f-7f28-428e-9f1b-3518c25cd750",
@@ -21641,12 +21543,7 @@
           "zip_code": 67509
         }
       },
-      "cart": {
-        "total_price": 519.1,
-        "422fe6f1-02b5-4fc1-bccc-3c2c84d12ccb": 1,
-        "da680c65-2e83-42c3-b32f-8db229e9d909": 1,
-        "f3b1222f-c93c-41da-857e-3c0c4867ce57": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "15d5fa07-b55e-48f6-a5af-e00f8973ea64",
@@ -21719,10 +21616,7 @@
           "zip_code": 33333
         }
       },
-      "cart": {
-        "total_price": 983.46,
-        "b34513ae-d466-46e3-8260-93ba3295c739": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "6b944b59-68b8-4520-bb1b-382f52074e91": {
@@ -21864,12 +21758,7 @@
           "zip_code": 20137
         }
       },
-      "cart": {
-        "total_price": 5038.02,
-        "3101163a-f2a0-441f-9210-b37e6d4603e6": 2,
-        "27ad4cf7-9c31-40c7-96e1-e7eda40fbedc": 2,
-        "20f76ca3-cd6a-4d7c-831e-c4a50b45abb9": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "e650c9ea-b51d-4afa-bb15-a0629c77e915",
@@ -22051,12 +21940,7 @@
           "zip_code": 66368
         }
       },
-      "cart": {
-        "total_price": 4146.11,
-        "0de1bbef-7818-4955-8184-39af91bee437": 2,
-        "0e92af93-a0fc-4de7-a39d-0b0ba03cdb79": 1,
-        "214a1ddd-64ca-4eea-b2c6-72b09257cc6b": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "ec20b5c4-50ac-4e1f-bfe0-ba7a5f63713f",
@@ -22297,7 +22181,13 @@
           "zip_code": 78179
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4925.99,
+        "096031a3-d5eb-4561-85f2-a9df09bd5bf1": 2,
+        "b5189070-de02-43ce-8fd7-3f41c120eec8": 1,
+        "480d3a5d-b331-4749-8a7d-e0febfcd5b59": 1,
+        "0543f1cc-0289-4a7f-91e5-d0d19076f2d0": 1
+      },
       "wish_list": [
         {
           "product_id": "dfd02ae6-bf81-4a25-91e0-0dc337df08f5",
@@ -22405,10 +22295,7 @@
           "zip_code": 99785
         }
       },
-      "cart": {
-        "total_price": 824.63,
-        "17d7aef3-9839-430f-ab55-1e4c4924fb66": 1
-      },
+      "cart": {},
       "wish_list": [],
       "orders": {
         "cac78d63-eaf2-4aed-9a47-c0759924924a": {
@@ -22467,10 +22354,12 @@
         }
       },
       "cart": {
-        "total_price": 2169.61,
-        "1ca04540-7dcb-4886-a935-d4f8a75e74b4": 1,
-        "bb698587-dcb0-4880-a79d-2ffcd9579598": 1,
-        "12b703cb-7992-4882-bfea-ba8f6fab2677": 1,
+        "total_price": 5344.95,
+        "c1c0a33a-2b87-44cc-bb7a-feb0d176bb25": 2,
+        "d2594939-01de-4d2f-aa64-6c355870244c": 1,
+        "fd0eb35b-31b4-4988-bf09-d425c8c7aa6d": 2,
+        "0de35de1-3562-4272-b2c6-af374038adea": 2,
+        "a663614e-ce02-4628-a2db-b365e96a5307": 1,
         "promo_code": "SUMMERFUN"
       },
       "wish_list": [],
@@ -22529,11 +22418,9 @@
         }
       },
       "cart": {
-        "total_price": 3437.14,
-        "53c23813-6496-426e-aeb6-53d96bc68d40": 1,
-        "fd72fad6-fd3a-408b-bf1b-bbba41a15adb": 1,
-        "4ccca46d-25b1-4b3f-ad99-9bf0ceecc6d3": 1,
-        "1b948a02-e75f-4188-a0b0-7cc2428dc4f4": 2
+        "total_price": 1897.0,
+        "39bc7f08-0b0d-478e-bfbb-a7f940b048e0": 1,
+        "bb8d5ec7-627a-4540-9391-a67b4c11a97f": 1
       },
       "wish_list": [
         {
@@ -22625,12 +22512,13 @@
         }
       },
       "cart": {
-        "total_price": 4653.6,
-        "c2f95e07-f23b-4299-b07c-18113b748631": 1,
-        "fd546671-3410-49a5-a9c4-54d0f4291ab8": 1,
-        "d778347f-e91c-4ba7-b38a-9dfb258d7f34": 2,
-        "710dac48-48b8-4c62-9b6b-c14eecdd94d9": 2,
-        "ffda759c-7e1c-4a53-8cd4-6e4bbea1a7cf": 1
+        "total_price": 1519.41,
+        "6af80a9c-c02a-44cb-ad99-496f471b7a6a": 1,
+        "f3130623-d0b9-40d0-8c16-17a688d461aa": 1,
+        "4a540f5c-5c49-4436-9237-23d127e55fd9": 2,
+        "5ebdb9d9-dd75-450e-a3fa-09d11262852d": 1,
+        "0b4d4a13-e9a6-496a-9252-2960721aeb08": 2,
+        "promo_code": "SUMMERFUN"
       },
       "wish_list": [
         {
@@ -22919,12 +22807,9 @@
         }
       },
       "cart": {
-        "total_price": 5314.01,
-        "c65d1240-2c8c-4e8d-9014-1f678567333f": 2,
-        "619c3594-9b9b-436b-80cd-ebc82184252d": 2,
-        "054fc6e8-ae3c-46dc-a4da-dc8547aeecf3": 1,
-        "22900e13-7a9a-408c-ac86-0ff8b7b23cfa": 1,
-        "95e8003a-89d3-414e-bd45-b0cc10060136": 1,
+        "total_price": 2244.28,
+        "1b011856-0733-4ac5-a1e4-0b1d99d98dd0": 2,
+        "6799f64c-eb02-4b1f-ad84-58638cfa7ca5": 1,
         "promo_code": "SUMMERFUN"
       },
       "wish_list": [
@@ -23085,7 +22970,14 @@
           "zip_code": 70210
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3430.32,
+        "caf028e2-d95d-4215-a91c-9f9f060d5277": 2,
+        "fed6e4ca-8eaa-48bb-997e-9449979828f9": 2,
+        "612c221e-3819-4483-a977-77c4ca69d8ad": 1,
+        "2d75edf3-bdfc-46b9-ae5b-dbd4b0f0efab": 1,
+        "promo_code": "SUMMERFUN"
+      },
       "wish_list": [
         {
           "product_id": "50c77658-9d69-49aa-bba2-cf36fc71cc26",
@@ -23179,7 +23071,13 @@
           "zip_code": 33074
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4308.56,
+        "48cb3e6b-8d46-46ed-aaf0-21e6d3882e13": 2,
+        "9530a25b-0252-4c41-8b80-7fd254332d69": 2,
+        "20f985f7-3aca-416e-b402-256f59607d29": 2,
+        "bc51fcd6-9a44-478a-aeb6-14cd97671927": 1
+      },
       "wish_list": [
         {
           "product_id": "ecd332e2-2e68-41f7-bf25-20514832b54e",
@@ -23239,7 +23137,11 @@
           "zip_code": 55771
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 3511.48,
+        "477409a5-0960-4976-a20a-a89d0d094fce": 2,
+        "95b1420e-c277-4c55-bec9-55c92d0576f7": 2
+      },
       "wish_list": [
         {
           "product_id": "ef1ff1a1-6984-45f0-aee7-6b4b79e42146",
@@ -23371,13 +23273,7 @@
           "zip_code": 70781
         }
       },
-      "cart": {
-        "total_price": 4127.51,
-        "81d3474e-3d3a-4cc4-a87d-eaa832247e94": 1,
-        "2698b517-7203-4d9e-a07d-c24440b71fe8": 2,
-        "d5ee6e40-2d56-49a4-bd50-abc325c37c50": 2,
-        "promo_code": "NEWCUSTOMER20"
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "e8e76b8d-7ba9-4c1b-911d-057007cacdea",
@@ -23441,7 +23337,10 @@
           "zip_code": 50152
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 1669.3,
+        "d00fb3e4-92cb-42df-8f16-997d73ea455c": 2
+      },
       "wish_list": [
         {
           "product_id": "b0fb4c04-2e98-4fe5-a694-477f12c15351",
@@ -23560,7 +23459,14 @@
           "zip_code": 71978
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 7065.92,
+        "bfb336e2-cdc9-4d4e-98d6-fad7b97173d1": 2,
+        "0ce32f88-c638-4036-b1b2-71e847f1623c": 2,
+        "20e0a77d-29ad-4f01-b6a9-967265cf65e2": 1,
+        "f61e674e-e74c-4e94-83c4-cca04dc47ffb": 1,
+        "535e121a-b934-445f-8013-768fbf412fda": 1
+      },
       "wish_list": [],
       "orders": {
         "11cc1825-1ebf-4203-ab72-495851600ba6": {
@@ -23625,11 +23531,8 @@
         }
       },
       "cart": {
-        "total_price": 4074.94,
-        "65a63890-31b9-466a-bf58-c64fa7f2d3a5": 1,
-        "59cff58e-d13f-4200-a840-b832fcd6c99e": 2,
-        "c3e97fab-895e-445b-9253-04971f509700": 2,
-        "ed771d6c-7316-41ad-9143-5638aa9c4f74": 2
+        "total_price": 82.9,
+        "b4d249b7-2587-4eef-ad73-1ae2bf1902d6": 2
       },
       "wish_list": [],
       "orders": {
@@ -23690,7 +23593,11 @@
           "zip_code": 68976
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 4528.22,
+        "b7371712-1324-4da2-a0cb-e64d5c3468b3": 2,
+        "4553544f-e0e2-45fe-8803-4eed2e920d91": 2
+      },
       "wish_list": [
         {
           "product_id": "7bbe4857-b47e-43dd-be1e-de9764e8b2f3",
@@ -23796,7 +23703,10 @@
           "zip_code": 67090
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 406.19,
+        "7e7c976e-0a73-4749-840f-033a315b27f1": 1
+      },
       "wish_list": [],
       "orders": {
         "95e107a1-b428-4277-b378-a7a041ce76d0": {
@@ -23861,11 +23771,7 @@
           "zip_code": 92725
         }
       },
-      "cart": {
-        "total_price": 1195.34,
-        "42285e9d-f7ea-4ca3-a599-b1b2cebb49dc": 1,
-        "93c728f7-9db5-4746-8e36-72c328daad18": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "79e9eeeb-bea9-47f7-973e-14b3e0c1792c",
@@ -23921,7 +23827,11 @@
           "zip_code": 94845
         }
       },
-      "cart": {},
+      "cart": {
+        "total_price": 412.18,
+        "cfb15e3d-a52f-4a3f-b147-4b7cf18a96bf": 1,
+        "4d3c9144-5b33-4e95-878e-202b8e43ea11": 2
+      },
       "wish_list": [],
       "orders": {
         "e079a822-1071-4cba-9458-613539073e68": {
@@ -23988,10 +23898,7 @@
           "zip_code": 77753
         }
       },
-      "cart": {
-        "total_price": 1386.67,
-        "6fcfc6fd-9c19-4369-bcdb-ce84cfa1dddc": 1
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "add5d72b-5cd8-4746-99d5-310f7bfd52c8",
@@ -24057,13 +23964,7 @@
           "zip_code": 94501
         }
       },
-      "cart": {
-        "total_price": 4774.78,
-        "7ac85a85-b2d8-4d3b-9b4f-6d263bf0d2c2": 2,
-        "9226ae7a-e3fb-4cab-ad02-6fb4cda19399": 2,
-        "ffda759c-7e1c-4a53-8cd4-6e4bbea1a7cf": 1,
-        "0c029c52-2a85-4e45-ac9f-5b72df97b6ea": 2
-      },
+      "cart": {},
       "wish_list": [
         {
           "product_id": "756ecbbc-90b2-4e8c-80e9-b095ee010a2e",

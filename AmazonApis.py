@@ -87,7 +87,7 @@ class AmazonApis:
             "payment_cards": {},
             "addresses": {},
             "cart": {},
-            "wish_list": {},
+            "wish_list": [],
             "orders": {},
             "prime_subscriptions": {},
             "returns": {},
@@ -445,6 +445,10 @@ class AmazonApis:
         user_cart = user_data.get("cart", {})
         if product_id not in user_cart:
             return {"cart_status": False, "message": "Product not in cart."}
+        
+        if product_id not in self.state["products"]:
+            return {"cart_status": False, "message": "Product not found."}
+        
         if self.state["products"][product_id]["stock"] < quantity:
             return {"cart_status": False, "message": "Not enough stock."}
 
@@ -510,7 +514,7 @@ class AmazonApis:
             return {"promo_status": False, "message": "Your cart is empty."}
 
         if user_data.get("cart").get("promo_code"):
-            return {"promo_status": True, "message": "Prompo code already applied to cart."}
+            return {"promo_status": True, "message": "Promo code already applied to cart."}
 
         for product_id, quantity in user_data.get("cart", {}).items():
             product_info = self.state["products"].get(product_id)
@@ -563,11 +567,17 @@ class AmazonApis:
         if login_check:
             return {"promo_status": False, "message": login_check["message"]}
         
+        user_id = self._get_current_user_id()
         user_data = self._get_current_user_data()
         if not user_data:
             return {"promo_status": False, "message": "User not found."}
 
-        return {"promo_status": True, "message": "Promo code removed from cart."}
+        user_cart = user_data.get("cart", {})
+        if "promo_code" in user_cart:
+            del user_cart["promo_code"]
+            self._update_user_data(user_id, "cart", user_cart)
+            return {"promo_status": True, "message": "Promo code removed from cart."}
+        return {"promo_status": False, "message": "No promo code applied to cart."}
 
     def checkout(
         self, delivery_address_id: str, payment_card_id: str, promo_code: Union[str, None] = None
@@ -611,8 +621,22 @@ class AmazonApis:
             total_amount += product_info["price"] * quantity
             products_in_order[product_id] = quantity
 
-        if promo_code == "WELCOME10":
-            total_amount *= 0.90
+        # Apply promo code if provided or if one is in the cart
+        promo_code_to_use = promo_code or user_cart.get("promo_code")
+        if promo_code_to_use:
+            found_promo = None
+            for promo_details in self.state.get("promotions", {}).values():
+                if promo_details.get("code") == promo_code_to_use:
+                    found_promo = promo_details
+                    break
+            
+            if found_promo and found_promo.get("is_active", False):
+                expiry_date = datetime.strptime(found_promo["expiry_date"], "%Y-%m-%d")
+                if datetime.now() <= expiry_date:
+                    min_purchase = found_promo.get("min_purchase_amount", 0.0)
+                    if total_amount >= min_purchase:
+                        discount_percentage = found_promo.get("discount_percentage", 0) / 100.0
+                        total_amount = total_amount * (1 - discount_percentage)
 
         if user_data["balance"] < total_amount:
             return {"checkout_status": False, "message": "Insufficient balance."}

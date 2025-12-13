@@ -32,7 +32,7 @@
         "context": {
             "user_id": "1bb40838-3adf-4d32-ab66-46bac09141c1"
         },
-        "ground_truth": ["search_products('Patagonia Baggies Shorts 5')", "update_cart_item_quantity('user_id_5', '4da5dc57-51cc-46d0-bcd9-bf79fa7ef876', 2)"]
+        "ground_truth": ["login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')", "update_cart_item_quantity('user_id_5', '4da5dc57-51cc-46d0-bcd9-bf79fa7ef876', 2)"]
         }
     ], 
     "Multiturn": [
@@ -68,9 +68,9 @@
                 }
             ],
             "context": {
-                "user_id": "user_id_6"
+                "user_id": "41261c86-31ed-404f-9b16-a6b2b39b62ec"
             },
-            "ground_truth": ["add_to_cart('user_id_6', 'product_id_6', 1)", "checkout('user_id_6', 'home_address_2', 'payment_card_id_3')"]
+            "ground_truth": ["login_user('jesse.russell@event-management.biz','mnVDQn9K')", "add_to_cart('c472700f-6c75-4f25-b672-6945a291556c', 1)", "checkout('db6f56f4-3a4c-4d00-9f1b-13f047554a29', '27b612c7-1734-477e-98d8-38018dcb34aa')"]
         },
         {
             "conversations": [
@@ -88,13 +88,21 @@
                 },
                 {
                     "role": "assistant",
+                    "content": "What do you want the name to be for this new address?"
+                },
+                {
+                    "role": "user",
+                    "content": "Vacational Home"
+                },
+                {
+                    "role": "assistant",
                     "content": "Your shipping address has been updated. Is there anything else I can help you with?"
                 }
             ],
             "context": {
-                "user_id": "user_id_7"
+                "user_id": "1ad28a8e-d91b-497f-8522-f72a02b0f12a"
             },
-            "ground_truth": ["add_address('user_id_7', 'user_name','address_id_3', '476 New Street', 'Springfield', 'IL', 'USA', '62701')"]
+            "ground_truth": ["login_user('luke.butler@eco-friendly-living.com', 'Zr8B1XAn')", "add_address('vacational home','476 New Street', 'Springfield', 'IL', 'USA', '62701')"]
         },
         {
             "conversations": [
