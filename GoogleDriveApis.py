@@ -6,7 +6,6 @@ Inspired by https://developers.google.com/workspace/drive/api/reference/rest/v3
 insert_file is more descriptive than post_file))
 """
 import copy
-import copy
 import uuid
 from typing import Dict, Union, Any, Optional, List
 from datetime import datetime
@@ -469,6 +468,11 @@ class GoogleDriveApis:
         
         files[new_file_id] = new_file
         
+        # Update storage quota
+        if user_info and "storage_quota" in user_info:
+            file_size = int(new_file.get("size", "0")) if isinstance(new_file.get("size"), str) else new_file.get("size", 0)
+            user_info["storage_quota"]["used"] += file_size
+        
         user_email_display = self._get_user_email_by_id(user_id)
         print(f"File '{name}' created for {user_email_display} with ID: {new_file_id}")
         return new_file
@@ -639,9 +643,11 @@ class GoogleDriveApis:
 
         files[new_file_id] = copied_file
 
-        if user_id in self.users:
-            user_info = self.users[user_id]["drive_data"].get("user_info")
-            if user_info:
+        # Update storage quota with proper error checking
+        user_drive_data = self.users[user_id].get("drive_data")
+        if user_drive_data:
+            user_info = user_drive_data.get("user_info")
+            if user_info and "storage_quota" in user_info:
                 file_size = int(copied_file.get("size", "0")) if isinstance(copied_file.get("size"), str) else copied_file.get("size", 0)
                 user_info["storage_quota"]["used"] += file_size
 
