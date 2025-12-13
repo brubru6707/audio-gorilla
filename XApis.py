@@ -434,7 +434,7 @@ class XApis:
         if tweet_id in user.get("liked_posts", []):
             raise Exception("Tweet already liked by this user")
         
-        user["liked_posts"].append(tweet_id)
+        user.setdefault("liked_posts", []).append(tweet_id)
         
         # Update public metrics
         if "public_metrics" not in post:
@@ -466,7 +466,7 @@ class XApis:
         if tweet_id not in user.get("liked_posts", []):
             raise Exception("Tweet not liked by this user")
         
-        user["liked_posts"].remove(tweet_id)
+        user.setdefault("liked_posts", []).remove(tweet_id)
         
         # Update public metrics
         if "public_metrics" in post:
@@ -507,7 +507,7 @@ class XApis:
                 last_message = None
                 if conv_data["messages"]:
                     # Ensure messages are sorted by timestamp for correct "last message"
-                    sorted_messages = sorted(conv_data["messages"], key=lambda msg: msg.get("timestamp", ""))
+                    sorted_messages = sorted(conv_data["messages"], key=lambda msg: msg.get("created_at", ""))
                     last_message = sorted_messages[-1].get("text", "")
 
                 user_conversations.append({
@@ -552,7 +552,7 @@ class XApis:
             raise Exception("Not authorized to view this conversation")
         
         # Sort messages by timestamp
-        sorted_messages = sorted(conv_data.get("messages", []), key=lambda msg: msg.get("timestamp", ""))
+        sorted_messages = sorted(conv_data.get("messages", []), key=lambda msg: msg.get("created_at", ""))
         conversation_copy = copy.deepcopy(conv_data)
         conversation_copy["messages"] = sorted_messages
         
