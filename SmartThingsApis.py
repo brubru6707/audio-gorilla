@@ -282,14 +282,12 @@ class SmartThingsApis:
                 else:
                     return {"error": f"Invalid command '{command}' for thermostatMode capability."}
             elif capability_id == "temperatureMeasurement":
-                
-                if command == "setTemperature" and args and isinstance(args[0], (int, float)):
-                     device["components"][component_id]["temperatureMeasurement"]["temperature"] = args[0]
-                else:
-                    return {"error": f"Temperature measurement is usually read-only. Command '{command}' not supported."}
+                return {"error": f"Temperature measurement is read-only. Command '{command}' not supported."}
 
             device["last_activity_time"] = datetime.datetime.now().isoformat() + "Z"
             return {"status": "success", "device_status": copy.deepcopy(device["components"][component_id])}
+        else:
+            return {"error": f"Capability '{capability_id}' is not supported by this handler (only switch, level, lock, thermostatMode, temperatureMeasurement are implemented)."}
         
         return {"error": f"Component '{component_id}' or capability '{capability_id}' not found for device '{device_id}'."}
 
