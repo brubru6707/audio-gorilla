@@ -530,6 +530,10 @@ class GoogleCalendarApis:
         if calendar_id not in calendars:
             raise Exception(f"Calendar not found: {calendar_id}")
 
+        # Ensure events dictionary exists for this calendar
+        if calendar_id not in events_data:
+            events_data[calendar_id] = {}
+
         new_event_id = self._generate_id()
         new_event = {
             "kind": "calendar#event",
@@ -690,6 +694,10 @@ class GoogleCalendarApis:
 
         if destination not in calendars:
             raise Exception(f"Destination calendar not found: {destination}")
+
+        # Ensure events dictionary exists for destination calendar
+        if destination not in events_by_calendar:
+            events_by_calendar[destination] = {}
 
         event = source_events[event_id]
         del source_events[event_id]
