@@ -825,7 +825,7 @@ class YouTubeApis:
                 video_data["likes"] = video_data.get("likes", 0) + 1
                 liked_by_list.append(self.current_user_id)
                 if video_id not in user_data.get("liked_videos", []):
-                    user_data["liked_videos"].append(video_id)
+                    user_data.setdefault("liked_videos", []).append(video_id)
                 print(f"Video {video_id} liked by user {self.current_user_id}")
         elif rating == "none":
             # Remove like
@@ -833,7 +833,7 @@ class YouTubeApis:
                 video_data["likes"] = max(0, video_data.get("likes", 0) - 1)
                 liked_by_list.remove(self.current_user_id)
                 if video_id in user_data.get("liked_videos", []):
-                    user_data["liked_videos"].remove(video_id)
+                    user_data.setdefault("liked_videos", []).remove(video_id)
                 print(f"Like removed from video {video_id}")
         else:
             raise Exception("Invalid rating. Must be 'like' or 'none'")
