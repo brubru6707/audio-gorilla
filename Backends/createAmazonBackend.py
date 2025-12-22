@@ -59,33 +59,42 @@ DEFAULT_STATE = {
 }
 
 
-flattened_product_titles = []
-flattened_product_descriptions = []
-flattened_categories = {}
-category_index = 0
+# Build a structured list: each element is (title, description, main_category, sub_category)
+product_catalog = []
 
-def flatten_categories(data_dict):
-    global category_index
-    for key, value in data_dict.items():
-        category_index += len(data_dict) + 1
-        flattened_categories[key] = category_index
-        if isinstance(value, dict):
-            flatten_categories(value)
+def build_product_catalog(titles_dict, descriptions_dict, main_category=None):
+    """
+    Traverse the nested category structure and build a flat list of products
+    with their proper category information preserved.
+    """
+    for key in titles_dict.keys():
+        title_value = titles_dict[key]
+        desc_value = descriptions_dict.get(key, {})
+        
+        if isinstance(title_value, dict):
+            # It's a subcategory, recurse deeper
+            build_product_catalog(title_value, desc_value, main_category=main_category or key)
         else:
-            flattened_product_titles.extend(value)
+            # It's a list of products
+            # Determine main category
+            if main_category:
+                current_main_category = main_category
+                current_sub_category = key
+            else:
+                current_main_category = key
+                current_sub_category = None
+            
+            # Add each product with its category info
+            for i, title in enumerate(title_value):
+                description = desc_value[i] if isinstance(desc_value, list) and i < len(desc_value) else "No description available"
+                product_catalog.append({
+                    "title": title,
+                    "description": description,
+                    "main_category": current_main_category,
+                    "sub_category": current_sub_category
+                })
 
-def flatten_descriptions(data_dict):
-    global category_index
-    for key, value in data_dict.items():
-        category_index += len(data_dict) + 1
-        flattened_categories[key] = category_index
-        if isinstance(value, dict):
-            flatten_descriptions(value)
-        else:
-            flattened_product_descriptions.extend(value)
-
-flatten_categories(products_based_on_categories)
-flatten_descriptions(product_descriptions_based_on_categories)
+build_product_catalog(products_based_on_categories, product_descriptions_based_on_categories)
 
 # Build product-to-reviews mapping by matching hierarchical structure
 # Each product list in products_based_on_categories corresponds to a review list in product_reviews_based_on_categories
@@ -274,55 +283,39 @@ def flatten_dict_values(d):
     return values_list
 
 def generate_product(product_id):
-    main_category_name = ""
-
-    for key, value in flattened_categories.items():
-        if product_id <= value:
-            main_and_sub_category_dictionary = {
-                "Wearables & Accessories": "Electronics",
-                "Computers & Tablets": "Electronics",
-                "Audio & Video": "Electronics",
-                "Smart Devices": "Electronics",
-                "Peripherals & Components": "Electronics",
-                "Gaming": "Electronics",
-                "Kitchen Appliances": "Home Appliances",
-                "Cleaning Appliances": "Home Appliances",
-                "Climate Control": "Home Appliances",
-                "Small Appliances": "Home Appliances",
-                "Bags & Luggage": "Travel & Luggage",
-                "Travel Accessories": "Travel & Luggage",
-                "Trip Planning": "Travel & Luggage"
-                }
-            
-            if key in main_and_sub_category_dictionary:
-                main_category_name = main_and_sub_category_dictionary[key]
-            else: 
-                main_category_name = key
-            break
-    if main_category_name == "":
-        seller_name = "Amazon First Time Seller"
-    elif type(main_category_name) == str:
-        seller_name = seller_names_based_on_categories[main_category_name]
-        while (type(seller_name) == dict and len(seller_name.keys()) > 1) or (type(seller_name) == list and len(seller_name) > 1):
-            if type(seller_name) == list:
+    """
+    Generate a product using the product_catalog which maintains proper category relationships.
+    Uses modulo to wrap around if product_id exceeds catalog length.
+    """
+    # Use modulo to wrap around if product_id exceeds catalog length
+    catalog_index = product_id % len(product_catalog)
+    product_info = product_catalog[catalog_index]
+    
+    main_category = product_info["main_category"]
+    
+    # Get seller name based on the main category
+    if main_category in seller_names_based_on_categories:
+        seller_name = seller_names_based_on_categories[main_category]
+        
+        # If seller_name is nested (dict or list), traverse to get a single seller
+        while isinstance(seller_name, (dict, list)):
+            if isinstance(seller_name, dict):
+                # Pick a random sub-category
+                sub_key = random.choice(list(seller_name.keys()))
+                seller_name = seller_name[sub_key]
+            elif isinstance(seller_name, list):
+                # Pick a random seller from the list
                 seller_name = random.choice(seller_name)
-            elif type(seller_name) == dict:
-                categories = list(seller_name.keys())
-                category = random.choice(categories)
-                seller_name = random.choice(seller_name[category])
-    else: 
-        seller_name = random.choice(flatten_dict_values(seller_names_based_on_categories[main_category_name])) 
-    # Use modulo to wrap around if product_id exceeds list length
-    title_index = product_id % len(flattened_product_titles)
-    desc_index = product_id % len(flattened_product_descriptions)
+    else:
+        seller_name = "Amazon First Time Seller"
     
     product = {
-        "name": flattened_product_titles[title_index],
-        "description": flattened_product_descriptions[desc_index],
+        "name": product_info["title"],
+        "description": product_info["description"],
         "seller": seller_name,
         "price": round(random.uniform(5.00, 1500.00), 2),
         "stock": random.randint(0, 100) + 1,
-        "category": main_category_name
+        "category": main_category
     }
 
     return product
@@ -427,7 +420,7 @@ def propagate_wish_list_to_users(product_ids):
         else:
             user_data["wish_list"] = []
 
-for i in range(num_initial_products + 1, len(flattened_product_titles)):
+for i in range(num_initial_products + 1, len(product_catalog)):
     product_id = str(uuid.uuid4())
     DEFAULT_STATE["products"][product_id] = generate_product(i)
     DEFAULT_STATE["product_questions"][product_id] = generate_question(product_id, all_user_ids, i)

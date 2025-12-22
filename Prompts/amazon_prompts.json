@@ -4,7 +4,7 @@
         "context": {
             "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
         },
-        "ground_truth": ["login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_to_cart('a6a473ee-2dd0-494b-a94b-531d72264b9d', 'a57803bf-db19-4fbd-96a3-2afd19e939b0', 1)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
+        "ground_truth": ["login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
     }, 
     {
         "prompt": "Please add my new Vacation Home address to my Amazon: 778 Brown St, Providence, Rhode Island, 02903.",
@@ -28,11 +28,11 @@
         "ground_truth": ["login_user('john.lane@knitting-patterns.net', '3^8t6vNx')", "add_payment_card('Addition Financial', 'John Lane', '9762-2343-2322-3234', '2029', '12')"]
     }, 
     {
-        "prompt": "I want two instead of one Patagonia Baggies Shorts 5 inch in my Amazon cart.",
+        "prompt": "I want two instead of one Sphero BOLT in my Amazon cart.",
         "context": {
-            "user_id": "1bb40838-3adf-4d32-ab66-46bac09141c1"
+            "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
         },
-        "ground_truth": ["login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')", "update_cart_item_quantity('user_id_5', '4da5dc57-51cc-46d0-bcd9-bf79fa7ef876', 2)"]
+        "ground_truth": ["login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 2)"]
         }
     ], 
     "Multiturn": [
@@ -70,7 +70,7 @@
             "context": {
                 "user_id": "41261c86-31ed-404f-9b16-a6b2b39b62ec"
             },
-            "ground_truth": ["login_user('jesse.russell@event-management.biz','mnVDQn9K')", "add_to_cart('c472700f-6c75-4f25-b672-6945a291556c', 1)", "checkout('db6f56f4-3a4c-4d00-9f1b-13f047554a29', '27b612c7-1734-477e-98d8-38018dcb34aa')"]
+            "ground_truth": ["login_user('jesse.russell@event-management.biz','mnVDQn9K')", "add_to_cart('a03e3a8e-2276-4521-bbc7-df74a37c5329', 1)", "checkout('db6f56f4-3a4c-4d00-9f1b-13f047554a29', '27b612c7-1734-477e-98d8-38018dcb34aa')"]
         },
         {
             "conversations": [
@@ -124,27 +124,27 @@
                 }
             ],
             "context": {
-                "user_id": "user_id_8"
+                "user_id": "69492073-959c-4b4b-a176-47e52999672c"
             },
-            "ground_truth": ["subscribe_prime('user_id_8', 'annual')"]
+            "ground_truth": ["login_user('logan.turner@seo-optimization.tools', 'nKxh!VKF')", "subscribe_prime('annual')"]
         },
         {
             "conversations": [
                 {
                     "role": "user",
-                    "content": "Buy me a new headphone on Amazon."
+                    "content": "Buy me new RAM on Amazon."
                 },
                 {
                     "role": "assistant",
-                    "content": "Sure! Do you have a specific brand or model in mind?"
+                    "content": "Sure! Do you have anything specific in mind?"
                 },
                 {
                     "role": "user",
-                    "content": "No, just find me a good one."
+                    "content": "Yes, DDR5 from G.Skill with 32 gigabytes."
                 },
                 {
                     "role": "assistant",
-                    "content": "I've found a few options for you. How many would you like to add to your cart?"
+                    "content": "Found it! How many units would you like to add to your cart?"
                 },
                 {
                     "role": "user",
@@ -152,7 +152,7 @@
                 },
                 {
                     "role": "assistant",
-                    "content": "I've added one headphone to your cart. Would you like to proceed to checkout?"
+                    "content": "I've added one unit of DDR5 from G.Skill with 32 gigabytes to your cart. Would you like to proceed to checkout?"
                 },
                 {
                     "role": "user",
@@ -160,9 +160,9 @@
                 }
             ],
             "context": {
-                "user_id": "user_id_9"
+                "user_id": "438fd009-de6e-4183-8361-6435bdff5b44"
             },
-            "ground_truth": ["search_products('headphone')", "add_to_cart('user_id_9', 'product_id_7', 1)", "checkout('user_id_9', 'work_address_2', 'payment_card_id_4')"]
+            "ground_truth": ["login_user('marcus.king@stock-trading.guide','HD@x5w(N')", "search_products('DDR5')", "add_to_cart('3d4f558b-2f09-41c8-b3c5-4a5c71a55027', 1)", "checkout('20c28d29-44eb-459a-b129-726589971154', '366a9ab0-5046-4fdd-8213-0835f5aef981')"]
         }, 
         {
             "conversations": [
@@ -176,17 +176,17 @@
                 },
                 {
                     "role": "user",
-                    "content": "It's a book titled 'Learning Python'. I want to change the quantity to 3."
+                    "content": "It's an electronic that, I think, starts with 'Bissell CrossWave Pet Pro'. I want to change the quantity to 3."
                 },
                 {
                     "role": "assistant",
-                    "content": "The quantity of 'Learning Python' has been updated to 3 in your cart. Is there anything else I can assist you with?"
+                    "content": "The quantity of 'Bissell CrossWave Pet Pro' has been updated to 3 in your cart. Is there anything else I can assist you with?"
                 }
             ],
             "context": {
-                "user_id": "user_id_10"
+                "user_id": "24dd902f-4ddf-4cac-97d5-30b3f231795e"
             },
-            "ground_truth": ["search_products('Learning Python')", "update_cart_item_quantity('user_id_10', 'product_id_8', 3)"]
+            "ground_truth": ["login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')","update_cart_item_quantity('ebf70766-365a-4b1d-b585-be9c73715176', 3)"]
         }
     ]
 }
