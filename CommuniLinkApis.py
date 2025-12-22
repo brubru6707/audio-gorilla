@@ -388,15 +388,7 @@ class CommuniLinkApis:
             "user_id": new_user_id
         }
 
-    def send_sms(
-        self, 
-        to_number: str, 
-        message: str,
-        priority: str = "normal",
-        delivery_receipt: bool = True,
-        schedule_time: Optional[str] = None,
-        max_retries: int = 3,
-        message_type: str = "text"
+    def send_sms( self,  to_number: str,  message: str, priority: str = "normal", delivery_receipt: bool = True, schedule_time: Optional[str] = None, max_retries: int = 3, message_type: str = "text"
     ) -> Dict[str, Union[str, int]]:
         """
         Sends an SMS message from the currently logged-in user to the specified recipient,

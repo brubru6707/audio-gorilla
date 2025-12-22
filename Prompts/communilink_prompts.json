@@ -1,122 +1,128 @@
 {
     "multistep": [{
-        "prompt": "Tell ___ that I will be late to the 7 o'clock meeting",
+        "prompt": "Tell Ali Gray that I will be late to the 7 o'clock meeting",
         "context": {
-            "userID": "some_userID" 
+            "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
         },
-        "ground_truth": ["send_sms(user_num, to_num, 'I am going to be late to the 7 o'clock meeting.')"]
+        "assist": "Sure! I've sent Ali Gray a message saying you'll be late to the 7 o'clock meeting.",
+        "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "send_sms('+15594536581', 'I am going to be late to the 7 o'clock meeting.')"]
     },
     {
-        "prompt": "Call ___ right now!",
+        "prompt": "Call Henry Pena right now!",
         "context": {
-            "userID": "some_userID" 
+            "user_id": "3257801a-da9f-45c1-8fd5-7f9201e9da1e" 
         },
-        "ground_truth": ["make_voice_call(user_num, to_num)"]
+        "assist": "Calling Henry Pena now.",
+        "ground_truth": ["login_user('jasmine.patterson64@growth-partners.com', '896b01a1c07b46db99fe8e86281fd7678f45e8b7bd791ca8')", "make_voice_call('+16265408243')"]
     }, 
     {
-        "prompt": "Was my last message to ___ sent successfully or nah?",
+        "prompt": "Was my last message to  sent successfully or nah?",
         "context": {
-            "userID": "some_userID" 
+            "user_id": "4738e23a-ceeb-480b-af5a-c7f06d108252" 
         },
-        "ground_truth": ["get_sms_status(sms_id)"]
+        "assist": "Yes, your last message was delivered successfully.",
+        "ground_truth": ["login_user('olivia.brown59@webdesigners.co.uk', '4f6aaf02058041e1896c6b23a91f67be39272121b55380e1')", "get_sms_status(sms_id)"]
     }, 
     {
-        "prompt": "Show me my recent calls with ___",
+        "prompt": "Show me my recent calls with Isaiah Sanchez",
         "context": {
-            "userID": "some_userID" 
+            "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
         },
-        "ground_truth": ["get_call_history(user_num, contact_num)"]
+        "assist": "Here are your recent calls with Isaiah Sanchez.",
+        "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "get_all_voice_calls()"]
     },
     {
-        "prompt": "Resend my last text to ___",
+        "prompt": "Resend my last text to Ali Gray",
         "context": {
-            "userID": "some_userID" 
+            "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
         },
-        "ground_truth": ["get_all_sms_messages()"]
-    }],
+        "assist": "I've resent your last message to Ali Gray.",
+        "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')", "get_all_sms_messages()", "send_sms('+15594536581', last_message_content)"]
+    },
+    {
+        "prompt": "YO!!! Why the hell is my bill so freaking high!?!? Give me my billing history!",
+        "context": {
+            "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+        },
+        "assist": "I understand your concern. Let me pull up your billing history for you.",
+        "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')", "get_billing_history()"]
+    }
+],
     "multiturn": [
         {
             "turns": [
                 {
-                    "prompt": "I need to call ___",
+                    "prompt": "I need to call Aria Rivera",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
                     },
-                    "assist": "Sure! Calling your ___ now.",
-                    "ground_truth": ["make_voice_call(user_num, to_num)"]
+                    "assist": "Sure! Calling Aria Rivera now.",
+                    "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "make_voice_call('+19092658616')"]
                 },
                 {
                     "prompt": "Actually, send them a text instead telling them that I need to eat first.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
                     },
                     "assist": "Got it! Sending the message now.",
-                    "ground_truth": ["send_sms(user_num, to_num, 'I need to eat first.')"]
+                    "ground_truth": ["send_sms('+19092658616', 'I need to eat first.')"]
                 }
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "YO!!! Why the hell is my bill so freaking high!?!? Give me my billing history!",
+                    "prompt": "Call Hannah Perez now!",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
-                    "assist": "Yes! I can help you with that. Retrieving your billing history now.",
-                    "ground_truth": ["get_billing_history()"]
-                },
-                {
-                    "prompt": "Call my mother now!",
-                    "context": {
-                        "userID": "some_userID" 
-                    },
-                    "assist": "Sure! Calling your mother now.",
-                    "ground_truth": ["make_voice_call(user_num, to_num)"]
+                    "assist": "Sure! Calling Hannah Perez now.",
+                    "ground_truth": ["make_voice_call('+14042528201')"]
                 },
                 {
                     "prompt": "Nah. Forget that, I don't even like calling her. Just send her a messsage saying to give me 1000 dollars.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
                     "assist": "Got it! Sending the message now.",
-                    "ground_truth": ["send_sms(user_num, to_num, 'Give me 1000 dollars.')"]
+                    "ground_truth": ["send_sms('+14042528201', 'Give me 1000 dollars.')"]
                 }
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Did my last text to ___ go through?",
+                    "prompt": "Did my last text to Ali Gray go through?",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
                     "assist": "Let me check that for you.",
-                    "ground_truth": ["get_sms_status(sms_id)"]
+                    "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')", "get_all_sms_messages()", "get_sms_status('baca9af7-89b6-4970-81c2-0ff731d97569')"]
                 },
                 {
                     "prompt": "If it didn't, resend it -- it's important.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
                     "assist": "Resending the message now.",
-                    "ground_truth": ["get_all_sms_messages()"]
+                    "ground_truth": ["send_sms('+15594536581', 'My back is killing me.')"]
                 }
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Please send a message to ___ for me.",
+                    "prompt": "Please send a message to Dominic for me.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
-                    "assist": "There are multiple ___ in your contacts. Which one would you like to message?",
-                    "ground_truth": []
+                    "assist": "There are multiple Dominics in your contacts. Which one would you like to message?",
+                    "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')"]
                 },
                 {
-                    "prompt": "Send it to the one with the last name as ___.",
+                    "prompt": "Send it to the one with the last name as Diaz.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
                     "assist": "Last thing! What is the mssage you would like to send?",
                     "ground_truth": []
@@ -124,30 +130,30 @@
                 {
                     "prompt": "TUgh. Tell her that I'm not coming to the party tonight.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
                     },
                     "assist": "Got it! Sending the message now.",
-                    "ground_truth": ["send_sms(user_num, to_num, 'I am not coming to the party tonight.')"]
+                    "ground_truth": ["send_sms('+18632004446', 'I am not coming to the party tonight.')"]
                 }
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Tell ___ that the bill just came through.",
+                    "prompt": "Tell Miles Castillo that the bill just came through.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
                     },
                     "assist": "Got it! ",
-                    "ground_truth": ["send_sms(user_num, contact_num, 'The bill just came through.')"]
+                    "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "send_sms('+13516375280', 'The bill just came through.')"]
                 },
                 {
                     "prompt": "Along with that, send them the actual billing info.",
                     "context": {
-                        "userID": "some_userID" 
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
                     },
                     "assist": "Sure! Sending the message now.",
-                    "ground_truth": ["send_sms(user_num, to_num, billing_info_string)"]
+                    "ground_truth": ["get_billing_history()", "send_sms('+13516375280', billing_info_string)"]
                 }
             ]
         }

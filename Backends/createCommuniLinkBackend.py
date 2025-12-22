@@ -97,8 +97,15 @@ def main():
         # --- Generate Contacts ---
         num_contacts = random.randint(2, 15)
         # Ensure user is not in their own contact list
-        other_user_ids = [uid for uid in all_user_ids if uid != user_id]
-        contacts = random.sample(other_user_ids, min(num_contacts, len(other_user_ids)))
+        other_user_shells = [s for s in user_shells if s["user_id"] != user_id]
+        selected_contacts = random.sample(other_user_shells, min(num_contacts, len(other_user_shells)))
+        
+        contacts = []
+        for contact_shell in selected_contacts:
+            contacts.append({
+                "first_and_last_name": f"{contact_shell['first_name']} {contact_shell['last_name']}",
+                "phone_number": contact_shell["phone_number"]
+            })
 
         # --- Generate SMS History ---
         sms_history = []
