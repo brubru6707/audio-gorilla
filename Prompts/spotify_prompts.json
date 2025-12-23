@@ -1,0 +1,205 @@
+{
+    "Multistep": [
+        {
+            "prompt": "Search for 'Rising Skies' on Spotify, save the first track you find, and add it to my 'Workout Mix' playlist.",
+            "context": {
+                "user_id": "02fb7262-3567-4c48-873e-e1f346a92db8"
+            },
+            "ground_truth": ["authenticate('token_alice.bailey935@yoga-studio.com')", "search('Rising Skies', ['track'])", "save_tracks(['290044b8-9f13-4b31-b5b7-69a5e6994b6c'])", "add_items_to_playlist('8c196023-3bc5-4519-8a54-1bf5358362aa', ['spotify:track:290044b8-9f13-4b31-b5b7-69a5e6994b6c'])"]
+        },
+        {
+            "prompt": "Create a new public playlist called 'Evening Chill' and add the first 3 tracks from my liked songs to it.",
+            "context": {
+                "user_id": "cc66e8d2-443a-4d98-b9aa-7ef46d664f74"
+            },
+            "ground_truth": ["authenticate('token_margaret.ward883@brandstudio.net')", "create_playlist('cc66e8d2-443a-4d98-b9aa-7ef46d664f74', 'Evening Chill', None, True)", "get_saved_tracks(3, 0)", "add_items_to_playlist('<new_playlist_id>', ['spotify:track:7509ce88-ee8b-4400-b588-8b8801f8b7b6', 'spotify:track:0acaf3ae-6bbc-47b2-9022-26d2ee2f88ea', 'spotify:track:b14a0153-faf3-4e58-86a9-a77ccb0a0173'])"]
+        },
+        {
+            "prompt": "Follow the artist Zara Moonlight and save all albums by this artist.",
+            "context": {
+                "user_id": "d829c895-ae0e-4c7b-814b-6b7aac7e68e4"
+            },
+            "ground_truth": ["authenticate('token_ellie.lee931@mindfulness-retreat.com')", "search('Zara Moonlight', ['artist'])", "follow_artists(['33ea8232-8cd0-4d41-adf8-385cd0e6d780'])", "get_artist('33ea8232-8cd0-4d41-adf8-385cd0e6d780')", "save_albums(['8fe24559-25af-47e6-b573-52538caee96d', '8551f100-a9ec-4a73-9737-11e092546719', '137804e1-bbe4-4fdf-93fe-1ff2a430abf2'])"]
+        },
+        {
+            "prompt": "Add a new payment method to my Spotify account with card number 4532-1234-5678-9010, expiry 2028/06, CVV 123, and set it as default.",
+            "context": {
+                "user_id": "71c504c1-65e2-4747-a79d-ccb42d5f3a21"
+            },
+            "ground_truth": ["authenticate('token_aiden.simmons994@financeadvisory.biz')", "add_payment_method('Visa Premium', '4532-1234-5678-9010', 2028, 6, '123', True)"]
+        },
+        {
+            "prompt": "Remove the track 'Fading Stars 63' from my liked songs and then remove it from my first playlist.",
+            "context": {
+                "user_id": "8f5e6ca3-693c-4c77-967a-f365c73c84ef"
+            },
+            "ground_truth": ["authenticate('token_hazel.rivera975@socialmediaagency.com')", "search('Fading Stars 63', ['track'])", "remove_saved_tracks(['1f3818d6-06d0-4927-a3e7-56274a8659a4'])", "get_current_user_profile()", "remove_items_from_playlist('48e5e06d-6e2d-4aed-9e8d-97de30f07eda', ['spotify:track:1f3818d6-06d0-4927-a3e7-56274a8659a4'])"]
+        }
+    ],
+    "Multiturn": [
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to create a new playlist on Spotify."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! What would you like to name your playlist?"
+                },
+                {
+                    "role": "user",
+                    "content": "Let's call it 'Morning Motivation'."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Great! Would you like it to be public or private?"
+                },
+                {
+                    "role": "user",
+                    "content": "Make it public, please."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect! I've created your 'Morning Motivation' playlist. Would you like to add any tracks to it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, add the first 5 tracks from my liked songs."
+                }
+            ],
+            "context": {
+                "user_id": "b3e49490-82fe-4e5c-9aa7-bb3cb959838d"
+            },
+            "ground_truth": ["authenticate('token_natalie.hughes866@dataanalyticslab.org')", "create_playlist('b3e49490-82fe-4e5c-9aa7-bb3cb959838d', 'Morning Motivation', None, True)", "get_saved_tracks(5, 0)", "add_items_to_playlist('<new_playlist_id>', ['spotify:track:<track_id_1>', 'spotify:track:<track_id_2>', 'spotify:track:<track_id_3>', 'spotify:track:<track_id_4>', 'spotify:track:<track_id_5>'])"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to follow some new artists."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I'd be happy to help! Which artists would you like to follow?"
+                },
+                {
+                    "role": "user",
+                    "content": "Search for 'Orion Starlight' and follow them."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Found Orion Starlight! I'll follow them for you now."
+                },
+                {
+                    "role": "user",
+                    "content": "Great! Also save their top album to my library."
+                }
+            ],
+            "context": {
+                "user_id": "8ce4e08d-20bc-4074-9246-5c2af1418199"
+            },
+            "ground_truth": ["authenticate('token_grace.reed878@languagelearningapp.io')", "search('Orion Starlight', ['artist'])", "follow_artists(['f6d57202-90dc-4336-8663-a32e52ab091b'])", "get_artist('f6d57202-90dc-4336-8663-a32e52ab091b')", "save_albums(['07f362e5-f6da-4b35-a1a0-e07a8a61828c'])"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "Can you help me organize my music?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Of course! What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "I want to save a specific track."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! What's the name of the track?"
+                },
+                {
+                    "role": "user",
+                    "content": "It's called 'Rising Skies 64'."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Found it! I'll add 'Rising Skies 64' to your liked songs. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, also save the album it's from."
+                }
+            ],
+            "context": {
+                "user_id": "fe3a93de-76e3-42e8-9b5d-4f89d940062d"
+            },
+            "ground_truth": ["authenticate('token_william.hughes918@cloudinfrastructure.tech')", "search('Rising Skies 64', ['track'])", "save_tracks(['290044b8-9f13-4b31-b5b7-69a5e6994b6c'])", "get_track('290044b8-9f13-4b31-b5b7-69a5e6994b6c')", "save_albums(['8fe24559-25af-47e6-b573-52538caee96d'])"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to update one of my playlists."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Which playlist would you like to update?"
+                },
+                {
+                    "role": "user",
+                    "content": "My 'Road Trip' playlist."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What changes would you like to make to it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Change the name to 'Road Trip 2026' and make it private."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Done! Your playlist has been renamed to 'Road Trip 2026' and set to private. Anything else?"
+                }
+            ],
+            "context": {
+                "user_id": "3902bb8c-5fc2-4e8b-9506-0d1de051f4ed"
+            },
+            "ground_truth": ["authenticate('token_thomas.gibson914@petcaresolutions.com')", "get_current_user_profile()", "change_playlist_details('e0d8fbc6-8c79-4c88-b6c8-d42ac6c2de19', 'Road Trip 2026', None, False)"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to clean up my library."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with that! What would you like to remove?"
+                },
+                {
+                    "role": "user",
+                    "content": "Find any tracks by Zara Moonlight in my liked songs."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Let me search your liked songs for tracks by Zara Moonlight."
+                },
+                {
+                    "role": "user",
+                    "content": "Remove all of them from my liked songs."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've removed all Zara Moonlight tracks from your liked songs. Is there anything else?"
+                }
+            ],
+            "context": {
+                "user_id": "6b1706fe-1b91-4acc-9f53-893d31e3e12a"
+            },
+            "ground_truth": ["authenticate('token_scarlett.graham960@virtualrealitystudio.dev')", "get_saved_tracks(50, 0)", "get_artist('33ea8232-8cd0-4d41-adf8-385cd0e6d780')", "remove_saved_tracks(['<track_id_1>', '<track_id_2>'])"]
+        }
+    ]
+}
