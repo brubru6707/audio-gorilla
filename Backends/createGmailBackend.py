@@ -6,7 +6,7 @@ import random
 import json
 import base64
 from typing import Dict, Any, List, Tuple
-from fake_data import first_names, last_names, email_subjects, email_snippets, domains, timezones, first_and_last_names, user_count
+from fake_data import first_names, last_names, email_subjects, domains, timezones, first_and_last_names, email_bodies_1, email_bodies_2, email_bodies_3, user_count
 
 # Set a fixed start time for consistent "now" across the script
 current_datetime = datetime.datetime.now()
@@ -15,6 +15,14 @@ DEFAULT_STATE: Dict[str, Any] = {
     "users": {},
 }
 _user_email_to_uuid_map: Dict[str, str] = {}
+
+# Combine all email bodies and create a global pool
+ALL_EMAIL_BODIES = email_bodies_1 + email_bodies_2 + email_bodies_3
+TOTAL_EMAIL_BODIES = len(ALL_EMAIL_BODIES)
+
+# Global tracking for email body distribution
+_email_body_assignments: Dict[str, List[str]] = {}  # user_email -> list of email body texts
+_draft_body_assignments: Dict[str, List[str]] = {}  # user_email -> list of draft body texts
 
 def generate_gmail_id() -> str:
     """Generates a Gmail-style hex ID (16 characters)."""
@@ -36,6 +44,64 @@ def generate_random_past_timestamp(max_days_ago=365) -> str:
 def generate_email(first_name: str, last_name: str) -> str:
     """Generates a semi-random email address."""
     return f"{first_name.lower()}.{last_name.lower()}{random.randint(1, 99)}@{random.choice(domains)}"
+
+def distribute_email_bodies(all_user_emails: List[str]):
+    """Distribute email bodies evenly among all users."""
+    # Calculate max emails per user (2% of total bodies) and max drafts (1% of total)
+    max_emails_per_user = max(1, int(TOTAL_EMAIL_BODIES * 0.02))
+    max_drafts_per_user = max(1, int(TOTAL_EMAIL_BODIES * 0.01))
+    
+    # Calculate average distribution
+    avg_emails_per_user = TOTAL_EMAIL_BODIES // len(all_user_emails)
+    avg_drafts_per_user = max(1, TOTAL_EMAIL_BODIES // (len(all_user_emails) * 4))  # Roughly 25% as many drafts
+    
+    # Shuffle email bodies to randomize distribution
+    shuffled_bodies = ALL_EMAIL_BODIES.copy()
+    random.shuffle(shuffled_bodies)
+    
+    # Distribute emails
+    body_index = 0
+    for email in all_user_emails:
+        # Random number around average, capped at max
+        num_emails = min(max_emails_per_user, random.randint(max(1, avg_emails_per_user - 2), avg_emails_per_user + 2))
+        num_drafts = min(max_drafts_per_user, random.randint(max(0, avg_drafts_per_user - 1), avg_drafts_per_user + 1))
+        
+        # Assign email bodies
+        _email_body_assignments[email] = []
+        _draft_body_assignments[email] = []
+        
+        # Ensure we don't exceed available bodies
+        if body_index < len(shuffled_bodies):
+            end_index = min(body_index + num_emails, len(shuffled_bodies))
+            _email_body_assignments[email] = shuffled_bodies[body_index:end_index]
+            body_index = end_index
+        
+        # Assign draft bodies from remaining
+        if body_index < len(shuffled_bodies):
+            end_index = min(body_index + num_drafts, len(shuffled_bodies))
+            _draft_body_assignments[email] = shuffled_bodies[body_index:end_index]
+            body_index = end_index
+    
+    # If there are remaining bodies, distribute them randomly
+    while body_index < len(shuffled_bodies):
+        random_email = random.choice(all_user_emails)
+        if len(_email_body_assignments[random_email]) < max_emails_per_user:
+            _email_body_assignments[random_email].append(shuffled_bodies[body_index])
+            body_index += 1
+        else:
+            # If emails are maxed out, add to drafts
+            if len(_draft_body_assignments[random_email]) < max_drafts_per_user:
+                _draft_body_assignments[random_email].append(shuffled_bodies[body_index])
+                body_index += 1
+            else:
+                # Find any user with space
+                for alt_email in all_user_emails:
+                    if len(_email_body_assignments[alt_email]) < max_emails_per_user:
+                        _email_body_assignments[alt_email].append(shuffled_bodies[body_index])
+                        body_index += 1
+                        break
+                else:
+                    break  # All users are at max
 
 def _create_user_data(email: str, first_name: str, last_name: str, recipients_emails: List[str], gmail_data: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
     """
@@ -179,35 +245,47 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
         min(num_recipients, len(all_user_emails) - 1)
     )
 
-    # Generate messages count first for realistic totals
-    num_messages = random.randint(20, 70)
+    # Get assigned email bodies for this user
+    user_email_bodies = _email_body_assignments.get(email, [])
+    user_draft_bodies = _draft_body_assignments.get(email, [])
+    num_messages = len(user_email_bodies)
     
     new_gmail_data = {
         "profile": {
             "emailAddress": email,
-            "messagesTotal": num_messages + random.randint(0, 50),  # Close to actual with small variance
-            "threadsTotal": random.randint(max(1, num_messages // 4), num_messages // 2),  # Realistic thread count
+            "messagesTotal": num_messages + random.randint(0, 10),  # Close to actual with small variance
+            "threadsTotal": random.randint(max(1, num_messages // 4), max(1, num_messages // 2)),  # Realistic thread count
             "historyId": str(random.randint(10**12, 10**13 - 1))
         },
         "drafts": {}, "labels": {}, "messages": {}, "threads": {}
     }
 
-    # Generate a few random drafts with proper Gmail structure
-    for _ in range(random.randint(0, 2)):
+    # Generate drafts using assigned draft bodies
+    for draft_body in user_draft_bodies:
         draft_id = f"temp_draft_{uuid.uuid4()}"
         draft_msg_id = str(uuid.uuid4())
+        
+        # Base64 encode the draft body
+        encoded_body = base64.urlsafe_b64encode(draft_body.encode('utf-8')).decode('utf-8')
+        
+        # Generate snippet (first 10% of the body)
+        snippet_length = max(20, len(draft_body) // 10)
+        snippet = draft_body[:snippet_length].replace('\n', ' ').strip()
+        if len(draft_body) > snippet_length:
+            snippet += "..."
+        
         new_gmail_data["drafts"][draft_id] = {
             "id": draft_id,
             "message": {
                 "id": draft_msg_id,
                 "threadId": draft_msg_id,
                 "labelIds": ["DRAFT"],
-                "snippet": "Draft message",
+                "snippet": snippet,
                 "payload": {
                     "mimeType": "text/plain",
                     "body": {
-                        "size": random.randint(50, 2000),
-                        "data": ""
+                        "size": len(encoded_body),
+                        "data": encoded_body
                     },
                     "headers": [
                         {"name": "To", "value": random.choice(all_user_emails)},
@@ -225,7 +303,7 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
             "id": label_id, "name": random.choice(["Work", "Personal", "Travel", "Urgent"]), "type": "user"
         }
 
-    # Generate messages and group them into threads
+    # Generate messages using assigned email bodies
     temp_messages = {}
     
     # Create realistic contact patterns: frequent contacts vs. random people
@@ -235,7 +313,7 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
     
     all_possible_recipients = frequent_contacts + occasional_contacts + random_contacts
 
-    for _ in range(num_messages):
+    for email_body in user_email_bodies:
         msg_id = f"temp_msg_{uuid.uuid4()}"
         
         # Realistic sender patterns: 60% received, 40% sent
@@ -273,15 +351,24 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
         message_timestamp = generate_random_past_timestamp(365)
         message_datetime = datetime.datetime.fromtimestamp(int(message_timestamp)/1000)
         
+        # Base64 encode the email body
+        encoded_body = base64.urlsafe_b64encode(email_body.encode('utf-8')).decode('utf-8')
+        
+        # Generate snippet (first 10% of the body)
+        snippet_length = max(20, len(email_body) // 10)
+        snippet = email_body[:snippet_length].replace('\n', ' ').strip()
+        if len(email_body) > snippet_length:
+            snippet += "..."
+        
         temp_messages[msg_id] = {
             "id": msg_id, 
             "threadId": msg_id, # Default threadId to msgId
-            "snippet": random.choice(email_snippets),
+            "snippet": snippet,
             "payload": {
                 "mimeType": "text/plain",
                 "body": {
-                    "size": random.randint(100, 5000),
-                    "data": ""  # Base64 encoded content would go here
+                    "size": len(encoded_body),
+                    "data": encoded_body
                 },
                 "headers": [
                     {"name": "From", "value": sender}, 
@@ -293,7 +380,7 @@ def generate_user_details(first_name: str, last_name: str, email: str, all_user_
             },
             "internalDate": message_timestamp, 
             "labelIds": label_ids,
-            "sizeEstimate": random.randint(1000, 8000)
+            "sizeEstimate": len(encoded_body) + 500  # Body + headers estimate
         }
     
     # Create threads by grouping some messages with realistic patterns

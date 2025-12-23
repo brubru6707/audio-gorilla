@@ -1,260 +1,233 @@
 {
-    "multistep": [
+    "Multistep": [
         {
-            "prompt": "Create a new folder called 'Project Docs' in my Drive and upload a text file named 'notes.txt' with content 'Initial notes' inside it.",
+            "prompt": "Create a new folder called 'Q4 Reports' in my Drive and upload a text file named 'summary.txt' inside it.",
             "context": {
-                "user_id": "user_1"
+                "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": [
-                "get_user_info('user_1')",
-                "create_folder('Project Docs', null, null, null, 'user_1')",
-                "create_file('notes.txt', 'text/plain', ['folder_id_project_docs'], 'Initial notes', 'user_1')"
-            ]
+            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "create_folder('Q4 Reports', None, None)", "create_file('summary.txt', 'text/plain', ['<new_folder_id>'], None, False)"]
         },
         {
-            "prompt": "List all files in my Drive that contain 'report' in the name and delete the oldest one.",
+            "prompt": "List all files that contain 'Quarterly' in the name and delete the one named 'Quarterly Review_371.txt'.",
             "context": {
-                "user_id": "user_2"
+                "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
             },
-            "ground_truth": [
-                "get_user_info('user_2')",
-                "list_files('user_2', 'name contains \"report\"', 50, null)",
-                "delete_file('oldest_file_id', 'user_2')"
-            ]
+            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "list_files('name contains \"Quarterly\"', 100, None, None, 'drive')", "delete_file('516db945-b4d5-4bb9-ab7f-e7fff4e347b0')"]
         },
         {
-            "prompt": "Copy the file with ID 'file_123' to a new folder named 'Backup' and rename the copy to 'file_backup.txt'.",
+            "prompt": "Copy the file 'model_623.py' to a new folder named 'Code Backup' and rename the copy to 'model_backup.py'.",
             "context": {
-                "user_id": "user_3"
+                "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": [
-                "get_user_info('user_3')",
-                "create_folder('Backup', 'application/vnd.google-apps.folder', null, null, 'user_3')",
-                "copy_file('file_123', 'file_backup.txt', ['folder_id_backup'], 'user_3')"
-            ]
+            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "create_folder('Code Backup', None, None)", "copy_file('12db9828-a3c6-467d-8871-7e6ec88fab47', 'model_backup.py', ['<new_folder_id>'], None)"]
         },
         {
-            "prompt": "List my my first ten files and share those ten files to ____.",
+            "prompt": "Share my file 'Whitepaper_926.txt' with eli.watson1@train-travelers.org and give them writer access.",
             "context": {
-                "user_id": "user_4"
+                "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
             },
-            "ground_truth": [
-                "get_user_info('user_4')",
-                "list_files('user_4', null, 10, null)",
-                "share_file('file_id_1', 'user_to_share_with', 'user_4')"
-            ]
+            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "create_permission('d095fdf5-838d-4aa0-bce8-31812e8ee9cd', 'writer', 'user', 'eli.watson1@train-travelers.org', None)"]
+        },
+        {
+            "prompt": "Move my file 'Screenshot_241.jpeg' from the Work_6 folder to the root directory and star it.",
+            "context": {
+                "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
+            },
+            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "update_file('66af1145-835f-4e99-854b-8ccc23495e0a', None, None, None, True, None, 'root', '217a066c-4133-46d6-9109-3bf66cf40580')"]
         }
     ],
-    "multiturn": [
+    "Multiturn": [
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "Create a new file in my Drive.",
-                    "context": {
-                        "user_id": "user_5"
-                    },
-                    "assist": "Sure! What should the file be named, and what type of file is it?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "I want to create a new folder in my Drive."
                 },
                 {
-                    "prompt": "Name it 'presentation', and it's a PowerPoint file.",
-                    "context": {
-                        "user_id": "user_5"
-                    },
-                    "assist": "What is the file extension?",
-                    "ground_truth": [
-                        "create_file('presentation.pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', null, null, 'user_5')"
-                    ]
+                    "role": "assistant",
+                    "content": "Sure! What would you like to name the folder?"
+                },
+                {
+                    "role": "user",
+                    "content": "Name it 'Tax Documents 2025'."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
+            },
+            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "create_folder('Tax Documents 2025', None, 'Folder for tax documents')"]
         },
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "Find a file in my Drive.",
-                    "context": {
-                        "user_id": "user_6"
-                    },
-                    "assist": "What are you looking for? A specific name or type?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "Find a file in my Drive."
                 },
                 {
-                    "prompt": "Look for files named 'budget.xlsx' and show me the details.",
-                    "context": {
-                        "user_id": "user_6"
-                    },
-                    "assist": "Retrieving the file.",
-                    "ground_truth": [
-                        "list_files('user_6', 'name = \"budget.xlsx\"', 1, null)",
-                        "get_file('file_id_budget', 'user_6')"
-                    ]
+                    "role": "assistant",
+                    "content": "What are you looking for? A specific name or type?"
+                },
+                {
+                    "role": "user",
+                    "content": "Look for 'Contract_840.txt' and show me the details."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
+            },
+            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "list_files('name = \"Contract_840.txt\"', 1, None, None, 'drive')", "get_file('a5795d7d-8b27-433e-bfe5-ede9f77e9539', '*')"]
         },
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "Update a file in my Drive.",
-                    "context": {
-                        "user_id": "user_7"
-                    },
-                    "assist": "Which file? And what changes do you want to make?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "I need to update a file in my Drive."
                 },
                 {
-                    "prompt": "The file 'report.docx', move it to the 'Archives' folder and rename it to 'old_report.docx'.",
-                    "context": {
-                        "user_id": "user_7"
-                    },
-                    "assist": "Updating the file.",
-                    "ground_truth": [
-                        "update_file('file_id_report', 'folder_id_archives', null, 'user_7', 'old_report.docx', null)"
-                    ]
+                    "role": "assistant",
+                    "content": "Which file? And what changes do you want to make?"
+                },
+                {
+                    "role": "user",
+                    "content": "The file 'Brochure_919.txt', move it to the Documents folder and star it."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
+            },
+            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "update_file('7b6cf047-9e93-4056-9bdf-490cd0902ad8', None, None, None, True, None, '2cdf2eec-48d0-45c3-aa47-1e783c5a185e', 'root')"]
         },
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "Delete a file from my Drive.",
-                    "context": {
-                        "user_id": "user_8"
-                    },
-                    "assist": "Which file should I delete? Please provide the name or ID.",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "Delete a file from my Drive."
                 },
                 {
-                    "prompt": "Delete the file 'temp.txt' if it exists.",
-                    "context": {
-                        "user_id": "user_8"
-                    },
-                    "assist": "Checking and deleting if found.",
-                    "ground_truth": [
-                        "list_files('user_8', 'name = \"temp.txt\"', 1, null)",
-                        "delete_file('file_id_temp', 'user_8')"
-                    ]
+                    "role": "assistant",
+                    "content": "Which file should I delete? Please provide the name."
+                },
+                {
+                    "role": "user",
+                    "content": "Delete 'Logo_339.png' if it exists."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
+            },
+            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "list_files('name = \"Logo_339.png\"', 1, None, None, 'drive')", "delete_file('e29216c7-2531-4a7a-bcef-e80f73adf85b')"]
         },
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "Copy a file in my Drive.",
-                    "context": {
-                        "user_id": "user_9"
-                    },
-                    "assist": "Which file do you want to copy, and where to?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "I want to copy a file."
                 },
                 {
-                    "prompt": "Copy 'document.pdf' to the 'Shared' folder.",
-                    "context": {
-                        "user_id": "user_9"
-                    },
-                    "assist": "Copying the file.",
-                    "ground_truth": [
-                        "copy_file('file_id_document', 'document.pdf', ['folder_id_shared'], 'user_9')"
-                    ]
+                    "role": "assistant",
+                    "content": "Which file do you want to copy, and where to?"
+                },
+                {
+                    "role": "user",
+                    "content": "Copy 'Data Analysis_655.txt' to the Documents folder."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
+            },
+            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "copy_file('07a0a067-5a14-487b-a460-d25132d47583', 'Data Analysis_655.txt', ['2cdf2eec-48d0-45c3-aa47-1e783c5a185e'], None)"]
         },
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "List files in a specific folder.",
-                    "context": {
-                        "user_id": "user_10"
-                    },
-                    "assist": "Which folder? And any filters like file type?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "List files in a specific folder."
                 },
                 {
-                    "prompt": "The 'Work' folder, only PDFs.",
-                    "context": {
-                        "user_id": "user_10"
-                    },
-                    "assist": "Listing the files.",
-                    "ground_truth": [
-                        "list_files('user_10', 'parents in \"folder_id_work\" and mimeType = \"application/pdf\"', 50, null)"
-                    ]
+                    "role": "assistant",
+                    "content": "Which folder? And any filters like file type?"
+                },
+                {
+                    "role": "user",
+                    "content": "The 'Work_6' folder, only images."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
+            },
+            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "list_files('\"217a066c-4133-46d6-9109-3bf66cf40580\" in parents and (mimeType contains \"image/\")', 100, None, None, 'drive')"]
         },
         {
-            "turns": [
+            "conversations": [
                 {
-                    "prompt": "Organize my files.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "Sure! What kind of organization do you have in mind? Like by type, date, or something else?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "I need to organize my files."
                 },
                 {
-                    "prompt": "By type, please.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "Got it. Which file types should I group? For example, documents, images, etc.?",
-                    "ground_truth": []
+                    "role": "assistant",
+                    "content": "Sure! What kind of organization do you have in mind? Like by type, date, or something else?"
                 },
                 {
-                    "prompt": "Documents, images, and videos.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "Okay. Should I create new folders for each type or move to existing ones?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "By type, please."
                 },
                 {
-                    "prompt": "Create new folders.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "What should I name the folders? And should I also copy any important files to a backup folder?",
-                    "ground_truth": []
+                    "role": "assistant",
+                    "content": "Got it. Which file types should I group? For example, documents, images, etc.?"
                 },
                 {
-                    "prompt": "Name them 'My Documents', 'My Images', 'My Videos', and yes, copy the most recent document to a 'Backup' folder.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "Should I delete any duplicate files after organizing?",
-                    "ground_truth": []
+                    "role": "user",
+                    "content": "Images, PDFs, and spreadsheets."
                 },
                 {
-                    "prompt": "Yes, delete duplicates in the images folder.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "Do you want me to get details on the organized files afterward?",
-                    "ground_truth": []
+                    "role": "assistant",
+                    "content": "Should I create new folders for each type or move to existing ones?"
                 },
                 {
-                    "prompt": "Yes, show me the details of the backup file.",
-                    "context": {
-                        "user_id": "user_11"
-                    },
-                    "assist": "Organizing your files now.",
-                    "ground_truth": [
-                        "get_user_info('user_11')",
-                        "list_files('user_11', null, 100, null)",
-                        "create_file('My Documents', 'application/vnd.google-apps.folder', null, null, 'user_11')",
-                        "create_file('My Images', 'application/vnd.google-apps.folder', null, null, 'user_11')",
-                        "create_file('My Videos', 'application/vnd.google-apps.folder', null, null, 'user_11')",
-                        "create_file('Backup', 'application/vnd.google-apps.folder', null, null, 'user_11')",
-                        "copy_file('most_recent_doc_id', 'backup_doc', ['folder_id_backup'], 'user_11')",
-                        "update_file('file_id_doc1', 'folder_id_my_documents', null, 'user_11', null, null)",
-                        "update_file('file_id_doc2', 'folder_id_my_documents', null, 'user_11', null, null)",
-                        "update_file('file_id_img1', 'folder_id_my_images', null, 'user_11', null, null)",
-                        "update_file('file_id_img2', 'folder_id_my_images', null, 'user_11', null, null)",
-                        "update_file('file_id_img3', 'folder_id_my_images', null, 'user_11', null, null)",
-                        "update_file('file_id_vid1', 'folder_id_my_videos', null, 'user_11', null, null)",
-                        "delete_file('duplicate_img_id', 'user_11')",
-                        "get_file('backup_doc_id', 'user_11')"
-                    ]
+                    "role": "user",
+                    "content": "Create new folders."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What should I name the folders?"
+                },
+                {
+                    "role": "user",
+                    "content": "Name them 'My Images', 'My PDFs', and 'My Spreadsheets'."
                 }
-            ]
+            ],
+            "context": {
+                "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
+            },
+            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "create_folder('My Images', None, 'Folder for images')", "create_folder('My PDFs', None, 'Folder for PDFs')", "create_folder('My Spreadsheets', None, 'Folder for spreadsheets')", "list_files('mimeType contains \"image/\"', 100, None, None, 'drive')", "list_files('mimeType = \"application/pdf\"', 100, None, None, 'drive')", "list_files('mimeType contains \"spreadsheet\"', 100, None, None, 'drive')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "Share a file with someone."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Which file would you like to share, and who should I share it with?"
+                },
+                {
+                    "role": "user",
+                    "content": "Share 'Training_260.txt' with andrew.myers64@nasa-updates.online."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What level of access should they have? Reader, commenter, or writer?"
+                },
+                {
+                    "role": "user",
+                    "content": "Give them reader access."
+                }
+            ],
+            "context": {
+                "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
+            },
+            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "create_permission('e2951b5b-a107-46e2-a5e9-ad9f18f2ac9e', 'reader', 'user', 'andrew.myers64@nasa-updates.online', None)"]
         }
     ]
 }

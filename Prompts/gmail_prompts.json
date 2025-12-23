@@ -1,47 +1,51 @@
 {
     "multistep": [
         {
-        "prompt": "Remind me what email that I sent to ___ and send a message to ___ reminding them that we have a meeting tomorrow at 9PM",
-         "context": {
-            "user_id": "_____"
-         },
-         "model": "Yes, I will do that right now!",
-         "ground_truth": [
-            "get_message('user_id_9', 'msg_id')",
-            "send_message('user_id_9', 'contact_id_5', 'Reminder: Meeting Tomorrow at 9PM', 'Just wanted to remind you that we have a meeting scheduled for tomorrow at 9PM.')"
-         ]
+            "prompt": "Show me the email I received from london.reyes88@cloud-computing.services and send a reply confirming I'll look into the automation scripts.",
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "model": "Yes, I will do that right now!",
+            "ground_truth": [
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "get_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', 'full')",
+                "send_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmxvbmRvbi5yZXllczg4QGNsb3VkLWNvbXB1dGluZy5zZXJ2aWNlcwpTdWJqZWN0OlJlOiBSaXNrIGFzc2Vzc21lbnQgZmluZGluZ3MKCkkgd2lsbCBsb29rIGludG8gdGhlIGF1dG9tYXRpb24gc2NyaXB0cyBhbmQgZ2V0IGJhY2sgdG8geW91IHNvb24u'})"
+            ]
         },
         {
-            "prompt": "Create a draft email to ___ about our plant pot project that we plan to do and delete my previous draft of that I had with ____",
+            "prompt": "Create a draft email to jesse.stewart24@poetry-journal.com about hiring process improvements and delete my existing draft.",
             "context": {
-                "user_id": "_____"
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
             },
             "model": "Sure, I will handle that for you.",   
             "ground_truth": [
-                "create_draft('user_id_9', 'contact_id_7', 'Plant Pot Project', 'Hi ___, I wanted to discuss our plans for the plant pot project...')",
-                "delete_draft('user_id_9', 'draft_id_3')"
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpIaXJpbmcgUHJvY2VzcyBJbXByb3ZlbWVudHMKCkxldCdzIGRpc2N1c3Mgd2F5cyB0byBzdHJlYW1saW5lIG91ciBoaXJpbmcgcHJvY2Vzcy4='}})",
+                "delete_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '5c39461d32cbc3b4')"
             ]
         },
         {
-            "prompt": "List all the labels that I have and create a new one that is about my banking.",
+            "prompt": "List all my labels and create a new label called 'Banking'.",
             "context": {
-                "user_id": "_____"
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
             }, 
             "model": "I will get that done for you.",
             "ground_truth": [
-                "list_labels('user_id_9')",
-                "create_label('user_id_9', 'Banking')"
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_labels('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "create_label('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'Banking')"
             ]
         },
         {
-            "prompt": "Find the last email that I received from ___ and forward it to ___ with a note saying that I will get back to them later.",
+            "prompt": "Find my message about Risk assessment findings and mark it as starred.",
             "context": {
-                "user_id": "_____"
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
             },
             "model": "On it! I will take care of that now.",
             "ground_truth": [
-                "get_message('user_id_9', 'contact_id_4')",
-                "send_message('user_id_9', 'email_id_12', '_____', '_____')"
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'subject:Risk assessment findings', None, None, 10, False)",
+                "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['STARRED']})"
             ]
         }
     ],
@@ -49,23 +53,22 @@
         {
             "turns": [
                 {
-                    "prompt": "Can you help me draft an email to ___ about our upcoming trip?",
+                    "prompt": "Can you help me draft an email to jesse.stewart24@poetry-journal.com about the upcoming project deadline?",
                     "context": {
-                        "user_id": "_____"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
                     "assist": "Of course! What details would you like to include in the email?",
-                    "ground_truth": [
-                        "create_draft('user_id_9', 'contact_id_8', 'Upcoming Trip', 'Hi ___, I wanted to discuss our plans for the upcoming trip...')"
-                    ]
+                    "ground_truth": []
                 },
                 {
-                    "prompt": "Yes, please include the dates from July 10th to July 15th and mention that we need to book our accommodations soon.",
+                    "prompt": "Yes, please mention that the deadline is January 15th and we need to finalize the requirements soon.",
                     "context": {
-                        "user_id": "_____"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
-                    "assist": "Got it! I will add those details to the draft.",
+                    "assist": "Got it! I will create the draft with those details.",
                     "ground_truth": [
-                        "update_draft('user_id_9', 'draft_id_5', 'Hi ___, I wanted to discuss our plans for the upcoming trip from July 10th to July 15th. We need to book our accommodations soon.')"
+                        "authenticate('anya.sharma61@audio-engineering.online')",
+                        "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpVcGNvbWluZyBQcm9qZWN0IERlYWRsaW5lCgpIaSBKZXNzZSwgSSB3YW50ZWQgdG8gcmVtaW5kIHlvdSB0aGF0IHRoZSBwcm9qZWN0IGRlYWRsaW5lIGlzIEphbnVhcnkgMTV0aCBhbmQgd2UgbmVlZCB0byBmaW5hbGl6ZSB0aGUgcmVxdWlyZW1lbnRzIHNvb24u'}})"
                     ]
                 }
             ]
@@ -73,47 +76,24 @@
         {
             "turns": [
                 {
-                    "prompt": "Can you check if I have any unread emails from ___?",
+                    "prompt": "Can you check if I have any messages labeled as IMPORTANT?",
                     "context": {
-                        "user_id": "_____"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
                     "assist": "Sure! Let me look that up for you.",
                     "ground_truth": [
-                        "list_unread_messages('user_id_9', 'contact_id_6')"
+                        "authenticate('anya.sharma61@audio-engineering.online')",
+                        "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', None, ['IMPORTANT'], None, 50, False)"
                     ]
                 },
                 {
-                    "prompt": "Great! If there are any, please mark them as important.",
+                    "prompt": "Great! If there are any, please also mark them as starred.",
                     "context": {
-                        "user_id": "_____"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
-                    "assist": "Will do! I will mark those emails as important.",
+                    "assist": "Will do! I will mark those emails as starred.",
                     "ground_truth": [
-                        "mark_as_important('user_id_9', 'message_id_15')",
-                        "mark_as_important('user_id_9', 'message_id_18')"
-                    ]
-                }
-            ]
-        },
-  
-        {
-            "turns": [
-                {
-                    "prompt": "Draft an email about the project deadline.",
-                    "context": {
-                        "user_id": "user_id_10"
-                    },
-                    "assist": "Sure! Who should I send it to, and what specific details about the deadline should I include?",
-                    "ground_truth": []
-                },
-                {
-                    "prompt": "Send it to my boss at boss@example.com, and mention that the deadline is November 1st, 2025.",
-                    "context": {
-                        "user_id": "user_id_10"
-                    },
-                    "assist": "Got it! Drafting the email now.",
-                    "ground_truth": [
-                        "create_draft('user_id_10', 'boss@example.com', 'Project Deadline Update', 'Hi Boss, I wanted to update you on the project deadline, which is November 1st, 2025.')"
+                        "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['STARRED']})"
                     ]
                 }
             ]
@@ -121,21 +101,45 @@
         {
             "turns": [
                 {
-                    "prompt": "Find emails about the budget meeting.",
+                    "prompt": "Draft an email about the survey results.",
                     "context": {
-                        "user_id": "user_id_11"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
-                    "assist": "I need more details to search accurately. What date range or sender should I look for?",
+                    "assist": "Sure! Who should I send it to, and what specific details about the survey should I include?",
                     "ground_truth": []
                 },
                 {
-                    "prompt": "From last month, and from finance@company.com.",
+                    "prompt": "Send it to jesse.stewart24@poetry-journal.com, and mention that we received positive feedback on the new features.",
                     "context": {
-                        "user_id": "user_id_11"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+                    },
+                    "assist": "Got it! Creating the draft now.",
+                    "ground_truth": [
+                        "authenticate('anya.sharma61@audio-engineering.online')",
+                        "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpTdXJ2ZXkgUmVzdWx0cwoKV2UgcmVjZWl2ZWQgcG9zaXRpdmUgZmVlZGJhY2sgb24gdGhlIG5ldyBmZWF0dXJlcyBmcm9tIG91ciBzdXJ2ZXku'}})"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Find emails about risk assessment.",
+                    "context": {
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+                    },
+                    "assist": "I need more details to search accurately. What sender or date range should I look for?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "From london.reyes88@cloud-computing.services.",
+                    "context": {
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
                     "assist": "Searching now.",
                     "ground_truth": [
-                        "list_messages('user_id_11', 'from:finance@company.com after:2025-09-01 before:2025-10-01', null, null, 50)"
+                        "authenticate('anya.sharma61@audio-engineering.online')",
+                        "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:london.reyes88@cloud-computing.services subject:risk assessment', None, None, 50, False)"
                     ]
                 }
             ]
@@ -145,21 +149,22 @@
                 {
                     "prompt": "Create a label for urgent items.",
                     "context": {
-                        "user_id": "user_id_12"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
                     "assist": "What should I name the label, and do you want to apply it to any existing messages?",
                     "ground_truth": []
                 },
                 {
-                    "prompt": "Name it 'Urgent', and apply it to all unread messages in my inbox.",
+                    "prompt": "Name it 'Urgent', and apply it to my unread messages.",
                     "context": {
-                        "user_id": "user_id_12"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
                     "assist": "Creating the label and applying it.",
                     "ground_truth": [
-                        "create_label('user_id_12', 'Urgent')",
-                        "list_messages('user_id_12', 'is:unread', null, null, 100)",
-                        "modify_message('user_id_12', 'message_id_X', {\"addLabelIds\": [\"Urgent\"]})"
+                        "authenticate('anya.sharma61@audio-engineering.online')",
+                        "create_label('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'Urgent')",
+                        "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'is:unread', None, None, 100, False)",
+                        "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['Urgent']})"
                     ]
                 }
             ]
@@ -167,21 +172,14 @@
         {
             "turns": [
                 {
-                    "prompt": "Send a follow-up email to the client.",
+                    "prompt": "Send my draft about the survey results.",
                     "context": {
-                        "user_id": "user_id_13"
+                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
                     },
-                    "assist": "Which client? And what should the email say?",
-                    "ground_truth": []
-                },
-                {
-                    "prompt": "To client@abc.com, and ask about the status of the order.",
-                    "context": {
-                        "user_id": "user_id_13"
-                    },
-                    "assist": "Sending the email.",
+                    "assist": "I'll send the draft for you now.",
                     "ground_truth": [
-                        "send_message('user_id_13', 'client@abc.com', 'Follow-up on Order', 'Hi, I wanted to follow up on the status of our order.')"
+                        "authenticate('anya.sharma61@audio-engineering.online')",
+                        "send_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '5c39461d32cbc3b4')"
                     ]
                 }
             ]

@@ -1,8 +1,3 @@
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import inspect
 import json
 from AmazonApis import AmazonApis
@@ -17,6 +12,10 @@ from SpotifyApis import SpotifyApis
 from TeslaFleetApis import TeslaFleetApis
 from XApis import XApis
 from YouTubeApis import YouTubeApis
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def extract_api_info(api_class):
     api_name = api_class.__name__
