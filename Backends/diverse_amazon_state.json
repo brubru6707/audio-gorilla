@@ -3,7 +3,7 @@
     "24dd902f-4ddf-4cac-97d5-30b3f231795e": {
       "first_name": "Jasmine",
       "last_name": "Perry",
-      "email": "jasmine.perry@techsolutions.dev",
+      "email": "'jasmine.perry@techsolutions.dev'",
       "password": "qfdLAXD$",
       "balance": 1611.83,
       "payment_cards": {},
