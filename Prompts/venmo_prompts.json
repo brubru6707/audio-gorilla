@@ -1,0 +1,235 @@
+{
+    "Multistep": [
+        {
+            "prompt": "Send $50 to Bob Johnson for dinner with the note 'Thanks for dinner!' and make it private.",
+            "context": {
+                "user_id": "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2"
+            },
+            "ground_truth": [
+                "authenticate('token_alice.smith@gmail.com')",
+                "create_payment('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 50.0, 'Thanks for dinner!', 'private')"
+            ]
+        },
+        {
+            "prompt": "Request $25 from Alice Smith for concert tickets and add my new Visa card ending in 3456 as a payment method.",
+            "context": {
+                "user_id": "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8"
+            },
+            "ground_truth": [
+                "authenticate('token_bob.johnson@yahoo.com')",
+                "create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 25.0, 'Concert tickets', 'private')",
+                "add_payment_method('My Visa', 'Bob Johnson', '4542 3453 2343 3456', 2029, 8)"
+            ]
+        },
+        {
+            "prompt": "Pay Jeffrey Russell $35.50 for coffee runs this week and set my Discover card as the default payment method.",
+            "context": {
+                "user_id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3"
+            },
+            "ground_truth": [
+                "authenticate('token_mia.sanders6969@airplane-pilots.com')",
+                "create_payment('ca98b253-362f-4be2-b2fe-ef6d9b3e0805', 35.50, 'Coffee runs this week', 'private')",
+                "set_default_payment_method('c2633a46-2c05-46f2-9d42-9323f1434e2d')"
+            ]
+        },
+        {
+            "prompt": "Request $120 from Dean Navarro for the electric bill and check my current balance.",
+            "context": {
+                "user_id": "a1bf21a0-094a-4fb0-980a-67a0b116f7a2"
+            },
+            "ground_truth": [
+                "authenticate('token_maria.stewart4396@home-electronics.online')",
+                "create_charge('a9beb99e-4c99-444c-a569-29954df93c79', 120.0, 'Electric bill', 'private')",
+                "get_profile()"
+            ]
+        },
+        {
+            "prompt": "Send $75 to Mackenzie Ross for rent, add a new Mastercard ending in 8877, and delete all my notifications.",
+            "context": {
+                "user_id": "a9beb99e-4c99-444c-a569-29954df93c79"
+            },
+            "ground_truth": [
+                "authenticate('token_dean.navarro1857@data-management.solutions')",
+                "create_payment('2437c44d-1aae-41b7-807f-399b4b93e505', 75.0, 'Rent', 'private')",
+                "add_payment_method('My Mastercard', 'Dean Navarro', '5543 6789 1234 8877', 2030, 11)",
+                "delete_all_notifications()"
+            ]
+        }
+    ],
+    "Multiturn": [
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to pay my friend back for lunch."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! Who would you like to send money to and how much?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send $15 to Charlie Brown."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What note would you like to include with the payment?"
+                },
+                {
+                    "role": "user",
+                    "content": "Lunch at the cafe"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent $15 to Charlie Brown for 'Lunch at the cafe'. Is there anything else?"
+                }
+            ],
+            "context": {
+                "user_id": "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2"
+            },
+            "ground_truth": [
+                "authenticate('token_alice.smith@gmail.com')",
+                "create_payment('e300fbc0-82a0-48cd-8198-ab9d39042873', 15.0, 'Lunch at the cafe', 'private')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to request money from a friend."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Who do you want to request money from and for what amount?"
+                },
+                {
+                    "role": "user",
+                    "content": "Request $40 from Diana Prince."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What's the reason for this charge request?"
+                },
+                {
+                    "role": "user",
+                    "content": "Movie tickets and popcorn"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent a charge request to Diana Prince for $40 with the note 'Movie tickets and popcorn'."
+                }
+            ],
+            "context": {
+                "user_id": "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8"
+            },
+            "ground_truth": [
+                "authenticate('token_bob.johnson@yahoo.com')",
+                "create_charge('4e4efe60-7641-41b6-8fe0-a3050900a15e', 40.0, 'Movie tickets and popcorn', 'private')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to add a new payment card to my Venmo account."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with that. What are the card details?"
+                },
+                {
+                    "role": "user",
+                    "content": "It's a Visa card, number 4532 8765 4321 0987, expires in June 2031."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What would you like to name this card?"
+                },
+                {
+                    "role": "user",
+                    "content": "My Travel Card"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've added your Visa card 'My Travel Card' to your Venmo account. Would you like to set it as your default payment method?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, make it the default."
+                }
+            ],
+            "context": {
+                "user_id": "e300fbc0-82a0-48cd-8198-ab9d39042873"
+            },
+            "ground_truth": [
+                "authenticate('token_charlie.brown@outlook.com')",
+                "add_payment_method('My Travel Card', 'Charlie Brown', '4532 8765 4321 0987', 2031, 6)",
+                "set_default_payment_method('<new_card_id>')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "Can you show me my Venmo balance?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Your current Venmo balance is $291.14. Would you like to do anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, send $50 to Mason Snyder for groceries."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent $50 to Mason Snyder for groceries. Your new balance will be $241.14."
+                }
+            ],
+            "context": {
+                "user_id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3"
+            },
+            "ground_truth": [
+                "authenticate('token_mia.sanders6969@airplane-pilots.com')",
+                "get_profile()",
+                "create_payment('e275d81b-6631-44b1-a75a-fd1197304cf4', 50.0, 'groceries', 'private')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to see my friend list on Venmo."
+                },
+                {
+                    "role": "assistant",
+                    "content": "You have 8 friends on Venmo. Would you like me to show you the list or do something else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Show me the list."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Here are your Venmo friends. Would you like to send money to any of them?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, send $30 to Ethan Martin for the pizza delivery."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent $30 to Ethan Martin for 'Pizza delivery'."
+                }
+            ],
+            "context": {
+                "user_id": "a9beb99e-4c99-444c-a569-29954df93c79"
+            },
+            "ground_truth": [
+                "authenticate('token_dean.navarro1857@data-management.solutions')",
+                "get_friends()",
+                "create_payment('368f8002-6998-4d01-9543-cdb86ef4f43f', 30.0, 'Pizza delivery', 'private')"
+            ]
+        }
+    ]
+}

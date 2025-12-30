@@ -1,0 +1,242 @@
+{
+    "Multistep": [
+        {
+            "prompt": "Post a tweet saying 'Just finished an amazing cup of coffee! ☕️' and then like the tweet with ID '8c27cd9b-3e71-4e49-a944-acca2de3f551'.",
+            "context": {
+                "user_id": "e558af4a-2680-49ed-8caf-1cf9e6bedb21"
+            },
+            "ground_truth": [
+                "authenticate('token_henry.bennett9331@websolutions.io')",
+                "create_tweet('Just finished an amazing cup of coffee! ☕️')",
+                "like_tweet('8c27cd9b-3e71-4e49-a944-acca2de3f551')"
+            ]
+        },
+        {
+            "prompt": "Update my bio to 'Passionate life coach helping people achieve greatness ✨' and send a DM to Carter Myers saying 'Thanks for the follow!'.",
+            "context": {
+                "user_id": "fe53fb9b-1a20-4118-b1e5-1e2e1d74708a"
+            },
+            "ground_truth": [
+                "authenticate('token_ava.reyes2093@healthy-recipes.blog')",
+                "update_profile(bio='Passionate life coach helping people achieve greatness ✨')",
+                "send_dm('77f8eea7-157c-4b20-a5a5-5fde404d8588', 'Thanks for the follow!')"
+            ]
+        },
+        {
+            "prompt": "Tweet 'Loving the intersection of art and tech! 🎨💻', check my follower count, and unlike the tweet 'a701bb1d-8d41-41ef-9aac-d59d87b093d4'.",
+            "context": {
+                "user_id": "77f8eea7-157c-4b20-a5a5-5fde404d8588"
+            },
+            "ground_truth": [
+                "authenticate('token_carter.myers2988@automotive-parts.store')",
+                "create_tweet('Loving the intersection of art and tech! 🎨💻')",
+                "get_user_profile()",
+                "unlike_tweet('a701bb1d-8d41-41ef-9aac-d59d87b093d4')"
+            ]
+        },
+        {
+            "prompt": "Delete my tweet 'e578925d-3db6-40b2-91f7-6a2245884846' and then post a new tweet saying 'Fashion is about expressing your unique self 👗'.",
+            "context": {
+                "user_id": "44eb3204-fec1-4072-8b39-6234951c9d12"
+            },
+            "ground_truth": [
+                "authenticate('token_luke.ross706@business-intelligence.group')",
+                "delete_tweet('e578925d-3db6-40b2-91f7-6a2245884846')",
+                "create_tweet('Fashion is about expressing your unique self 👗')"
+            ]
+        },
+        {
+            "prompt": "Send a DM to Henry Bennett saying 'Love your coffee posts!', get my API usage stats, and update my name to 'Quinn Shaw | Developer'.",
+            "context": {
+                "user_id": "9fd951d2-b512-44d1-9e09-dc5b624bbf5a"
+            },
+            "ground_truth": [
+                "authenticate('token_quinn.shaw7407@onlinemarket.org')",
+                "send_dm('e558af4a-2680-49ed-8caf-1cf9e6bedb21', 'Love your coffee posts!')",
+                "get_api_usage()",
+                "update_profile(name='Quinn Shaw | Developer')"
+            ]
+        }
+    ],
+    "Multiturn": [
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to share my thoughts on Twitter."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What would you like to tweet?"
+                },
+                {
+                    "role": "user",
+                    "content": "Tweet 'Great discussion on sustainable technology today! 🌱'"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've posted your tweet. Would you like to do anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, check how many followers I have now."
+                },
+                {
+                    "role": "assistant",
+                    "content": "You currently have 13 followers."
+                }
+            ],
+            "context": {
+                "user_id": "a9d015ea-40ff-4420-916d-20536bf8b435"
+            },
+            "ground_truth": [
+                "authenticate('token_hannah.turner3998@knitting-patterns.net')",
+                "create_tweet('Great discussion on sustainable technology today! 🌱')",
+                "get_user_profile()"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to message someone on X."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Who would you like to send a message to?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send a DM to Ava Reyes."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What message would you like to send?"
+                },
+                {
+                    "role": "user",
+                    "content": "Tell her 'Your life coaching content is so inspiring!'"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent the message to Ava Reyes."
+                }
+            ],
+            "context": {
+                "user_id": "77f8eea7-157c-4b20-a5a5-5fde404d8588"
+            },
+            "ground_truth": [
+                "authenticate('token_carter.myers2988@automotive-parts.store')",
+                "send_dm('fe53fb9b-1a20-4118-b1e5-1e2e1d74708a', 'Your life coaching content is so inspiring!')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to update my X profile."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What would you like to update?"
+                },
+                {
+                    "role": "user",
+                    "content": "Change my bio to 'Discussing great books and literary analysis 📚'"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've updated your bio. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, also change my name to 'Christian Chavez | Book Critic'"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Your profile has been updated successfully!"
+                }
+            ],
+            "context": {
+                "user_id": "80fcfa9e-0b57-406c-ab96-2650b4f6b1e2"
+            },
+            "ground_truth": [
+                "authenticate('token_christian.chavez5374@financial-planning.services')",
+                "update_profile(bio='Discussing great books and literary analysis 📚')",
+                "update_profile(name='Christian Chavez | Book Critic')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "Can you help me interact with a tweet?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Like the tweet with ID '141cf51a-05f9-40ce-8230-8cd4079bc8c7'"
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've liked that tweet. Would you like to do anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, post a tweet saying 'Fashion trends for 2026 are looking incredible! 👠'"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Your tweet has been posted successfully!"
+                }
+            ],
+            "context": {
+                "user_id": "44eb3204-fec1-4072-8b39-6234951c9d12"
+            },
+            "ground_truth": [
+                "authenticate('token_luke.ross706@business-intelligence.group')",
+                "like_tweet('141cf51a-05f9-40ce-8230-8cd4079bc8c7')",
+                "create_tweet('Fashion trends for 2026 are looking incredible! 👠')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to see my tweet analytics."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Let me get your analytics for you."
+                },
+                {
+                    "role": "user",
+                    "content": "Thanks! How many tweets have I posted total?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "According to your analytics, you've created 23 posts total. Would you like to see more details?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, show me my full API usage stats."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Here are your API usage statistics showing posts created, DMs sent, and profile views."
+                }
+            ],
+            "context": {
+                "user_id": "9fd951d2-b512-44d1-9e09-dc5b624bbf5a"
+            },
+            "ground_truth": [
+                "authenticate('token_quinn.shaw7407@onlinemarket.org')",
+                "get_user_analytics()",
+                "get_api_usage()"
+            ]
+        }
+    ]
+}

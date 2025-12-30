@@ -1,0 +1,249 @@
+{
+    "Multistep": [
+        {
+            "prompt": "Wake up my Tesla, unlock the doors, and turn on the climate control to 22 degrees for both driver and passenger.",
+            "context": {
+                "user_id": "5a159f41-f890-432a-8cf4-d51a75aa8b6d",
+                "vehicle_id": 292339011861127
+            },
+            "ground_truth": [
+                "authenticate('token_grace.lara625@electrician-services.com')",
+                "wake_up(292339011861127)",
+                "door_unlock(292339011861127)",
+                "set_temps(292339011861127, 22, 22)"
+            ]
+        },
+        {
+            "prompt": "Turn off sentry mode on my Roadster and close the charge port door.",
+            "context": {
+                "user_id": "008628d2-79bd-48c1-89c0-03e3b5a409f9",
+                "vehicle_id": 109041177518659
+            },
+            "ground_truth": [
+                "authenticate('token_ayden.jordan321@home-automation.com')",
+                "set_sentry_mode(109041177518659, False)",
+                "charge_port_door_close(109041177518659)"
+            ]
+        },
+        {
+            "prompt": "Set my Cybertruck's charge limit to 85%, start charging, and enable bioweapon defense mode.",
+            "context": {
+                "user_id": "85915938-0a60-4863-bf21-544c1e42dc2b",
+                "vehicle_id": 856867825758444
+            },
+            "ground_truth": [
+                "authenticate('token_leo.bailey153@wine-tasting.club')",
+                "set_charge_limit(856867825758444, 85)",
+                "charge_start(856867825758444)",
+                "set_bioweapon_mode(856867825758444, True)"
+            ]
+        },
+        {
+            "prompt": "Flash the lights on my Model X, honk the horn, and lock all doors.",
+            "context": {
+                "user_id": "8e2a51d2-3060-480b-a0c3-c7372be8f372",
+                "vehicle_id": 22790215452761
+            },
+            "ground_truth": [
+                "authenticate('token_presley.diaz818@content-creation.studio')",
+                "flash_lights(22790215452761)",
+                "honk_horn(22790215452761)",
+                "door_lock(22790215452761)"
+            ]
+        },
+        {
+            "prompt": "Open the rear trunk, turn the media volume down, and close all windows on my Roadster.",
+            "context": {
+                "user_id": "dcda370d-8a8b-4805-87c8-1705e4dd66b0",
+                "vehicle_id": 109735813953714
+            },
+            "ground_truth": [
+                "authenticate('token_ella.powell39@pharmacy-online.store')",
+                "actuate_trunk(109735813953714, 'rear')",
+                "media_volume_down(109735813953714)",
+                "window_control(109735813953714, 'close')"
+            ]
+        }
+    ],
+    "Multiturn": [
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to prepare my Tesla for a road trip."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with that! What would you like me to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Set the charge limit to 100% and start charging."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've set your charge limit to 100% and started charging. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, also turn on the climate control to 21 degrees."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Climate control has been started and set to 21 degrees for both driver and passenger. Have a great trip!"
+                }
+            ],
+            "context": {
+                "user_id": "c4154713-ff66-4960-82a0-f8597783a17d",
+                "vehicle_id": 515033992990359
+            },
+            "ground_truth": [
+                "authenticate('token_dean.foster786@musicstream.site')",
+                "set_charge_limit(515033992990359, 100)",
+                "charge_start(515033992990359)",
+                "set_temps(515033992990359, 21, 21)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "My car is parked at the airport. Can you help me find it?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! Would you like me to flash the lights to help you locate it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, and also honk the horn."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've flashed the lights and honked the horn. You should be able to find it now!"
+                }
+            ],
+            "context": {
+                "user_id": "5a159f41-f890-432a-8cf4-d51a75aa8b6d",
+                "vehicle_id": 292339011861127
+            },
+            "ground_truth": [
+                "authenticate('token_grace.lara625@electrician-services.com')",
+                "flash_lights(292339011861127)",
+                "honk_horn(292339011861127)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I'm leaving my dog in the car for a few minutes."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help keep your dog comfortable. Would you like me to enable dog mode?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, and set the climate keeper to dog mode."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What temperature would you like?"
+                },
+                {
+                    "role": "user",
+                    "content": "Set it to 23 degrees for both zones."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've set climate keeper to dog mode with temperature at 23 degrees. Your dog will be comfortable!"
+                }
+            ],
+            "context": {
+                "user_id": "dcda370d-8a8b-4805-87c8-1705e4dd66b0",
+                "vehicle_id": 109735813953714
+            },
+            "ground_truth": [
+                "authenticate('token_ella.powell39@pharmacy-online.store')",
+                "set_climate_keeper_mode(109735813953714, 2)",
+                "set_temps(109735813953714, 23, 23)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to control the music in my Tesla."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What would you like to do with the music?"
+                },
+                {
+                    "role": "user",
+                    "content": "Skip to the next track and increase the volume."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've skipped to the next track. What volume level would you like?"
+                },
+                {
+                    "role": "user",
+                    "content": "Set it to 50."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Volume has been set to 50. Enjoy your music!"
+                }
+            ],
+            "context": {
+                "user_id": "85915938-0a60-4863-bf21-544c1e42dc2b",
+                "vehicle_id": 856867825758444
+            },
+            "ground_truth": [
+                "authenticate('token_leo.bailey153@wine-tasting.club')",
+                "media_next_track(856867825758444)",
+                "adjust_volume(856867825758444, 50)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I'm going camping and need to prepare my Cybertruck."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Great! What preparations do you need?"
+                },
+                {
+                    "role": "user",
+                    "content": "Enable camp mode and vent the windows."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've set climate keeper to camp mode and vented the windows. Is there anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, turn off sentry mode so it doesn't drain the battery."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sentry mode has been turned off. Your Cybertruck is ready for camping!"
+                }
+            ],
+            "context": {
+                "user_id": "d648d7b9-3880-43e8-a6f4-c97939e4daee",
+                "vehicle_id": 256636889991363
+            },
+            "ground_truth": [
+                "authenticate('token_presley.ramirez440@datascience.online')",
+                "set_climate_keeper_mode(256636889991363, 1)",
+                "window_control(256636889991363, 'vent')",
+                "set_sentry_mode(256636889991363, False)"
+            ]
+        }
+    ]
+}

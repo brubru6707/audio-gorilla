@@ -33,6 +33,41 @@
             "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
         },
         "ground_truth": ["login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 2)"]
+    },
+    {
+        "prompt": "Hey can you grab me those Sony noise canceling wireless earbuds everyone's been talking about? I want them shipped to my office, and apply the NEWCUSTOMER20 promo code.",
+        "context": {
+            "user_id": "a60e08aa-7be1-4994-a8b2-e45c3b53fe79"
+        },
+        "ground_truth": ["login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "search_products('Sony noise canceling wireless earbuds', category='Electronics')", "add_to_cart('5be674d4-90ae-4b32-bdd0-5dbd1bd086b9', 1)", "apply_promo_code_to_cart('NEWCUSTOMER20')", "checkout('84373cf0-4d0f-4384-aa6e-5b7b1c9b3345', '0cac52e2-78f3-4948-a5f1-6968325e9eb2')"]
+    },
+    {
+        "prompt": "I'm setting up my gaming rig, order me one of those Razer pro gaming mice and a gaming headset from Bose, ship everything to home.",
+        "context": {
+            "user_id": "3d09a771-e03b-45cf-8a4b-404bb60cc8c8"
+        },
+        "ground_truth": ["login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "search_products('Razer pro gaming mouse', category='Electronics')", "add_to_cart('a537637d-9222-49ab-a227-9179a06c78e4', 1)", "search_products('Bose gaming headset', category='Electronics')", "add_to_cart('c46b63f1-0fe7-4e96-b2b5-9ffa942f994d', 1)", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
+    },
+    {
+        "prompt": "Can you update my cart? I need three of the Bluetooth speakers instead of what I have, then checkout using my work address and my Mastercard.",
+        "context": {
+            "user_id": "fab8319c-5a37-478d-bec8-466ea59237b6"
+        },
+        "ground_truth": ["login_user('julia.delgado@job-search-tips.co', '8U#!@ioQ')", "show_cart()", "remove_from_cart('dbc32e49-3757-432b-9dd7-3dfccb3a3f79')", "remove_from_cart('9219c40d-c076-4937-97f8-877172dd0ba0')", "search_products('Bluetooth speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 3)", "checkout('89ae8283-2de7-4a15-8181-be2fb1688b49', '9e72acf0-d17e-4c81-bb66-31735b840745')"]
+    },
+    {
+        "prompt": "Order an Xbox Series X console but hold on I don't have a payment method set up yet, add my Visa card first - the number is 4532-8765-1234-5678, expires May 2027, CVV is 321, cardholder name is Zack Carrillo, then complete the purchase to my work location.",
+        "context": {
+            "user_id": "27b01b80-8d00-4fd8-b8bf-9ea627ec8ff0"
+        },
+        "ground_truth": ["login_user('zack.carrillo@school-online.net', 'a(AvpSCf')", "add_payment_card('Zack Visa', 'Zack Carrillo', '4532-8765-1234-5678', 2027, 5)", "search_products('Xbox Series X console', category='Electronics')", "add_to_cart('ed12f6e0-8281-446f-a9b8-b156a68cf7a0', 1)", "checkout('2cf85e2d-5ef0-4120-80be-f5ab47cb37cf', 'NEW_CARD_ID')"]
+    },
+    {
+        "prompt": "Get me a pair of Apple AirPods Pro second generation and apply the SUMMERFUN promo code before you finish the order, send it to where I live.",
+        "context": {
+            "user_id": "3d09a771-e03b-45cf-8a4b-404bb60cc8c8"
+        },
+        "ground_truth": ["login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "search_products('Apple AirPods Pro second generation', category='Electronics')", "add_to_cart('52b315f1-2938-4bfa-ba05-f7fc27c20e2e', 1)", "apply_promo_code_to_cart('SUMMERFUN')", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
         }
     ], 
     "Multiturn": [
@@ -187,6 +222,190 @@
                 "user_id": "24dd902f-4ddf-4cac-97d5-30b3f231795e"
             },
             "ground_truth": ["login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')","update_cart_item_quantity('ebf70766-365a-4b1d-b585-be9c73715176', 3)"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I'm looking for those wireless noise canceling headphones from Bose."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I found several Bose noise canceling headphones. Which model are you interested in?"
+                },
+                {
+                    "role": "user",
+                    "content": "The QuietComfort ones, black color."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect! Should I add one to your cart?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah, and I've got that Welcome Ten promo code from signing up."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Got it! Applied the promo code. Ready to checkout?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send it to my place."
+                }
+            ],
+            "context": {
+                "user_id": "24026073-7a01-40c6-bf4a-e9daf22ea03d"
+            },
+            "ground_truth": ["login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Bose QuietComfort', category='Electronics')", "add_to_cart('c46b63f1-0fe7-4e96-b2b5-9ffa942f994d', 1)", "apply_promo_code_to_cart('WELCOME10')", "checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to clear out what's in my cart and start fresh."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with that. Let me check your current cart first."
+                },
+                {
+                    "role": "user",
+                    "content": "Actually, just remove everything and then add one of those waterproof portable speakers."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Which brand would you prefer for the speaker?"
+                },
+                {
+                    "role": "user",
+                    "content": "JBL, the waterproof one."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Found it! I've cleared your cart and added the JBL waterproof speaker. Checkout now?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes ship it to the office and use my Amex."
+                }
+            ],
+            "context": {
+                "user_id": "3d09a771-e03b-45cf-8a4b-404bb60cc8c8"
+            },
+            "ground_truth": ["login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "show_cart()", "remove_from_cart('d3e1e226-c181-49f0-9fbb-7e7919f18553')", "remove_from_cart('39b2213f-08b8-4f60-bbf7-da4b95169741')", "remove_from_cart('b5d36b8f-ca6b-4c13-b6ca-342ba85efac4')", "remove_from_cart('a092ad5e-20d5-4dd2-8407-11581cec2746')", "remove_from_cart('a44e7b46-8df7-4169-9cb7-af9eac43429d')", "search_products('JBL waterproof speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "Can I set up Prime on my account?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Absolutely! Would you like monthly or yearly billing?"
+                },
+                {
+                    "role": "user",
+                    "content": "What's the difference?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Monthly gives you flexibility to cancel anytime, while yearly is often more cost-effective overall."
+                },
+                {
+                    "role": "user",
+                    "content": "Oh okay, I'll go with the monthly one for now."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Great! But before I can activate Prime, I need to make sure you have a payment method on file. Do you have one set up?"
+                },
+                {
+                    "role": "user",
+                    "content": "Not yet, add my Visa ending in 1444 expiring in March twenty thirty."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Payment card added! Now activating your monthly Prime subscription."
+                }
+            ],
+            "context": {
+                "user_id": "a60e08aa-7be1-4994-a8b2-e45c3b53fe79"
+            },
+            "ground_truth": ["login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "add_payment_card('Hannah Visa', 'Hannah Kim', '1444', 2030, 3)", "subscribe_prime('monthly')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to buy that gaming console everyone's been getting."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Are you looking for Xbox or PlayStation?"
+                },
+                {
+                    "role": "user",
+                    "content": "The Xbox, the newest one."
+                },
+                {
+                    "role": "assistant",
+                    "content": "The Xbox Series X? How many would you like?"
+                },
+                {
+                    "role": "user",
+                    "content": "Just one. But wait, can you also add two of those pro gaming mice from Razer?"
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! I've added one Xbox Series X and two Razer gaming mice. Where should I ship this?"
+                },
+                {
+                    "role": "user",
+                    "content": "Home is fine, use whatever payment card I have there."
+                }
+            ],
+            "context": {
+                "user_id": "24026073-7a01-40c6-bf4a-e9daf22ea03d"
+            },
+            "ground_truth": ["login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Xbox Series X', category='Electronics')", "add_to_cart('ed12f6e0-8281-446f-a9b8-b156a68cf7a0', 1)", "search_products('Razer gaming mouse', category='Electronics')", "add_to_cart('a537637d-9222-49ab-a227-9179a06c78e4', 2)", "checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I just moved to a new apartment, need to update my delivery info."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help add your new address. What's the full address?"
+                },
+                {
+                    "role": "user",
+                    "content": "It's twelve twenty-five Elm Street in Brooklyn New York one one two one five."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Got it! What would you like to name this address?"
+                },
+                {
+                    "role": "user",
+                    "content": "Call it My New Apartment."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect! Your new address has been saved. Now, did you want to order something to your new place?"
+                },
+                {
+                    "role": "user",
+                    "content": "Actually yes, get me some of those Apple AirPods the wireless ones and send them there using my Mastercard."
+                }
+            ],
+            "context": {
+                "user_id": "a60e08aa-7be1-4994-a8b2-e45c3b53fe79"
+            },
+            "ground_truth": ["login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "add_address('My New Apartment', '1225 Elm Street', 'Brooklyn', 'New York', 'USA', '11215')", "search_products('Apple AirPods wireless', category='Electronics')", "add_to_cart('3be683d5-6e02-47b0-a7cd-8c3fda0827b6', 1)", "checkout('NEW_ADDRESS_ID', '4a3f8a1f-34cc-4d7b-a9d7-20cbdb9bf197')"]
         }
     ]
 }
