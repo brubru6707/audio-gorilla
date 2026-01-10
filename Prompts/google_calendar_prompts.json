@@ -6,6 +6,7 @@
                 "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
             },
             "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
                 "authenticate('george.mendez85@smart-home-devices.online')",
                 "insert_calendar('Work Projects', 'Europe/London', '')"
             ]
@@ -16,6 +17,7 @@
                 "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
             },
             "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
                 "authenticate('george.mendez85@smart-home-devices.online')",
                 "list_calendar_list()"
             ]
@@ -26,6 +28,7 @@
                 "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
             },
             "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
                 "authenticate('george.mendez85@smart-home-devices.online')",
                 "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Team Standup', '2025-12-23T10:00:00', '2025-12-23T11:00:00', 'Europe/London', None, None, None)"
             ]
@@ -36,8 +39,130 @@
                 "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
             },
             "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
                 "authenticate('george.mendez85@smart-home-devices.online')",
                 "check_free_busy('2025-12-22T14:00:00', '2025-12-22T16:00:00', [{'id': '7d983217-8d0f-4e9d-b29b-6f7722cff09f'}])"
+            ]
+        },
+        {
+            "prompt": "Schedule a team meeting called 'Sprint Planning' for next Monday at 9 AM for 2 hours with attendees john.doe@company.com and jane.smith@company.com, then create a follow-up event called 'Sprint Review' on Friday at 3 PM for 1 hour.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Sprint Planning', '2026-01-06T09:00:00', '2026-01-06T11:00:00', 'Europe/London', None, ['john.doe@company.com', 'jane.smith@company.com'], None)",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Sprint Review', '2026-01-10T15:00:00', '2026-01-10T16:00:00', 'Europe/London', None, None, None)"
+            ]
+        },
+        {
+            "prompt": "Find all events in my primary calendar for the next 30 days and delete any event that has 'Canceled' in the title.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "list_events('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '2026-01-05T00:00:00', '2026-02-04T23:59:59', 250, None, None, None, False)",
+                "delete_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'canceled_event_id')"
+            ]
+        },
+        {
+            "prompt": "Create a new calendar called 'Personal Projects', schedule an event called 'Launch Website' for next Tuesday at 10 AM for 3 hours, and add a description saying 'Final deployment and testing'.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "insert_calendar('Personal Projects', 'Europe/London', '')",
+                "insert_event('new_calendar_id', 'Launch Website', '2026-01-07T10:00:00', '2026-01-07T13:00:00', 'Europe/London', 'Final deployment and testing', None, None)"
+            ]
+        },
+        {
+            "prompt": "List all my calendars, check if I'm free tomorrow from 9 AM to 5 PM, and if I am, schedule an all-day event called 'Focus Day' with no distractions.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "list_calendar_list()",
+                "check_free_busy('2026-01-06T09:00:00', '2026-01-06T17:00:00', [{'id': '7d983217-8d0f-4e9d-b29b-6f7722cff09f'}])",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Focus Day', '2026-01-06T00:00:00', '2026-01-06T23:59:59', 'Europe/London', 'No distractions', None, None)"
+            ]
+        },
+        {
+            "prompt": "Update my 'Team Standup' event to include attendees alice@company.com and bob@company.com, change the location to 'Conference Room A', and move it 30 minutes earlier.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "update_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'team_standup_event_id', None, '2025-12-23T09:30:00', '2025-12-23T10:30:00', 'Conference Room A', None, ['alice@company.com', 'bob@company.com'], None)"
+            ]
+        },
+        {
+            "prompt": "Schedule recurring weekly meetings called 'Status Update' every Monday at 2 PM for 45 minutes for the next 8 weeks, and add attendees manager@company.com and team@company.com.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Status Update', '2026-01-06T14:00:00', '2026-01-06T14:45:00', 'Europe/London', None, ['manager@company.com', 'team@company.com'], 'RRULE:FREQ=WEEKLY;COUNT=8;BYDAY=MO')"
+            ]
+        },
+        {
+            "prompt": "Find my event called 'Client Presentation', move it to my Work Projects calendar, and update the time to 11 AM to 12:30 PM with location 'Zoom Meeting Room 5'.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "list_events('7d983217-8d0f-4e9d-b29b-6f7722cff09f', None, None, 250, 'Client Presentation', None, None, False)",
+                "move_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'client_presentation_event_id', 'work_projects_calendar_id')",
+                "update_event('work_projects_calendar_id', 'client_presentation_event_id', None, '2026-01-06T11:00:00', '2026-01-06T12:30:00', 'Zoom Meeting Room 5', None, None, None)"
+            ]
+        },
+        {
+            "prompt": "Delete my calendar called 'Old Projects', then list all remaining calendars and check if I have any events scheduled for December 25th across all calendars.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "delete_calendar('old_projects_calendar_id')",
+                "list_calendar_list()",
+                "list_events('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '2025-12-25T00:00:00', '2025-12-25T23:59:59', 250, None, None, None, False)"
+            ]
+        },
+        {
+            "prompt": "Schedule a meeting called 'Budget Review' tomorrow at 1 PM for 90 minutes in Conference Room B with attendees finance@company.com and ceo@company.com, add a description 'Review Q4 budget and allocations', and set a reminder 30 minutes before.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Budget Review', '2026-01-06T13:00:00', '2026-01-06T14:30:00', 'Europe/London', 'Review Q4 budget and allocations', ['finance@company.com', 'ceo@company.com'], None)"
+            ]
+        },
+        {
+            "prompt": "Check my availability for the entire week starting next Monday, create a summary calendar event if I have less than 3 hours of meetings per day, otherwise schedule a 'Busy Week' blocking event.",
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "check_free_busy('2026-01-06T00:00:00', '2026-01-12T23:59:59', [{'id': '7d983217-8d0f-4e9d-b29b-6f7722cff09f'}])",
+                "list_events('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '2026-01-06T00:00:00', '2026-01-12T23:59:59', 250, None, None, None, False)",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Busy Week', '2026-01-06T09:00:00', '2026-01-12T17:00:00', 'Europe/London', 'Heavy meeting schedule this week', None, None)"
             ]
         }
     ],
@@ -45,97 +170,141 @@
         {
             "turns": [
                 {
-                    "prompt": "Schedule a meeting for the project.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Sure! What should the title be, and when is it?",
-                    "ground_truth": [
-                        "authenticate('george.mendez85@smart-home-devices.online')"
-                    ]
+                    "role": "user",
+                    "content": "Schedule a meeting for the project."
                 },
                 {
-                    "prompt": "Title 'Project Review', tomorrow at 3 PM for 1 hour.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Got it! Scheduling now.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                        "authenticate('george.mendez85@smart-home-devices.online')"
+                    ],
+                    "content": "Sure! What should the title be, and when is it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Title 'Project Review', tomorrow at 3 PM for 1 hour."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Project Review', '2025-12-23T15:00:00', '2025-12-23T16:00:00', 'Europe/London', None, None, None)"
-                    ]
+                    ],
+                    "content": "Got it! Scheduling now."
                 }
+            ],
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "insert_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'Project Review', '2025-12-23T15:00:00', '2025-12-23T16:00:00', 'Europe/London', None, None, None)"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Find my events next week.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Which calendar? And what time range exactly?",
-                    "ground_truth": [
-                        "authenticate('george.mendez85@smart-home-devices.online')"
-                    ]
+                    "role": "user",
+                    "content": "Find my events next week."
                 },
                 {
-                    "prompt": "Primary calendar, from Monday to Friday.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Listing events.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                        "authenticate('george.mendez85@smart-home-devices.online')"
+                    ],
+                    "content": "Which calendar? And what time range exactly?"
+                },
+                {
+                    "role": "user",
+                    "content": "Primary calendar, from Monday to Friday."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "list_events('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '2025-12-29T00:00:00', '2026-01-03T00:00:00', 250, None, None, None, False)"
-                    ]
+                    ],
+                    "content": "Listing events."
                 }
+            ],
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "list_events('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '2025-12-29T00:00:00', '2026-01-03T00:00:00', 250, None, None, None, False)"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Update my calendar event.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Which event? What changes?",
-                    "ground_truth": [
-                        "authenticate('george.mendez85@smart-home-devices.online')"
-                    ]
+                    "role": "user",
+                    "content": "Update my calendar event."
                 },
                 {
-                    "prompt": "The 'Finalize Ad Copy' event, change time to 2 PM and add a description 'Discuss Q4 goals'.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Updating the event.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                        "authenticate('george.mendez85@smart-home-devices.online')"
+                    ],
+                    "content": "Which event? What changes?"
+                },
+                {
+                    "role": "user",
+                    "content": "The 'Finalize Ad Copy' event, change time to 2 PM and add a description 'Discuss Q4 goals'."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "update_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '346b2c08-cf39-4395-b67a-583a2929f921', None, '2025-12-17T14:00:00', '2025-12-17T15:00:00', None, 'Discuss Q4 goals', None, None)"
-                    ]
+                    ],
+                    "content": "Updating the event."
                 }
+            ],
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "update_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', '346b2c08-cf39-4395-b67a-583a2929f921', None, '2025-12-17T14:00:00', '2025-12-17T15:00:00', None, 'Discuss Q4 goals', None, None)"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Move an event to another calendar.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Which event and to which calendar?",
-                    "ground_truth": [
-                        "authenticate('george.mendez85@smart-home-devices.online')"
-                    ]
+                    "role": "user",
+                    "content": "Move an event to another calendar."
                 },
                 {
-                    "prompt": "Move 'Fix Leaky Faucet' to my Main Calendar.",
-                    "context": {
-                        "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
-                    },
-                    "assist": "Moving the event.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                        "authenticate('george.mendez85@smart-home-devices.online')"
+                    ],
+                    "content": "Which event and to which calendar?"
+                },
+                {
+                    "role": "user",
+                    "content": "Move 'Fix Leaky Faucet' to my Main Calendar."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "move_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'ea72bdd6-4a29-4dfd-b121-cbab96ad587c', '846c517d-c546-4ea9-996b-f2b1662d6f74')"
-                    ]
+                    ],
+                    "content": "Moving the event."
                 }
+            ],
+            "context": {
+                "user_id": "7210eb80-23be-4521-bcce-382822303bb5"
+            },
+            "ground_truth": [
+                "get_user_by_id('7210eb80-23be-4521-bcce-382822303bb5')",
+                "authenticate('george.mendez85@smart-home-devices.online')",
+                "move_event('7d983217-8d0f-4e9d-b29b-6f7722cff09f', 'ea72bdd6-4a29-4dfd-b121-cbab96ad587c', '846c517d-c546-4ea9-996b-f2b1662d6f74')"
             ]
         }
     ]

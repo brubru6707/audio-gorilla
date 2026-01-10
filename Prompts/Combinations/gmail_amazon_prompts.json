@@ -1,0 +1,279 @@
+{
+    "multistep": [
+        {
+            "prompt": "Check my Gmail for that adobe stock subscription email from delilah and then search Amazon for adobe and add the Creative Cloud Photography plan to my cart.",
+            "context": {
+                "user_id": "9f36bf67-e39b-48b7-814b-a1d3863f370a"
+            },
+            "ground_truth": ["get_user_by_id('9f36bf67-e39b-48b7-814b-a1d3863f370a')", "authenticate('samantha.chang49@art-supplies.store')", "get_message('9f36bf67-e39b-48b7-814b-a1d3863f370a', 'e95e170b7dbee6c6', 'full')", "login_user('samantha.chang@jewelry-maker.shop', 'PASSWORD')", "search_products('adobe creative cloud photography', category='Software')", "add_to_cart('PRODUCT_ID', 1)"]
+        },
+        {
+            "prompt": "Read my Gmail about the halloween costume contest and amazon gift card then search Amazon for fifty dollar gift card and add it to cart and reply to that email.",
+            "context": {
+                "user_id": "6764c405-0c58-4d73-915e-deca1ed992b1"
+            },
+            "ground_truth": ["get_user_by_id('6764c405-0c58-4d73-915e-deca1ed992b1')", "authenticate('jessica.bailey78@classic-cars.club')", "get_message('6764c405-0c58-4d73-915e-deca1ed992b1', 'f21776c30b372349', 'full')", "login_user('jessica.hamilton@automotive-parts.store', 'PASSWORD')", "search_products('amazon gift card 50', category='Gift Cards')", "add_to_cart('GIFT_CARD_PRODUCT_ID', 1)", "send_message('6764c405-0c58-4d73-915e-deca1ed992b1', {'raw': 'BASE64_ENCODED_REPLY'})"]
+        },
+        {
+            "prompt": "Check Gmail for my office supplies email then search Amazon for printer paper and staples, add Hammermill copy paper and Swingline staples to my cart, and email tyler that I ordered them.",
+            "context": {
+                "user_id": "9ef62969-9e09-48fd-80e7-88ad202c9768"
+            },
+            "ground_truth": ["get_user_by_id('9ef62969-9e09-48fd-80e7-88ad202c9768')", "authenticate('tyler.palmer51@linux-tutorials.com')", "get_message('9ef62969-9e09-48fd-80e7-88ad202c9768', 'b3f462b115071785', 'full')", "login_user('tyler.palmer@coding-challenges.com', 'PASSWORD')", "search_products('printer paper', category='Office Products')", "add_to_cart('PAPER_PRODUCT_ID', 1)", "search_products('staples', category='Office Products')", "add_to_cart('STAPLES_PRODUCT_ID', 1)", "send_message('9ef62969-9e09-48fd-80e7-88ad202c9768', {'raw': 'BASE64_ENCODED_EMAIL'})"]
+        },
+        {
+            "prompt": "Look at my Gmail about ergonomic chairs then search Amazon for ergonomic office chair, add the Herman Miller Aeron to cart, check cart total, and email victoria about the chair.",
+            "context": {
+                "user_id": "9da8fd07-7f18-4e2c-837c-4d8ed6db2001"
+            },
+            "ground_truth": ["get_user_by_id('9da8fd07-7f18-4e2c-837c-4d8ed6db2001')", "authenticate('victoria.carrillo60@motorcycle-riders.net')", "get_message('9da8fd07-7f18-4e2c-837c-4d8ed6db2001', '44c2f974d6bf814e', 'full')", "login_user('victoria.carrillo@automotive-parts.store', 'PASSWORD')", "search_products('ergonomic office chair', category='Furniture')", "add_to_cart('CHAIR_PRODUCT_ID', 1)", "show_cart()", "send_message('9da8fd07-7f18-4e2c-837c-4d8ed6db2001', {'raw': 'BASE64_ENCODED_EMAIL'})"]
+        },
+        {
+            "prompt": "Check my Gmail about cart abandonment issues, view my Amazon cart, remove one item to test, search for checkout optimization tools, and email brooke about testing cart improvements.",
+            "context": {
+                "user_id": "61333a17-83dd-4e5d-8c5b-7ebb5c28faff"
+            },
+            "ground_truth": ["get_user_by_id('61333a17-83dd-4e5d-8c5b-7ebb5c28faff')", "authenticate('brooke.ramirez88@craft-ideas.co')", "get_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', '3df085dc1ddc5f22', 'full')", "login_user('brooke.ramirez@craft-ideas.co', 'PASSWORD')", "show_cart()", "remove_from_cart('CART_ITEM_ID')", "search_products('checkout optimization', category='Software')", "send_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', {'raw': 'BASE64_ENCODED_EMAIL'})"]
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check my Gmail inbox for emails about purchase orders"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('51691741-6f96-40c7-869f-7dbb780e74a7')", "authenticate('jacob.jones83@research-labs.dev')", "list_messages('51691741-6f96-40c7-869f-7dbb780e74a7', 'subject:purchase order', None, None, 10, False)", "get_message('51691741-6f96-40c7-869f-7dbb780e74a7', '026a1b48161580fa', 'full')"],
+                    "content": "You have a message with ID zero two six a one b four eight one six one five eight zero f a from yourself about needing approval on a purchase order for new laptops. The email says you need to order them by Friday to ensure they arrive before new hires start."
+                },
+                {
+                    "role": "user",
+                    "content": "Good. Now search Amazon for laptops suitable for new employees"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_user('jacob.jones@research-labs.dev', 'PASSWORD')", "search_products('laptop', category='Electronics')"],
+                    "content": "I found several laptops. Some options include the Dell XPS thirteen, HP Spectre x three sixty, Lenovo ThinkPad X one Carbon, and Apple MacBook Air M two."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Lenovo ThinkPad X one Carbon to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('LENOVO_PRODUCT_ID', 1)"],
+                    "content": "I have added the Lenovo ThinkPad X one Carbon Gen ten fourteen inch Touchscreen Laptop to your Amazon cart."
+                },
+                {
+                    "role": "user",
+                    "content": "Send an email to jacob dot jones eighty three at research-labs dot dev saying I added the laptops to Amazon and will place the order today"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_message('51691741-6f96-40c7-869f-7dbb780e74a7', {'raw': 'BASE64_ENCODED_EMAIL'})"],
+                    "content": "I have sent the email to jacob dot jones eighty three at research-labs dot dev with the subject Laptop order update."
+                }
+            ],
+            "context": {
+                "user_id": "51691741-6f96-40c7-869f-7dbb780e74a7"
+            },
+            "ground_truth": ["get_user_by_id('51691741-6f96-40c7-869f-7dbb780e74a7')", "authenticate('jacob.jones83@research-labs.dev')", "list_messages('51691741-6f96-40c7-869f-7dbb780e74a7', 'subject:purchase order', None, None, 10, False)", "get_message('51691741-6f96-40c7-869f-7dbb780e74a7', '026a1b48161580fa', 'full')", "login_user('jacob.jones@research-labs.dev', 'PASSWORD')", "search_products('laptop', category='Electronics')", "add_to_cart('LENOVO_PRODUCT_ID', 1)", "send_message('51691741-6f96-40c7-869f-7dbb780e74a7', {'raw': 'BASE64_ENCODED_EMAIL'})"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Read my recent Gmail messages about purchases or refunds"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('21180836-874a-4ae3-8c81-b632602adcd6')", "authenticate('zane.watson72@vintage-finds.store')", "list_messages('21180836-874a-4ae3-8c81-b632602adcd6', 'purchase OR refund', None, None, 10, False)", "get_message('21180836-874a-4ae3-8c81-b632602adcd6', 'd4033a44209b6b67', 'full')"],
+                    "content": "You have a message with ID d four zero three three a four four two zero nine b six b six seven from yourself requesting a refund for a training course that was not as described in the syllabus."
+                },
+                {
+                    "role": "user",
+                    "content": "That reminds me, I need to buy a better online course. Search Amazon for online courses"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_user('zane.watson@vintage-finds.store', 'PASSWORD')", "search_products('online courses', category='Software')"],
+                    "content": "I found several options including Udemy courses, MasterClass subscriptions, and LinkedIn Learning gift cards."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the MasterClass All-Access Pass to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('MASTERCLASS_PRODUCT_ID', 1)"],
+                    "content": "I have added the MasterClass All-Access Pass Annual Membership to your Amazon cart for two hundred ninety nine dollars."
+                },
+                {
+                    "role": "user",
+                    "content": "What is the total in my cart now"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_cart()"],
+                    "content": "Your Amazon cart total is currently three hundred forty seven dollars and ninety two cents."
+                },
+                {
+                    "role": "user",
+                    "content": "Perfect. Send a Gmail to zane dot watson seventy two at vintage-finds dot store saying I found a better course alternative on Amazon"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_message('21180836-874a-4ae3-8c81-b632602adcd6', {'raw': 'BASE64_ENCODED_EMAIL'})"],
+                    "content": "I have sent the email to zane dot watson seventy two at vintage-finds dot store with the subject Better course alternative."
+                }
+            ],
+            "context": {
+                "user_id": "21180836-874a-4ae3-8c81-b632602adcd6"
+            },
+            "ground_truth": ["get_user_by_id('21180836-874a-4ae3-8c81-b632602adcd6')", "authenticate('zane.watson72@vintage-finds.store')", "list_messages('21180836-874a-4ae3-8c81-b632602adcd6', 'purchase OR refund', None, None, 10, False)", "get_message('21180836-874a-4ae3-8c81-b632602adcd6', 'd4033a44209b6b67', 'full')", "login_user('zane.watson@vintage-finds.store', 'PASSWORD')", "search_products('online courses', category='Software')", "add_to_cart('MASTERCLASS_PRODUCT_ID', 1)", "show_cart()", "send_message('21180836-874a-4ae3-8c81-b632602adcd6', {'raw': 'BASE64_ENCODED_EMAIL'})"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check Gmail for messages about products selling well"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('27cb673a-e120-49a7-9a8f-139fda2c0198')", "authenticate('amy.ross52@automotive-parts.store')", "list_messages('27cb673a-e120-49a7-9a8f-139fda2c0198', 'product', None, None, 10, False)", "get_message('27cb673a-e120-49a7-9a8f-139fda2c0198', '1fa399b1c6743a82', 'full')"],
+                    "content": "You have a message with ID one f a three nine nine b one c six seven four three a eight two from amelia dot gomez ninety two at financial-news dot com saying the new product is selling well and there is high demand."
+                },
+                {
+                    "role": "user",
+                    "content": "Great! I should order more inventory. Search Amazon for inventory management tools"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_user('amy.ross@automotive-parts.store', 'PASSWORD')", "search_products('inventory management tools', category='Office Products')"],
+                    "content": "I found several inventory management options including barcode scanners, inventory tracking software, and warehouse equipment."
+                },
+                {
+                    "role": "user",
+                    "content": "Show me what is already in my Amazon cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_cart()"],
+                    "content": "Your cart is currently empty."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Zebra DS two two zero eight handheld barcode scanner to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('ZEBRA_SCANNER_PRODUCT_ID', 1)"],
+                    "content": "I have added the Zebra DS two two zero eight handheld barcode scanner to your Amazon cart for one hundred ninety nine dollars."
+                }
+            ],
+            "context": {
+                "user_id": "27cb673a-e120-49a7-9a8f-139fda2c0198"
+            },
+            "ground_truth": ["get_user_by_id('27cb673a-e120-49a7-9a8f-139fda2c0198')", "authenticate('amy.ross52@automotive-parts.store')", "list_messages('27cb673a-e120-49a7-9a8f-139fda2c0198', 'product', None, None, 10, False)", "get_message('27cb673a-e120-49a7-9a8f-139fda2c0198', '1fa399b1c6743a82', 'full')", "login_user('amy.ross@automotive-parts.store', 'PASSWORD')", "search_products('inventory management tools', category='Office Products')", "show_cart()", "add_to_cart('ZEBRA_SCANNER_PRODUCT_ID', 1)"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Search my Gmail for any emails mentioning purchase orders"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5')", "authenticate('parker.torres80@design-firm.co')", "list_messages('4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5', 'purchase order', None, None, 10, False)", "get_message('4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5', 'd5fdd85bc8543e29', 'full')"],
+                    "content": "You have a message with ID d five f d d eight five b c eight five four three e two nine with the subject purchase order. The snippet mentions looking for a purchase order."
+                },
+                {
+                    "role": "user",
+                    "content": "Read that full email to me"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "The email says we are looking for a purchase order."
+                },
+                {
+                    "role": "user",
+                    "content": "I need to create a purchase order for office equipment. Search Amazon for office desk"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_user('parker.torres@design-firm.co', 'PASSWORD')", "search_products('office desk', category='Furniture')"],
+                    "content": "I found several office desks including the FlexiSpot Standing Desk, IKEA Bekant desk, and Uplift V two Standing Desk."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the FlexiSpot Standing Desk to my cart and tell me the price"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('FLEXISPOT_PRODUCT_ID', 1)", "show_cart()"],
+                    "content": "I have added the FlexiSpot Standing Desk forty eight by thirty inch to your cart for four hundred forty nine dollars and ninety nine cents."
+                }
+            ],
+            "context": {
+                "user_id": "4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5"
+            },
+            "ground_truth": ["get_user_by_id('4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5')", "authenticate('parker.torres80@design-firm.co')", "list_messages('4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5', 'purchase order', None, None, 10, False)", "get_message('4c2edc6c-390d-4e6a-a74d-3c4e9d9ff9e5', 'd5fdd85bc8543e29', 'full')", "login_user('parker.torres@design-firm.co', 'PASSWORD')", "search_products('office desk', category='Furniture')", "add_to_cart('FLEXISPOT_PRODUCT_ID', 1)", "show_cart()"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check Gmail for emails about shipping or delivery"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('0cc2e08e-423c-4802-99bd-25e924a28d23')", "authenticate('ayden.jordan40@content-marketing.services')", "list_messages('0cc2e08e-423c-4802-99bd-25e924a28d23', 'shipping OR delivery', None, None, 10, False)"],
+                    "content": "You have two messages mentioning shipping. Message ID c eight zero seven e seven c four a c one zero seven f e a talks about reducing shipping costs and negotiating with FedEx. Message ID nine four two two f one c six nine one c c b d four three discusses customer retention strategies."
+                },
+                {
+                    "role": "user",
+                    "content": "The first one is relevant. Since we are trying to reduce shipping costs, search Amazon for shipping supplies"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_user('ayden.jordan@content-marketing.services', 'PASSWORD')", "search_products('shipping supplies', category='Office Products')"],
+                    "content": "I found shipping supplies including bubble mailers, packing tape, cardboard boxes, and shipping labels."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Scotch Heavy Duty Shipping Packaging Tape to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('TAPE_PRODUCT_ID', 1)"],
+                    "content": "I have added the Scotch Heavy Duty Shipping Packaging Tape six pack to your Amazon cart for twenty four dollars and ninety nine cents."
+                },
+                {
+                    "role": "user",
+                    "content": "Add bubble mailers too"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('BUBBLE_MAILER_PRODUCT_ID', 1)"],
+                    "content": "I have added the Uboxes Bubble Mailers number zero six by ten inch one hundred pack to your cart for nineteen dollars and ninety five cents."
+                },
+                {
+                    "role": "user",
+                    "content": "Send an email to ayden dot jordan forty at content-marketing dot services saying I ordered shipping supplies to help reduce costs"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_message('0cc2e08e-423c-4802-99bd-25e924a28d23', {'raw': 'BASE64_ENCODED_EMAIL'})"],
+                    "content": "I have sent the email to ayden dot jordan forty at content-marketing dot services with the subject Shipping cost reduction update."
+                }
+            ],
+            "context": {
+                "user_id": "0cc2e08e-423c-4802-99bd-25e924a28d23"
+            },
+            "ground_truth": ["get_user_by_id('0cc2e08e-423c-4802-99bd-25e924a28d23')", "authenticate('ayden.jordan40@content-marketing.services')", "list_messages('0cc2e08e-423c-4802-99bd-25e924a28d23', 'shipping OR delivery', None, None, 10, False)", "login_user('ayden.jordan@content-marketing.services', 'PASSWORD')", "search_products('shipping supplies', category='Office Products')", "add_to_cart('TAPE_PRODUCT_ID', 1)", "add_to_cart('BUBBLE_MAILER_PRODUCT_ID', 1)", "send_message('0cc2e08e-423c-4802-99bd-25e924a28d23', {'raw': 'BASE64_ENCODED_EMAIL'})"]
+        }
+    ]
+}

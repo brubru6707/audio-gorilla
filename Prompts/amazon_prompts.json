@@ -1,84 +1,113 @@
 {
-    "Multistep": [{
+    "multistep": [{
         "prompt": "Buy me the first waterproof JBL Bluetooth Speaker you find from Amazon and ship it to my work address.",
         "context": {
             "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
         },
-        "ground_truth": ["login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
+        "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
     }, 
     {
         "prompt": "Please add my new Vacation Home address to my Amazon: 778 Brown St, Providence, Rhode Island, 02903.",
         "context": {
             "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
         },
-        "ground_truth": ["login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "add_address('Vacation Home', '778 Brown St','Providence', 'Rhode Island', 'USA', '02903')"]
+        "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "add_address('Vacation Home', '778 Brown St','Providence', 'Rhode Island', 'USA', '02903')"]
     },
     {
         "prompt": "Start a new monthly Prime Subscription for me.",
         "context": {
             "user_id": "1bb40838-3adf-4d32-ab66-46bac09141c1"
         },
-        "ground_truth": ["login_user('zola.herrera@codeacademy.tech', 'E!E8!7Jw')", "subscribe_prime('monthly')"]
+        "ground_truth": ["get_user_by_id('1bb40838-3adf-4d32-ab66-46bac09141c1')", "login_user('zola.herrera@codeacademy.tech', 'E!E8!7Jw')", "subscribe_prime('monthly')"]
     }, 
     {
         "prompt": "Add a new credit card to my Amazon account with number 9762-2343-2322-3234, expiry year being 2029, expiry month being 12, and CVV 211.",
         "context": {
             "user_id": "7017da78-65cb-495a-afba-14dd3ae6bfd8"
         },
-        "ground_truth": ["login_user('john.lane@knitting-patterns.net', '3^8t6vNx')", "add_payment_card('Addition Financial', 'John Lane', '9762-2343-2322-3234', '2029', '12')"]
+        "ground_truth": ["get_user_by_id('7017da78-65cb-495a-afba-14dd3ae6bfd8')", "login_user('john.lane@knitting-patterns.net', '3^8t6vNx')", "add_payment_card('Addition Financial', 'John Lane', '9762-2343-2322-3234', '2029', '12')"]
     }, 
     {
         "prompt": "I want two instead of one Sphero BOLT in my Amazon cart.",
         "context": {
             "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
         },
-        "ground_truth": ["login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 2)"]
+        "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 2)"]
     },
     {
-        "prompt": "Hey can you grab me those Sony noise canceling wireless earbuds everyone's been talking about? I want them shipped to my office, and apply the NEWCUSTOMER20 promo code.",
+        "prompt": "Empty everything from my cart then add three of those Sphero BOLT robot balls and checkout using my Visa card to my home address.",
         "context": {
-            "user_id": "a60e08aa-7be1-4994-a8b2-e45c3b53fe79"
+            "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
         },
-        "ground_truth": ["login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "search_products('Sony noise canceling wireless earbuds', category='Electronics')", "add_to_cart('5be674d4-90ae-4b32-bdd0-5dbd1bd086b9', 1)", "apply_promo_code_to_cart('NEWCUSTOMER20')", "checkout('84373cf0-4d0f-4384-aa6e-5b7b1c9b3345', '0cac52e2-78f3-4948-a5f1-6968325e9eb2')"]
+        "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "show_cart()", "remove_from_cart('19d9b2b3-e4fb-4514-b3ac-b34ae72bd3b9')", "remove_from_cart('bddf32c0-f293-4999-9ab6-19f4866de70b')", "remove_from_cart('f0d66df4-26d1-419c-94c3-62b92165e2ee')", "add_to_cart('bddf32c0-f293-4999-9ab6-19f4866de70b', 3)", "checkout('fafbbaf8-74bf-4a01-a035-61aa0bcaa412', 'f7c6c903-7f50-429f-97cb-4af08f321297')"]
     },
     {
-        "prompt": "I'm setting up my gaming rig, order me one of those Razer pro gaming mice and a gaming headset from Bose, ship everything to home.",
+        "prompt": "Cancel my Prime subscription then immediately resubscribe but this time make it annual instead of monthly.",
         "context": {
-            "user_id": "3d09a771-e03b-45cf-8a4b-404bb60cc8c8"
+            "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
         },
-        "ground_truth": ["login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "search_products('Razer pro gaming mouse', category='Electronics')", "add_to_cart('a537637d-9222-49ab-a227-9179a06c78e4', 1)", "search_products('Bose gaming headset', category='Electronics')", "add_to_cart('c46b63f1-0fe7-4e96-b2b5-9ffa942f994d', 1)", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
+        "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "cancel_prime_subscription()", "subscribe_prime('annual')"]
     },
     {
-        "prompt": "Can you update my cart? I need three of the Bluetooth speakers instead of what I have, then checkout using my work address and my Mastercard.",
+        "prompt": "Add my parents house as a new address on Amazon at five twelve Oak Drive, Austin Texas seven eight seven zero one and call it Mom and Dads Place.",
         "context": {
-            "user_id": "fab8319c-5a37-478d-bec8-466ea59237b6"
+            "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
         },
-        "ground_truth": ["login_user('julia.delgado@job-search-tips.co', '8U#!@ioQ')", "show_cart()", "remove_from_cart('dbc32e49-3757-432b-9dd7-3dfccb3a3f79')", "remove_from_cart('9219c40d-c076-4937-97f8-877172dd0ba0')", "search_products('Bluetooth speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 3)", "checkout('89ae8283-2de7-4a15-8181-be2fb1688b49', '9e72acf0-d17e-4c81-bb66-31735b840745')"]
+        "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_address('Mom and Dads Place', '512 Oak Drive', 'Austin', 'Texas', 'USA', '78701')"]
     },
     {
-        "prompt": "Order an Xbox Series X console but hold on I don't have a payment method set up yet, add my Visa card first - the number is 4532-8765-1234-5678, expires May 2027, CVV is 321, cardholder name is Zack Carrillo, then complete the purchase to my work location.",
+        "prompt": "Show me what payment cards I have saved then add a new Mastercard ending in eight seven six five that expires in April two thousand thirty one under the name Romans Business Card.",
         "context": {
-            "user_id": "27b01b80-8d00-4fd8-b8bf-9ea627ec8ff0"
+            "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
         },
-        "ground_truth": ["login_user('zack.carrillo@school-online.net', 'a(AvpSCf')", "add_payment_card('Zack Visa', 'Zack Carrillo', '4532-8765-1234-5678', 2027, 5)", "search_products('Xbox Series X console', category='Electronics')", "add_to_cart('ed12f6e0-8281-446f-a9b8-b156a68cf7a0', 1)", "checkout('2cf85e2d-5ef0-4120-80be-f5ab47cb37cf', 'NEW_CARD_ID')"]
+        "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "show_payment_methods()", "add_payment_card('Romans Business Card', 'Roman Harper', '8765', '2031', '4')"]
     },
     {
-        "prompt": "Get me a pair of Apple AirPods Pro second generation and apply the SUMMERFUN promo code before you finish the order, send it to where I live.",
+        "prompt": "Look up that JBL waterproof speaker and put two of them in my cart then check out and ship it to my work using my Discover card.",
         "context": {
-            "user_id": "3d09a771-e03b-45cf-8a4b-404bb60cc8c8"
+            "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
         },
-        "ground_truth": ["login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "search_products('Apple AirPods Pro second generation', category='Electronics')", "add_to_cart('52b315f1-2938-4bfa-ba05-f7fc27c20e2e', 1)", "apply_promo_code_to_cart('SUMMERFUN')", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
-        }
+        "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('JBL waterproof speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 2)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
+    },
+    {
+        "prompt": "Find me the Sony Alpha seven four camera and add it to cart then before checking out show me all my saved addresses so I can pick the right one and use my work address with my Visa.",
+        "context": {
+            "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+        },
+        "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('Sony Alpha 7 IV', category='Electronics')", "add_to_cart('60012f4c-fd57-4a05-aabb-804ce450a8d7', 1)", "show_addresses()", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', '505c4cf5-0df3-4ea8-b7d6-bd6f97c851bf')"]
+    },
+    {
+        "prompt": "Add a Mastercard to my account number three four five six seven eight nine zero one two three four expiring June twenty twenty nine CVV four five six then subscribe me to Prime monthly.",
+        "context": {
+            "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+        },
+        "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "add_payment_card('Aarav Mastercard', 'Aarav Palmer', '3456-7890-1234', '2029', '6')", "subscribe_prime('monthly')"]
+    },
+    {
+        "prompt": "Check my cart and update the quantity of my Sphero robot to five units then remove that promo code I had applied earlier.",
+        "context": {
+            "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
+        },
+        "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "show_cart()", "update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 5)", "remove_promo_code_from_cart()"]
+    },
+    {
+        "prompt": "Search for the Steam Deck five twelve gig portable gaming system add one to my cart then add my credit card Visa ending in nine nine four four expiring October two thousand twenty eight and checkout to my home.",
+        "context": {
+            "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+        },
+        "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "search_products('Steam Deck 512GB', category='Electronics')", "add_to_cart('728fdc9a-e02f-419b-be60-245a00cbb806', 1)", "add_payment_card('Aarav Visa', 'Aarav Palmer', '9944', '2028', '10')", "checkout('1dc74ae9-1f0d-4d3a-a3c5-47879aedcff4', 'NEW_CARD_ID')"]
+    }
     ], 
-    "Multiturn": [
+    "multiturn": [
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to buy a new laptop from Amazon."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('41261c86-31ed-404f-9b16-a6b2b39b62ec')", "login_user('jesse.russell@event-management.biz','mnVDQn9K')"],
                     "content": "Sure! Do you have a specific brand or model in mind?"
                 },
                 {
@@ -87,6 +116,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Great choice! How many units would you like to add to your cart?"
                 },
                 {
@@ -95,26 +125,33 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_to_cart('a03e3a8e-2276-4521-bbc7-df74a37c5329', 1)"],
                     "content": "I've added one Dell XPS 13 to your cart. Would you like to proceed to checkout?"
                 },
                 {
                     "role": "user",
                     "content": "Yes, please ship it to my home address."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('db6f56f4-3a4c-4d00-9f1b-13f047554a29', '27b612c7-1734-477e-98d8-38018dcb34aa')"],
+                    "content": "Shipping complete!"
                 }
             ],
             "context": {
                 "user_id": "41261c86-31ed-404f-9b16-a6b2b39b62ec"
             },
-            "ground_truth": ["login_user('jesse.russell@event-management.biz','mnVDQn9K')", "add_to_cart('a03e3a8e-2276-4521-bbc7-df74a37c5329', 1)", "checkout('db6f56f4-3a4c-4d00-9f1b-13f047554a29', '27b612c7-1734-477e-98d8-38018dcb34aa')"]
+            "ground_truth": ["get_user_by_id('41261c86-31ed-404f-9b16-a6b2b39b62ec')", "login_user('jesse.russell@event-management.biz','mnVDQn9K')", "add_to_cart('a03e3a8e-2276-4521-bbc7-df74a37c5329', 1)", "checkout('db6f56f4-3a4c-4d00-9f1b-13f047554a29', '27b612c7-1734-477e-98d8-38018dcb34aa')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to add my shipping address on Amazon."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('1ad28a8e-d91b-497f-8522-f72a02b0f12a')", "login_user('luke.butler@eco-friendly-living.com', 'Zr8B1XAn')"],
                     "content": "Sure! Please provide the new address details."
                 },
                 {
@@ -123,6 +160,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "What do you want the name to be for this new address?"
                 },
                 {
@@ -131,22 +169,24 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_address('vacational home','476 New Street', 'Springfield', 'IL', 'USA', '62701')"],
                     "content": "Your shipping address has been updated. Is there anything else I can help you with?"
                 }
             ],
             "context": {
                 "user_id": "1ad28a8e-d91b-497f-8522-f72a02b0f12a"
             },
-            "ground_truth": ["login_user('luke.butler@eco-friendly-living.com', 'Zr8B1XAn')", "add_address('vacational home','476 New Street', 'Springfield', 'IL', 'USA', '62701')"]
+            "ground_truth": ["get_user_by_id('1ad28a8e-d91b-497f-8522-f72a02b0f12a')", "login_user('luke.butler@eco-friendly-living.com', 'Zr8B1XAn')", "add_address('vacational home','476 New Street', 'Springfield', 'IL', 'USA', '62701')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to subscribe to Amazon Prime."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('69492073-959c-4b4b-a176-47e52999672c')", "login_user('logan.turner@seo-optimization.tools', 'nKxh!VKF')"],
                     "content": "Would you like a monthly or annual subscription?"
                 },
                 {
@@ -155,22 +195,24 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["subscribe_prime('annual')"],
                     "content": "Your annual Prime subscription has been activated. Enjoy the benefits!"
                 }
             ],
             "context": {
                 "user_id": "69492073-959c-4b4b-a176-47e52999672c"
             },
-            "ground_truth": ["login_user('logan.turner@seo-optimization.tools', 'nKxh!VKF')", "subscribe_prime('annual')"]
+            "ground_truth": ["get_user_by_id('69492073-959c-4b4b-a176-47e52999672c')", "login_user('logan.turner@seo-optimization.tools', 'nKxh!VKF')", "subscribe_prime('annual')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Buy me new RAM on Amazon."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('438fd009-de6e-4183-8361-6435bdff5b44')", "login_user('marcus.king@stock-trading.guide','HD@x5w(N')"],
                     "content": "Sure! Do you have anything specific in mind?"
                 },
                 {
@@ -179,6 +221,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["search_products('DDR5')"],
                     "content": "Found it! How many units would you like to add to your cart?"
                 },
                 {
@@ -187,26 +230,33 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_to_cart('3d4f558b-2f09-41c8-b3c5-4a5c71a55027', 1)"],
                     "content": "I've added one unit of DDR5 from G.Skill with 32 gigabytes to your cart. Would you like to proceed to checkout?"
                 },
                 {
                     "role": "user",
                     "content": "Yes, please ship it to my work address."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('20c28d29-44eb-459a-b129-726589971154', '366a9ab0-5046-4fdd-8213-0835f5aef981')"],
+                    "content": "Order placed!"
                 }
             ],
             "context": {
                 "user_id": "438fd009-de6e-4183-8361-6435bdff5b44"
             },
-            "ground_truth": ["login_user('marcus.king@stock-trading.guide','HD@x5w(N')", "search_products('DDR5')", "add_to_cart('3d4f558b-2f09-41c8-b3c5-4a5c71a55027', 1)", "checkout('20c28d29-44eb-459a-b129-726589971154', '366a9ab0-5046-4fdd-8213-0835f5aef981')"]
+            "ground_truth": ["get_user_by_id('438fd009-de6e-4183-8361-6435bdff5b44')", "login_user('marcus.king@stock-trading.guide','HD@x5w(N')", "search_products('DDR5')", "add_to_cart('3d4f558b-2f09-41c8-b3c5-4a5c71a55027', 1)", "checkout('20c28d29-44eb-459a-b129-726589971154', '366a9ab0-5046-4fdd-8213-0835f5aef981')"]
         }, 
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to change the quantity of an item in my Amazon cart."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('24dd902f-4ddf-4cac-97d5-30b3f231795e')", "login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')"],
                     "content": "Sure! Which item would you like to update and what quantity do you want?"
                 },
                 {
@@ -215,22 +265,24 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["update_cart_item_quantity('ebf70766-365a-4b1d-b585-be9c73715176', 3)"],
                     "content": "The quantity of 'Bissell CrossWave Pet Pro' has been updated to 3 in your cart. Is there anything else I can assist you with?"
                 }
             ],
             "context": {
                 "user_id": "24dd902f-4ddf-4cac-97d5-30b3f231795e"
             },
-            "ground_truth": ["login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')","update_cart_item_quantity('ebf70766-365a-4b1d-b585-be9c73715176', 3)"]
+            "ground_truth": ["get_user_by_id('24dd902f-4ddf-4cac-97d5-30b3f231795e')", "login_user('jasmine.perry@techsolutions.dev', 'qfdLAXD$')","update_cart_item_quantity('ebf70766-365a-4b1d-b585-be9c73715176', 3)"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I'm looking for those wireless noise canceling headphones from Bose."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('24026073-7a01-40c6-bf4a-e9daf22ea03d')", "login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Bose QuietComfort', category='Electronics')"],
                     "content": "I found several Bose noise canceling headphones. Which model are you interested in?"
                 },
                 {
@@ -239,6 +291,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Perfect! Should I add one to your cart?"
                 },
                 {
@@ -247,26 +300,33 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_to_cart('c46b63f1-0fe7-4e96-b2b5-9ffa942f994d', 1)", "apply_promo_code_to_cart('WELCOME10')"],
                     "content": "Got it! Applied the promo code. Ready to checkout?"
                 },
                 {
                     "role": "user",
                     "content": "Send it to my place."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"],
+                    "content": "Order complete!"
                 }
             ],
             "context": {
                 "user_id": "24026073-7a01-40c6-bf4a-e9daf22ea03d"
             },
-            "ground_truth": ["login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Bose QuietComfort', category='Electronics')", "add_to_cart('c46b63f1-0fe7-4e96-b2b5-9ffa942f994d', 1)", "apply_promo_code_to_cart('WELCOME10')", "checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"]
+            "ground_truth": ["get_user_by_id('24026073-7a01-40c6-bf4a-e9daf22ea03d')", "login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Bose QuietComfort', category='Electronics')", "add_to_cart('c46b63f1-0fe7-4e96-b2b5-9ffa942f994d', 1)", "apply_promo_code_to_cart('WELCOME10')", "checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to clear out what's in my cart and start fresh."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('3d09a771-e03b-45cf-8a4b-404bb60cc8c8')", "login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "show_cart()"],
                     "content": "I can help with that. Let me check your current cart first."
                 },
                 {
@@ -275,6 +335,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Which brand would you prefer for the speaker?"
                 },
                 {
@@ -283,26 +344,33 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["remove_from_cart('d3e1e226-c181-49f0-9fbb-7e7919f18553')", "remove_from_cart('39b2213f-08b8-4f60-bbf7-da4b95169741')", "remove_from_cart('b5d36b8f-ca6b-4c13-b6ca-342ba85efac4')", "remove_from_cart('a092ad5e-20d5-4dd2-8407-11581cec2746')", "remove_from_cart('a44e7b46-8df7-4169-9cb7-af9eac43429d')", "search_products('JBL waterproof speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)"],
                     "content": "Found it! I've cleared your cart and added the JBL waterproof speaker. Checkout now?"
                 },
                 {
                     "role": "user",
                     "content": "Yes ship it to the office and use my Amex."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"],
+                    "content": "Done!"
                 }
             ],
             "context": {
                 "user_id": "3d09a771-e03b-45cf-8a4b-404bb60cc8c8"
             },
-            "ground_truth": ["login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "show_cart()", "remove_from_cart('d3e1e226-c181-49f0-9fbb-7e7919f18553')", "remove_from_cart('39b2213f-08b8-4f60-bbf7-da4b95169741')", "remove_from_cart('b5d36b8f-ca6b-4c13-b6ca-342ba85efac4')", "remove_from_cart('a092ad5e-20d5-4dd2-8407-11581cec2746')", "remove_from_cart('a44e7b46-8df7-4169-9cb7-af9eac43429d')", "search_products('JBL waterproof speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
+            "ground_truth": ["get_user_by_id('3d09a771-e03b-45cf-8a4b-404bb60cc8c8')", "login_user('grace.webb@design-firm.co', 'Wrbo2K55')", "show_cart()", "remove_from_cart('d3e1e226-c181-49f0-9fbb-7e7919f18553')", "remove_from_cart('39b2213f-08b8-4f60-bbf7-da4b95169741')", "remove_from_cart('b5d36b8f-ca6b-4c13-b6ca-342ba85efac4')", "remove_from_cart('a092ad5e-20d5-4dd2-8407-11581cec2746')", "remove_from_cart('a44e7b46-8df7-4169-9cb7-af9eac43429d')", "search_products('JBL waterproof speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 1)", "checkout('c160ea12-925d-48fb-b6d8-cfcb941a7dd0', '79fc2c63-3fcd-40ea-8101-826a33580dc2')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Can I set up Prime on my account?"
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a60e08aa-7be1-4994-a8b2-e45c3b53fe79')", "login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')"],
                     "content": "Absolutely! Would you like monthly or yearly billing?"
                 },
                 {
@@ -311,6 +379,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Monthly gives you flexibility to cancel anytime, while yearly is often more cost-effective overall."
                 },
                 {
@@ -319,6 +388,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Great! But before I can activate Prime, I need to make sure you have a payment method on file. Do you have one set up?"
                 },
                 {
@@ -327,22 +397,24 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_payment_card('Hannah Visa', 'Hannah Kim', '1444', 2030, 3)", "subscribe_prime('monthly')"],
                     "content": "Payment card added! Now activating your monthly Prime subscription."
                 }
             ],
             "context": {
                 "user_id": "a60e08aa-7be1-4994-a8b2-e45c3b53fe79"
             },
-            "ground_truth": ["login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "add_payment_card('Hannah Visa', 'Hannah Kim', '1444', 2030, 3)", "subscribe_prime('monthly')"]
+            "ground_truth": ["get_user_by_id('a60e08aa-7be1-4994-a8b2-e45c3b53fe79')", "login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "add_payment_card('Hannah Visa', 'Hannah Kim', '1444', 2030, 3)", "subscribe_prime('monthly')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to buy that gaming console everyone's been getting."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('24026073-7a01-40c6-bf4a-e9daf22ea03d')", "login_user('samantha.morales@homedecor.store', '1WMCiUr8')"],
                     "content": "Are you looking for Xbox or PlayStation?"
                 },
                 {
@@ -351,6 +423,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["search_products('Xbox Series X', category='Electronics')"],
                     "content": "The Xbox Series X? How many would you like?"
                 },
                 {
@@ -359,26 +432,33 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_to_cart('ed12f6e0-8281-446f-a9b8-b156a68cf7a0', 1)", "search_products('Razer gaming mouse', category='Electronics')", "add_to_cart('a537637d-9222-49ab-a227-9179a06c78e4', 2)"],
                     "content": "Sure! I've added one Xbox Series X and two Razer gaming mice. Where should I ship this?"
                 },
                 {
                     "role": "user",
                     "content": "Home is fine, use whatever payment card I have there."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"],
+                    "content": "Order placed!"
                 }
             ],
             "context": {
                 "user_id": "24026073-7a01-40c6-bf4a-e9daf22ea03d"
             },
-            "ground_truth": ["login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Xbox Series X', category='Electronics')", "add_to_cart('ed12f6e0-8281-446f-a9b8-b156a68cf7a0', 1)", "search_products('Razer gaming mouse', category='Electronics')", "add_to_cart('a537637d-9222-49ab-a227-9179a06c78e4', 2)", "checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"]
+            "ground_truth": ["get_user_by_id('24026073-7a01-40c6-bf4a-e9daf22ea03d')", "login_user('samantha.morales@homedecor.store', '1WMCiUr8')", "search_products('Xbox Series X', category='Electronics')", "add_to_cart('ed12f6e0-8281-446f-a9b8-b156a68cf7a0', 1)", "search_products('Razer gaming mouse', category='Electronics')", "add_to_cart('a537637d-9222-49ab-a227-9179a06c78e4', 2)", "checkout('1c1ed7c6-830f-4a27-9dad-d31fb37df04a', '5a7a44d4-6dd9-4a68-8c17-a63462c422dc')"]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I just moved to a new apartment, need to update my delivery info."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a60e08aa-7be1-4994-a8b2-e45c3b53fe79')", "login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')"],
                     "content": "I can help add your new address. What's the full address?"
                 },
                 {
@@ -387,6 +467,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Got it! What would you like to name this address?"
                 },
                 {
@@ -395,17 +476,517 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["add_address('My New Apartment', '1225 Elm Street', 'Brooklyn', 'New York', 'USA', '11215')"],
                     "content": "Perfect! Your new address has been saved. Now, did you want to order something to your new place?"
                 },
                 {
                     "role": "user",
                     "content": "Actually yes, get me some of those Apple AirPods the wireless ones and send them there using my Mastercard."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["search_products('Apple AirPods wireless', category='Electronics')", "add_to_cart('3be683d5-6e02-47b0-a7cd-8c3fda0827b6', 1)", "checkout('NEW_ADDRESS_ID', '4a3f8a1f-34cc-4d7b-a9d7-20cbdb9bf197')"],
+                    "content": "Done!"
                 }
             ],
             "context": {
                 "user_id": "a60e08aa-7be1-4994-a8b2-e45c3b53fe79"
             },
-            "ground_truth": ["login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "add_address('My New Apartment', '1225 Elm Street', 'Brooklyn', 'New York', 'USA', '11215')", "search_products('Apple AirPods wireless', category='Electronics')", "add_to_cart('3be683d5-6e02-47b0-a7cd-8c3fda0827b6', 1)", "checkout('NEW_ADDRESS_ID', '4a3f8a1f-34cc-4d7b-a9d7-20cbdb9bf197')"]
+            "ground_truth": ["get_user_by_id('a60e08aa-7be1-4994-a8b2-e45c3b53fe79')", "login_user('hannah.kim@graphic-design.studio', '2#T*x!Po')", "add_address('My New Apartment', '1225 Elm Street', 'Brooklyn', 'New York', 'USA', '11215')", "search_products('Apple AirPods wireless', category='Electronics')", "add_to_cart('3be683d5-6e02-47b0-a7cd-8c3fda0827b6', 1)", "checkout('NEW_ADDRESS_ID', '4a3f8a1f-34cc-4d7b-a9d7-20cbdb9bf197')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I need to completely redo my shopping cart."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')"],
+                    "content": "I can help with that. Would you like me to show you what's currently in your cart first?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah, let me see what's there."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_cart()"],
+                    "content": "You have three items in your cart. What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Delete all of it. Then I want to add that Sphero robot thing but I need like four of them for my kids."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["remove_from_cart('19d9b2b3-e4fb-4514-b3ac-b34ae72bd3b9')", "remove_from_cart('bddf32c0-f293-4999-9ab6-19f4866de70b')", "remove_from_cart('f0d66df4-26d1-419c-94c3-62b92165e2ee')", "add_to_cart('bddf32c0-f293-4999-9ab6-19f4866de70b', 4)"],
+                    "content": "Got it! I've cleared everything and added four Sphero BOLT robots. Ready to checkout?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, send to my home and use my Visa card."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('fafbbaf8-74bf-4a01-a035-61aa0bcaa412', 'f7c6c903-7f50-429f-97cb-4af08f321297')"],
+                    "content": "Order complete!"
+                }
+            ],
+            "context": {
+                "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
+            },
+            "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "show_cart()", "remove_from_cart('19d9b2b3-e4fb-4514-b3ac-b34ae72bd3b9')", "remove_from_cart('bddf32c0-f293-4999-9ab6-19f4866de70b')", "remove_from_cart('f0d66df4-26d1-419c-94c3-62b92165e2ee')", "add_to_cart('bddf32c0-f293-4999-9ab6-19f4866de70b', 4)", "checkout('fafbbaf8-74bf-4a01-a035-61aa0bcaa412', 'f7c6c903-7f50-429f-97cb-4af08f321297')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "My Prime is about to expire and I want to change it."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')"],
+                    "content": "What would you like to do with your Prime subscription?"
+                },
+                {
+                    "role": "user",
+                    "content": "Cancel it first."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["cancel_prime_subscription()"],
+                    "content": "Your Prime subscription has been cancelled. Is there anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Actually yeah, I changed my mind. Sign me up again but make it annual this time instead of monthly."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["subscribe_prime('annual')"],
+                    "content": "Perfect! I've activated an annual Prime subscription for you. You're all set!"
+                }
+            ],
+            "context": {
+                "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
+            },
+            "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "cancel_prime_subscription()", "subscribe_prime('annual')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I want to add a new shipping location."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')"],
+                    "content": "Sure! What's the address you'd like to add?"
+                },
+                {
+                    "role": "user",
+                    "content": "My parents place in Austin. Five twelve Oak Drive."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "What's the city and state?"
+                },
+                {
+                    "role": "user",
+                    "content": "Austin, Texas."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "And the zip code?"
+                },
+                {
+                    "role": "user",
+                    "content": "Seven eight seven zero one."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "What would you like to name this address?"
+                },
+                {
+                    "role": "user",
+                    "content": "Call it Mom and Dads Place."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_address('Mom and Dads Place', '512 Oak Drive', 'Austin', 'Texas', 'USA', '78701')"],
+                    "content": "Your new address has been saved!"
+                }
+            ],
+            "context": {
+                "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+            },
+            "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "add_address('Mom and Dads Place', '512 Oak Drive', 'Austin', 'Texas', 'USA', '78701')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I'm trying to organize my payment methods."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')"],
+                    "content": "I can help! Would you like to see your current payment cards first?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes please."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_payment_methods()"],
+                    "content": "You have a Discover card and a Visa on file. What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Add another one. It's my business Mastercard ending in eight seven six five."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "What's the expiration date?"
+                },
+                {
+                    "role": "user",
+                    "content": "April two thousand thirty one."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "And what name should I save it under?"
+                },
+                {
+                    "role": "user",
+                    "content": "Romans Business Card."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_payment_card('Romans Business Card', 'Roman Harper', '8765', '2031', '4')"],
+                    "content": "Your Mastercard has been added successfully!"
+                }
+            ],
+            "context": {
+                "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+            },
+            "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "show_payment_methods()", "add_payment_card('Romans Business Card', 'Roman Harper', '8765', '2031', '4')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I want those JBL speakers."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')"],
+                    "content": "Which JBL speakers are you looking for?"
+                },
+                {
+                    "role": "user",
+                    "content": "The waterproof Bluetooth one."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["search_products('JBL waterproof speaker', category='Electronics')"],
+                    "content": "Found it! How many would you like?"
+                },
+                {
+                    "role": "user",
+                    "content": "Get me two of them."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 2)"],
+                    "content": "I've added two JBL waterproof speakers to your cart. Ready to checkout?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah, send them to work and charge my Discover."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"],
+                    "content": "Done!"
+                }
+            ],
+            "context": {
+                "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+            },
+            "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('JBL waterproof speaker', category='Electronics')", "add_to_cart('39f03201-5930-485d-9fd4-01c0e72e7e63', 2)", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', 'b9b55a81-7df5-46bc-9c57-d4a684857979')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Can you help me buy a camera?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')"],
+                    "content": "Of course! What kind of camera are you looking for?"
+                },
+                {
+                    "role": "user",
+                    "content": "That Sony one, the Alpha seven four."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["search_products('Sony Alpha 7 IV', category='Electronics')"],
+                    "content": "Great choice! The Sony Alpha 7 IV. How many?"
+                },
+                {
+                    "role": "user",
+                    "content": "Just one."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('60012f4c-fd57-4a05-aabb-804ce450a8d7', 1)"],
+                    "content": "Added to cart! Before we checkout, would you like me to show you your saved addresses?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes please, I'm not sure which one to use."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_addresses()"],
+                    "content": "You have a home address and a work address. Which one?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send it to work. Use my Visa for payment."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', '505c4cf5-0df3-4ea8-b7d6-bd6f97c851bf')"],
+                    "content": "Order placed!"
+                }
+            ],
+            "context": {
+                "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+            },
+            "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('Sony Alpha 7 IV', category='Electronics')", "add_to_cart('60012f4c-fd57-4a05-aabb-804ce450a8d7', 1)", "show_addresses()", "checkout('69495dbf-036c-43ec-ade6-dd56d3dece41', '505c4cf5-0df3-4ea8-b7d6-bd6f97c851bf')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I need to update something in my shopping cart."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')"],
+                    "content": "What would you like to update?"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you show me what's in there first?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_cart()"],
+                    "content": "You have several items including a Sphero BOLT robot. What changes do you need?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah that robot. I want five of those instead."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 5)"],
+                    "content": "I've updated the Sphero BOLT quantity to five. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Actually, take off that promo code I added before."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["remove_promo_code_from_cart()"],
+                    "content": "Promo code removed. Your cart is updated!"
+                }
+            ],
+            "context": {
+                "user_id": "97d5dabb-07e1-4e85-a279-fcc9f4c44b67"
+            },
+            "ground_truth": ["get_user_by_id('97d5dabb-07e1-4e85-a279-fcc9f4c44b67')", "login_user('violet.morris@adventure-tours.net', 'w#SjNct9')", "show_cart()", "update_cart_item_quantity('bddf32c0-f293-4999-9ab6-19f4866de70b', 5)", "remove_promo_code_from_cart()"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I want to buy that gaming thing, the portable one from Valve."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')"],
+                    "content": "Are you looking for the Steam Deck?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah that's it! The one with five hundred twelve gigabytes."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["search_products('Steam Deck 512GB', category='Electronics')"],
+                    "content": "Perfect! Should I add one to your cart?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes. But I need to add a payment card first."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('728fdc9a-e02f-419b-be60-245a00cbb806', 1)"],
+                    "content": "No problem! What card details would you like to add?"
+                },
+                {
+                    "role": "user",
+                    "content": "It's a Visa ending in nine nine four four expires October twenty twenty eight."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_payment_card('Aarav Visa', 'Aarav Palmer', '9944', '2028', '10')"],
+                    "content": "Card added! Ready to checkout with your Steam Deck?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, ship to my home address."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('1dc74ae9-1f0d-4d3a-a3c5-47879aedcff4', 'NEW_CARD_ID')"],
+                    "content": "Order complete!"
+                }
+            ],
+            "context": {
+                "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+            },
+            "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "search_products('Steam Deck 512GB', category='Electronics')", "add_to_cart('728fdc9a-e02f-419b-be60-245a00cbb806', 1)", "add_payment_card('Aarav Visa', 'Aarav Palmer', '9944', '2028', '10')", "checkout('1dc74ae9-1f0d-4d3a-a3c5-47879aedcff4', 'NEW_CARD_ID')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Hey, I need to set up Prime but I need a payment method first."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')"],
+                    "content": "I can help you add a payment card. What are the card details?"
+                },
+                {
+                    "role": "user",
+                    "content": "Mastercard, last four digits are three four five six."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "What's the full card number?"
+                },
+                {
+                    "role": "user",
+                    "content": "Three four five six seven eight nine zero one two three four."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [],
+                    "content": "And the expiration date?"
+                },
+                {
+                    "role": "user",
+                    "content": "June twenty twenty nine."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_payment_card('Aarav Mastercard', 'Aarav Palmer', '3456-7890-1234', '2029', '6')"],
+                    "content": "Card saved! Now, would you like monthly or annual Prime?"
+                },
+                {
+                    "role": "user",
+                    "content": "Monthly works for me."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["subscribe_prime('monthly')"],
+                    "content": "Your monthly Prime subscription is now active!"
+                }
+            ],
+            "context": {
+                "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+            },
+            "ground_truth": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "add_payment_card('Aarav Mastercard', 'Aarav Palmer', '3456-7890-1234', '2029', '6')", "subscribe_prime('monthly')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I'm looking for a high-end blender."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')"],
+                    "content": "What brand are you interested in?"
+                },
+                {
+                    "role": "user",
+                    "content": "Is there a Blendtec one?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["search_products('Blendtec', category='Electronics')"],
+                    "content": "Yes! I found the Blendtec Classic 575. Would you like to add it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah, put one in my cart. Actually, make it two, my sister wants one too."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_cart('2db57bdf-dd8c-40b9-a167-eaf4a0d27928', 2)"],
+                    "content": "Added two Blendtec Classic 575 blenders. Where should they be shipped?"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you show me my addresses? I forget which ones I have saved."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_addresses()"],
+                    "content": "You have a Home Address and a Work Address saved. Which one?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send to home. And which payment cards do I have again?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["show_payment_methods()"],
+                    "content": "You have a Visa card on file. Should I use that?"
+                },
+                {
+                    "role": "user",
+                    "content": "Perfect, go ahead and checkout."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["checkout('b59d8e81-94b0-4ed0-a00f-e8ec8feb3e4d', '505c4cf5-0df3-4ea8-b7d6-bd6f97c851bf')"],
+                    "content": "Order placed!"
+                }
+            ],
+            "context": {
+                "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+            },
+            "ground_truth": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('Blendtec', category='Electronics')", "add_to_cart('2db57bdf-dd8c-40b9-a167-eaf4a0d27928', 2)", "show_addresses()", "show_payment_methods()", "checkout('b59d8e81-94b0-4ed0-a00f-e8ec8feb3e4d', '505c4cf5-0df3-4ea8-b7d6-bd6f97c851bf')"]
         }
     ]
 }

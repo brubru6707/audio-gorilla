@@ -428,6 +428,35 @@ class GoogleCalendarApis:
         calendar_data = self._get_user_calendar_data(user_id)
         return calendar_data.get("events") if calendar_data else None
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Any]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Any]: User data dictionary containing all user fields including credentials.
+                Returns error dictionary if user not found with status=False and message.
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes credentials intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self.users.get(user_id)
+        if not user_data:
+            return {
+                "status": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def list_calendar_list(self) -> Dict[str, Any]:
         """
         Retrieves all calendars in the authenticated user's calendar list.

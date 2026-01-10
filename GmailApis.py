@@ -146,6 +146,47 @@ class GmailApis:
         print(f"GmailApis: Authenticated as {email}")
         return {"success": True, "message": f"Authenticated as {email}"}
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Any]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Any]: User data dictionary containing:
+                - user_id (str): The user's UUID
+                - email (str): User's email address (needed for authentication)
+                - gmail_data (Dict): Complete Gmail data including messages, drafts, labels, threads
+                - Any other user-specific fields stored in the user record
+                Returns error dictionary if user not found:
+                - success (bool): False
+                - message (str): Error message indicating user not found
+        
+        Example:
+            >>> api = GmailApis()
+            >>> user_data = api.get_user_by_id("a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+            >>> print(user_data["email"])
+            "alice@example.com"
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes user data intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self.users.get(user_id)
+        if not user_data:
+            return {
+                "success": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def _resolve_user_id(self, user_id: str) -> Optional[str]:
         """
         Resolves the special value 'me' or email address to internal user UUID.

@@ -1,11 +1,12 @@
 {
-    "Multistep": [
+    "multistep": [
         {
             "prompt": "Turn on my Living Room Lamp and set it to 50% brightness.",
             "context": {
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "update_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'main', 'switch', 'on', None, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "update_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'main', 'level', 'setLevel', [50], 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"
             ]
@@ -16,6 +17,7 @@
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "create_room('Guest Bedroom', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2', 'a6750a19-fe95-4a5f-b3a1-0d8d9e878aa8')"
             ]
         },
@@ -25,6 +27,7 @@
                 "user_id": "91760f60-8836-40c5-ad76-a853d6d417e2"
             },
             "ground_truth": [
+                "get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')",
                 "create_location('Vacation House', '91760f60-8836-40c5-ad76-a853d6d417e2', '789 Beach Ave, Miami, FL', 25.7617, -80.1918)"
             ]
         },
@@ -34,6 +37,7 @@
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "update_device_status('7239a16a-f414-474c-908f-dba5fbef0aec', 'main', 'lock', 'lock', None, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"
             ]
         },
@@ -43,6 +47,7 @@
                 "user_id": "91760f60-8836-40c5-ad76-a853d6d417e2"
             },
             "ground_truth": [
+                "get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')",
                 "delete_device('a6648d21-5578-45fd-8502-442805322b47', '91760f60-8836-40c5-ad76-a853d6d417e2')"
             ]
         },
@@ -52,6 +57,7 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "list_devices('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "update_device_status('272c5025-d713-49b3-954f-afe275342436', 'main', 'switch', 'off', None, '7a1515c4-009e-4186-a37a-cc94059ea9fe')"
             ]
@@ -62,6 +68,7 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "update_location('eb055e52-3aab-4d4a-9c93-d3e2afaea4af', '7a1515c4-009e-4186-a37a-cc94059ea9fe', 'Downtown Loft', None, None, None)"
             ]
         },
@@ -71,6 +78,7 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "create_device('Hallway Light', '7a1515c4-009e-4186-a37a-cc94059ea9fe', 'The Study', 'Hallway', ['switch', 'level'], None)"
             ]
         },
@@ -80,6 +88,7 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "get_device_health('f9cca377-1bbc-4bff-a0af-1af68861ef19', '7a1515c4-009e-4186-a37a-cc94059ea9fe')"
             ]
         },
@@ -89,19 +98,21 @@
                 "user_id": "91760f60-8836-40c5-ad76-a853d6d417e2"
             },
             "ground_truth": [
+                "get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')",
                 "delete_location('5ff6a060-bc34-46e7-a45d-9767f4225142', '91760f60-8836-40c5-ad76-a853d6d417e2')"
             ]
         }
     ],
-    "Multiturn": [
+    "multiturn": [
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to control my living room lights."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
                     "content": "Sure! What would you like to do with your Living Room Lamp?"
                 },
                 {
@@ -110,6 +121,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["update_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'main', 'switch', 'on', None, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "update_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'main', 'level', 'setLevel', [75], 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
                     "content": "I've turned on your Living Room Lamp and set the brightness to 75%. Is there anything else you'd like to adjust?"
                 }
             ],
@@ -117,18 +129,20 @@
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "update_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'main', 'switch', 'on', None, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "update_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'main', 'level', 'setLevel', [75], 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to add a new room to my home."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
                     "content": "Sure! What would you like to name the new room?"
                 },
                 {
@@ -137,6 +151,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Great! Which location should I add this room to?"
                 },
                 {
@@ -145,6 +160,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["create_room('Home Office', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2', 'a6750a19-fe95-4a5f-b3a1-0d8d9e878aa8')"],
                     "content": "I've created the 'Home Office' room in your Home location. Would you like to add any devices to it?"
                 }
             ],
@@ -152,17 +168,19 @@
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "create_room('Home Office', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2', 'a6750a19-fe95-4a5f-b3a1-0d8d9e878aa8')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Can you show me all my devices?"
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')", "list_devices('91760f60-8836-40c5-ad76-a853d6d417e2')"],
                     "content": "Sure! Let me get your device list."
                 },
                 {
@@ -171,6 +189,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["update_device_status('a7913274-5973-42c7-bd98-52a8085923a9', 'main', 'switch', 'off', None, '91760f60-8836-40c5-ad76-a853d6d417e2')"],
                     "content": "I've turned off your Connected Smart_speaker 3 in the Dining Room. Anything else?"
                 }
             ],
@@ -178,18 +197,20 @@
                 "user_id": "91760f60-8836-40c5-ad76-a853d6d417e2"
             },
             "ground_truth": [
+                "get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')",
                 "list_devices('91760f60-8836-40c5-ad76-a853d6d417e2')",
                 "update_device_status('a7913274-5973-42c7-bd98-52a8085923a9', 'main', 'switch', 'off', None, '91760f60-8836-40c5-ad76-a853d6d417e2')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to add a new location."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "Sure! What's the name of the new location?"
                 },
                 {
@@ -198,6 +219,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Great! What's the address?"
                 },
                 {
@@ -206,6 +228,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["create_location('Mountain Cabin', '7a1515c4-009e-4186-a37a-cc94059ea9fe', '123 Pine Ridge Road, Aspen, CO', None, None)"],
                     "content": "I've created the 'Mountain Cabin' location at 123 Pine Ridge Road, Aspen, CO. Would you like to add rooms or devices to it?"
                 }
             ],
@@ -213,17 +236,19 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "create_location('Mountain Cabin', '7a1515c4-009e-4186-a37a-cc94059ea9fe', '123 Pine Ridge Road, Aspen, CO', None, None)"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Lock my front door."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "update_device_status('7239a16a-f414-474c-908f-dba5fbef0aec', 'main', 'lock', 'lock', None, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
                     "content": "I've locked your Front Door Smart Lock. Your home is secure."
                 }
             ],
@@ -231,17 +256,19 @@
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "update_device_status('7239a16a-f414-474c-908f-dba5fbef0aec', 'main', 'lock', 'lock', None, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Show me my locations."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')", "list_locations('7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "Let me get your locations list for you."
                 },
                 {
@@ -250,6 +277,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Are you sure you want to delete the High-rise Apartment location? This will also remove all associated rooms and devices."
                 },
                 {
@@ -258,6 +286,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["delete_location('b91b1900-c4ee-4175-b6c4-0898a542890d', '7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "I've deleted the High-rise Apartment location and all its associated data."
                 }
             ],
@@ -265,18 +294,20 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "list_locations('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "delete_location('b91b1900-c4ee-4175-b6c4-0898a542890d', '7a1515c4-009e-4186-a37a-cc94059ea9fe')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to create a smart device."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
                     "content": "Sure! What type of device would you like to create?"
                 },
                 {
@@ -285,6 +316,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Great! Which room should I place it in?"
                 },
                 {
@@ -293,6 +325,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["create_device('Main Thermostat', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2', 'Home', 'Living Room', ['switch', 'temperatureMeasurement'], None)"],
                     "content": "I've created the 'Main Thermostat' device in your Living Room. It's now ready to use!"
                 }
             ],
@@ -300,17 +333,19 @@
                 "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
             },
             "ground_truth": [
+                "get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')",
                 "create_device('Main Thermostat', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2', 'Home', 'Living Room', ['switch', 'temperatureMeasurement'], None)"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Check the status of my devices."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')", "list_devices('7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "Let me check your device statuses."
                 },
                 {
@@ -319,6 +354,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "I'll check the health status of your Connected Car_audio 16."
                 },
                 {
@@ -327,6 +363,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_device_health('f9cca377-1bbc-4bff-a0af-1af68861ef19', '7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "The device health shows an error status. You may want to check the device or update its firmware."
                 }
             ],
@@ -334,18 +371,20 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "list_devices('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "get_device_health('f9cca377-1bbc-4bff-a0af-1af68861ef19', '7a1515c4-009e-4186-a37a-cc94059ea9fe')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to rename a room."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')"],
                     "content": "Which room would you like to rename?"
                 },
                 {
@@ -354,6 +393,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["update_room('1508b6aa-7d40-4977-84a1-5e80284bf023', '91760f60-8836-40c5-ad76-a853d6d417e2', 'Guest Room', None)"],
                     "content": "I've renamed the Teen Room to 'Guest Room'. Is there anything else you'd like to update?"
                 }
             ],
@@ -361,17 +401,19 @@
                 "user_id": "91760f60-8836-40c5-ad76-a853d6d417e2"
             },
             "ground_truth": [
+                "get_user_by_id('91760f60-8836-40c5-ad76-a853d6d417e2')",
                 "update_room('1508b6aa-7d40-4977-84a1-5e80284bf023', '91760f60-8836-40c5-ad76-a853d6d417e2', 'Guest Room', None)"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Turn on my bedroom devices."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "Which bedroom are you referring to? You have a Master Bedroom."
                 },
                 {
@@ -380,6 +422,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["list_devices('7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "Let me turn on the devices in your Master Bedroom."
                 },
                 {
@@ -388,6 +431,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["update_device_status('f9cca377-1bbc-4bff-a0af-1af68861ef19', 'main', 'switch', 'on', None, '7a1515c4-009e-4186-a37a-cc94059ea9fe')"],
                     "content": "I've turned on your Connected Car_audio 16 in the Master Bedroom. All set!"
                 }
             ],
@@ -395,6 +439,7 @@
                 "user_id": "7a1515c4-009e-4186-a37a-cc94059ea9fe"
             },
             "ground_truth": [
+                "get_user_by_id('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "list_devices('7a1515c4-009e-4186-a37a-cc94059ea9fe')",
                 "update_device_status('f9cca377-1bbc-4bff-a0af-1af68861ef19', 'main', 'switch', 'on', None, '7a1515c4-009e-4186-a37a-cc94059ea9fe')"
             ]

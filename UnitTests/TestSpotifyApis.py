@@ -242,7 +242,8 @@ class TestSpotifyApis(unittest.TestCase):
 
     def test_save_albums_too_many(self):
         """Test saving too many albums at once."""
-        album_ids = [f"album_{i}" for i in range(21)]
+        # Create 51 albums to exceed the limit of 50
+        album_ids = [f"album_{i}" for i in range(51)]
         with self.assertRaises(Exception) as context:
             self.spotify_api.save_albums(album_ids)
         self.assertIn("max", str(context.exception).lower())

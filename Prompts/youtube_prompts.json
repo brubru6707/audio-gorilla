@@ -1,47 +1,55 @@
 {
     "Multistep": [
         {
-            "prompt": "Upload a video titled 'My First Vlog' with description 'Welcome to my channel!' and then subscribe to the channel 'cc801b00-6ee3-486e-b241-e32cd0a28260'.",
+            "prompt": "Upload a video titled 'My First Vlog' with description 'Welcome to my channel!' and then subscribe to The Daily Glimpse channel.",
             "context": {
                 "user_id": "51b8b957-733b-4f2b-b48e-ec6560887e2b"
             },
             "ground_truth": [
+                "get_user_by_id('51b8b957-733b-4f2b-b48e-ec6560887e2b')",
                 "authenticate('token_zane.powell28211@university-hub.org')",
                 "upload_video('My First Vlog', 'Welcome to my channel!', 180)",
+                "search_channels('The Daily Glimpse', 10)",
                 "subscribe('cc801b00-6ee3-486e-b241-e32cd0a28260')"
             ]
         },
         {
-            "prompt": "Create a new playlist called 'Beauty Favorites' with description 'My top beauty tips and tutorials', then add video '5baaaf6a-656c-44b1-992c-e2c66bd0b7b8' to it.",
+            "prompt": "Create a new playlist called 'Beauty Favorites' with description 'My top beauty tips and tutorials', then add the video 'We tried the HARDEST raid in Destiny 3' to it.",
             "context": {
                 "user_id": "89b57087-47b7-4dd7-9d07-017645acd6b4"
             },
             "ground_truth": [
+                "get_user_by_id('89b57087-47b7-4dd7-9d07-017645acd6b4')",
                 "authenticate('token_mia.ross9439@beauty-tips.online')",
                 "create_playlist('Beauty Favorites', 'My top beauty tips and tutorials', 'public')",
+                "search_videos('We tried the HARDEST raid in Destiny 3', 10)",
                 "add_video_to_playlist('<new_playlist_id>', '5baaaf6a-656c-44b1-992c-e2c66bd0b7b8')"
             ]
         },
         {
-            "prompt": "Like the video 'b5f9026b-8e17-47ab-94c4-5de8bc9c6ea7' and add a comment saying 'This is so helpful, thanks!'.",
+            "prompt": "Like the video called 'making some big life changes' and add a comment saying 'This is so helpful, thanks!'.",
             "context": {
                 "user_id": "5bce2374-171c-4ae2-a93b-c8e75f512870"
             },
             "ground_truth": [
+                "get_user_by_id('5bce2374-171c-4ae2-a93b-c8e75f512870')",
                 "authenticate('token_amir.foster62685@virtualreality.site')",
+                "search_videos('making some big life changes', 10)",
                 "rate_video('b5f9026b-8e17-47ab-94c4-5de8bc9c6ea7', 'like')",
                 "add_comment_to_video('b5f9026b-8e17-47ab-94c4-5de8bc9c6ea7', 'This is so helpful, thanks!')"
             ]
         },
         {
-            "prompt": "Update my channel description to 'Astronomy and space exploration enthusiast', upload a video titled 'Moon Photography Tips', and subscribe to channel 'da71848a-1ea7-4a09-b72e-ba8e95580d0b'.",
+            "prompt": "Update my channel description to 'Astronomy and space exploration enthusiast', upload a video titled 'Moon Photography Tips', and subscribe to The Documentary Draft channel.",
             "context": {
                 "user_id": "25180ab2-d474-4dc4-a760-c27303eadac4"
             },
             "ground_truth": [
+                "get_user_by_id('25180ab2-d474-4dc4-a760-c27303eadac4')",
                 "authenticate('token_maria.james13427@astronomy-club.net')",
                 "update_channel('8195cc1d-867a-4bbb-9071-6fec7e61f6a6', description='Astronomy and space exploration enthusiast')",
                 "upload_video('Moon Photography Tips', '', 300)",
+                "search_channels('The Documentary Draft', 10)",
                 "subscribe('da71848a-1ea7-4a09-b72e-ba8e95580d0b')"
             ]
         },
@@ -51,6 +59,7 @@
                 "user_id": "cfd24ee8-05c4-4dff-b1a7-6386429c7e42"
             },
             "ground_truth": [
+                "get_user_by_id('cfd24ee8-05c4-4dff-b1a7-6386429c7e42')",
                 "authenticate('token_christopher.cortez63242@petsupply.shop')",
                 "search_videos('cooking tutorials', 10)",
                 "rate_video('<first_video_id>', 'like')",
@@ -90,6 +99,7 @@
                 "user_id": "5bce2374-171c-4ae2-a93b-c8e75f512870"
             },
             "ground_truth": [
+                "get_user_by_id('5bce2374-171c-4ae2-a93b-c8e75f512870')",
                 "authenticate('token_amir.foster62685@virtualreality.site')",
                 "create_channel('VR Adventures', 'Exploring virtual reality gaming and experiences')"
             ]
@@ -125,6 +135,7 @@
                 "user_id": "51b8b957-733b-4f2b-b48e-ec6560887e2b"
             },
             "ground_truth": [
+                "get_user_by_id('51b8b957-733b-4f2b-b48e-ec6560887e2b')",
                 "authenticate('token_zane.powell28211@university-hub.org')",
                 "upload_video('University Study Tips for Success', 'My top 10 study techniques that helped me ace my exams', 600)"
             ]
@@ -157,7 +168,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Yes, add video '571be0a7-26c2-4a3c-899f-dbb954604160' to the playlist."
+                    "content": "Yes, add the video 'Styling the color of the year' to the playlist."
                 },
                 {
                     "role": "assistant",
@@ -168,8 +179,10 @@
                 "user_id": "cfd24ee8-05c4-4dff-b1a7-6386429c7e42"
             },
             "ground_truth": [
+                "get_user_by_id('cfd24ee8-05c4-4dff-b1a7-6386429c7e42')",
                 "authenticate('token_christopher.cortez63242@petsupply.shop')",
                 "create_playlist('Pet Care Basics', 'Essential tips for taking care of your pets', 'public')",
+                "search_videos('Styling the color of the year', 10)",
                 "add_video_to_playlist('<new_playlist_id>', '571be0a7-26c2-4a3c-899f-dbb954604160')"
             ]
         },
@@ -185,7 +198,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Like video '83727663-1c57-45f8-939f-36a795b19197'"
+                    "content": "Like the video 'GRWM for my birthday'"
                 },
                 {
                     "role": "assistant",
@@ -204,7 +217,9 @@
                 "user_id": "89b57087-47b7-4dd7-9d07-017645acd6b4"
             },
             "ground_truth": [
+                "get_user_by_id('89b57087-47b7-4dd7-9d07-017645acd6b4')",
                 "authenticate('token_mia.ross9439@beauty-tips.online')",
+                "search_videos('GRWM for my birthday', 10)",
                 "rate_video('83727663-1c57-45f8-939f-36a795b19197', 'like')",
                 "add_comment_to_video('83727663-1c57-45f8-939f-36a795b19197', 'Great makeup tutorial!')"
             ]
@@ -221,7 +236,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Yes, subscribe me to channel '370d21e4-7bb4-4d4d-9160-0358f4d7a50f'"
+                    "content": "Yes, subscribe me to The Documentary Draft channel"
                 },
                 {
                     "role": "assistant",
@@ -240,8 +255,10 @@
                 "user_id": "25180ab2-d474-4dc4-a760-c27303eadac4"
             },
             "ground_truth": [
+                "get_user_by_id('25180ab2-d474-4dc4-a760-c27303eadac4')",
                 "authenticate('token_maria.james13427@astronomy-club.net')",
                 "list_my_subscriptions(25)",
+                "search_channels('The Documentary Draft', 10)",
                 "subscribe('370d21e4-7bb4-4d4d-9160-0358f4d7a50f')",
                 "get_my_channel()"
             ]

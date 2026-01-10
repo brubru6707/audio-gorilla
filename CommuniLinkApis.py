@@ -224,6 +224,52 @@ class CommuniLinkApis:
         user_data = self._get_current_user_data()
         return user_data.get("phone_number") if user_data else None
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Union[str, Dict, List, bool]]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Union[str, Dict, List, bool]]: User data dictionary containing:
+                - user_id (str): The user's UUID
+                - email (str): User's email address (needed for login)
+                - password (str): User's password (needed for login)
+                - phone_number (str): User's phone number
+                - sms_messages (List): SMS message history
+                - voice_calls (List): Voice call history
+                - contacts (List): User's contact list
+                - balance (float): Account balance
+                - Any other user-specific fields
+                Returns error dictionary if user not found:
+                - status (bool): False
+                - message (str): Error message indicating user not found
+        
+        Example:
+            >>> api = CommuniLinkApis()
+            >>> user_data = api.get_user_by_id("a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+            >>> print(user_data["email"])
+            "alice@example.com"
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes credentials intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self.users.get(user_id)
+        if not user_data:
+            return {
+                "status": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def login_user(self, email: str, password: str) -> Dict[str, Union[bool, str]]:
         """
         Authenticates a user by validating credentials and establishing an active session.

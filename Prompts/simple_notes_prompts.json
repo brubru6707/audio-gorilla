@@ -1,11 +1,12 @@
 {
-    "Multistep": [
+    "multistep": [
         {
             "prompt": "Create a new note for my meeting with the team tomorrow, titled 'Team Meeting Notes', with initial content 'Agenda: Discuss project updates', tag it as 'work' and pin it.",
             "context": {
                 "user_id": "b3468774-e302-46ab-894f-3e2ba1b08815"
             },
             "ground_truth": [
+                "get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')",
                 "create_note('mayaclark63', 'Team Meeting Notes', 'Agenda: Discuss project updates', ['work'], True, 'yellow', False, 'medium', 'normal', False, 'view_only')"
             ]
         },
@@ -15,6 +16,7 @@
                 "user_id": "cf5defe2-0bb5-4d5a-aec2-23ed356cba6a"
             },
             "ground_truth": [
+                "get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')",
                 "list_notes('aydenbell64', None, True, None, None, None, 'updated', 'desc', 100, 0)",
                 "update_note_content('80515d4d-43f0-4fbb-8ed0-9e01727513a2', 'aydenbell64', None, None, None, None, None, None, 'medium')"
             ]
@@ -25,6 +27,7 @@
                 "user_id": "b3468774-e302-46ab-894f-3e2ba1b08815"
             },
             "ground_truth": [
+                "get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')",
                 "list_notes('mayaclark63', 'personal', None, None, None, None, 'updated', 'desc', 100, 0)",
                 "append_or_prepend_note_content('156407fc-aff5-425c-82c0-a2e78a3bec72', 'mayaclark63', 'Remember to call mom', 'append')"
             ]
@@ -35,6 +38,7 @@
                 "user_id": "4685cc65-3fe2-4ef6-9aa8-c674038b6484"
             },
             "ground_truth": [
+                "get_user_by_id('4685cc65-3fe2-4ef6-9aa8-c674038b6484')",
                 "delete_note('4e02a077-9bc9-4e28-9789-c4d8bc4d65a7', 'quinngomez59')",
                 "show_account('quinngomez59')"
             ]
@@ -45,19 +49,21 @@
                 "user_id": "b3468774-e302-46ab-894f-3e2ba1b08815"
             },
             "ground_truth": [
+                "get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')",
                 "share_note('317799ce-2f48-457a-b507-43462694b25a', 'mayaclark63', 'quinngomez59', 'view_only', True, False)"
             ]
         }
     ],
-    "Multiturn": [
+    "multiturn": [
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Can you help me organize my notes?"
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')"],
                     "content": "Sure! What kind of organization are you thinking? Like by tags, or creating new notes?"
                 },
                 {
@@ -66,17 +72,24 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Got it. Which tags do you want to group? And what should the summary notes be titled?"
                 },
                 {
                     "role": "user",
                     "content": "Tags are 'project', 'ideas', and 'personal'. Title the summaries 'Work Summary', 'Ideas Summary', 'Personal Summary'."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["list_notes('mayaclark63', 'project', None, None, None, None, 'updated', 'desc', 100, 0)", "create_note('mayaclark63', 'Work Summary', 'Summary of work notes...', ['summary'], False, 'yellow', False, 'medium', 'normal', False, 'view_only')", "list_notes('mayaclark63', 'ideas', None, None, None, None, 'updated', 'desc', 100, 0)", "create_note('mayaclark63', 'Ideas Summary', 'Summary of ideas...', ['summary'], False, 'yellow', False, 'medium', 'normal', False, 'view_only')", "list_notes('mayaclark63', 'personal', None, None, None, None, 'updated', 'desc', 100, 0)", "create_note('mayaclark63', 'Personal Summary', 'Summary of personal notes...', ['summary'], False, 'yellow', False, 'medium', 'normal', False, 'view_only')"],
+                    "content": "I've organized your notes by tags and created the summary notes."
                 }
             ],
             "context": {
                 "user_id": "b3468774-e302-46ab-894f-3e2ba1b08815"
             },
             "ground_truth": [
+                "get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')",
                 "list_notes('mayaclark63', 'project', None, None, None, None, 'updated', 'desc', 100, 0)",
                 "create_note('mayaclark63', 'Work Summary', 'Summary of work notes...', ['summary'], False, 'yellow', False, 'medium', 'normal', False, 'view_only')",
                 "list_notes('mayaclark63', 'ideas', None, None, None, None, 'updated', 'desc', 100, 0)",
@@ -86,80 +99,102 @@
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to update a note."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('4685cc65-3fe2-4ef6-9aa8-c674038b6484')"],
                     "content": "Which note? And what changes do you want to make?"
                 },
                 {
                     "role": "user",
                     "content": "The one titled 'urgent!!' - change the priority to medium and unpin it."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["update_note_content('5bf5feda-8bb5-4db0-a6da-a0b2da89a1f6', 'quinngomez59', None, None, None, False, None, None, 'medium')"],
+                    "content": "I've updated the note priority to medium and unpinned it."
                 }
             ],
             "context": {
                 "user_id": "4685cc65-3fe2-4ef6-9aa8-c674038b6484"
             },
             "ground_truth": [
+                "get_user_by_id('4685cc65-3fe2-4ef6-9aa8-c674038b6484')",
                 "update_note_content('5bf5feda-8bb5-4db0-a6da-a0b2da89a1f6', 'quinngomez59', None, None, None, False, None, None, 'medium')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Create a reminder note."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')"],
                     "content": "What should the reminder be about, and when?"
                 },
                 {
                     "role": "user",
                     "content": "About DIY home projects on November 5th, and pin it."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_note('aydenbell64', 'DIY Reminder', 'DIY home projects on November 5th, 2025', ['reminder'], True, 'yellow', False, 'high', 'normal', False, 'view_only')"],
+                    "content": "I've created and pinned your reminder note."
                 }
             ],
             "context": {
                 "user_id": "cf5defe2-0bb5-4d5a-aec2-23ed356cba6a"
             },
             "ground_truth": [
+                "get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')",
                 "create_note('aydenbell64', 'DIY Reminder', 'DIY home projects on November 5th, 2025', ['reminder'], True, 'yellow', False, 'high', 'normal', False, 'view_only')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Find my note about recipes."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')"],
                     "content": "Do you remember the title or any tags?"
                 },
                 {
                     "role": "user",
                     "content": "It's tagged 'recipes', and append 'Try this weekend!' to the pasta salad one."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["list_notes('aydenbell64', 'recipes', None, None, None, None, 'updated', 'desc', 100, 0)", "append_or_prepend_note_content('87a7c665-c977-4359-9363-2f51f4a0f059', 'aydenbell64', 'Try this weekend!', 'append')"],
+                    "content": "I've found your recipes note and added the text."
                 }
             ],
             "context": {
                 "user_id": "cf5defe2-0bb5-4d5a-aec2-23ed356cba6a"
             },
             "ground_truth": [
+                "get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')",
                 "list_notes('aydenbell64', 'recipes', None, None, None, None, 'updated', 'desc', 100, 0)",
                 "append_or_prepend_note_content('87a7c665-c977-4359-9363-2f51f4a0f059', 'aydenbell64', 'Try this weekend!', 'append')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to delete some old notes."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('4685cc65-3fe2-4ef6-9aa8-c674038b6484')"],
                     "content": "Which ones? Maybe the archived ones?"
                 },
                 {
@@ -168,73 +203,95 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["list_notes('quinngomez59', None, None, None, True, None, 'updated', 'desc', 100, 0)"],
                     "content": "Listing them first."
                 },
                 {
                     "role": "user",
                     "content": "Delete the camping trip note."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["delete_note('1ad98c69-0bcb-4c65-962a-5151de24def6', 'quinngomez59')"],
+                    "content": "I've deleted the camping trip note."
                 }
             ],
             "context": {
                 "user_id": "4685cc65-3fe2-4ef6-9aa8-c674038b6484"
             },
             "ground_truth": [
+                "get_user_by_id('4685cc65-3fe2-4ef6-9aa8-c674038b6484')",
                 "list_notes('quinngomez59', None, None, None, True, None, 'updated', 'desc', 100, 0)",
                 "delete_note('1ad98c69-0bcb-4c65-962a-5151de24def6', 'quinngomez59')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Make a note for my birthday gift ideas."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')"],
                     "content": "What ideas do you have? And should I tag it?"
                 },
                 {
                     "role": "user",
                     "content": "Ideas for Dad's birthday, tag as 'ideas', and set priority to high."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_note('aydenbell64', 'Dad Birthday Ideas', 'Gift ideas for Dad...', ['ideas'], False, 'yellow', False, 'high', 'normal', False, 'view_only')"],
+                    "content": "I've created the note with high priority."
                 }
             ],
             "context": {
                 "user_id": "cf5defe2-0bb5-4d5a-aec2-23ed356cba6a"
             },
             "ground_truth": [
+                "get_user_by_id('cf5defe2-0bb5-4d5a-aec2-23ed356cba6a')",
                 "create_note('aydenbell64', 'Dad Birthday Ideas', 'Gift ideas for Dad...', ['ideas'], False, 'yellow', False, 'high', 'normal', False, 'view_only')"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to search through my notes."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')"],
                     "content": "What are you looking for?"
                 },
                 {
                     "role": "user",
                     "content": "Search for notes containing 'meeting' in the content or title."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["search_notes('mayaclark63', 'meeting', True, True, False, False, False, False)"],
+                    "content": "I've found your notes containing 'meeting'."
                 }
             ],
             "context": {
                 "user_id": "b3468774-e302-46ab-894f-3e2ba1b08815"
             },
             "ground_truth": [
+                "get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')",
                 "search_notes('mayaclark63', 'meeting', True, True, False, False, False, False)"
             ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Help me with my daily notes."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')"],
                     "content": "What do you need? Creating, updating, or reviewing?"
                 },
                 {
@@ -243,17 +300,24 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": ["get_notes_by_priority('mayaclark63', 'high')"],
                     "content": "Retrieving high priority notes."
                 },
                 {
                     "role": "user",
                     "content": "Now update the Birthday ideas note to add 'Order by Friday'."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["append_or_prepend_note_content('ca631e48-6e3e-46ac-af4b-498da24abc1e', 'mayaclark63', 'Order by Friday', 'append')"],
+                    "content": "I've updated the Birthday ideas note."
                 }
             ],
             "context": {
                 "user_id": "b3468774-e302-46ab-894f-3e2ba1b08815"
             },
             "ground_truth": [
+                "get_user_by_id('b3468774-e302-46ab-894f-3e2ba1b08815')",
                 "get_notes_by_priority('mayaclark63', 'high')",
                 "append_or_prepend_note_content('ca631e48-6e3e-46ac-af4b-498da24abc1e', 'mayaclark63', 'Order by Friday', 'append')"
             ]

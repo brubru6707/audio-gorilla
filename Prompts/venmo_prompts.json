@@ -6,6 +6,7 @@
                 "user_id": "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2"
             },
             "ground_truth": [
+                "get_user_by_id('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2')",
                 "authenticate('token_alice.smith@gmail.com')",
                 "create_payment('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 50.0, 'Thanks for dinner!', 'private')"
             ]
@@ -16,6 +17,7 @@
                 "user_id": "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8"
             },
             "ground_truth": [
+                "get_user_by_id('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8')",
                 "authenticate('token_bob.johnson@yahoo.com')",
                 "create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 25.0, 'Concert tickets', 'private')",
                 "add_payment_method('My Visa', 'Bob Johnson', '4542 3453 2343 3456', 2029, 8)"
@@ -27,6 +29,7 @@
                 "user_id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3"
             },
             "ground_truth": [
+                "get_user_by_id('7e58c944-9ee1-4d19-8e8a-d6f64593afe3')",
                 "authenticate('token_mia.sanders6969@airplane-pilots.com')",
                 "create_payment('ca98b253-362f-4be2-b2fe-ef6d9b3e0805', 35.50, 'Coffee runs this week', 'private')",
                 "set_default_payment_method('c2633a46-2c05-46f2-9d42-9323f1434e2d')"
@@ -38,6 +41,7 @@
                 "user_id": "a1bf21a0-094a-4fb0-980a-67a0b116f7a2"
             },
             "ground_truth": [
+                "get_user_by_id('a1bf21a0-094a-4fb0-980a-67a0b116f7a2')",
                 "authenticate('token_maria.stewart4396@home-electronics.online')",
                 "create_charge('a9beb99e-4c99-444c-a569-29954df93c79', 120.0, 'Electric bill', 'private')",
                 "get_profile()"
@@ -49,10 +53,67 @@
                 "user_id": "a9beb99e-4c99-444c-a569-29954df93c79"
             },
             "ground_truth": [
+                "get_user_by_id('a9beb99e-4c99-444c-a569-29954df93c79')",
                 "authenticate('token_dean.navarro1857@data-management.solutions')",
                 "create_payment('2437c44d-1aae-41b7-807f-399b4b93e505', 75.0, 'Rent', 'private')",
                 "add_payment_method('My Mastercard', 'Dean Navarro', '5543 6789 1234 8877', 2030, 11)",
                 "delete_all_notifications()"
+            ]
+        },
+        {
+            "prompt": "Request eighty five dollars from Bob Johnson for utilities, check my balance, send fifteen dollars to Alice Smith for coffee, and remove my old American Express card.",
+            "context": {
+                "user_id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3"
+            },
+            "ground_truth": [
+                "get_user_by_id('7e58c944-9ee1-4d19-8e8a-d6f64593afe3')",
+                "authenticate('token_mia.sanders6969@airplane-pilots.com')",
+                "create_charge('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 85.0, 'Utilities', 'private')",
+                "get_profile()",
+                "create_payment('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 15.0, 'Coffee', 'private')",
+                "remove_payment_method('a3d1e8f6-4b2c-4d1e-9f3a-8b7c6d5e4f3a')"
+            ]
+        },
+        {
+            "prompt": "Pay Maria Stewart ninety two dollars and fifty cents for the concert ticket, add her as a friend on Venmo, view my transaction history, and set my Wells Fargo account as default.",
+            "context": {
+                "user_id": "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8"
+            },
+            "ground_truth": [
+                "get_user_by_id('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8')",
+                "authenticate('token_bob.johnson@yahoo.com')",
+                "create_payment('a1bf21a0-094a-4fb0-980a-67a0b116f7a2', 92.50, 'Concert ticket', 'private')",
+                "add_friend('a1bf21a0-094a-4fb0-980a-67a0b116f7a2')",
+                "get_transactions('all', 20)",
+                "set_default_payment_method('b8e3c4f2-5a1d-4e9c-8b2f-7d6c5e4f3a2b')"
+            ]
+        },
+        {
+            "prompt": "Send Jeffrey Russell forty three dollars for gas money, request one hundred twenty five dollars from Dean Navarro for rent, check pending requests, and clear all my notifications.",
+            "context": {
+                "user_id": "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2"
+            },
+            "ground_truth": [
+                "get_user_by_id('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2')",
+                "authenticate('token_alice.smith@gmail.com')",
+                "create_payment('ca98b253-362f-4be2-b2fe-ef6d9b3e0805', 43.0, 'Gas money', 'private')",
+                "create_charge('a9beb99e-4c99-444c-a569-29954df93c79', 125.0, 'Rent', 'private')",
+                "get_charge_requests()",
+                "delete_all_notifications()"
+            ]
+        },
+        {
+            "prompt": "Add a new Chase credit card ending in five six seven eight that expires December twenty thirty two, make it my default payment method, send sixty dollars to Mackenzie Ross for dinner and drinks, and unfriend Charlie Brown.",
+            "context": {
+                "user_id": "a1bf21a0-094a-4fb0-980a-67a0b116f7a2"
+            },
+            "ground_truth": [
+                "get_user_by_id('a1bf21a0-094a-4fb0-980a-67a0b116f7a2')",
+                "authenticate('token_maria.stewart4396@home-electronics.online')",
+                "add_payment_method('My Chase Card', 'Maria Stewart', '4539 7821 3456 5678', 2032, 12)",
+                "set_default_payment_method('<new_card_id>')",
+                "create_payment('2437c44d-1aae-41b7-807f-399b4b93e505', 60.0, 'Dinner and drinks', 'private')",
+                "remove_friend('e300fbc0-82a0-48cd-8198-ab9d39042873')"
             ]
         }
     ],
@@ -88,6 +149,7 @@
                 "user_id": "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2"
             },
             "ground_truth": [
+                "get_user_by_id('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2')",
                 "authenticate('token_alice.smith@gmail.com')",
                 "create_payment('e300fbc0-82a0-48cd-8198-ab9d39042873', 15.0, 'Lunch at the cafe', 'private')"
             ]
@@ -123,6 +185,7 @@
                 "user_id": "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8"
             },
             "ground_truth": [
+                "get_user_by_id('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8')",
                 "authenticate('token_bob.johnson@yahoo.com')",
                 "create_charge('4e4efe60-7641-41b6-8fe0-a3050900a15e', 40.0, 'Movie tickets and popcorn', 'private')"
             ]
@@ -162,6 +225,7 @@
                 "user_id": "e300fbc0-82a0-48cd-8198-ab9d39042873"
             },
             "ground_truth": [
+                "get_user_by_id('e300fbc0-82a0-48cd-8198-ab9d39042873')",
                 "authenticate('token_charlie.brown@outlook.com')",
                 "add_payment_method('My Travel Card', 'Charlie Brown', '4532 8765 4321 0987', 2031, 6)",
                 "set_default_payment_method('<new_card_id>')"
@@ -190,6 +254,7 @@
                 "user_id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3"
             },
             "ground_truth": [
+                "get_user_by_id('7e58c944-9ee1-4d19-8e8a-d6f64593afe3')",
                 "authenticate('token_mia.sanders6969@airplane-pilots.com')",
                 "get_profile()",
                 "create_payment('e275d81b-6631-44b1-a75a-fd1197304cf4', 50.0, 'groceries', 'private')"
@@ -226,9 +291,288 @@
                 "user_id": "a9beb99e-4c99-444c-a569-29954df93c79"
             },
             "ground_truth": [
+                "get_user_by_id('a9beb99e-4c99-444c-a569-29954df93c79')",
                 "authenticate('token_dean.navarro1857@data-management.solutions')",
                 "get_friends()",
                 "create_payment('368f8002-6998-4d01-9543-cdb86ef4f43f', 30.0, 'Pizza delivery', 'private')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to manage my payment methods on Venmo."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with that! What would you like to do with your payment methods?"
+                },
+                {
+                    "role": "user",
+                    "content": "Add a new bank account from Bank of America."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What's the account number and routing number?"
+                },
+                {
+                    "role": "user",
+                    "content": "Account number is nine eight seven six five four three two one and routing is zero two one zero zero zero zero eight eight."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've added your Bank of America account. Would you like to set it as default?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, and also remove my old Discover card ending in three three three three."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect! I've set your Bank of America account as default and removed the Discover card. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, check my balance and then send seventy five dollars to Diana Prince for the Airbnb."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Your balance is $412.89. I've sent $75 to Diana Prince for the Airbnb."
+                }
+            ],
+            "context": {
+                "user_id": "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8"
+            },
+            "ground_truth": [
+                "get_user_by_id('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8')",
+                "authenticate('token_bob.johnson@yahoo.com')",
+                "add_bank_account('My Bank of America', 'Bob Johnson', '987654321', '021000088')",
+                "set_default_payment_method('<new_bank_id>')",
+                "remove_payment_method('f7e8d9c0-b1a2-3d4e-5f6a-7b8c9d0e1f2a')",
+                "get_profile()",
+                "create_payment('4e4efe60-7641-41b6-8fe0-a3050900a15e', 75.0, 'Airbnb', 'private')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I just got back from a group dinner and need to split the bill."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help you with that! How much was the total bill and how many people?"
+                },
+                {
+                    "role": "user",
+                    "content": "The bill was two hundred forty dollars for six people including me."
+                },
+                {
+                    "role": "assistant",
+                    "content": "So each person owes $40. Who should I request money from?"
+                },
+                {
+                    "role": "user",
+                    "content": "Request forty dollars from Alice Smith, Bob Johnson, and Maria Stewart."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Got it. What note should I include with the requests?"
+                },
+                {
+                    "role": "user",
+                    "content": "Group dinner at Olive Garden - your share."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent charge requests to Alice, Bob, and Maria for $40 each. Would you like to do anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, pay the waiter Jeffrey Russell twenty five dollars for the tip."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've sent $25 to Jeffrey Russell for the tip. All settled!"
+                }
+            ],
+            "context": {
+                "user_id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3"
+            },
+            "ground_truth": [
+                "get_user_by_id('7e58c944-9ee1-4d19-8e8a-d6f64593afe3')",
+                "authenticate('token_mia.sanders6969@airplane-pilots.com')",
+                "create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 40.0, 'Group dinner at Olive Garden - your share', 'private')",
+                "create_charge('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 40.0, 'Group dinner at Olive Garden - your share', 'private')",
+                "create_charge('a1bf21a0-094a-4fb0-980a-67a0b116f7a2', 40.0, 'Group dinner at Olive Garden - your share', 'private')",
+                "create_payment('ca98b253-362f-4be2-b2fe-ef6d9b3e0805', 25.0, 'Tip', 'private')"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to organize my Venmo account and clean things up."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help you organize! What would you like to start with?"
+                },
+                {
+                    "role": "user",
+                    "content": "First, show me all my pending charge requests."
+                },
+                {
+                    "role": "assistant",
+                    "content": "You have 3 pending requests totaling $145. What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Delete all my notifications to clear the clutter."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Notifications cleared! Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, check my transaction history for the last ten transactions."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Here are your last 10 transactions. Would you like me to do anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Remove Mason Snyder from my friends list and then check my current balance."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've removed Mason from your friends. Your current balance is $523.67. All organized!"
+                }
+            ],
+            "context": {
+                "user_id": "a1bf21a0-094a-4fb0-980a-67a0b116f7a2"
+            },
+            "ground_truth": [
+                "get_user_by_id('a1bf21a0-094a-4fb0-980a-67a0b116f7a2')",
+                "authenticate('token_maria.stewart4396@home-electronics.online')",
+                "get_charge_requests()",
+                "delete_all_notifications()",
+                "get_transactions('all', 10)",
+                "remove_friend('e275d81b-6631-44b1-a75a-fd1197304cf4')",
+                "get_profile()"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I'm planning a trip with friends and need to handle multiple Venmo transactions."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sounds exciting! What transactions do you need to make?"
+                },
+                {
+                    "role": "user",
+                    "content": "First, request one hundred fifty dollars from Dean Navarro for the hotel booking."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Request sent to Dean. What's next?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send eighty dollars to Mackenzie Ross for flight tickets."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Payment sent to Mackenzie. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, add Ethan Martin as a friend on Venmo so I can pay him later."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Ethan is now your friend. What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Request forty five dollars from Charlie Brown for the rental car and check my balance to make sure I have enough."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've requested $45 from Charlie for the rental car. Your current balance is $789.23, so you're all set for the trip!"
+                }
+            ],
+            "context": {
+                "user_id": "a9beb99e-4c99-444c-a569-29954df93c79"
+            },
+            "ground_truth": [
+                "get_user_by_id('a9beb99e-4c99-444c-a569-29954df93c79')",
+                "authenticate('token_dean.navarro1857@data-management.solutions')",
+                "create_charge('a9beb99e-4c99-444c-a569-29954df93c79', 150.0, 'Hotel booking', 'private')",
+                "create_payment('2437c44d-1aae-41b7-807f-399b4b93e505', 80.0, 'Flight tickets', 'private')",
+                "add_friend('368f8002-6998-4d01-9543-cdb86ef4f43f')",
+                "create_charge('e300fbc0-82a0-48cd-8198-ab9d39042873', 45.0, 'Rental car', 'private')",
+                "get_profile()"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to update my payment setup and make some transactions."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with both! What would you like to do first?"
+                },
+                {
+                    "role": "user",
+                    "content": "Add a new Capital One credit card, number four five six seven eight nine zero one two three four five six, expires September twenty thirty three."
+                },
+                {
+                    "role": "assistant",
+                    "content": "What name should I use for this card?"
+                },
+                {
+                    "role": "user",
+                    "content": "My Capital One Rewards."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Card added! Would you like to make it your default payment method?"
+                },
+                {
+                    "role": "user",
+                    "content": "No, keep my current default. Now send fifty five dollars to Bob Johnson for the basketball tickets."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Payment sent to Bob. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, view my recent transactions to see my spending and then request thirty dollars from Jeffrey Russell for parking fees."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've shown your recent transactions. Request for $30 has been sent to Jeffrey for parking fees. All done!"
+                }
+            ],
+            "context": {
+                "user_id": "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2"
+            },
+            "ground_truth": [
+                "get_user_by_id('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2')",
+                "authenticate('token_alice.smith@gmail.com')",
+                "add_payment_method('My Capital One Rewards', 'Alice Smith', '4567 8901 2345 6789', 2033, 9)",
+                "create_payment('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 55.0, 'Basketball tickets', 'private')",
+                "get_transactions('all', 20)",
+                "create_charge('ca98b253-362f-4be2-b2fe-ef6d9b3e0805', 30.0, 'Parking fees', 'private')"
             ]
         }
     ]

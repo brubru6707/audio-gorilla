@@ -1,91 +1,184 @@
 {
-    "multistep": [{
-        "prompt": "Tell Ali Gray that I will be late to the 7 o'clock meeting",
-        "context": {
-            "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
+    "multistep": [
+        {
+            "prompt": "Tell Ali Gray that I will be late to the 7 o'clock meeting",
+            "context": {
+                "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+            },
+            "assist": "Sure! I've sent Ali Gray a message saying you'll be late to the 7 o'clock meeting.",
+            "ground_truth": [
+                "get_user_by_id('59b78561-ba7d-4383-92e6-d92b937fa75a')",
+                "login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')",
+                "send_sms('+15594536581', 'I am going to be late to the 7 o'clock meeting.')"
+            ]
         },
-        "assist": "Sure! I've sent Ali Gray a message saying you'll be late to the 7 o'clock meeting.",
-        "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "send_sms('+15594536581', 'I am going to be late to the 7 o'clock meeting.')"]
-    },
-    {
-        "prompt": "Call Henry Pena right now!",
-        "context": {
-            "user_id": "3257801a-da9f-45c1-8fd5-7f9201e9da1e" 
+        {
+            "prompt": "Call Henry Pena right now!",
+            "context": {
+                "user_id": "3257801a-da9f-45c1-8fd5-7f9201e9da1e"
+            },
+            "assist": "Calling Henry Pena now.",
+            "ground_truth": [
+                "get_user_by_id('3257801a-da9f-45c1-8fd5-7f9201e9da1e')",
+                "login_user('jasmine.patterson64@growth-partners.com', '896b01a1c07b46db99fe8e86281fd7678f45e8b7bd791ca8')",
+                "make_voice_call('+16265408243')"
+            ]
         },
-        "assist": "Calling Henry Pena now.",
-        "ground_truth": ["login_user('jasmine.patterson64@growth-partners.com', '896b01a1c07b46db99fe8e86281fd7678f45e8b7bd791ca8')", "make_voice_call('+16265408243')"]
-    }, 
-    {
-        "prompt": "Was my last message to  sent successfully or nah?",
-        "context": {
-            "user_id": "4738e23a-ceeb-480b-af5a-c7f06d108252" 
+        {
+            "prompt": "Was my last message to  sent successfully or nah?",
+            "context": {
+                "user_id": "4738e23a-ceeb-480b-af5a-c7f06d108252"
+            },
+            "assist": "Yes, your last message was delivered successfully.",
+            "ground_truth": [
+                "get_user_by_id('4738e23a-ceeb-480b-af5a-c7f06d108252')",
+                "login_user('olivia.brown59@webdesigners.co.uk', '4f6aaf02058041e1896c6b23a91f67be39272121b55380e1')",
+                "get_sms_status(sms_id)"
+            ]
         },
-        "assist": "Yes, your last message was delivered successfully.",
-        "ground_truth": ["login_user('olivia.brown59@webdesigners.co.uk', '4f6aaf02058041e1896c6b23a91f67be39272121b55380e1')", "get_sms_status(sms_id)"]
-    }, 
-    {
-        "prompt": "Show me my recent calls with Isaiah Sanchez",
-        "context": {
-            "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
+        {
+            "prompt": "Show me my recent calls with Isaiah Sanchez",
+            "context": {
+                "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+            },
+            "assist": "Here are your recent calls with Isaiah Sanchez.",
+            "ground_truth": [
+                "get_user_by_id('59b78561-ba7d-4383-92e6-d92b937fa75a')",
+                "login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')",
+                "get_all_voice_calls()"
+            ]
         },
-        "assist": "Here are your recent calls with Isaiah Sanchez.",
-        "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "get_all_voice_calls()"]
-    },
-    {
-        "prompt": "Resend my last text to Ali Gray",
-        "context": {
-            "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+        {
+            "prompt": "Resend my last text to Ali Gray",
+            "context": {
+                "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+            },
+            "assist": "I've resent your last message to Ali Gray.",
+            "ground_truth": [
+                "get_user_by_id('71341825-a3fb-4322-ae6e-ef4617c04e81')",
+                "login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')",
+                "get_all_sms_messages()",
+                "send_sms('+15594536581', last_message_content)"
+            ]
         },
-        "assist": "I've resent your last message to Ali Gray.",
-        "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')", "get_all_sms_messages()", "send_sms('+15594536581', last_message_content)"]
-    },
-    {
-        "prompt": "YO!!! Why the hell is my bill so freaking high!?!? Give me my billing history!",
-        "context": {
-            "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
-        },
-        "assist": "I understand your concern. Let me pull up your billing history for you.",
-        "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')", "get_billing_history()"]
-    }
-],
+        {
+            "prompt": "YO!!! Why the hell is my bill so freaking high!?!? Give me my billing history!",
+            "context": {
+                "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+            },
+            "assist": "I understand your concern. Let me pull up your billing history for you.",
+            "ground_truth": [
+                "get_user_by_id('71341825-a3fb-4322-ae6e-ef4617c04e81')",
+                "login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')",
+                "get_billing_history()"
+            ]
+        }
+    ],
     "multiturn": [
         {
             "turns": [
                 {
-                    "prompt": "I need to call Aria Rivera",
+                    "prompt": "I need to reach out to Aria Rivera about dinner plans",
                     "context": {
-                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
                     },
-                    "assist": "Sure! Calling Aria Rivera now.",
-                    "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "make_voice_call('+19092658616')"]
+                    "assist": "Would you like me to call or text Aria Rivera?",
+                    "ground_truth": [
+                        "get_user_by_id('59b78561-ba7d-4383-92e6-d92b937fa75a')",
+                        "login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')"
+                    ]
                 },
                 {
-                    "prompt": "Actually, send them a text instead telling them that I need to eat first.",
+                    "prompt": "Let's call them first",
                     "context": {
-                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
                     },
-                    "assist": "Got it! Sending the message now.",
-                    "ground_truth": ["send_sms('+19092658616', 'I need to eat first.')"]
+                    "assist": "Calling Aria Rivera now.",
+                    "ground_truth": [
+                        "make_voice_call('+19092658616')"
+                    ]
+                },
+                {
+                    "prompt": "Actually hang up, I should eat something before we talk",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Ending the call. Would you like me to send them a message?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yeah, tell them I'll call back in 30 minutes after I grab food",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Sending the message to Aria now.",
+                    "ground_truth": [
+                        "send_sms('+19092658616', 'I need to eat first. I will call you back in 30 minutes.')"
+                    ]
+                },
+                {
+                    "prompt": "And can you remind me in 30 minutes to actually call them?",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Setting a reminder for 30 minutes from now to call Aria Rivera.",
+                    "ground_truth": [
+                        "set_reminder('call Aria Rivera about dinner', '30 minutes', '')"
+                    ]
                 }
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Call Hannah Perez now!",
+                    "prompt": "I need to get money from Hannah Perez",
                     "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
-                    "assist": "Sure! Calling Hannah Perez now.",
-                    "ground_truth": ["make_voice_call('+14042528201')"]
+                    "assist": "How would you like to contact Hannah Perez?",
+                    "ground_truth": [
+                        "get_user_by_id('71341825-a3fb-4322-ae6e-ef4617c04e81')",
+                        "login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')"
+                    ]
                 },
                 {
-                    "prompt": "Nah. Forget that, I don't even like calling her. Just send her a messsage saying to give me 1000 dollars.",
+                    "prompt": "Call her I guess",
                     "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
-                    "assist": "Got it! Sending the message now.",
-                    "ground_truth": ["send_sms('+14042528201', 'Give me 1000 dollars.')"]
+                    "assist": "Calling Hannah Perez now.",
+                    "ground_truth": [
+                        "make_voice_call('+14042528201')"
+                    ]
+                },
+                {
+                    "prompt": "Wait no, she never answers. Cancel that and text her instead",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Call cancelled. What would you like the message to say?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Tell her I need the 1000 dollars she owes me",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Sending that message to Hannah now.",
+                    "ground_truth": [
+                        "send_sms('+14042528201', 'I need the 1000 dollars you owe me.')"
+                    ]
+                },
+                {
+                    "prompt": "Did it send?",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Let me check the status of that message.",
+                    "ground_truth": [
+                        "get_all_sms_messages()",
+                        "get_sms_status(latest_sms_id)"
+                    ]
                 }
             ]
         },
@@ -94,66 +187,1130 @@
                 {
                     "prompt": "Did my last text to Ali Gray go through?",
                     "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
                     "assist": "Let me check that for you.",
-                    "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')", "get_all_sms_messages()", "get_sms_status('baca9af7-89b6-4970-81c2-0ff731d97569')"]
+                    "ground_truth": [
+                        "get_user_by_id('71341825-a3fb-4322-ae6e-ef4617c04e81')",
+                        "login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')",
+                        "get_all_sms_messages()",
+                        "get_sms_status('baca9af7-89b6-4970-81c2-0ff731d97569')"
+                    ]
                 },
                 {
-                    "prompt": "If it didn't, resend it -- it's important.",
+                    "prompt": "What does the status say?",
                     "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
-                    "assist": "Resending the message now.",
-                    "ground_truth": ["send_sms('+15594536581', 'My back is killing me.')"]
-                }
-            ]
-        },
-        {
-            "turns": [
-                {
-                    "prompt": "Please send a message to Dominic for me.",
-                    "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
-                    },
-                    "assist": "There are multiple Dominics in your contacts. Which one would you like to message?",
-                    "ground_truth": ["login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')"]
-                },
-                {
-                    "prompt": "Send it to the one with the last name as Diaz.",
-                    "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
-                    },
-                    "assist": "Last thing! What is the mssage you would like to send?",
+                    "assist": "The message shows as failed to deliver.",
                     "ground_truth": []
                 },
                 {
-                    "prompt": "TUgh. Tell her that I'm not coming to the party tonight.",
+                    "prompt": "Damn. It was about my back pain. Can you resend it?",
                     "context": {
-                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
-                    "assist": "Got it! Sending the message now.",
-                    "ground_truth": ["send_sms('+18632004446', 'I am not coming to the party tonight.')"]
+                    "assist": "Resending the message about your back pain now.",
+                    "ground_truth": [
+                        "send_sms('+15594536581', 'My back is killing me.')"
+                    ]
+                },
+                {
+                    "prompt": "Actually, add that I need their chiropractor's number",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "I already sent the first message. Should I send a follow-up?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yeah, send another one asking for the chiropractor number",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Sending the follow-up message now.",
+                    "ground_truth": [
+                        "send_sms('+15594536581', 'Can you send me your chiropractors number?')"
+                    ]
                 }
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Tell Miles Castillo that the bill just came through.",
+                    "prompt": "I need to bail on tonight's plans",
                     "context": {
-                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
-                    "assist": "Got it! ",
-                    "ground_truth": ["login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')", "send_sms('+13516375280', 'The bill just came through.')"]
+                    "assist": "Who should I notify about the change?",
+                    "ground_truth": [
+                        "get_user_by_id('71341825-a3fb-4322-ae6e-ef4617c04e81')",
+                        "login_user('anya.sharma5@techsolutions.dev','60d63104f64e46f19f51906d6a34923217781ae798b8ddc4')"
+                    ]
                 },
                 {
-                    "prompt": "Along with that, send them the actual billing info.",
+                    "prompt": "Dominic is hosting, so tell them",
                     "context": {
-                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a" 
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
                     },
-                    "assist": "Sure! Sending the message now.",
-                    "ground_truth": ["get_billing_history()", "send_sms('+13516375280', billing_info_string)"]
+                    "assist": "I found multiple Dominics in your contacts. Can you be more specific?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "The one with last name Diaz",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Got it, Dominic Diaz. What should I tell them about tonight?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Just say I can't make the party",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Sending that message to Dominic Diaz now.",
+                    "ground_truth": [
+                        "send_sms('+18632004446', 'I am not coming to the party tonight.')"
+                    ]
+                },
+                {
+                    "prompt": "Wait, also ask if we can reschedule for next week",
+                    "context": {
+                        "user_id": "71341825-a3fb-4322-ae6e-ef4617c04e81"
+                    },
+                    "assist": "Sending a follow-up message about rescheduling.",
+                    "ground_truth": [
+                        "send_sms('+18632004446', 'Can we reschedule for next week?')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Miles keeps asking me about the bill",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Would you like me to check your billing information?",
+                    "ground_truth": [
+                        "get_user_by_id('59b78561-ba7d-4383-92e6-d92b937fa75a')",
+                        "login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah, pull up my billing history",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Getting your billing history now.",
+                    "ground_truth": [
+                        "get_billing_history()"
+                    ]
+                },
+                {
+                    "prompt": "Okay it finally came through. Let Miles Castillo know",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Sending Miles a message about the bill.",
+                    "ground_truth": [
+                        "send_sms('+13516375280', 'The bill just came through.')"
+                    ]
+                },
+                {
+                    "prompt": "He's gonna want details. Send him the full breakdown",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Sending the billing details to Miles now.",
+                    "ground_truth": [
+                        "send_sms('+13516375280', billing_info_string)"
+                    ]
+                },
+                {
+                    "prompt": "And remind me to follow up with him in an hour if he doesn't respond",
+                    "context": {
+                        "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
+                    },
+                    "assist": "Setting a reminder to follow up with Miles Castillo in one hour.",
+                    "ground_truth": [
+                        "set_reminder('follow up with Miles Castillo', '1 hour', '')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I need to meet with Dr. Carter next week",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "Dr. Emily Carter? When would you like to schedule the meeting?",
+                    "ground_truth": [
+                        "get_user_by_id('12345678-1234-1234-1234-1234567890ab')",
+                        "login_user('john.doe@example.com', 'securepassword123')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah that's her. How about Tuesday?",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "What time works best on Tuesday?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Let's do 3 PM",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "Scheduling your meeting with Dr. Emily Carter for next Tuesday at 3 PM.",
+                    "ground_truth": [
+                        "schedule_meeting('Dr. Emily Carter', 'next Tuesday', '3 PM')"
+                    ]
+                },
+                {
+                    "prompt": "Make sure she gets a calendar invite too",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "Sending her a calendar invite now.",
+                    "ground_truth": [
+                        "send_calendar_invite('Dr. Emily Carter', 'next Tuesday', '3 PM')"
+                    ]
+                },
+                {
+                    "prompt": "And text her to confirm she got it?",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "What would you like the text message to say?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Just ask if the Tuesday 3 PM time works for her",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "Sending that confirmation message to Dr. Carter now.",
+                    "ground_truth": [
+                        "send_sms('dr_emily_carter_phone', 'Does Tuesday at 3 PM work for our meeting?')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I forgot about Mother's Day",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Would you like me to help you order something?",
+                    "ground_truth": [
+                        "get_user_by_id('87654321-4321-4321-4321-0987654321ba')",
+                        "login_user('jane.doe@example.com', 'anothersecurepassword')"
+                    ]
+                },
+                {
+                    "prompt": "Yes! Get my mom flowers, like a nice bouquet",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Ordering a bouquet for your mom now.",
+                    "ground_truth": [
+                        "order_flowers('Mom', 'bouquet')"
+                    ]
+                },
+                {
+                    "prompt": "When will they arrive? I need them by tomorrow morning",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Setting the delivery time for tomorrow morning.",
+                    "ground_truth": [
+                        "set_delivery_time('tomorrow morning')"
+                    ]
+                },
+                {
+                    "prompt": "Perfect. Oh and can you remind me to call her tomorrow at 9 AM?",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Setting a reminder to call your mom tomorrow at 9 AM.",
+                    "ground_truth": [
+                        "set_reminder('call mom', 'tomorrow', '9 AM')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I'm planning a date night for Friday",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "That sounds nice! What would you like help with?",
+                    "ground_truth": [
+                        "get_user_by_id('11223344-5566-7788-99aa-bbccddeeff00')",
+                        "login_user('alex.smith@example.com', 'password1234')"
+                    ]
+                },
+                {
+                    "prompt": "Can you book a table at La Bella Vita?",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Sure! How many people and what time?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Table for two, Friday night around 7 or 8",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Booking a table for two at La Bella Vita for Friday night.",
+                    "ground_truth": [
+                        "book_table('La Bella Vita', 'Friday night', 2)"
+                    ]
+                },
+                {
+                    "prompt": "It's actually our anniversary, should I let them know?",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Definitely! I'll notify the restaurant about your special occasion.",
+                    "ground_truth": [
+                        "add_special_request('La Bella Vita', 'anniversary celebration')"
+                    ]
+                },
+                {
+                    "prompt": "Great! And set a reminder for Thursday to confirm the reservation",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Setting a reminder for Thursday to confirm your La Bella Vita reservation.",
+                    "ground_truth": [
+                        "set_reminder('confirm La Bella Vita reservation', 'Thursday', '')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "My sink is leaking everywhere, I need help",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "That sounds urgent. Would you like me to find a plumber?",
+                    "ground_truth": [
+                        "get_user_by_id('22334455-6677-8899-aabb-ccddeeff0011')",
+                        "login_user('chris.jones@example.com', 'mypassword')"
+                    ]
+                },
+                {
+                    "prompt": "Yes please, someone who can come this weekend",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "Searching for plumbers available this weekend.",
+                    "ground_truth": [
+                        "search_service_provider('plumber', 'this weekend')"
+                    ]
+                },
+                {
+                    "prompt": "What did you find?",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "I found several plumbers. Would you like the one with the best reviews?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yeah, book whoever has the best reviews",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "Booking the highest-rated plumber for you now.",
+                    "ground_truth": [
+                        "book_service_provider('plumber', 'best reviews')"
+                    ]
+                },
+                {
+                    "prompt": "When are they coming? Text me the details",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "Sending you the appointment details via text.",
+                    "ground_truth": [
+                        "send_sms('user_phone', plumber_appointment_details)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I'm supposed to fly out tomorrow morning",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Would you like me to check your flight status?",
+                    "ground_truth": [
+                        "get_user_by_id('33445566-7788-99aa-bbcc-ddeeff001122')",
+                        "login_user('pat.taylor@example.com', 'securepass')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah, see if it's on time",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Checking your flight status for tomorrow morning.",
+                    "ground_truth": [
+                        "check_flight_status('tomorrow morning')"
+                    ]
+                },
+                {
+                    "prompt": "What's the status?",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Your flight is showing a 3-hour delay.",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Damn. Check what other flights are available",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Looking for alternative flights now.",
+                    "ground_truth": [
+                        "check_next_available_flight()"
+                    ]
+                },
+                {
+                    "prompt": "If there's something earlier, book it",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Booking the next available flight for you.",
+                    "ground_truth": [
+                        "book_flight('next available')"
+                    ]
+                },
+                {
+                    "prompt": "And text me the new confirmation number",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Sending your new flight confirmation via text.",
+                    "ground_truth": [
+                        "send_sms('user_phone', new_flight_confirmation)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I keep forgetting to call my dentist",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Would you like me to set a reminder?",
+                    "ground_truth": [
+                        "get_user_by_id('44556677-8899-aabb-ccdd-eeff00112233')",
+                        "login_user('sam.wilson@example.com', 'mypassword123')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah, remind me to call them",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "When would you like to be reminded?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Tomorrow at 10 AM",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Setting a reminder to call your dentist tomorrow at 10 AM.",
+                    "ground_truth": [
+                        "set_reminder('call dentist', 'tomorrow', '10 AM')"
+                    ]
+                },
+                {
+                    "prompt": "Can you also ping me 15 minutes before?",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Setting a notification for 15 minutes before the call.",
+                    "ground_truth": [
+                        "set_notification('15 minutes before', 'call dentist')"
+                    ]
+                },
+                {
+                    "prompt": "Perfect. And if I don't call by 10:30, remind me again",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Setting a backup reminder for 10:30 AM tomorrow.",
+                    "ground_truth": [
+                        "set_reminder('call dentist - backup', 'tomorrow', '10:30 AM')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "My daughter's birthday is coming up and she loves chocolate",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "That's sweet! Are you thinking of baking something?",
+                    "ground_truth": [
+                        "get_user_by_id('55667788-99aa-bbcc-ddee-ff0011223344')",
+                        "login_user('lisa.brown@example.com', 'chocolatefan')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah, can you find me a chocolate cake recipe?",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Searching for a chocolate cake recipe now.",
+                    "ground_truth": [
+                        "search_recipe('chocolate cake')"
+                    ]
+                },
+                {
+                    "prompt": "Great! What ingredients do I need?",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "I found a recipe. Would you like me to add the ingredients to your shopping list?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yes please, add everything to the list",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Adding all the chocolate cake ingredients to your shopping list.",
+                    "ground_truth": [
+                        "add_to_shopping_list('chocolate cake ingredients')"
+                    ]
+                },
+                {
+                    "prompt": "And remind me to go shopping tomorrow afternoon",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Setting a reminder for tomorrow afternoon to go shopping.",
+                    "ground_truth": [
+                        "set_reminder('go shopping for cake ingredients', 'tomorrow', 'afternoon')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I'm traveling to France next week",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "That's exciting! How can I help you prepare?",
+                    "ground_truth": [
+                        "get_user_by_id('66778899-aabb-ccdd-eeff-001122334455')",
+                        "login_user('mike.johnson@example.com', 'bonjour123')"
+                    ]
+                },
+                {
+                    "prompt": "How do I say 'Good morning' in French?",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "'Good morning' in French is 'Bonjour'.",
+                    "ground_truth": [
+                        "translate_text('Good morning', 'French')"
+                    ]
+                },
+                {
+                    "prompt": "Can you teach me how to say it properly?",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "Playing the pronunciation for 'Bonjour' now.",
+                    "ground_truth": [
+                        "play_pronunciation('Bonjour')"
+                    ]
+                },
+                {
+                    "prompt": "And remind me to practice this every morning until my trip",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "Setting a daily reminder to practice saying Bonjour.",
+                    "ground_truth": [
+                        "set_reminder('practice French - Bonjour', 'daily', '9 AM')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "Got any plans this weekend?",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "I don't have plans, but I can help you with yours! What are you thinking?",
+                    "ground_truth": [
+                        "get_user_by_id('778899aa-bbcc-ddee-ff00-112233445566')",
+                        "login_user('emma.watson@example.com', 'weatherfan')"
+                    ]
+                },
+                {
+                    "prompt": "Not sure yet. What's the weather looking like?",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Checking the weather for this weekend.",
+                    "ground_truth": [
+                        "check_weather('this weekend')"
+                    ]
+                },
+                {
+                    "prompt": "Is it going to be nice?",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Yes! It's going to be sunny all weekend.",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Perfect! What should I do outside?",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Let me suggest some outdoor activities for sunny weather.",
+                    "ground_truth": [
+                        "suggest_outdoor_activities('sunny weather')"
+                    ]
+                },
+                {
+                    "prompt": "I like the hiking idea. Any trails nearby?",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Let me search for hiking trails in your area.",
+                    "ground_truth": [
+                        "search_service_provider('hiking trails', 'nearby')"
+                    ]
+                },
+                {
+                    "prompt": "Remind me Saturday morning to pack sunscreen and water",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Setting a reminder for Saturday morning about hiking supplies.",
+                    "ground_truth": [
+                        "set_reminder('pack sunscreen and water for hiking', 'Saturday', 'morning')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "We need to have a team sync",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "I can help schedule that. When works best?",
+                    "ground_truth": [
+                        "get_user_by_id('12345678-1234-1234-1234-1234567890ab')",
+                        "login_user('john.doe@example.com', 'securepassword123')"
+                    ]
+                },
+                {
+                    "prompt": "Not sure. Check if tomorrow works for everyone",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "What time tomorrow should I propose?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "How about 3 PM?",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "Scheduling a team meeting for tomorrow at 3 PM.",
+                    "ground_truth": [
+                        "schedule_meeting('team', '3 PM', 'tomorrow')"
+                    ]
+                },
+                {
+                    "prompt": "Can you text everyone to confirm they got the invite?",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "What should the confirmation message say?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Just ask them to confirm they can make the 3 PM meeting tomorrow",
+                    "context": {
+                        "user_id": "12345678-1234-1234-1234-1234567890ab"
+                    },
+                    "assist": "Sending confirmation requests to all team members now.",
+                    "ground_truth": [
+                        "send_sms('team_members', 'Can you confirm you can make the 3 PM meeting tomorrow?')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "My friend's birthday is next week",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "That's coming up soon! Need help finding a gift?",
+                    "ground_truth": [
+                        "get_user_by_id('87654321-4321-4321-4321-0987654321ba')",
+                        "login_user('jane.doe@example.com', 'anothersecurepassword')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah, I want to get them something nice",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "What kind of gift are you thinking?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "They love gardening, maybe a book about it?",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Great idea! Ordering a gardening book for your friend.",
+                    "ground_truth": [
+                        "order_gift('gardening book')"
+                    ]
+                },
+                {
+                    "prompt": "When will it arrive? I need it before next Saturday",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Setting delivery for before next Saturday.",
+                    "ground_truth": [
+                        "set_delivery_time('before next Saturday')"
+                    ]
+                },
+                {
+                    "prompt": "Perfect! Remind me on Friday to wrap it",
+                    "context": {
+                        "user_id": "87654321-4321-4321-4321-0987654321ba"
+                    },
+                    "assist": "Setting a reminder for Friday to wrap the gift.",
+                    "ground_truth": [
+                        "set_reminder('wrap birthday gift', 'Friday', '')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I'm planning a trip to Europe",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "That sounds amazing! Where in Europe are you going?",
+                    "ground_truth": [
+                        "get_user_by_id('11223344-5566-7788-99aa-bbccddeeff00')",
+                        "login_user('alex.smith@example.com', 'password1234')"
+                    ]
+                },
+                {
+                    "prompt": "Paris! I need to book a hotel",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Great choice! Any specific area in Paris?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Somewhere near the Eiffel Tower would be perfect",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Booking a hotel in Paris near the Eiffel Tower.",
+                    "ground_truth": [
+                        "book_hotel('Paris', 'Eiffel Tower')"
+                    ]
+                },
+                {
+                    "prompt": "What dates did you book it for?",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "I need to know your travel dates. When are you visiting?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Oh right, book it for March 15-20",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Updating the hotel booking for March 15-20.",
+                    "ground_truth": [
+                        "book_hotel('Paris', 'Eiffel Tower', 'March 15-20')"
+                    ]
+                },
+                {
+                    "prompt": "And remind me a week before to start packing",
+                    "context": {
+                        "user_id": "11223344-5566-7788-99aa-bbccddeeff00"
+                    },
+                    "assist": "Setting a reminder for March 8th to start packing for Paris.",
+                    "ground_truth": [
+                        "set_reminder('start packing for Paris trip', 'March 8', '')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I have guests coming over for dinner tonight",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "That's nice! How can I help with your dinner prep?",
+                    "ground_truth": [
+                        "get_user_by_id('22334455-6677-8899-aabb-ccddeeff0011')",
+                        "login_user('chris.jones@example.com', 'mypassword')"
+                    ]
+                },
+                {
+                    "prompt": "I need a recipe but one of them doesn't eat meat",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "I can find you a vegetarian recipe. What type of meal?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Something for dinner, nothing too complicated",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "Searching for an easy vegetarian dinner recipe.",
+                    "ground_truth": [
+                        "search_recipe('vegetarian dinner')"
+                    ]
+                },
+                {
+                    "prompt": "That pasta dish looks good. Do I have everything?",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "Would you like me to add any missing ingredients to your shopping list?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yeah, add whatever I need to the list",
+                    "context": {
+                        "user_id": "22334455-6677-8899-aabb-ccddeeff0011"
+                    },
+                    "assist": "Adding the vegetarian pasta ingredients to your shopping list.",
+                    "ground_truth": [
+                        "add_to_shopping_list('vegetarian pasta dinner ingredients')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I'm trying to learn some Spanish phrases",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "That's great! Which phrases would you like to learn?",
+                    "ground_truth": [
+                        "get_user_by_id('33445566-7788-99aa-bbcc-ddeeff001122')",
+                        "login_user('pat.taylor@example.com', 'securepass')"
+                    ]
+                },
+                {
+                    "prompt": "Can you help me translate some?",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Of course! What would you like me to translate?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "How do I ask 'How are you?' in Spanish?",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "'How are you?' in Spanish is '¿Cómo estás?'.",
+                    "ground_truth": [
+                        "translate_text('How are you?', 'Spanish')"
+                    ]
+                },
+                {
+                    "prompt": "Can you show me how to say it?",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Playing the pronunciation for '¿Cómo estás?' now.",
+                    "ground_truth": [
+                        "play_pronunciation('¿Cómo estás?')"
+                    ]
+                },
+                {
+                    "prompt": "Thanks! Remind me to practice this phrase every day",
+                    "context": {
+                        "user_id": "33445566-7788-99aa-bbcc-ddeeff001122"
+                    },
+                    "assist": "Setting a daily reminder to practice your Spanish phrase.",
+                    "ground_truth": [
+                        "set_reminder('practice Spanish phrase', 'daily', '8 AM')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I have a business trip coming up",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Where are you traveling to?",
+                    "ground_truth": [
+                        "get_user_by_id('44556677-8899-aabb-ccdd-eeff00112233')",
+                        "login_user('sam.wilson@example.com', 'mypassword123')"
+                    ]
+                },
+                {
+                    "prompt": "New York. Can you check tomorrow's weather?",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Checking the weather in New York for tomorrow.",
+                    "ground_truth": [
+                        "check_weather('New York', 'tomorrow')"
+                    ]
+                },
+                {
+                    "prompt": "Is it going to rain?",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Yes, there's a 70% chance of rain tomorrow in New York.",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Great, I need to pack an umbrella then",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Would you like a reminder to pack your umbrella?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yes, remind me tonight before I finish packing",
+                    "context": {
+                        "user_id": "44556677-8899-aabb-ccdd-eeff00112233"
+                    },
+                    "assist": "Setting a reminder for this evening to pack your umbrella.",
+                    "ground_truth": [
+                        "set_reminder('pack umbrella for NYC trip', 'today', '8 PM')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I have a doctor's appointment coming up",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Would you like me to help you remember it?",
+                    "ground_truth": [
+                        "get_user_by_id('55667788-99aa-bbcc-ddee-ff0011223344')",
+                        "login_user('lisa.brown@example.com', 'chocolatefan')"
+                    ]
+                },
+                {
+                    "prompt": "Yeah, I keep forgetting about my appointments",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "I can set reminders. Which appointment do you need help with?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "The one with Dr. Smith",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "When is your appointment with Dr. Smith?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Tomorrow at 10 AM",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Setting a reminder for your Dr. Smith appointment tomorrow at 10 AM.",
+                    "ground_truth": [
+                        "set_reminder('Dr. Smith appointment', 'tomorrow', '10 AM')"
+                    ]
+                },
+                {
+                    "prompt": "Can you also remind me an hour before to leave the house?",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Setting an additional reminder for 9 AM to leave for the appointment.",
+                    "ground_truth": [
+                        "set_reminder('leave for Dr. Smith appointment', 'tomorrow', '9 AM')"
+                    ]
+                },
+                {
+                    "prompt": "And text me the clinic address so I have it handy",
+                    "context": {
+                        "user_id": "55667788-99aa-bbcc-ddee-ff0011223344"
+                    },
+                    "assist": "Sending you Dr. Smith's clinic address via text.",
+                    "ground_truth": [
+                        "send_sms('user_phone', 'Dr. Smith clinic address: 123 Medical Plaza')"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I need someone to fix something in my house",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "What needs to be fixed?",
+                    "ground_truth": [
+                        "get_user_by_id('66778899-aabb-ccdd-eeff-001122334455')",
+                        "login_user('mike.johnson@example.com', 'bonjour123')"
+                    ]
+                },
+                {
+                    "prompt": "My kitchen faucet won't stop dripping",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "Sounds like you need a plumber. Should I search for one?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yes please, find me a plumber",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "Searching for plumbers who can fix leaky faucets.",
+                    "ground_truth": [
+                        "search_service_provider('plumber', 'leaky faucet')"
+                    ]
+                },
+                {
+                    "prompt": "How soon can someone come out?",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "I found a plumber available today. Should I book them?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Yes, book them and text me their arrival time",
+                    "context": {
+                        "user_id": "66778899-aabb-ccdd-eeff-001122334455"
+                    },
+                    "assist": "Booking the plumber and sending you the details.",
+                    "ground_truth": [
+                        "book_service_provider('plumber', 'leaky faucet')",
+                        "send_sms('user_phone', plumber_arrival_time)"
+                    ]
+                }
+            ]
+        },
+        {
+            "turns": [
+                {
+                    "prompt": "I need to visit my sister on the West Coast",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Where on the West Coast does she live?",
+                    "ground_truth": [
+                        "get_user_by_id('778899aa-bbcc-ddee-ff00-112233445566')",
+                        "login_user('emma.watson@example.com', 'weatherfan')"
+                    ]
+                },
+                {
+                    "prompt": "Los Angeles. Can you book me a flight?",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Sure! When would you like to fly to Los Angeles?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "Next weekend would be good",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Booking a flight to Los Angeles for next weekend.",
+                    "ground_truth": [
+                        "book_flight('Los Angeles', 'next weekend')"
+                    ]
+                },
+                {
+                    "prompt": "When I land, text my sister to pick me up",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "I'll send her a message. What's her phone number?",
+                    "ground_truth": []
+                },
+                {
+                    "prompt": "She's already in my contacts, just text Sarah",
+                    "context": {
+                        "user_id": "778899aa-bbcc-ddee-ff00-112233445566"
+                    },
+                    "assist": "Sending Sarah a message about your arrival.",
+                    "ground_truth": [
+                        "send_sms('sarah_phone', 'I booked a flight to LA next weekend. Can you pick me up?')"
+                    ]
                 }
             ]
         }

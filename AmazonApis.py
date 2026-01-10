@@ -118,6 +118,60 @@ class AmazonApis:
             return self.state["users"].get(user_id)
         return None
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Union[str, Dict, List, None]]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Union[str, Dict, List, None]]: User data dictionary containing:
+                - user_id (str): The user's UUID
+                - email (str): User's email address (needed for login)
+                - password (str): User's password (needed for login)
+                - first_name (str): User's first name
+                - last_name (str): User's last name
+                - phone_number (str): User's phone number
+                - balance (float): Account balance
+                - cart (Dict): Shopping cart with product IDs and quantities
+                - orders (Dict): Order history
+                - addresses (Dict): Saved shipping addresses
+                - payment_cards (Dict): Saved payment methods
+                - wish_list (List): Wish list items
+                - subscriptions (Dict): Active subscriptions (e.g., Prime)
+                Returns error dictionary if user not found:
+                - status (bool): False
+                - message (str): Error message indicating user not found
+        
+        Example:
+            >>> api.get_user_by_id("7017da78-65cb-495a-afba-14dd3ae6bfd8")
+            {
+                "user_id": "7017da78-65cb-495a-afba-14dd3ae6bfd8",
+                "email": "john.lane@knitting-patterns.net",
+                "password": "3^8t6vNx",
+                "first_name": "John",
+                ...
+            }
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes credentials intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self._get_user_data(user_id)
+        if not user_data:
+            return {
+                "status": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def _update_user_data(self, user_id: str, key: str, value: Any):
         """
         Updates a specific field in a user's data record.
@@ -980,6 +1034,9 @@ class AmazonApis:
             return {"promo_status": True, "message": "Promo code already applied to cart."}
 
         for product_id, quantity in user_data.get("cart", {}).items():
+            # Skip non-product keys like 'promo_code' and 'total_price'
+            if product_id in ["promo_code", "total_price"]:
+                continue
             product_info = self.state["products"].get(product_id)
             if product_info:
                 cart_total += product_info["price"] * quantity

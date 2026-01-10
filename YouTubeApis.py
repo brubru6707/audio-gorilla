@@ -211,6 +211,35 @@ class YouTubeApis:
         """
         return self.users.get(user_id)
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Any]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Any]: User data dictionary containing all user fields including credentials.
+                Returns error dictionary if user not found with status=False and message.
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes credentials intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self.users.get(user_id)
+        if not user_data:
+            return {
+                "status": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def _update_user_data(self, user_id: str, key: str, value: Any) -> bool:
         """
         Helper method to update a specific key-value pair in a user's data dictionary.
@@ -1647,6 +1676,133 @@ class YouTubeApis:
             "pageInfo": {
                 "totalResults": total_results,
                 "resultsPerPage": maxResults
+            },
+            "items": items
+        }
+        
+        if offset + maxResults < total_results:
+            response["nextPageToken"] = f"offset_{offset + maxResults}"
+        
+        return response
+
+    def search_channels(self, query: str, maxResults: int = 10, pageToken: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Search for channels based on a query string. This is a public endpoint requiring no authentication.
+        
+        This method searches through all channels in the backend, matching the query against channel titles
+        and descriptions (case-insensitive). Results are sorted by subscriber count in descending order.
+        Pagination is supported using pageToken. This simulates YouTube's channel search functionality
+        for discovering channels by name or topic.
+
+        Args:
+            query (str): The search query string to match against channels. The search is case-insensitive
+                and looks for the query as a substring in:
+                - Channel titles
+                - Channel descriptions
+                Cannot be empty or whitespace-only.
+            maxResults (int, optional): Maximum number of search results to return per page. Controls
+                pagination page size. Defaults to 10. Valid range is typically 1-50.
+            pageToken (Optional[str], optional): Token for retrieving a specific page of results. If None,
+                returns the first page. The token format is "offset_{number}" where {number} is the
+                offset in the results list. Use the "nextPageToken" from a previous response to get
+                subsequent pages. Defaults to None.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing search results in YouTube API v3 format:
+                {
+                    "kind": "youtube#searchListResponse",
+                    "etag": str,                    # Based on hash of query
+                    "pageInfo": {
+                        "totalResults": int,        # Total number of channels matching the query
+                        "resultsPerPage": int       # Number of results in this response (maxResults)
+                    },
+                    "items": [                      # List of search result items (sorted by subscribers)
+                        {
+                            "kind": "youtube#searchResult",
+                            "etag": str,            # Entity tag for this result
+                            "id": {
+                                "kind": "youtube#channel",
+                                "channelId": str    # UUID of the matching channel
+                            },
+                            "snippet": {
+                                "publishedAt": str, # Channel creation date (ISO 8601)
+                                "title": str,       # Channel name
+                                "description": str, # Channel description
+                                "channelId": str    # UUID of the channel (same as id.channelId)
+                            }
+                        },
+                        # ... more search results
+                    ],
+                    "nextPageToken": str (optional) # Present only if more results are available
+                }
+
+        Raises:
+            Exception: If query is empty or contains only whitespace
+        
+        Note:
+            - This method does NOT require authentication
+            - Results are sorted by subscriber count (most subscribers first)
+            - Search is case-insensitive and uses substring matching
+            - This enables natural language queries like "subscribe to The Daily Glimpse"
+        
+        Example:
+            >>> api = YouTubeApis()
+            >>> results = api.search_channels("gaming", maxResults=5)
+            >>> for item in results["items"]:
+            ...     print(item["snippet"]["title"])
+        """
+        if not query or not query.strip():
+            raise Exception("Query cannot be empty")
+        
+        query_lower = query.lower()
+        matching_channels = []
+        
+        # Search through all channels
+        for channel_id, channel_data in self.channels.items():
+            title = channel_data.get("title", "").lower()
+            description = channel_data.get("description", "").lower()
+            
+            # Check if query matches title or description
+            if query_lower in title or query_lower in description:
+                matching_channels.append((channel_id, channel_data))
+        
+        # Sort by subscriber count (descending)
+        matching_channels.sort(key=lambda x: x[1].get("subscriber_count", 0), reverse=True)
+        
+        # Pagination
+        offset = 0
+        if pageToken and pageToken.startswith("offset_"):
+            try:
+                offset = int(pageToken.split("_")[1])
+            except (ValueError, IndexError):
+                offset = 0
+        
+        total_results = len(matching_channels)
+        paginated_channels = matching_channels[offset:offset + maxResults]
+        
+        items = []
+        for channel_id, channel_data in paginated_channels:
+            items.append({
+                "kind": "youtube#searchResult",
+                "etag": f"etag_{channel_id}",
+                "id": {
+                    "kind": "youtube#channel",
+                    "channelId": channel_id
+                },
+                "snippet": {
+                    "publishedAt": channel_data.get("created_at", ""),
+                    "title": channel_data.get("title", ""),
+                    "description": channel_data.get("description", ""),
+                    "channelId": channel_id
+                }
+            })
+        
+        response = {
+            "kind": "youtube#searchListResponse",
+            "etag": f"etag_{abs(hash(query))}",
+            "pageInfo": {
+                "totalResults": total_results,
+                "resultsPerPage": len(items)
             },
             "items": items
         }

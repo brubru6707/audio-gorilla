@@ -5,166 +5,287 @@
             "context": {
                 "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "create_folder('Q4 Reports', None, None)", "create_file('summary.txt', 'text/plain', ['<new_folder_id>'], None, False)"]
+            "ground_truth": [
+                "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                "authenticate('presley.dean90@rental-properties.co')",
+                "create_folder('Q4 Reports', None, None)",
+                "create_file('summary.txt', 'text/plain', ['<new_folder_id>'], None, False)"
+            ]
         },
         {
             "prompt": "List all files that contain 'Quarterly' in the name and delete the one named 'Quarterly Review_371.txt'.",
             "context": {
                 "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
             },
-            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "list_files('name contains \"Quarterly\"', 100, None, None, 'drive')", "delete_file('516db945-b4d5-4bb9-ab7f-e7fff4e347b0')"]
+            "ground_truth": [
+                "get_user_by_id('28b7772a-b5a7-4c1e-9d20-3f7f7e043c83')",
+                "authenticate('andrew.myers64@nasa-updates.online')",
+                "list_files('name contains \"Quarterly\"', 100, None, None, 'drive')",
+                "delete_file('516db945-b4d5-4bb9-ab7f-e7fff4e347b0')"
+            ]
         },
         {
             "prompt": "Copy the file 'model_623.py' to a new folder named 'Code Backup' and rename the copy to 'model_backup.py'.",
             "context": {
                 "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "create_folder('Code Backup', None, None)", "copy_file('12db9828-a3c6-467d-8871-7e6ec88fab47', 'model_backup.py', ['<new_folder_id>'], None)"]
+            "ground_truth": [
+                "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                "authenticate('presley.dean90@rental-properties.co')",
+                "create_folder('Code Backup', None, None)",
+                "copy_file('12db9828-a3c6-467d-8871-7e6ec88fab47', 'model_backup.py', ['<new_folder_id>'], None)"
+            ]
         },
         {
             "prompt": "Share my file 'Whitepaper_926.txt' with eli.watson1@train-travelers.org and give them writer access.",
             "context": {
                 "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
             },
-            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "create_permission('d095fdf5-838d-4aa0-bce8-31812e8ee9cd', 'writer', 'user', 'eli.watson1@train-travelers.org', None)"]
+            "ground_truth": [
+                "get_user_by_id('28b7772a-b5a7-4c1e-9d20-3f7f7e043c83')",
+                "authenticate('andrew.myers64@nasa-updates.online')",
+                "create_permission('d095fdf5-838d-4aa0-bce8-31812e8ee9cd', 'writer', 'user', 'eli.watson1@train-travelers.org', None)"
+            ]
         },
         {
             "prompt": "Move my file 'Screenshot_241.jpeg' from the Work_6 folder to the root directory and star it.",
             "context": {
                 "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "update_file('66af1145-835f-4e99-854b-8ccc23495e0a', None, None, None, True, None, 'root', '217a066c-4133-46d6-9109-3bf66cf40580')"]
+            "ground_truth": [
+                "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                "authenticate('presley.dean90@rental-properties.co')",
+                "update_file('66af1145-835f-4e99-854b-8ccc23495e0a', None, None, None, True, None, 'root', '217a066c-4133-46d6-9109-3bf66cf40580')"
+            ]
         }
     ],
-    "Multiturn": [
+    "multiturn": [
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to create a new folder in my Drive."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                        "authenticate('eli.watson1@train-travelers.org')"
+                    ],
                     "content": "Sure! What would you like to name the folder?"
                 },
                 {
                     "role": "user",
                     "content": "Name it 'Tax Documents 2025'."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "create_folder('Tax Documents 2025', None, 'Folder for tax documents')"
+                    ],
+                    "content": "Done! I've created the folder 'Tax Documents 2025'."
                 }
             ],
             "context": {
                 "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
             },
-            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "create_folder('Tax Documents 2025', None, 'Folder for tax documents')"]
+            "ground_truth": [
+                "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                "authenticate('eli.watson1@train-travelers.org')",
+                "create_folder('Tax Documents 2025', None, 'Folder for tax documents')"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Find a file in my Drive."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                        "authenticate('eli.watson1@train-travelers.org')"
+                    ],
                     "content": "What are you looking for? A specific name or type?"
                 },
                 {
                     "role": "user",
                     "content": "Look for 'Contract_840.txt' and show me the details."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "list_files('name = \"Contract_840.txt\"', 1, None, None, 'drive')",
+                        "get_file('a5795d7d-8b27-433e-bfe5-ede9f77e9539', '*')"
+                    ],
+                    "content": "Found it! Here are the details."
                 }
             ],
             "context": {
                 "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
             },
-            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "list_files('name = \"Contract_840.txt\"', 1, None, None, 'drive')", "get_file('a5795d7d-8b27-433e-bfe5-ede9f77e9539', '*')"]
+            "ground_truth": [
+                "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                "authenticate('eli.watson1@train-travelers.org')",
+                "list_files('name = \"Contract_840.txt\"', 1, None, None, 'drive')",
+                "get_file('a5795d7d-8b27-433e-bfe5-ede9f77e9539', '*')"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to update a file in my Drive."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('28b7772a-b5a7-4c1e-9d20-3f7f7e043c83')",
+                        "authenticate('andrew.myers64@nasa-updates.online')"
+                    ],
                     "content": "Which file? And what changes do you want to make?"
                 },
                 {
                     "role": "user",
                     "content": "The file 'Brochure_919.txt', move it to the Documents folder and star it."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "update_file('7b6cf047-9e93-4056-9bdf-490cd0902ad8', None, None, None, True, None, '2cdf2eec-48d0-45c3-aa47-1e783c5a185e', 'root')"
+                    ],
+                    "content": "Done! I've moved and starred the file."
                 }
             ],
             "context": {
                 "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
             },
-            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "update_file('7b6cf047-9e93-4056-9bdf-490cd0902ad8', None, None, None, True, None, '2cdf2eec-48d0-45c3-aa47-1e783c5a185e', 'root')"]
+            "ground_truth": [
+                "get_user_by_id('28b7772a-b5a7-4c1e-9d20-3f7f7e043c83')",
+                "authenticate('andrew.myers64@nasa-updates.online')",
+                "update_file('7b6cf047-9e93-4056-9bdf-490cd0902ad8', None, None, None, True, None, '2cdf2eec-48d0-45c3-aa47-1e783c5a185e', 'root')"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Delete a file from my Drive."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                        "authenticate('presley.dean90@rental-properties.co')"
+                    ],
                     "content": "Which file should I delete? Please provide the name."
                 },
                 {
                     "role": "user",
                     "content": "Delete 'Logo_339.png' if it exists."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "list_files('name = \"Logo_339.png\"', 1, None, None, 'drive')",
+                        "delete_file('e29216c7-2531-4a7a-bcef-e80f73adf85b')"
+                    ],
+                    "content": "File deleted successfully."
                 }
             ],
             "context": {
                 "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "list_files('name = \"Logo_339.png\"', 1, None, None, 'drive')", "delete_file('e29216c7-2531-4a7a-bcef-e80f73adf85b')"]
+            "ground_truth": [
+                "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                "authenticate('presley.dean90@rental-properties.co')",
+                "list_files('name = \"Logo_339.png\"', 1, None, None, 'drive')",
+                "delete_file('e29216c7-2531-4a7a-bcef-e80f73adf85b')"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I want to copy a file."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('28b7772a-b5a7-4c1e-9d20-3f7f7e043c83')",
+                        "authenticate('andrew.myers64@nasa-updates.online')"
+                    ],
                     "content": "Which file do you want to copy, and where to?"
                 },
                 {
                     "role": "user",
                     "content": "Copy 'Data Analysis_655.txt' to the Documents folder."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "copy_file('07a0a067-5a14-487b-a460-d25132d47583', 'Data Analysis_655.txt', ['2cdf2eec-48d0-45c3-aa47-1e783c5a185e'], None)"
+                    ],
+                    "content": "Done! File copied successfully."
                 }
             ],
             "context": {
                 "user_id": "28b7772a-b5a7-4c1e-9d20-3f7f7e043c83"
             },
-            "ground_truth": ["authenticate('andrew.myers64@nasa-updates.online')", "copy_file('07a0a067-5a14-487b-a460-d25132d47583', 'Data Analysis_655.txt', ['2cdf2eec-48d0-45c3-aa47-1e783c5a185e'], None)"]
+            "ground_truth": [
+                "get_user_by_id('28b7772a-b5a7-4c1e-9d20-3f7f7e043c83')",
+                "authenticate('andrew.myers64@nasa-updates.online')",
+                "copy_file('07a0a067-5a14-487b-a460-d25132d47583', 'Data Analysis_655.txt', ['2cdf2eec-48d0-45c3-aa47-1e783c5a185e'], None)"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "List files in a specific folder."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                        "authenticate('presley.dean90@rental-properties.co')"
+                    ],
                     "content": "Which folder? And any filters like file type?"
                 },
                 {
                     "role": "user",
                     "content": "The 'Work_6' folder, only images."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "list_files('\"217a066c-4133-46d6-9109-3bf66cf40580\" in parents and (mimeType contains \"image/\")', 100, None, None, 'drive')"
+                    ],
+                    "content": "Here are the images in that folder."
                 }
             ],
             "context": {
                 "user_id": "1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8"
             },
-            "ground_truth": ["authenticate('presley.dean90@rental-properties.co')", "list_files('\"217a066c-4133-46d6-9109-3bf66cf40580\" in parents and (mimeType contains \"image/\")', 100, None, None, 'drive')"]
+            "ground_truth": [
+                "get_user_by_id('1152b2c1-3bb4-4bfa-80b2-36091fe6e4e8')",
+                "authenticate('presley.dean90@rental-properties.co')",
+                "list_files('\"217a066c-4133-46d6-9109-3bf66cf40580\" in parents and (mimeType contains \"image/\")', 100, None, None, 'drive')"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "I need to organize my files."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                        "authenticate('eli.watson1@train-travelers.org')"
+                    ],
                     "content": "Sure! What kind of organization do you have in mind? Like by type, date, or something else?"
                 },
                 {
@@ -173,6 +294,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Got it. Which file types should I group? For example, documents, images, etc.?"
                 },
                 {
@@ -181,6 +303,7 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "Should I create new folders for each type or move to existing ones?"
                 },
                 {
@@ -189,26 +312,52 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "What should I name the folders?"
                 },
                 {
                     "role": "user",
                     "content": "Name them 'My Images', 'My PDFs', and 'My Spreadsheets'."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "create_folder('My Images', None, 'Folder for images')",
+                        "create_folder('My PDFs', None, 'Folder for PDFs')",
+                        "create_folder('My Spreadsheets', None, 'Folder for spreadsheets')",
+                        "list_files('mimeType contains \"image/\"', 100, None, None, 'drive')",
+                        "list_files('mimeType = \"application/pdf\"', 100, None, None, 'drive')",
+                        "list_files('mimeType contains \"spreadsheet\"', 100, None, None, 'drive')"
+                    ],
+                    "content": "All set! I've created the folders and organized your files."
                 }
             ],
             "context": {
                 "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
             },
-            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "create_folder('My Images', None, 'Folder for images')", "create_folder('My PDFs', None, 'Folder for PDFs')", "create_folder('My Spreadsheets', None, 'Folder for spreadsheets')", "list_files('mimeType contains \"image/\"', 100, None, None, 'drive')", "list_files('mimeType = \"application/pdf\"', 100, None, None, 'drive')", "list_files('mimeType contains \"spreadsheet\"', 100, None, None, 'drive')"]
+            "ground_truth": [
+                "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                "authenticate('eli.watson1@train-travelers.org')",
+                "create_folder('My Images', None, 'Folder for images')",
+                "create_folder('My PDFs', None, 'Folder for PDFs')",
+                "create_folder('My Spreadsheets', None, 'Folder for spreadsheets')",
+                "list_files('mimeType contains \"image/\"', 100, None, None, 'drive')",
+                "list_files('mimeType = \"application/pdf\"', 100, None, None, 'drive')",
+                "list_files('mimeType contains \"spreadsheet\"', 100, None, None, 'drive')"
+            ]
         },
         {
-            "conversations": [
+            "turns": [
                 {
                     "role": "user",
                     "content": "Share a file with someone."
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                        "authenticate('eli.watson1@train-travelers.org')"
+                    ],
                     "content": "Which file would you like to share, and who should I share it with?"
                 },
                 {
@@ -217,17 +366,29 @@
                 },
                 {
                     "role": "assistant",
+                    "ground_truth": [],
                     "content": "What level of access should they have? Reader, commenter, or writer?"
                 },
                 {
                     "role": "user",
                     "content": "Give them reader access."
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": [
+                        "create_permission('e2951b5b-a107-46e2-a5e9-ad9f18f2ac9e', 'reader', 'user', 'andrew.myers64@nasa-updates.online', None)"
+                    ],
+                    "content": "Done! I've shared the file with reader access."
                 }
             ],
             "context": {
                 "user_id": "646779d6-6990-4ade-a68d-fa2fc569f678"
             },
-            "ground_truth": ["authenticate('eli.watson1@train-travelers.org')", "create_permission('e2951b5b-a107-46e2-a5e9-ad9f18f2ac9e', 'reader', 'user', 'andrew.myers64@nasa-updates.online', None)"]
+            "ground_truth": [
+                "get_user_by_id('646779d6-6990-4ade-a68d-fa2fc569f678')",
+                "authenticate('eli.watson1@train-travelers.org')",
+                "create_permission('e2951b5b-a107-46e2-a5e9-ad9f18f2ac9e', 'reader', 'user', 'andrew.myers64@nasa-updates.online', None)"
+            ]
         }
     ]
 }

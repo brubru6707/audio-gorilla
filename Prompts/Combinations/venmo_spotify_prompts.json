@@ -1,0 +1,361 @@
+{
+    "multistep": [
+        {
+            "prompt": "Send twenty five dollars to my friend on Venmo username aaronthompson for the concert tickets then create a new Spotify playlist called Summer Concert Vibes and add three of my liked songs to it.",
+            "context": {
+                "venmo_user_id": "0c2ec3cc-5ebb-4f62-b3c1-1f4d6de87c21",
+                "spotify_user_id": "8b4c8891-3e06-4d65-8eca-b7210734db6c"
+            },
+            "ground_truth": ["login_venmo('aaron.thompson3782@green-energy.co')", "send_payment('aaronthompson', 25.00, 'Concert tickets')", "authenticate_spotify('aaron.hall37@streetwear-brands.com')", "create_playlist('Summer Concert Vibes')", "add_track_to_playlist('NEW_PLAYLIST_ID', '08f5f5b4-d392-4af4-848d-f8316b36bc5f')", "add_track_to_playlist('NEW_PLAYLIST_ID', '7f873160-158a-45a6-9e09-8996a082ada9')", "add_track_to_playlist('NEW_PLAYLIST_ID', '22f29176-a554-48f5-8195-50c16b713293')"]
+        },
+        {
+            "prompt": "Request fifteen dollars from adamsnyder on Venmo for the Spotify Premium subscription we split then go to Spotify and like three songs from my discover weekly.",
+            "context": {
+                "venmo_user_id": "581b217b-9674-4f23-bc0f-dee016286cac",
+                "spotify_user_id": "a08aa53e-626b-4810-bfe0-b997c865d3e8"
+            },
+            "ground_truth": ["login_venmo('adam.snyder2604@concert-tickets.online')", "request_payment('adamsnyder', 15.00, 'Spotify Premium split')", "authenticate_spotify('adam.ross454@investment-advice.online')", "like_song('5c01bb9b-a9c4-41f0-880a-76e034ba0074')", "like_song('4ad6f610-0e81-4f5b-a1f1-43f19ed86b04')", "like_song('0fac996e-9352-4d2c-a927-ab84387c5eca')"]
+        },
+        {
+            "prompt": "Check my Venmo balance then send thirty dollars to aishaibrahim for the music festival tickets and after that create a Spotify playlist named Festival Prep and make it public.",
+            "context": {
+                "venmo_user_id": "621fdf1a-17e1-4d95-b7d2-cc87134403a5",
+                "spotify_user_id": "df7d55b3-ed1d-43d9-bdb9-2515622a1a8c"
+            },
+            "ground_truth": ["login_venmo('aisha.ibrahim446@yoga-gear.online')", "get_balance()", "send_payment('aishaibrahim', 30.00, 'Music festival tickets')", "authenticate_spotify('aisha.ibrahim513@creative-works.app')", "create_playlist('Festival Prep', public=True)"]
+        },
+        {
+            "prompt": "Add a new Mastercard to my Venmo ending in nine eight seven six then log into Spotify and unlike the first three songs in my liked songs because I don't listen to them anymore.",
+            "context": {
+                "venmo_user_id": "6d5c1d81-33e9-4f02-ac57-062114e018ae",
+                "spotify_user_id": "298123ee-7e36-416b-a082-ac35e5049e96"
+            },
+            "ground_truth": ["login_venmo('alana.hall7803@car-repair.services')", "add_payment_card('Alana Mastercard', 'Alana Hall', '9876', '2029', '08')", "authenticate_spotify('alana.patterson523@craft-ideas.co')", "unlike_song('4e4ec984-00df-49e4-a8a0-6dc942782853')", "unlike_song('af766519-1214-45a6-80dd-5edb6cbf7cc4')", "unlike_song('3dfe44ef-4ac6-458f-9e42-9c33d062e01c')"]
+        },
+        {
+            "prompt": "Send ten dollars to alexandramoore on Venmo with note for Spotify family plan then create a collaborative Spotify playlist called Family Favorites and add two of my liked songs.",
+            "context": {
+                "venmo_user_id": "3d091d22-7730-4a4d-b5b2-dba1db4b1fa6",
+                "spotify_user_id": "5e297b35-282a-4491-a665-3b61dfbb221a"
+            },
+            "ground_truth": ["login_venmo('alexandra.moore4917@food-bloggers.online')", "send_payment('alexandramoore', 10.00, 'Spotify family plan')", "authenticate_spotify('alexandra.navarro722@database-management.online')", "create_playlist('Family Favorites', collaborative=True)", "add_track_to_playlist('NEW_PLAYLIST_ID', 'd329af55-2cf6-41a7-bf3d-c240983293cd')", "add_track_to_playlist('NEW_PLAYLIST_ID', '86238dd0-1f69-42dd-b410-ae2c7c319d09')"]
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I need to split some payments with friends and organize my music"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_venmo('ali.torres4934@online-education.online')"],
+                    "content": "I can help with that! Let's start with Venmo. What do you need to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Check my current balance first"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_balance()"],
+                    "content": "Your balance is two hundred nine dollars and eight cents. What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send forty dollars to alitorres for the music subscription"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_payment('alitorres', 40.00, 'Music subscription')"],
+                    "content": "Payment sent! Now what about your music?"
+                },
+                {
+                    "role": "user",
+                    "content": "Log into my Spotify account"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate_spotify('ali.ross265@ui-ux.design')"],
+                    "content": "Spotify authenticated. What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Create a playlist called Workout Mix"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_playlist('Workout Mix')"],
+                    "content": "Workout Mix playlist created. Want to add songs?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes add my first two liked songs to it"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_track_to_playlist('NEW_PLAYLIST_ID', '21ec4dc9-5dcb-4efb-a79e-949204309f69')", "add_track_to_playlist('NEW_PLAYLIST_ID', '9dee77ee-8dce-4d03-a140-5e1e985163ba')"],
+                    "content": "Songs added to your Workout Mix playlist!"
+                }
+            ],
+            "context": {
+                "venmo_user_id": "654fafb9-5cd6-4b9e-a9c6-492d6e896d75",
+                "spotify_user_id": "0fb5c509-3d88-4538-917c-9f8791df00da"
+            },
+            "ground_truth": ["login_venmo('ali.torres4934@online-education.online')", "get_balance()", "send_payment('alitorres', 40.00, 'Music subscription')", "authenticate_spotify('ali.ross265@ui-ux.design')", "create_playlist('Workout Mix')", "add_track_to_playlist('NEW_PLAYLIST_ID', '21ec4dc9-5dcb-4efb-a79e-949204309f69')", "add_track_to_playlist('NEW_PLAYLIST_ID', '9dee77ee-8dce-4d03-a140-5e1e985163ba')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Help me manage my Venmo payments and Spotify playlists"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_venmo('alice.sanchez6261@enterprise-data.solutions')"],
+                    "content": "Sure! Let's start with Venmo. What do you need?"
+                },
+                {
+                    "role": "user",
+                    "content": "Request twenty dollars from alicesanchez for the concert tickets"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["request_payment('alicesanchez', 20.00, 'Concert tickets')"],
+                    "content": "Payment request sent. What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Add a Visa card ending in five four three two expiring December two thousand thirty"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_payment_card('Alice Visa', 'Alice Sanchez', '5432', '2030', '12')"],
+                    "content": "Card added. Now for Spotify?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes log into my Spotify"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate_spotify('alice.ramirez974@wellness-center.info')"],
+                    "content": "Logged in. What would you like to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Create a new playlist called Road Trip Tunes"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_playlist('Road Trip Tunes')"],
+                    "content": "Road Trip Tunes created!"
+                },
+                {
+                    "role": "user",
+                    "content": "Add my three liked songs to it"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_track_to_playlist('NEW_PLAYLIST_ID', 'a8fc5c57-974a-4144-9953-97cc1c402591')", "add_track_to_playlist('NEW_PLAYLIST_ID', 'a6fc84d2-8d26-4af0-8aab-53f233b438ed')", "add_track_to_playlist('NEW_PLAYLIST_ID', 'ebe5daf1-f80d-482b-b652-a9403ff84f7f')"],
+                    "content": "All songs added to Road Trip Tunes!"
+                }
+            ],
+            "context": {
+                "venmo_user_id": "f1b95238-252d-432e-89e1-db3a15dd676c",
+                "spotify_user_id": "f09fed88-c1dc-4b20-bc9d-168de81ff950"
+            },
+            "ground_truth": ["login_venmo('alice.sanchez6261@enterprise-data.solutions')", "request_payment('alicesanchez', 20.00, 'Concert tickets')", "add_payment_card('Alice Visa', 'Alice Sanchez', '5432', '2030', '12')", "authenticate_spotify('alice.ramirez974@wellness-center.info')", "create_playlist('Road Trip Tunes')", "add_track_to_playlist('NEW_PLAYLIST_ID', 'a8fc5c57-974a-4144-9953-97cc1c402591')", "add_track_to_playlist('NEW_PLAYLIST_ID', 'a6fc84d2-8d26-4af0-8aab-53f233b438ed')", "add_track_to_playlist('NEW_PLAYLIST_ID', 'ebe5daf1-f80d-482b-b652-a9403ff84f7f')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I want to settle up with friends and curate my music"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_venmo('amara.diallo6027@creative-media.app')"],
+                    "content": "Let's do it! Starting with Venmo?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes send eighteen dollars to amaradiallo for the streaming services"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_payment('amaradiallo', 18.00, 'Streaming services')"],
+                    "content": "Payment sent! What's next?"
+                },
+                {
+                    "role": "user",
+                    "content": "Show me my Venmo balance"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_balance()"],
+                    "content": "You have ninety four dollars and seventeen cents. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Now switch to Spotify"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate_spotify('amara.diallo422@home-buying.guide')"],
+                    "content": "Spotify connected. What do you need?"
+                },
+                {
+                    "role": "user",
+                    "content": "Make a public playlist called Chill Vibes"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_playlist('Chill Vibes', public=True)"],
+                    "content": "Chill Vibes playlist created and set to public!"
+                },
+                {
+                    "role": "user",
+                    "content": "Add my first liked song to it"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_track_to_playlist('NEW_PLAYLIST_ID', '1dc02d2b-ae1e-477d-b504-fd2b83aabfd0')"],
+                    "content": "Song added to Chill Vibes!"
+                }
+            ],
+            "context": {
+                "venmo_user_id": "6ab5010c-7158-455e-bece-88d96e323302",
+                "spotify_user_id": "067ba194-eb80-43c4-af95-dfc2ceb68a07"
+            },
+            "ground_truth": ["login_venmo('amara.diallo6027@creative-media.app')", "send_payment('amaradiallo', 18.00, 'Streaming services')", "get_balance()", "authenticate_spotify('amara.diallo422@home-buying.guide')", "create_playlist('Chill Vibes', public=True)", "add_track_to_playlist('NEW_PLAYLIST_ID', '1dc02d2b-ae1e-477d-b504-fd2b83aabfd0')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I need to handle some payments and organize playlists"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_venmo('amir.morales8432@investment-strategies.online')"],
+                    "content": "Got it! Let's start with payments?"
+                },
+                {
+                    "role": "user",
+                    "content": "Request fifty dollars from amirmorales for the music equipment"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["request_payment('amirmorales', 50.00, 'Music equipment')"],
+                    "content": "Request sent! What else on Venmo?"
+                },
+                {
+                    "role": "user",
+                    "content": "Show my payment cards"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_payment_cards()"],
+                    "content": "Here are your saved cards. Need anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Now log into Spotify"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate_spotify('amir.soto90@simplecrm.dev')"],
+                    "content": "Spotify ready. What's your plan?"
+                },
+                {
+                    "role": "user",
+                    "content": "Create a collaborative playlist named Band Practice"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_playlist('Band Practice', collaborative=True)"],
+                    "content": "Band Practice collaborative playlist created!"
+                },
+                {
+                    "role": "user",
+                    "content": "Add two of my liked songs"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_track_to_playlist('NEW_PLAYLIST_ID', 'bb548053-50c0-4988-94ad-ec88734c701d')", "add_track_to_playlist('NEW_PLAYLIST_ID', '935b2ac5-9b6e-4049-904e-ad41716d0dfc')"],
+                    "content": "Two songs added to Band Practice!"
+                }
+            ],
+            "context": {
+                "venmo_user_id": "dc961d16-0c5e-4889-9be0-fa2cf1bf2455",
+                "spotify_user_id": "7da931f1-f112-4730-8a7d-9d08c6304453"
+            },
+            "ground_truth": ["login_venmo('amir.morales8432@investment-strategies.online')", "request_payment('amirmorales', 50.00, 'Music equipment')", "get_payment_cards()", "authenticate_spotify('amir.soto90@simplecrm.dev')", "create_playlist('Band Practice', collaborative=True)", "add_track_to_playlist('NEW_PLAYLIST_ID', 'bb548053-50c0-4988-94ad-ec88734c701d')", "add_track_to_playlist('NEW_PLAYLIST_ID', '935b2ac5-9b6e-4049-904e-ad41716d0dfc')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Help me with Venmo transactions and my Spotify library"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["login_venmo('anna.phillips6954@flight-tracker.com')"],
+                    "content": "Happy to help! What's first?"
+                },
+                {
+                    "role": "user",
+                    "content": "Send thirty five dollars to annaphillips for the DJ equipment"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_payment('annaphillips', 35.00, 'DJ equipment')"],
+                    "content": "Payment sent! What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Check my balance"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_balance()"],
+                    "content": "Your balance is two hundred twelve dollars and ten cents."
+                },
+                {
+                    "role": "user",
+                    "content": "Now go to Spotify"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate_spotify('anna.bennett941@social-media-management.online')"],
+                    "content": "Spotify authenticated. What do you want to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Create a playlist called Party Mix and make it public"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_playlist('Party Mix', public=True)"],
+                    "content": "Party Mix created and public!"
+                },
+                {
+                    "role": "user",
+                    "content": "Unlike my first liked song I don't like it anymore"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["unlike_song('350cd17b-5024-4c58-a069-d53dcb6a477f')"],
+                    "content": "Song removed from your liked songs!"
+                }
+            ],
+            "context": {
+                "venmo_user_id": "8d87e535-e2ad-4dc8-88d8-c83d28d00811",
+                "spotify_user_id": "df4a4950-9eeb-4c8c-a5fb-ab400828b178"
+            },
+            "ground_truth": ["login_venmo('anna.phillips6954@flight-tracker.com')", "send_payment('annaphillips', 35.00, 'DJ equipment')", "get_balance()", "authenticate_spotify('anna.bennett941@social-media-management.online')", "create_playlist('Party Mix', public=True)", "unlike_song('350cd17b-5024-4c58-a069-d53dcb6a477f')"]
+        }
+    ]
+}

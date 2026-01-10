@@ -1,48 +1,56 @@
 {
     "Multistep": [
         {
-            "prompt": "Post a tweet saying 'Just finished an amazing cup of coffee! ☕️' and then like the tweet with ID '8c27cd9b-3e71-4e49-a944-acca2de3f551'.",
+            "prompt": "Post a tweet saying 'Just finished an amazing cup of coffee! \u2615\ufe0f' and then like that tweet about solo travel being freeing or lonely.",
             "context": {
                 "user_id": "e558af4a-2680-49ed-8caf-1cf9e6bedb21"
             },
             "ground_truth": [
+                "get_user_by_id('e558af4a-2680-49ed-8caf-1cf9e6bedb21')",
                 "authenticate('token_henry.bennett9331@websolutions.io')",
-                "create_tweet('Just finished an amazing cup of coffee! ☕️')",
+                "create_tweet('Just finished an amazing cup of coffee! \u2615\ufe0f')",
+                "search_tweets('solo travel', 10)",
                 "like_tweet('8c27cd9b-3e71-4e49-a944-acca2de3f551')"
             ]
         },
         {
-            "prompt": "Update my bio to 'Passionate life coach helping people achieve greatness ✨' and send a DM to Carter Myers saying 'Thanks for the follow!'.",
+            "prompt": "Update my bio to 'Passionate life coach helping people achieve greatness \u2728' and send a DM to Carter Myers saying 'Thanks for the follow!'.",
             "context": {
                 "user_id": "fe53fb9b-1a20-4118-b1e5-1e2e1d74708a"
             },
             "ground_truth": [
+                "get_user_by_id('fe53fb9b-1a20-4118-b1e5-1e2e1d74708a')",
                 "authenticate('token_ava.reyes2093@healthy-recipes.blog')",
-                "update_profile(bio='Passionate life coach helping people achieve greatness ✨')",
+                "update_profile(bio='Passionate life coach helping people achieve greatness \u2728')",
+                "search_users('Carter Myers', 10)",
                 "send_dm('77f8eea7-157c-4b20-a5a5-5fde404d8588', 'Thanks for the follow!')"
             ]
         },
         {
-            "prompt": "Tweet 'Loving the intersection of art and tech! 🎨💻', check my follower count, and unlike the tweet 'a701bb1d-8d41-41ef-9aac-d59d87b093d4'.",
+            "prompt": "Tweet 'Loving the intersection of art and tech! \ud83c\udfa8\ud83d\udcbb', check my follower count, and unlike that tweet about dating being like a job interview with ghosting.",
             "context": {
                 "user_id": "77f8eea7-157c-4b20-a5a5-5fde404d8588"
             },
             "ground_truth": [
+                "get_user_by_id('77f8eea7-157c-4b20-a5a5-5fde404d8588')",
                 "authenticate('token_carter.myers2988@automotive-parts.store')",
-                "create_tweet('Loving the intersection of art and tech! 🎨💻')",
+                "create_tweet('Loving the intersection of art and tech! \ud83c\udfa8\ud83d\udcbb')",
                 "get_user_profile()",
+                "search_tweets('dating', 10)",
                 "unlike_tweet('a701bb1d-8d41-41ef-9aac-d59d87b093d4')"
             ]
         },
         {
-            "prompt": "Delete my tweet 'e578925d-3db6-40b2-91f7-6a2245884846' and then post a new tweet saying 'Fashion is about expressing your unique self 👗'.",
+            "prompt": "Delete my tweet about destiny and predetermination and then post a new tweet saying 'Fashion is about expressing your unique self \ud83d\udc57'.",
             "context": {
                 "user_id": "44eb3204-fec1-4072-8b39-6234951c9d12"
             },
             "ground_truth": [
+                "get_user_by_id('44eb3204-fec1-4072-8b39-6234951c9d12')",
                 "authenticate('token_luke.ross706@business-intelligence.group')",
+                "get_user_tweets(10, 0)",
                 "delete_tweet('e578925d-3db6-40b2-91f7-6a2245884846')",
-                "create_tweet('Fashion is about expressing your unique self 👗')"
+                "create_tweet('Fashion is about expressing your unique self \ud83d\udc57')"
             ]
         },
         {
@@ -51,7 +59,9 @@
                 "user_id": "9fd951d2-b512-44d1-9e09-dc5b624bbf5a"
             },
             "ground_truth": [
+                "get_user_by_id('9fd951d2-b512-44d1-9e09-dc5b624bbf5a')",
                 "authenticate('token_quinn.shaw7407@onlinemarket.org')",
+                "search_users('Henry Bennett', 10)",
                 "send_dm('e558af4a-2680-49ed-8caf-1cf9e6bedb21', 'Love your coffee posts!')",
                 "get_api_usage()",
                 "update_profile(name='Quinn Shaw | Developer')"
@@ -71,7 +81,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Tweet 'Great discussion on sustainable technology today! 🌱'"
+                    "content": "Tweet 'Great discussion on sustainable technology today! \ud83c\udf31'"
                 },
                 {
                     "role": "assistant",
@@ -90,8 +100,9 @@
                 "user_id": "a9d015ea-40ff-4420-916d-20536bf8b435"
             },
             "ground_truth": [
+                "get_user_by_id('a9d015ea-40ff-4420-916d-20536bf8b435')",
                 "authenticate('token_hannah.turner3998@knitting-patterns.net')",
-                "create_tweet('Great discussion on sustainable technology today! 🌱')",
+                "create_tweet('Great discussion on sustainable technology today! \ud83c\udf31')",
                 "get_user_profile()"
             ]
         },
@@ -126,7 +137,9 @@
                 "user_id": "77f8eea7-157c-4b20-a5a5-5fde404d8588"
             },
             "ground_truth": [
+                "get_user_by_id('77f8eea7-157c-4b20-a5a5-5fde404d8588')",
                 "authenticate('token_carter.myers2988@automotive-parts.store')",
+                "search_users('Ava Reyes', 10)",
                 "send_dm('fe53fb9b-1a20-4118-b1e5-1e2e1d74708a', 'Your life coaching content is so inspiring!')"
             ]
         },
@@ -142,7 +155,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Change my bio to 'Discussing great books and literary analysis 📚'"
+                    "content": "Change my bio to 'Discussing great books and literary analysis \ud83d\udcda'"
                 },
                 {
                     "role": "assistant",
@@ -161,8 +174,9 @@
                 "user_id": "80fcfa9e-0b57-406c-ab96-2650b4f6b1e2"
             },
             "ground_truth": [
+                "get_user_by_id('80fcfa9e-0b57-406c-ab96-2650b4f6b1e2')",
                 "authenticate('token_christian.chavez5374@financial-planning.services')",
-                "update_profile(bio='Discussing great books and literary analysis 📚')",
+                "update_profile(bio='Discussing great books and literary analysis \ud83d\udcda')",
                 "update_profile(name='Christian Chavez | Book Critic')"
             ]
         },
@@ -178,7 +192,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Like the tweet with ID '141cf51a-05f9-40ce-8230-8cd4079bc8c7'"
+                    "content": "Like that tweet about love being real but so are trust issues"
                 },
                 {
                     "role": "assistant",
@@ -186,7 +200,7 @@
                 },
                 {
                     "role": "user",
-                    "content": "Yes, post a tweet saying 'Fashion trends for 2026 are looking incredible! 👠'"
+                    "content": "Yes, post a tweet saying 'Fashion trends for 2026 are looking incredible! \ud83d\udc60'"
                 },
                 {
                     "role": "assistant",
@@ -197,9 +211,11 @@
                 "user_id": "44eb3204-fec1-4072-8b39-6234951c9d12"
             },
             "ground_truth": [
+                "get_user_by_id('44eb3204-fec1-4072-8b39-6234951c9d12')",
                 "authenticate('token_luke.ross706@business-intelligence.group')",
+                "search_tweets('love', 10)",
                 "like_tweet('141cf51a-05f9-40ce-8230-8cd4079bc8c7')",
-                "create_tweet('Fashion trends for 2026 are looking incredible! 👠')"
+                "create_tweet('Fashion trends for 2026 are looking incredible! \ud83d\udc60')"
             ]
         },
         {
@@ -233,6 +249,7 @@
                 "user_id": "9fd951d2-b512-44d1-9e09-dc5b624bbf5a"
             },
             "ground_truth": [
+                "get_user_by_id('9fd951d2-b512-44d1-9e09-dc5b624bbf5a')",
                 "authenticate('token_quinn.shaw7407@onlinemarket.org')",
                 "get_user_analytics()",
                 "get_api_usage()"

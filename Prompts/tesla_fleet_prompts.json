@@ -7,6 +7,7 @@
                 "vehicle_id": 292339011861127
             },
             "ground_truth": [
+                "get_user_by_id('5a159f41-f890-432a-8cf4-d51a75aa8b6d')",
                 "authenticate('token_grace.lara625@electrician-services.com')",
                 "wake_up(292339011861127)",
                 "door_unlock(292339011861127)",
@@ -20,6 +21,7 @@
                 "vehicle_id": 109041177518659
             },
             "ground_truth": [
+                "get_user_by_id('008628d2-79bd-48c1-89c0-03e3b5a409f9')",
                 "authenticate('token_ayden.jordan321@home-automation.com')",
                 "set_sentry_mode(109041177518659, False)",
                 "charge_port_door_close(109041177518659)"
@@ -32,6 +34,7 @@
                 "vehicle_id": 856867825758444
             },
             "ground_truth": [
+                "get_user_by_id('85915938-0a60-4863-bf21-544c1e42dc2b')",
                 "authenticate('token_leo.bailey153@wine-tasting.club')",
                 "set_charge_limit(856867825758444, 85)",
                 "charge_start(856867825758444)",
@@ -45,6 +48,7 @@
                 "vehicle_id": 22790215452761
             },
             "ground_truth": [
+                "get_user_by_id('8e2a51d2-3060-480b-a0c3-c7372be8f372')",
                 "authenticate('token_presley.diaz818@content-creation.studio')",
                 "flash_lights(22790215452761)",
                 "honk_horn(22790215452761)",
@@ -58,10 +62,90 @@
                 "vehicle_id": 109735813953714
             },
             "ground_truth": [
+                "get_user_by_id('dcda370d-8a8b-4805-87c8-1705e4dd66b0')",
                 "authenticate('token_ella.powell39@pharmacy-online.store')",
                 "actuate_trunk(109735813953714, 'rear')",
                 "media_volume_down(109735813953714)",
                 "window_control(109735813953714, 'close')"
+            ]
+        },
+        {
+            "prompt": "Wake up my Model S, vent all windows, disable sentry mode, turn on the seat heater to high for the driver, and set the steering wheel heater on.",
+            "context": {
+                "user_id": "c4154713-ff66-4960-82a0-f8597783a17d",
+                "vehicle_id": 515033992990359
+            },
+            "ground_truth": [
+                "get_user_by_id('c4154713-ff66-4960-82a0-f8597783a17d')",
+                "authenticate('token_dean.foster786@musicstream.site')",
+                "wake_up(515033992990359)",
+                "window_control(515033992990359, 'vent')",
+                "set_sentry_mode(515033992990359, False)",
+                "remote_seat_heater_request(515033992990359, 0, 3)",
+                "remote_steering_wheel_heater_request(515033992990359)"
+            ]
+        },
+        {
+            "prompt": "Set my Cybertruck charge limit to ninety percent, open the charge port door, start charging, enable scheduled departure for seven AM tomorrow with preconditioning enabled.",
+            "context": {
+                "user_id": "85915938-0a60-4863-bf21-544c1e42dc2b",
+                "vehicle_id": 856867825758444
+            },
+            "ground_truth": [
+                "get_user_by_id('85915938-0a60-4863-bf21-544c1e42dc2b')",
+                "authenticate('token_leo.bailey153@wine-tasting.club')",
+                "set_charge_limit(856867825758444, 90)",
+                "charge_port_door_open(856867825758444)",
+                "charge_start(856867825758444)",
+                "set_scheduled_departure(856867825758444, True, 420)"
+            ]
+        },
+        {
+            "prompt": "Lock my Model X, turn on climate control to eighteen degrees celsius for both zones, enable bioweapon defense mode, turn on max defrost, and activate valet mode with PIN one two three four.",
+            "context": {
+                "user_id": "8e2a51d2-3060-480b-a0c3-c7372be8f372",
+                "vehicle_id": 22790215452761
+            },
+            "ground_truth": [
+                "get_user_by_id('8e2a51d2-3060-480b-a0c3-c7372be8f372')",
+                "authenticate('token_presley.diaz818@content-creation.studio')",
+                "door_lock(22790215452761)",
+                "set_temps(22790215452761, 18, 18)",
+                "set_bioweapon_mode(22790215452761, True)",
+                "set_max_defrost(22790215452761, True)",
+                "set_valet_mode(22790215452761, True, 1234)"
+            ]
+        },
+        {
+            "prompt": "Flash lights three times, honk the horn twice, unlock all doors, open the front trunk, and turn the media volume to maximum on my Roadster.",
+            "context": {
+                "user_id": "008628d2-79bd-48c1-89c0-03e3b5a409f9",
+                "vehicle_id": 109041177518659
+            },
+            "ground_truth": [
+                "get_user_by_id('008628d2-79bd-48c1-89c0-03e3b5a409f9')",
+                "authenticate('token_ayden.jordan321@home-automation.com')",
+                "flash_lights(109041177518659)",
+                "honk_horn(109041177518659)",
+                "door_unlock(109041177518659)",
+                "actuate_trunk(109041177518659, 'front')",
+                "adjust_volume(109041177518659, 11)"
+            ]
+        },
+        {
+            "prompt": "Stop charging my vehicle, close the charge port door, set charge limit to eighty percent for daily use, turn off scheduled charging, and enable sentry mode for security.",
+            "context": {
+                "user_id": "d648d7b9-3880-43e8-a6f4-c97939e4daee",
+                "vehicle_id": 256636889991363
+            },
+            "ground_truth": [
+                "get_user_by_id('d648d7b9-3880-43e8-a6f4-c97939e4daee')",
+                "authenticate('token_presley.ramirez440@datascience.online')",
+                "charge_stop(256636889991363)",
+                "charge_port_door_close(256636889991363)",
+                "set_charge_limit(256636889991363, 80)",
+                "set_scheduled_charging(256636889991363, False, None)",
+                "set_sentry_mode(256636889991363, True)"
             ]
         }
     ],
@@ -98,6 +182,7 @@
                 "vehicle_id": 515033992990359
             },
             "ground_truth": [
+                "get_user_by_id('c4154713-ff66-4960-82a0-f8597783a17d')",
                 "authenticate('token_dean.foster786@musicstream.site')",
                 "set_charge_limit(515033992990359, 100)",
                 "charge_start(515033992990359)",
@@ -128,6 +213,7 @@
                 "vehicle_id": 292339011861127
             },
             "ground_truth": [
+                "get_user_by_id('5a159f41-f890-432a-8cf4-d51a75aa8b6d')",
                 "authenticate('token_grace.lara625@electrician-services.com')",
                 "flash_lights(292339011861127)",
                 "honk_horn(292339011861127)"
@@ -165,6 +251,7 @@
                 "vehicle_id": 109735813953714
             },
             "ground_truth": [
+                "get_user_by_id('dcda370d-8a8b-4805-87c8-1705e4dd66b0')",
                 "authenticate('token_ella.powell39@pharmacy-online.store')",
                 "set_climate_keeper_mode(109735813953714, 2)",
                 "set_temps(109735813953714, 23, 23)"
@@ -202,6 +289,7 @@
                 "vehicle_id": 856867825758444
             },
             "ground_truth": [
+                "get_user_by_id('85915938-0a60-4863-bf21-544c1e42dc2b')",
                 "authenticate('token_leo.bailey153@wine-tasting.club')",
                 "media_next_track(856867825758444)",
                 "adjust_volume(856867825758444, 50)"
@@ -239,10 +327,267 @@
                 "vehicle_id": 256636889991363
             },
             "ground_truth": [
+                "get_user_by_id('d648d7b9-3880-43e8-a6f4-c97939e4daee')",
                 "authenticate('token_presley.ramirez440@datascience.online')",
                 "set_climate_keeper_mode(256636889991363, 1)",
                 "window_control(256636889991363, 'vent')",
                 "set_sentry_mode(256636889991363, False)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to prepare my Tesla for winter driving conditions."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I can help with that! What winter preparations do you need?"
+                },
+                {
+                    "role": "user",
+                    "content": "Turn on the seat heaters for driver and passenger to the highest setting."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've set both seat heaters to high. What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Also turn on the steering wheel heater and enable max defrost."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Max defrost is now on and the steering wheel heater is activated. Anything else for winter prep?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, set the climate to twenty four degrees and schedule charging for midnight tonight to take advantage of off peak rates."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect! I've set the climate to 24 degrees and scheduled charging to start at midnight. Your Tesla is ready for winter!"
+                }
+            ],
+            "context": {
+                "user_id": "5a159f41-f890-432a-8cf4-d51a75aa8b6d",
+                "vehicle_id": 292339011861127
+            },
+            "ground_truth": [
+                "get_user_by_id('5a159f41-f890-432a-8cf4-d51a75aa8b6d')",
+                "authenticate('token_grace.lara625@electrician-services.com')",
+                "remote_seat_heater_request(292339011861127, 0, 3)",
+                "remote_seat_heater_request(292339011861127, 1, 3)",
+                "remote_steering_wheel_heater_request(292339011861127)",
+                "set_max_defrost(292339011861127, True)",
+                "set_temps(292339011861127, 24, 24)",
+                "set_scheduled_charging(292339011861127, True, 0)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "My Cybertruck is about to run out of battery at the mall parking lot."
+                },
+                {
+                    "role": "assistant",
+                    "content": "That's concerning! Let me help you manage the battery. What would you like me to do?"
+                },
+                {
+                    "role": "user",
+                    "content": "Close all the windows to save power."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Windows are now closed. What else can I do to preserve battery?"
+                },
+                {
+                    "role": "user",
+                    "content": "Turn off the climate control completely and disable sentry mode."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've turned off climate control and disabled sentry mode. Would you like me to do anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, enable valet mode with PIN nine nine nine nine and lock the doors."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Valet mode is enabled with your PIN and all doors are locked. Your Cybertruck is secured and conserving battery."
+                }
+            ],
+            "context": {
+                "user_id": "85915938-0a60-4863-bf21-544c1e42dc2b",
+                "vehicle_id": 856867825758444
+            },
+            "ground_truth": [
+                "get_user_by_id('85915938-0a60-4863-bf21-544c1e42dc2b')",
+                "authenticate('token_leo.bailey153@wine-tasting.club')",
+                "window_control(856867825758444, 'close')",
+                "climate_off(856867825758444)",
+                "set_sentry_mode(856867825758444, False)",
+                "set_valet_mode(856867825758444, True, 9999)",
+                "door_lock(856867825758444)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I want to set up my Model X for a long road trip tomorrow morning."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Exciting! Let me help you prepare. What time are you leaving?"
+                },
+                {
+                    "role": "user",
+                    "content": "Six thirty AM. I need the car fully charged and warmed up."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Got it. What charge limit would you like?"
+                },
+                {
+                    "role": "user",
+                    "content": "Set it to one hundred percent since it's a long trip."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect. I'll set charge limit to 100%. Should I enable scheduled departure with preconditioning?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, schedule departure for six thirty AM with preconditioning and also enable climate for dog mode at twenty two degrees since my dog is coming."
+                },
+                {
+                    "role": "assistant",
+                    "content": "All set! Your Model X will be fully charged, preconditioned, and ready with dog mode climate at 22 degrees for your 6:30 AM departure. Have a great trip!"
+                }
+            ],
+            "context": {
+                "user_id": "8e2a51d2-3060-480b-a0c3-c7372be8f372",
+                "vehicle_id": 22790215452761
+            },
+            "ground_truth": [
+                "get_user_by_id('8e2a51d2-3060-480b-a0c3-c7372be8f372')",
+                "authenticate('token_presley.diaz818@content-creation.studio')",
+                "set_charge_limit(22790215452761, 100)",
+                "set_scheduled_departure(22790215452761, True, 390)",
+                "set_climate_keeper_mode(22790215452761, 2)",
+                "set_temps(22790215452761, 22, 22)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I'm at a drive-in movie theater and need to adjust my car settings."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sure! What would you like me to adjust for the drive-in experience?"
+                },
+                {
+                    "role": "user",
+                    "content": "First, enable camp mode so the climate stays on without draining too much battery."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Camp mode is enabled. What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Set the media volume to level seven and skip to the next track to test the audio."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Volume is at 7 and I've skipped to the next track. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, open the sunroof to vent position, turn off the headlights, and disable sentry mode so it doesn't record the whole movie."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Perfect setup for the drive-in! Sunroof is vented, headlights are off, and sentry mode is disabled. Enjoy the movie!"
+                }
+            ],
+            "context": {
+                "user_id": "dcda370d-8a8b-4805-87c8-1705e4dd66b0",
+                "vehicle_id": 109735813953714
+            },
+            "ground_truth": [
+                "get_user_by_id('dcda370d-8a8b-4805-87c8-1705e4dd66b0')",
+                "authenticate('token_ella.powell39@pharmacy-online.store')",
+                "set_climate_keeper_mode(109735813953714, 1)",
+                "adjust_volume(109735813953714, 7)",
+                "media_next_track(109735813953714)",
+                "sun_roof_control(109735813953714, 'vent')",
+                "set_sentry_mode(109735813953714, False)"
+            ]
+        },
+        {
+            "conversations": [
+                {
+                    "role": "user",
+                    "content": "I need to secure my Roadster in a questionable neighborhood."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I'll help you secure your vehicle. What security measures would you like?"
+                },
+                {
+                    "role": "user",
+                    "content": "Enable sentry mode first."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Sentry mode is now active. What else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Lock all doors and close all windows completely."
+                },
+                {
+                    "role": "assistant",
+                    "content": "All doors are locked and windows are closed. Any other security measures?"
+                },
+                {
+                    "role": "user",
+                    "content": "Close both trunks if they're open and make sure the charge port is closed too."
+                },
+                {
+                    "role": "assistant",
+                    "content": "I've closed both trunks and the charge port. Is there anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, turn on bioweapon defense mode to keep the air quality safe inside and disable remote access temporarily."
+                },
+                {
+                    "role": "assistant",
+                    "content": "Bioweapon defense mode is active and I've enabled speed limit mode to restrict performance. Your Roadster is fully secured!"
+                }
+            ],
+            "context": {
+                "user_id": "008628d2-79bd-48c1-89c0-03e3b5a409f9",
+                "vehicle_id": 109041177518659
+            },
+            "ground_truth": [
+                "get_user_by_id('008628d2-79bd-48c1-89c0-03e3b5a409f9')",
+                "authenticate('token_ayden.jordan321@home-automation.com')",
+                "set_sentry_mode(109041177518659, True)",
+                "door_lock(109041177518659)",
+                "window_control(109041177518659, 'close')",
+                "actuate_trunk(109041177518659, 'front')",
+                "actuate_trunk(109041177518659, 'rear')",
+                "charge_port_door_close(109041177518659)",
+                "set_bioweapon_mode(109041177518659, True)",
+                "speed_limit_activate(109041177518659, 50)"
             ]
         }
     ]

@@ -220,6 +220,35 @@ class XApis:
             if user_id in conv_data.get("participants", [])
         }
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Any]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Any]: User data dictionary containing all user fields including credentials.
+                Returns error dictionary if user not found with status=False and message.
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes credentials intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self.users.get(user_id)
+        if not user_data:
+            return {
+                "status": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def _update_user_data(self, user_id: str, key: str, value: Any) -> bool:
         """
         Helper method to update a specific key-value pair in a user's data dictionary.
@@ -1610,6 +1639,231 @@ class XApis:
                 "total": len(verified_users)
             }
         }
+
+    def search_users(self, query: str, maxResults: int = 10, pageToken: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Search for users by name or username. This is a public endpoint requiring no authentication.
+        
+        This method searches through all users to find those whose display name or username (handle)
+        contains the specified query string. The search is case-insensitive and uses substring matching.
+        Results are sorted by follower count (most followed first) and paginated for efficiency.
+
+        Args:
+            query (str): The search term to look for in user names and usernames. Search is
+                case-insensitive and matches any name/username containing this substring.
+                For example, "carter" would match "Carter Myers", "@carter.myers2988", etc.
+            maxResults (int, optional): Maximum number of users to return in a single response.
+                Defaults to 10. Controls the page size for pagination.
+            pageToken (Optional[str], optional): Pagination token for retrieving the next page
+                of results. Pass the nextPageToken from a previous response to get more results.
+                Defaults to None (start from the beginning).
+
+        Returns:
+            Dict[str, Any]: A dictionary containing paginated search results in X API v2 format:
+                {
+                    "kind": "x#userSearchListResponse",
+                    "etag": str,                    # Entity tag (empty string in simulation)
+                    "nextPageToken": str,           # Token for next page (if more results exist)
+                    "pageInfo": {
+                        "totalResults": int,        # Total matching users
+                        "resultsPerPage": int       # Number in this response
+                    },
+                    "items": [                      # List of matching user profiles
+                        {
+                            "kind": "x#user",
+                            "etag": str,
+                            "id": str,              # User UUID
+                            "username": str,        # X handle
+                            "name": str,            # Display name containing query
+                            "bio": str,             # Biography
+                            "verified": bool,       # Verification status
+                            "public_metrics": {
+                                "followers_count": int  # Number of followers
+                            }
+                        },
+                        # ... more matching users
+                    ]
+                }
+
+        Note:
+            - This method does NOT require authentication (public endpoint)
+            - Search is case-insensitive substring matching
+            - Searches both display name (name) and handle (username)
+            - Results sorted by follower count (descending)
+            - Empty query returns no results
+        
+        Example:
+            >>> api = XApis()
+            >>> # Search for users named "Carter"
+            >>> results = api.search_users("Carter", maxResults=5)
+            >>> print(f"Found {results['pageInfo']['totalResults']} users")
+            >>> for item in results['items']:
+            ...     print(f"{item['name']} (@{item['username']})")
+        """
+        offset = 0
+        if pageToken:
+            try:
+                offset = int(pageToken)
+            except ValueError:
+                offset = 0
+
+        query_lower = query.lower()
+        matching_users = []
+        
+        # Search in both name and username fields
+        for user_id, user_data in self.users.items():
+            name = user_data.get("name", "").lower()
+            username = user_data.get("username", "").lower()
+            
+            if query_lower in name or query_lower in username:
+                matching_users.append({
+                    "kind": "x#user",
+                    "etag": "",
+                    "id": user_id,
+                    "username": user_data.get("username"),
+                    "name": user_data.get("name"),
+                    "bio": user_data.get("bio", ""),
+                    "verified": user_data.get("is_verified", False),
+                    "public_metrics": {
+                        "followers_count": len(user_data.get("followers", []))
+                    }
+                })
+        
+        # Sort by follower count (most followed first)
+        matching_users.sort(key=lambda x: x["public_metrics"]["followers_count"], reverse=True)
+        
+        paginated_users = matching_users[offset:offset + maxResults]
+        
+        result = {
+            "kind": "x#userSearchListResponse",
+            "etag": "",
+            "pageInfo": {
+                "totalResults": len(matching_users),
+                "resultsPerPage": len(paginated_users)
+            },
+            "items": paginated_users
+        }
+        
+        # Add nextPageToken if there are more results
+        if offset + maxResults < len(matching_users):
+            result["nextPageToken"] = str(offset + maxResults)
+        
+        return result
+
+    def search_tweets(self, query: str, maxResults: int = 10, pageToken: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Search for tweets by text content. This is a public endpoint requiring no authentication.
+        
+        This method searches through all tweets to find those whose text content contains the
+        specified query string. The search is case-insensitive and uses substring matching.
+        Results are sorted by creation date (most recent first) and paginated for efficiency.
+
+        Args:
+            query (str): The search term to look for in tweet text. Search is case-insensitive
+                and matches any tweet containing this substring. For example, "coffee" would
+                match tweets containing "Coffee", "coffee shop", "COFFEE LOVER", etc.
+            maxResults (int, optional): Maximum number of tweets to return in a single response.
+                Defaults to 10. Controls the page size for pagination.
+            pageToken (Optional[str], optional): Pagination token for retrieving the next page
+                of results. Pass the nextPageToken from a previous response to get more results.
+                Defaults to None (start from the most recent).
+
+        Returns:
+            Dict[str, Any]: A dictionary containing paginated search results in X API v2 format:
+                {
+                    "kind": "x#tweetSearchListResponse",
+                    "etag": str,                    # Entity tag (empty string in simulation)
+                    "nextPageToken": str,           # Token for next page (if more results exist)
+                    "pageInfo": {
+                        "totalResults": int,        # Total matching tweets
+                        "resultsPerPage": int       # Number in this response
+                    },
+                    "items": [                      # List of matching tweets
+                        {
+                            "kind": "x#tweet",
+                            "etag": str,
+                            "id": str,              # Tweet UUID
+                            "author_id": str,       # Author's user UUID
+                            "text": str,            # Tweet text containing query
+                            "created_at": str,      # Tweet timestamp (ISO 8601)
+                            "public_metrics": {
+                                "retweet_count": int,
+                                "reply_count": int,
+                                "like_count": int,
+                                "quote_count": int,
+                                "impression_count": int
+                            }
+                        },
+                        # ... more matching tweets
+                    ]
+                }
+
+        Note:
+            - This method does NOT require authentication (public endpoint)
+            - Search is case-insensitive substring matching
+            - Results sorted by created_at (newest first)
+            - Empty query returns no results
+            - Only searches tweet text content
+        
+        Example:
+            >>> api = XApis()
+            >>> # Search for tweets about coffee
+            >>> results = api.search_tweets("coffee", maxResults=5)
+            >>> print(f"Found {results['pageInfo']['totalResults']} tweets about coffee")
+            >>> for item in results['items']:
+            ...     print(f"@{item['author_id']}: {item['text']}")
+        """
+        offset = 0
+        if pageToken:
+            try:
+                offset = int(pageToken)
+            except ValueError:
+                offset = 0
+
+        query_lower = query.lower()
+        matching_tweets = []
+        
+        # Search in tweet text
+        for tweet_id, tweet_data in self.posts.items():
+            text = tweet_data.get("text", "").lower()
+            
+            if query_lower in text:
+                matching_tweets.append({
+                    "kind": "x#tweet",
+                    "etag": "",
+                    "id": tweet_id,
+                    "author_id": tweet_data.get("author_id"),
+                    "text": tweet_data.get("text"),
+                    "created_at": tweet_data.get("created_at"),
+                    "public_metrics": {
+                        "retweet_count": len(tweet_data.get("reposts", [])),
+                        "reply_count": tweet_data.get("metrics", {}).get("replies", 0),
+                        "like_count": len(tweet_data.get("likes", [])),
+                        "quote_count": tweet_data.get("metrics", {}).get("quotes", 0),
+                        "impression_count": tweet_data.get("metrics", {}).get("views", 0)
+                    }
+                })
+        
+        # Sort by creation time, most recent first
+        matching_tweets.sort(key=lambda x: x.get("created_at", ""), reverse=True)
+        
+        paginated_tweets = matching_tweets[offset:offset + maxResults]
+        
+        result = {
+            "kind": "x#tweetSearchListResponse",
+            "etag": "",
+            "pageInfo": {
+                "totalResults": len(matching_tweets),
+                "resultsPerPage": len(paginated_tweets)
+            },
+            "items": paginated_tweets
+        }
+        
+        # Add nextPageToken if there are more results
+        if offset + maxResults < len(matching_tweets):
+            result["nextPageToken"] = str(offset + maxResults)
+        
+        return result
 
     def reset_data(self) -> None:
         """

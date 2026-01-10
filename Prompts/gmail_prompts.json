@@ -1,26 +1,29 @@
 {
     "multistep": [
         {
-            "prompt": "Show me the email I received from london.reyes88@cloud-computing.services and send a reply confirming I'll look into the automation scripts.",
+            "prompt": "Show me the email I received from Robert Martinez about the automation scripts and send a reply confirming I'll look into it.",
             "context": {
                 "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
             },
             "model": "Yes, I will do that right now!",
             "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                 "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:Robert Martinez subject:automation scripts', None, None, 10, False)",
                 "get_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', 'full')",
-                "send_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmxvbmRvbi5yZXllczg4QGNsb3VkLWNvbXB1dGluZy5zZXJ2aWNlcwpTdWJqZWN0OlJlOiBSaXNrIGFzc2Vzc21lbnQgZmluZGluZ3MKCkkgd2lsbCBsb29rIGludG8gdGhlIGF1dG9tYXRpb24gc2NyaXB0cyBhbmQgZ2V0IGJhY2sgdG8geW91IHNvb24u'})"
+                "send_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOnJvYmVydC5tYXJ0aW5lekBjb21wYW55LmNvbQpTdWJqZWN0OlJlOiBBdXRvbWF0aW9uIFNjcmlwdHMKCkkgd2lsbCBsb29rIGludG8gdGhlIGF1dG9tYXRpb24gc2NyaXB0cyBhbmQgZ2V0IGJhY2sgdG8geW91IHNvb24u'})"
             ]
         },
         {
-            "prompt": "Create a draft email to jesse.stewart24@poetry-journal.com about hiring process improvements and delete my existing draft.",
+            "prompt": "Create a draft email to Jennifer Adams about hiring process improvements and delete my existing draft.",
             "context": {
                 "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
             },
-            "model": "Sure, I will handle that for you.",   
+            "model": "Sure, I will handle that for you.",
             "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                 "authenticate('anya.sharma61@audio-engineering.online')",
-                "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpIaXJpbmcgUHJvY2VzcyBJbXByb3ZlbWVudHMKCkxldCdzIGRpc2N1c3Mgd2F5cyB0byBzdHJlYW1saW5lIG91ciBoaXJpbmcgcHJvY2Vzcy4='}})",
+                "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplbm5pZmVyLmFkYW1zQGNvbXBhbnkuY29tClN1YmplY3Q6SGlyaW5nIFByb2Nlc3MgSW1wcm92ZW1lbnRzCgpMZXQncyBkaXNjdXNzIHdheXMgdG8gc3RyZWFtbGluZSBvdXIgaGlyaW5nIHByb2Nlc3Mu'}})",
                 "delete_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '5c39461d32cbc3b4')"
             ]
         },
@@ -28,9 +31,10 @@
             "prompt": "List all my labels and create a new label called 'Banking'.",
             "context": {
                 "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-            }, 
+            },
             "model": "I will get that done for you.",
             "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                 "authenticate('anya.sharma61@audio-engineering.online')",
                 "list_labels('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                 "create_label('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'Banking')"
@@ -43,9 +47,78 @@
             },
             "model": "On it! I will take care of that now.",
             "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                 "authenticate('anya.sharma61@audio-engineering.online')",
                 "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'subject:Risk assessment findings', None, None, 10, False)",
                 "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['STARRED']})"
+            ]
+        },
+        {
+            "prompt": "Search for emails from Sarah Johnson and forward the most recent one to my manager at david.chen@company.com.",
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "model": "Sure thing! I'll find that email and forward it right away.",
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:Sarah Johnson', None, None, 10, False)",
+                "get_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', 'full')",
+                "send_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmRhdmlkLmNoZW5AY29tcGFueS5jb20KU3ViamVjdDpGd2Q6IE9yaWdpbmFsIFN1YmplY3QKCkZvcndhcmRlZCBtZXNzYWdlIGZyb20gU2FyYWggSm9obnNvbg=='})"
+            ]
+        },
+        {
+            "prompt": "Create a label called Projects and move all emails about the marketing campaign to that label.",
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "model": "I'll create that label and organize those emails for you.",
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "create_label('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'Projects')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'subject:marketing campaign', None, None, 100, False)",
+                "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['Projects']})"
+            ]
+        },
+        {
+            "prompt": "Find all emails older than three months from the newsletter and delete them.",
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "model": "Got it! I'll search for those old newsletter emails and delete them.",
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:newsletter older_than:3m', None, None, 100, False)",
+                "delete_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d')"
+            ]
+        },
+        {
+            "prompt": "Show me the email from Mike Anderson about the budget review and reply saying I approve the changes.",
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "model": "I'll pull up that email and send your approval right away.",
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:Mike Anderson subject:budget review', None, None, 10, False)",
+                "get_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', 'full')",
+                "send_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOm1pa2UuYW5kZXJzb25AY29tcGFueS5jb20KU3ViamVjdDpSZTogQnVkZ2V0IFJldmlldwoKSSBhcHByb3ZlIHRoZSBjaGFuZ2VzLg=='})"
+            ]
+        },
+        {
+            "prompt": "List my draft emails and send the one about the quarterly report to the team.",
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "model": "I'll check your drafts and send that report email.",
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_drafts('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "send_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '5c39461d32cbc3b4')"
             ]
         }
     ],
@@ -53,135 +126,207 @@
         {
             "turns": [
                 {
-                    "prompt": "Can you help me draft an email to jesse.stewart24@poetry-journal.com about the upcoming project deadline?",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Of course! What details would you like to include in the email?",
-                    "ground_truth": []
+                    "role": "user",
+                    "assistant": "Can you help me draft an email to Jennifer Adams about the upcoming project deadline?"
                 },
                 {
-                    "prompt": "Yes, please mention that the deadline is January 15th and we need to finalize the requirements soon.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Got it! I will create the draft with those details.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')"
+                    ],
+                    "assistant": "Of course! What details would you like to include in the email?"
+                },
+                {
+                    "role": "user",
+                    "assistant": "Yes, please mention that the deadline is January 15th and we need to finalize the requirements soon."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "authenticate('anya.sharma61@audio-engineering.online')",
-                        "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpVcGNvbWluZyBQcm9qZWN0IERlYWRsaW5lCgpIaSBKZXNzZSwgSSB3YW50ZWQgdG8gcmVtaW5kIHlvdSB0aGF0IHRoZSBwcm9qZWN0IGRlYWRsaW5lIGlzIEphbnVhcnkgMTV0aCBhbmQgd2UgbmVlZCB0byBmaW5hbGl6ZSB0aGUgcmVxdWlyZW1lbnRzIHNvb24u'}})"
-                    ]
+                        "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplbm5pZmVyLmFkYW1zQGNvbXBhbnkuY29tClN1YmplY3Q6VXBjb21pbmcgUHJvamVjdCBEZWFkbGluZQoKSGkgSmVubmlmZXIsIEkgd2FudGVkIHRvIHJlbWluZCB5b3UgdGhhdCB0aGUgcHJvamVjdCBkZWFkbGluZSBpcyBKYW51YXJ5IDE1dGggYW5kIHdlIG5lZWQgdG8gZmluYWxpemUgdGhlIHJlcXVpcmVtZW50cyBzb29uLg=='}})"
+                    ],
+                    "assistant": "Got it! I will create the draft with those details."
                 }
+            ],
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpVcGNvbWluZyBQcm9qZWN0IERlYWRsaW5lCgpIaSBKZXNzZSwgSSB3YW50ZWQgdG8gcmVtaW5kIHlvdSB0aGF0IHRoZSBwcm9qZWN0IGRlYWRsaW5lIGlzIEphbnVhcnkgMTV0aCBhbmQgd2UgbmVlZCB0byBmaW5hbGl6ZSB0aGUgcmVxdWlyZW1lbnRzIHNvb24u'}})"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Can you check if I have any messages labeled as IMPORTANT?",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Sure! Let me look that up for you.",
+                    "role": "user",
+                    "assistant": "Can you check if I have any messages labeled as IMPORTANT?"
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
+                        "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                         "authenticate('anya.sharma61@audio-engineering.online')",
                         "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', None, ['IMPORTANT'], None, 50, False)"
-                    ]
+                    ],
+                    "assistant": "Sure! Let me look that up for you."
                 },
                 {
-                    "prompt": "Great! If there are any, please also mark them as starred.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Will do! I will mark those emails as starred.",
+                    "role": "user",
+                    "assistant": "Great! If there are any, please also mark them as starred."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['STARRED']})"
-                    ]
+                    ],
+                    "assistant": "Will do! I will mark those emails as starred."
                 }
+            ],
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', None, ['IMPORTANT'], None, 50, False)",
+                "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['STARRED']})"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Draft an email about the survey results.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Sure! Who should I send it to, and what specific details about the survey should I include?",
-                    "ground_truth": []
+                    "role": "user",
+                    "assistant": "Draft an email about the survey results."
                 },
                 {
-                    "prompt": "Send it to jesse.stewart24@poetry-journal.com, and mention that we received positive feedback on the new features.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Got it! Creating the draft now.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')"
+                    ],
+                    "assistant": "Sure! Who should I send it to, and what specific details about the survey should I include?"
+                },
+                {
+                    "role": "user",
+                    "assistant": "Send it to Jennifer Adams, and mention that we received positive feedback on the new features."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "authenticate('anya.sharma61@audio-engineering.online')",
-                        "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpTdXJ2ZXkgUmVzdWx0cwoKV2UgcmVjZWl2ZWQgcG9zaXRpdmUgZmVlZGJhY2sgb24gdGhlIG5ldyBmZWF0dXJlcyBmcm9tIG91ciBzdXJ2ZXku'}})"
-                    ]
+                        "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplbm5pZmVyLmFkYW1zQGNvbXBhbnkuY29tClN1YmplY3Q6U3VydmV5IFJlc3VsdHMKCldlIHJlY2VpdmVkIHBvc2l0aXZlIGZlZWRiYWNrIG9uIHRoZSBuZXcgZmVhdHVyZXMgZnJvbSBvdXIgc3VydmV5Lg=='}})"
+                    ],
+                    "assistant": "Got it! Creating the draft now."
                 }
+            ],
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "create_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', {'message': {'raw': 'RnJvbTpteWVtYWlsQGV4YW1wbGUuY29tClRvOmplc3NlLnN0ZXdhcnQyNEBwb2V0cnktam91cm5hbC5jb20KU3ViamVjdDpTdXJ2ZXkgUmVzdWx0cwoKV2UgcmVjZWl2ZWQgcG9zaXRpdmUgZmVlZGJhY2sgb24gdGhlIG5ldyBmZWF0dXJlcyBmcm9tIG91ciBzdXJ2ZXku'}})"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Find emails about risk assessment.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "I need more details to search accurately. What sender or date range should I look for?",
-                    "ground_truth": []
+                    "role": "user",
+                    "assistant": "Find emails about risk assessment."
                 },
                 {
-                    "prompt": "From london.reyes88@cloud-computing.services.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Searching now.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')"
+                    ],
+                    "assistant": "I need more details to search accurately. What sender or date range should I look for?"
+                },
+                {
+                    "role": "user",
+                    "assistant": "From Robert Martinez."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "authenticate('anya.sharma61@audio-engineering.online')",
-                        "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:london.reyes88@cloud-computing.services subject:risk assessment', None, None, 50, False)"
-                    ]
+                        "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:Robert Martinez subject:risk assessment', None, None, 50, False)"
+                    ],
+                    "assistant": "Searching now."
                 }
+            ],
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'from:london.reyes88@cloud-computing.services subject:risk assessment', None, None, 50, False)"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Create a label for urgent items.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "What should I name the label, and do you want to apply it to any existing messages?",
-                    "ground_truth": []
+                    "role": "user",
+                    "assistant": "Create a label for urgent items."
                 },
                 {
-                    "prompt": "Name it 'Urgent', and apply it to my unread messages.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "Creating the label and applying it.",
+                    "role": "assistant",
+                    "ground_truth": [
+                        "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')"
+                    ],
+                    "assistant": "What should I name the label, and do you want to apply it to any existing messages?"
+                },
+                {
+                    "role": "user",
+                    "assistant": "Name it 'Urgent', and apply it to my unread messages."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
                         "authenticate('anya.sharma61@audio-engineering.online')",
                         "create_label('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'Urgent')",
                         "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'is:unread', None, None, 100, False)",
                         "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['Urgent']})"
-                    ]
+                    ],
+                    "assistant": "Creating the label and applying it."
                 }
+            ],
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "create_label('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'Urgent')",
+                "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'is:unread', None, None, 100, False)",
+                "modify_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', {'addLabelIds': ['Urgent']})"
             ]
         },
         {
             "turns": [
                 {
-                    "prompt": "Send my draft about the survey results.",
-                    "context": {
-                        "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
-                    },
-                    "assist": "I'll send the draft for you now.",
+                    "role": "user",
+                    "assistant": "Send my draft about the survey results."
+                },
+                {
+                    "role": "assistant",
                     "ground_truth": [
+                        "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
                         "authenticate('anya.sharma61@audio-engineering.online')",
                         "send_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '5c39461d32cbc3b4')"
-                    ]
+                    ],
+                    "assistant": "I'll send the draft for you now."
                 }
+            ],
+            "context": {
+                "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+            },
+            "ground_truth": [
+                "get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')",
+                "authenticate('anya.sharma61@audio-engineering.online')",
+                "send_draft('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '5c39461d32cbc3b4')"
             ]
         }
     ]

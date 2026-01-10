@@ -342,6 +342,35 @@ class SpotifyApis:
                 cards[card_id] = card_data
         return cards
 
+    def get_user_by_id(self, user_id: str) -> Dict[str, Any]:
+        """
+        Retrieves complete user information by user ID, including credentials.
+        This method is intended for AI model context lookup during testing scenarios.
+        
+        Args:
+            user_id (str): The unique UUID identifier of the user to retrieve.
+        
+        Returns:
+            Dict[str, Any]: User data dictionary containing all user fields including credentials.
+                Returns error dictionary if user not found with status=False and message.
+        
+        Notes:
+            - This is a public method specifically for AI model context resolution
+            - Exposes credentials intentionally for testing/simulation purposes
+            - Should not be used in production environments
+        """
+        user_data = self.users.get(user_id)
+        if not user_data:
+            return {
+                "status": False,
+                "message": f"User with ID {user_id} not found."
+            }
+        
+        # Return complete user data including the user_id itself
+        result = {"user_id": user_id}
+        result.update(user_data)
+        return result
+
     def get_current_user_profile(self) -> Dict[str, Any]:
         """
         Retrieves detailed profile information about the currently authenticated user, including username and subscription details.
@@ -1300,6 +1329,7 @@ class SpotifyApis:
         if not user_data:
             raise Exception("User not found")
         
+        # Check limit first before validating individual albums
         if len(album_ids) > 50:
             raise Exception("Maximum 50 albums can be saved at once")
         
