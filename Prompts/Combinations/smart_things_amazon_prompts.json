@@ -1,0 +1,365 @@
+{
+    "multistep": [
+        {
+            "prompt": "Check my smart lock battery level then search Amazon for smart lock and add the Yale Assure Lock to cart.",
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('7239a16a-f414-474c-908f-dba5fbef0aec', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('7239a16a-f414-474c-908f-dba5fbef0aec', 'battery', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "search_products('smart lock', category='Home Security')", "add_to_cart('8e0e7ddf-6f95-4595-b622-5696ea937eb4', 1)"]
+            }
+        },
+        {
+            "prompt": "Show me my living room devices then search Amazon for smart plug and add the TP-Link Kasa 4-pack to cart.",
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "c0f8372a-2707-4a1e-a772-a198378dacc4"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('0c295077-bcd2-4d2f-8841-049b15c118a0', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('c0f8372a-2707-4a1e-a772-a198378dacc4')", "login_user('jade.austin@network-security.tools', 'i#EV8MUo')", "search_products('smart plug', category='Smart Home')", "add_to_cart('1aff6521-56f2-4ce0-899c-65473e991d58', 1)"]
+            }
+        },
+        {
+            "prompt": "Check my office thermostat temperature then search Amazon for nest thermostat and add it to my cart.",
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'temperatureMeasurement', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('nest thermostat', category='Smart Home')", "add_to_cart('f1aad915-26e9-49d3-8aa2-0129887e3220', 1)"]
+            }
+        },
+        {
+            "prompt": "List all my smart things devices then search Amazon for wyze smart plug and add to cart.",
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "4adaffdb-e06b-4b22-9103-c2265fbb9976"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('4adaffdb-e06b-4b22-9103-c2265fbb9976')", "login_user('george.butler@climate-action.org', '9L)XFqX5')", "search_products('wyze smart plug', category='Smart Home')", "add_to_cart('f7af4796-bf63-4825-8ac9-827180ac7db0', 1)"]
+            }
+        },
+        {
+            "prompt": "Check my motion sensor battery status and then search Amazon for security cameras and add Ring Indoor Cam to cart.",
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'battery', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "search_products('security camera', category='Home Security')", "add_to_cart('edad8005-174d-46db-8670-c1b01b5b03e5', 1)"]
+            }
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Show me my SmartThings devices"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                        "amazon": []
+                    },
+                    "content": "You have four devices: Living Room Lamp which is on at seventy five percent brightness, Front Door Smart Lock at eighty five percent battery, Office Thermostat at twenty two degrees, and Hallway Motion Sensor at seventy percent battery."
+                },
+                {
+                    "role": "user",
+                    "content": "The smart lock battery is getting low. Search Amazon for replacement smart locks"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "search_products('smart lock', category='Home Security')"]
+                    },
+                    "content": "I found several smart locks including Yale Assure Lock two, Eufy S three three zero Video Smart Lock, August Wi-Fi Smart Lock, and Schlage Encode Plus."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Yale Assure Lock to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["add_to_cart('8e0e7ddf-6f95-4595-b622-5696ea937eb4', 1)"]
+                    },
+                    "content": "Added Yale Assure Lock two Smart Lock with Wi-Fi to your Amazon cart."
+                }
+            ],
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "search_products('smart lock', category='Home Security')", "add_to_cart('8e0e7ddf-6f95-4595-b622-5696ea937eb4', 1)"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "What's the temperature on my office thermostat?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'temperatureMeasurement', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                        "amazon": []
+                    },
+                    "content": "Your office thermostat is currently set to twenty two degrees Celsius in cool mode."
+                },
+                {
+                    "role": "user",
+                    "content": "I need a better thermostat. Search Amazon for nest thermostat"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('nest thermostat', category='Smart Home')"]
+                    },
+                    "content": "I found the Nest Learning Thermostat third generation in stainless steel and the ecobee Smart Thermostat Premium."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Nest Learning Thermostat to cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["add_to_cart('f1aad915-26e9-49d3-8aa2-0129887e3220', 1)"]
+                    },
+                    "content": "Added Nest Learning Thermostat third generation to your Amazon cart."
+                },
+                {
+                    "role": "user",
+                    "content": "What's in my cart now?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["show_cart()"]
+                    },
+                    "content": "Your cart contains Nest Learning Thermostat third generation for two hundred forty nine dollars."
+                }
+            ],
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'temperatureMeasurement', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('nest thermostat', category='Smart Home')", "add_to_cart('f1aad915-26e9-49d3-8aa2-0129887e3220', 1)", "show_cart()"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check my living room lamp brightness"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('0c295077-bcd2-4d2f-8841-049b15c118a0', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'level', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                        "amazon": []
+                    },
+                    "content": "Your living room lamp is currently on and set to seventy five percent brightness."
+                },
+                {
+                    "role": "user",
+                    "content": "I want to add more smart lights. Search Amazon for smart bulbs"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["login_user('jade.austin@network-security.tools', 'i#EV8MUo')", "search_products('smart bulbs', category='Smart Home')"]
+                    },
+                    "content": "I found Philips Hue White and Color Ambiance smart bulb three pack starter kit and other smart lighting options."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Philips Hue starter kit to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["add_to_cart('fd1e84f6-9a6d-45a4-b30e-3fbd80baaade', 1)"]
+                    },
+                    "content": "Added Philips Hue White and Color Ambiance A nineteen Smart Bulb three pack starter kit to your cart."
+                }
+            ],
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "c0f8372a-2707-4a1e-a772-a198378dacc4"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('0c295077-bcd2-4d2f-8841-049b15c118a0', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('0c295077-bcd2-4d2f-8841-049b15c118a0', 'level', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["login_user('jade.austin@network-security.tools', 'i#EV8MUo')", "search_products('smart bulbs', category='Smart Home')", "add_to_cart('fd1e84f6-9a6d-45a4-b30e-3fbd80baaade', 1)"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "List all my SmartThings devices by location"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_location('a6750a19-fe95-4a5f-b3a1-0d8d9e878aa8', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_location('7651324b-48e2-43ce-8a47-3ce91fa18f42', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                        "amazon": []
+                    },
+                    "content": "At your Home location you have Living Room Lamp, Front Door Smart Lock, and Hallway Motion Sensor. At your Office location you have Office Thermostat."
+                },
+                {
+                    "role": "user",
+                    "content": "I need more smart plugs. Search Amazon for TP-Link smart plug"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["login_user('george.butler@climate-action.org', '9L)XFqX5')", "search_products('TP-Link smart plug', category='Smart Home')"]
+                    },
+                    "content": "I found TP-Link Kasa Smart Plug Mini WiFi Outlet four pack that works with Alexa."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the four pack to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["add_to_cart('1aff6521-56f2-4ce0-899c-65473e991d58', 1)"]
+                    },
+                    "content": "Added TP-Link Kasa Smart Plug Mini four pack to your Amazon cart."
+                }
+            ],
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "4adaffdb-e06b-4b22-9103-c2265fbb9976"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_location('a6750a19-fe95-4a5f-b3a1-0d8d9e878aa8', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_location('7651324b-48e2-43ce-8a47-3ce91fa18f42', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["login_user('george.butler@climate-action.org', '9L)XFqX5')", "search_products('TP-Link smart plug', category='Smart Home')", "add_to_cart('1aff6521-56f2-4ce0-899c-65473e991d58', 1)"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "What's the battery level on my motion sensor?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'battery', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                        "amazon": []
+                    },
+                    "content": "Your Hallway Motion Sensor has seventy percent battery remaining."
+                },
+                {
+                    "role": "user",
+                    "content": "I want to add security cameras to monitor my home. Search Amazon for Ring cameras"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "search_products('Ring camera', category='Home Security')"]
+                    },
+                    "content": "I found Ring Indoor Cam ten eighty p HD with two-way talk and Ring Video Doorbell Pro two."
+                },
+                {
+                    "role": "user",
+                    "content": "Add the Ring Indoor Cam to my cart"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["add_to_cart('edad8005-174d-46db-8670-c1b01b5b03e5', 1)"]
+                    },
+                    "content": "Added Ring Indoor Cam ten eighty p HD Security Camera to your Amazon cart."
+                },
+                {
+                    "role": "user",
+                    "content": "Show me my cart total"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "smart_things": [],
+                        "amazon": ["show_cart()"]
+                    },
+                    "content": "Your cart total is five hundred forty one dollars and twenty three cents."
+                }
+            ],
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'battery', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "search_products('Ring camera', category='Home Security')", "add_to_cart('edad8005-174d-46db-8670-c1b01b5b03e5', 1)", "show_cart()"]
+            }
+        }
+    ]
+}

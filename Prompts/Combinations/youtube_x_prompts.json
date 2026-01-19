@@ -3,67 +3,77 @@
         {
             "prompt": "Subscribe to that robotics channel on YouTube then post a tweet saying I just found an awesome tech channel.",
             "context": {
-                "user_id": "9376d7df-88c3-48c1-8f40-360b3fd9c599"
+                "youtube": {
+                    "user_id": "9376d7df-88c3-48c1-8f40-360b3fd9c599"
+                },
+                "x": {
+                    "user_id": "0b110ae4-38aa-44d8-b1af-83a238e2c591"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('9376d7df-88c3-48c1-8f40-360b3fd9c599')",
-                "login_user('aaron.ward89885@robotics-club.dev')",
-                "subscribe_to_channel('a95e987f-6d58-4b75-a654-5af5741e3e8e')",
-                "get_user_by_username('aaron_salazar84')",
-                "post_tweet('0b110ae4-38aa-44d8-b1af-83a238e2c591', 'I just found an awesome tech channel!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('9376d7df-88c3-48c1-8f40-360b3fd9c599')", "login_user('aaron.ward89885@robotics-club.dev')", "subscribe_to_channel('a95e987f-6d58-4b75-a654-5af5741e3e8e')"],
+                "x": ["get_user_by_username('aaron_salazar84')", "post_tweet('0b110ae4-38aa-44d8-b1af-83a238e2c591', 'I just found an awesome tech channel!')"]
+            }
         },
         {
             "prompt": "Like the video I watched about biology and then tweet about how much I love science content.",
             "context": {
-                "user_id": "94ee7851-44a2-4424-8b88-a822ab36757d"
+                "youtube": {
+                    "user_id": "94ee7851-44a2-4424-8b88-a822ab36757d"
+                },
+                "x": {
+                    "user_id": "5ac39690-aaaf-4e5f-ac1f-20db09e20891"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('94ee7851-44a2-4424-8b88-a822ab36757d')",
-                "login_user('abigail.bennett20186@biology-facts.net')",
-                "like_video('ea91fbaf-ef86-4b5c-8ed9-58a34b0e9542')",
-                "get_user_by_username('abigail_cortez57')",
-                "post_tweet('5ac39690-aaaf-4e5f-ac1f-20db09e20891', 'I love science content so much! Always learning something new.')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('94ee7851-44a2-4424-8b88-a822ab36757d')", "login_user('abigail.bennett20186@biology-facts.net')", "like_video('ea91fbaf-ef86-4b5c-8ed9-58a34b0e9542')"],
+                "x": ["get_user_by_username('abigail_cortez57')", "post_tweet('5ac39690-aaaf-4e5f-ac1f-20db09e20891', 'I love science content so much! Always learning something new.')"]
+            }
         },
         {
             "prompt": "Comment on that legal advice video saying great tips and then share it on X with a recommendation.",
             "context": {
-                "user_id": "7ef6f849-3e2c-48c9-ab9f-85c016627262"
+                "youtube": {
+                    "user_id": "7ef6f849-3e2c-48c9-ab9f-85c016627262"
+                },
+                "x": {
+                    "user_id": "1564264c-6480-4d7a-9222-fc8750d52d03"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('7ef6f849-3e2c-48c9-ab9f-85c016627262')",
-                "login_user('adam.martin2245@legaladvocate.net')",
-                "comment_on_video('100bf4c6-83c8-4099-b12b-b5ede36bb11c', 'Great tips! Very helpful advice.')",
-                "get_user_by_username('adam_perez60')",
-                "post_tweet('1564264c-6480-4d7a-9222-fc8750d52d03', 'Just watched an amazing legal advice video. Highly recommend checking it out!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('7ef6f849-3e2c-48c9-ab9f-85c016627262')", "login_user('adam.martin2245@legaladvocate.net')", "comment_on_video('100bf4c6-83c8-4099-b12b-b5ede36bb11c', 'Great tips! Very helpful advice.')"],
+                "x": ["get_user_by_username('adam_perez60')", "post_tweet('1564264c-6480-4d7a-9222-fc8750d52d03', 'Just watched an amazing legal advice video. Highly recommend checking it out!')"]
+            }
         },
         {
             "prompt": "Unsubscribe from that old channel on YouTube and then tweet that I'm cleaning up my subscriptions.",
             "context": {
-                "user_id": "44880d55-88e8-4406-bf88-3d929d2d9d7c"
+                "youtube": {
+                    "user_id": "44880d55-88e8-4406-bf88-3d929d2d9d7c"
+                },
+                "x": {
+                    "user_id": "4d111451-0c62-4aed-9e63-e8f4ab7f0291"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('44880d55-88e8-4406-bf88-3d929d2d9d7c')",
-                "login_user('aisha.ibrahim26747@dataservices.ai')",
-                "unsubscribe_from_channel('b3ae7d2d-4d38-4ab3-b364-0be6435fcb72')",
-                "get_user_by_username('aisha_ibrahim40')",
-                "post_tweet('4d111451-0c62-4aed-9e63-e8f4ab7f0291', 'Cleaning up my YouTube subscriptions today. Out with the old!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('44880d55-88e8-4406-bf88-3d929d2d9d7c')", "login_user('aisha.ibrahim26747@dataservices.ai')", "unsubscribe_from_channel('b3ae7d2d-4d38-4ab3-b364-0be6435fcb72')"],
+                "x": ["get_user_by_username('aisha_ibrahim40')", "post_tweet('4d111451-0c62-4aed-9e63-e8f4ab7f0291', 'Cleaning up my YouTube subscriptions today. Out with the old!')"]
+            }
         },
         {
             "prompt": "Add that classic cars video to my watch later playlist and then follow that car enthusiast on X.",
             "context": {
-                "user_id": "5bdb8474-16ee-49cb-90a7-275589625593"
+                "youtube": {
+                    "user_id": "5bdb8474-16ee-49cb-90a7-275589625593"
+                },
+                "x": {
+                    "user_id": "18f6fd73-92c7-4dfc-af3c-9f1aeaec137c"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('5bdb8474-16ee-49cb-90a7-275589625593')",
-                "login_user('alan.robinson43942@classic-cars.club')",
-                "add_to_watch_later('fdf5346f-8b5b-44ec-afcd-211dc40d5038')",
-                "get_user_by_username('alan_diaz21')",
-                "follow_user('18f6fd73-92c7-4dfc-af3c-9f1aeaec137c', 'cbae04fa-8b08-4d3f-8eb2-21a2d70aa8a4')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('5bdb8474-16ee-49cb-90a7-275589625593')", "login_user('alan.robinson43942@classic-cars.club')", "add_to_watch_later('fdf5346f-8b5b-44ec-afcd-211dc40d5038')"],
+                "x": ["get_user_by_username('alan_diaz21')", "follow_user('18f6fd73-92c7-4dfc-af3c-9f1aeaec137c', 'cbae04fa-8b08-4d3f-8eb2-21a2d70aa8a4')"]
+            }
         }
     ],
     "multiturn": [
@@ -75,10 +85,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_id('9376d7df-88c3-48c1-8f40-360b3fd9c599')",
-                        "login_user('aaron.ward89885@robotics-club.dev')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('9376d7df-88c3-48c1-8f40-360b3fd9c599')", "login_user('aaron.ward89885@robotics-club.dev')"],
+                        "x": []
+                    },
                     "content": "Sure! Which channel would you like to subscribe to?"
                 },
                 {
@@ -87,9 +97,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "subscribe_to_channel('a95e987f-6d58-4b75-a654-5af5741e3e8e')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["subscribe_to_channel('a95e987f-6d58-4b75-a654-5af5741e3e8e')"],
+                        "x": []
+                    },
                     "content": "Subscribed! Anything else?"
                 },
                 {
@@ -98,23 +109,25 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_username('aaron_salazar84')",
-                        "post_tweet('0b110ae4-38aa-44d8-b1af-83a238e2c591', 'I found a cool new channel!')"
-                    ],
+                    "ground_truth": {
+                        "youtube": [],
+                        "x": ["get_user_by_username('aaron_salazar84')", "post_tweet('0b110ae4-38aa-44d8-b1af-83a238e2c591', 'I found a cool new channel!')"]
+                    },
                     "content": "Done! Your tweet has been posted."
                 }
             ],
             "context": {
-                "user_id": "9376d7df-88c3-48c1-8f40-360b3fd9c599"
+                "youtube": {
+                    "user_id": "9376d7df-88c3-48c1-8f40-360b3fd9c599"
+                },
+                "x": {
+                    "user_id": "0b110ae4-38aa-44d8-b1af-83a238e2c591"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('9376d7df-88c3-48c1-8f40-360b3fd9c599')",
-                "login_user('aaron.ward89885@robotics-club.dev')",
-                "subscribe_to_channel('a95e987f-6d58-4b75-a654-5af5741e3e8e')",
-                "get_user_by_username('aaron_salazar84')",
-                "post_tweet('0b110ae4-38aa-44d8-b1af-83a238e2c591', 'I found a cool new channel!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('9376d7df-88c3-48c1-8f40-360b3fd9c599')", "login_user('aaron.ward89885@robotics-club.dev')", "subscribe_to_channel('a95e987f-6d58-4b75-a654-5af5741e3e8e')"],
+                "x": ["get_user_by_username('aaron_salazar84')", "post_tweet('0b110ae4-38aa-44d8-b1af-83a238e2c591', 'I found a cool new channel!')"]
+            }
         },
         {
             "turns": [
@@ -124,10 +137,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_id('94ee7851-44a2-4424-8b88-a822ab36757d')",
-                        "login_user('abigail.bennett20186@biology-facts.net')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('94ee7851-44a2-4424-8b88-a822ab36757d')", "login_user('abigail.bennett20186@biology-facts.net')"],
+                        "x": []
+                    },
                     "content": "Which video should I like from your watch history?"
                 },
                 {
@@ -136,9 +149,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "like_video('ea91fbaf-ef86-4b5c-8ed9-58a34b0e9542')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["like_video('ea91fbaf-ef86-4b5c-8ed9-58a34b0e9542')"],
+                        "x": []
+                    },
                     "content": "Liked! Want to do anything else?"
                 },
                 {
@@ -147,23 +161,25 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_username('abigail_cortez57')",
-                        "post_tweet('5ac39690-aaaf-4e5f-ac1f-20db09e20891', 'I love educational content!')"
-                    ],
+                    "ground_truth": {
+                        "youtube": [],
+                        "x": ["get_user_by_username('abigail_cortez57')", "post_tweet('5ac39690-aaaf-4e5f-ac1f-20db09e20891', 'I love educational content!')"]
+                    },
                     "content": "Tweet posted successfully!"
                 }
             ],
             "context": {
-                "user_id": "94ee7851-44a2-4424-8b88-a822ab36757d"
+                "youtube": {
+                    "user_id": "94ee7851-44a2-4424-8b88-a822ab36757d"
+                },
+                "x": {
+                    "user_id": "5ac39690-aaaf-4e5f-ac1f-20db09e20891"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('94ee7851-44a2-4424-8b88-a822ab36757d')",
-                "login_user('abigail.bennett20186@biology-facts.net')",
-                "like_video('ea91fbaf-ef86-4b5c-8ed9-58a34b0e9542')",
-                "get_user_by_username('abigail_cortez57')",
-                "post_tweet('5ac39690-aaaf-4e5f-ac1f-20db09e20891', 'I love educational content!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('94ee7851-44a2-4424-8b88-a822ab36757d')", "login_user('abigail.bennett20186@biology-facts.net')", "like_video('ea91fbaf-ef86-4b5c-8ed9-58a34b0e9542')"],
+                "x": ["get_user_by_username('abigail_cortez57')", "post_tweet('5ac39690-aaaf-4e5f-ac1f-20db09e20891', 'I love educational content!')"]
+            }
         },
         {
             "turns": [
@@ -173,10 +189,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_id('7ef6f849-3e2c-48c9-ab9f-85c016627262')",
-                        "login_user('adam.martin2245@legaladvocate.net')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('7ef6f849-3e2c-48c9-ab9f-85c016627262')", "login_user('adam.martin2245@legaladvocate.net')"],
+                        "x": []
+                    },
                     "content": "Which video and what should your comment say?"
                 },
                 {
@@ -185,9 +201,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "comment_on_video('100bf4c6-83c8-4099-b12b-b5ede36bb11c', 'This is super helpful!')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["comment_on_video('100bf4c6-83c8-4099-b12b-b5ede36bb11c', 'This is super helpful!')"],
+                        "x": []
+                    },
                     "content": "Comment posted! Anything else?"
                 },
                 {
@@ -196,23 +213,25 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_username('adam_perez60')",
-                        "post_tweet('1564264c-6480-4d7a-9222-fc8750d52d03', 'Just commented on a great video!')"
-                    ],
+                    "ground_truth": {
+                        "youtube": [],
+                        "x": ["get_user_by_username('adam_perez60')", "post_tweet('1564264c-6480-4d7a-9222-fc8750d52d03', 'Just commented on a great video!')"]
+                    },
                     "content": "Tweet posted!"
                 }
             ],
             "context": {
-                "user_id": "7ef6f849-3e2c-48c9-ab9f-85c016627262"
+                "youtube": {
+                    "user_id": "7ef6f849-3e2c-48c9-ab9f-85c016627262"
+                },
+                "x": {
+                    "user_id": "1564264c-6480-4d7a-9222-fc8750d52d03"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('7ef6f849-3e2c-48c9-ab9f-85c016627262')",
-                "login_user('adam.martin2245@legaladvocate.net')",
-                "comment_on_video('100bf4c6-83c8-4099-b12b-b5ede36bb11c', 'This is super helpful!')",
-                "get_user_by_username('adam_perez60')",
-                "post_tweet('1564264c-6480-4d7a-9222-fc8750d52d03', 'Just commented on a great video!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('7ef6f849-3e2c-48c9-ab9f-85c016627262')", "login_user('adam.martin2245@legaladvocate.net')", "comment_on_video('100bf4c6-83c8-4099-b12b-b5ede36bb11c', 'This is super helpful!')"],
+                "x": ["get_user_by_username('adam_perez60')", "post_tweet('1564264c-6480-4d7a-9222-fc8750d52d03', 'Just commented on a great video!')"]
+            }
         },
         {
             "turns": [
@@ -222,10 +241,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_id('44880d55-88e8-4406-bf88-3d929d2d9d7c')",
-                        "login_user('aisha.ibrahim26747@dataservices.ai')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('44880d55-88e8-4406-bf88-3d929d2d9d7c')", "login_user('aisha.ibrahim26747@dataservices.ai')"],
+                        "x": []
+                    },
                     "content": "Which channel would you like to unsubscribe from?"
                 },
                 {
@@ -234,9 +253,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "unsubscribe_from_channel('b3ae7d2d-4d38-4ab3-b364-0be6435fcb72')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["unsubscribe_from_channel('b3ae7d2d-4d38-4ab3-b364-0be6435fcb72')"],
+                        "x": []
+                    },
                     "content": "Unsubscribed! Anything else?"
                 },
                 {
@@ -245,23 +265,25 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_username('aisha_ibrahim40')",
-                        "post_tweet('4d111451-0c62-4aed-9e63-e8f4ab7f0291', 'Cleaning up my subscriptions today!')"
-                    ],
+                    "ground_truth": {
+                        "youtube": [],
+                        "x": ["get_user_by_username('aisha_ibrahim40')", "post_tweet('4d111451-0c62-4aed-9e63-e8f4ab7f0291', 'Cleaning up my subscriptions today!')"]
+                    },
                     "content": "Tweet posted successfully!"
                 }
             ],
             "context": {
-                "user_id": "44880d55-88e8-4406-bf88-3d929d2d9d7c"
+                "youtube": {
+                    "user_id": "44880d55-88e8-4406-bf88-3d929d2d9d7c"
+                },
+                "x": {
+                    "user_id": "4d111451-0c62-4aed-9e63-e8f4ab7f0291"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('44880d55-88e8-4406-bf88-3d929d2d9d7c')",
-                "login_user('aisha.ibrahim26747@dataservices.ai')",
-                "unsubscribe_from_channel('b3ae7d2d-4d38-4ab3-b364-0be6435fcb72')",
-                "get_user_by_username('aisha_ibrahim40')",
-                "post_tweet('4d111451-0c62-4aed-9e63-e8f4ab7f0291', 'Cleaning up my subscriptions today!')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('44880d55-88e8-4406-bf88-3d929d2d9d7c')", "login_user('aisha.ibrahim26747@dataservices.ai')", "unsubscribe_from_channel('b3ae7d2d-4d38-4ab3-b364-0be6435fcb72')"],
+                "x": ["get_user_by_username('aisha_ibrahim40')", "post_tweet('4d111451-0c62-4aed-9e63-e8f4ab7f0291', 'Cleaning up my subscriptions today!')"]
+            }
         },
         {
             "turns": [
@@ -271,10 +293,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_id('5bdb8474-16ee-49cb-90a7-275589625593')",
-                        "login_user('alan.robinson43942@classic-cars.club')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('5bdb8474-16ee-49cb-90a7-275589625593')", "login_user('alan.robinson43942@classic-cars.club')"],
+                        "x": []
+                    },
                     "content": "Which video should I add to your watch later?"
                 },
                 {
@@ -283,9 +305,10 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "add_to_watch_later('fdf5346f-8b5b-44ec-afcd-211dc40d5038')"
-                    ],
+                    "ground_truth": {
+                        "youtube": ["add_to_watch_later('fdf5346f-8b5b-44ec-afcd-211dc40d5038')"],
+                        "x": []
+                    },
                     "content": "Added to watch later! Need anything else?"
                 },
                 {
@@ -294,23 +317,25 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": [
-                        "get_user_by_username('alan_diaz21')",
-                        "follow_user('18f6fd73-92c7-4dfc-af3c-9f1aeaec137c', 'cbae04fa-8b08-4d3f-8eb2-21a2d70aa8a4')"
-                    ],
+                    "ground_truth": {
+                        "youtube": [],
+                        "x": ["get_user_by_username('alan_diaz21')", "follow_user('18f6fd73-92c7-4dfc-af3c-9f1aeaec137c', 'cbae04fa-8b08-4d3f-8eb2-21a2d70aa8a4')"]
+                    },
                     "content": "Now following that user on X!"
                 }
             ],
             "context": {
-                "user_id": "5bdb8474-16ee-49cb-90a7-275589625593"
+                "youtube": {
+                    "user_id": "5bdb8474-16ee-49cb-90a7-275589625593"
+                },
+                "x": {
+                    "user_id": "18f6fd73-92c7-4dfc-af3c-9f1aeaec137c"
+                }
             },
-            "ground_truth": [
-                "get_user_by_id('5bdb8474-16ee-49cb-90a7-275589625593')",
-                "login_user('alan.robinson43942@classic-cars.club')",
-                "add_to_watch_later('fdf5346f-8b5b-44ec-afcd-211dc40d5038')",
-                "get_user_by_username('alan_diaz21')",
-                "follow_user('18f6fd73-92c7-4dfc-af3c-9f1aeaec137c', 'cbae04fa-8b08-4d3f-8eb2-21a2d70aa8a4')"
-            ]
+            "ground_truth": {
+                "youtube": ["get_user_by_id('5bdb8474-16ee-49cb-90a7-275589625593')", "login_user('alan.robinson43942@classic-cars.club')", "add_to_watch_later('fdf5346f-8b5b-44ec-afcd-211dc40d5038')"],
+                "x": ["get_user_by_username('alan_diaz21')", "follow_user('18f6fd73-92c7-4dfc-af3c-9f1aeaec137c', 'cbae04fa-8b08-4d3f-8eb2-21a2d70aa8a4')"]
+            }
         }
     ]
 }

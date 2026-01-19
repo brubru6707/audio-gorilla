@@ -1,0 +1,413 @@
+{
+    "multistep": [
+        {
+            "prompt": "Search YouTube for Tesla Model 3 charging tutorial then check my Tesla charging status and start charging if needed.",
+            "context": {
+                "youtube": {
+                    "user_id": "51b8b957-733b-4f2b-b48e-ec6560887e2b"
+                },
+                "tesla_fleet": {
+                    "user_id": "5a159f41-f890-432a-8cf4-d51a75aa8b6d"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('51b8b957-733b-4f2b-b48e-ec6560887e2b')", "authenticate('token_zane.powell28211@university-hub.org')", "search_videos('Tesla Model 3 charging tutorial', 10, None)", "get_video('db190b56-1b31-40ab-958e-3c39aa021db6')"],
+                "tesla_fleet": ["get_user_by_id('5a159f41-f890-432a-8cf4-d51a75aa8b6d')", "authenticate('token_grace.lara625@electrician-services.com')", "list_vehicles()", "get_vehicle_data('LFV8WZDFTWKF8PD')", "charge_start('LFV8WZDFTWKF8PD')"]
+            }
+        },
+        {
+            "prompt": "Check my Tesla battery level and if it's low search YouTube for nearby supercharger tips.",
+            "context": {
+                "youtube": {
+                    "user_id": "89b57087-47b7-4dd7-9d07-017645acd6b4"
+                },
+                "tesla_fleet": {
+                    "user_id": "008628d2-79bd-48c1-89c0-03e3b5a409f9"
+                }
+            },
+            "ground_truth": {
+                "tesla_fleet": ["get_user_by_id('008628d2-79bd-48c1-89c0-03e3b5a409f9')", "authenticate('token_ayden.jordan321@home-automation.com')", "get_vehicle_data('5YJLJ19U7XK924S')", "get_vehicle_status('5YJLJ19U7XK924S')"],
+                "youtube": ["get_user_by_id('89b57087-47b7-4dd7-9d07-017645acd6b4')", "authenticate('token_mia.ross9439@beauty-tips.online')", "search_videos('Tesla supercharger tips', 10, None)"]
+            }
+        },
+        {
+            "prompt": "Watch that YouTube video about Tesla maintenance then check my vehicle status and location.",
+            "context": {
+                "youtube": {
+                    "user_id": "5bce2374-171c-4ae2-a93b-c8e75f512870"
+                },
+                "tesla_fleet": {
+                    "user_id": "8e2a51d2-3060-480b-a0c3-c7372be8f372"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('5bce2374-171c-4ae2-a93b-c8e75f512870')", "authenticate('token_amir.foster62685@virtualreality.site')", "get_video('3456b5e4-44be-46aa-9e89-a39c658f9646')"],
+                "tesla_fleet": ["get_user_by_id('8e2a51d2-3060-480b-a0c3-c7372be8f372')", "authenticate('token_presley.diaz818@content-creation.studio')", "list_vehicles()", "get_vehicle_status('LRWTKY3H9P0Y67W')", "get_vehicle_location('LRWTKY3H9P0Y67W')"]
+            }
+        },
+        {
+            "prompt": "Like that Tesla road trip video on YouTube then check my vehicle location and wake it up.",
+            "context": {
+                "youtube": {
+                    "user_id": "cfd24ee8-05c4-4dff-b1a7-6386429c7e42"
+                },
+                "tesla_fleet": {
+                    "user_id": "85915938-0a60-4863-bf21-544c1e42dc2b"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('cfd24ee8-05c4-4dff-b1a7-6386429c7e42')", "authenticate('token_christopher.cortez63242@petsupply.shop')", "like_video('afce1f20-643f-49e6-99fa-c8c67d0323e8')"],
+                "tesla_fleet": ["get_user_by_id('85915938-0a60-4863-bf21-544c1e42dc2b')", "authenticate('token_leo.bailey153@wine-tasting.club')", "wake_vehicle('5YJX87M4PNF0YJA')", "get_vehicle_location('5YJX87M4PNF0YJA')"]
+            }
+        },
+        {
+            "prompt": "Search YouTube for Tesla autopilot review then check my Tesla vehicle data and stop charging.",
+            "context": {
+                "youtube": {
+                    "user_id": "25180ab2-d474-4dc4-a760-c27303eadac4"
+                },
+                "tesla_fleet": {
+                    "user_id": "dcda370d-8a8b-4805-87c8-1705e4dd66b0"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('25180ab2-d474-4dc4-a760-c27303eadac4')", "authenticate('token_maria.james13427@astronomy-club.net')", "search_videos('Tesla autopilot review', 10, None)", "get_video('9b2721f7-45f0-4c61-981a-8a4b9d612f4c')"],
+                "tesla_fleet": ["get_user_by_id('dcda370d-8a8b-4805-87c8-1705e4dd66b0')", "authenticate('token_ella.powell39@pharmacy-online.store')", "get_vehicle_data('5YJRJEY24LLTBZR')", "charge_stop('5YJRJEY24LLTBZR')"]
+            }
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Search YouTube for Tesla charging tips"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('51b8b957-733b-4f2b-b48e-ec6560887e2b')", "authenticate('token_zane.powell28211@university-hub.org')", "search_videos('Tesla charging tips', 10, None)"],
+                        "tesla_fleet": []
+                    },
+                    "content": "I found several videos about Tesla charging tips including how to maximize battery life and supercharger etiquette."
+                },
+                {
+                    "role": "user",
+                    "content": "Watch that first video"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["get_video('db190b56-1b31-40ab-958e-3c39aa021db6')"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Playing the video about Tesla charging tips. It covers optimal charging habits and battery preservation techniques."
+                },
+                {
+                    "role": "user",
+                    "content": "Check my Tesla battery level"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["authenticate('token_grace.lara625@electrician-services.com')", "get_vehicle_data('LFV8WZDFTWKF8PD')"]
+                    },
+                    "content": "Your Tesla battery is at sixty five percent charge."
+                },
+                {
+                    "role": "user",
+                    "content": "Start charging it"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["charge_start('LFV8WZDFTWKF8PD')"]
+                    },
+                    "content": "Started charging your Tesla. It will charge to your configured limit."
+                }
+            ],
+            "context": {
+                "youtube": {
+                    "user_id": "51b8b957-733b-4f2b-b48e-ec6560887e2b"
+                },
+                "tesla_fleet": {
+                    "user_id": "5a159f41-f890-432a-8cf4-d51a75aa8b6d"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('51b8b957-733b-4f2b-b48e-ec6560887e2b')", "authenticate('token_zane.powell28211@university-hub.org')", "search_videos('Tesla charging tips', 10, None)", "get_video('db190b56-1b31-40ab-958e-3c39aa021db6')"],
+                "tesla_fleet": ["authenticate('token_grace.lara625@electrician-services.com')", "get_vehicle_data('LFV8WZDFTWKF8PD')", "charge_start('LFV8WZDFTWKF8PD')"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check where my Tesla is parked"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["get_user_by_id('008628d2-79bd-48c1-89c0-03e3b5a409f9')", "authenticate('token_ayden.jordan321@home-automation.com')", "get_vehicle_location('5YJLJ19U7XK924S')"]
+                    },
+                    "content": "Your Tesla is currently parked at latitude forty point seven one two eight and longitude negative seventy four point zero zero six zero."
+                },
+                {
+                    "role": "user",
+                    "content": "What's the battery status"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["get_vehicle_status('5YJLJ19U7XK924S')"]
+                    },
+                    "content": "Your Tesla battery is at forty two percent charge with an estimated range of one hundred thirty miles."
+                },
+                {
+                    "role": "user",
+                    "content": "That's low. Search YouTube for nearby charging stations"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["authenticate('token_mia.ross9439@beauty-tips.online')", "search_videos('Tesla charging stations near me', 10, None)"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Found several videos showing Tesla supercharger locations and charging station finder apps."
+                },
+                {
+                    "role": "user",
+                    "content": "Wake up my Tesla"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["wake_vehicle('5YJLJ19U7XK924S')"]
+                    },
+                    "content": "Waking up your Tesla. The vehicle is now online and ready for commands."
+                }
+            ],
+            "context": {
+                "youtube": {
+                    "user_id": "89b57087-47b7-4dd7-9d07-017645acd6b4"
+                },
+                "tesla_fleet": {
+                    "user_id": "008628d2-79bd-48c1-89c0-03e3b5a409f9"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["authenticate('token_mia.ross9439@beauty-tips.online')", "search_videos('Tesla charging stations near me', 10, None)"],
+                "tesla_fleet": ["get_user_by_id('008628d2-79bd-48c1-89c0-03e3b5a409f9')", "authenticate('token_ayden.jordan321@home-automation.com')", "get_vehicle_location('5YJLJ19U7XK924S')", "get_vehicle_status('5YJLJ19U7XK924S')", "wake_vehicle('5YJLJ19U7XK924S')"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Watch that Tesla maintenance video I saved"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('5bce2374-171c-4ae2-a93b-c8e75f512870')", "authenticate('token_amir.foster62685@virtualreality.site')", "get_video('3456b5e4-44be-46aa-9e89-a39c658f9646')"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Playing your saved Tesla maintenance video. It covers tire rotation, brake fluid checks, and software updates."
+                },
+                {
+                    "role": "user",
+                    "content": "Like that video"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["like_video('3456b5e4-44be-46aa-9e89-a39c658f9646')"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Liked the video."
+                },
+                {
+                    "role": "user",
+                    "content": "Now check my Tesla vehicle data"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["authenticate('token_presley.diaz818@content-creation.studio')", "list_vehicles()", "get_vehicle_data('LRWTKY3H9P0Y67W')"]
+                    },
+                    "content": "Your Tesla Model S has eighty seven percent battery, two hundred sixty miles range, and all systems operational."
+                },
+                {
+                    "role": "user",
+                    "content": "Show me the location"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["get_vehicle_location('LRWTKY3H9P0Y67W')"]
+                    },
+                    "content": "Your Tesla is at latitude thirty four point zero five two two and longitude negative one hundred eighteen point two four three seven."
+                }
+            ],
+            "context": {
+                "youtube": {
+                    "user_id": "5bce2374-171c-4ae2-a93b-c8e75f512870"
+                },
+                "tesla_fleet": {
+                    "user_id": "8e2a51d2-3060-480b-a0c3-c7372be8f372"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('5bce2374-171c-4ae2-a93b-c8e75f512870')", "authenticate('token_amir.foster62685@virtualreality.site')", "get_video('3456b5e4-44be-46aa-9e89-a39c658f9646')", "like_video('3456b5e4-44be-46aa-9e89-a39c658f9646')"],
+                "tesla_fleet": ["authenticate('token_presley.diaz818@content-creation.studio')", "list_vehicles()", "get_vehicle_data('LRWTKY3H9P0Y67W')", "get_vehicle_location('LRWTKY3H9P0Y67W')"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Search YouTube for Tesla road trip videos"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["get_user_by_id('cfd24ee8-05c4-4dff-b1a7-6386429c7e42')", "authenticate('token_christopher.cortez63242@petsupply.shop')", "search_videos('Tesla road trip', 10, None)"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Found several Tesla road trip videos including cross-country adventures and supercharger network reviews."
+                },
+                {
+                    "role": "user",
+                    "content": "Like the first one"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["like_video('afce1f20-643f-49e6-99fa-c8c67d0323e8')"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Liked the road trip video."
+                },
+                {
+                    "role": "user",
+                    "content": "Wake up my Tesla and check its location"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["authenticate('token_leo.bailey153@wine-tasting.club')", "wake_vehicle('5YJX87M4PNF0YJA')", "get_vehicle_location('5YJX87M4PNF0YJA')"]
+                    },
+                    "content": "Waking your Tesla. It's located at latitude forty one point eight seven eight one and longitude negative eighty seven point six two nine eight."
+                },
+                {
+                    "role": "user",
+                    "content": "Add a comment on that video saying it inspired my next trip"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["add_comment_to_video('afce1f20-643f-49e6-99fa-c8c67d0323e8', 'This inspired my next Tesla road trip! Thanks for sharing.')"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Added your comment to the video."
+                }
+            ],
+            "context": {
+                "youtube": {
+                    "user_id": "cfd24ee8-05c4-4dff-b1a7-6386429c7e42"
+                },
+                "tesla_fleet": {
+                    "user_id": "85915938-0a60-4863-bf21-544c1e42dc2b"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('cfd24ee8-05c4-4dff-b1a7-6386429c7e42')", "authenticate('token_christopher.cortez63242@petsupply.shop')", "search_videos('Tesla road trip', 10, None)", "like_video('afce1f20-643f-49e6-99fa-c8c67d0323e8')", "add_comment_to_video('afce1f20-643f-49e6-99fa-c8c67d0323e8', 'This inspired my next Tesla road trip! Thanks for sharing.')"],
+                "tesla_fleet": ["authenticate('token_leo.bailey153@wine-tasting.club')", "wake_vehicle('5YJX87M4PNF0YJA')", "get_vehicle_location('5YJX87M4PNF0YJA')"]
+            }
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "What's my Tesla vehicle data"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["get_user_by_id('dcda370d-8a8b-4805-87c8-1705e4dd66b0')", "authenticate('token_ella.powell39@pharmacy-online.store')", "get_vehicle_data('5YJRJEY24LLTBZR')"]
+                    },
+                    "content": "Your Tesla Model three has ninety two percent battery, two hundred seventy five miles range, and is currently charging."
+                },
+                {
+                    "role": "user",
+                    "content": "Stop charging"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["charge_stop('5YJRJEY24LLTBZR')"]
+                    },
+                    "content": "Stopped charging your Tesla."
+                },
+                {
+                    "role": "user",
+                    "content": "Search YouTube for Tesla autopilot features"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["authenticate('token_maria.james13427@astronomy-club.net')", "search_videos('Tesla autopilot features', 10, None)"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Found videos about Tesla autopilot features including full self-driving demos and safety reviews."
+                },
+                {
+                    "role": "user",
+                    "content": "Watch that autopilot review video"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": ["get_video('9b2721f7-45f0-4c61-981a-8a4b9d612f4c')"],
+                        "tesla_fleet": []
+                    },
+                    "content": "Playing the Tesla autopilot review video. It demonstrates Navigate on Autopilot and auto lane change features."
+                },
+                {
+                    "role": "user",
+                    "content": "Check my vehicle status"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": {
+                        "youtube": [],
+                        "tesla_fleet": ["get_vehicle_status('5YJRJEY24LLTBZR')"]
+                    },
+                    "content": "Your Tesla is online, battery at ninety two percent, not charging, and all systems normal."
+                }
+            ],
+            "context": {
+                "youtube": {
+                    "user_id": "25180ab2-d474-4dc4-a760-c27303eadac4"
+                },
+                "tesla_fleet": {
+                    "user_id": "dcda370d-8a8b-4805-87c8-1705e4dd66b0"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["authenticate('token_maria.james13427@astronomy-club.net')", "search_videos('Tesla autopilot features', 10, None)", "get_video('9b2721f7-45f0-4c61-981a-8a4b9d612f4c')"],
+                "tesla_fleet": ["get_user_by_id('dcda370d-8a8b-4805-87c8-1705e4dd66b0')", "authenticate('token_ella.powell39@pharmacy-online.store')", "get_vehicle_data('5YJRJEY24LLTBZR')", "charge_stop('5YJRJEY24LLTBZR')", "get_vehicle_status('5YJRJEY24LLTBZR')"]
+            }
+        }
+    ]
+}
