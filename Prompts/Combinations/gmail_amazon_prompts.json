@@ -1,6 +1,23 @@
 {
     "multistep": [
         {
+            "prompt": "View my Amazon cart, remove the iPhone from cart to test and email brooke about testing cart improvements.",
+            "context": {
+                "gmail": {
+                    "user_id": "61333a17-83dd-4e5d-8c5b-7ebb5c28faff"
+                },
+                "amazon": {
+                    "user_id": "bfe35737-7f62-4f9a-ad35-de4eaddb3713"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('61333a17-83dd-4e5d-8c5b-7ebb5c28faff')", "authenticate('brooke.ramirez88@craft-ideas.co')", "get_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', '3df085dc1ddc5f22', 'full')", "send_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', {'raw': 'RnJvbTpicm9va2UucmFtaXJlejg4QGNyYWZ0LWlkZWFzLmNvClRvOmJyb29rZS5yYW1pcmV6ODhAY3JhZnQtaWRlYXMuY28KU3ViamVjdDpDYXJ0IGFiYW5kb25tZW50IHNvbHV0aW9uCgpJIGFtIHRlc3RpbmcgY2FydCBmbG93IGltcHJvdmVtZW50cy4='})"],
+                "amazon": ["get_user_by_id('bfe35737-7f62-4f9a-ad35-de4eaddb3713')", "login_user('brooke.cruz@graphic-design.studio', 'H$b$BpJs')", "show_cart()", "remove_from_cart('443b31d7-6546-42d9-90bf-6c71d2e4f883')"]
+            }
+        }
+    ],
+    "multiturn": [
+        {
             "prompt": "Check my Gmail for that adobe stock subscription email from delilah and then search Amazon for adobe and add the Creative Cloud Photography plan to my cart.",
             "context": {
                 "gmail": {
@@ -16,72 +33,10 @@
                 "get_message('527979ed-b3fd-4646-b6a9-9fc6f223873c', 'e95e170b7dbee6c6', 'full')"],
                 "amazon": ["get_user_by_id('d687b5bf-25fa-44d0-af8d-cd24d28a5f12')",
                 "login_user('samantha.chang@nanotechnology.tech', 'HjbHi%kT')",
-                "search_products('adobe creative cloud photography', category='Software')",
+                "search_products('adobe creative cloud photography', category='Gaming & Hobbies')",
                 "add_to_cart('4b1fe11b-0ecf-4d71-acdf-c2c441fd7718', 1)"]
             } 
         },
-        {
-            "prompt": "Read my Gmail about the halloween costume contest and amazon gift card then search Amazon for fifty dollar gift card and add it to cart and reply to that email.",
-            "context": {
-                "gmail": {
-                    "user_id": "4be923a5-d6ff-4f80-87a5-e55fd0458dcd"
-                },
-                "amazon": {
-                    "user_id": "e9fae7bc-1d1c-4dff-8bf6-5e2f297e7c3b"
-                }
-            },
-            "ground_truth": {
-                "gmail": ["get_user_by_id('4be923a5-d6ff-4f80-87a5-e55fd0458dcd')", "authenticate('jessica.jordan99@seo-optimization.tools')", "get_message('4be923a5-d6ff-4f80-87a5-e55fd0458dcd', 'f21776c30b372349', 'full')", "send_message('4be923a5-d6ff-4f80-87a5-e55fd0458dcd', {'raw': 'RnJvbTpqZXNzaWNhLmpvcmRhbjk5QHNlby1vcHRpbWl6YXRpb24udG9vbHMKVG86amlsbEBleGFtcGxlLmNvbQpTdWJqZWN0OlJlOiBIYWxsb3dlZW4gY29udGVzdAoKVGhhbmtzIGZvciBvcmdhbml6aW5nIHRoZSBjb250ZXN0IQ=='})"],
-                "amazon": ["get_user_by_id('e9fae7bc-1d1c-4dff-8bf6-5e2f297e7c3b')", "login_user('jessica.dean@meditation-guide.net', 'eN0nDS6l')", "search_products('amazon gift card 50', category='Gift Cards')", "add_to_cart('5be674d4-90ae-4b32-bdd0-5dbd1bd086b9', 1)"]
-            }
-        },
-        {
-            "prompt": "Check Gmail for my office supplies email then search Amazon for printer paper and staples, add Hammermill copy paper and Swingline staples to my cart, and email tyler that I ordered them.",
-            "context": {
-                "gmail": {
-                    "user_id": "d4034f3e-5664-4bdf-b186-dd4cb50dc97f"
-                },
-                "amazon": {
-                    "user_id": "9a712929-2c67-46b8-827d-2fe96c44f42c"
-                }
-            },
-            "ground_truth": {
-                "gmail": ["get_user_by_id('d4034f3e-5664-4bdf-b186-dd4cb50dc97f')", "authenticate('tyler.graham9@movie-reviews.info')", "get_message('d4034f3e-5664-4bdf-b186-dd4cb50dc97f', 'b3f462b115071785', 'full')", "send_message('d4034f3e-5664-4bdf-b186-dd4cb50dc97f', {'raw': 'RnJvbTp0eWxlci5ncmFoYW05QG1vdmllLXJldmlld3MuaW5mbwpUbzp0eWxlci5wYWxtZXI1MUBsaW51eC10dXRvcmlhbHMuY29tClN1YmplY3Q6T2ZmaWNlIHN1cHBsaWVzIG9yZGVyZWQKCkkgb3JkZXJlZCB0aGUgb2ZmaWNlIHN1cHBsaWVzIHdlIG5lZWRlZC4='})"],
-                "amazon": ["get_user_by_id('9a712929-2c67-46b8-827d-2fe96c44f42c')", "login_user('tyler.garcia@satellite-tracking.net', 'u8b%Nueo')", "search_products('printer paper', category='Office Products')", "add_to_cart('ff7745aa-9ec6-46a5-bbb1-4de3759c87c9', 1)", "search_products('staples', category='Office Products')", "add_to_cart('9bd7a340-544c-441a-936d-54407c51a5d6', 1)"]
-            }
-        },
-        {
-            "prompt": "Look at my Gmail about ergonomic chairs then search Amazon for ergonomic office chair, add the Herman Miller Aeron to cart, check cart total, and email victoria about the chair.",
-            "context": {
-                "gmail": {
-                    "user_id": "71ef10e2-1c5e-4850-a2a4-00198d268c98"
-                },
-                "amazon": {
-                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
-                }
-            },
-            "ground_truth": {
-                "gmail": ["get_user_by_id('71ef10e2-1c5e-4850-a2a4-00198d268c98')", "authenticate('victoria.burke89@sustainable-fashion.co')", "get_message('71ef10e2-1c5e-4850-a2a4-00198d268c98', '44c2f974d6bf814e', 'full')", "send_message('71ef10e2-1c5e-4850-a2a4-00198d268c98', {'raw': 'RnJvbTp2aWN0b3JpYS5idXJrZTg5QHN1c3RhaW5hYmxlLWZhc2hpb24uY28KVG86dmlk dG9yaWEuY2Fycmlsbm82MEBtb3RvcmN5Y2xlLXJpZGVycy5uZXQKU3ViamVjdDpPZmZpY2UgY2hhaXIgb3JkZXIgdXBkYXRlCgpJIGZvdW5kIGFuIGVyZ29ub21pYyBjaGFpciBvbiBBbWF6b24gZm9yIHRoZSB0ZWFtLg=='})"],
-                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "search_products('ergonomic office chair', category='Furniture')", "add_to_cart('f66b111c-5f01-4b1c-a86d-92e4055c086f', 1)", "show_cart()"]
-            }
-        },
-        {
-            "prompt": "Check my Gmail about cart abandonment issues, view my Amazon cart, remove one item to test, search for checkout optimization tools, and email brooke about testing cart improvements.",
-            "context": {
-                "gmail": {
-                    "user_id": "61333a17-83dd-4e5d-8c5b-7ebb5c28faff"
-                },
-                "amazon": {
-                    "user_id": "bfe35737-7f62-4f9a-ad35-de4eaddb3713"
-                }
-            },
-            "ground_truth": {
-                "gmail": ["get_user_by_id('61333a17-83dd-4e5d-8c5b-7ebb5c28faff')", "authenticate('brooke.ramirez88@craft-ideas.co')", "get_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', '3df085dc1ddc5f22', 'full')", "send_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', {'raw': 'RnJvbTpicm9va2UucmFtaXJlejg4QGNyYWZ0LWlkZWFzLmNvClRvOmJyb29rZS5yYW1pcmV6ODhAY3JhZnQtaWRlYXMuY28KU3ViamVjdDpDYXJ0IGFiYW5kb25tZW50IHNvbHV0aW9uCgpJIGFtIHRlc3RpbmcgY2FydCBmbG93IGltcHJvdmVtZW50cy4='})"],
-                "amazon": ["get_user_by_id('bfe35737-7f62-4f9a-ad35-de4eaddb3713')", "login_user('brooke.cruz@graphic-design.studio', 'H$b$BpJs')", "show_cart()", "remove_from_cart('443b31d7-6546-42d9-90bf-6c71d2e4f883')", "search_products('checkout optimization', category='Software')"]
-            }
-        }
-    ],
-    "multiturn": [
         {
             "turns": [
                 {
@@ -139,21 +94,21 @@
                 },
                 {
                     "role": "user",
-                    "content": "That reminds me, I need to buy a better online course. Search Amazon for online courses"
+                    "content": "That reminds me, I need to buy new wireless earbuds. Search Amazon for wireless earbuds"
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": ["login_user('aaron.perez@backpacking-guide.com', 'R9w5vcVD')", "search_products('online courses', category='Software')"],
-                    "content": "I found several options including Udemy courses, MasterClass subscriptions, and LinkedIn Learning gift cards."
+                    "ground_truth": ["login_user('aaron.perez@backpacking-guide.com', 'R9w5vcVD')", "search_products('wireless earbuds', category='Electronics')"],
+                    "content": "I found several options including Sony WF-1000XM4, Apple AirPods Pro, and Beats Studio Buds."
                 },
                 {
                     "role": "user",
-                    "content": "Add the MasterClass All-Access Pass to my cart"
+                    "content": "Add the Apple AirPods Pro to my cart"
                 },
                 {
                     "role": "assistant",
                     "ground_truth": ["add_to_cart('52b315f1-2938-4bfa-ba05-f7fc27c20e2e', 1)"],
-                    "content": "I have added the MasterClass All-Access Pass Annual Membership to your Amazon cart for two hundred ninety nine dollars."
+                    "content": "I have added the Apple AirPods Pro 2nd Generation with MagSafe Charging Case to your Amazon cart for eight hundred fifteen dollars and ninety six cents."
                 },
                 {
                     "role": "user",
@@ -162,7 +117,7 @@
                 {
                     "role": "assistant",
                     "ground_truth": ["show_cart()"],
-                    "content": "Your Amazon cart total is currently three hundred forty seven dollars and ninety two cents."
+                    "content": "Your Amazon cart total is currently eight hundred fifteen dollars and ninety six cents."
                 },
                 {
                     "role": "user",
@@ -177,7 +132,7 @@
             "context": {
                 "user_id": "491ea059-cc37-4a7c-bd35-f99b53242ffa"
             },
-            "ground_truth": ["get_user_by_id('491ea059-cc37-4a7c-bd35-f99b53242ffa')", "authenticate('aaron.diaz1@digital-strategy.group')", "list_messages('491ea059-cc37-4a7c-bd35-f99b53242ffa', 'purchase OR refund', None, None, 10, False)", "get_message('491ea059-cc37-4a7c-bd35-f99b53242ffa', 'd4033a44209b6b67', 'full')", "login_user('aaron.perez@backpacking-guide.com', 'R9w5vcVD')", "search_products('online courses', category='Software')", "add_to_cart('52b315f1-2938-4bfa-ba05-f7fc27c20e2e', 1)", "show_cart()", "send_message('491ea059-cc37-4a7c-bd35-f99b53242ffa', {'raw': 'RnJvbTphYXJvbi5kaWF6MUBkaWdpdGFsLXN0cmF0ZWd5Lmdyb3VwClRvOmFhcm9uLmRpYXoxQGRpZ2l0YWwtc3RyYXRlZ3kuZ3JvdXAKU3ViamVjdDpCZXR0ZXIgY291cnNlIGFsdGVybmF0aXZlCgpJIGZvdW5kIGEgYmV0dGVyIGNvdXJzZSBhbHRlcm5hdGl2ZSBvbiBBbWF6b24u'})"]
+            "ground_truth": ["get_user_by_id('491ea059-cc37-4a7c-bd35-f99b53242ffa')", "authenticate('aaron.diaz1@digital-strategy.group')", "list_messages('491ea059-cc37-4a7c-bd35-f99b53242ffa', 'purchase OR refund', None, None, 10, False)", "get_message('491ea059-cc37-4a7c-bd35-f99b53242ffa', 'd4033a44209b6b67', 'full')", "login_user('aaron.perez@backpacking-guide.com', 'R9w5vcVD')", "search_products('wireless earbuds', category='Electronics')", "add_to_cart('52b315f1-2938-4bfa-ba05-f7fc27c20e2e', 1)", "show_cart()", "send_message('491ea059-cc37-4a7c-bd35-f99b53242ffa', {'raw': 'RnJvbTphYXJvbi5kaWF6MUBkaWdpdGFsLXN0cmF0ZWd5Lmdyb3VwClRvOmFhcm9uLmRpYXoxQGRpZ2l0YWwtc3RyYXRlZ3kuZ3JvdXAKU3ViamVjdDpCZXR0ZXIgY291cnNlIGFsdGVybmF0aXZlCgpJIGZvdW5kIGEgYmV0dGVyIGNvdXJzZSBhbHRlcm5hdGl2ZSBvbiBBbWF6b24u'})"]
         },
         {
             "turns": [
@@ -192,12 +147,12 @@
                 },
                 {
                     "role": "user",
-                    "content": "Great! I should order more inventory. Search Amazon for inventory management tools"
+                    "content": "Great! I should order a new mouse for the office. Search Amazon for wireless mouse"
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": ["login_user('amy.gonzalez@robotics-club.dev', '9zk(tk5t')", "search_products('inventory management tools', category='Office Products')"],
-                    "content": "I found several inventory management options including barcode scanners, inventory tracking software, and warehouse equipment."
+                    "ground_truth": ["login_user('amy.gonzalez@robotics-club.dev', '9zk(tk5t')", "search_products('wireless mouse', category='Electronics')"],
+                    "content": "I found several wireless mouse options including Logitech MX Master 3S, Razer DeathAdder, and Microsoft Surface Mouse."
                 },
                 {
                     "role": "user",
@@ -210,18 +165,18 @@
                 },
                 {
                     "role": "user",
-                    "content": "Add the Zebra DS two two zero eight handheld barcode scanner to my cart"
+                    "content": "Add the Logitech MX Master 3S to my cart"
                 },
                 {
                     "role": "assistant",
                     "ground_truth": ["add_to_cart('c91e0f0b-e7a6-4592-9ba2-6b772a165a03', 1)"],
-                    "content": "I have added the Zebra DS two two zero eight handheld barcode scanner to your Amazon cart for one hundred ninety nine dollars."
+                    "content": "I have added the Logitech MX Master 3S Advanced Wireless Mouse to your Amazon cart for one hundred twenty one dollars and seventy cents."
                 }
             ],
             "context": {
                 "user_id": "27cb673a-e120-49a7-9a8f-139fda2c0198"
             },
-            "ground_truth": ["get_user_by_id('27cb673a-e120-49a7-9a8f-139fda2c0198')", "authenticate('amy.ross52@automotive-parts.store')", "list_messages('27cb673a-e120-49a7-9a8f-139fda2c0198', 'product', None, None, 10, False)", "get_message('27cb673a-e120-49a7-9a8f-139fda2c0198', '1fa399b1c6743a82', 'full')", "login_user('amy.gonzalez@robotics-club.dev', '9zk(tk5t')", "search_products('inventory management tools', category='Office Products')", "show_cart()", "add_to_cart('c91e0f0b-e7a6-4592-9ba2-6b772a165a03', 1)"]
+            "ground_truth": ["get_user_by_id('27cb673a-e120-49a7-9a8f-139fda2c0198')", "authenticate('amy.ross52@automotive-parts.store')", "list_messages('27cb673a-e120-49a7-9a8f-139fda2c0198', 'product', None, None, 10, False)", "get_message('27cb673a-e120-49a7-9a8f-139fda2c0198', '1fa399b1c6743a82', 'full')", "login_user('amy.gonzalez@robotics-club.dev', '9zk(tk5t')", "search_products('wireless mouse', category='Electronics')", "show_cart()", "add_to_cart('c91e0f0b-e7a6-4592-9ba2-6b772a165a03', 1)"]
         },
         {
             "turns": [
@@ -245,27 +200,27 @@
                 },
                 {
                     "role": "user",
-                    "content": "I need to create a purchase order for office equipment. Search Amazon for office desk"
+                    "content": "I need to create a purchase order for office equipment. Search Amazon for standing desk"
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": ["login_user('aisha.ibrahim@financial-news.com', '$2S&o5j(')", "search_products('office desk', category='Furniture')"],
-                    "content": "I found several office desks including the FlexiSpot Standing Desk, IKEA Bekant desk, and Uplift V two Standing Desk."
+                    "ground_truth": ["login_user('aisha.ibrahim@financial-news.com', '$2S&o5j(')", "search_products('standing desk', category='Electronics')"],
+                    "content": "I found several standing desks including the UPLIFT V2 Standing Desk, FlexiSpot, and Fully Jarvis."
                 },
                 {
                     "role": "user",
-                    "content": "Add the FlexiSpot Standing Desk to my cart and tell me the price"
+                    "content": "Add the UPLIFT V2 Standing Desk to my cart and tell me the price"
                 },
                 {
                     "role": "assistant",
                     "ground_truth": ["add_to_cart('16e987db-0cf5-47f5-aff0-c33d7631020c', 1)", "show_cart()"],
-                    "content": "I have added the FlexiSpot Standing Desk forty eight by thirty inch to your cart for four hundred forty nine dollars and ninety nine cents."
+                    "content": "I have added the UPLIFT V2 Standing Desk 48x30 Bamboo Desktop to your cart for one thousand two hundred forty five dollars and sixty two cents."
                 }
             ],
             "context": {
                 "user_id": "17512bb1-9f5d-452d-b8b4-c2e39fc96df8"
             },
-            "ground_truth": ["get_user_by_id('17512bb1-9f5d-452d-b8b4-c2e39fc96df8')", "authenticate('aisha.ibrahim13@party-supplies.shop')", "list_messages('17512bb1-9f5d-452d-b8b4-c2e39fc96df8', 'purchase order', None, None, 10, False)", "get_message('17512bb1-9f5d-452d-b8b4-c2e39fc96df8', 'd5fdd85bc8543e29', 'full')", "login_user('aisha.ibrahim@financial-news.com', '$2S&o5j(')", "search_products('office desk', category='Furniture')", "add_to_cart('16e987db-0cf5-47f5-aff0-c33d7631020c', 1)", "show_cart()"]
+            "ground_truth": ["get_user_by_id('17512bb1-9f5d-452d-b8b4-c2e39fc96df8')", "authenticate('aisha.ibrahim13@party-supplies.shop')", "list_messages('17512bb1-9f5d-452d-b8b4-c2e39fc96df8', 'purchase order', None, None, 10, False)", "get_message('17512bb1-9f5d-452d-b8b4-c2e39fc96df8', 'd5fdd85bc8543e29', 'full')", "login_user('aisha.ibrahim@financial-news.com', '$2S&o5j(')", "search_products('standing desk', category='Electronics')", "add_to_cart('16e987db-0cf5-47f5-aff0-c33d7631020c', 1)", "show_cart()"]
         },
         {
             "turns": [
@@ -280,45 +235,45 @@
                 },
                 {
                     "role": "user",
-                    "content": "The first one is relevant. Since we are trying to reduce shipping costs, search Amazon for shipping supplies"
+                    "content": "The first one is relevant. Since we are trying to reduce costs, search Amazon for wireless headphones"
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": ["login_user('alan.hamilton@healthy-recipes.blog', '#L2axQ7N')", "search_products('shipping supplies', category='Office Products')"],
-                    "content": "I found shipping supplies including bubble mailers, packing tape, cardboard boxes, and shipping labels."
+                    "ground_truth": ["login_user('alan.hamilton@healthy-recipes.blog', '#L2axQ7N')", "search_products('wireless headphones', category='Electronics')"],
+                    "content": "I found several wireless headphones including Beats Studio3, Sony WH-1000XM5, and Bose QuietComfort."
                 },
                 {
                     "role": "user",
-                    "content": "Add the Scotch Heavy Duty Shipping Packaging Tape to my cart"
+                    "content": "Add the Beats Studio3 to my cart"
                 },
                 {
                     "role": "assistant",
                     "ground_truth": ["add_to_cart('2229f8ba-5f16-475f-89f9-ffcebc0c70d1', 1)"],
-                    "content": "I have added the Scotch Heavy Duty Shipping Packaging Tape six pack to your Amazon cart for twenty four dollars and ninety nine cents."
+                    "content": "I have added the Beats Studio3 Wireless Noise Cancelling Over-Ear Headphones to your Amazon cart for one thousand one hundred seventy four dollars and ninety six cents."
                 },
                 {
                     "role": "user",
-                    "content": "Add bubble mailers too"
+                    "content": "Also add a sous vide cooker"
                 },
                 {
                     "role": "assistant",
                     "ground_truth": ["add_to_cart('614af721-3ab9-457c-be68-7abddea04831', 1)"],
-                    "content": "I have added the Uboxes Bubble Mailers number zero six by ten inch one hundred pack to your cart for nineteen dollars and ninety five cents."
+                    "content": "I have added the Anova Culinary Sous Vide Precision Cooker Nano to your cart for six hundred thirty four dollars and forty seven cents."
                 },
                 {
                     "role": "user",
-                    "content": "Send an email to alan dot williams seventeen at food-bloggers dot online saying I ordered shipping supplies to help reduce costs"
+                    "content": "Send an email to alan dot williams seventeen at food-bloggers dot online saying I ordered some electronics"
                 },
                 {
                     "role": "assistant",
                     "ground_truth": ["send_message('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c', {'raw': 'RnJvbTphbGFuLndpbGxpYW1zMTdAZm9vZC1ibG9nZ2Vycy5vbmxpbmUKVG86YWxhbi53aWxsaWFtczE3QGZvb2QtYmxvZ2dlcnMub25saW5lClN1YmplY3Q6U2hpcHBpbmcgY29zdCByZWR1Y3Rpb24gdXBkYXRlCgpJIG9yZGVyZWQgc2hpcHBpbmcgc3VwcGxpZXMgdG8gaGVscCByZWR1Y2UgY29zdHMu'})"],
-                    "content": "I have sent the email to alan dot williams seventeen at food-bloggers dot online with the subject Shipping cost reduction update."
+                    "content": "I have sent the email to alan dot williams seventeen at food-bloggers dot online with the subject Electronics order update."
                 }
             ],
             "context": {
                 "user_id": "32d36ab9-8dd9-4961-8c1e-2f3cceeae17c"
             },
-            "ground_truth": ["get_user_by_id('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c')", "authenticate('alan.williams17@food-bloggers.online')", "list_messages('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c', 'shipping OR delivery', None, None, 10, False)", "login_user('alan.hamilton@healthy-recipes.blog', '#L2axQ7N')", "search_products('shipping supplies', category='Office Products')", "add_to_cart('2229f8ba-5f16-475f-89f9-ffcebc0c70d1', 1)", "add_to_cart('614af721-3ab9-457c-be68-7abddea04831', 1)", "send_message('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c', {'raw': 'RnJvbTphbGFuLndpbGxpYW1zMTdAZm9vZC1ibG9nZ2Vycy5vbmxpbmUKVG86YWxhbi53aWxsaWFtczE3QGZvb2QtYmxvZ2dlcnMub25saW5lClN1YmplY3Q6U2hpcHBpbmcgY29zdCByZWR1Y3Rpb24gdXBkYXRlCgpJIG9yZGVyZWQgc2hpcHBpbmcgc3VwcGxpZXMgdG8gaGVscCByZWR1Y2UgY29zdHMu'})"]
+            "ground_truth": ["get_user_by_id('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c')", "authenticate('alan.williams17@food-bloggers.online')", "list_messages('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c', 'shipping OR delivery', None, None, 10, False)", "login_user('alan.hamilton@healthy-recipes.blog', '#L2axQ7N')", "search_products('wireless headphones', category='Electronics')", "add_to_cart('2229f8ba-5f16-475f-89f9-ffcebc0c70d1', 1)", "add_to_cart('614af721-3ab9-457c-be68-7abddea04831', 1)", "send_message('32d36ab9-8dd9-4961-8c1e-2f3cceeae17c', {'raw': 'RnJvbTphbGFuLndpbGxpYW1zMTdAZm9vZC1ibG9nZ2Vycy5vbmxpbmUKVG86YWxhbi53aWxsaWFtczE3QGZvb2QtYmxvZ2dlcnMub25saW5lClN1YmplY3Q6U2hpcHBpbmcgY29zdCByZWR1Y3Rpb24gdXBkYXRlCgpJIG9yZGVyZWQgc2hpcHBpbmcgc3VwcGxpZXMgdG8gaGVscCByZWR1Y2UgY29zdHMu'})"]
         }
     ]
 }

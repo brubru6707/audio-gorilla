@@ -322,6 +322,7 @@ def display_menu():
     print("4. Replace all backends")
     print("5. List available backends")
     print("6. View sections in a backend")
+    print("7. Add new attribute to entities")
     print("0. Exit")
     print("="*60)
 
@@ -686,6 +687,218 @@ def update_specific_subsections():
         print("\n✗ Failed to save updated state")
 
 
+def generate_attribute_value(entity_data: Dict[str, Any], attribute_name: str, generation_pattern: str) -> Any:
+    """
+    Generate a new attribute value based on existing entity data.
+    
+    Args:
+        entity_data: The entity's existing data
+        attribute_name: Name of the attribute to generate
+        generation_pattern: Pattern for generating the value
+            - "first_last_lowercase" : Concatenate first_name and last_name in lowercase
+            - "email_prefix" : Extract prefix before @ from email
+            - "custom:{field}" : Use value from specified field
+            - "uuid" : Generate a new UUID
+            - Or any literal string value
+    
+    Returns:
+        Generated attribute value
+    """
+    if generation_pattern == "first_last_lowercase":
+        first = entity_data.get("first_name", "")
+        last = entity_data.get("last_name", "")
+        return f"{first.lower()}{last.lower()}"
+    
+    elif generation_pattern == "email_prefix":
+        email = entity_data.get("email", "")
+        if "@" in email:
+            return email.split("@")[0]
+        return email
+    
+    elif generation_pattern.startswith("custom:"):
+        field_name = generation_pattern.split(":", 1)[1]
+        return entity_data.get(field_name, "")
+    
+    elif generation_pattern == "uuid":
+        import uuid
+        return str(uuid.uuid4())
+    
+    else:
+        # Treat as literal value
+        return generation_pattern
+
+
+def add_new_attribute_to_entities():
+    """Add a new attribute to all entities in a section."""
+    backend = select_backend()
+    if not backend:
+        return
+    
+    # Select the section
+    sections = get_backend_sections(backend)
+    if not sections:
+        print(f"Could not detect sections for {backend}. Backend may not exist yet.")
+        return
+    
+    print(f"\nAvailable sections in {backend}:")
+    for i, section in enumerate(sections, 1):
+        print(f"{i}. {section}")
+    
+    try:
+        choice = input("\nSelect section number: ").strip()
+        section_idx = int(choice)
+        
+        if not (1 <= section_idx <= len(sections)):
+            print("Invalid selection.")
+            return
+        
+        section = sections[section_idx - 1]
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return
+    
+    # Get attribute name
+    print("\nEnter the name of the new attribute to add:")
+    attribute_name = input("Attribute name: ").strip()
+    
+    if not attribute_name:
+        print("Attribute name cannot be empty.")
+        return
+    
+    # Get position where to insert the attribute
+    print("\nWhere should the attribute be inserted?")
+    print("1. After a specific existing attribute")
+    print("2. At the beginning")
+    print("3. At the end")
+    
+    position_choice = input("Choice (1-3): ").strip()
+    after_attribute = None
+    position = "end"
+    
+    if position_choice == "1":
+        # Show existing attributes from first entity
+        state = load_state_file(backend)
+        if state and section in state:
+            first_entity = next(iter(state[section].values()), None)
+            if first_entity and isinstance(first_entity, dict):
+                print("\nExisting attributes:")
+                attrs = list(first_entity.keys())
+                for i, attr in enumerate(attrs, 1):
+                    print(f"{i}. {attr}")
+                
+                try:
+                    attr_idx = int(input("\nInsert after attribute number: ").strip())
+                    if 1 <= attr_idx <= len(attrs):
+                        after_attribute = attrs[attr_idx - 1]
+                        position = "after"
+                    else:
+                        print("Invalid selection. Will insert at end.")
+                except ValueError:
+                    print("Invalid input. Will insert at end.")
+    elif position_choice == "2":
+        position = "beginning"
+    
+    # Get generation pattern
+    print("\n" + "="*60)
+    print("How should the attribute value be generated?")
+    print("="*60)
+    print("1. first_last_lowercase - Concatenate first_name + last_name (lowercase)")
+    print("2. email_prefix - Extract prefix before @ from email")
+    print("3. custom:{field} - Use value from a specific field")
+    print("4. uuid - Generate a new UUID for each entity")
+    print("5. literal - Use a literal value for all entities")
+    print("="*60)
+    
+    pattern_choice = input("Choice (1-5): ").strip()
+    
+    if pattern_choice == "1":
+        generation_pattern = "first_last_lowercase"
+    elif pattern_choice == "2":
+        generation_pattern = "email_prefix"
+    elif pattern_choice == "3":
+        field_name = input("Enter field name to copy: ").strip()
+        generation_pattern = f"custom:{field_name}"
+    elif pattern_choice == "4":
+        generation_pattern = "uuid"
+    elif pattern_choice == "5":
+        literal_value = input("Enter literal value: ").strip()
+        generation_pattern = literal_value
+    else:
+        print("Invalid choice.")
+        return
+    
+    # Show summary
+    print(f"\n>>> Will add attribute '{attribute_name}' to all entities in '{section}'")
+    print(f"    Generation pattern: {generation_pattern}")
+    print(f"    Position: {position}" + (f" (after '{after_attribute}')" if after_attribute else ""))
+    
+    confirm = input("\nProceed? (y/n): ").strip().lower()
+    if confirm != 'y':
+        print("Cancelled.")
+        return
+    
+    # Load existing state
+    state = load_state_file(backend)
+    if not state or section not in state:
+        print(f"Section '{section}' not found in backend.")
+        return
+    
+    # Add attribute to all entities
+    entities_updated = 0
+    entities_skipped = 0
+    
+    for entity_id, entity_data in state[section].items():
+        if not isinstance(entity_data, dict):
+            entities_skipped += 1
+            continue
+        
+        # Check if attribute already exists
+        if attribute_name in entity_data:
+            print(f"  ! Entity {entity_id[:8]}... already has attribute '{attribute_name}', skipping")
+            entities_skipped += 1
+            continue
+        
+        # Generate the attribute value
+        attribute_value = generate_attribute_value(entity_data, attribute_name, generation_pattern)
+        
+        # Insert at the correct position
+        if position == "beginning":
+            # Create new dict with attribute at beginning
+            new_entity_data = {attribute_name: attribute_value}
+            new_entity_data.update(entity_data)
+            state[section][entity_id] = new_entity_data
+        elif position == "after" and after_attribute:
+            # Create new dict inserting after specific attribute
+            new_entity_data = {}
+            for key, value in entity_data.items():
+                new_entity_data[key] = value
+                if key == after_attribute:
+                    new_entity_data[attribute_name] = attribute_value
+            
+            # If after_attribute wasn't found, add at end
+            if attribute_name not in new_entity_data:
+                new_entity_data[attribute_name] = attribute_value
+            
+            state[section][entity_id] = new_entity_data
+        else:
+            # Add at end (default)
+            entity_data[attribute_name] = attribute_value
+        
+        entities_updated += 1
+        
+        # Show first 3 as examples
+        if entities_updated <= 3:
+            print(f"  ✓ {entity_id[:8]}... : {attribute_name} = '{attribute_value}'")
+    
+    # Save updated state
+    if save_state_file(backend, state):
+        print(f"\n✓ Successfully added '{attribute_name}' to {entities_updated} entities")
+        if entities_skipped > 0:
+            print(f"  (Skipped {entities_skipped} entities)")
+    else:
+        print("\n✗ Failed to save updated state")
+
+
 def main():
     """Main program loop."""
     print("Backend Update Tool - Interactive Mode")
@@ -706,6 +919,8 @@ def main():
             list_backends()
         elif choice == '6':
             view_backend_sections()
+        elif choice == '7':
+            add_new_attribute_to_entities()
         elif choice == '0':
             print("\nGoodbye!")
             break

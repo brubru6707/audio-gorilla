@@ -3,6 +3,7 @@
     "19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2": {
       "first_name": "Alice",
       "last_name": "Smith",
+      "username": "alicesmith",
       "email": "alice.smith@gmail.com",
       "balance": 100.0,
       "friends": [
@@ -29,6 +30,7 @@
     "cfdfbcf5-5289-4276-b1c4-0d77a4a244e8": {
       "first_name": "Bob",
       "last_name": "Johnson",
+      "username": "bobjohnson",
       "email": "bob.johnson@yahoo.com",
       "balance": 50.0,
       "friends": [
@@ -55,6 +57,7 @@
     "e300fbc0-82a0-48cd-8198-ab9d39042873": {
       "first_name": "Charlie",
       "last_name": "Brown",
+      "username": "charliebrown",
       "email": "charlie.brown@outlook.com",
       "balance": 25.5,
       "friends": [
@@ -80,6 +83,7 @@
     "4e4efe60-7641-41b6-8fe0-a3050900a15e": {
       "first_name": "Diana",
       "last_name": "Prince",
+      "username": "dianaprince",
       "email": "diana.prince@protonmail.com",
       "balance": 150.0,
       "friends": [
@@ -92,6 +96,7 @@
       "id": "e275d81b-6631-44b1-a75a-fd1197304cf4",
       "first_name": "Mason",
       "last_name": "Snyder",
+      "username": "masonsnyder",
       "email": "mason.snyder8871@smart-appliances.online",
       "balance": 330.28,
       "friends": [
@@ -108,6 +113,7 @@
       "id": "ca98b253-362f-4be2-b2fe-ef6d9b3e0805",
       "first_name": "Jeffrey",
       "last_name": "Russell",
+      "username": "jeffreyrussell",
       "email": "jeffrey.russell4918@coding-challenges.com",
       "balance": 442.4,
       "friends": [
@@ -139,6 +145,7 @@
       "id": "368f8002-6998-4d01-9543-cdb86ef4f43f",
       "first_name": "Ethan",
       "last_name": "Martin",
+      "username": "ethanmartin",
       "email": "ethan.martin8694@space-missions.online",
       "balance": 179.22,
       "friends": [
@@ -154,6 +161,7 @@
       "id": "7e58c944-9ee1-4d19-8e8a-d6f64593afe3",
       "first_name": "Mia",
       "last_name": "Sanders",
+      "username": "miasanders",
       "email": "mia.sanders6969@airplane-pilots.com",
       "balance": 291.14,
       "friends": [
@@ -197,6 +205,7 @@
       "id": "a9beb99e-4c99-444c-a569-29954df93c79",
       "first_name": "Dean",
       "last_name": "Navarro",
+      "username": "deannavarro",
       "email": "dean.navarro1857@data-management.solutions",
       "balance": 246.61,
       "friends": [
@@ -232,6 +241,7 @@
       "id": "a1bf21a0-094a-4fb0-980a-67a0b116f7a2",
       "first_name": "Maria",
       "last_name": "Stewart",
+      "username": "mariastewart",
       "email": "maria.stewart4396@home-electronics.online",
       "balance": 435.7,
       "friends": [
@@ -267,6 +277,7 @@
       "id": "2437c44d-1aae-41b7-807f-399b4b93e505",
       "first_name": "Mackenzie",
       "last_name": "Ross",
+      "username": "mackenzieross",
       "email": "mackenzie.ross7343@telehealth.services",
       "balance": 318.06,
       "friends": [
@@ -301,6 +312,7 @@
       "id": "beb8c6d5-2143-45c9-9557-dc953f20bbf9",
       "first_name": "Adrian",
       "last_name": "Mason",
+      "username": "adrianmason",
       "email": "adrian.mason4469@fish-tanks.info",
       "balance": 25.69,
       "friends": [
@@ -333,6 +345,7 @@
       "id": "35f16ef0-2125-4616-b3ad-964366cdb9c3",
       "first_name": "Maya",
       "last_name": "Turner",
+      "username": "mayaturner",
       "email": "maya.turner8501@it-solutions.dev",
       "balance": 94.91,
       "friends": [
@@ -365,6 +378,7 @@
       "id": "036731f5-81fb-4c77-93e2-cbbb7f34254a",
       "first_name": "Jackson",
       "last_name": "Gomez",
+      "username": "jacksongomez",
       "email": "jackson.gomez1374@home-buying.guide",
       "balance": 312.46,
       "friends": [
@@ -398,6 +412,7 @@
       "id": "889f6fa1-e988-47b6-b354-e76e881fa5e7",
       "first_name": "Stella",
       "last_name": "Perez",
+      "username": "stellaperez",
       "email": "stella.perez7782@api-documentation.net",
       "balance": 191.17,
       "friends": [
@@ -430,6 +445,7 @@
       "id": "1688f150-46a3-4757-b260-7a614f42d89d",
       "first_name": "Cole",
       "last_name": "Flores",
+      "username": "coleflores",
       "email": "cole.flores1030@it-support.co.uk",
       "balance": 120.45,
       "friends": [
@@ -463,6 +479,7 @@
       "id": "f73ae640-efbf-4412-a7d5-a3a26099bf90",
       "first_name": "Alana",
       "last_name": "Ortiz",
+      "username": "alanaortiz",
       "email": "alana.ortiz5165@writer-resources.net",
       "balance": 75.71,
       "friends": [
@@ -497,6 +514,7 @@
       "id": "543b7de0-0546-4726-828e-9da701b1bcd4",
       "first_name": "Wyatt",
       "last_name": "Sanchez",
+      "username": "wyattsanchez",
       "email": "wyatt.sanchez1167@drone-pilots.online",
       "balance": 409.91,
       "friends": [
@@ -512,6 +530,7 @@
       "id": "9271d982-390c-4ce2-aee9-6129629daa32",
       "first_name": "London",
       "last_name": "Simmons",
+      "username": "londonsimmons",
       "email": "london.simmons579@health-plus.online",
       "balance": 55.85,
       "friends": [
@@ -542,6 +561,7 @@
       "id": "83dd911e-a2f6-421f-bed1-2e394348d1ff",
       "first_name": "Brooke",
       "last_name": "Soto",
+      "username": "brookesoto",
       "email": "brooke.soto8858@e-commerce-pro.app",
       "balance": 51.01,
       "friends": [],
@@ -554,6 +574,7 @@
       "id": "356b6a9a-63a4-4738-934d-4f26122fe358",
       "first_name": "Julian",
       "last_name": "Green",
+      "username": "juliangreen",
       "email": "julian.green3577@api-documentation.net",
       "balance": 171.52,
       "friends": [
@@ -597,6 +618,7 @@
       "id": "f8a8a9f5-d999-4f9b-bd94-316cf405ed2b",
       "first_name": "Makayla",
       "last_name": "Adams",
+      "username": "makaylaadams",
       "email": "makayla.adams3852@star-maps.info",
       "balance": 85.78,
       "friends": [],
@@ -609,6 +631,7 @@
       "id": "5d1eeb69-c952-4171-93dc-f5ef29b33b9c",
       "first_name": "Nolan",
       "last_name": "Scott",
+      "username": "nolanscott",
       "email": "nolan.scott2549@history-podcasts.online",
       "balance": 298.28,
       "friends": [
@@ -628,6 +651,7 @@
       "id": "fb984352-d9d5-4773-846c-50f4e85f2e9b",
       "first_name": "Jessica",
       "last_name": "Lopez",
+      "username": "jessicalopez",
       "email": "jessica.lopez2755@future-vision.tech",
       "balance": 112.76,
       "friends": [
@@ -644,6 +668,7 @@
       "id": "f9db337a-b52c-46b2-aa8a-19ede2338cb3",
       "first_name": "Emma",
       "last_name": "Baker",
+      "username": "emmabaker",
       "email": "emma.baker5362@hairstyles-gallery.app",
       "balance": 31.07,
       "friends": [
@@ -665,6 +690,7 @@
       "id": "4ed0d523-8f16-4ef9-aa18-14a80cfc90ba",
       "first_name": "Sophia",
       "last_name": "Mendez",
+      "username": "sophiamendez",
       "email": "sophia.mendez859@securecloud.pro",
       "balance": 468.24,
       "friends": [
@@ -696,6 +722,7 @@
       "id": "5eb99ce2-19c9-4d12-95d2-b7af99e969e2",
       "first_name": "Julian",
       "last_name": "Diaz",
+      "username": "juliandiaz",
       "email": "julian.diaz4865@thecompany.com",
       "balance": 247.34,
       "friends": [
@@ -713,6 +740,7 @@
       "id": "24db1f15-06c2-4a3c-aba8-29215b993bda",
       "first_name": "Sofia",
       "last_name": "Clark",
+      "username": "sofiaclark",
       "email": "sofia.clark3593@online-education.online",
       "balance": 291.45,
       "friends": [
@@ -742,6 +770,7 @@
       "id": "8e8c1978-2d57-45c5-bb95-e9820d6068ae",
       "first_name": "Kai",
       "last_name": "Brooks",
+      "username": "kaibrooks",
       "email": "kai.brooks9460@server-management.net",
       "balance": 288.98,
       "friends": [
@@ -775,6 +804,7 @@
       "id": "4cae2a98-0ce9-4f81-bc01-37138aa65570",
       "first_name": "Elias",
       "last_name": "Mason",
+      "username": "eliasmason",
       "email": "elias.mason7464@yourhome.net",
       "balance": 11.27,
       "friends": [
@@ -806,6 +836,7 @@
       "id": "f34d9c50-c2e4-49c9-8330-3a03480d1dec",
       "first_name": "Gianna",
       "last_name": "Perez",
+      "username": "giannaperez",
       "email": "gianna.perez4934@fitness-equipment.store",
       "balance": 381.44,
       "friends": [
@@ -823,6 +854,7 @@
       "id": "99d3645c-e3fa-4015-bb0a-f9281c4d1631",
       "first_name": "Jack",
       "last_name": "Gomez",
+      "username": "jackgomez",
       "email": "jack.gomez5491@craft-kits.store",
       "balance": 335.04,
       "friends": [
@@ -866,6 +898,7 @@
       "id": "ef52c1a0-3a2f-4f3e-a01b-d488808fd3be",
       "first_name": "John",
       "last_name": "Wells",
+      "username": "johnwells",
       "email": "john.wells4202@planetary-exploration.net",
       "balance": 120.5,
       "friends": [
@@ -885,6 +918,7 @@
       "id": "a6c0678b-fe6e-452f-8248-757e256237ae",
       "first_name": "Kennedy",
       "last_name": "Price",
+      "username": "kennedyprice",
       "email": "kennedy.price6071@archeology-online.org",
       "balance": 36.26,
       "friends": [
@@ -920,6 +954,7 @@
       "id": "c53c5e8a-8a80-48b4-9da6-fb4ad3e44c4a",
       "first_name": "Zola",
       "last_name": "Shaw",
+      "username": "zolashaw",
       "email": "zola.shaw5737@yoga-retreats.com",
       "balance": 219.64,
       "friends": [
@@ -955,6 +990,7 @@
       "id": "a6725654-8093-4c24-b8e3-dc1e34af88c1",
       "first_name": "Kayla",
       "last_name": "Hill",
+      "username": "kaylahill",
       "email": "kayla.hill9268@makeup-artist.co",
       "balance": 421.82,
       "friends": [
@@ -1000,6 +1036,7 @@
       "id": "a299e623-6053-4c6d-8518-36f08a5c29e0",
       "first_name": "Zuri",
       "last_name": "Brown",
+      "username": "zuribrown",
       "email": "zuri.brown3880@home-automation.com",
       "balance": 107.56,
       "friends": [
@@ -1048,6 +1085,7 @@
       "id": "bffc8912-7310-4d9d-afa7-315bfb79edcd",
       "first_name": "Quinn",
       "last_name": "Hughes",
+      "username": "quinnhughes",
       "email": "quinn.hughes6459@garden-supplies.com",
       "balance": 257.8,
       "friends": [
@@ -1078,6 +1116,7 @@
       "id": "17911c45-c5f7-4dd4-ae1d-e45a08e4f21e",
       "first_name": "Cameron",
       "last_name": "Diaz",
+      "username": "camerondiaz",
       "email": "cameron.diaz8420@dataservices.ai",
       "balance": 370.32,
       "friends": [
@@ -1110,6 +1149,7 @@
       "id": "6af36cdf-d666-4925-80eb-76bb79530fb2",
       "first_name": "Eliana",
       "last_name": "Ramirez",
+      "username": "elianaramirez",
       "email": "eliana.ramirez231@software-engineers.dev",
       "balance": 39.73,
       "friends": [
@@ -1156,6 +1196,7 @@
       "id": "4ceb7493-e9d8-4d2a-aad0-0848d90c08da",
       "first_name": "Justin",
       "last_name": "Ward",
+      "username": "justinward",
       "email": "justin.ward1091@content-marketing.services",
       "balance": 183.67,
       "friends": [
@@ -1197,6 +1238,7 @@
       "id": "4c20eb0e-e6a7-460a-9ef6-390f892a22ea",
       "first_name": "Aaliyah",
       "last_name": "Wright",
+      "username": "aaliyahwright",
       "email": "aaliyah.wright6475@clothing-boutique.shop",
       "balance": 320.36,
       "friends": [
@@ -1231,6 +1273,7 @@
       "id": "087d8e64-c544-4e0b-a34a-4c7c320399e0",
       "first_name": "Michael",
       "last_name": "Henderson",
+      "username": "michaelhenderson",
       "email": "michael.henderson2957@mindfulness-hub.app",
       "balance": 284.62,
       "friends": [
@@ -1265,6 +1308,7 @@
       "id": "910eee05-45cb-4f95-98d1-3726e140d8ec",
       "first_name": "Charles",
       "last_name": "White",
+      "username": "charleswhite",
       "email": "charles.white2208@retirement-planning.services",
       "balance": 205.9,
       "friends": [
@@ -1309,6 +1353,7 @@
       "id": "1cf7a5db-288b-4122-b862-e3109e831c01",
       "first_name": "Lucy",
       "last_name": "Delgado",
+      "username": "lucydelgado",
       "email": "lucy.delgado8722@pharmacy-online.store",
       "balance": 280.17,
       "friends": [
@@ -1342,6 +1387,7 @@
       "id": "e03f1818-f264-45d4-aaad-f85a7e150e52",
       "first_name": "Hayden",
       "last_name": "Medina",
+      "username": "haydenmedina",
       "email": "hayden.medina4543@event-venues.online",
       "balance": 37.56,
       "friends": [
@@ -1390,6 +1436,7 @@
       "id": "6d489bcd-947f-491b-a8b5-d203646fe75e",
       "first_name": "Patrick",
       "last_name": "Perez",
+      "username": "patrickperez",
       "email": "patrick.perez1917@history-buffs.net",
       "balance": 28.14,
       "friends": [
@@ -1435,6 +1482,7 @@
       "id": "14a4cc44-9e5d-4ab4-828a-075f38cce3bd",
       "first_name": "Madison",
       "last_name": "Carter",
+      "username": "madisoncarter",
       "email": "madison.carter1672@dog-training.school",
       "balance": 113.43,
       "friends": [
@@ -1478,6 +1526,7 @@
       "id": "a061540c-da56-4f4a-ad37-00c35ed0f4d6",
       "first_name": "Kevin",
       "last_name": "Hamilton",
+      "username": "kevinhamilton",
       "email": "kevin.hamilton6836@satellite-tracking.net",
       "balance": 128.02,
       "friends": [],
@@ -1490,6 +1539,7 @@
       "id": "8e0ac00c-5fd8-4ab1-968b-d388016b12ce",
       "first_name": "Delilah",
       "last_name": "Cortez",
+      "username": "delilahcortez",
       "email": "delilah.cortez2350@retirement-planning.services",
       "balance": 362.4,
       "friends": [
@@ -1521,6 +1571,7 @@
       "id": "c213362b-0bd7-49a3-8165-ab7b19141059",
       "first_name": "Santiago",
       "last_name": "Johnson",
+      "username": "santiagojohnson",
       "email": "santiago.johnson775@robot-surgery.online",
       "balance": 322.47,
       "friends": [
@@ -1552,6 +1603,7 @@
       "id": "c4a6e553-77c4-46f0-872b-6b1e27f61665",
       "first_name": "Isaiah",
       "last_name": "Edwards",
+      "username": "isaiahedwards",
       "email": "isaiah.edwards2786@web-agency.org",
       "balance": 411.26,
       "friends": [
@@ -1580,6 +1632,7 @@
       "id": "f139cf9a-4cc1-4d71-a68d-de1c5cdd3530",
       "first_name": "Zane",
       "last_name": "Harris",
+      "username": "zaneharris",
       "email": "zane.harris2293@robot-vacuum.store",
       "balance": 135.48,
       "friends": [
@@ -1615,6 +1668,7 @@
       "id": "b5b8b8cb-c8b7-4649-908c-5e0969eca549",
       "first_name": "Scarlett",
       "last_name": "Moore",
+      "username": "scarlettmoore",
       "email": "scarlett.moore4357@audio-engineering.online",
       "balance": 21.41,
       "friends": [
@@ -1658,6 +1712,7 @@
       "id": "13be6ece-f827-459a-910b-0f084edfba80",
       "first_name": "Stephen",
       "last_name": "Snyder",
+      "username": "stephensnyder",
       "email": "stephen.snyder8307@space-exploration.com",
       "balance": 385.91,
       "friends": [
@@ -1701,6 +1756,7 @@
       "id": "4e2e474c-049e-4ee5-a7e8-b39da3f8b15b",
       "first_name": "Luke",
       "last_name": "Moore",
+      "username": "lukemoore",
       "email": "luke.moore3698@backpacking-guide.com",
       "balance": 378.76,
       "friends": [
@@ -1716,6 +1772,7 @@
       "id": "2666cd2b-3a93-4d6f-b81e-4bb14adbb92a",
       "first_name": "Dylan",
       "last_name": "Herrera",
+      "username": "dylanherrera",
       "email": "dylan.herrera9665@backpacking-guide.com",
       "balance": 13.54,
       "friends": [
@@ -1748,6 +1805,7 @@
       "id": "62a3815e-fa51-459f-ba85-a60839df595d",
       "first_name": "Noah",
       "last_name": "Hamilton",
+      "username": "noahhamilton",
       "email": "noah.hamilton9576@datascience.ai",
       "balance": 482.29,
       "friends": [
@@ -1791,6 +1849,7 @@
       "id": "24bd3f3f-111d-401e-8a4e-80941553fca9",
       "first_name": "Charlotte",
       "last_name": "Lewis",
+      "username": "charlottelewis",
       "email": "charlotte.lewis5222@animal-behavior.consultant",
       "balance": 406.55,
       "friends": [
@@ -1833,6 +1892,7 @@
       "id": "006f134d-0f14-4b42-9fd5-7b1709438fca",
       "first_name": "Noah",
       "last_name": "Matthews",
+      "username": "noahmatthews",
       "email": "noah.matthews300@robot-surgery.online",
       "balance": 173.75,
       "friends": [
@@ -1863,6 +1923,7 @@
       "id": "0c1c42a6-21c8-41a3-b357-3ec48f68cc4a",
       "first_name": "Bella",
       "last_name": "Rodriguez",
+      "username": "bellarodriguez",
       "email": "bella.rodriguez2739@science-experiments.online",
       "balance": 302.99,
       "friends": [
@@ -1911,6 +1972,7 @@
       "id": "9a1c497b-bd5d-4127-b7b4-031d22248075",
       "first_name": "Rose",
       "last_name": "Williams",
+      "username": "rosewilliams",
       "email": "rose.williams4886@sewing-patterns.com",
       "balance": 428.82,
       "friends": [
@@ -1942,6 +2004,7 @@
       "id": "ab9398e4-f8c5-4dcf-9c9b-180fc7099ec7",
       "first_name": "Penelope",
       "last_name": "Barnes",
+      "username": "penelopebarnes",
       "email": "penelope.barnes9501@seo-services.agency",
       "balance": 374.05,
       "friends": [
@@ -1985,6 +2048,7 @@
       "id": "a61f1a9a-106a-4822-aa4e-5f70abd7d157",
       "first_name": "London",
       "last_name": "Espinoza",
+      "username": "londonespinoza",
       "email": "london.espinoza7259@workout-videos.online",
       "balance": 241.38,
       "friends": [
@@ -2001,6 +2065,7 @@
       "id": "6e8d4f33-2f67-41cc-83e1-944f35b3d9a2",
       "first_name": "William",
       "last_name": "Cooper",
+      "username": "williamcooper",
       "email": "william.cooper5732@streetwear-brands.com",
       "balance": 331.64,
       "friends": [
@@ -2030,6 +2095,7 @@
       "id": "573c5f3a-5177-45aa-85e0-a453ddb1b172",
       "first_name": "Cody",
       "last_name": "Thompson",
+      "username": "codythompson",
       "email": "cody.thompson4617@cyber-defense.io",
       "balance": 185.5,
       "friends": [
@@ -2058,6 +2124,7 @@
       "id": "deabffe3-cae8-4e0d-80e5-9892d2f233bb",
       "first_name": "Matthew",
       "last_name": "Simmons",
+      "username": "matthewsimmons",
       "email": "matthew.simmons648@antique-furniture.online",
       "balance": 145.15,
       "friends": [
@@ -2105,6 +2172,7 @@
       "id": "581b217b-9674-4f23-bc0f-dee016286cac",
       "first_name": "Adam",
       "last_name": "Snyder",
+      "username": "adamsnyder",
       "email": "adam.snyder2604@concert-tickets.online",
       "balance": 428.37,
       "friends": [
@@ -2133,6 +2201,7 @@
       "id": "395d3220-f4f8-41fb-adf8-14a9fc957847",
       "first_name": "Aaliyah",
       "last_name": "Simmons",
+      "username": "aaliyahsimmons",
       "email": "aaliyah.simmons2702@jewelry-designers.net",
       "balance": 225.82,
       "friends": [
@@ -2166,6 +2235,7 @@
       "id": "b50dfeb1-b8a8-472a-92d5-80dae326d701",
       "first_name": "Ezra",
       "last_name": "Henderson",
+      "username": "ezrahenderson",
       "email": "ezra.henderson5681@biotechnology.solutions",
       "balance": 478.75,
       "friends": [
@@ -2197,6 +2267,7 @@
       "id": "3695ecca-4253-4252-ba5b-7796d4e15773",
       "first_name": "Jaxon",
       "last_name": "Kim",
+      "username": "jaxonkim",
       "email": "jaxon.kim3534@e-commerce-platforms.net",
       "balance": 26.13,
       "friends": [
@@ -2244,6 +2315,7 @@
       "id": "a24959aa-000e-4286-bad2-883ae7dd4749",
       "first_name": "Violet",
       "last_name": "Mendoza",
+      "username": "violetmendoza",
       "email": "violet.mendoza6565@api-documentation.net",
       "balance": 205.65,
       "friends": [
@@ -2262,6 +2334,7 @@
       "id": "ba8b6f02-3929-4e45-8991-18a57e3ec9c5",
       "first_name": "Vivian",
       "last_name": "Bell",
+      "username": "vivianbell",
       "email": "vivian.bell9749@mobile-apps.development",
       "balance": 224.52,
       "friends": [
@@ -2307,6 +2380,7 @@
       "id": "d12589b8-c319-47ac-b10b-e0d794ae74d2",
       "first_name": "Stephen",
       "last_name": "Guerrero",
+      "username": "stephenguerrero",
       "email": "stephen.guerrero7186@career-counseling.online",
       "balance": 166.95,
       "friends": [
@@ -2328,6 +2402,7 @@
       "id": "3e4e1e76-dc58-4c60-9e1a-a65e1e2d40d7",
       "first_name": "Jeremy",
       "last_name": "Ramirez",
+      "username": "jeremyramirez",
       "email": "jeremy.ramirez2115@cruise-lines.co",
       "balance": 22.2,
       "friends": [],
@@ -2367,6 +2442,7 @@
       "id": "3ebff023-95b9-48b8-bb4e-89736ec21117",
       "first_name": "Eli",
       "last_name": "Jackson",
+      "username": "elijackson",
       "email": "eli.jackson2618@innovate-today.com",
       "balance": 377.66,
       "friends": [
@@ -2400,6 +2476,7 @@
       "id": "a98e5fea-3caa-4a1a-8bc6-ee371ac8e406",
       "first_name": "Stella",
       "last_name": "Walker",
+      "username": "stellawalker",
       "email": "stella.walker1412@social-media.experts",
       "balance": 251.0,
       "friends": [
@@ -2445,6 +2522,7 @@
       "id": "8865d599-d413-401b-a283-4897cfada45c",
       "first_name": "Lauren",
       "last_name": "Russell",
+      "username": "laurenrussell",
       "email": "lauren.russell3645@property-management.services",
       "balance": 377.52,
       "friends": [
@@ -2487,6 +2565,7 @@
       "id": "f461d088-2efe-4653-bc86-b45fa62367de",
       "first_name": "Michael",
       "last_name": "Wood",
+      "username": "michaelwood",
       "email": "michael.wood4175@history-buffs.net",
       "balance": 458.37,
       "friends": [
@@ -2504,6 +2583,7 @@
       "id": "47db27a8-402f-4a1a-bf06-667cf9cc25a7",
       "first_name": "Anya",
       "last_name": "Clark",
+      "username": "anyaclark",
       "email": "anya.clark8919@it-consulting.group",
       "balance": 272.45,
       "friends": [
@@ -2521,6 +2601,7 @@
       "id": "8210f079-a5a6-4882-95ee-c404bbe449e0",
       "first_name": "Mackenzie",
       "last_name": "Lara",
+      "username": "mackenzielara",
       "email": "mackenzie.lara7968@cloud-computing.services",
       "balance": 407.97,
       "friends": [
@@ -2537,6 +2618,7 @@
       "id": "82c25d07-beee-4974-9816-27dcfa43c074",
       "first_name": "Zuri",
       "last_name": "Bell",
+      "username": "zuribell",
       "email": "zuri.bell887@legaladvocate.net",
       "balance": 381.41,
       "friends": [
@@ -2568,6 +2650,7 @@
       "id": "8653f2df-ec6b-43af-a0ff-4acd7b28fb05",
       "first_name": "Paige",
       "last_name": "Coleman",
+      "username": "paigecoleman",
       "email": "paige.coleman8487@craft-ideas.co",
       "balance": 476.48,
       "friends": [
@@ -2596,6 +2679,7 @@
       "id": "073fcc83-374d-480f-afb0-2372d852b10e",
       "first_name": "Zack",
       "last_name": "Gonzalez",
+      "username": "zackgonzalez",
       "email": "zack.gonzalez8352@projectmanager.io",
       "balance": 455.29,
       "friends": [],
@@ -2622,6 +2706,7 @@
       "id": "ebd1a3bf-0614-449d-8747-9ca4247437b2",
       "first_name": "Ellie",
       "last_name": "Lopez",
+      "username": "ellielopez",
       "email": "ellie.lopez4884@tech-research.labs",
       "balance": 63.95,
       "friends": [
@@ -2650,6 +2735,7 @@
       "id": "b3cbf8be-e19e-4e52-a883-aa252ed61698",
       "first_name": "Dominic",
       "last_name": "Ford",
+      "username": "dominicford",
       "email": "dominic.ford4473@movie-reviews.info",
       "balance": 174.56,
       "friends": [
@@ -2681,6 +2767,7 @@
       "id": "f5d38cc0-70b2-487f-8229-83d3822bfab9",
       "first_name": "Jeffrey",
       "last_name": "Evans",
+      "username": "jeffreyevans",
       "email": "jeffrey.evans1048@cruise-lines.co",
       "balance": 252.53,
       "friends": [
@@ -2724,6 +2811,7 @@
       "id": "2a112202-62d6-4ba0-b649-88b20ae604fe",
       "first_name": "Avery",
       "last_name": "Butler",
+      "username": "averybutler",
       "email": "avery.butler9399@cruise-lines.co",
       "balance": 362.19,
       "friends": [
@@ -2758,6 +2846,7 @@
       "id": "bb5ed71b-9d47-4cb9-91f5-07f2c9461e40",
       "first_name": "Graham",
       "last_name": "Cortez",
+      "username": "grahamcortez",
       "email": "graham.cortez4289@voice-assistants.online",
       "balance": 46.22,
       "friends": [
@@ -2787,6 +2876,7 @@
       "id": "a3cf3ed0-c4e0-4808-becb-c58725014f95",
       "first_name": "Paige",
       "last_name": "Flores",
+      "username": "paigeflores",
       "email": "paige.flores9561@cloud-computing.services",
       "balance": 429.35,
       "friends": [
@@ -2822,6 +2912,7 @@
       "id": "7c2d9149-9fcc-410c-8a38-b2ad063c9742",
       "first_name": "Joseph",
       "last_name": "Ross",
+      "username": "josephross",
       "email": "joseph.ross3785@sci-fi-books.store",
       "balance": 438.53,
       "friends": [
@@ -2854,6 +2945,7 @@
       "id": "f1b95238-252d-432e-89e1-db3a15dd676c",
       "first_name": "Alice",
       "last_name": "Sanchez",
+      "username": "alicesanchez",
       "email": "alice.sanchez6261@enterprise-data.solutions",
       "balance": 270.87,
       "friends": [
@@ -2884,6 +2976,7 @@
       "id": "a7b2f670-4add-4919-947c-2e8e64f3d36a",
       "first_name": "Logan",
       "last_name": "Cruz",
+      "username": "logancruz",
       "email": "logan.cruz2342@brand-identity.agency",
       "balance": 66.14,
       "friends": [
@@ -2916,6 +3009,7 @@
       "id": "16690ec5-a2ea-4ee4-a070-680e53f01744",
       "first_name": "Jenna",
       "last_name": "Bailey",
+      "username": "jennabailey",
       "email": "jenna.bailey202@garden-supplies.com",
       "balance": 131.86,
       "friends": [
@@ -2947,6 +3041,7 @@
       "id": "eeb972f3-3efa-4209-a2d3-be4c01763f83",
       "first_name": "Evelyn",
       "last_name": "Wood",
+      "username": "evelynwood",
       "email": "evelyn.wood1156@petsupply.shop",
       "balance": 42.37,
       "friends": [
@@ -2977,6 +3072,7 @@
       "id": "63dae490-e962-487e-a0c3-df46ff8df4c7",
       "first_name": "Chloe",
       "last_name": "Long",
+      "username": "chloelong",
       "email": "chloe.long3758@career-counseling.online",
       "balance": 359.89,
       "friends": [
@@ -3025,6 +3121,7 @@
       "id": "398ccab7-7302-4cd1-9327-a604117567d9",
       "first_name": "Liliana",
       "last_name": "Jenkins",
+      "username": "lilianajenkins",
       "email": "liliana.jenkins9389@electrician-services.com",
       "balance": 396.54,
       "friends": [
@@ -3073,6 +3170,7 @@
       "id": "e842a341-f78b-4511-a8fe-dab2a966baba",
       "first_name": "Rachel",
       "last_name": "Hall",
+      "username": "rachelhall",
       "email": "rachel.hall5125@coding-challenges.com",
       "balance": 89.23,
       "friends": [],
@@ -3099,6 +3197,7 @@
       "id": "9d891d57-da23-4e29-b13b-477eaf11155b",
       "first_name": "Mia",
       "last_name": "King",
+      "username": "miaking",
       "email": "mia.king8270@securecloud.pro",
       "balance": 425.96,
       "friends": [
@@ -3120,6 +3219,7 @@
       "id": "6b83f26b-7023-46c1-a457-e560301a41c4",
       "first_name": "John",
       "last_name": "Flores",
+      "username": "johnflores",
       "email": "john.flores8071@smart-appliances.online",
       "balance": 412.16,
       "friends": [
@@ -3148,6 +3248,7 @@
       "id": "873a06cb-1fbf-41c9-a6ba-5b07be591e26",
       "first_name": "Michael",
       "last_name": "Long",
+      "username": "michaellong",
       "email": "michael.long8207@fashionforward.org",
       "balance": 331.31,
       "friends": [
@@ -3179,6 +3280,7 @@
       "id": "a953259b-f3a5-4d24-956d-147fbdbb8504",
       "first_name": "Anya",
       "last_name": "Palmer",
+      "username": "anyapalmer",
       "email": "anya.palmer3652@career-counseling.online",
       "balance": 53.94,
       "friends": [
@@ -3194,6 +3296,7 @@
       "id": "ec3d8534-0647-465d-9cd5-09aa96f36c39",
       "first_name": "Dominic",
       "last_name": "Sanders",
+      "username": "dominicsanders",
       "email": "dominic.sanders9189@fitnessfirst.io",
       "balance": 438.0,
       "friends": [
@@ -3213,6 +3316,7 @@
       "id": "0d9f2105-c33b-4f53-b446-456d4d768e81",
       "first_name": "Alexandra",
       "last_name": "Gonzalez",
+      "username": "alexandragonzalez",
       "email": "alexandra.gonzalez2609@securecloud.pro",
       "balance": 320.03,
       "friends": [
@@ -3230,6 +3334,7 @@
       "id": "d3957882-0081-48d3-9d8d-c9439b932c1a",
       "first_name": "Zia",
       "last_name": "Chavez",
+      "username": "ziachavez",
       "email": "zia.chavez6402@myblogspace.blog",
       "balance": 291.56,
       "friends": [
@@ -3259,6 +3364,7 @@
       "id": "8f603b59-47b6-407c-8e42-b212db756818",
       "first_name": "Stephen",
       "last_name": "Jones",
+      "username": "stephenjones",
       "email": "stephen.jones8961@dedicated-servers.co",
       "balance": 438.13,
       "friends": [
@@ -3290,6 +3396,7 @@
       "id": "09df3b7b-4e58-4256-8b4f-fe73837d6d38",
       "first_name": "Jonathan",
       "last_name": "Ortiz",
+      "username": "jonathanortiz",
       "email": "jonathan.ortiz8877@bird-watchers.org",
       "balance": 488.91,
       "friends": [
@@ -3320,6 +3427,7 @@
       "id": "61f45f67-8732-4f23-99b5-f2fd7e1546fb",
       "first_name": "Benjamin",
       "last_name": "Gray",
+      "username": "benjamingray",
       "email": "benjamin.gray8380@e-commerce-pro.app",
       "balance": 315.82,
       "friends": [
@@ -3354,6 +3462,7 @@
       "id": "a404b1aa-c23c-4c85-a9ef-bed6f9a5fb93",
       "first_name": "Ryan",
       "last_name": "Henderson",
+      "username": "ryanhenderson",
       "email": "ryan.henderson9072@legal-services.online",
       "balance": 265.44,
       "friends": [
@@ -3382,6 +3491,7 @@
       "id": "9fc6372f-d4ae-4509-8725-4c6e28e1f7ea",
       "first_name": "Brooke",
       "last_name": "Diaz",
+      "username": "brookediaz",
       "email": "brooke.diaz1854@property-management.services",
       "balance": 326.67,
       "friends": [
@@ -3428,6 +3538,7 @@
       "id": "9b8f7ec4-fea1-4bbc-9bfc-ccc4ccb3e77b",
       "first_name": "Ariana",
       "last_name": "Thompson",
+      "username": "arianathompson",
       "email": "ariana.thompson5635@yoga-gear.online",
       "balance": 458.39,
       "friends": [],
@@ -3454,6 +3565,7 @@
       "id": "779917d2-edde-4fed-a021-b805cf2883d3",
       "first_name": "Kai",
       "last_name": "Gonzalez",
+      "username": "kaigonzalez",
       "email": "kai.gonzalez3448@brand-identity.agency",
       "balance": 243.67,
       "friends": [
@@ -3485,6 +3597,7 @@
       "id": "654fafb9-5cd6-4b9e-a9c6-492d6e896d75",
       "first_name": "Ali",
       "last_name": "Torres",
+      "username": "alitorres",
       "email": "ali.torres4934@online-education.online",
       "balance": 209.08,
       "friends": [
@@ -3514,6 +3627,7 @@
       "id": "2c4e9835-313f-4aa7-8e5e-f14f2b7116fa",
       "first_name": "Gabriella",
       "last_name": "Adams",
+      "username": "gabriellaadams",
       "email": "gabriella.adams221@electrician-services.com",
       "balance": 476.46,
       "friends": [
@@ -3530,6 +3644,7 @@
       "id": "ad62fb7b-c994-4543-a0bd-2ac496e71488",
       "first_name": "Nevaeh",
       "last_name": "Martinez",
+      "username": "nevaehmartinez",
       "email": "nevaeh.martinez3032@trucking-logistics.biz",
       "balance": 96.04,
       "friends": [
@@ -3571,6 +3686,7 @@
       "id": "6ab06aab-5d85-44bb-8bc9-38738aa8dbf2",
       "first_name": "Charles",
       "last_name": "Castillo",
+      "username": "charlescastillo",
       "email": "charles.castillo3455@brand-identity.agency",
       "balance": 146.82,
       "friends": [
@@ -3614,6 +3730,7 @@
       "id": "8448ff0f-ea40-4e34-b0f7-2cf00d30cb81",
       "first_name": "Miles",
       "last_name": "Espinoza",
+      "username": "milesespinoza",
       "email": "miles.espinoza8481@yoga-studio.com",
       "balance": 99.11,
       "friends": [
@@ -3656,6 +3773,7 @@
       "id": "75a9445d-2224-445c-bd63-d1a3fd6b52f3",
       "first_name": "Allison",
       "last_name": "Baker",
+      "username": "allisonbaker",
       "email": "allison.baker4892@fashion-brands.online",
       "balance": 258.4,
       "friends": [
@@ -3701,6 +3819,7 @@
       "id": "c86b6739-35bf-49c3-b737-31bfedf9951b",
       "first_name": "Adam",
       "last_name": "Wright",
+      "username": "adamwright",
       "email": "adam.wright5779@python-code.io",
       "balance": 286.21,
       "friends": [
@@ -3736,6 +3855,7 @@
       "id": "efe32e82-f335-4415-98cd-a64126ff8ba8",
       "first_name": "Gabriel",
       "last_name": "Medina",
+      "username": "gabrielmedina",
       "email": "gabriel.medina7922@planetary-exploration.net",
       "balance": 286.3,
       "friends": [
@@ -3764,6 +3884,7 @@
       "id": "91100442-89f2-4df1-b2dd-804715a77caa",
       "first_name": "Ali",
       "last_name": "Russell",
+      "username": "alirussell",
       "email": "ali.russell4494@digital-strategy.group",
       "balance": 366.45,
       "friends": [
@@ -3794,6 +3915,7 @@
       "id": "9c8340c6-79d3-4657-9afb-6a6372e5ea26",
       "first_name": "Vivian",
       "last_name": "Russell",
+      "username": "vivianrussell",
       "email": "vivian.russell618@personal-injury.attorney",
       "balance": 175.37,
       "friends": [
@@ -3825,6 +3947,7 @@
       "id": "73cc0c2b-02dc-4127-acec-ce4f8f5b4be5",
       "first_name": "Presley",
       "last_name": "Russell",
+      "username": "presleyrussell",
       "email": "presley.russell1584@genomics-research.online",
       "balance": 375.92,
       "friends": [
@@ -3860,6 +3983,7 @@
       "id": "5c0cb827-5dd9-499f-8f5a-ed7438087b61",
       "first_name": "Matthew",
       "last_name": "Harris",
+      "username": "matthewharris",
       "email": "matthew.harris1498@space-exploration.com",
       "balance": 170.64,
       "friends": [
@@ -3902,6 +4026,7 @@
       "id": "ce9e651a-73ee-4f51-979d-629aba492a54",
       "first_name": "John",
       "last_name": "Robinson",
+      "username": "johnrobinson",
       "email": "john.robinson9068@school-online.net",
       "balance": 33.84,
       "friends": [
@@ -3944,6 +4069,7 @@
       "id": "2019689f-ba2c-45bb-8c72-a41dc5f691ac",
       "first_name": "Henry",
       "last_name": "Bennett",
+      "username": "henrybennett",
       "email": "henry.bennett2762@history-buffs.net",
       "balance": 83.14,
       "friends": [
@@ -3988,6 +4114,7 @@
       "id": "b238b854-e78e-4bf0-ab08-57859c34a0e8",
       "first_name": "Hailey",
       "last_name": "Reed",
+      "username": "haileyreed",
       "email": "hailey.reed2950@coding-challenges.com",
       "balance": 387.32,
       "friends": [
@@ -4022,6 +4149,7 @@
       "id": "6d5c1d81-33e9-4f02-ac57-062114e018ae",
       "first_name": "Alana",
       "last_name": "Hall",
+      "username": "alanahall",
       "email": "alana.hall7803@car-repair.services",
       "balance": 294.35,
       "friends": [
@@ -4067,6 +4195,7 @@
       "id": "f0a0293c-602b-4199-94f5-56f530fc5c46",
       "first_name": "Tyler",
       "last_name": "Moore",
+      "username": "tylermoore",
       "email": "tyler.moore6288@genomics-research.online",
       "balance": 144.77,
       "friends": [],
@@ -4093,6 +4222,7 @@
       "id": "15abfbb8-27a1-43a6-af2d-e3440feb2777",
       "first_name": "Jessica",
       "last_name": "Powell",
+      "username": "jessicapowell",
       "email": "jessica.powell1678@enterprise-software.io",
       "balance": 135.98,
       "friends": [
@@ -4141,6 +4271,7 @@
       "id": "fc1e5052-ebd7-4698-bceb-55ccb3557e43",
       "first_name": "Aarav",
       "last_name": "Powell",
+      "username": "aaravpowell",
       "email": "aarav.powell6183@onlinemarket.org",
       "balance": 131.16,
       "friends": [
@@ -4174,6 +4305,7 @@
       "id": "fd4f4ca1-0191-44fe-9bf9-fa4825bd7a12",
       "first_name": "Robert",
       "last_name": "Morales",
+      "username": "robertmorales",
       "email": "robert.morales1246@projectmanager.io",
       "balance": 276.12,
       "friends": [
@@ -4203,6 +4335,7 @@
       "id": "1848fef3-9d31-4eb7-a80e-b001a31417b1",
       "first_name": "Rachel",
       "last_name": "Gomez",
+      "username": "rachelgomez",
       "email": "rachel.gomez5000@linux-tutorials.com",
       "balance": 110.2,
       "friends": [
@@ -4238,6 +4371,7 @@
       "id": "eded6d43-d818-4323-813b-a61de1a3333b",
       "first_name": "Walter",
       "last_name": "Ramirez",
+      "username": "walterramirez",
       "email": "walter.ramirez1333@retirement-planning.services",
       "balance": 28.89,
       "friends": [
@@ -4266,6 +4400,7 @@
       "id": "a1014c3b-84ce-4c3e-aa0b-0b157e8ef749",
       "first_name": "Margaret",
       "last_name": "Gonzalez",
+      "username": "margaretgonzalez",
       "email": "margaret.gonzalez7749@audio-engineering.online",
       "balance": 220.8,
       "friends": [
@@ -4313,6 +4448,7 @@
       "id": "80e207d5-7e22-4e6d-b13c-c7a76f975779",
       "first_name": "Margaret",
       "last_name": "Rodriguez",
+      "username": "margaretrodriguez",
       "email": "margaret.rodriguez5625@meditation-apps.com",
       "balance": 423.37,
       "friends": [
@@ -4344,6 +4480,7 @@
       "id": "2d311301-a306-44eb-9c0a-18223cf10bbe",
       "first_name": "Fiona",
       "last_name": "Ramirez",
+      "username": "fionaramirez",
       "email": "fiona.ramirez968@planetary-exploration.net",
       "balance": 385.43,
       "friends": [
@@ -4374,6 +4511,7 @@
       "id": "d7df5114-f16f-4aa8-bdf4-1121bee48400",
       "first_name": "Mason",
       "last_name": "Foster",
+      "username": "masonfoster",
       "email": "mason.foster1108@techsolutions.dev",
       "balance": 386.33,
       "friends": [
@@ -4393,6 +4531,7 @@
       "id": "a018071a-859b-4659-ae24-24889706420f",
       "first_name": "Hailey",
       "last_name": "Ford",
+      "username": "haileyford",
       "email": "hailey.ford9198@cloud-hosting.services",
       "balance": 326.62,
       "friends": [
@@ -4427,6 +4566,7 @@
       "id": "b6f632c5-2261-45b7-ae3a-36a1e454d10e",
       "first_name": "Aarav",
       "last_name": "Medina",
+      "username": "aaravmedina",
       "email": "aarav.medina2572@getonline.site",
       "balance": 192.62,
       "friends": [
@@ -4468,6 +4608,7 @@
       "id": "90d3ac0d-0c46-49f0-8bba-173e8477e042",
       "first_name": "Logan",
       "last_name": "Cortez",
+      "username": "logancortez",
       "email": "logan.cortez8275@homedecor.store",
       "balance": 277.72,
       "friends": [
@@ -4483,6 +4624,7 @@
       "id": "3a44de70-eeb8-4bb7-87ef-e5ebc6e7a32d",
       "first_name": "Hannah",
       "last_name": "Moore",
+      "username": "hannahmoore",
       "email": "hannah.moore7268@email-campaigns.net",
       "balance": 119.37,
       "friends": [
@@ -4530,6 +4672,7 @@
       "id": "3185f269-09e2-45c1-bea2-1689561887c4",
       "first_name": "Savannah",
       "last_name": "Alvarado",
+      "username": "savannahalvarado",
       "email": "savannah.alvarado3208@property-management.services",
       "balance": 438.73,
       "friends": [
@@ -4550,6 +4693,7 @@
       "id": "519638d3-6d17-45e8-b75c-552f3b4f34f3",
       "first_name": "Cody",
       "last_name": "Evans",
+      "username": "codyevans",
       "email": "cody.evans9748@e-commerce-pro.app",
       "balance": 303.79,
       "friends": [
@@ -4566,6 +4710,7 @@
       "id": "dbfc0150-cb3d-46ca-a4fa-37ebc6e0c375",
       "first_name": "Jason",
       "last_name": "Hughes",
+      "username": "jasonhughes",
       "email": "jason.hughes9653@data-analytics.dev",
       "balance": 15.66,
       "friends": [
@@ -4596,6 +4741,7 @@
       "id": "011f7fdd-3c83-4e9f-bb68-7d2287940eea",
       "first_name": "Zoe",
       "last_name": "Butler",
+      "username": "zoebutler",
       "email": "zoe.butler4563@car-shows.online",
       "balance": 68.55,
       "friends": [],
@@ -4622,6 +4768,7 @@
       "id": "7a7285dd-dd11-4a05-a302-a86488a2e9fa",
       "first_name": "Genesis",
       "last_name": "Medina",
+      "username": "genesismedina",
       "email": "genesis.medina6931@virtualreality.site",
       "balance": 385.02,
       "friends": [
@@ -4652,6 +4799,7 @@
       "id": "52ce0c0b-9917-4068-97bb-8aea958868a1",
       "first_name": "Hannah",
       "last_name": "Gomez",
+      "username": "hannahgomez",
       "email": "hannah.gomez8880@space-exploration.com",
       "balance": 441.16,
       "friends": [
@@ -4681,6 +4829,7 @@
       "id": "76520be2-3a57-4f41-8b77-43d2d930d364",
       "first_name": "Paige",
       "last_name": "Wells",
+      "username": "paigewells",
       "email": "paige.wells8420@vacation-rentals.online",
       "balance": 292.29,
       "friends": [
@@ -4713,6 +4862,7 @@
       "id": "a291700e-c4a6-4797-b304-e40ad1bba32a",
       "first_name": "Ellie",
       "last_name": "Kim",
+      "username": "elliekim",
       "email": "ellie.kim8373@audiobook-library.com",
       "balance": 436.15,
       "friends": [
@@ -4744,6 +4894,7 @@
       "id": "1adf9d17-a699-4b91-ac9f-afd0288bfbff",
       "first_name": "Gabriel",
       "last_name": "Jordan",
+      "username": "gabrieljordan",
       "email": "gabriel.jordan801@enterprise-software.io",
       "balance": 250.55,
       "friends": [
@@ -4787,6 +4938,7 @@
       "id": "6243af4f-52c0-4dbc-a159-cc773358aee5",
       "first_name": "Ryan",
       "last_name": "Wilson",
+      "username": "ryanwilson",
       "email": "ryan.wilson6755@brandstudio.net",
       "balance": 272.29,
       "friends": [
@@ -4831,6 +4983,7 @@
       "id": "e11bb29c-5265-4b32-8fe4-afa776f8bbef",
       "first_name": "Dylan",
       "last_name": "Ortiz",
+      "username": "dylanortiz",
       "email": "dylan.ortiz5785@pet-adoption.online",
       "balance": 45.73,
       "friends": [
@@ -4863,6 +5016,7 @@
       "id": "5dbec28d-1f26-406a-ae19-cf37677a4bca",
       "first_name": "Zuri",
       "last_name": "Phillips",
+      "username": "zuriphillips",
       "email": "zuri.phillips9293@software-engineers.dev",
       "balance": 58.54,
       "friends": [
@@ -4898,6 +5052,7 @@
       "id": "0e0263a8-fb80-41ec-9e9a-4413e8c919f8",
       "first_name": "Ellie",
       "last_name": "Harper",
+      "username": "ellieharper",
       "email": "ellie.harper6741@hair-care-tips.com",
       "balance": 495.39,
       "friends": [
@@ -4940,6 +5095,7 @@
       "id": "88d700c8-71b8-4f50-af6e-3d180dfa7f06",
       "first_name": "Nathan",
       "last_name": "Hernandez",
+      "username": "nathanhernandez",
       "email": "nathan.hernandez683@boat-builders.co",
       "balance": 337.96,
       "friends": [
@@ -4974,6 +5130,7 @@
       "id": "88c65717-474e-425a-b5a6-987cb6c633f8",
       "first_name": "Harrison",
       "last_name": "Collins",
+      "username": "harrisoncollins",
       "email": "harrison.collins851@websolutions.io",
       "balance": 116.16,
       "friends": [
@@ -5007,6 +5164,7 @@
       "id": "e50dd145-ee60-43f5-baa9-33f4599343a6",
       "first_name": "Kaylee",
       "last_name": "Myers",
+      "username": "kayleemyers",
       "email": "kaylee.myers5048@software-testing.services",
       "balance": 445.24,
       "friends": [
@@ -5037,6 +5195,7 @@
       "id": "a7a9de89-09cb-4d3d-8efb-3cfc9b9b8b07",
       "first_name": "Allison",
       "last_name": "Gomez",
+      "username": "allisongomez",
       "email": "allison.gomez1521@wine-tasting.club",
       "balance": 422.47,
       "friends": [
@@ -5070,6 +5229,7 @@
       "id": "6e16b6a7-babb-4e45-8d39-b41806b8d269",
       "first_name": "Gavin",
       "last_name": "Alvarado",
+      "username": "gavinalvarado",
       "email": "gavin.alvarado2124@musicstream.site",
       "balance": 187.9,
       "friends": [
@@ -5085,6 +5245,7 @@
       "id": "7f31ad28-23c4-43a7-ab5c-fa3525d5098a",
       "first_name": "Isaiah",
       "last_name": "Nguyen",
+      "username": "isaiahnguyen",
       "email": "isaiah.nguyen6441@app-development.services",
       "balance": 197.11,
       "friends": [
@@ -5116,6 +5277,7 @@
       "id": "238f0f27-9204-496a-ad79-291a9cc8848b",
       "first_name": "Hunter",
       "last_name": "Bennett",
+      "username": "hunterbennett",
       "email": "hunter.bennett6387@getfitnow.online",
       "balance": 6.0,
       "friends": [
@@ -5148,6 +5310,7 @@
       "id": "4f88fa15-9069-4184-939f-23b51e2b9ad4",
       "first_name": "Charles",
       "last_name": "Cortez",
+      "username": "charlescortez",
       "email": "charles.cortez343@audio-engineering.online",
       "balance": 481.32,
       "friends": [
@@ -5191,6 +5354,7 @@
       "id": "0588645a-0bf8-4eaa-92a8-882a1d67c0b2",
       "first_name": "Brandon",
       "last_name": "Lee",
+      "username": "brandonlee",
       "email": "brandon.lee6033@dataservices.ai",
       "balance": 187.28,
       "friends": [],
@@ -5217,6 +5381,7 @@
       "id": "c8913789-b26e-40a0-b625-439722e47e9e",
       "first_name": "Olivia",
       "last_name": "Simmons",
+      "username": "oliviasimmons",
       "email": "olivia.simmons5070@biology-facts.net",
       "balance": 134.47,
       "friends": [
@@ -5231,6 +5396,7 @@
       "id": "f454affa-998c-45e8-99cc-60a1c9021948",
       "first_name": "Theodore",
       "last_name": "Young",
+      "username": "theodoreyoung",
       "email": "theodore.young7813@future-vision.tech",
       "balance": 84.16,
       "friends": [
@@ -5247,6 +5413,7 @@
       "id": "802c8cb7-787b-49ad-8cd9-6eb7d88d0329",
       "first_name": "Brooke",
       "last_name": "Webb",
+      "username": "brookewebb",
       "email": "brooke.webb3138@influencer-marketing.co",
       "balance": 214.37,
       "friends": [
@@ -5276,6 +5443,7 @@
       "id": "2a32c17a-b50b-4eb0-be05-025bf79e04dd",
       "first_name": "Caroline",
       "last_name": "Evans",
+      "username": "carolineevans",
       "email": "caroline.evans363@book-reviews.online",
       "balance": 463.06,
       "friends": [
@@ -5306,6 +5474,7 @@
       "id": "1cd389a9-fe24-49bf-a582-9b05dbe87595",
       "first_name": "David",
       "last_name": "Cruz",
+      "username": "davidcruz",
       "email": "david.cruz8873@space-tourism.services",
       "balance": 451.04,
       "friends": [
@@ -5340,6 +5509,7 @@
       "id": "c64f9ba5-9bf1-43d4-bab4-b8ecbaf7f47f",
       "first_name": "Christian",
       "last_name": "Cruz",
+      "username": "christiancruz",
       "email": "christian.cruz3585@musicstream.site",
       "balance": 102.98,
       "friends": [
@@ -5388,6 +5558,7 @@
       "id": "46416e55-0e5f-45aa-901d-595737f3e348",
       "first_name": "Zoe",
       "last_name": "Roberts",
+      "username": "zoeroberts",
       "email": "zoe.roberts7130@investment-advice.online",
       "balance": 91.31,
       "friends": [
@@ -5416,6 +5587,7 @@
       "id": "a7f642f1-dd7c-4440-bf28-f8b04423ba62",
       "first_name": "Mason",
       "last_name": "Martin",
+      "username": "masonmartin",
       "email": "mason.martin6269@projectmanager.io",
       "balance": 259.57,
       "friends": [
@@ -5445,6 +5617,7 @@
       "id": "b6489fce-e580-41e3-b75c-7612d9b831fa",
       "first_name": "Dean",
       "last_name": "Morgan",
+      "username": "deanmorgan",
       "email": "dean.morgan4314@ecommerce-pro.app",
       "balance": 76.75,
       "friends": [
@@ -5480,6 +5653,7 @@
       "id": "e086f128-9e46-4516-8f3c-96cf5584e757",
       "first_name": "Timothy",
       "last_name": "Cruz",
+      "username": "timothycruz",
       "email": "timothy.cruz3884@sewing-patterns.com",
       "balance": 246.89,
       "friends": [
@@ -5511,6 +5685,7 @@
       "id": "01aec1a2-576d-410c-9874-3e9d81ad2bfc",
       "first_name": "Fiona",
       "last_name": "Moore",
+      "username": "fionamoore",
       "email": "fiona.moore6423@food-delivery.org",
       "balance": 445.25,
       "friends": [
@@ -5554,6 +5729,7 @@
       "id": "bee56a7b-d74d-4da3-a1eb-c4016645c8cc",
       "first_name": "Sharon",
       "last_name": "Austin",
+      "username": "sharonaustin",
       "email": "sharon.austin5118@website-design.online",
       "balance": 187.6,
       "friends": [
@@ -5602,6 +5778,7 @@
       "id": "f811c0ef-fd26-45b8-8870-ae774a1ec176",
       "first_name": "Sophia",
       "last_name": "Torres",
+      "username": "sophiatorres",
       "email": "sophia.torres9971@workout-videos.online",
       "balance": 363.21,
       "friends": [
@@ -5631,6 +5808,7 @@
       "id": "9e873b70-89e4-48d4-9da2-846ad1742b6e",
       "first_name": "Trevor",
       "last_name": "Martin",
+      "username": "trevormartin",
       "email": "trevor.martin6634@real-estate.listings",
       "balance": 184.84,
       "friends": [],
@@ -5657,6 +5835,7 @@
       "id": "439623b5-cdc9-4eb7-b0ed-2c2f403fc01b",
       "first_name": "Max",
       "last_name": "Coleman",
+      "username": "maxcoleman",
       "email": "max.coleman3354@musicstream.site",
       "balance": 66.7,
       "friends": [
@@ -5687,6 +5866,7 @@
       "id": "8c0646e6-10f0-4ffc-8613-8c331634efe1",
       "first_name": "Zane",
       "last_name": "Guerrero",
+      "username": "zaneguerrero",
       "email": "zane.guerrero4911@fashion-trends.com",
       "balance": 9.02,
       "friends": [],
@@ -5713,6 +5893,7 @@
       "id": "185ea643-1a45-4cc6-9685-5358b6689aec",
       "first_name": "Stephen",
       "last_name": "Jackson",
+      "username": "stephenjackson",
       "email": "stephen.jackson8781@tech-gadgets.store",
       "balance": 362.13,
       "friends": [
@@ -5730,6 +5911,7 @@
       "id": "800402da-a443-4441-aabb-83a22b93faff",
       "first_name": "Jackson",
       "last_name": "Palmer",
+      "username": "jacksonpalmer",
       "email": "jackson.palmer6590@personal-injury.attorney",
       "balance": 32.45,
       "friends": [
@@ -5761,6 +5943,7 @@
       "id": "c0b1dca3-f4b6-4f84-ace6-98d77c97b041",
       "first_name": "Harper",
       "last_name": "Silva",
+      "username": "harpersilva",
       "email": "harper.silva9867@content-creation.studio",
       "balance": 136.85,
       "friends": [
@@ -5793,6 +5976,7 @@
       "id": "4a18a68c-6e85-4038-81f3-22d23843906a",
       "first_name": "Kaden",
       "last_name": "Anderson",
+      "username": "kadenanderson",
       "email": "kaden.anderson6921@trucking-news.com",
       "balance": 248.7,
       "friends": [
@@ -5828,6 +6012,7 @@
       "id": "93cf36a9-b07c-4fc7-b358-ff9d91ff6995",
       "first_name": "Travis",
       "last_name": "Chavez",
+      "username": "travischavez",
       "email": "travis.chavez8366@planetary-exploration.net",
       "balance": 339.03,
       "friends": [
@@ -5856,6 +6041,7 @@
       "id": "501687c1-1d9f-4873-a6b9-06d7a060c066",
       "first_name": "Carter",
       "last_name": "Kim",
+      "username": "carterkim",
       "email": "carter.kim3981@web-hosting-reviews.com",
       "balance": 220.02,
       "friends": [
@@ -5887,6 +6073,7 @@
       "id": "5bf6a96a-1edf-4a81-98f0-ea3f8a479daa",
       "first_name": "Leah",
       "last_name": "Vargas",
+      "username": "leahvargas",
       "email": "leah.vargas6786@aquarium-supplies.store",
       "balance": 303.48,
       "friends": [
@@ -5916,6 +6103,7 @@
       "id": "0919aca2-15eb-45e1-a53c-f095e61d9462",
       "first_name": "Dylan",
       "last_name": "Kelly",
+      "username": "dylankelly",
       "email": "dylan.kelly6248@fitnessfirst.io",
       "balance": 23.11,
       "friends": [
@@ -5950,6 +6138,7 @@
       "id": "c42cd6a2-e9e5-49aa-9cb9-73df83ad6097",
       "first_name": "Jeffrey",
       "last_name": "Cortez",
+      "username": "jeffreycortez",
       "email": "jeffrey.cortez7011@seo-optimization.tools",
       "balance": 86.04,
       "friends": [
@@ -5996,6 +6185,7 @@
       "id": "ef6ad959-aa70-4bd1-89cf-34622b3f35ba",
       "first_name": "Zachary",
       "last_name": "Stewart",
+      "username": "zacharystewart",
       "email": "zachary.stewart6266@healthyliving.net",
       "balance": 342.11,
       "friends": [
@@ -6041,6 +6231,7 @@
       "id": "f9bbae44-3610-4ab4-9585-6f97a9a38f76",
       "first_name": "Avery",
       "last_name": "Torres",
+      "username": "averytorres",
       "email": "avery.torres5469@robotics-kits.co",
       "balance": 451.21,
       "friends": [
@@ -6071,6 +6262,7 @@
       "id": "20107bf4-0b1d-4bd0-87a4-e64c8bb376cf",
       "first_name": "Matthew",
       "last_name": "Carrillo",
+      "username": "matthewcarrillo",
       "email": "matthew.carrillo2220@genealogy-site.info",
       "balance": 252.13,
       "friends": [
@@ -6099,6 +6291,7 @@
       "id": "93d40279-6d20-4cec-a20c-2132137997ba",
       "first_name": "Cameron",
       "last_name": "Brown",
+      "username": "cameronbrown",
       "email": "cameron.brown1594@nanotechnology.tech",
       "balance": 369.24,
       "friends": [
@@ -6127,6 +6320,7 @@
       "id": "eb2cdc94-3e75-4718-9264-fb95e11fbf8d",
       "first_name": "Adam",
       "last_name": "Hill",
+      "username": "adamhill",
       "email": "adam.hill5782@network-security.tools",
       "balance": 377.14,
       "friends": [
@@ -6160,6 +6354,7 @@
       "id": "e87d2e8d-58e6-46b4-86a9-29d47a86e9f7",
       "first_name": "Jade",
       "last_name": "Garcia",
+      "username": "jadegarcia",
       "email": "jade.garcia4452@legal-services.online",
       "balance": 222.92,
       "friends": [
@@ -6176,6 +6371,7 @@
       "id": "1571c5ec-0617-47f2-a2f6-7d75a2a4d22f",
       "first_name": "Brandon",
       "last_name": "Barnes",
+      "username": "brandonbarnes",
       "email": "brandon.barnes6370@concert-tickets.online",
       "balance": 101.48,
       "friends": [],
@@ -6202,6 +6398,7 @@
       "id": "93c0284b-4491-41d4-b303-3fcd3a4792c7",
       "first_name": "Daniel",
       "last_name": "Espinoza",
+      "username": "danielespinoza",
       "email": "daniel.espinoza961@vintage-clothing.store",
       "balance": 170.95,
       "friends": [
@@ -6246,6 +6443,7 @@
       "id": "5cd531ef-0801-46a3-8846-1b95b9d0e34d",
       "first_name": "Rachel",
       "last_name": "Garcia",
+      "username": "rachelgarcia",
       "email": "rachel.garcia8726@audio-engineering.online",
       "balance": 156.0,
       "friends": [
@@ -6280,6 +6478,7 @@
       "id": "94edba29-cb37-41c5-b6a9-9fbf6abad4bf",
       "first_name": "Anya",
       "last_name": "Fisher",
+      "username": "anyafisher",
       "email": "anya.fisher9150@mental-health.support",
       "balance": 58.45,
       "friends": [
@@ -6309,6 +6508,7 @@
       "id": "efd61cf0-8ec6-49b5-b38e-f2a46fefae7f",
       "first_name": "Natalie",
       "last_name": "Torres",
+      "username": "natalietorres",
       "email": "natalie.torres2984@team-sports.club",
       "balance": 346.2,
       "friends": [
@@ -6338,6 +6538,7 @@
       "id": "27969a11-7679-4c79-98ae-da94b1f68d91",
       "first_name": "Presley",
       "last_name": "Gonzalez",
+      "username": "presleygonzalez",
       "email": "presley.gonzalez8333@genomics-research.online",
       "balance": 121.58,
       "friends": [
@@ -6366,6 +6567,7 @@
       "id": "ff79b382-406e-4f1e-bbff-df1d4b373163",
       "first_name": "Ariana",
       "last_name": "Vasquez",
+      "username": "arianavasquez",
       "email": "ariana.vasquez6501@diy-home-projects.online",
       "balance": 94.93,
       "friends": [
@@ -6380,6 +6582,7 @@
       "id": "fa14a5f1-4123-435b-b2d3-24d3c34ed3d7",
       "first_name": "Bella",
       "last_name": "Mendez",
+      "username": "bellamendez",
       "email": "bella.mendez1870@history-buffs.net",
       "balance": 424.1,
       "friends": [
@@ -6426,6 +6629,7 @@
       "id": "56829548-dec6-4da8-b9d3-11da90dbbe14",
       "first_name": "Hannah",
       "last_name": "Guerrero",
+      "username": "hannahguerrero",
       "email": "hannah.guerrero9354@tech-gadgets.store",
       "balance": 299.47,
       "friends": [
@@ -6460,6 +6664,7 @@
       "id": "d7735502-89e6-4c40-b928-fe1f83ae8f22",
       "first_name": "Shane",
       "last_name": "Evans",
+      "username": "shaneevans",
       "email": "shane.evans6325@photography-studio.com",
       "balance": 386.97,
       "friends": [
@@ -6490,6 +6695,7 @@
       "id": "ef548260-e83d-416a-9c8b-a3bf218f6d30",
       "first_name": "Graham",
       "last_name": "White",
+      "username": "grahamwhite",
       "email": "graham.white8740@electrician-services.com",
       "balance": 367.13,
       "friends": [
@@ -6531,6 +6737,7 @@
       "id": "8a7a24c2-3251-495b-a174-26d15ff158a9",
       "first_name": "Ryan",
       "last_name": "Perry",
+      "username": "ryanperry",
       "email": "ryan.perry6849@business-consulting.site",
       "balance": 81.58,
       "friends": [
@@ -6547,6 +6754,7 @@
       "id": "b75f201c-adef-426c-b8d0-00a1c64fc1c3",
       "first_name": "Thomas",
       "last_name": "Sanchez",
+      "username": "thomassanchez",
       "email": "thomas.sanchez8582@gaming-peripherals.store",
       "balance": 109.96,
       "friends": [
@@ -6593,6 +6801,7 @@
       "id": "ae5b3655-26ef-41f7-b7a1-80d351ea4d04",
       "first_name": "Jaxon",
       "last_name": "White",
+      "username": "jaxonwhite",
       "email": "jaxon.white6401@business-law.consultant",
       "balance": 420.78,
       "friends": [
@@ -6637,6 +6846,7 @@
       "id": "dc961d16-0c5e-4889-9be0-fa2cf1bf2455",
       "first_name": "Amir",
       "last_name": "Morales",
+      "username": "amirmorales",
       "email": "amir.morales8432@investment-strategies.online",
       "balance": 161.36,
       "friends": [
@@ -6668,6 +6878,7 @@
       "id": "8d53a7df-dd02-48d4-9893-ce0d02f4b152",
       "first_name": "Shane",
       "last_name": "Morales",
+      "username": "shanemorales",
       "email": "shane.morales100@datascience.ai",
       "balance": 147.94,
       "friends": [
@@ -6697,6 +6908,7 @@
       "id": "e47e0919-ae0b-4aa6-94e9-46f3be3818ee",
       "first_name": "Santiago",
       "last_name": "Patterson",
+      "username": "santiagopatterson",
       "email": "santiago.patterson2744@backpacking-guide.com",
       "balance": 66.33,
       "friends": [
@@ -6731,6 +6943,7 @@
       "id": "4d09a161-78a7-43ae-b7bf-d4c0072d8485",
       "first_name": "Ava",
       "last_name": "Garcia",
+      "username": "avagarcia",
       "email": "ava.garcia5118@book-publishing.services",
       "balance": 420.61,
       "friends": [
@@ -6776,6 +6989,7 @@
       "id": "291c0d10-9c7b-41ab-ae50-6eaf7e21df25",
       "first_name": "Roman",
       "last_name": "Webb",
+      "username": "romanwebb",
       "email": "roman.webb1354@online-shop.org",
       "balance": 367.63,
       "friends": [
@@ -6807,6 +7021,7 @@
       "id": "28e47f35-8074-4167-8de2-e963842d53d0",
       "first_name": "Emma",
       "last_name": "Johnson",
+      "username": "emmajohnson",
       "email": "emma.johnson8897@diet-plans.net",
       "balance": 463.2,
       "friends": [
@@ -6840,6 +7055,7 @@
       "id": "9c7b0702-76b8-45a7-96ff-22842e467bfd",
       "first_name": "Noah",
       "last_name": "Alvarado",
+      "username": "noahalvarado",
       "email": "noah.alvarado9417@pest-control.co",
       "balance": 119.88,
       "friends": [
@@ -6873,6 +7089,7 @@
       "id": "8d87e535-e2ad-4dc8-88d8-c83d28d00811",
       "first_name": "Anna",
       "last_name": "Phillips",
+      "username": "annaphillips",
       "email": "anna.phillips6954@flight-tracker.com",
       "balance": 212.1,
       "friends": [
@@ -6901,6 +7118,7 @@
       "id": "50e20c56-17ca-4c1d-810d-2955933e2dca",
       "first_name": "Cody",
       "last_name": "Miller",
+      "username": "codymiller",
       "email": "cody.miller7096@wedding-planners.co",
       "balance": 417.01,
       "friends": [
@@ -6930,6 +7148,7 @@
       "id": "6ce61f49-3296-462b-8bc7-26b1afa45723",
       "first_name": "London",
       "last_name": "Silva",
+      "username": "londonsilva",
       "email": "london.silva9843@language-learning.app",
       "balance": 35.85,
       "friends": [
@@ -6965,6 +7184,7 @@
       "id": "971701fe-f0f7-499c-b0fd-45ea6af60869",
       "first_name": "Aaliyah",
       "last_name": "Pena",
+      "username": "aaliyahpena",
       "email": "aaliyah.pena3867@fashionforward.org",
       "balance": 347.89,
       "friends": [],
@@ -6977,6 +7197,7 @@
       "id": "c57c510a-d1df-44eb-bdf0-df048bf26327",
       "first_name": "Gianna",
       "last_name": "Kennedy",
+      "username": "giannakennedy",
       "email": "gianna.kennedy5261@makeup-artist.co",
       "balance": 28.45,
       "friends": [],
@@ -7003,6 +7224,7 @@
       "id": "2bd2f7ea-d444-4454-b350-892528fdc8d9",
       "first_name": "Harper",
       "last_name": "Adams",
+      "username": "harperadams",
       "email": "harper.adams6893@genomics-research.online",
       "balance": 77.5,
       "friends": [],
@@ -7029,6 +7251,7 @@
       "id": "bb6b97ef-c012-48e3-8cd9-670cff90bc2a",
       "first_name": "Scarlett",
       "last_name": "Pena",
+      "username": "scarlettpena",
       "email": "scarlett.pena9101@travel-experts.com",
       "balance": 70.91,
       "friends": [],
@@ -7055,6 +7278,7 @@
       "id": "1cf7bf48-e6cd-4d35-b259-3127ab088f65",
       "first_name": "Everett",
       "last_name": "Bennett",
+      "username": "everettbennett",
       "email": "everett.bennett7616@ai-assistants.tech",
       "balance": 447.64,
       "friends": [
@@ -7090,6 +7314,7 @@
       "id": "8816ab8c-b380-4f82-be7e-91e00e9076b7",
       "first_name": "Alana",
       "last_name": "Austin",
+      "username": "alanaaustin",
       "email": "alana.austin8522@computer-repair.services",
       "balance": 398.58,
       "friends": [
@@ -7119,6 +7344,7 @@
       "id": "4f264010-d70f-403e-89c7-0d0f2050af87",
       "first_name": "Gabriel",
       "last_name": "Ross",
+      "username": "gabrielross",
       "email": "gabriel.ross3145@yoga-retreats.com",
       "balance": 181.42,
       "friends": [
@@ -7140,6 +7366,7 @@
       "id": "fd9556b4-dddf-4a0d-b253-3a39c77b4122",
       "first_name": "Anna",
       "last_name": "Wright",
+      "username": "annawright",
       "email": "anna.wright3895@meditation-apps.com",
       "balance": 386.81,
       "friends": [
@@ -7170,6 +7397,7 @@
       "id": "4527e7ce-345b-44da-bfb1-91202249f2f6",
       "first_name": "Bella",
       "last_name": "Chavez",
+      "username": "bellachavez",
       "email": "bella.chavez209@astronomy-club.net",
       "balance": 358.64,
       "friends": [
@@ -7215,6 +7443,7 @@
       "id": "5622bd3d-818a-4eea-9b59-bb24a363f753",
       "first_name": "Derek",
       "last_name": "Hill",
+      "username": "derekhill",
       "email": "derek.hill405@telehealth.services",
       "balance": 485.39,
       "friends": [
@@ -7245,6 +7474,7 @@
       "id": "f0d72896-7ced-4c25-8ce6-d7d13fcfcd97",
       "first_name": "Miriam",
       "last_name": "Gomez",
+      "username": "miriamgomez",
       "email": "miriam.gomez8678@job-board.tech",
       "balance": 8.41,
       "friends": [
@@ -7275,6 +7505,7 @@
       "id": "fdab33a9-9736-4284-85d4-56d25a7b2b67",
       "first_name": "Mia",
       "last_name": "Parker",
+      "username": "miaparker",
       "email": "mia.parker6708@skincare-advice.net",
       "balance": 497.24,
       "friends": [
@@ -7309,6 +7540,7 @@
       "id": "b685fb37-9cfb-4d1f-905f-e7805608888d",
       "first_name": "Jacob",
       "last_name": "Allen",
+      "username": "jacoballen",
       "email": "jacob.allen591@business-consulting.site",
       "balance": 15.94,
       "friends": [
@@ -7329,6 +7561,7 @@
       "id": "a5afa8bd-a17b-4dda-973b-859972fca28a",
       "first_name": "Bella",
       "last_name": "James",
+      "username": "bellajames",
       "email": "bella.james1164@travel-experts.com",
       "balance": 211.9,
       "friends": [
@@ -7357,6 +7590,7 @@
       "id": "8543c0e1-92d0-44d0-b3c3-b9b807db79bd",
       "first_name": "Reagan",
       "last_name": "Henderson",
+      "username": "reaganhenderson",
       "email": "reagan.henderson2121@solar-system-guide.com",
       "balance": 435.69,
       "friends": [
@@ -7374,6 +7608,7 @@
       "id": "0c2ec3cc-5ebb-4f62-b3c1-1f4d6de87c21",
       "first_name": "Aaron",
       "last_name": "Thompson",
+      "username": "aaronthompson",
       "email": "aaron.thompson3782@green-energy.co",
       "balance": 456.22,
       "friends": [
@@ -7422,6 +7657,7 @@
       "id": "bbaca9dd-cded-415d-9228-f1550295376a",
       "first_name": "Tristan",
       "last_name": "Jenkins",
+      "username": "tristanjenkins",
       "email": "tristan.jenkins8213@wedding-planners.co",
       "balance": 275.16,
       "friends": [
@@ -7452,6 +7688,7 @@
       "id": "de3d9077-a9bd-4407-b68f-397ba8878c2f",
       "first_name": "Miriam",
       "last_name": "Perry",
+      "username": "miriamperry",
       "email": "miriam.perry3410@software-development.agency",
       "balance": 267.53,
       "friends": [
@@ -7487,6 +7724,7 @@
       "id": "caabf78e-87b9-40ab-b1e4-39b060b8c4d4",
       "first_name": "Angela",
       "last_name": "Bell",
+      "username": "angelabell",
       "email": "angela.bell6189@adventure-tours.net",
       "balance": 179.73,
       "friends": [
@@ -7517,6 +7755,7 @@
       "id": "bc6b14b6-f92f-4871-a5c5-f3467eec527f",
       "first_name": "Margaret",
       "last_name": "Lane",
+      "username": "margaretlane",
       "email": "margaret.lane9444@climate-action.org",
       "balance": 352.23,
       "friends": [
@@ -7563,6 +7802,7 @@
       "id": "7567891f-6eb3-4c63-a595-e79bc9e6889a",
       "first_name": "Harrison",
       "last_name": "Bennett",
+      "username": "harrisonbennett",
       "email": "harrison.bennett6642@style-advice.net",
       "balance": 355.31,
       "friends": [],
@@ -7589,6 +7829,7 @@
       "id": "c5168d02-1b06-44cf-94c6-e764dbfb3338",
       "first_name": "Jeremy",
       "last_name": "Ford",
+      "username": "jeremyford",
       "email": "jeremy.ford9115@satellite-tracking.net",
       "balance": 441.52,
       "friends": [
@@ -7632,6 +7873,7 @@
       "id": "7cf63670-8d9a-49f3-b2f3-9640192d27ea",
       "first_name": "John",
       "last_name": "Rodriguez",
+      "username": "johnrodriguez",
       "email": "john.rodriguez2607@globalcorp.biz",
       "balance": 233.06,
       "friends": [
@@ -7678,6 +7920,7 @@
       "id": "b6c84657-4fdf-4fb9-9e6f-6e8ad3a7987d",
       "first_name": "Presley",
       "last_name": "Vargas",
+      "username": "presleyvargas",
       "email": "presley.vargas5938@app-dev.net",
       "balance": 381.93,
       "friends": [
@@ -7712,6 +7955,7 @@
       "id": "5e15db95-92a8-45b7-8c15-9c72fdc51c87",
       "first_name": "Andrew",
       "last_name": "Perez",
+      "username": "andrewperez",
       "email": "andrew.perez7776@diy-projects.online",
       "balance": 468.66,
       "friends": [
@@ -7757,6 +8001,7 @@
       "id": "429082da-ee56-4e3a-89a6-c110323b4697",
       "first_name": "Genesis",
       "last_name": "Powell",
+      "username": "genesispowell",
       "email": "genesis.powell2233@movie-reviews.info",
       "balance": 337.51,
       "friends": [
@@ -7792,6 +8037,7 @@
       "id": "4f567f85-aaa9-41b3-a4b1-89242d0ce364",
       "first_name": "Violet",
       "last_name": "Ross",
+      "username": "violetross",
       "email": "violet.ross3908@big-data-solutions.com",
       "balance": 464.56,
       "friends": [
@@ -7813,6 +8059,7 @@
       "id": "51e2b9c3-9a21-4db5-9180-45b1ba5d789e",
       "first_name": "Sharon",
       "last_name": "Perez",
+      "username": "sharonperez",
       "email": "sharon.perez4535@electric-vehicles.online",
       "balance": 76.87,
       "friends": [
@@ -7847,6 +8094,7 @@
       "id": "8fad936e-1d4f-4698-92cc-cc5a97749d2c",
       "first_name": "Dean",
       "last_name": "Barnes",
+      "username": "deanbarnes",
       "email": "dean.barnes7821@it-consulting.group",
       "balance": 65.95,
       "friends": [],
@@ -7873,6 +8121,7 @@
       "id": "2429d635-3715-4085-8899-ab74fe83502d",
       "first_name": "Vivian",
       "last_name": "Thomas",
+      "username": "vivianthomas",
       "email": "vivian.thomas5943@ui-ux.design",
       "balance": 289.71,
       "friends": [
@@ -7904,6 +8153,7 @@
       "id": "f92f561f-2ba0-43e4-98c9-e57277c7e01b",
       "first_name": "Sophia",
       "last_name": "Thomas",
+      "username": "sophiathomas",
       "email": "sophia.thomas4352@app-development.services",
       "balance": 316.06,
       "friends": [
@@ -7937,6 +8187,7 @@
       "id": "18208c2f-2efa-47c3-87d6-97c0af64e56f",
       "first_name": "Chase",
       "last_name": "Davis",
+      "username": "chasedavis",
       "email": "chase.davis515@eco-friendly-living.com",
       "balance": 93.02,
       "friends": [
@@ -7966,6 +8217,7 @@
       "id": "84052158-ab76-44b4-bdcd-d4a49cf8f933",
       "first_name": "Sophia",
       "last_name": "Price",
+      "username": "sophiaprice",
       "email": "sophia.price4547@email-campaigns.net",
       "balance": 407.73,
       "friends": [
@@ -8007,6 +8259,7 @@
       "id": "07380528-07c1-43f5-bd82-b3a0aff15b38",
       "first_name": "Marcus",
       "last_name": "Bell",
+      "username": "marcusbell",
       "email": "marcus.bell952@cloud-hosting.services",
       "balance": 49.47,
       "friends": [
@@ -8036,6 +8289,7 @@
       "id": "3d091d22-7730-4a4d-b5b2-dba1db4b1fa6",
       "first_name": "Alexandra",
       "last_name": "Moore",
+      "username": "alexandramoore",
       "email": "alexandra.moore4917@food-bloggers.online",
       "balance": 64.04,
       "friends": [
@@ -8067,6 +8321,7 @@
       "id": "0a0d8b2e-33cf-4d01-902c-46f9329dd71b",
       "first_name": "Anya",
       "last_name": "Sharma",
+      "username": "anyasharma",
       "email": "anya.sharma7660@pet-grooming.biz",
       "balance": 424.79,
       "friends": [
@@ -8098,6 +8353,7 @@
       "id": "aaa6ea02-2c68-455d-9eec-7636d677bb14",
       "first_name": "Kenji",
       "last_name": "Tanaka",
+      "username": "kenjitanaka",
       "email": "kenji.tanaka8280@petsupply.shop",
       "balance": 230.3,
       "friends": [
@@ -8132,6 +8388,7 @@
       "id": "2887aad6-f8ac-4e2c-936e-7eb736c00b73",
       "first_name": "Maria",
       "last_name": "Rodriguez",
+      "username": "mariarodriguez",
       "email": "maria.rodriguez3567@legal-services.online",
       "balance": 296.24,
       "friends": [
@@ -8180,6 +8437,7 @@
       "id": "948e4034-7ec7-489b-bb9d-0a3afa1e9c47",
       "first_name": "David",
       "last_name": "Chen",
+      "username": "davidchen",
       "email": "david.chen3639@fashionforward.org",
       "balance": 9.12,
       "friends": [
@@ -8213,6 +8471,7 @@
       "id": "f708e827-5bbc-4951-8722-a5e6d23592bc",
       "first_name": "Fatima",
       "last_name": "Al-Mansoori",
+      "username": "fatimaal-mansoori",
       "email": "fatima.al-mansoori6101@online-courses.io",
       "balance": 353.95,
       "friends": [
@@ -8245,6 +8504,7 @@
       "id": "fbb98187-82ae-4a58-a343-356bb4d983d3",
       "first_name": "Jamal",
       "last_name": "Washington",
+      "username": "jamalwashington",
       "email": "jamal.washington9340@tutoring-services.net",
       "balance": 494.61,
       "friends": [
@@ -8288,6 +8548,7 @@
       "id": "84e30108-05b1-4217-a4f6-05dd27bc41fd",
       "first_name": "Chloe",
       "last_name": "Dubois",
+      "username": "chloedubois",
       "email": "chloe.dubois2278@insurance-broker.biz",
       "balance": 390.98,
       "friends": [
@@ -8322,6 +8583,7 @@
       "id": "b9773deb-5e44-4095-8c58-a14f84e7d370",
       "first_name": "Liam",
       "last_name": "O'Connell",
+      "username": "liamo'connell",
       "email": "liam.o'connell496@aquarium-supplies.store",
       "balance": 306.23,
       "friends": [
@@ -8352,6 +8614,7 @@
       "id": "1784580f-3f42-4f97-ad28-04f61d946415",
       "first_name": "Sofia",
       "last_name": "Rossi",
+      "username": "sofiarossi",
       "email": "sofia.rossi5347@nextgenmedia.co",
       "balance": 140.63,
       "friends": [
@@ -8383,6 +8646,7 @@
       "id": "cc0e8148-5af5-42f6-b726-4335d805dcd3",
       "first_name": "Omar",
       "last_name": "Hassan",
+      "username": "omarhassan",
       "email": "omar.hassan8833@marketing-automation.solutions",
       "balance": 32.55,
       "friends": [
@@ -8397,6 +8661,7 @@
       "id": "95bf90c3-9ca6-4d73-9ce0-cf8e4bb730d7",
       "first_name": "Priya",
       "last_name": "Patel",
+      "username": "priyapatel",
       "email": "priya.patel7444@craft-kits.store",
       "balance": 296.7,
       "friends": [
@@ -8430,6 +8695,7 @@
       "id": "384b4fec-6580-4761-b95a-6056c36a38a3",
       "first_name": "Wei",
       "last_name": "Zhang",
+      "username": "weizhang",
       "email": "wei.zhang7275@getfitnow.online",
       "balance": 48.22,
       "friends": [
@@ -8463,6 +8729,7 @@
       "id": "2d890a6a-e69f-480f-9b9b-aa2fb434e50a",
       "first_name": "Javier",
       "last_name": "Garcia",
+      "username": "javiergarcia",
       "email": "javier.garcia970@boat-builders.co",
       "balance": 21.5,
       "friends": [
@@ -8492,6 +8759,7 @@
       "id": "b17e15c5-3338-4280-bbf2-aa614f60ea65",
       "first_name": "Nadia",
       "last_name": "Petrova",
+      "username": "nadiapetrova",
       "email": "nadia.petrova5187@thecompany.com",
       "balance": 157.29,
       "friends": [
@@ -8524,6 +8792,7 @@
       "id": "1d3d0e83-b08d-495d-bb7b-56cce9ad1409",
       "first_name": "Elias",
       "last_name": "M\u00fcller",
+      "username": "eliasm\u00fcller",
       "email": "elias.m\u00fcller9153@smart-home-devices.online",
       "balance": 441.73,
       "friends": [
@@ -8538,6 +8807,7 @@
       "id": "e8526b88-9e47-4be9-870d-00c62a51ba8f",
       "first_name": "Leila",
       "last_name": "Khan",
+      "username": "leilakhan",
       "email": "leila.khan2360@it-consulting.group",
       "balance": 127.13,
       "friends": [],
@@ -8564,6 +8834,7 @@
       "id": "5cbe951f-a098-4081-ae6c-de728117da91",
       "first_name": "Mateo",
       "last_name": "Gonzalez",
+      "username": "mateogonzalez",
       "email": "mateo.gonzalez9332@poetry-journal.com",
       "balance": 487.72,
       "friends": [
@@ -8583,6 +8854,7 @@
       "id": "5c2ff813-5b60-4113-853f-ed1808b888c9",
       "first_name": "Hannah",
       "last_name": "Kim",
+      "username": "hannahkim",
       "email": "hannah.kim6412@home-improvement.guide",
       "balance": 204.44,
       "friends": [
@@ -8618,6 +8890,7 @@
       "id": "6979267c-5a34-4768-8bba-6f962fafa116",
       "first_name": "Caleb",
       "last_name": "Williams",
+      "username": "calebwilliams",
       "email": "caleb.williams6630@projectmanager.io",
       "balance": 443.39,
       "friends": [
@@ -8649,6 +8922,7 @@
       "id": "6ab5010c-7158-455e-bece-88d96e323302",
       "first_name": "Amara",
       "last_name": "Diallo",
+      "username": "amaradiallo",
       "email": "amara.diallo6027@creative-media.app",
       "balance": 94.17,
       "friends": [],
@@ -8688,6 +8962,7 @@
       "id": "443d8751-a13c-4ab7-8db0-f06c3efd8bef",
       "first_name": "Hiroshi",
       "last_name": "Nakamura",
+      "username": "hiroshinakamura",
       "email": "hiroshi.nakamura2219@criminal-defense.law",
       "balance": 358.5,
       "friends": [
@@ -8718,6 +8993,7 @@
       "id": "10203f40-5a95-45ad-989b-a1c7c359af26",
       "first_name": "Isabella",
       "last_name": "Santos",
+      "username": "isabellasantos",
       "email": "isabella.santos1745@fish-tanks.info",
       "balance": 198.51,
       "friends": [
@@ -8747,6 +9023,7 @@
       "id": "54481474-b304-4129-80e7-1282ec60185f",
       "first_name": "Kaelen",
       "last_name": "Jones",
+      "username": "kaelenjones",
       "email": "kaelen.jones5263@gaming-peripherals.store",
       "balance": 111.47,
       "friends": [],
@@ -8773,6 +9050,7 @@
       "id": "621fdf1a-17e1-4d95-b7d2-cc87134403a5",
       "first_name": "Aisha",
       "last_name": "Ibrahim",
+      "username": "aishaibrahim",
       "email": "aisha.ibrahim446@yoga-gear.online",
       "balance": 330.13,
       "friends": [],
@@ -8785,6 +9063,7 @@
       "id": "6024a85d-2b58-4139-a960-2c4dc8a5b94a",
       "first_name": "Luca",
       "last_name": "Bianchi",
+      "username": "lucabianchi",
       "email": "luca.bianchi2716@creative-works.app",
       "balance": 343.42,
       "friends": [
@@ -8819,6 +9098,7 @@
       "id": "fcc4483b-1276-4771-aa3f-af4e04627335",
       "first_name": "Sarah",
       "last_name": "Johnson",
+      "username": "sarahjohnson",
       "email": "sarah.johnson821@software-testing.services",
       "balance": 85.98,
       "friends": [
@@ -8837,6 +9117,7 @@
       "id": "0cf47b4b-447a-40b4-94d3-c0818305624c",
       "first_name": "Bruno",
       "last_name": "Rodriguez-Mendez",
+      "username": "brunorodriguez-mendez",
       "email": "bruno.rodriguez-mendez3699@science-facts.info",
       "balance": 468.42,
       "friends": [
@@ -8866,6 +9147,7 @@
       "id": "2c1c1e2d-e35a-431e-a235-78c9d02a93b2",
       "first_name": "Mohammed",
       "last_name": "Ali",
+      "username": "mohammedali",
       "email": "mohammed.ali9481@motorcycle-tours.net",
       "balance": 168.07,
       "friends": [
@@ -8900,6 +9182,7 @@
       "id": "32c42ed6-b126-482c-acc3-55c3e251f651",
       "first_name": "Elena",
       "last_name": "Popova",
+      "username": "elenapopova",
       "email": "elena.popova5111@greenplanet.earth",
       "balance": 391.61,
       "friends": [
@@ -8933,6 +9216,7 @@
       "id": "a95237ea-95e3-427f-82ef-9ef13e203287",
       "first_name": "Benjamin",
       "last_name": "Smith",
+      "username": "benjaminsmith",
       "email": "benjamin.smith8465@innovationslab.ai",
       "balance": 96.7,
       "friends": [
@@ -8951,6 +9235,7 @@
       "id": "4e3a0c89-ed9d-4f64-9d32-9d3422ff0b75",
       "first_name": "Zoe",
       "last_name": "Carter",
+      "username": "zoecarter",
       "email": "zoe.carter3917@poetry-journal.com",
       "balance": 93.25,
       "friends": [
@@ -8979,6 +9264,7 @@
       "id": "c20bdaa6-16a5-4808-9270-991d892b2477",
       "first_name": "Diego",
       "last_name": "Morales",
+      "username": "diegomorales",
       "email": "diego.morales8168@web-hosting-reviews.com",
       "balance": 10.03,
       "friends": [],
@@ -8991,6 +9277,7 @@
       "id": "1bfd4054-abb8-4c6f-8d20-1329c298b622",
       "first_name": "Eva",
       "last_name": "Kovacs",
+      "username": "evakovacs",
       "email": "eva.kovacs2705@robotics-club.dev",
       "balance": 148.54,
       "friends": [
@@ -9023,6 +9310,7 @@
       "id": "f99f44b5-857f-47bf-ba1c-cd10ac3e7bd1",
       "first_name": "Ryan",
       "last_name": "Murphy",
+      "username": "ryanmurphy",
       "email": "ryan.murphy1523@coding-bootcamps.online",
       "balance": 9.07,
       "friends": [
@@ -9071,6 +9359,7 @@
       "id": "a44b8cca-3ca4-467f-9df7-086dca208157",
       "first_name": "Lina",
       "last_name": "Bergstr\u00f6m",
+      "username": "linabergstr\u00f6m",
       "email": "lina.bergstr\u00f6m8302@ecommerce-pro.app",
       "balance": 118.5,
       "friends": [],
@@ -9083,6 +9372,7 @@
       "id": "ed82a653-1676-412f-9190-830ebd09ae72",
       "first_name": "Gideon",
       "last_name": "Levy",
+      "username": "gideonlevy",
       "email": "gideon.levy7181@javascript-guide.dev",
       "balance": 450.68,
       "friends": [
@@ -9112,6 +9402,7 @@
       "id": "c3222f80-bd6e-4e4b-a05e-79798b686467",
       "first_name": "Sana",
       "last_name": "Ahmed",
+      "username": "sanaahmed",
       "email": "sana.ahmed7770@podcast-hosting.co",
       "balance": 89.27,
       "friends": [
@@ -9142,6 +9433,7 @@
       "id": "b033249c-9dcf-4710-b8dd-b3316aea7fb1",
       "first_name": "Kevin",
       "last_name": "Lee",
+      "username": "kevinlee",
       "email": "kevin.lee3927@hotel-reservations.net",
       "balance": 141.67,
       "friends": [
@@ -9188,6 +9480,7 @@
       "id": "99031e78-63bd-4d34-937c-c36168547682",
       "first_name": "Olivia",
       "last_name": "Brown",
+      "username": "oliviabrown",
       "email": "olivia.brown866@security-systems.org",
       "balance": 12.92,
       "friends": [
@@ -9218,6 +9511,7 @@
       "id": "e50ea25f-2ad7-4e74-9057-ccfe4a4d9f90",
       "first_name": "Rafael",
       "last_name": "Silva",
+      "username": "rafaelsilva",
       "email": "rafael.silva9220@robot-surgery.online",
       "balance": 362.24,
       "friends": [
@@ -9252,6 +9546,7 @@
       "id": "9465373a-e19d-45ea-b5f7-e76b13315bff",
       "first_name": "Samantha",
       "last_name": "Chang",
+      "username": "samanthachang",
       "email": "samantha.chang2334@artgalleryonline.net",
       "balance": 306.58,
       "friends": [
@@ -9284,6 +9579,7 @@
       "id": "7bc1bdb4-9c72-4ad9-9dcc-e41914cac7a0",
       "first_name": "Yusuf",
       "last_name": "Demir",
+      "username": "yusufdemir",
       "email": "yusuf.demir2773@voice-assistants.online",
       "balance": 196.21,
       "friends": [
@@ -9331,6 +9627,7 @@
       "id": "073c392c-6ab6-4ab6-b92b-716629077e94",
       "first_name": "Nora",
       "last_name": "Fischer",
+      "username": "norafischer",
       "email": "nora.fischer2127@pro-marketing.digital",
       "balance": 461.74,
       "friends": [
@@ -9364,6 +9661,7 @@
       "id": "ea361b4e-4baf-496f-9b4c-7e6a13d07b9a",
       "first_name": "Patrick",
       "last_name": "Kelly",
+      "username": "patrickkelly",
       "email": "patrick.kelly8382@python-code.io",
       "balance": 162.13,
       "friends": [
@@ -9412,6 +9710,7 @@
       "id": "6804628d-22f0-4636-9210-4ec8286df1ab",
       "first_name": "Ingrid",
       "last_name": "Olsen",
+      "username": "ingridolsen",
       "email": "ingrid.olsen3939@beauty-products.online",
       "balance": 104.1,
       "friends": [
@@ -9427,6 +9726,7 @@
       "id": "8e59c8ee-12cd-4f55-a766-1cb16944cd6c",
       "first_name": "Vikram",
       "last_name": "Singh",
+      "username": "vikramsingh",
       "email": "vikram.singh2049@pro-marketing.digital",
       "balance": 194.26,
       "friends": [],
@@ -9466,6 +9766,7 @@
       "id": "e4b1ebf2-5cff-4cee-8baa-efc64b49b19a",
       "first_name": "Grace",
       "last_name": "Taylor",
+      "username": "gracetaylor",
       "email": "grace.taylor8632@machine-learning.dev",
       "balance": 450.27,
       "friends": [
@@ -9481,6 +9782,7 @@
       "id": "1d4b6086-9b8f-4d70-9b7f-476885ca0e7c",
       "first_name": "Juan",
       "last_name": "Martinez",
+      "username": "juanmartinez",
       "email": "juan.martinez4921@audio-engineering.online",
       "balance": 28.15,
       "friends": [],
@@ -9507,6 +9809,7 @@
       "id": "57a05e8f-e0e8-407e-94ec-ce10616d81f2",
       "first_name": "Daria",
       "last_name": "Novikova",
+      "username": "darianovikova",
       "email": "daria.novikova1582@food-delivery.org",
       "balance": 356.36,
       "friends": [
@@ -9539,6 +9842,7 @@
       "id": "181776cc-503c-495d-bc8f-bbe2c8d80cb1",
       "first_name": "Arthur",
       "last_name": "Thompson",
+      "username": "arthurthompson",
       "email": "arthur.thompson517@gaming-hub.online",
       "balance": 275.46,
       "friends": [
@@ -9560,6 +9864,7 @@
       "id": "4c20be0e-190c-4a61-ab5a-865ac8fcf117",
       "first_name": "Jasmine",
       "last_name": "Nguyen",
+      "username": "jasminenguyen",
       "email": "jasmine.nguyen8863@electric-vehicles.online",
       "balance": 482.95,
       "friends": [

@@ -124,6 +124,7 @@ RAW_DEFAULT_STATE = {
         "alice.smith@gmail.com": {
             "first_name": "Alice",
             "last_name": "Smith",
+            "username": "alicesmith",
             "email": "alice.smith@gmail.com",
             "balance": 100.00,
             "friends": ["bob.johnson@yahoo.com", "charlie.brown@outlook.com"],
@@ -134,6 +135,7 @@ RAW_DEFAULT_STATE = {
         "bob.johnson@yahoo.com": {
             "first_name": "Bob",
             "last_name": "Johnson",
+            "username": "bobjohnson",
             "email": "bob.johnson@yahoo.com",
             "balance": 50.00,
             "friends": ["alice.smith@gmail.com", "diana.prince@protonmail.com"],
@@ -144,6 +146,7 @@ RAW_DEFAULT_STATE = {
         "charlie.brown@outlook.com": {
             "first_name": "Charlie",
             "last_name": "Brown",
+            "username": "charliebrown",
             "email": "charlie.brown@outlook.com",
             "balance": 25.50,
             "friends": ["alice.smith@gmail.com"],
@@ -154,6 +157,7 @@ RAW_DEFAULT_STATE = {
         "diana.prince@protonmail.com": {
             "first_name": "Diana",
             "last_name": "Prince",
+            "username": "dianaprince",
             "email": "diana.prince@protonmail.com",
             "balance": 150.00,
             "friends": ["bob.johnson@yahoo.com"],
@@ -304,10 +308,13 @@ for i in range(len(first_and_last_names) + user_count):
             "last_modified": generate_random_iso_timestamp(days_ago_min=0, days_ago_max=90)
         }
 
+    username = f"{first.lower()}{last.lower()}"
+    
     new_user_data = {
         "id": user_id,
         "first_name": first,
         "last_name": last,
+        "username": username,
         "email": email,
         "balance": round(random.uniform(5.00, 500.00), 2),
         "friends": friends_list_uuids,
