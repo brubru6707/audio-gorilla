@@ -1,0 +1,228 @@
+{
+    "multistep": [
+        {
+            "prompt": "Upload my cooking video to YouTube and tweet about it on X",
+            "context": {
+                "youtube": {
+                    "user_id": "48c110ee-6925-468d-a353-ec08b7fb5598"
+                },
+                "x": {
+                    "user_id": "97cd7533-2c2b-4153-930f-c5390526af1a"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('48c110ee-6925-468d-a353-ec08b7fb5598')", "authenticate('anya.sharma81469@genealogy-software.co')", "upload_video('Pasta Carbonara Recipe', 'Traditional Italian pasta carbonara', 600, ['cooking', 'italian', 'pasta'])"],
+                "x": ["get_user_by_id('97cd7533-2c2b-4153-930f-c5390526af1a')", "authenticate('anya_sharma56')", "create_tweet('Just uploaded my new pasta carbonara recipe to YouTube! Check it out!')"]
+            }
+        },
+        {
+            "prompt": "Subscribe to that cooking channel on YouTube and let my X followers know",
+            "context": {
+                "youtube": {
+                    "user_id": "da8b67fc-a230-4066-87d1-cc748f8f756c"
+                },
+                "x": {
+                    "user_id": "65b18458-78f1-4bf6-a407-490a6a76dafa"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('da8b67fc-a230-4066-87d1-cc748f8f756c')", "authenticate('kenji.tanaka76540@wine-tasting.club')", "subscribe('e4692fa9-2699-4499-a2eb-e7dbd73d2da6')"],
+                "x": ["get_user_by_id('65b18458-78f1-4bf6-a407-490a6a76dafa')", "authenticate('kenji_tanaka16')", "create_tweet('Just subscribed to an amazing Japanese cooking channel! Highly recommend!')"]
+            }
+        },
+        {
+            "prompt": "Like that guitar tutorial video and tweet about how helpful it was",
+            "context": {
+                "youtube": {
+                    "user_id": "ef6b0b87-4ef4-4aaf-9c4d-d3262a993abd"
+                },
+                "x": {
+                    "user_id": "30ffc82a-9b53-4647-a403-e2e50f9dd151"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('ef6b0b87-4ef4-4aaf-9c4d-d3262a993abd')", "authenticate('maria.rodriguez98664@influencer-marketing.co')", "rate_video('52db9b48-dcba-434d-91d0-93e5a4d71cec', 'like')"],
+                "x": ["get_user_by_id('30ffc82a-9b53-4647-a403-e2e50f9dd151')", "authenticate('maria_rodriguez33')", "create_tweet('That guitar tutorial was incredibly helpful! Best one I\\'ve found!')"]
+            }
+        },
+        {
+            "prompt": "Create a playlist called Summer Workout Mix on YouTube and post about it on X",
+            "context": {
+                "youtube": {
+                    "user_id": "5a3b0ea9-00b6-45c7-82e2-826ab64803fb"
+                },
+                "x": {
+                    "user_id": "4c9c08a7-d4f1-443c-8e74-a1b7b829f407"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('5a3b0ea9-00b6-45c7-82e2-826ab64803fb')", "authenticate('chloe.dubois6495@theblog.info')", "create_playlist('Summer Workout Mix', 'High energy songs for summer workouts', 'public')"],
+                "x": ["get_user_by_id('4c9c08a7-d4f1-443c-8e74-a1b7b829f407')", "authenticate('chloe_dubois32')", "create_tweet('Created a new Summer Workout Mix playlist on YouTube! Perfect for outdoor training!')"]
+            }
+        },
+        {
+            "prompt": "Comment on that baking video saying it was amazing and tweet a recommendation",
+            "context": {
+                "youtube": {
+                    "user_id": "48c110ee-6925-468d-a353-ec08b7fb5598"
+                },
+                "x": {
+                    "user_id": "97cd7533-2c2b-4153-930f-c5390526af1a"
+                }
+            },
+            "ground_truth": {
+                "youtube": ["get_user_by_id('48c110ee-6925-468d-a353-ec08b7fb5598')", "authenticate('anya.sharma81469@genealogy-software.co')", "add_comment_to_video('73ad3ed3-5e15-452a-b5a9-f940e83ad237', 'This was amazing! Thanks for sharing!')"],
+                "x": ["get_user_by_id('97cd7533-2c2b-4153-930f-c5390526af1a')", "authenticate('anya_sharma56')", "create_tweet('Just found an incredible baking tutorial on YouTube. You all need to see this!')"]
+            }
+        }
+    ],
+    "multiturn": [
+        {
+            "prompt": "Upload my Tokyo travel vlog and share it on X",
+            "context": {
+                "user_id": "da8b67fc-a230-4066-87d1-cc748f8f756c"
+            },
+            "ground_truth": ["get_user_by_id('da8b67fc-a230-4066-87d1-cc748f8f756c')", "authenticate('kenji.tanaka76540@wine-tasting.club')", "upload_video('24 Hours in Shibuya', 'Tokyo travel vlog with great food spots', 1200, ['travel', 'tokyo', 'shibuya'])", "authenticate('kenji_tanaka16')", "create_tweet('New video up! 24 Hours in Shibuya with some amazing food recommendations!')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I want to organize my favorite workout videos"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('ef6b0b87-4ef4-4aaf-9c4d-d3262a993abd')", "authenticate('maria.rodriguez98664@influencer-marketing.co')"],
+                    "content": "I can help you create a playlist. What would you like to name it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Morning Cardio Routines"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_playlist('Morning Cardio Routines', 'Best cardio workouts for morning', 'public')"],
+                    "content": "Perfect! I've created the Morning Cardio Routines playlist on your YouTube channel. Would you like to add any specific videos to it?"
+                },
+                {
+                    "role": "user",
+                    "content": "Not right now, but can you post about it on X?"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate('maria_rodriguez33')", "create_tweet('Created a new Morning Cardio Routines playlist on YouTube! Check it out for the best morning workouts!')"],
+                    "content": "Absolutely! I've tweeted about your new Morning Cardio Routines playlist on X."
+                }
+            ],
+            "context": {
+                "user_id": "ef6b0b87-4ef4-4aaf-9c4d-d3262a993abd"
+            },
+            "ground_truth": ["get_user_by_id('ef6b0b87-4ef4-4aaf-9c4d-d3262a993abd')", "authenticate('maria.rodriguez98664@influencer-marketing.co')", "create_playlist('Morning Cardio Routines', 'Best cardio workouts for morning', 'public')", "authenticate('maria_rodriguez33')", "create_tweet('Created a new Morning Cardio Routines playlist on YouTube! Check it out for the best morning workouts!')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "I just watched an incredible piano tutorial"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('48c110ee-6925-468d-a353-ec08b7fb5598')", "authenticate('anya.sharma81469@genealogy-software.co')"],
+                    "content": "That's great! Would you like to do anything with it, like save it or share your thoughts?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah, add it to my watch later and give it a like"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_to_watch_later('48c110ee-6925-468d-a353-ec08b7fb5598', '04213321-4481-4b20-bfa3-839688457727')", "rate_video('04213321-4481-4b20-bfa3-839688457727', 'like')"],
+                    "content": "Done! I've added it to your watch later playlist and liked the video. Anything else?"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you tweet about it? Say it's the best piano tutorial I've seen"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate('anya_sharma56')", "create_tweet('Just watched the best piano tutorial I\\'ve ever seen! Highly recommend checking it out!')"],
+                    "content": "Perfect! I've posted on X about the piano tutorial with your recommendation."
+                }
+            ],
+            "context": {
+                "user_id": "48c110ee-6925-468d-a353-ec08b7fb5598"
+            },
+            "ground_truth": ["get_user_by_id('48c110ee-6925-468d-a353-ec08b7fb5598')", "authenticate('anya.sharma81469@genealogy-software.co')", "add_to_watch_later('48c110ee-6925-468d-a353-ec08b7fb5598', '04213321-4481-4b20-bfa3-839688457727')", "rate_video('04213321-4481-4b20-bfa3-839688457727', 'like')", "authenticate('anya_sharma56')", "create_tweet('Just watched the best piano tutorial I\\'ve ever seen! Highly recommend checking it out!')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "My friend just started a YouTube channel about baking"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('5a3b0ea9-00b6-45c7-82e2-826ab64803fb')", "authenticate('chloe.dubois6495@theblog.info')"],
+                    "content": "That sounds interesting! Would you like to subscribe to support them?"
+                },
+                {
+                    "role": "user",
+                    "content": "Definitely, and I want to help them get more subscribers"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["subscribe('68290ed0-d666-4dec-82df-d9c3731e8d6e')"],
+                    "content": "I've subscribed you to their channel. Would you like to promote it on your X account?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yes, tell people to check out their channel for amazing dessert recipes"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate('chloe_dubois32')", "create_tweet('My friend just launched a baking channel on YouTube! Check it out for amazing dessert recipes!')"],
+                    "content": "Done! I've posted about your friend's baking channel on X, encouraging your followers to subscribe for amazing dessert recipes."
+                }
+            ],
+            "context": {
+                "user_id": "5a3b0ea9-00b6-45c7-82e2-826ab64803fb"
+            },
+            "ground_truth": ["get_user_by_id('5a3b0ea9-00b6-45c7-82e2-826ab64803fb')", "authenticate('chloe.dubois6495@theblog.info')", "subscribe('68290ed0-d666-4dec-82df-d9c3731e8d6e')", "authenticate('chloe_dubois32')", "create_tweet('My friend just launched a baking channel on YouTube! Check it out for amazing dessert recipes!')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "That documentary about space was mind-blowing"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('da8b67fc-a230-4066-87d1-cc748f8f756c')", "authenticate('kenji.tanaka76540@wine-tasting.club')"],
+                    "content": "It sounds like you really enjoyed it! Would you like to leave a comment on the video?"
+                },
+                {
+                    "role": "user",
+                    "content": "Sure, say that the black hole explanation was the clearest I've ever seen"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["add_comment_to_video('6ea22731-5cbd-438f-80f7-23646c9c9eaf', 'The black hole explanation was the clearest I\\'ve ever seen!')"],
+                    "content": "Great! I've posted your comment on the video. Would you like to share your thoughts on X as well?"
+                },
+                {
+                    "role": "user",
+                    "content": "Yeah, and say it's a must-watch for anyone interested in astrophysics"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["authenticate('kenji_tanaka16')", "create_tweet('Just watched an incredible space documentary! Must-watch for anyone interested in astrophysics!')"],
+                    "content": "Perfect! I've tweeted your recommendation, highlighting it as a must-watch for astrophysics enthusiasts."
+                }
+            ],
+            "context": {
+                "user_id": "da8b67fc-a230-4066-87d1-cc748f8f756c"
+            },
+            "ground_truth": ["get_user_by_id('da8b67fc-a230-4066-87d1-cc748f8f756c')", "authenticate('kenji.tanaka76540@wine-tasting.club')", "add_comment_to_video('6ea22731-5cbd-438f-80f7-23646c9c9eaf', 'The black hole explanation was the clearest I\\'ve ever seen!')", "authenticate('kenji_tanaka16')", "create_tweet('Just watched an incredible space documentary! Must-watch for anyone interested in astrophysics!')"]
+        }
+    ]
+}

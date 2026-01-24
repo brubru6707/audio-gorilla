@@ -1,0 +1,348 @@
+{
+    "multistep": [
+        {
+            "prompt": "Check my Gmail inbox for payment requests, then send money to whoever requested it on Venmo and tweet about supporting friends on X.",
+            "context": {
+                "gmail": {
+                    "user_id": "0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a"
+                },
+                "venmo": {
+                    "user_id": "0a0d8b2e-33cf-4d01-902c-46f9329dd71b"
+                },
+                "x": {
+                    "user_id": "97cd7533-2c2b-4153-930f-c5390526af1a"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a')", "authenticate('anya.sharma61@audio-engineering.online')", "list_messages('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', 'payment request', None, None, 10, False)", "get_message('0da4f8cd-f165-4a14-8ca9-5e215cd7ce1a', '146147212995596d', 'full')"],
+                "venmo": ["get_user_by_id('0a0d8b2e-33cf-4d01-902c-46f9329dd71b')", "authenticate('token_anya.sharma7660@pet-grooming.biz')", "get_friends()", "create_payment('e300fbc0-82a0-48cd-8198-ab9d39042873', 25.0, 'Payment for request')"],
+                "x": ["get_user_by_id('97cd7533-2c2b-4153-930f-c5390526af1a')", "authenticate('token_anya.sharma8272@investment-strategies.online')", "create_tweet('Always happy to support my friends! 💰✨')"]
+            }
+        },
+        {
+            "prompt": "Read my recent Gmail messages, pay back someone on Venmo for concert tickets, and post on X about going to a concert.",
+            "context": {
+                "gmail": {
+                    "user_id": "8d20403e-7ae2-4a54-8e7b-552062246ad5"
+                },
+                "venmo": {
+                    "user_id": "6979267c-5a34-4768-8bba-6f962fafa116"
+                },
+                "x": {
+                    "user_id": "5cf70b5e-d9ef-471d-918f-6b9404ed05b6"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('8d20403e-7ae2-4a54-8e7b-552062246ad5')", "authenticate('kenji.tanaka15@pet-adoption.online')", "list_messages('8d20403e-7ae2-4a54-8e7b-552062246ad5', None, None, None, 10, False)"],
+                "venmo": ["get_user_by_id('6979267c-5a34-4768-8bba-6f962fafa116')", "authenticate('token_caleb.williams6630@projectmanager.io')", "get_friends()", "create_payment('7e58c944-9ee1-4d19-8e8a-d6f64593afe3', 50.0, 'Concert tickets')"],
+                "x": ["get_user_by_id('5cf70b5e-d9ef-471d-918f-6b9404ed05b6')", "authenticate('token_caleb.williams8754@mobile-apps.development')", "create_tweet('Cannot wait for the concert this weekend! 🎸🎵')"]
+            }
+        },
+        {
+            "prompt": "Send an email to my friend thanking them, request money from them on Venmo for dinner last night, and post on X about the great meal.",
+            "context": {
+                "gmail": {
+                    "user_id": "1b1f09d4-a256-4a42-93ac-104486990e95"
+                },
+                "venmo": {
+                    "user_id": "948e4034-7ec7-489b-bb9d-0a3afa1e9c47"
+                },
+                "x": {
+                    "user_id": "7938dcb0-4656-455e-ad8a-302c302e7ad6"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('1b1f09d4-a256-4a42-93ac-104486990e95')", "authenticate('maria.rodriguez32@mortgage-broker.info')", "send_message('1b1f09d4-a256-4a42-93ac-104486990e95', {'raw': 'RnJvbTptYXJpYS5yb2RyaWd1ZXozMkBtb3J0Z2FnZS1icm9rZXIuaW5mbwpUbzptYXJpYS5yb2RyaWd1ZXozMkBtb3J0Z2FnZS1icm9rZXIuaW5mbwpTdWJqZWN0OlRoYW5rcyBmb3IgZGlubmVyCgpUaGFua3MgZm9yIGFuIGVuam95YWJsZSBkaW5uZXIgbGFzdCBuaWdodCE='})"],
+                "venmo": ["get_user_by_id('948e4034-7ec7-489b-bb9d-0a3afa1e9c47')", "authenticate('token_david.chen3639@fashionforward.org')", "get_friends()", "create_charge('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 45.0, 'Dinner split from last night')"],
+                "x": ["get_user_by_id('7938dcb0-4656-455e-ad8a-302c302e7ad6')", "authenticate('token_david.chen1098@astronomy-club.net')", "create_tweet('Had an amazing dinner with friends last night! Good food, good company. 🍽️')"]
+            }
+        },
+        {
+            "prompt": "Check my Gmail for messages about events, send Venmo payment for the event ticket, and share my excitement on X.",
+            "context": {
+                "gmail": {
+                    "user_id": "535366f1-3ec2-4f02-89a4-9c38c4a92984"
+                },
+                "venmo": {
+                    "user_id": "84e30108-05b1-4217-a4f6-05dd27bc41fd"
+                },
+                "x": {
+                    "user_id": "4c9c08a7-d4f1-443c-8e74-a1b7b829f407"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('535366f1-3ec2-4f02-89a4-9c38c4a92984')", "authenticate('chloe.dubois42@poetry-journal.com')", "list_messages('535366f1-3ec2-4f02-89a4-9c38c4a92984', 'event', None, None, 10, False)", "get_message('535366f1-3ec2-4f02-89a4-9c38c4a92984', '2b3132f396b41528', 'full')"],
+                "venmo": ["get_user_by_id('84e30108-05b1-4217-a4f6-05dd27bc41fd')", "authenticate('token_chloe.dubois2278@insurance-broker.biz')", "create_payment('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 75.0, 'Event ticket payment')"],
+                "x": ["get_user_by_id('4c9c08a7-d4f1-443c-8e74-a1b7b829f407')", "authenticate('token_chloe.dubois7877@road-trip-planning.online')", "create_tweet('So excited for the upcoming event! Just got my ticket! 🎉')"]
+            }
+        },
+        {
+            "prompt": "Look at my Gmail drafts, complete a payment on Venmo for someone I owe, and tweet about paying people back on time.",
+            "context": {
+                "gmail": {
+                    "user_id": "c3fccc4f-bd62-430a-99cf-ce99e3a2e966"
+                },
+                "venmo": {
+                    "user_id": "0cf47b4b-447a-40b4-94d3-c0818305624c"
+                },
+                "x": {
+                    "user_id": "aa6003c2-e3b5-4549-9df0-9a240f6a958b"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('c3fccc4f-bd62-430a-99cf-ce99e3a2e966')", "authenticate('fatima.al-mansoori37@space-exploration.com')", "list_drafts('c3fccc4f-bd62-430a-99cf-ce99e3a2e966', None, 10)"],
+                "venmo": ["get_user_by_id('0cf47b4b-447a-40b4-94d3-c0818305624c')", "authenticate('token_bruno.rodriguez-mendez3699@science-facts.info')", "create_payment('e300fbc0-82a0-48cd-8198-ab9d39042873', 30.0, 'Paying you back!')"],
+                "x": ["get_user_by_id('aa6003c2-e3b5-4549-9df0-9a240f6a958b')", "authenticate('token_bruno.rodriguez-mendez4698@data-analytics.dev')", "create_tweet('Always remember to pay your friends back on time! 💯')"]
+            }
+        }
+    ],
+    "multiturn": [
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check my Gmail for any messages about money or payments"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1')", "authenticate('jamal.washington3@virtualreality.site')", "list_messages('f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1', 'money OR payment', None, None, 10, False)", "get_message('f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1', '4f50f753225d0c97', 'full')"],
+                    "content": "You have a message with ID d five f d d eight five b c eight five four three e two nine about a purchase order that mentions looking for payment details."
+                },
+                {
+                    "role": "user",
+                    "content": "Okay, now check my Venmo transaction history"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('621fdf1a-17e1-4d95-b7d2-cc87134403a5')", "authenticate('token_aisha.ibrahim446@yoga-gear.online')", "get_transaction_history()"],
+                    "content": "Your recent Venmo transactions show various payments and charges. You have a balance and several completed transactions."
+                },
+                {
+                    "role": "user",
+                    "content": "Good. Now send a payment to my friend Bob for thirty dollars with a note saying thanks for lunch"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_payment('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 30.0, 'thanks for lunch')"],
+                    "content": "I have sent thirty dollars to Bob Johnson on Venmo with the note thanks for lunch."
+                },
+                {
+                    "role": "user",
+                    "content": "Perfect. Now post a tweet saying I just paid back my friend for lunch"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('4d111451-0c62-4aed-9e63-e8f4ab7f0291')", "authenticate('token_aisha.ibrahim7039@realestateexperts.com')", "create_tweet('Just paid back my friend for lunch! Always good to settle up. 😊')"],
+                    "content": "I have posted your tweet to X saying Just paid back my friend for lunch! Always good to settle up."
+                }
+            ],
+            "context": {
+                "user_id": "f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1"
+            },
+            "ground_truth": ["get_user_by_id('f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1')", "authenticate('jamal.washington3@virtualreality.site')", "list_messages('f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1', 'money OR payment', None, None, 10, False)", "get_message('f8071ad4-2a02-4e7e-a2be-90ccbf88c1c1', '4f50f753225d0c97', 'full')", "get_user_by_id('621fdf1a-17e1-4d95-b7d2-cc87134403a5')", "authenticate('token_aisha.ibrahim446@yoga-gear.online')", "get_transaction_history()", "create_payment('cfdfbcf5-5289-4276-b1c4-0d77a4a244e8', 30.0, 'thanks for lunch')", "get_user_by_id('4d111451-0c62-4aed-9e63-e8f4ab7f0291')", "authenticate('token_aisha.ibrahim7039@realestateexperts.com')", "create_tweet('Just paid back my friend for lunch! Always good to settle up. 😊')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Show me my recent Gmail inbox messages"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('c748905e-5788-4080-b8c0-d17e91e32ffd')", "authenticate('sofia.rossi83@cyber-defense.io')", "list_messages('c748905e-5788-4080-b8c0-d17e91e32ffd', None, None, None, 10, False)"],
+                    "content": "You have several recent emails in your inbox. The most recent ones include messages about risk assessment, training, and logistics updates."
+                },
+                {
+                    "role": "user",
+                    "content": "I need to send someone money on Venmo. Show me my Venmo friends list"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('181776cc-503c-495d-bc8f-bbe2c8d80cb1')", "authenticate('token_arthur.thompson517@gaming-hub.online')", "get_friends()"],
+                    "content": "Your Venmo friends include Alice Smith, Bob Johnson, Charlie Brown, and Diana Prince."
+                },
+                {
+                    "role": "user",
+                    "content": "Send twenty five dollars to Alice with the note coffee money"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_payment('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 25.0, 'coffee money')"],
+                    "content": "I have sent twenty five dollars to Alice Smith on Venmo with the note coffee money."
+                },
+                {
+                    "role": "user",
+                    "content": "Great, now tweet about grabbing coffee with a friend"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('daa4569a-eb7a-45d0-9e46-82d13f5952c4')", "authenticate('token_arthur.thompson8173@network-security.tools')", "create_tweet('Coffee with good friends is the best way to start the day! ☕')"],
+                    "content": "I have posted your tweet saying Coffee with good friends is the best way to start the day."
+                }
+            ],
+            "context": {
+                "user_id": "c748905e-5788-4080-b8c0-d17e91e32ffd"
+            },
+            "ground_truth": ["get_user_by_id('c748905e-5788-4080-b8c0-d17e91e32ffd')", "authenticate('sofia.rossi83@cyber-defense.io')", "list_messages('c748905e-5788-4080-b8c0-d17e91e32ffd', None, None, None, 10, False)", "get_user_by_id('181776cc-503c-495d-bc8f-bbe2c8d80cb1')", "authenticate('token_arthur.thompson517@gaming-hub.online')", "get_friends()", "create_payment('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 25.0, 'coffee money')", "get_user_by_id('daa4569a-eb7a-45d0-9e46-82d13f5952c4')", "authenticate('token_arthur.thompson8173@network-security.tools')", "create_tweet('Coffee with good friends is the best way to start the day! ☕')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Read my most recent Gmail"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('053f0ed5-a0e6-49af-827a-56bafc84e91c')", "authenticate('omar.hassan50@animal-behavior.consultant')", "list_messages('053f0ed5-a0e6-49af-827a-56bafc84e91c', None, None, None, 10, False)", "get_message('053f0ed5-a0e6-49af-827a-56bafc84e91c', '1a7d9a87d48eb659', 'full')"],
+                    "content": "Your most recent email is about social media marketing strategy. It discusses adjusting the social media presence strategy based on demographic research."
+                },
+                {
+                    "role": "user",
+                    "content": "What is my Venmo account balance"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('6ab5010c-7158-455e-bece-88d96e323302')", "authenticate('token_amara.diallo6027@creative-media.app')", "get_account_balance()"],
+                    "content": "Your Venmo account balance is one hundred twelve dollars and fifty eight cents."
+                },
+                {
+                    "role": "user",
+                    "content": "Charge my friend Diana forty dollars for splitting groceries"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_charge('4e4efe60-7641-41b6-8fe0-a3050900a15e', 40.0, 'splitting groceries')"],
+                    "content": "I have charged Diana Prince forty dollars on Venmo with the note splitting groceries."
+                },
+                {
+                    "role": "user",
+                    "content": "Post on X about meal prepping and saving money"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('d16d3700-511b-4bb1-a7df-39de63a546a4')", "authenticate('token_amara.diallo1087@managed-it.services')", "create_tweet('Meal prepping this week! Great way to save money and eat healthier. 🥗💰')"],
+                    "content": "I have posted your tweet about meal prepping and saving money to X."
+                },
+                {
+                    "role": "user",
+                    "content": "Send an email to myself as a reminder to check Venmo payments tomorrow"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_message('3e23308e-a3f7-4ca8-9464-3752ce73ef73', {'raw': 'RnJvbTphbWFyYS5kaWFsbG82MkB2aW50YWdlLWZpbmRzLnN0b3JlClRvOmFtYXJhLmRpYWxsbzYyQHZpbnRhZ2UtZmluZHMuc3RvcmUKU3ViamVjdDpSZW1pbmRlcjogQ2hlY2sgVmVubW8KCkRvbnQgZm9yZ2V0IHRvIGNoZWNrIFZlbm1vIHBheW1lbnRzIHRvbW9ycm93Lg=='})"],
+                    "content": "I have sent a reminder email to yourself about checking Venmo payments tomorrow."
+                }
+            ],
+            "context": {
+                "user_id": "053f0ed5-a0e6-49af-827a-56bafc84e91c"
+            },
+            "ground_truth": ["get_user_by_id('053f0ed5-a0e6-49af-827a-56bafc84e91c')", "authenticate('omar.hassan50@animal-behavior.consultant')", "list_messages('053f0ed5-a0e6-49af-827a-56bafc84e91c', None, None, None, 10, False)", "get_message('053f0ed5-a0e6-49af-827a-56bafc84e91c', '1a7d9a87d48eb659', 'full')", "get_user_by_id('6ab5010c-7158-455e-bece-88d96e323302')", "authenticate('token_amara.diallo6027@creative-media.app')", "get_account_balance()", "create_charge('4e4efe60-7641-41b6-8fe0-a3050900a15e', 40.0, 'splitting groceries')", "get_user_by_id('d16d3700-511b-4bb1-a7df-39de63a546a4')", "authenticate('token_amara.diallo1087@managed-it.services')", "create_tweet('Meal prepping this week! Great way to save money and eat healthier. 🥗💰')", "send_message('053f0ed5-a0e6-49af-827a-56bafc84e91c', {'raw': 'RnJvbTpvbWFyLmhhc3NhbjUwQGFuaW1hbC1iZWhhdmlvci5jb25zdWx0YW50ClRvOm9tYXIuaGFzc2FuNTBAYW5pbWFsLWJlaGF2aW9yLmNvbnN1bHRhbnQKU3ViamVjdDpSZW1pbmRlcjogQ2hlY2sgVmVubW8KCkRvbnQgZm9yZ2V0IHRvIGNoZWNrIFZlbm1vIHBheW1lbnRzIHRvbW9ycm93Lg=='})"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Check Gmail for emails from the last week"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('91f3f4cb-3679-45d1-a516-f9fa3eaf4cfd')", "authenticate('priya.patel51@gaming-hub.online')", "list_messages('91f3f4cb-3679-45d1-a516-f9fa3eaf4cfd', None, None, None, 10, False)"],
+                    "content": "You have several emails from the last week including messages about training programs, compliance review, and project updates."
+                },
+                {
+                    "role": "user",
+                    "content": "What transactions do I have on Venmo"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('a95237ea-95e3-427f-82ef-9ef13e203287')", "authenticate('token_benjamin.smith8465@innovationslab.ai')", "get_transaction_history()"],
+                    "content": "Your Venmo transaction history shows one completed transaction where you paid yourself ten dollars as a test payment."
+                },
+                {
+                    "role": "user",
+                    "content": "Send fifteen dollars to Charlie for movie tickets"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_payment('e300fbc0-82a0-48cd-8198-ab9d39042873', 15.0, 'movie tickets')"],
+                    "content": "I have sent fifteen dollars to Charlie Brown on Venmo for movie tickets."
+                },
+                {
+                    "role": "user",
+                    "content": "Post a tweet saying excited for movie night"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('b9190d7e-4708-4d8b-99f4-1dddc06a23c2')", "authenticate('token_benjamin.smith1392@virtual-servers.online')", "create_tweet('Excited for movie night! 🍿🎬')"],
+                    "content": "I have posted your tweet saying Excited for movie night to X."
+                }
+            ],
+            "context": {
+                "user_id": "91f3f4cb-3679-45d1-a516-f9fa3eaf4cfd"
+            },
+            "ground_truth": ["get_user_by_id('91f3f4cb-3679-45d1-a516-f9fa3eaf4cfd')", "authenticate('priya.patel51@gaming-hub.online')", "list_messages('91f3f4cb-3679-45d1-a516-f9fa3eaf4cfd', None, None, None, 10, False)", "get_user_by_id('a95237ea-95e3-427f-82ef-9ef13e203287')", "authenticate('token_benjamin.smith8465@innovationslab.ai')", "get_transaction_history()", "create_payment('e300fbc0-82a0-48cd-8198-ab9d39042873', 15.0, 'movie tickets')", "get_user_by_id('b9190d7e-4708-4d8b-99f4-1dddc06a23c2')", "authenticate('token_benjamin.smith1392@virtual-servers.online')", "create_tweet('Excited for movie night! 🍿🎬')"]
+        },
+        {
+            "turns": [
+                {
+                    "role": "user",
+                    "content": "Show my Gmail drafts"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('2d3c0fd1-e83f-4115-8580-a5f43eb648dc')", "authenticate('wei.zhang44@innovationslab.ai')", "list_drafts('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', None, 10)"],
+                    "content": "You have one draft email to Harper Murphy about updating the inventory database with new entries."
+                },
+                {
+                    "role": "user",
+                    "content": "What's my current Venmo balance"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('57a05e8f-e0e8-407e-94ec-ce10616d81f2')", "authenticate('token_daria.novikova1582@food-delivery.org')", "get_account_balance()"],
+                    "content": "Your current Venmo balance is three hundred eight dollars and forty one cents."
+                },
+                {
+                    "role": "user",
+                    "content": "Request fifty five dollars from Alice for weekend trip expenses"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 55.0, 'weekend trip expenses')"],
+                    "content": "I have requested fifty five dollars from Alice Smith on Venmo for weekend trip expenses."
+                },
+                {
+                    "role": "user",
+                    "content": "Check my X profile"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["get_user_by_id('0d29bbb6-87d7-4fb0-bb27-945093d2430d')", "authenticate('token_daria.novikova2487@vintage-maps.store')", "get_user_profile()"],
+                    "content": "Your X profile shows you are Daria Novikova with username daria underscore novikova eighty four. Your bio says Currently chasing my dreams. You have fifteen followers and are following thirteen accounts."
+                },
+                {
+                    "role": "user",
+                    "content": "Tweet about weekend adventures"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["create_tweet('Weekend adventures are the best! Can't wait to explore. 🌄')"],
+                    "content": "I have posted your tweet about weekend adventures to X."
+                },
+                {
+                    "role": "user",
+                    "content": "Send that draft email I have in Gmail"
+                },
+                {
+                    "role": "assistant",
+                    "ground_truth": ["send_draft('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', '4eba4435496e1810')"],
+                    "content": "I have sent your draft email to Harper Murphy about updating the inventory database."
+                }
+            ],
+            "context": {
+                "user_id": "2d3c0fd1-e83f-4115-8580-a5f43eb648dc"
+            },
+            "ground_truth": ["get_user_by_id('2d3c0fd1-e83f-4115-8580-a5f43eb648dc')", "authenticate('wei.zhang44@innovationslab.ai')", "list_drafts('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', None, 10)", "get_user_by_id('57a05e8f-e0e8-407e-94ec-ce10616d81f2')", "authenticate('token_daria.novikova1582@food-delivery.org')", "get_account_balance()", "create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 55.0, 'weekend trip expenses')", "get_user_by_id('0d29bbb6-87d7-4fb0-bb27-945093d2430d')", "authenticate('token_daria.novikova2487@vintage-maps.store')", "get_user_profile()", "create_tweet('Weekend adventures are the best! Can't wait to explore. 🌄')", "send_draft('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', '4eba4435496e1810')"]
+        }
+    ]
+}
