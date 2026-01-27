@@ -1,15 +1,15 @@
 {
     "multistep": [
         {
-            "prompt": "Tell Ali Gray that I will be late to the 7 o'clock meeting",
+            "prompt": "Tell Ali Gray that I will be late to the 7 PM meeting",
             "context": {
                 "user_id": "59b78561-ba7d-4383-92e6-d92b937fa75a"
             },
-            "assist": "Sure! I've sent Ali Gray a message saying you'll be late to the 7 o'clock meeting.",
+            "assist": "Sure! I've sent Ali Gray a message saying you'll be late to the 7 PM meeting.",
             "ground_truth": [
                 "get_user_by_id('59b78561-ba7d-4383-92e6-d92b937fa75a')",
                 "login_user('kenji.tanaka8@trucking-logistics.biz','c1478f1ff9ef40f7805159f373ba137b46cbb524b5649d28')",
-                "send_sms('+15594536581', 'I am going to be late to the 7 o'clock meeting.')"
+                "send_sms('+15594536581', 'I am going to be late to the 7 PM meeting.')"
             ]
         },
         {

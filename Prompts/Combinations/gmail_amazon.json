@@ -14,6 +14,51 @@
                 "gmail": ["get_user_by_id('61333a17-83dd-4e5d-8c5b-7ebb5c28faff')", "authenticate('brooke.ramirez88@craft-ideas.co')", "get_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', '3df085dc1ddc5f22', 'full')", "send_message('61333a17-83dd-4e5d-8c5b-7ebb5c28faff', {'raw': 'RnJvbTpicm9va2UucmFtaXJlejg4QGNyYWZ0LWlkZWFzLmNvClRvOmJyb29rZS5yYW1pcmV6ODhAY3JhZnQtaWRlYXMuY28KU3ViamVjdDpDYXJ0IGFiYW5kb25tZW50IHNvbHV0aW9uCgpJIGFtIHRlc3RpbmcgY2FydCBmbG93IGltcHJvdmVtZW50cy4='})"],
                 "amazon": ["get_user_by_id('bfe35737-7f62-4f9a-ad35-de4eaddb3713')", "login_user('brooke.cruz@graphic-design.studio', 'H$b$BpJs')", "show_cart()", "remove_from_cart('443b31d7-6546-42d9-90bf-6c71d2e4f883')"]
             }
+        },
+        {
+            "prompt": "Check my Amazon cart and email kenji about the items I'm planning to order.",
+            "context": {
+                "gmail": {
+                    "user_id": "8d20403e-7ae2-4a54-8e7b-552062246ad5"
+                },
+                "amazon": {
+                    "user_id": "64acfdb4-bb0a-409b-b498-831cd3c0501a"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('8d20403e-7ae2-4a54-8e7b-552062246ad5')", "authenticate('kenji.tanaka15@pet-adoption.online')", "send_message('8d20403e-7ae2-4a54-8e7b-552062246ad5', {'raw': 'RnJvbTprZW5qaS50YW5ha2ExNUBwZXQtYWRvcHRpb24ub25saW5lClRvOmtlbmppLnRhbmFrYTE1QHBldC1hZG9wdGlvbi5vbmxpbmUKU3ViamVjdDpBbWF6b24gb3JkZXIgcGxhbm5pbmcKCkkgYW0gcGxhbm5pbmcgdG8gb3JkZXIgdGhlIGl0ZW1zIGluIG15IGNhcnQu'})"],
+                "amazon": ["get_user_by_id('64acfdb4-bb0a-409b-b498-831cd3c0501a')", "login_user('kenji.tanaka@party-supplies.shop', '4dxA0@CH')", "show_cart()"]
+            }
+        },
+        {
+            "prompt": "Remove an item from my Amazon cart and send a Gmail to chloe confirming the cart update.",
+            "context": {
+                "gmail": {
+                    "user_id": "535366f1-3ec2-4f02-89a4-9c38c4a92984"
+                },
+                "amazon": {
+                    "user_id": "a690e289-c404-471c-87bf-5ad103603791"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('535366f1-3ec2-4f02-89a4-9c38c4a92984')", "authenticate('chloe.dubois42@poetry-journal.com')", "send_message('535366f1-3ec2-4f02-89a4-9c38c4a92984', {'raw': 'RnJvbTpjaGxvZS5kdWJvaXM0MkBwb2V0cnktam91cm5hbC5jb20KVG86Y2hsb2UuZHVib2lzNDJAcG9ldHJ5LWpvdXJuYWwuY29tClN1YmplY3Q6Q2FydCB1cGRhdGVkCgpJIHJlbW92ZWQgYW4gaXRlbSBmcm9tIG15IEFtYXpvbiBjYXJ0Lg=='})"],
+                "amazon": ["get_user_by_id('a690e289-c404-471c-87bf-5ad103603791')", "login_user('chloe.dubois@analytics-tools.net', 'Db9f2aj6')", "remove_from_cart('ced67bf9-3693-4c51-9682-ae471b8d23df')"]
+            }
+        },
+        {
+            "prompt": "View my Amazon cart and then read my Gmail inbox for order confirmations.",
+            "context": {
+                "gmail": {
+                    "user_id": "c748905e-5788-4080-b8c0-d17e91e32ffd"
+                },
+                "amazon": {
+                    "user_id": "d47e75a2-fb0a-43ca-b7ad-d19621f440f0"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('c748905e-5788-4080-b8c0-d17e91e32ffd')", "authenticate('sofia.rossi83@cyber-defense.io')", "list_messages('c748905e-5788-4080-b8c0-d17e91e32ffd', 'order confirmation', None, None, 10, False)"],
+                "amazon": ["get_user_by_id('d47e75a2-fb0a-43ca-b7ad-d19621f440f0')", "login_user('sofia.rossi@climate-action.org', '9V6neszl')", "show_cart()"]
+            }
         }
     ],
     "multiturn": [

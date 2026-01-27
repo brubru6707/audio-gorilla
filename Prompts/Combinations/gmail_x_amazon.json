@@ -18,6 +18,63 @@
                 "x": ["get_user_by_id('fe53fb9b-1a20-4118-b1e5-1e2e1d74708a')", "authenticate('token_ava.reyes2093@healthy-recipes.blog')", "create_tweet('Found some incredible deals on Amazon today! Shopping smart and saving big.')"],
                 "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "show_cart()"]
             }
+        },
+        {
+            "prompt": "Check my Amazon cart and remove an item then email aisha about cart updates and tweet about it.",
+            "context": {
+                "gmail": {
+                    "user_id": "17512bb1-9f5d-452d-b8b4-c2e39fc96df8"
+                },
+                "x": {
+                    "user_id": "4d111451-0c62-4aed-9e63-e8f4ab7f0291"
+                },
+                "amazon": {
+                    "user_id": "0e1cec34-786f-44a3-bdf4-75d4c5d182de"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('17512bb1-9f5d-452d-b8b4-c2e39fc96df8')", "authenticate('aisha.ibrahim13@party-supplies.shop')", "send_message('17512bb1-9f5d-452d-b8b4-c2e39fc96df8', {'raw': 'RnJvbTphaXNoYS5pYnJhaGltMTNAcGFydHktc3VwcGxpZXMuc2hvcApUbzphaXNoYS5pYnJhaGltMTNAcGFydHktc3VwcGxpZXMuc2hvcApTdWJqZWN0OkFtYXpvbiBjYXJ0IHVwZGF0ZQoKSSByZW1vdmVkIGFuIGl0ZW0gZnJvbSBteSBjYXJ0Lg=='})"],
+                "x": ["get_user_by_id('4d111451-0c62-4aed-9e63-e8f4ab7f0291')", "authenticate('aisha_ibrahim40')", "create_tweet('Cleaned up my Amazon cart! Less impulse buying, more intentional shopping.')"],
+                "amazon": ["get_user_by_id('0e1cec34-786f-44a3-bdf4-75d4c5d182de')", "login_user('aisha.ibrahim@financial-news.com', '$2S&o5j(')", "show_cart()", "remove_from_cart('bc4e62da-9d00-4443-9f90-c06c5963bf6a')"]
+            }
+        },
+        {
+            "prompt": "View my Amazon cart total and post on X then send a Gmail to arthur about my shopping plans.",
+            "context": {
+                "gmail": {
+                    "user_id": "580cb16d-fa17-425f-8ab7-77abe669c1ef"
+                },
+                "x": {
+                    "user_id": "daa4569a-eb7a-45d0-9e46-82d13f5952c4"
+                },
+                "amazon": {
+                    "user_id": "cdf14730-4fc0-46c5-8cfe-2a1c068dfac4"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('580cb16d-fa17-425f-8ab7-77abe669c1ef')", "authenticate('arthur.thompson14@brandstudio.net')", "send_message('580cb16d-fa17-425f-8ab7-77abe669c1ef', {'raw': 'RnJvbTphcnRodXIudGhvbXBzb24xNEBicmFuZHN0dWRpby5uZXQKVG86YXJ0aHVyLnRob21wc29uMTRAYnJhbmRzdHVkaW8ubmV0ClN1YmplY3Q6U2hvcHBpbmcgcGxhbnMKCkkgaGF2ZSBzb21lIGl0ZW1zIGluIG15IEFtYXpvbiBjYXJ0IHRoYXQgSSBwbGFuIHRvIGJ1eS4='})"],
+                "x": ["get_user_by_id('daa4569a-eb7a-45d0-9e46-82d13f5952c4')", "authenticate('arthur_thompson53')", "create_tweet('My Amazon cart is getting full! Time to make some decisions about what I really need.')"],
+                "amazon": ["get_user_by_id('cdf14730-4fc0-46c5-8cfe-2a1c068dfac4')", "login_user('arthur.thompson@cloud-hosting.services', 'Mm4nRp))')", "show_cart()"]
+            }
+        },
+        {
+            "prompt": "Remove items from my Amazon cart and read my Gmail then post a tweet about smart shopping.",
+            "context": {
+                "gmail": {
+                    "user_id": "535366f1-3ec2-4f02-89a4-9c38c4a92984"
+                },
+                "x": {
+                    "user_id": "4c9c08a7-d4f1-443c-8e74-a1b7b829f407"
+                },
+                "amazon": {
+                    "user_id": "a690e289-c404-471c-87bf-5ad103603791"
+                }
+            },
+            "ground_truth": {
+                "gmail": ["get_user_by_id('535366f1-3ec2-4f02-89a4-9c38c4a92984')", "authenticate('chloe.dubois42@poetry-journal.com')", "list_messages('535366f1-3ec2-4f02-89a4-9c38c4a92984', 'shopping', None, None, 10, False)", "get_message('535366f1-3ec2-4f02-89a4-9c38c4a92984', '2b3132f396b41528', 'full')"],
+                "x": ["get_user_by_id('4c9c08a7-d4f1-443c-8e74-a1b7b829f407')", "authenticate('chloe_dubois32')", "create_tweet('Pro tip: Let items sit in your cart for a day before buying. Saves money and reduces impulse purchases!')"],
+                "amazon": ["get_user_by_id('a690e289-c404-471c-87bf-5ad103603791')", "login_user('chloe.dubois@analytics-tools.net', 'Db9f2aj6')", "remove_from_cart('ced67bf9-3693-4c51-9682-ae471b8d23df')", "remove_from_cart('97a66e35-87cc-4140-b3ad-1a2434788f34')"]
+            }
         }
     ],
     "multiturn": [

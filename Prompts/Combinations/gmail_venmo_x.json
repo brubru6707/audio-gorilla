@@ -326,7 +326,7 @@
                 },
                 {
                     "role": "assistant",
-                    "ground_truth": ["create_tweet('Weekend adventures are the best! Can't wait to explore. 🌄')"],
+                    "ground_truth": ["create_tweet('Weekend adventures are the best! Can\\'t wait to explore. 🌄')"],
                     "content": "I have posted your tweet about weekend adventures to X."
                 },
                 {
@@ -342,7 +342,7 @@
             "context": {
                 "user_id": "2d3c0fd1-e83f-4115-8580-a5f43eb648dc"
             },
-            "ground_truth": ["get_user_by_id('2d3c0fd1-e83f-4115-8580-a5f43eb648dc')", "authenticate('wei.zhang44@innovationslab.ai')", "list_drafts('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', None, 10)", "get_user_by_id('57a05e8f-e0e8-407e-94ec-ce10616d81f2')", "authenticate('token_daria.novikova1582@food-delivery.org')", "get_account_balance()", "create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 55.0, 'weekend trip expenses')", "get_user_by_id('0d29bbb6-87d7-4fb0-bb27-945093d2430d')", "authenticate('token_daria.novikova2487@vintage-maps.store')", "get_user_profile()", "create_tweet('Weekend adventures are the best! Can't wait to explore. 🌄')", "send_draft('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', '4eba4435496e1810')"]
+            "ground_truth": ["get_user_by_id('2d3c0fd1-e83f-4115-8580-a5f43eb648dc')", "authenticate('wei.zhang44@innovationslab.ai')", "list_drafts('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', None, 10)", "get_user_by_id('57a05e8f-e0e8-407e-94ec-ce10616d81f2')", "authenticate('token_daria.novikova1582@food-delivery.org')", "get_account_balance()", "create_charge('19f5f434-fa54-48ec-ad9f-4f5a7a9beaa2', 55.0, 'weekend trip expenses')", "get_user_by_id('0d29bbb6-87d7-4fb0-bb27-945093d2430d')", "authenticate('token_daria.novikova2487@vintage-maps.store')", "get_user_profile()", "create_tweet('Weekend adventures are the best! Can\\'t wait to explore. 🌄')", "send_draft('2d3c0fd1-e83f-4115-8580-a5f43eb648dc', '4eba4435496e1810')"]
         }
     ]
 }

@@ -1,7 +1,7 @@
 {
     "multistep": [
         {
-            "prompt": "Check my smart lock battery level then search Amazon for smart lock and add the Yale Assure Lock to cart.",
+            "prompt": "Turn off my living room lamp and then check my Amazon cart to see what items I have.",
             "context": {
                 "smart_things": {
                     "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
@@ -11,68 +11,83 @@
                 }
             },
             "ground_truth": {
-                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('7239a16a-f414-474c-908f-dba5fbef0aec', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('7239a16a-f414-474c-908f-dba5fbef0aec', 'battery', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
-                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "search_products('smart lock', category='Home Security')", "add_to_cart('8e0e7ddf-6f95-4595-b622-5696ea937eb4', 1)"]
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "turn_off_device('0c295077-bcd2-4d2f-8841-049b15c118a0', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "show_cart()"]
             }
         },
         {
-            "prompt": "Show me my living room devices then search Amazon for smart plug and add the TP-Link Kasa 4-pack to cart.",
+            "prompt": "Lock my front door smart lock then view my Amazon order history.",
             "context": {
                 "smart_things": {
                     "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
                 },
                 "amazon": {
-                    "user_id": "c0f8372a-2707-4a1e-a772-a198378dacc4"
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
                 }
             },
             "ground_truth": {
-                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('0c295077-bcd2-4d2f-8841-049b15c118a0', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
-                "amazon": ["get_user_by_id('c0f8372a-2707-4a1e-a772-a198378dacc4')", "login_user('jade.austin@network-security.tools', 'i#EV8MUo')", "search_products('smart plug', category='Smart Home')", "add_to_cart('1aff6521-56f2-4ce0-899c-65473e991d58', 1)"]
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "lock_device('7239a16a-f414-474c-908f-dba5fbef0aec', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "get_order_history()"]
             }
         },
         {
-            "prompt": "Check my office thermostat temperature then search Amazon for nest thermostat and add it to my cart.",
+            "prompt": "Set my office thermostat to twenty five degrees and add an item from my Amazon wishlist to cart.",
             "context": {
                 "smart_things": {
                     "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
                 },
                 "amazon": {
-                    "user_id": "a6a473ee-2dd0-494b-a94b-531d72264b9d"
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
                 }
             },
             "ground_truth": {
-                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('67b8ae75-0896-4d7c-b779-c2b592a5665f', 'temperatureMeasurement', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
-                "amazon": ["get_user_by_id('a6a473ee-2dd0-494b-a94b-531d72264b9d')", "login_user('roman.harper@infrastructure.solutions', 'Ssf&bi#t')", "search_products('nest thermostat', category='Smart Home')", "add_to_cart('f1aad915-26e9-49d3-8aa2-0129887e3220', 1)"]
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "set_temperature('67b8ae75-0896-4d7c-b779-c2b592a5665f', 25, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "add_to_cart('ba65bac9-8e0e-4e7f-9160-7c21e701165b', 1)"]
             }
         },
         {
-            "prompt": "List all my smart things devices then search Amazon for wyze smart plug and add to cart.",
+            "prompt": "Check the status of my hallway motion sensor and then view my Amazon balance.",
             "context": {
                 "smart_things": {
                     "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
                 },
                 "amazon": {
-                    "user_id": "4adaffdb-e06b-4b22-9103-c2265fbb9976"
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
                 }
             },
             "ground_truth": {
-                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "list_devices('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
-                "amazon": ["get_user_by_id('4adaffdb-e06b-4b22-9103-c2265fbb9976')", "login_user('george.butler@climate-action.org', '9L)XFqX5')", "search_products('wyze smart plug', category='Smart Home')", "add_to_cart('f7af4796-bf63-4825-8ac9-827180ac7db0', 1)"]
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'motionSensor', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "get_balance()"]
             }
         },
         {
-            "prompt": "Check my motion sensor battery status and then search Amazon for security cameras and add Ring Indoor Cam to cart.",
+            "prompt": "Turn on my living room lamp at fifty percent brightness and check my Amazon wishlist.",
             "context": {
                 "smart_things": {
                     "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
                 },
                 "amazon": {
-                    "user_id": "71ae79dc-3635-485f-8cf9-eee3d32edec8"
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
                 }
             },
             "ground_truth": {
-                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "get_device_status('a1a635d3-9123-4e41-98ec-ee758dd2ad18', 'battery', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
-                "amazon": ["get_user_by_id('71ae79dc-3635-485f-8cf9-eee3d32edec8')", "login_user('aarav.palmer@bike-shop.online', 'zbVPIhWH')", "search_products('security camera', category='Home Security')", "add_to_cart('edad8005-174d-46db-8670-c1b01b5b03e5', 1)"]
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "turn_on_device('0c295077-bcd2-4d2f-8841-049b15c118a0', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "set_level('0c295077-bcd2-4d2f-8841-049b15c118a0', 50, 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "get_wish_list()"]
+            }
+        },
+        {
+            "prompt": "Unlock my front door and track my latest Amazon package delivery.",
+            "context": {
+                "smart_things": {
+                    "user_id": "b076da9b-2fdc-4d53-b7c4-08b0e2978cd2"
+                },
+                "amazon": {
+                    "user_id": "602bc161-c8a7-42b7-ac23-a22cf542cbf4"
+                }
+            },
+            "ground_truth": {
+                "smart_things": ["get_user_by_id('b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')", "unlock_device('7239a16a-f414-474c-908f-dba5fbef0aec', 'b076da9b-2fdc-4d53-b7c4-08b0e2978cd2')"],
+                "amazon": ["get_user_by_id('602bc161-c8a7-42b7-ac23-a22cf542cbf4')", "login_user('victoria.dean@vintage-clothing.store', '&7Z81C5z')", "track_package('TRK051360222')"]
             }
         }
     ],
