@@ -1,4 +1,6 @@
 # Audio_Gorilla
+![Audio_Gorilla](./audio_gorilla_info.png)
+
 
 **Audio_Gorilla** is a multistep, multiturn dataset for fine-tuning LLMs on **voice-driven API function calling**. It bridges the gap between conversational speech transcriptions and executable API sequences.
 
