@@ -1,12 +1,40 @@
-## audio-gorilla
+# Audio_Gorilla
 
-# Fake API Details
--All APIs have documentation under the method. This is used by the model to see the different
-method signatures and method outputs, and how to combine them.
--Some APIs are either taken inspiration directly from the source (e.g, google drive) or are taken inspiration from other research (AppWorld)
--All of the APIs don't have the whole breadth of fake methods that could've been taken from the source/inspiration, and that is because we want to take ones that use core funcitonality
--Some APIs are stateful and others are not. The decision was based on the source/inspiration. The stateful APIs are: GoogleCalendarApis, GoogleDriveApis, GmailApis, SpotifyApis, YouTubeApis, XApis, TeslaFleetApis, and VenmoApis; The stateless APIs are: AmazonApis, SmartThingsApis, SimpleNoteApis, and CommunilinkApis.
---In our case, for statelful: you authenticate once and then all requests are remembered to that user
---In our case, for stateless: you pass user context w/ each call
---There are pros and cons to stateless and stateful for model testing; Pros (for stateless): the model can switch users instantly w/o auth, can act as multiple users in parallel, no sessio state to manage, and it's a more deterministic behavior. However, the stateful design is more realistic for modern APIs
--
+**Audio_Gorilla** is a multistep, multiturn dataset for fine-tuning LLMs on **voice-driven API function calling**. It bridges the gap between conversational speech transcriptions and executable API sequences.
+
+---
+
+## Core Components
+
+* **12 Mock APIs**: Realistic schemas for Amazon, Spotify, YouTube, Gmail, Google Drive, Google Calendar, Simple Note, Smart Things, Tesla Fleet, X, Venmo, and CommuniLink.
+* **Stateful Backends**: Persistent JSON environments populated with synthetic data to support realistic queries and state changes.
+* **Testing Framework**: Comprehensive unit tests for every API function to ensure ground-truth accuracy.
+
+---
+
+## Dataset Features
+
+* **Speech-to-Function**: Focuses on extracting intent/parameters from natural, vague, or conversational transcriptions.
+* **Multistep Tool-Use**: Trains models to orchestrate sequences across different services (e.g., Calendar + Gmail).
+* **Contextual Awareness**: Supports multiturn dialogue where subsequent commands rely on previous turn history.
+
+---
+
+## Data Structure
+
+Data is located in `Prompts/Prompt.json`. 
+
+| Field | Description | Example |
+| :--- | :--- | :--- |
+| **prompt** | Transcribed user instruction | "Email Dominic about the project status." |
+| **tools** | Available API definitions | `["GmailApis"]` |
+| **context** | User IDs or session state | `{"gmail_user": "73e6974e..."}` |
+| **ground_truth** | Executable API call | `sendEmail(to='Dominic', subject='...', ...)` |
+
+---
+
+## Repository Map
+
+* `Backends/`: Simulated service states and backend generation scripts.
+* `Prompts/`: API JSON definitions and the fine-tuning dataset.
+* `unittests/`: Functional validation for API endpoints.
